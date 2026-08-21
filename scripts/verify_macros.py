@@ -4487,6 +4487,14 @@ EXEMPT: list[MacroExempt] = [
                "unminted DOI is visible in the rendered PDF rather than silent",
     ),
     MacroExempt(
+        macro="ReplicationConceptDoi",
+        kind="protocol_constant",
+        source="Zenodo concept DOI (version-independent) of the same deposit",
+        reason="the archive's version-independent identifier, cited beside the "
+               "version DOI so a reader reaches the latest version; like it, an "
+               "identifier rather than a measurement",
+    ),
+    MacroExempt(
         macro="ReplicationCommit",
         kind="protocol_constant",
         source="git submission tag of forecast-vintage-epf",
@@ -5379,7 +5387,7 @@ def _placeholders_resolved(macros_tex: str, cfg: EpfConfig) -> list[str]:
     not fine at the moment the gate is asked whether this is submittable.
     """
     problems: list[str] = []
-    for macro in ("ReplicationDoi", "ReplicationCommit"):
+    for macro in ("ReplicationDoi", "ReplicationConceptDoi", "ReplicationCommit"):
         m = re.search(rf"\\newcommand\{{\\{macro}\}}\{{((?:[^{{}}]|\{{[^{{}}]*\}})*)\}}", macros_tex)
         if m and re.search(r"X{4,}|TBD|TODO|\bxxx", m.group(1), re.IGNORECASE):
             problems.append(
