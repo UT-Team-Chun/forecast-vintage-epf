@@ -20,7 +20,7 @@ Everything here is derived from the committed per-file capture. Nothing touches 
 network, so the numbers are reproducible from the replication package alone.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/40b_dissemination_detail.py
+  uv run python scripts/40b_dissemination_detail.py
 """
 
 from __future__ import annotations

@@ -13,9 +13,9 @@ the JMA-GFS difference, (iii) does the vintage ordering (12Z < 18Z) hold
 within GFS. External-generality check; it does not replace the headline.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/63_gfs_provider_tier.py \
+  uv run python scripts/63_gfs_provider_tier.py \
       --step build [--areas ...]
-  uv run --extra research python ... --step analyse
+  uv run python ... --step analyse
 """
 
 from __future__ import annotations

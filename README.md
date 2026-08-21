@@ -67,12 +67,14 @@ Japan's meso-scale model reaches users about 2 h 16 min after initialisation
 Rebuilding the evaluation as a dissemination-correct ladder of run-pinned
 tiers, a single pre-gate run is worth several times a day-lagged reanalysis
 proxy, while the run the gate excludes is statistically equivalent in pooled
-accuracy at a margin of one exchange price tick — though it still shifts most
-committed quantities, so gate timing is cheap in accuracy and not in decisions.
-Carried into a compliance-constrained nomination, the same forecast reduces the
-fleet's netted day-ahead deviation and *lowers* its owner's profit, because
-under a single imbalance price a bidder that commits accurately on floor slots
-is charged for its precision.
+accuracy at a margin of one exchange price tick. The same forecasts behave very
+differently on the two targets they could serve: on the operators' recorded
+photovoltaic output the excluded run adds what its extra hours of information
+would predict, while on price it adds nothing measurable — and giving the model
+that run's innovation as an explicit feature does not recover it, so the null is
+a property of the signal rather than of the learner. Most of what the weather
+does buy on price runs through the floor channel: whether a half-hour collapses
+to the floor at all, rather than where the price lands when it does not.
 
 ## Quickstart
 
@@ -110,21 +112,27 @@ laptop; see [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the full table.
 
 | Target | Script | What it produces |
 |---|---|---|
-| `ladder` | [`10_vintage_ladder.py`](scripts/10_vintage_ladder.py) | the run-pinned vintage ladder, gate-timing bound and equivalence tests |
+| `ladder` | [`10_primary_ladder_cw.py`](scripts/10_primary_ladder_cw.py) | the primary run-pinned ladder on the capacity-weighted field, with the gate-timing equivalence tests |
 | `cycle_curve` | [`11_cycle_curve.py`](scripts/11_cycle_curve.py) | improvement by MSM cycle on a common daytime window |
-| `enriched_baseline` | [`13_enriched_baseline.py`](scripts/13_enriched_baseline.py) | what the pre-gate vintage adds over the strongest gate-available baseline |
-| `proxy_validation` | [`14_proxy_validation.py`](scripts/14_proxy_validation.py) | how much of a real area one representative point captures |
-| `capacity_weighted` | [`12_capacity_weighted_ladder.py`](scripts/12_capacity_weighted_ladder.py) | the ladder re-estimated on a 46-point capacity-weighted field |
-| `decision` | [`20_commitment_decision.py`](scripts/20_commitment_decision.py) | the compliance-constrained commitment, three operational tiers |
-| `wedge` | [`32_wedge_continuous.py`](scripts/32_wedge_continuous.py) | the settlement wedge as a continuous treatment |
-| `system` | [`33_system_metrics_band.py`](scripts/33_system_metrics_band.py) | physical metrics and the nomination-band sensitivity |
+| `reference_ladders` | [`12_single_point_ladder.py`](scripts/12_single_point_ladder.py), [`13_capacity_weighted_ladder_prior.py`](scripts/13_capacity_weighted_ladder_prior.py) | the two earlier ladders the primary sweep must bit-reproduce before it runs |
+| `enriched_baseline` | [`14_enriched_baseline.py`](scripts/14_enriched_baseline.py) | what the pre-gate vintage adds over the strongest gate-available baseline |
+| `proxy_validation` | [`15_proxy_validation.py`](scripts/15_proxy_validation.py) | how much of a real area one representative point captures |
+| `cross_area` | [`16_tier_slope_tests.py`](scripts/16_tier_slope_tests.py) | tier slope-difference tests for the cross-area contrast |
+| `lear` | [`18b_lear_ladder.py`](scripts/18b_lear_ladder.py) | the headline contrast re-measured with the canonical LEAR benchmark |
+| `epex_de` | [`19_epex_de_replication.py`](scripts/19_epex_de_replication.py) | the vintage contrast in one German bidding zone, as directional corroboration |
 | `floor_regime` | [`30_floor_regime_evaluation.py`](scripts/30_floor_regime_evaluation.py) | floor-event probabilistic evaluation |
-| `settlement` | [`31_settlement_pricing.py`](scripts/31_settlement_pricing.py) | the two published prices for the same half-hour |
-| `netting` | [`34_netting_direction.py`](scripts/34_netting_direction.py), [`35_netting_exact.py`](scripts/35_netting_exact.py) | direction decomposition and its exact marginal recomputation |
-| `decision_equivalence` | [`21_decision_equivalence.py`](scripts/21_decision_equivalence.py) | whether the excluded run changes decisions, not just accuracy |
-| `nomination_rules` | [`22_nomination_rules.py`](scripts/22_nomination_rules.py) | the profit sign under a family of compliant nomination rules |
-| `dissemination_audit` | [`40_dissemination_audit.py`](scripts/40_dissemination_audit.py) | dissemination timing measured from archive timestamps |
-| `tables`, `figures` | [`90_emit_tables.py`](scripts/90_emit_tables.py), [`91_figure_timeline.py`](scripts/91_figure_timeline.py), [`92_figures_paper.py`](scripts/92_figures_paper.py) | every generated table, the EM abstract, the paper's figures |
+| `floor_models` | [`31_direct_floor_models.py`](scripts/31_direct_floor_models.py), [`32b_floor_channel_decomposition.py`](scripts/32b_floor_channel_decomposition.py), [`32_floor_channel_hurdle.py`](scripts/32_floor_channel_hurdle.py) | direct floor classifiers, and the hurdle split of the gain into floor probability and level |
+| `timing_audit` | [`40_dissemination_audit.py`](scripts/40_dissemination_audit.py), [`41_lineage_audit.py`](scripts/41_lineage_audit.py), [`46_file_level_arrival.py`](scripts/46_file_level_arrival.py) | dissemination timing from archive timestamps, feature lineage, and every file's arrival against its own gate |
+| `evaluation_scope` | [`47_evaluation_regime.py`](scripts/47_evaluation_regime.py), [`48_area_independence.py`](scripts/48_area_independence.py) | what the evaluation window contains, and how independent the nine areas are |
+| `two_targets` | [`50_physical_target.py`](scripts/50_physical_target.py), [`54_signal_vs_learner.py`](scripts/54_signal_vs_learner.py), [`55_commensurable_asymmetry.py`](scripts/55_commensurable_asymmetry.py) | the price/physical asymmetry, and whether the post-gate null is the signal or the learner |
+| `robustness` | [`60_version_robustness.py`](scripts/60_version_robustness.py) … [`67_costloss_dominated.py`](scripts/67_costloss_dominated.py) | the pre-registered sensitivity families, including the cost–loss reading against an undominated fallback |
+| `lit_audit` | [`71_audit_reliability.py`](scripts/71_audit_reliability.py), [`72_litaudit_reslice.py`](scripts/72_litaudit_reslice.py) | inter-coder agreement and the inclusion-rule re-slice |
+| `tables`, `figures` | [`90_emit_tables.py`](scripts/90_emit_tables.py) … [`94_figures_theory.py`](scripts/94_figures_theory.py) | every generated table, the EM abstract, and all of the paper's figures |
+
+The settlement analyses that earlier versions of this table advertised —
+commitment decisions, the settlement wedge, the two published prices, netting,
+nomination rules — belong to a companion manuscript and were removed with
+their scripts. [`scripts/README.md`](scripts/README.md) records the split.
 
 ## Pre-registration
 
@@ -133,13 +141,14 @@ numbers existed, and the gates were written down in dated documents in the
 research repository before each phase ran. Two of them fired against the
 authors' expectation and are reported that way:
 
-- **Gate 39** compared the published direction-decomposed netting figure with
-  an exact marginal recomputation. It failed: the published figure overstated
-  the result by roughly a quarter, and the exact value replaced it.
-- **Gate 41** governed a saturation claim. It fired the retraction branch, and
-  the three-point extrapolation was replaced by the measured cycle curve.
+- **The saturation branch** governed a claim that improvement plateaus across
+  forecast cycles. It fired: the three-point extrapolation was retracted and
+  replaced by the measured cycle curve over the full panel.
+- **The mechanism test's retraction branch** governed whether the pre-gate
+  residuals load on the innovation the excluded run carries. It fired too, and
+  the mechanism claim it would have supported is not made.
 
-Two others held and strengthened the paper: **Gate 35/36** (a capacity-weighted
+Others held and strengthened the paper: **Gate 35/36** (a capacity-weighted
 re-estimation could have overturned the gate-timing null and did not) and
 **Gate 5**, which requires that adding new cells reproduce the existing ladder's
 per-slot predictions bit for bit — it does, to a maximum absolute difference of

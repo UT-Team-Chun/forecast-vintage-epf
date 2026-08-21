@@ -44,7 +44,7 @@ docs/research/2026-08-13_phase89_physical_target_precommit.md, before numbers.
    recompute any of it.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/50_physical_target.py
+  uv run python scripts/50_physical_target.py
 """
 
 from __future__ import annotations

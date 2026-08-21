@@ -15,7 +15,7 @@ Layout-aware output (same convention as the shared figure scripts): writes into
 the manuscript tree when main.tex is present, else ./figures.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/93_figures_results.py
+  uv run python scripts/93_figures_results.py
 """
 
 from __future__ import annotations
@@ -23,6 +23,8 @@ from __future__ import annotations
 import json
 import logging
 import sys
+
+from pathlib import Path
 
 from decimal import ROUND_HALF_UP, Decimal
 
@@ -37,7 +39,28 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("phase87_figs")
 
 CFG = EpfConfig()
-RUN = CFG.resolved("run_dir")
+# Every artefact this script reads is committed provenance. In this checkout it
+# lives in data/runs; in the public replication package, which ships no
+# data/runs at all, it lives in data/provenance. Resolving only the first meant
+# the article's three results figures could not be regenerated where the
+# package promises they are -- the same fallback 91_figure_timeline.py uses.
+_PROV_DIRS = [d for d in (CFG.resolved("run_dir"),
+                          CFG.project_root / "data/provenance") if d.is_dir()]
+
+
+class _Prov:
+    """``RUN / "x.json"`` resolved against whichever provenance dir holds it."""
+
+    def __truediv__(self, name: str) -> Path:
+        for d in _PROV_DIRS:
+            if (d / name).exists():
+                return d / name
+        tried = ", ".join(str(d / name) for d in _PROV_DIRS) or "(no provenance dir)"
+        msg = f"provenance {name} not found; tried {tried}"
+        raise FileNotFoundError(msg)
+
+
+RUN = _Prov()
 _MS = CFG.project_root / "docs/paper/paper_a_main"
 FIGDIR = (_MS / "figures") if (_MS / "main.tex").exists() else (CFG.project_root / "figures")
 

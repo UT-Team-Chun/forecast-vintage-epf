@@ -21,7 +21,7 @@ Nothing here is a new hypothesis or a gate: it is mean and standard deviation of
 a committed per-fold table.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/44_headline_cell_dispersion.py
+  uv run python scripts/44_headline_cell_dispersion.py
 """
 
 from __future__ import annotations

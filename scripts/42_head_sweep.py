@@ -13,7 +13,7 @@ downloaded. Output is a separate parquet so phase72's frozen artefact is
 untouched; phase84's analysis concatenates the two.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/42_head_sweep.py
+  uv run python scripts/42_head_sweep.py
 """
 
 from __future__ import annotations

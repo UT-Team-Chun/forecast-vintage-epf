@@ -28,7 +28,7 @@ data/raw/open_meteo_ext1/_manifest_phase85.json (and _manifest under
 open_meteo_mp/) with URL, params and fetch time.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/05_extend_panel.py \
+  uv run python scripts/05_extend_panel.py \
       [--steps jepx,era5,histfc,prev,mp_era5]
 """
 

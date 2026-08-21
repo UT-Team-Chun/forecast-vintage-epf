@@ -11,40 +11,68 @@ What it does, exhaustively:
 
 1. ``scripts/`` -- copies each analysis script under its readable name (the
    monorepo uses a dated sandbox convention that means nothing outside it) and
-   applies exactly THREE textual transforms, all confined to docstrings,
-   comments and log strings:
+   applies exactly FIVE textual transforms:
      a. the docstring CLI heading  "CLI (from backend/packages/alg)"
         becomes                    "CLI (from the repository root)";
      b. the docstring line         "cd backend/packages/alg"
         becomes                    "cd <repository root>";
-     c. references to a sibling script (with or without the monorepo's
-        ``sandbox/`` prefix) are rewritten to the sibling's name in
-        this repository.
-     d. any remaining mention of the monorepo's author-named sandbox
-        directory is dropped, keeping the filename or module tail. What
-        survives (c) names a script this package does not ship, so it cannot
-        be rewritten to a path here; the bare name still says which run
-        produced a result.
-   Nothing else is edited. In particular, provenance metadata stamps are NOT
-   rewritten -- the scripts stamp ``Path(__file__).name`` at run time.
+     c. "uv run --extra research python" becomes "uv run python": the extra
+        exists only in the monorepo, and left in place it made every
+        copy-pasteable command in the package fail before running a line;
+     d. references to a sibling script -- with or without the ``sandbox/``
+        prefix, as a filename or as a dotted module name for importlib -- are
+        rewritten to the sibling's name in this repository. NOTE that this one
+        is NOT confined to prose: five of them land in executable constants
+        (``Path(__file__).parent / "<sibling>.py"`` and the two
+        ``importlib.import_module`` targets). A missed rewrite there is a
+        ModuleNotFoundError, not a stale comment, so ``main()`` refuses to
+        extract if any renamed sibling survives untranslated in shipped code.
+        A reference that survives (d) names a script this package does not
+        ship -- a superseded run -- and keeps its bare filename, which still
+        says which run produced a result;
+     e. two provenance-stamp forms are normalised. Eight scripts build the
+        stamp from a directory literal and a filename literal on separate
+        lines, so (d) sees neither whole and dropping the directory leaves an
+        empty literal glued to the name.
+   Nothing else is edited. In particular:
+   -- provenance metadata stamps ARE rewritten, by (d) and (e), to the
+      script's path IN THIS PACKAGE, which is the only path that exists here.
+      A re-run therefore stamps e.g. "scripts/12_single_point_ladder.py" while
+      the shipped frozen JSON for the same phase records the monorepo filename
+      it was actually written with. That is deliberate -- the frozen artefact
+      is a historical record and ``scripts/README.md`` maps between the two
+      names -- and it is the only field where a regenerated JSON and the
+      shipped one differ by design.
 2. ``scripts/verify_macros.py`` -- copied VERBATIM, byte for byte. The guard
    resolves its own layout and must stay diffable against the monorepo copy.
 3. ``alg/`` -- the transitive import closure of the scripts, iterated to a
    fixed point, copied VERBATIM.
-4. ``data/provenance/`` -- every JSON the guard, the emitters and the figure
-   scripts read, plus the acquisition provenance. Copied verbatim except for
-   ONE substitution: an absolute path under the author's home directory is
-   rewritten repository-relative. Those paths are meaningful only on the
-   machine that wrote them and would publish its filesystem layout; no value,
-   count, interval or hash is touched. The research checkout has a guard
-   (``_provenance_paths_portable``) that fails if a script stamps one, so this
-   substitution is a backstop rather than the primary defence. A second,
-   narrower rewrite drops the ``sandbox/<author>/`` directory prefix from the
+4. ``data/provenance/`` -- every JSON the guard names, plus the short
+   hardcoded lists ``EXTRA_PROVENANCE`` (artefacts no macro cites, including
+   the one acquisition record) and ``NESTED_PROVENANCE``. Copied verbatim
+   except for ONE substitution: an absolute path under the author's home
+   directory is rewritten repository-relative. Those paths are meaningful only
+   on the machine that wrote them and would publish its filesystem layout; no
+   value, count, interval or hash is touched. The guard
+   (``_provenance_paths_portable``) fails on a stamped absolute path in either
+   layout, so this substitution is a backstop rather than the primary defence.
+   A second, narrower rewrite drops the sandbox directory prefix from the
    script name a run stamped, keeping the filename -- which is the provenance,
    and which ``scripts/README.md`` maps to the name used here.
-5. ``data/reference/``, ``docs/macros.tex`` -- copied verbatim. ``figures/``
-   is NOT copied: the shipped figures are regenerated in this repository by
-   ``make figures`` from the shipped provenance, which is the stronger claim.
+5. ``data/reference/``, ``docs/macros.tex`` -- copied verbatim, together with
+   the literature audit's assembled dataset (the article's machine-readable
+   Supplementary Dataset, which the monorepo keeps beside the manuscript).
+   ``figures/`` is NOT copied: every figure tracked here is regenerated by
+   ``make figures`` from the shipped provenance, which is the stronger claim,
+   and ``tests/test_smoke.py`` asserts that the set of tracked figures equals
+   the set the figure scripts write.
+
+The test suite enforces the parts of this description that are mechanically
+checkable: that ``RENAMES`` agrees with the ``scripts/README.md`` table in both
+directions, that every sibling constant and import target in ``scripts/``
+resolves to a shipped file, that every Makefile invocation supplies the flags
+its script declares required, and that no shipped docstring names an optional
+dependency group this package does not define.
 
 Usage (authors only):
     uv run python tools/extract_from_monorepo.py [--monorepo PATH] [--check]
@@ -135,6 +163,13 @@ RENAMES: list[tuple[str, str]] = [
     ("55_commensurable_asymmetry.py", "s_20260820_phase106_commensurable_asymmetry.py"),
     ("72_litaudit_reslice.py", "s_20260820_phase107_litaudit_reslice.py"),
     ("67_costloss_dominated.py", "s_20260820_phase108_costloss_dominated.py"),
+    # 54 and 32 load these two at run time -- the innovation construction and
+    # the floor-channel decomposition their own analyses build on. Shipping the
+    # consumers without them left an executable Path/module constant pointing at
+    # a file that is not here, so `--step analyse` died before it read anything.
+    ("54b_innovation_construction.py", "s_20260819_phase102_innovation_learner.py"),
+    ("32b_floor_channel_decomposition.py",
+     "s_20260819_phase103_floor_channel_decomposition.py"),
     ("47_evaluation_regime.py", "s_20260819_phase94_evaluation_regime.py"),
     ("48_area_independence.py", "s_20260819_phase95_area_independence.py"),
     ("18b_lear_ladder.py", "s_20260819_phase96_lear_ladder.py"),
@@ -147,6 +182,11 @@ RENAMES: list[tuple[str, str]] = [
     ("91_figure_timeline.py", "s_20260812_phase87_timeline_split.py"),
     ("92_figures_paper.py", "s_20260812_phase87_ae_figures.py"),
     ("93_figures_results.py", "s_20260812_phase87_results_figures.py"),
+    # The two supplement figures (the schematic VoI ridge and the skill-scarcity
+    # panel) shipped as PDFs with no producer here, so `make figures` could not
+    # regenerate them and the guard's retired-term audit was certifying two
+    # files nothing in this package could rebuild.
+    ("94_figures_theory.py", "s_20260619_phase27.4_figures.py"),
 ]
 VERBATIM_SCRIPTS = ("verify_macros.py",)
 
@@ -183,6 +223,11 @@ EXTRA_PROVENANCE = (
     "phase36_skill_degradation.json",
     "phase51_vintage_ladder.json",
     "phase72_dissemination_audit.json",
+    # The one acquisition record. The guard never names it (it backs no
+    # headline macro), so provenance discovery cannot find it, but
+    # scripts/README.md and data/README.md both point a reader at it as the
+    # record of what `make acquire_ics` fetched.
+    "phase71_ics_basis.json",
 )
 NESTED_PROVENANCE = (
     "phase23-panel-daily/cluster_bootstrap.json",
@@ -191,25 +236,48 @@ NESTED_PROVENANCE = (
 
 
 def transform(text: str) -> str:
-    """The four documented transforms, and nothing else."""
+    """The five documented transforms, and nothing else."""
     text = text.replace("CLI (from backend/packages/alg)", "CLI (from the repository root)")
     text = text.replace("cd backend/packages/alg", "cd <repository root>")
+    # (c) The monorepo's CLIs select an optional-dependency group that exists
+    # only there. This package puts the reproduction dependencies in its main
+    # table, so the flag is dropped: left in place, every copy-pasteable
+    # command in the package failed with "Extra `research` is not defined in
+    # the project's optional-dependencies table" before running a line.
+    text = text.replace("uv run --extra research python", "uv run python")
     for new, old in RENAMES:
         for box in ("research", "r_okauchi"):
             text = text.replace(f"sandbox/{box}/{old}", f"scripts/{new}")
         text = text.replace(old, new)
-    # (d) Any remaining reference to the monorepo's sandbox directory loses the
+        # A sibling named as a dotted MODULE for importlib has no ".py" for the
+        # line above to match, so the stem needs its own pass. Without it the
+        # prefix strip below turned "sandbox.research.s_..._phase85_..." into a
+        # bare monorepo stem: unimportable here, and no longer visibly foreign.
+        # Verified free of prefix collisions -- no stem in RENAMES is a
+        # substring of another -- and enforced by the post-condition in main().
+        text = text.replace(old[:-3], new[:-3])
+    # Any remaining reference to the monorepo's sandbox directory loses the
     # directory and keeps the tail. What is left over after the loop above names a
     # script this package does NOT ship -- a superseded run, or one whose result the
     # article no longer cites -- so rewriting it to "scripts/<name>" would point at
     # a file that is not here. Keeping the bare filename is honest: it says which
-    # run produced something without publishing one person's directory layout
-    # through forty-odd shipped files.
+    # run produced something without publishing another repository's directory
+    # layout through forty-odd shipped files. Both spellings are handled: the
+    # directory was renamed on 2026-08-21 and frozen artefacts predate that.
     text = re.sub(r"(?:backend/packages/alg/)?sandbox/(?:research|r_okauchi)/",
                   "", text)
     text = re.sub(r"sandbox\.(?:research|r_okauchi)\.", "", text)
     text = re.sub(r"(?:backend/packages/alg/)?sandbox/(?:research|r_okauchi)\b",
                   "the research sandbox", text)
+    # (e) Eight scripts build their provenance stamp from a directory literal
+    # and a filename literal on separate lines, so rule (c) -- which matches
+    # directory and filename together -- sees neither whole, and the strip
+    # above leaves an empty literal glued to the name. Normalise the two forms
+    # it produces. The stamp a re-run writes here therefore names the script's
+    # path IN THIS PACKAGE, which is the only path that exists here; see the
+    # module docstring on why that differs from the shipped frozen JSON.
+    text = re.sub(r'""\s*\n\s*"(\w+\.py)",', r'"scripts/\1",', text)
+    text = text.replace('"" + Path(__file__).name', "Path(__file__).name")
     return text
 
 
@@ -325,6 +393,19 @@ def main() -> int:
             if not args.check:
                 stale.unlink()
 
+    # A rewrite that misses leaves a monorepo stem in shipped code -- the
+    # failure mode that shipped two unimportable module constants. A stem in
+    # RENAMES must never survive transform(); one NOT in RENAMES may (rule d
+    # keeps the bare name of a run this package does not ship).
+    shipped_stems = {old[:-3] for _, old in RENAMES}
+    for new, old in RENAMES:
+        body = transform((sandbox / old).read_text())
+        leaked = sorted(s for s in shipped_stems if s in body)
+        if leaked:
+            raise SystemExit(
+                f"transform() left a renamed sibling unrewritten in {new}: {leaked}"
+            )
+
     # alg closure (verbatim)
     texts = [(sandbox / old).read_text() for _, old in RENAMES] + [
         (sandbox / n).read_text() for n in VERBATIM_SCRIPTS
@@ -347,13 +428,12 @@ def main() -> int:
         text = text.replace(mono_root, "")
         text = text.replace(home + "/main_desk/UTokyo/from_202604/", "../")
         text = text.replace(home + "/", "~/")
-        # Scripts stamp their own path, and the monorepo keeps them in a sandbox
-        # directory named after the author. The FILENAME is the provenance and is
+        # Scripts stamp their own path. The FILENAME is the provenance and is
         # kept -- scripts/README.md maps it to the name here -- but the directory
-        # prefix names a layout that does not exist in this package and carries a
-        # person's name through 40-odd frozen artefacts for no benefit.
-        # frozen provenance from before the sandbox was renamed still records
-        # the old author-named directory, so both spellings are stripped
+        # prefix names a layout that does not exist in this package. Frozen
+        # provenance written before the sandbox was renamed (2026-08-21) still
+        # records the old, author-named spelling, so BOTH are stripped: dropping
+        # either branch would leak one of them back into 40-odd artefacts.
         text = re.sub(r"(?:[\w./-]*?)sandbox/(?:research|r_okauchi)/(s_\d{8}_)",
                       r"\1", text)
         return text.encode("utf-8")
@@ -380,6 +460,13 @@ def main() -> int:
     # reference data + macros
     for name in ("area_capacity.csv", "area_points_capacity.csv"):
         emit(HERE / "data/reference" / name, (mono / "data/reference" / name).read_bytes())
+    # The literature audit's assembled dataset is the article's machine-readable
+    # Supplementary Dataset, so it is public either way; the monorepo keeps it
+    # with the manuscript. Without it here, 72_litaudit_reslice.py read a path
+    # inside the private paper tree and two provenance stamps named a dataset a
+    # reader had no way to obtain.
+    emit(HERE / "data/reference/lit_audit_dataset.csv",
+         (mono / "docs/paper/paper_a_main/submission/lit_audit_dataset.csv").read_bytes())
     emit(HERE / "docs/macros.tex",
          (mono / "docs/paper/shared/macros.tex").read_bytes())
 

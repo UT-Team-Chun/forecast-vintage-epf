@@ -34,10 +34,10 @@ GATES 45-50 -- see the precommit. 45b/45c are BLOCKING bit-reproduction of
 phase59 (9 SP cells) and phase74 (3 CW cells) on the frozen 714-day window.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/10_primary_ladder_cw.py \
+  uv run python scripts/10_primary_ladder_cw.py \
       --step build
-  uv run --extra research python ... --step analyse
-  uv run --extra research python ... --step build --areas kyushu   # smoke
+  uv run python ... --step analyse
+  uv run python ... --step build --areas kyushu   # smoke
 """
 
 from __future__ import annotations

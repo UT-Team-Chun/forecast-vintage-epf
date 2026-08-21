@@ -23,7 +23,7 @@ n_eff = (sum lambda)^2 / sum lambda^2, which is 9 for uncorrelated areas and 1 f
 perfectly correlated ones.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/48_area_independence.py
+  uv run python scripts/48_area_independence.py
 """
 
 from __future__ import annotations

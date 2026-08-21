@@ -19,7 +19,7 @@ column to build the physical target). It exists so a §2 sentence has provenance
 instead of a remembered figure.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/43_curtailment_days.py
+  uv run python scripts/43_curtailment_days.py
 """
 
 from __future__ import annotations

@@ -11,7 +11,7 @@ buffers of 0/30/60/90/120 minutes. Output feeds the manuscript's lineage
 table and the no-look-ahead unit test.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/41_lineage_audit.py
+  uv run python scripts/41_lineage_audit.py
 """
 
 from __future__ import annotations

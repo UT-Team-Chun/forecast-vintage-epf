@@ -31,7 +31,7 @@ value of pre-gate weather for floor protection -- the paper's largest floor
 contrast (+0.276 PR-AUC) expressed in a form an operator can act on.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/66b_cost_loss.py
+  uv run python scripts/66b_cost_loss.py
 """
 
 from __future__ import annotations

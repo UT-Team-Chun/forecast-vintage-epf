@@ -11,7 +11,7 @@ JEPX per-area traded volume is not carried in our spot cache, so the
 volume-weighted variant is reported as unavailable rather than proxied.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/61_weighted_metrics.py
+  uv run python scripts/61_weighted_metrics.py
 """
 
 from __future__ import annotations

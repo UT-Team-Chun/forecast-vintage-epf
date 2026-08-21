@@ -27,8 +27,8 @@ module-global swap that silently fails turns a contrast into a copy and reports 
 bug as a null.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/18b_lear_ladder.py --step build
-  uv run --extra research python scripts/18b_lear_ladder.py --step analyse
+  uv run python scripts/18b_lear_ladder.py --step build
+  uv run python scripts/18b_lear_ladder.py --step analyse
 """
 
 from __future__ import annotations

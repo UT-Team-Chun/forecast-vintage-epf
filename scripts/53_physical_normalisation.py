@@ -94,7 +94,7 @@ non-finiteness (polars `drop_nulls` does not drop NaN, which has bitten this
 codebase before), and the counts are written to the artefact.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/53_physical_normalisation.py
+  uv run python scripts/53_physical_normalisation.py
 """
 
 from __future__ import annotations

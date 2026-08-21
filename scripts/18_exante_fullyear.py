@@ -44,7 +44,7 @@ Steps (each gated on the previous):
 
 CLI:
   cd <repository root>
-  uv run --extra research python scripts/18_exante_fullyear.py \
+  uv run python scripts/18_exante_fullyear.py \
       --step all [--areas kyushu,tokyo] [--fresh] [--skip-probe]
 """
 from __future__ import annotations

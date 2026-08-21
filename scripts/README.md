@@ -52,16 +52,30 @@ Each script's docstring still opens with its phase number.
 | [`17_composite_ladder_superseded.py`](17_composite_ladder_superseded.py) | 51 | `phase51_vintage_ladder.json` | §5.2 | The superseded composite-tier ladder. Retained because a figure reads its dissemination accounting; the run-pinned ladders replaced its estimates. |
 | [`18_exante_fullyear.py`](18_exante_fullyear.py) | 49 | `phase49_exante_fullyear.json` | S1 | Full-year previous-day-run panel, an earlier data-window refresh. |
 | [`19_epex_de_replication.py`](19_epex_de_replication.py) | 45 | `phase45_epex_de_tiered.json` | §7 | EPEX DE/LU two-tier external replication of the vintage contrast, reported as directional corroboration rather than a second audited market. |
+| [`18b_lear_ladder.py`](18b_lear_ladder.py) | 96 | `phase96_lear_ladder.json` | §5.2 | The headline contrast re-measured with the canonical LEAR benchmark instead of gradient boosting, so the increment is not a property of one learner. |
 | **Floor-event forecasting** | | | | |
 | [`30_floor_regime_evaluation.py`](30_floor_regime_evaluation.py) | 66v2 | `phase66v2_floor_regime.json` | §5.4 | Floor-event probabilistic evaluation on the primary measurement: PR-AUC, Brier, reliability, and the operational recall reading. |
 | [`31_direct_floor_models.py`](31_direct_floor_models.py) | 81 | `phase81_direct_floor_models.json` | §4.5, §5.4 | The four direct floor models pre-registered beside the isotonic chain, including the price-only control that isolates the weather's contribution. |
+| [`32b_floor_channel_decomposition.py`](32b_floor_channel_decomposition.py) | 103 | `phase103_floor_channel_decomposition.json` | §5.4 | Split the headline weather gain into the floor channel and the rest, by partitioning the panel on realised floor incidence. Builds the partition `32` fits on. |
+| [`32_floor_channel_hurdle.py`](32_floor_channel_hurdle.py) | 103b | `phase103b_floor_channel_hurdle.json` | §5.4 | The fitted hurdle decomposition: how much of the gain runs through the probability of hitting the floor, how much through the level given no floor, and the exact reconstruction residual between them. |
 | **Timing audit** | | | | |
 | [`40_dissemination_audit.py`](40_dissemination_audit.py) | 72 | `phase72_dissemination_audit.json` | §2.2 | Dissemination timing measured from the archive's own Last-Modified headers. |
 | [`41_lineage_audit.py`](41_lineage_audit.py) | 78 | `phase78_lineage_audit.json` | §4.3 | Every feature family's lineage: source, first publication, retrieval, revision risk, and measured margin against the gate, plus the processing-buffer re-scoring. |
 | [`42_head_sweep.py`](42_head_sweep.py) | 84 | `phase84_head_ef_per_file.parquet` | §4.3 | The archive HEAD sweep that supplies measured dissemination times for the cycles the earlier audit had not covered. |
+| [`40b_dissemination_detail.py`](40b_dissemination_detail.py) | 98 | `phase98_dissemination_detail.json` | S1 | The dissemination audit at full resolution, with the poll-grid objection tested directly: whether the measured arrival times are an artefact of when the archive was asked. |
+| [`45_rish_cycle_horizon_probe.py`](45_rish_cycle_horizon_probe.py) | 100 | `phase100_rish_cycle_horizon_probe.json` | §4.2, §6 | Pre-registered probe of whether the mirror publishes long horizons for off-synoptic cycles, so the whole-day tier's absence is a measured property of the archive rather than an assumption. |
+| [`46_file_level_arrival.py`](46_file_level_arrival.py) | 105 | `phase105_file_level_arrival.json` | §2.2 | Arrival of every individual file against its own delivery day's gate: the earliest, the latest, and the spread — the reading that answers whether the tail ever clears the deadline. |
+| [`43_curtailment_days.py`](43_curtailment_days.py) | 92 | `phase92_curtailment_days.json` | §2.2 | How many days a year each area actually curtails photovoltaic output, which sizes the regime the floor analysis is about. |
+| [`47_evaluation_regime.py`](47_evaluation_regime.py) | 94 | `phase94_evaluation_regime.json` | §2.2, §7, §8 | What price regime the evaluation window is, so the headline is read against the period that produced it rather than against the market in general. |
+| [`44_headline_cell_dispersion.py`](44_headline_cell_dispersion.py) | 93 | `phase93_headline_cell_dispersion.json` | S1, S6 | Mean and dispersion of the headline cell under both fold designs, so the point estimate is reported with the spread it came from. |
+| [`48_area_independence.py`](48_area_independence.py) | 95 | `phase95_area_independence.json` | §5.5 | How many genuinely independent areas the nine-area statement rests on, given the cross-area correlation of the daily improvements. |
 | **Two targets, and the mechanism test** | | | | |
 | [`50_physical_target.py`](50_physical_target.py) | 89 | `phase89_physical_target.json`, `phase89_physical_per_slot.parquet` | §4.5, §5.3 | Score every vintage against the operators' recorded photovoltaic generation with curtailed energy added back, on the days the price panel shares, with the scale fitted only on preceding days. Supersedes phase79, whose scale was fitted on the full sample. |
 | [`51_mechanism_test.py`](51_mechanism_test.py) | 90 | `phase90_mechanism.json` | §5.3 | Regress each pre-gate residual on the innovation the excluded run carries, with a variance clustered on area × delivery day, and two placebo regressions. This is the test whose pre-registered retraction branch fired. |
+| [`53_physical_normalisation.py`](53_physical_normalisation.py) | 101 | `phase101_physical_normalisation.json` | §1, §5.3 | The physical-target contrast in units a reader can size: normalised MAE against installed capacity, fractional error reduction, and capacity-weighted pooling. |
+| [`54b_innovation_construction.py`](54b_innovation_construction.py) | 102 | `phase102_innovation_learner.json`, `phase102_innovation_importance.json` | §5.3 | Construct the post-gate innovation as an explicit feature and refit each cell on it. Builds the fitted cells `54` compares; separated because the construction is the expensive half. |
+| [`54_signal_vs_learner.py`](54_signal_vs_learner.py) | 102 | `phase102_signal_vs_learner.json` | §5.3 | Whether the post-gate null is a property of the signal or of the learner: the same innovation given to the model directly, on the price target and on the physical one, with a noise control and a raw-feature control. |
+| [`55_commensurable_asymmetry.py`](55_commensurable_asymmetry.py) | 106 | `phase106_commensurable_asymmetry.json` | §1, §5.3 | Express the two-target asymmetry in commensurable units — each target's own fractional error reduction — because variance shares on two different dependent variables cannot be divided. |
 | **Robustness** | | | | |
 | [`60_version_robustness.py`](60_version_robustness.py) | 80 | `phase80_jma_version.json` | §5.6 | Split every headline contrast at the 2025-05-20 model upgrade, with and without a transition window. |
 | [`61_weighted_metrics.py`](61_weighted_metrics.py) | 82 | `phase82_weighted_metrics.json` | §5.6 | Re-pool the daily improvements under demand and photovoltaic-capacity weights. |
@@ -71,14 +85,18 @@ Each script's docstring still opens with its phase number.
 | [`65_floor_inference.py`](65_floor_inference.py) | 81b | `phase81b_floor_inference.json` | §5.4, S4 | Paired block bootstrap of the macro floor statistic, Holm correction across the five models, micro and prevalence-adjusted readings, and the floor gate contrast under a second model. |
 | [`66_weight_sensitivity.py`](66_weight_sensitivity.py) | 91 | `phase91_weight_sensitivity.json` | §7 | Re-estimate the headline and the excluded-run cell under a later capacity-register snapshot and under equal point weights, and run the pre-committed one-tick equivalence test under each. |
 | [`52_price_on_common_panel.py`](52_price_on_common_panel.py) | 89b | `phase89b_price_on_common_panel.json` | Fig. 5 | Score the price target on exactly the panel the physical target uses, so the figure's two panels are on one sample rather than only claiming to be. |
+| [`66b_cost_loss.py`](66b_cost_loss.py) | 97 | `phase97_cost_loss.json` | S4 | The floor forecasts' decision value in Murphy's cost–loss frame, across the cost-to-loss ratio. Superseded as the reported reading by `67`, which fixes the benchmark. |
+| [`67_costloss_dominated.py`](67_costloss_dominated.py) | 108 | `phase108_costloss_dominated_benchmark.json` | §5.4, S4 | The cost–loss increment measured against a fallback an actor would actually adopt, rather than against a dominated one — differencing against a dominated benchmark credited the weather channels with losses nobody would incur. |
 | **The literature audit** | | | | |
 | [`70_lit_audit_assemble.py`](70_lit_audit_assemble.py) | 88 | `phase88_lit_audit.json` | §2.3, S7 | Assemble the per-paper codings of weather-input timing into the released dataset and the rates the paper cites. |
 | [`71_audit_reliability.py`](71_audit_reliability.py) | 88b | `phase88b_audit_reliability.json`, `phase88b_multicoded_runs.json` | §2.3, S7 | Inter-coder agreement on the multi-coded subsample, reported as raw agreement, Cohen's κ, and the Yes-versus-not-Yes flip rate that the reported rates actually depend on. |
+| [`72_litaudit_reslice.py`](72_litaudit_reslice.py) | 107 | `phase107_litaudit_reslice.json` | §2.3, S7 | Re-derive the audit's robustness check on the column that records what was actually read, rather than on the column that records publisher access. |
 | **Outputs** | | | | |
 | [`90_emit_tables.py`](90_emit_tables.py) | 64 | *(reads provenance, writes tables)* | — | Emit every provenance-derived LaTeX table and the Editorial Manager abstract. |
 | [`91_figure_timeline.py`](91_figure_timeline.py) | 87 | *(reads provenance, writes `figures/`)* | Figs. 1a, 1b | The delivery-day clock and the measured cycle curve, as two figures. |
 | [`92_figures_paper.py`](92_figures_paper.py) | 87 | *(reads provenance, writes `figures/`)* | Fig. 2, GA | The analysis roadmap and the graphical abstract. |
 | [`93_figures_results.py`](93_figures_results.py) | 87 | *(reads provenance, writes `figures/`)* | Figs. 3–5 | The ladder forest, the floor-skill comparison, and the expectations-channel scatter. |
+| [`94_figures_theory.py`](94_figures_theory.py) | 27.4 | *(reads provenance, writes `figures/`)* | S2 | The supplement's two figures: the schematic value-of-information ridge from the framework, and the skill-scarcity panel. |
 | [`verify_macros.py`](verify_macros.py) | — | *(reads all of them)* | — | The drift guard: re-derives every headline quantity in the paper from `data/provenance/` and fails on disagreement. Shared verbatim with the research repository. |
 
 ## Research-repo filenames
@@ -131,11 +149,14 @@ those:
 | `s_20260812_phase87_timeline_split.py` | `91_figure_timeline.py` |
 | `s_20260812_phase87_ae_figures.py` | `92_figures_paper.py` |
 | `s_20260812_phase87_results_figures.py` | `93_figures_results.py` |
+| `s_20260619_phase27.4_figures.py` | `94_figures_theory.py` |
 | `s_20260819_phase100_rish_cycle_horizon_probe.py` | `45_rish_cycle_horizon_probe.py` |
 | `s_20260819_phase105_file_level_arrival.py` | `46_file_level_arrival.py` |
 | `s_20260819_phase101_physical_normalisation.py` | `53_physical_normalisation.py` |
 | `s_20260819_phase102_signal_vs_learner.py` | `54_signal_vs_learner.py` |
 | `s_20260819_phase103b_floor_channel_hurdle.py` | `32_floor_channel_hurdle.py` |
+| `s_20260819_phase103_floor_channel_decomposition.py` | `32b_floor_channel_decomposition.py` |
+| `s_20260819_phase102_innovation_learner.py` | `54b_innovation_construction.py` |
 | `s_20260820_phase106_commensurable_asymmetry.py` | `55_commensurable_asymmetry.py` |
 | `s_20260820_phase107_litaudit_reslice.py` | `72_litaudit_reslice.py` |
 | `s_20260820_phase108_costloss_dominated.py` | `67_costloss_dominated.py` |

@@ -380,8 +380,7 @@ def main() -> int:
              len(out["saturation_indices"]["rank_changes"]))
 
     out["metadata"] = {
-        "script": ""
-                  "15_proxy_validation.py",
+        "script": "scripts/15_proxy_validation.py",
         "git_sha": _git_sha(),
         "generated_utc": datetime.now(UTC).isoformat(),
     }

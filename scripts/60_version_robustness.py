@@ -10,7 +10,7 @@ timeline. Branches B1 (stable) / B2 (report split, scope pooled claims) are in
 the precommit; either is reported.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/60_version_robustness.py
+  uv run python scripts/60_version_robustness.py
 """
 
 from __future__ import annotations

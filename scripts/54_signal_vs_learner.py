@@ -44,7 +44,7 @@ Feed the innovation DIRECTLY as extra columns on top of the pre-gate feature set
 and score it with phase85's panel, folds, design matrix, estimator and statistics
 VERBATIM. Reuse, not reimplementation: this module imports
 10_primary_ladder_cw.py (the ladder) and
-s_20260819_phase102_innovation_learner.py (the committed innovation construction,
+54b_innovation_construction.py (the committed innovation construction,
 which does the phase85 `_design` / `_fit` rebinding and asserts it took effect --
 phase91 taught this project that a silent module-global swap turns a contrast into
 a copy and reports a bug as a null). Both rebindings are asserted again here from
@@ -103,9 +103,9 @@ A pass that covered only some areas is reported ABSENT, never partial -- a parti
 pass would change the panel, which is the one thing that must not differ.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/54_signal_vs_learner.py --step build --pass q --areas kyushu
-  uv run --extra research python scripts/54_signal_vs_learner.py --step phys
-  uv run --extra research python scripts/54_signal_vs_learner.py --step analyse
+  uv run python scripts/54_signal_vs_learner.py --step build --pass q --areas kyushu
+  uv run python scripts/54_signal_vs_learner.py --step phys
+  uv run python scripts/54_signal_vs_learner.py --step analyse
 """
 
 from __future__ import annotations
@@ -133,7 +133,7 @@ RUN = CFG.resolved("run_dir")
 HERE = Path(__file__).parent
 P85_PATH = HERE / "10_primary_ladder_cw.py"
 P89_PATH = HERE / "50_physical_target.py"
-P102_PATH = HERE / "s_20260819_phase102_innovation_learner.py"
+P102_PATH = HERE / "54b_innovation_construction.py"
 
 P85_PARQUET = RUN / "phase85_exact_ladder_per_slot.parquet"
 P85_JSON = RUN / "phase85_exact_ladder.json"

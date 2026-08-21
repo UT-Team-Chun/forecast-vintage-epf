@@ -34,10 +34,10 @@ docs/research/2026-08-13_phase81b_floor_inference_precommit.md.
 
 CLI (from the repository root):
   # stage 2 build, one area at a time or comma-separated (about 2 h per area)
-  uv run --extra research python scripts/65_floor_inference.py \
+  uv run python scripts/65_floor_inference.py \
       --step build-postgate --areas tokyo,kyushu
   # stage 1 + whatever of stage 2 is on disk
-  uv run --extra research python scripts/65_floor_inference.py \
+  uv run python scripts/65_floor_inference.py \
       --step analyse
 """
 
@@ -72,7 +72,7 @@ PHASE85_PARQUET = RUN / "phase85_exact_ladder_per_slot.parquet"
 OUT_JSON = RUN / "phase81b_floor_inference.json"
 PRECOMMIT = "docs/research/2026-08-13_phase81b_floor_inference_precommit.md"
 
-PHASE81_MODULE = "s_20260811_phase81_direct_floor_models"
+PHASE81_MODULE = "31_direct_floor_models"
 POST_GATE_SOURCE = "msm_d1_00z"
 
 SEED = 2026

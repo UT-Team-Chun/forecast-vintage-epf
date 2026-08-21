@@ -14,7 +14,7 @@ level, given that it is not at the floor)?
 WHAT IS ALREADY KNOWN, AND WHAT IS NOT (disclosed, because it bounds what this
 pre-registration can honestly claim)
 -----------------------------------------------------------------------------
-phase103 (s_20260819_phase103_floor_channel_decomposition.py,
+phase103 (scripts/32b_floor_channel_decomposition.py,
 artefact data/runs/phase103_floor_channel_decomposition.json, status
 "part1_only") already answered the STATE question with an exact, refit-free
 partition of the published 0.2529: floor slots (y <= 0.5 JPY/kWh, 3.33 % of
@@ -193,8 +193,8 @@ B3 After the pooled result was known, ONE exploratory statistic was added
 
 CLI (from the repository root):
   S=scripts/32_floor_channel_hurdle.py
-  uv run --extra research python $S --step build --areas kyushu,tokyo
-  uv run --extra research python $S --step analyse
+  uv run python $S --step build --areas kyushu,tokyo
+  uv run python $S --step analyse
 Build is per-area checkpointed and safe to run in several processes over
 disjoint --areas lists.
 """
@@ -222,7 +222,7 @@ log = logging.getLogger("phase103b")
 CFG = EpfConfig()
 RUN = CFG.resolved("run_dir")
 HERE = Path(__file__).parent
-P103_PATH = HERE / "s_20260819_phase103_floor_channel_decomposition.py"
+P103_PATH = HERE / "32b_floor_channel_decomposition.py"
 P85_PARQUET = RUN / "phase85_exact_ladder_per_slot.parquet"
 P85_JSON = RUN / "phase85_exact_ladder.json"
 P103_JSON = RUN / "phase103_floor_channel_decomposition.json"

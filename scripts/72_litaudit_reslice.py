@@ -35,7 +35,15 @@ import subprocess
 from alg.config import EpfConfig
 
 CFG = EpfConfig()
-CSV = CFG.project_root / "docs/paper/paper_a_main/submission/lit_audit_dataset.csv"
+# The audit dataset is the paper's machine-readable Supplementary Dataset. In
+# this checkout it lives with the manuscript; in the public replication package
+# it ships as reference data, because a shipped script that reads a path inside
+# the private paper tree cannot run there. Resolve whichever exists.
+_CSV_CANDIDATES = (
+    CFG.project_root / "docs/paper/paper_a_main/submission/lit_audit_dataset.csv",
+    CFG.project_root / "data/reference/lit_audit_dataset.csv",
+)
+CSV = next((c for c in _CSV_CANDIDATES if c.exists()), _CSV_CANDIDATES[0])
 OUT = CFG.project_root / "data" / "runs" / "phase107_litaudit_reslice.json"
 
 # Phrases in verified_against that state the body was NOT read. Checked first,
@@ -130,6 +138,9 @@ def main() -> None:
                                   text=True, cwd=CFG.project_root).stdout.strip(),
         "script": "scripts/72_litaudit_reslice.py",
     }
+    # 30 of the shipped scripts create their own output directory; this one did
+    # not, so it failed on a clean clone where data/runs/ does not yet exist.
+    OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, indent=2, ensure_ascii=False))
 
     print(f"included {len(inc)} | full text read {len(read)} | "

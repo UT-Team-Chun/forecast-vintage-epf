@@ -21,7 +21,7 @@ the two versions are comparable. The full-panel figures stay in the ladder table
 and the text; this file exists so the FIGURE stops overstating its own sample.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/52_price_on_common_panel.py
+  uv run python scripts/52_price_on_common_panel.py
 """
 
 from __future__ import annotations

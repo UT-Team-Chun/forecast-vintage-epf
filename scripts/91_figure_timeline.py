@@ -20,7 +20,7 @@ a value is missing, so the figures cannot drift away from the analyses they
 illustrate.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/91_figure_timeline.py
+  uv run python scripts/91_figure_timeline.py
 """
 
 from __future__ import annotations

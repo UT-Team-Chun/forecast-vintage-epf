@@ -48,7 +48,7 @@ the timing thesis; record whichever way it falls.
 
 CLI:
   cd <repository root>
-  uv run --extra research python s_20260726_phase54_nwp_proxy_baseline.py \
+  uv run python s_20260726_phase54_nwp_proxy_baseline.py \
       --step all [--areas kyushu,tokyo] [--fresh] [--workers 4] [--limit-folds N]
 """
 from __future__ import annotations

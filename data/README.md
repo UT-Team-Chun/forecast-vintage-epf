@@ -15,14 +15,15 @@ data/
 ├── README.md                            # this file
 ├── provenance/                          # IN git — frozen JSON, one per analysis phase
 │   ├── phase59_exact_ladder.json        #   the run-pinned vintage ladder
-│   ├── phase73_cycle_curve.json         #   improvement by MSM cycle
+│   ├── phase73v2_cycle_curve.json       #   improvement by MSM cycle, extended panel
 │   ├── phase74_cw_ladder.json           #   capacity-weighted re-estimation
-│   ├── phase52_fip_commitment*.json     #   the commitment decision model, per tier
+│   ├── phase85_exact_ladder.json        #   the primary capacity-weighted ladder
 │   ├── phase72_dissemination_audit.json #   dissemination lag, measured
-│   └── …                                #   54 files: 52 at top level, 2 in per-phase subdirectories
+│   └── …                                #   86 files: 79 at top level, 7 in per-phase subdirectories
 ├── reference/                           # IN git
 │   ├── area_capacity.csv                #   per-area PV / wind / peak capacity
-│   └── area_points_capacity.csv         #   46 prefecture points and their within-area PV weights
+│   ├── area_points_capacity.csv         #   46 prefecture points and their within-area PV weights
+│   └── lit_audit_dataset.csv            #   the literature audit, one row per screened paper
 ├── raw/                                 # NOT in git — you acquire these
 │   ├── jepx/                            #   day-ahead spot CSVs
 │   ├── jma_gpv_exactrun/                #   pinned MSM runs, per plan
@@ -98,14 +99,14 @@ operator action rather than in the price series alone.
 
 **Source**: the nine operators' joint disclosure.
 
-`make acquire_ics` fetches this. It carries more than the settlement price:
-per slot and per **wide-area operation block** it publishes the signed imbalance
-volume being balanced and the marginal kWh price of the balancing resources
-called on. The first is what makes the netting result possible — one party's
-gross deviation is not system imbalance, and this series is what lets the paper
-net against the block's own direction instead of asserting a system saving. The
-second is what makes the two-prices comparison a measurement rather than a
-model.
+`make acquire_ics` fetches this. Per slot and per **wide-area operation block**
+it publishes the signed imbalance volume being balanced and the marginal kWh
+price of the balancing resources called on. This paper uses it for one purpose:
+the lineage audit classifies the feed against the day-ahead gate, establishing
+that it is a post-gate publication and therefore inadmissible as a bidding
+feature. The settlement analyses that read it for their own sake — netting
+against a block's own direction, and the two published prices for one half-hour
+— belong to the companion manuscript, and their results are not reported here.
 
 ## 6. METI FIT register — capacity weights
 
@@ -125,14 +126,14 @@ reads the artefact the analysis actually wrote — it does not re-derive numbers
 from a description of the analysis. That is what makes `make verify-paper`
 meaningful. Two populations, and the distinction is worth being explicit about:
 
-- **24 files are written by the scripts in this repository** — the analysis
+- **52 files are written by the scripts in this repository** — the analysis
   chain the paper's headline numbers come from. Each carries a `metadata`
   block recording the producing script, the git SHA it ran at and the
   generation timestamp (the one acquisition record, `phase71_ics_basis.json`,
   records the script and runtime; its source hashes live in the body), and,
   where the analysis is stochastic, the seed and the bootstrap draw count.
   [`scripts/README.md`](../scripts/README.md) maps each one to its script.
-- **30 files are inherited from earlier phases of the same research
+- **34 files are inherited from earlier phases of the same research
   programme** and predate that metadata convention; the scripts that produced
   them are not shipped here. They back numbers the paper cites for context or
   robustness — earlier-window head-to-heads, cross-model identification

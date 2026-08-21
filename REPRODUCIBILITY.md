@@ -8,7 +8,7 @@ and what "reproduced" should mean on a machine that is not ours.
 | Level | Command | Needs | Time | What it establishes |
 |---|---|---|---|---|
 | **1. Provenance** | `make verify-paper` | this repo only | ~1 s | Every headline number in the manuscript matches the frozen JSON it came from, no macro prints an unaccounted number, and no retracted wording survives in the shipped figure PDFs. |
-| **2. Analysis** | `make reproduce` | extracted caches; network for the settlement/netting/timing targets | ~1 day | Every JSON this repository's scripts own is regenerated from the per-slot panels. |
+| **2. Analysis** | `make reproduce` | extracted caches; network for `timing_audit` | ~1 day | Every JSON this repository's scripts own is regenerated from the per-slot panels. |
 | **3. Acquisition** | `make acquire extract` | network, ~30 GB transient | ~1–2 days | The panels are rebuilt from the public sources. |
 
 Most readers want level 1. It is the level at which a claim of the form *"the
@@ -49,27 +49,27 @@ change a digit in `docs/macros.tex` and run it.
 `make reproduce` runs the analyses in dependency order.
 [`scripts/README.md`](scripts/README.md) maps each script to the provenance
 JSON it writes and to the section of the paper it backs. Times are for a
-12-core Apple-silicon laptop with 64 GB. Three targets in this level do reach
-the network: `settlement`, `netting` and `netting_exact` fetch the
-imbalance-price basis first (via `acquire_ics`), and `dissemination_audit` is
-nothing but HTTP HEAD requests against the archive.
+12-core Apple-silicon laptop with 64 GB. One target in this level reaches the
+network: `timing_audit` is largely HTTP HEAD requests against the archive.
 
 | Target | Script | Time | Notes |
 |---|---|---|---|
-| `ladder` | `10_vintage_ladder.py` | ~4 h | 9 areas × ~740 folds × 9 cells; per-area checkpoints, so it resumes |
+| `ladder` | `10_primary_ladder_cw.py` | ~4 h | 9 areas × ~730 folds × 14 cells; per-area checkpoints, so it resumes |
 | `cycle_curve` | `11_cycle_curve.py` | ~3 h | 6 cells on the common daytime window; parallelises by area |
-| `capacity_weighted` | `12_capacity_weighted_ladder.py` | ~3.5 h | 12 cells; **Gate 5 blocks the phase** if the shared cells do not reproduce the ladder's per-slot predictions |
-| `enriched_baseline` | `13_enriched_baseline.py` | minutes | the strongest gate-available baseline, off the extracted caches |
-| `proxy_validation` | `14_proxy_validation.py` | minutes | representative point vs the operators' published output (Gate 35's criterion) |
-| `decision` | `20_commitment_decision.py` | ~3 min | three operational tiers off the ladder panel |
-| `wedge` | `32_wedge_continuous.py` | ~10 min | bootstraps and permutations |
-| `system` | `33_system_metrics_band.py` | ~5 min | nomination-band grid |
+| `reference_ladders` | `12_single_point_ladder.py`, `13_capacity_weighted_ladder_prior.py` | ~6.5 h | the two bit-reproduction references; **Gate 5 blocks the primary sweep** if the shared cells do not reproduce their per-slot predictions |
+| `enriched_baseline` | `14_enriched_baseline.py` and its two variants | minutes | the strongest gate-available baseline, off the extracted caches |
+| `proxy_validation` | `15_proxy_validation.py` | minutes | representative point vs the operators' published output (Gate 35's criterion) |
+| `cross_area` | `16_tier_slope_tests.py` | ~1 min | slope-difference tests across areas |
+| `lear` | `18b_lear_ladder.py` | ~2 h | the same folds under the LEAR benchmark |
+| `epex_de` | `19_epex_de_replication.py` | ~20 min | one German bidding zone, two tiers |
 | `floor_regime` | `30_floor_regime_evaluation.py` | ~4 h | functional bootstrap dominates |
-| `settlement`, `netting`, `netting_exact` | `31`, `34`, `35` | ~10 min | need `acquire_ics` first |
-| `decision_equivalence` | `21_decision_equivalence.py` | ~1 min | post-processes two committed panels |
-| `nomination_rules` | `22_nomination_rules.py` | ~1 min | blocking step-0 identity check, then five rules |
-| `dissemination_audit` | `40_dissemination_audit.py` | ~2 h | ~7,000 HTTP HEAD requests at one per second, out of courtesy to the mirror |
-| `tables`, `figures` | `90`, `91`, `92` | ~1 min | read provenance only |
+| `floor_models` | `31`, `32b`, `32` | ~1.5 h | direct classifiers, then the channel partition and the hurdle fit |
+| `timing_audit` | `40`, `40b`, `41`, `45`, `46` | ~2 h | ~7,000 HTTP HEAD requests at one per second, out of courtesy to the mirror |
+| `evaluation_scope` | `42`, `43`, `44`, `47`, `48` | ~10 min | window composition and area independence |
+| `two_targets` | `50`, `51`, `52`, `53`, `54b`, `54`, `55` | ~5 h | the physical target and the signal-versus-learner refits dominate |
+| `robustness` | `60` … `67` | ~6 h | `65` and `66` re-estimate; the rest post-process |
+| `lit_audit` | `71`, `72` | ~1 min | read `data/reference/lit_audit_dataset.csv` |
+| `tables`, `figures` | `90` … `94` | ~1 min | read provenance only |
 
 ### Determinism, and the honest caveat
 

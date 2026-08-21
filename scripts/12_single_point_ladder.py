@@ -748,8 +748,7 @@ def analyse() -> dict:
             if "msm_d1_00z" in out["tiers"] else None)
 
     out["metadata"] = {
-        "script": ""
-                  "12_single_point_ladder.py",
+        "script": "scripts/12_single_point_ladder.py",
         "git_sha": _git_sha(),
         "generated_utc": datetime.now(UTC).isoformat(),
         "protocol": {"initial_train_end": "2024-07-18", "val_window_days": 14,

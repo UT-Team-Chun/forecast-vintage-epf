@@ -42,7 +42,7 @@ Steps (gate-sequenced; each stops the pipeline on failure):
 
 CLI:
   cd <repository root>
-  uv run --extra research python scripts/17_composite_ladder_superseded.py \
+  uv run python scripts/17_composite_ladder_superseded.py \
       --step probe|refresh|headtohead|aggregate|all [--areas kyushu,tokyo] [--fresh]
 """
 from __future__ import annotations

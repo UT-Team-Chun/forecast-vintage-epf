@@ -26,7 +26,7 @@ phase85 attach machinery verbatim: one parquet per (plan, area) with
 records each cycle's S3 LastModified (the dissemination-time audit).
 
 CLI (from the repository root):
-  uv run --extra research python scripts/06_extract_gfs.py \
+  uv run python scripts/06_extract_gfs.py \
       --plan gfs_d2_12z [--start 2024-03-01] [--end 2026-08-08] [--workers 8]
 """
 

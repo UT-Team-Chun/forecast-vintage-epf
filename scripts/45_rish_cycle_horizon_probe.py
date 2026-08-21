@@ -148,7 +148,7 @@ def main() -> None:
             ["git", "rev-parse", "HEAD"], capture_output=True, text=True,
             cwd=CFG.project_root).stdout.strip(),
         "rish_base": RISH_BASE,
-        "script": "" + Path(__file__).name,
+        "script": Path(__file__).name,
     }
     js = OUT_DIR / "phase100_rish_cycle_horizon_probe.json"
     js.write_text(json.dumps(summary, indent=2, ensure_ascii=False))

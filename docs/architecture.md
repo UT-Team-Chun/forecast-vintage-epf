@@ -18,9 +18,9 @@ Every design decision below follows from that.
 │ JEPX spot        │─────▶│ jepx_loader        │      │ 01-04  extract     │      │                  │
 │ JMA MSM-GPV      │─────▶│ jma_gpv_loader     │─────▶│ 10     ladder      │─────▶│ *_ladder.json    │
 │ Open-Meteo       │─────▶│ open_meteo_*       │      │ 11     cycle curve │─────▶│ *_cycle.json     │
-│ OCCTO actuals    │─────▶│ area_capacity      │      │ 12     cap-weighted│─────▶│ *_cw.json        │
-│ ICS basis        │─────▶│ (script-local)     │      │ 20     decision    │─────▶│ *_commitment.json│
-│ METI FIT tables  │─────▶│ area_points        │      │ 2x-4x  downstream  │─────▶│ …                │
+│ OCCTO actuals    │─────▶│ area_capacity      │      │ 12-13  references  │─────▶│ *_ladder.json    │
+│ ICS basis        │─────▶│ (script-local)     │      │ 30-32  floor       │─────▶│ *_floor*.json    │
+│ METI FIT tables  │─────▶│ area_points        │      │ 4x-7x  downstream  │─────▶│ …                │
 └──────────────────┘      └────────────────────┘      └─────────┬──────────┘      └────────┬─────────┘
                                                                  │                          │
                                                                  ▼                          ▼

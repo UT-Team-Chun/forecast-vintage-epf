@@ -11,7 +11,7 @@ bootstrap at the Politis--White automatic block length, a permutation
 {0.005, 0.01, 0.02, 0.05} and relative margins {10%, 20% of the headline}.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/62_inference_sensitivity.py
+  uv run python scripts/62_inference_sensitivity.py
 """
 
 from __future__ import annotations

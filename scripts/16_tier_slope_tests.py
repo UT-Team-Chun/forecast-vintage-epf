@@ -51,7 +51,7 @@ DESIGN (pre-committed before results; see INTERPRETATION_RULE below):
 
 CLI (fast, ~1-2 min):
   cd <repository root>
-  uv run --extra research python \
+  uv run python \
       scripts/16_tier_slope_tests.py
 """
 from __future__ import annotations

@@ -1,0 +1,241 @@
+{
+  "phase": 71,
+  "title": "Imbalance-price calculation basis (ICS WebAPI): marginal balancing energy price and block imbalance volume",
+  "source": {
+    "api": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/{ym}",
+    "manual": "https://www.imbalanceprices-cs.jp/show/footer/webapi_manual.pdf",
+    "operator": "インバランス単価中央算定システム (ICS), operated jointly by Kansai T&D, Chubu PG and Kyushu T&D"
+  },
+  "months": {
+    "202408": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202408",
+      "sha256": "7d7bbbf3b214a7195207232d216281fbbee458d540cdb4b362e2202419cd5722",
+      "bytes": 2452774,
+      "content_disposition": "attachment;filename=202408_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:27:50.033018+00:00"
+    },
+    "202409": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202409",
+      "sha256": "32e107ae3d57f369bce6c3df7ea7a48e561fe91db2af4ecaf206416fd983860e",
+      "bytes": 2370515,
+      "content_disposition": "attachment;filename=202409_imbalance-basis_01_01.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:05.015810+00:00"
+    },
+    "202410": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202410",
+      "sha256": "d95c73ed2d62f8564535d7372cb2bb8dfd1e97efcbdb28efc2dfddbe736eb970",
+      "bytes": 2452024,
+      "content_disposition": "attachment;filename=202410_imbalance-basis_02_01.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:07.509291+00:00"
+    },
+    "202411": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202411",
+      "sha256": "8af1245bccd31571d9c2e61a43e0b256fbe0cb5ccd58bfaf87d826763eac2e51",
+      "bytes": 2372297,
+      "content_disposition": "attachment;filename=202411_imbalance-basis_01_01.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:10.038341+00:00"
+    },
+    "202412": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202412",
+      "sha256": "21dd055e290cfffdcee310b6fa2f4b493f7961d832a53a0d3c74155ebf893d20",
+      "bytes": 2446494,
+      "content_disposition": "attachment;filename=202412_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:12.539481+00:00"
+    },
+    "202501": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202501",
+      "sha256": "8c82c0e911eb6cd94b57e1bffd031c8a1bf99606753c47ef7525020a01a3527f",
+      "bytes": 2447577,
+      "content_disposition": "attachment;filename=202501_imbalance-basis_01_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:15.117724+00:00"
+    },
+    "202502": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202502",
+      "sha256": "70846209ac88acfbdbf5ce216f0fb367d1537078e34ad5d3e404046fcedbbe18",
+      "bytes": 2211715,
+      "content_disposition": "attachment;filename=202502_imbalance-basis_01_01.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:17.606067+00:00"
+    },
+    "202503": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202503",
+      "sha256": "316442f0c20693ddc7a694c2f0850e532db10509c003f436bcd4d07c2b89a06b",
+      "bytes": 2450424,
+      "content_disposition": "attachment;filename=202503_imbalance-basis_03_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:20.173395+00:00"
+    },
+    "202504": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202504",
+      "sha256": "78f34b1fb084b3b19094dee0c3443183d8e3146bb41c570e132d7b0e11fee7e7",
+      "bytes": 2378465,
+      "content_disposition": "attachment;filename=202504_imbalance-basis_04_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:22.671889+00:00"
+    },
+    "202505": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202505",
+      "sha256": "6a38e66704e59ce94fe46e8af0165065e04eee0e175953bac63127bb6bf4c387",
+      "bytes": 2451148,
+      "content_disposition": "attachment;filename=202505_imbalance-basis_03_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:25.273944+00:00"
+    },
+    "202506": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202506",
+      "sha256": "50ef26c4a51275cd30671592a545a54c440b63d546b5e6daa91ca2ee89036da5",
+      "bytes": 2369145,
+      "content_disposition": "attachment;filename=202506_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:27.774852+00:00"
+    },
+    "202507": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202507",
+      "sha256": "d5c59def057e9b07c6f13379e97938c2161c3983ee3ae21df7935f156299f3c8",
+      "bytes": 2445054,
+      "content_disposition": "attachment;filename=202507_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:30.476839+00:00"
+    },
+    "202508": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202508",
+      "sha256": "b165be4fd0e338c3184c5b879d23baeda746d84dbf7c80e2baa7739d7acd5861",
+      "bytes": 2441392,
+      "content_disposition": "attachment;filename=202508_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:33.027815+00:00"
+    },
+    "202509": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202509",
+      "sha256": "cb0a73264bb05f3f908cf99fb3a4ad3015813063bbb00a0cebd4a918afbe0864",
+      "bytes": 2366995,
+      "content_disposition": "attachment;filename=202509_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:35.520376+00:00"
+    },
+    "202510": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202510",
+      "sha256": "03040cc1d9fc5d9d1b00ad6fe37e0fc9ec683dd15d8e8ded2c187e2e41c9d58f",
+      "bytes": 2451142,
+      "content_disposition": "attachment;filename=202510_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:38.065106+00:00"
+    },
+    "202511": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202511",
+      "sha256": "ec61b26385ce4300a53cbe3b4085ba3d1b0f5e93af1c9013613c79a0987dfe8a",
+      "bytes": 2372080,
+      "content_disposition": "attachment;filename=202511_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:40.550877+00:00"
+    },
+    "202512": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202512",
+      "sha256": "c31822b85f1d8169b4464c66136df8793a0d242eb264937bae162ad90bca70d3",
+      "bytes": 2438355,
+      "content_disposition": "attachment;filename=202512_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:43.042012+00:00"
+    },
+    "202601": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202601",
+      "sha256": "9efb142bf61093474f8889e507af809754841f64a690c2b6c981701e037724dd",
+      "bytes": 2444331,
+      "content_disposition": "attachment;filename=202601_imbalance-basis_01_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:45.678923+00:00"
+    },
+    "202602": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202602",
+      "sha256": "e20032576aff89f74854e6e7d9887af7c289840bafabe5862ba2a0d99208dfcb",
+      "bytes": 2210160,
+      "content_disposition": "attachment;filename=202602_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:48.433341+00:00"
+    },
+    "202603": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202603",
+      "sha256": "512295908ce6167c10ec46b03ae9a2d5cf6538a0405590ec5852e73e4960173d",
+      "bytes": 2448854,
+      "content_disposition": "attachment;filename=202603_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:51.067075+00:00"
+    },
+    "202604": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202604",
+      "sha256": "6de422fa1010e505b300e2305f7793bc2dab81198855349b4213a0242c84d36d",
+      "bytes": 2378475,
+      "content_disposition": "attachment;filename=202604_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:54.104933+00:00"
+    },
+    "202605": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202605",
+      "sha256": "f00bdd040cb8db3ee2dd94d0c6f62d8b0a214226be8eb487950b486950733eaa",
+      "bytes": 2461747,
+      "content_disposition": "attachment;filename=202605_imbalance-basis_03_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:56.775803+00:00"
+    },
+    "202606": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202606",
+      "sha256": "474f609911d7595a41381e9257e6f633ef6903edce48ee93bec9f3f9d1cef3ef",
+      "bytes": 2377246,
+      "content_disposition": "attachment;filename=202606_imbalance-basis_02_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:28:59.448949+00:00"
+    },
+    "202607": {
+      "url": "https://www.imbalanceprices-cs.jp/api/1.0/imb/basis/202607",
+      "sha256": "8d257c92448d25f659045fd44bcaff412e7229d3003ad1c91cc9ef22a3ee4f66",
+      "bytes": 2294056,
+      "content_disposition": "attachment;filename=202607_imbalance-basis_01_00.csv",
+      "content_type": "text/csv;charset=MS932",
+      "fetched_utc": "2026-07-29T14:29:02.079678+00:00"
+    }
+  },
+  "coverage": {
+    "n_rows": 314496,
+    "n_areas": 9,
+    "first_slot": "2024-08-01 00:00:00+09:00",
+    "last_slot": "2026-07-29 23:30:00+09:00",
+    "null_share": {
+      "imbalance_kwh": 0.0126,
+      "marginal_balancing_yen_kwh": 0.0126,
+      "tightness_index_pct": 0.0011,
+      "wholesale_ref_yen_kwh": 0.0001
+    },
+    "marginal_price_range": [
+      0.0,
+      158.37
+    ]
+  },
+  "block_replication_audit": {
+    "n_block_slots": 150050,
+    "n_multi_area_block_slots": 62739,
+    "n_single_area_block_slots": 87311,
+    "multi_area_blocks_with_differing_volume": 0,
+    "multi_area_blocks_with_differing_marginal_price": 0,
+    "mean_areas_per_block": 2.07,
+    "area_alone_share": 0.5819,
+    "reading": "Zero differing values inside any multi-area block confirms these are wide-area operation BLOCK quantities replicated into each member area's column. The block is the region inside which imbalance is netted and balanced, so this is the netted系统 quantity -- but no claim built on it may be stated per area except on the single-area-block subset."
+  },
+  "not_available": [
+    "dKWh activation prices and activated volumes per product per area: EPRX publishes dKW procurement only (yen/kW per 30 min); the merit-order list is published as PNG images",
+    "the predecessor dKWh dispatch series (EGC) ends at March 2022",
+    "per-balancing-group imbalance volume: not published",
+    "OCCTO wide-area reserve margin before April of the previous fiscal year, so the tightness index cannot be cross-validated pre-2025-04",
+    "JEPX intraday results are system-wide only: no per-area price or volume, so the intraday weight stays unidentified at area level"
+  ],
+  "per_slot_parquet": "phase71_ics_basis_per_slot.parquet",
+  "metadata": {
+    "script": "s_20260730_phase71_ics_basis_acquire.py",
+    "runtime_s": 59.7
+  }
+}

@@ -17,7 +17,7 @@ an impression: percentiles, the share of slots at or below the near-floor
 threshold, and the share at or above a scarcity level.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/47_evaluation_regime.py
+  uv run python scripts/47_evaluation_regime.py
 """
 
 from __future__ import annotations

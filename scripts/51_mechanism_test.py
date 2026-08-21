@@ -34,7 +34,7 @@ docs/research/2026-08-13_phase90_mechanism_precommit.md. No branch licenses the
 word "identifies": participants' expectations are not observed here.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/51_mechanism_test.py
+  uv run python scripts/51_mechanism_test.py
 """
 
 from __future__ import annotations

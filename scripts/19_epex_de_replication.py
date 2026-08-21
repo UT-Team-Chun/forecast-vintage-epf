@@ -39,7 +39,7 @@ Secondary checks (pre-registered):
 
 CLI:
   cd <repository root>
-  uv run --extra research python scripts/19_epex_de_replication.py \
+  uv run python scripts/19_epex_de_replication.py \
       [--fresh] [--skip-long] [--skip-probe]
 """
 from __future__ import annotations

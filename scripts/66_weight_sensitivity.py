@@ -43,9 +43,9 @@ Branches are fixed in
 docs/research/2026-08-13_phase91_weight_sensitivity_precommit.md.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/66_weight_sensitivity.py \
+  uv run python scripts/66_weight_sensitivity.py \
       --step build --weights 2025-12,equal --areas tokyo,kyushu
-  uv run --extra research python scripts/66_weight_sensitivity.py \
+  uv run python scripts/66_weight_sensitivity.py \
       --step analyse
 """
 
@@ -77,7 +77,7 @@ OUT_JSON = RUN / "phase91_weight_sensitivity.json"
 P85_JSON = RUN / "phase85_exact_ladder.json"
 PRECOMMIT = "docs/research/2026-08-13_phase91_weight_sensitivity_precommit.md"
 
-PHASE85_MODULE = "s_20260811_phase85_cw_primary_ladder"
+PHASE85_MODULE = "10_primary_ladder_cw"
 WEIGHTS = ("2024-09", "2025-12", "equal")
 CELLS = ("price_only", "msm_d2_12z_cw", "msm_d1_00z_cw")
 HEADLINE, POST_GATE = "msm_d2_12z_cw", "msm_d1_00z_cw"

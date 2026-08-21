@@ -37,7 +37,7 @@ statistics can be recomputed from that shipped file with --from-export, without
 the original transcripts.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/71_audit_reliability.py
+  uv run python scripts/71_audit_reliability.py
   uv run ... --from-export           # recompute from the shipped export
 """
 

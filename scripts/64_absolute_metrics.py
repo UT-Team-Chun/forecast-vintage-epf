@@ -30,7 +30,7 @@ Branches are fixed in
 docs/research/2026-08-13_phase82b_absolute_metrics_precommit.md.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/64_absolute_metrics.py
+  uv run python scripts/64_absolute_metrics.py
 """
 
 from __future__ import annotations

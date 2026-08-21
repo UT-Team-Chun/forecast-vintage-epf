@@ -26,9 +26,9 @@ threshold 0.5, all-hours) with an explicit multiplicity note. If M0 wins, that
 is the result ("the point forecast already carries the floor information").
 
 CLI (from the repository root):
-  uv run --extra research python scripts/31_direct_floor_models.py \
+  uv run python scripts/31_direct_floor_models.py \
       --step build [--areas kyushu,...]
-  uv run --extra research python ... --step analyse
+  uv run python ... --step analyse
 """
 
 from __future__ import annotations

@@ -5863,21 +5863,31 @@ def _provenance_paths_portable(cfg: EpfConfig) -> list[str]:
     Scripts should stamp repository-relative paths. This check exists because
     several did not, and because the failure is invisible in the research
     checkout -- the paths are correct there, which is exactly why nobody looked.
+
+    Both locations are scanned. In the research checkout the JSONs live in
+    ``run_dir``; in the public package they live in ``data/provenance``, and an
+    earlier version of this check looked only at ``run_dir``, returned early
+    because that directory does not exist there, and so passed vacuously in the
+    one repository whose contents it exists to protect. That is the same
+    "invisible in the research checkout" failure this docstring warns about,
+    pointed the other way.
     """
-    run_dir = cfg.resolved("run_dir")
-    if not run_dir.exists():
-        return []
     home = str(Path.home())
     bad: list[str] = []
-    for f in sorted(run_dir.glob("*.json")):
-        try:
-            text = f.read_text(encoding="utf-8", errors="replace")
-        except OSError:
+    seen: set[Path] = set()
+    for d in (cfg.resolved("run_dir"), Path(__file__).resolve().parent.parent / "data/provenance"):
+        if not d.exists() or d in seen:
             continue
-        if home in text:
-            n = text.count(home)
-            bad.append(f"{f.name}: records {n} absolute path(s) under the home "
-                       "directory; stamp repository-relative paths instead")
+        seen.add(d)
+        for f in sorted(d.rglob("*.json")):
+            try:
+                text = f.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            if home in text:
+                n = text.count(home)
+                bad.append(f"{f.name}: records {n} absolute path(s) under the home "
+                           "directory; stamp repository-relative paths instead")
     return bad
 
 

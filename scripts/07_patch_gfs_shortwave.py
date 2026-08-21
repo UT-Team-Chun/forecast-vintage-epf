@@ -6,7 +6,7 @@ channels landed. This one-shot repair re-fetches just the DSWRF byte ranges
 (one ranged GET per forecast hour), decodes once per message, extracts all
 nine area points, and rewrites the per-area parquets in place.
 
-CLI: uv run --extra research python scripts/07_patch_gfs_shortwave.py --plan gfs_d2_12z
+CLI: uv run python scripts/07_patch_gfs_shortwave.py --plan gfs_d2_12z
 """
 from __future__ import annotations
 

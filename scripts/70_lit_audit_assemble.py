@@ -15,7 +15,7 @@ rate denominators, so the headline rates are rates over VERIFIED text, not over
 titles.
 
 CLI (from the repository root):
-  uv run --extra research python scripts/70_lit_audit_assemble.py \
+  uv run python scripts/70_lit_audit_assemble.py \
       --rows /path/to/lit_coded_all.json
 """
 

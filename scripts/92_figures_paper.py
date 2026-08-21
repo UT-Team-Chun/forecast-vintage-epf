@@ -59,7 +59,7 @@ section "Gate-closure revision".  Figure 3 still reads
 
 CLI:
   cd <repository root>
-  uv run --extra research python s_20260724_phase50_ae_figures.py
+  uv run python s_20260724_phase50_ae_figures.py
 """
 
 from __future__ import annotations
@@ -1105,7 +1105,7 @@ def fig_skill_scarcity(p36: dict, p35: dict, out: Path) -> None:
     # Noise-degraded proxy -- macros.tex \StressSpearman -0.267 /
     # \RealisticSpearman -0.450 / \NoiselessSpearman -0.733 (phase24.11.8);
     # x placement is the ordinal effective-accuracy position of the committed
-    # EE figure (s_20260619_phase27.4_figures.py), retained unchanged.
+    # EE figure (94_figures_theory.py), retained unchanged.
     deg_x = [0.30, 0.43, 0.57]
     deg_y = [-0.267, -0.450, -0.733]
     # Two-day-lagged proxy (D-2) -- macros.tex \BcadmSpearman -0.300 at
