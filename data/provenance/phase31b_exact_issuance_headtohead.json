@@ -1,0 +1,83 @@
+{
+  "phase": "phase31b_exact_issuance_headtohead",
+  "n_obs": 33696,
+  "n_areas": 8,
+  "note": "daytime (FH16-33 / 01-18 JST) same-sample; era5=proxy, histfc=reconstruction, gpv=EXACT-issuance",
+  "mean_improvement_yen_kwh": {
+    "era5_proxy": 0.0331,
+    "histfc_reconstruction": 0.297,
+    "gpv_exact_issuance": 0.3143
+  },
+  "cross_area_spearman_vs_pvpeak": {
+    "era5_proxy": {
+      "rho": 0.19,
+      "p": 0.651
+    },
+    "histfc_reconstruction": {
+      "rho": -0.024,
+      "p": 0.955
+    },
+    "gpv_exact_issuance": {
+      "rho": -0.262,
+      "p": 0.531
+    }
+  },
+  "per_area": {
+    "shikoku": {
+      "imp_gpv": 0.279,
+      "imp_histfc": 0.282,
+      "imp_era5": 0.013,
+      "pv_peak": 0.921,
+      "n": 4212
+    },
+    "kyushu": {
+      "imp_gpv": 0.25,
+      "imp_histfc": 0.294,
+      "imp_era5": 0.035,
+      "pv_peak": 0.78,
+      "n": 4212
+    },
+    "tohoku": {
+      "imp_gpv": 0.508,
+      "imp_histfc": 0.519,
+      "imp_era5": 0.053,
+      "pv_peak": 0.569,
+      "n": 4212
+    },
+    "chugoku": {
+      "imp_gpv": 0.334,
+      "imp_histfc": 0.342,
+      "imp_era5": 0.115,
+      "pv_peak": 0.539,
+      "n": 4212
+    },
+    "hokkaido": {
+      "imp_gpv": 0.159,
+      "imp_histfc": 0.101,
+      "imp_era5": 0.002,
+      "pv_peak": 0.499,
+      "n": 4212
+    },
+    "hokuriku": {
+      "imp_gpv": 0.256,
+      "imp_histfc": 0.245,
+      "imp_era5": 0.023,
+      "pv_peak": 0.39,
+      "n": 4212
+    },
+    "kansai": {
+      "imp_gpv": 0.348,
+      "imp_histfc": 0.295,
+      "imp_era5": 0.057,
+      "pv_peak": 0.348,
+      "n": 4212
+    },
+    "tokyo": {
+      "imp_gpv": 0.38,
+      "imp_histfc": 0.298,
+      "imp_era5": -0.033,
+      "pv_peak": 0.241,
+      "n": 4212
+    }
+  }
+}

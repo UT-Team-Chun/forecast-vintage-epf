@@ -1,0 +1,13 @@
+{
+  "phase": "38",
+  "market": "EPEX-DE/LU (Germany)",
+  "note": "External-validity exploratory on public keyless data (SMARD price/PV/load + Open-Meteo weather). DE has NO hard floor; the oversupply boundary is negative prices. Within-market temporal test: does weather improvement concentrate in negative-price-exposed days (the JEPX-floor analogue at a different boundary)?",
+  "year": 2024,
+  "n_days": 239,
+  "negative_price_share_overall": 0.05872794800371402,
+  "mean_delta_mae_eur_mwh": -0.7574453391247222,
+  "mean_improvement_eur_mwh": 0.7574453391247222,
+  "spearman_improvement_vs_negshare": 0.09754829057716566,
+  "spearman_p": 0.13264778588108928,
+  "interpretation": "positive rho => weather value concentrates in oversupply days, the cross-market analogue of JEPX floor concentration (predicted divergence at a different boundary); near-zero/negative rho => mechanism does not map cleanly to DE and stays a JEPX-specific result."
+}

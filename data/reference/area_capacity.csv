@@ -1,0 +1,36 @@
+# Per-area renewable capacity & peak demand — SINGLE SOURCE OF TRUTH.
+# Every script/analysis that needs PV/peak or wind/peak MUST load this file
+# via alg.core.epf.data.area_capacity_loader.load_area_capacity(). Do NOT
+# hardcode capacity figures in scripts (this file exists because hardcoded
+# per-script dicts drifted into two inconsistent vintages; see
+# docs/research/2026-06-08_phase25.23_*.md).
+#
+# Provenance (precise):
+#   peak_gw   = OCCTO "FY2024 Supply Plan Summary" (供給計画の取りまとめ,
+#               published 2024-03-29) supplementary appendix Table 1-1.
+#               https://www.occto.or.jp/various/kyoukei/torimatome/
+#   pv_gw/wind_gw = OCCTO supply-plan figure 3-3 (image-only), transcribed and
+#               cross-checked against JPEA shipment statistics
+#               (https://www.jpea.gr.jp/document/) and METI/ANRE Electric Power
+#               Survey Statistics (https://www.enecho.meti.go.jp/statistics/electric_power/ep002/).
+#   PV/wind = installed capacity (GW); peak = FY2023-24 area maximum demand (GW).
+#   These documented best-available approximations back the paper abstract / §4.1
+#   PV/peak Spearman -0.800; the headline FLOOR-rate result is price-derived and
+#   independent of this table (see paper §3 "OCCTO capacity figures").
+# NOTE (Gate A/D, PI): these are APPROXIMATE hardcodes carried from the source
+#   documents, not exact-table transcriptions; the exact OCCTO-2024 table
+#   citation (PDF/version/page) and the final canonical vintage are to be
+#   confirmed with the PI before any manuscript number is committed. An
+#   alternative undocumented vintage used by the phase25.6-25.12 scripts
+#   (e.g. tohoku pv_gw=5.5, shikoku peak_gw=5.6) yields PV/peak Spearman -0.45;
+#   that vintage is NOT used here.
+area,pv_gw,wind_gw,peak_gw,source,as_of,note
+hokkaido,2.5,0.70,5.01,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+tohoku,7.6,1.60,13.35,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+tokyo,13.0,0.10,53.95,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+chubu,12.5,0.40,24.09,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+hokuriku,1.9,0.30,4.87,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+kansai,9.2,0.40,26.47,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+chugoku,5.6,0.40,10.39,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+shikoku,4.4,0.20,4.78,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx
+kyushu,12.0,0.60,15.38,OCCTO2024_supply_plan+METI+JPEA,FY2023-24,approx

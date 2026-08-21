@@ -1,0 +1,92 @@
+{
+ "phase": "98",
+ "title": "Dissemination audit in full, and the poll-grid test",
+ "why": "the audit was the paper's least documented contribution, reported as a median and a worst case, and a referee offered a poll schedule as an equally consistent explanation",
+ "source": {
+  "file": "phase72_dissemination_audit_per_file.parquet",
+  "note": "committed per-file capture: one row per archived file, with its run, forecast hour, initialisation time, mirror write time and the derived lag"
+ },
+ "totals": {
+  "n_files": 7048,
+  "n_delivery_days": 881,
+  "n_cycles": 3,
+  "status_values": [
+   200
+  ]
+ },
+ "per_cycle": {
+  "msm_d1_00z": {
+   "n_files": 2643,
+   "n_delivery_days": 881,
+   "forecast_hour_labels": [
+    "FH00-15",
+    "FH16-33",
+    "FH34-39"
+   ],
+   "lag_minutes": {
+    "q0": 135.583,
+    "q1": 135.6,
+    "q25": 135.683,
+    "q50": 135.8,
+    "q75": 135.883,
+    "q95": 135.967,
+    "q99": 136.05,
+    "q100": 137.267
+   },
+   "n_distinct_lags": 46
+  },
+  "msm_d2_12z": {
+   "n_files": 2643,
+   "n_delivery_days": 881,
+   "forecast_hour_labels": [
+    "FH16-33",
+    "FH34-39",
+    "FH40-51"
+   ],
+   "lag_minutes": {
+    "q0": 135.7,
+    "q1": 135.717,
+    "q25": 135.833,
+    "q50": 135.917,
+    "q75": 136.0,
+    "q95": 136.1,
+    "q99": 136.233,
+    "q100": 159.467
+   },
+   "n_distinct_lags": 51
+  },
+  "msm_d2_21z": {
+   "n_files": 1762,
+   "n_delivery_days": 881,
+   "forecast_hour_labels": [
+    "FH16-33",
+    "FH34-39"
+   ],
+   "lag_minutes": {
+    "q0": 135.7,
+    "q1": 135.717,
+    "q25": 135.8,
+    "q50": 135.867,
+    "q75": 135.917,
+    "q95": 136.017,
+    "q99": 136.117,
+    "q100": 136.367
+   },
+   "n_distinct_lags": 35
+  }
+ },
+ "poll_grid_test": {
+  "hypothesis": "if the mirror wrote on a fixed polling cadence, lags would snap to multiples of the poll interval: few distinct values, evenly spaced by that interval",
+  "n_files": 7048,
+  "n_distinct_lag_values": 66,
+  "distinct_fractional_minute_values": 52,
+  "median_gap_between_distinct_lags_seconds": 1.0,
+  "share_within_one_minute_of_median_pct": 99.86,
+  "verdict": "NOT consistent with a poll grid: the lags vary at second resolution within a band about a minute wide, which is what a real completion time recorded by a filesystem looks like and not what a poll schedule produces"
+ },
+ "what_the_timestamp_is": "the mirror's file-write time, an UPPER BOUND on true dissemination completion. Every pre-gate classification is therefore conservative: a mirror write before the gate implies the feed delivered before the gate. The post-gate classification does not rest on this measurement -- the published specification is its source, and these timestamps corroborate it",
+ "metadata": {
+  "script": "s_20260819_phase98_dissemination_detail.py",
+  "git_sha": "bfb09695aebd6ca1ba255b9f657c896124192a84"
+ }
+}

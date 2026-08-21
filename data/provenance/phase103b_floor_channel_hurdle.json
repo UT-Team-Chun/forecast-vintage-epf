@@ -1,0 +1,1318 @@
+{
+ "phase": "103b",
+ "title": "Fitted hurdle (two-part) decomposition of the headline weather gain: floor-state channel vs continuous-level channel",
+ "status": "complete",
+ "verdict": "MIXED -- both channels carry material parts of the pooled improvement; the strong reading of the third claim fails.",
+ "branches_fired": [
+  "C2"
+ ],
+ "primary_branch": "C2",
+ "relation_to_phase103": {
+  "part1_state_partition": "reused whole from phase103 (refit-free, exact); its floor share is a realised-state accounting, not a channel identification",
+  "part1_floor_share_of_published_gain": {
+   "ratio": 0.243,
+   "ci95": [
+    0.192,
+    0.302
+   ],
+   "n_draws_used": 10000,
+   "n_days": 732
+  },
+  "part2": "phase103's Part II was written but never run (its component directory was empty); this phase runs it on all areas built"
+ },
+ "panel": {
+  "n_slots": 315414,
+  "n_areas": 9,
+  "areas_built": [
+   "chubu",
+   "chugoku",
+   "hokkaido",
+   "hokuriku",
+   "kansai",
+   "kyushu",
+   "shikoku",
+   "tohoku",
+   "tokyo"
+  ],
+  "n_test_days": 732,
+  "first_test_day": "2024-08-01",
+  "last_test_day": "2026-08-05",
+  "component_rows": 315414,
+  "joined_rows": 315414,
+  "max_abs_price_gap_vs_ladder": 0.0,
+  "floor_threshold_jpykwh": 0.5,
+  "floor_threshold_source": "\\thrFloorDefault (macros.tex l.275)"
+ },
+ "null_audit": {
+  "per_column_nulls_or_nans": {
+   "pi_base": 0,
+   "pi_head": 0,
+   "mu_base": 0,
+   "mu_head": 0,
+   "f_hat": 0,
+   "y_actual": 0,
+   "y_ladder": 0,
+   "ladder_base": 0,
+   "ladder_head": 0
+  },
+  "total": 0
+ },
+ "prevalence": {
+  "n_floor_slots": 10504,
+  "n_slots": 315414,
+  "share_pct": 3.33,
+  "phase94_published_pct": 3.33,
+  "within_tol_pp": true
+ },
+ "components": {
+  "pi": "XGBClassifier(300 x depth 4, lr 0.05, hist, logloss, n_jobs 4, seed 2026), label 1{y <= 0.5}, per arm's own column set",
+  "mu": "phase85's XGBRegressor parameters verbatim, trained on train rows with y > 0.5",
+  "f": "train-window mean price over rows with y <= 0.5, COMMON to both arms (fallback 0.01 if a fold has no floor train row)",
+  "yhat": "pi * f + (1 - pi) * mu"
+ },
+ "system_mae": {
+  "A_basepi_basemu": 2.1422,
+  "B_headpi_basemu": 2.0398,
+  "C_basepi_headmu": 1.941,
+  "D_headpi_headmu": 1.8832,
+  "ladder_base_published": 2.1506,
+  "ladder_head_published": 1.8989
+ },
+ "totals": {
+  "published_gain_same_rows": {
+   "mean": 0.2529,
+   "ci95": [
+    0.208,
+    0.2998
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25294,
+    "t_hln": 12.368,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "hurdle_gain_G": {
+   "mean": 0.259,
+   "ci95": [
+    0.2121,
+    0.3083
+   ],
+   "dm_l3": {
+    "mean_diff": 0.259,
+    "t_hln": 12.187,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "reconstruction_R": {
+   "mean": -0.0061,
+   "ci95": [
+    -0.0136,
+    0.0012
+   ],
+   "dm_l3": {
+    "mean_diff": -0.00606,
+    "t_hln": -1.65,
+    "p_hln": 0.09943789,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "relative_reconstruction_gap": 0.024,
+  "in_jepx_ticks": {
+   "published_gain": 25.29,
+   "floor_state_channel_S_pi": 8.01,
+   "cond_level_channel_S_mu": 17.89,
+   "reconstruction_R": -0.61,
+   "tick_jpykwh": 0.01
+  },
+  "c5_threshold": 0.5,
+  "faithful": true
+ },
+ "decomposition_shapley": {
+  "algebra": "Delta_paper = S_pi + S_mu + R (exact, per slot)",
+  "floor_state_channel_S_pi": {
+   "mean": 0.0801,
+   "ci95": [
+    0.0596,
+    0.1029
+   ],
+   "dm_l3": {
+    "mean_diff": 0.0801,
+    "t_hln": 8.756,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "cond_level_channel_S_mu": {
+   "mean": 0.1789,
+   "ci95": [
+    0.1461,
+    0.2126
+   ],
+   "dm_l3": {
+    "mean_diff": 0.1789,
+    "t_hln": 11.807,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "reconstruction_R": {
+   "mean": -0.0061,
+   "ci95": [
+    -0.0136,
+    0.0012
+   ],
+   "dm_l3": {
+    "mean_diff": -0.00606,
+    "t_hln": -1.65,
+    "p_hln": 0.09943789,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "share_of_published_gain": {
+   "floor_state": {
+    "ratio": 0.317,
+    "ci95": [
+     0.263,
+     0.371
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "cond_level": {
+    "ratio": 0.707,
+    "ci95": [
+     0.658,
+     0.755
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "reconstruction": {
+    "ratio": -0.024,
+    "ci95": [
+     -0.053,
+     0.005
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   }
+  },
+  "share_of_hurdle_gain": {
+   "floor_state": {
+    "ratio": 0.309,
+    "ci95": [
+     0.26,
+     0.36
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "cond_level": {
+    "ratio": 0.691,
+    "ci95": [
+     0.64,
+     0.74
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   }
+  }
+ },
+ "decomposition_main_effects": {
+  "algebra": "Delta_paper = g_pi + g_mu + g_int + R (exact, per slot)",
+  "floor_state_channel_g_pi": {
+   "mean": 0.1024,
+   "ci95": [
+    0.078,
+    0.1297
+   ],
+   "dm_l3": {
+    "mean_diff": 0.10244,
+    "t_hln": 9.46,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "cond_level_channel_g_mu": {
+   "mean": 0.2012,
+   "ci95": [
+    0.1656,
+    0.2378
+   ],
+   "dm_l3": {
+    "mean_diff": 0.20123,
+    "t_hln": 12.456,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "interaction_g_int": {
+   "mean": -0.0447,
+   "ci95": [
+    -0.0568,
+    -0.0336
+   ],
+   "dm_l3": {
+    "mean_diff": -0.04468,
+    "t_hln": -8.745,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "reconstruction_R": {
+   "mean": -0.0061,
+   "ci95": [
+    -0.0136,
+    0.0012
+   ],
+   "dm_l3": {
+    "mean_diff": -0.00606,
+    "t_hln": -1.65,
+    "p_hln": 0.09943789,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  }
+ },
+ "decomposition_channel_x_state": {
+  "algebra": "Delta_paper = S_pi^F + S_pi^NF + S_mu^F + S_mu^NF + R",
+  "contributions": {
+   "s_pi_F": {
+    "mean": 0.0322,
+    "ci95": [
+     0.0222,
+     0.0435
+    ],
+    "dm_l3": {
+     "mean_diff": 0.03218,
+     "t_hln": 6.766,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "n_days": 732
+   },
+   "s_pi_NF": {
+    "mean": 0.0479,
+    "ci95": [
+     0.0339,
+     0.0636
+    ],
+    "dm_l3": {
+     "mean_diff": 0.04793,
+     "t_hln": 7.165,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "n_days": 732
+   },
+   "s_mu_F": {
+    "mean": 0.0368,
+    "ci95": [
+     0.0272,
+     0.0477
+    ],
+    "dm_l3": {
+     "mean_diff": 0.03684,
+     "t_hln": 8.343,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "n_days": 732
+   },
+   "s_mu_NF": {
+    "mean": 0.1421,
+    "ci95": [
+     0.1123,
+     0.1723
+    ],
+    "dm_l3": {
+     "mean_diff": 0.14206,
+     "t_hln": 10.373,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "n_days": 732
+   }
+  },
+  "shares_of_published_gain": {
+   "s_pi_F": {
+    "ratio": 0.127,
+    "ci95": [
+     0.095,
+     0.164
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "s_pi_NF": {
+    "ratio": 0.189,
+    "ci95": [
+     0.147,
+     0.235
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "s_mu_F": {
+    "ratio": 0.146,
+    "ci95": [
+     0.117,
+     0.178
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "s_mu_NF": {
+    "ratio": 0.562,
+    "ci95": [
+     0.492,
+     0.628
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   }
+  }
+ },
+ "identities": {
+  "shapley_plus_reconstruction": {
+   "max_abs_residual": 4.440892098500626e-16,
+   "tolerance": 1e-09,
+   "exact": true
+  },
+  "main_effects_plus_interaction_plus_reconstruction": {
+   "max_abs_residual": 6.661338147750939e-16,
+   "tolerance": 1e-09,
+   "exact": true
+  },
+  "channel_x_state_plus_reconstruction": {
+   "max_abs_residual": 4.440892098500626e-16,
+   "tolerance": 1e-09,
+   "exact": true
+  },
+  "note": "algebraic in ae_A..ae_D and the ladder errors: this verifies the arithmetic, not the science. The substantive checks are P1-P4 and the size of R."
+ },
+ "component_diagnostics": {
+  "n_floor_slots": 10504,
+  "n_nonfloor_slots": 304910,
+  "brier_pi_base": 0.02462,
+  "brier_pi_head": 0.01731,
+  "floor_f1_at_0.5_pi_base": 0.3882,
+  "floor_f1_at_0.5_pi_head": 0.6106,
+  "mean_pi_base_on_floor": 0.352,
+  "mean_pi_head_on_floor": 0.53,
+  "mean_pi_base_off_floor": 0.022,
+  "mean_pi_head_off_floor": 0.0152,
+  "mae_mu_base_off_floor": 1.9926,
+  "mae_mu_head_off_floor": 1.8207,
+  "mean_f_hat": 0.0361,
+  "note": "a large Brier gain with a small S_pi is itself a finding: the floor-state signal can be real and still carry little of the aggregate MAE gain, because floor slots are rare"
+ },
+ "per_area": {
+  "chubu": {
+   "total_gain_ladder": 0.2545,
+   "total_gain_hurdle": 0.2465,
+   "S_pi": 0.0623,
+   "S_mu": 0.1842,
+   "R_recon": 0.0081,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.245,
+    "ci95": [
+     0.176,
+     0.322
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.724,
+    "ci95": [
+     0.637,
+     0.802
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": 0.032,
+    "ci95": [
+     -0.043,
+     0.112
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.253,
+    "ci95": [
+     0.187,
+     0.326
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0242,
+   "S_mu_on_floor_slots": 0.0308,
+   "floor_prevalence_pct": 1.655,
+   "system_mae": {
+    "A": 2.1611,
+    "B": 2.0779,
+    "C": 1.956,
+    "D": 1.9147
+   },
+   "n_days": 732
+  },
+  "chugoku": {
+   "total_gain_ladder": 0.3008,
+   "total_gain_hurdle": 0.3149,
+   "S_pi": 0.0945,
+   "S_mu": 0.2205,
+   "R_recon": -0.0141,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.314,
+    "ci95": [
+     0.25,
+     0.382
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.733,
+    "ci95": [
+     0.67,
+     0.798
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": -0.047,
+    "ci95": [
+     -0.098,
+     -0.001
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.3,
+    "ci95": [
+     0.242,
+     0.359
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0365,
+   "S_mu_on_floor_slots": 0.0422,
+   "floor_prevalence_pct": 2.948,
+   "system_mae": {
+    "A": 2.0152,
+    "B": 1.8956,
+    "C": 1.7696,
+    "D": 1.7003
+   },
+   "n_days": 732
+  },
+  "hokkaido": {
+   "total_gain_ladder": 0.0916,
+   "total_gain_hurdle": 0.1002,
+   "S_pi": 0.0149,
+   "S_mu": 0.0853,
+   "R_recon": -0.0085,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.163,
+    "ci95": [
+     0.062,
+     0.28
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.931,
+    "ci95": [
+     0.744,
+     1.165
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": -0.093,
+    "ci95": [
+     -0.373,
+     0.116
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.149,
+    "ci95": [
+     0.062,
+     0.236
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0016,
+   "S_mu_on_floor_slots": 0.0129,
+   "floor_prevalence_pct": 3.162,
+   "system_mae": {
+    "A": 2.4635,
+    "B": 2.4423,
+    "C": 2.3719,
+    "D": 2.3634
+   },
+   "n_days": 732
+  },
+  "hokuriku": {
+   "total_gain_ladder": 0.1777,
+   "total_gain_hurdle": 0.1841,
+   "S_pi": 0.0503,
+   "S_mu": 0.1338,
+   "R_recon": -0.0064,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.283,
+    "ci95": [
+     0.195,
+     0.382
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.753,
+    "ci95": [
+     0.638,
+     0.869
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": -0.036,
+    "ci95": [
+     -0.141,
+     0.061
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.273,
+    "ci95": [
+     0.191,
+     0.364
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0159,
+   "S_mu_on_floor_slots": 0.0188,
+   "floor_prevalence_pct": 2.02,
+   "system_mae": {
+    "A": 2.0679,
+    "B": 2.0014,
+    "C": 1.9179,
+    "D": 1.8838
+   },
+   "n_days": 732
+  },
+  "kansai": {
+   "total_gain_ladder": 0.2403,
+   "total_gain_hurdle": 0.2501,
+   "S_pi": 0.0703,
+   "S_mu": 0.1799,
+   "R_recon": -0.0099,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.292,
+    "ci95": [
+     0.221,
+     0.373
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.749,
+    "ci95": [
+     0.659,
+     0.835
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": -0.041,
+    "ci95": [
+     -0.113,
+     0.022
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.281,
+    "ci95": [
+     0.214,
+     0.355
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.024,
+   "S_mu_on_floor_slots": 0.0266,
+   "floor_prevalence_pct": 2.163,
+   "system_mae": {
+    "A": 2.0527,
+    "B": 1.9623,
+    "C": 1.8527,
+    "D": 1.8026
+   },
+   "n_days": 732
+  },
+  "kyushu": {
+   "total_gain_ladder": 0.3634,
+   "total_gain_hurdle": 0.3947,
+   "S_pi": 0.2031,
+   "S_mu": 0.1915,
+   "R_recon": -0.0312,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.559,
+    "ci95": [
+     0.49,
+     0.632
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.527,
+    "ci95": [
+     0.467,
+     0.591
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": -0.086,
+    "ci95": [
+     -0.139,
+     -0.041
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.515,
+    "ci95": [
+     0.458,
+     0.571
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0988,
+   "S_mu_on_floor_slots": 0.0712,
+   "floor_prevalence_pct": 6.697,
+   "system_mae": {
+    "A": 1.9885,
+    "B": 1.7397,
+    "C": 1.7514,
+    "D": 1.5938
+   },
+   "n_days": 732
+  },
+  "shikoku": {
+   "total_gain_ladder": 0.2296,
+   "total_gain_hurdle": 0.2317,
+   "S_pi": 0.0965,
+   "S_mu": 0.1352,
+   "R_recon": -0.0021,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.42,
+    "ci95": [
+     0.329,
+     0.512
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.589,
+    "ci95": [
+     0.504,
+     0.674
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": -0.009,
+    "ci95": [
+     -0.08,
+     0.062
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.416,
+    "ci95": [
+     0.335,
+     0.497
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0395,
+   "S_mu_on_floor_slots": 0.0592,
+   "floor_prevalence_pct": 6.934,
+   "system_mae": {
+    "A": 2.3696,
+    "B": 2.2341,
+    "C": 2.1954,
+    "D": 2.1379
+   },
+   "n_days": 732
+  },
+  "tohoku": {
+   "total_gain_ladder": 0.3778,
+   "total_gain_hurdle": 0.3774,
+   "S_pi": 0.0895,
+   "S_mu": 0.288,
+   "R_recon": 0.0003,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.237,
+    "ci95": [
+     0.178,
+     0.296
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.762,
+    "ci95": [
+     0.704,
+     0.823
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": 0.001,
+    "ci95": [
+     -0.043,
+     0.045
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.237,
+    "ci95": [
+     0.18,
+     0.293
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0375,
+   "S_mu_on_floor_slots": 0.0518,
+   "floor_prevalence_pct": 3.396,
+   "system_mae": {
+    "A": 2.1594,
+    "B": 2.0473,
+    "C": 1.8488,
+    "D": 1.782
+   },
+   "n_days": 732
+  },
+  "tokyo": {
+   "total_gain_ladder": 0.2406,
+   "total_gain_hurdle": 0.2314,
+   "S_pi": 0.0397,
+   "S_mu": 0.1918,
+   "R_recon": 0.0092,
+   "share_floor_state_of_ladder": {
+    "ratio": 0.165,
+    "ci95": [
+     0.1,
+     0.232
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_cond_level_of_ladder": {
+    "ratio": 0.797,
+    "ci95": [
+     0.723,
+     0.866
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_reconstruction_of_ladder": {
+    "ratio": 0.038,
+    "ci95": [
+     -0.028,
+     0.11
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "share_floor_state_of_hurdle": {
+    "ratio": 0.171,
+    "ci95": [
+     0.107,
+     0.236
+    ],
+    "n_draws_used": 10000,
+    "n_days": 732
+   },
+   "S_pi_on_floor_slots": 0.0115,
+   "S_mu_on_floor_slots": 0.0179,
+   "floor_prevalence_pct": 0.999,
+   "system_mae": {
+    "A": 2.002,
+    "B": 1.9574,
+    "C": 1.8053,
+    "D": 1.7705
+   },
+   "n_days": 732
+  }
+ },
+ "exploratory_post_hoc": {
+  "status": "EXPLORATORY, post hoc -- decides no pre-registered branch",
+  "question": "does the floor-state channel's share of the gain track the area's floor prevalence?",
+  "spearman_rho_prevalence_vs_floor_channel_share": 0.5,
+  "permutation_p_two_sided": 0.17927,
+  "n_permutations": 100000,
+  "n_areas": 9,
+  "ties_present": false,
+  "note": "areas are not independent replications: the manuscript puts the effective independence of the nine per-area improvement series near five, so this p is optimistic"
+ },
+ "positive_control_p1_panel": {
+  "why": "if the panel or the floor definition is not the paper's, no share below is a share of the paper's number",
+  "checks": {
+   "headline_improvement": {
+    "observed": 0.2529,
+    "published": 0.2529,
+    "tolerance": 0.0005,
+    "pass": true
+   },
+   "slot_pooled_mae_base": {
+    "observed": 2.1506,
+    "published": 2.1506,
+    "tolerance": 0.001,
+    "pass": true
+   },
+   "slot_pooled_mae_head": {
+    "observed": 1.8989,
+    "published": 1.8989,
+    "tolerance": 0.001,
+    "pass": true
+   },
+   "floor_slice_mae_base": {
+    "observed": 5.242,
+    "published": 5.223,
+    "tolerance": 0.002,
+    "pass": false
+   },
+   "floor_slice_mae_head": {
+    "observed": 3.392,
+    "published": 3.383,
+    "tolerance": 0.002,
+    "pass": false
+   },
+   "near_floor_share_pct": {
+    "observed": 3.33,
+    "published": 3.33,
+    "tolerance": 0.005,
+    "pass": true
+   }
+  },
+  "all_pass": false,
+  "macro_anchor_diagnosis": {
+   "finding": "the two floor-slice checks fail against the MACRO values and pass exactly against phase82b's absolute block",
+   "cause": "the macros 5.223 / 3.383 are the naive-available sub-panel (phase82b relative block, 10,379 floor slots); the full ladder panel has 10,504 floor slots and 5.2422 / 3.392",
+   "macro_subpanel_values": {
+    "price_only": 5.2235,
+    "msm_d2_12z_cw": 3.3834,
+    "n_slots": 10379
+   },
+   "like_for_like_checks": {
+    "floor_slice_mae_base_fullpanel": {
+     "observed": 5.242,
+     "phase82b_absolute_block": 5.2422,
+     "n_slots_phase82b": 10504,
+     "n_slots_here": 10504,
+     "pass": true
+    },
+    "floor_slice_mae_head_fullpanel": {
+     "observed": 3.392,
+     "phase82b_absolute_block": 3.392,
+     "pass": true
+    }
+   },
+   "all_pass": true,
+   "consequence": "Part I is computed on the full ladder panel, so the shares are shares of the published 0.2529, which is also a full-panel number"
+  },
+  "sources": {
+   "phase85": "data/runs/phase85_exact_ladder.json",
+   "phase82b": "data/runs/phase82b_absolute_metrics.json",
+   "phase94": "data/runs/phase94_evaluation_regime.json"
+  }
+ },
+ "positive_control_p1_headline_anchor": {
+  "observed": 0.2529,
+  "published": 0.2529,
+  "tolerance": 0.0005,
+  "pass": true
+ },
+ "positive_control_p2_parameter_fidelity": {
+  "why": "the conditional-level component differs from the ladder's regressor only in its training subset",
+  "tolerance": 1e-09,
+  "max_abs_diff_vs_phase85_fit": 0.0,
+  "all_pass": true,
+  "per_area": {
+   "chubu": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "chugoku": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "hokkaido": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "hokuriku": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "kansai": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "kyushu": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "shikoku": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "tohoku": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   },
+   "tokyo": {
+    "p2_max_abs_diff": 0.0,
+    "p2_pass": true
+   }
+  }
+ },
+ "positive_control_p3_oracle": {
+  "why": "perfect floor-state knowledge must buy a large MAE gain, or the decomposition cannot detect a classification channel",
+  "oracle_mae": 1.93,
+  "gain_over_system_A": 0.2122,
+  "min_required": 0.05,
+  "pass": true
+ },
+ "positive_control_p4_cross_path": {
+  "why": "the floor part of the ladder gain, computed here by a different code path, must equal phase103's Part I floor contribution",
+  "here": 0.0615,
+  "phase103_part1": 0.0615,
+  "tolerance": 0.0001,
+  "applicable": true,
+  "pass": true
+ },
+ "part1_reused_from_phase103": {
+  "threshold_jpykwh": 0.5,
+  "loss": "absolute error (the paper's MAE)",
+  "identity": {
+   "rule": "Delta_paper = C_F + C_NF, day/area nested estimator",
+   "max_abs_residual": 2.220446049250313e-16,
+   "tolerance": 1e-09,
+   "exact": true
+  },
+  "prevalence": {
+   "n_floor_slots": 10504,
+   "n_slots": 315414,
+   "share_pct": 3.33
+  },
+  "total_gain": {
+   "mean": 0.2529,
+   "ci95": [
+    0.208,
+    0.2998
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25294,
+    "t_hln": 12.368,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "floor_contribution": {
+   "mean": 0.0615,
+   "ci95": [
+    0.0448,
+    0.0806
+   ],
+   "dm_l3": {
+    "mean_diff": 0.06151,
+    "t_hln": 7.838,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "nonfloor_contribution": {
+   "mean": 0.1914,
+   "ci95": [
+    0.1544,
+    0.2294
+   ],
+   "dm_l3": {
+    "mean_diff": 0.19143,
+    "t_hln": 11.235,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "n_days": 732
+  },
+  "floor_share": {
+   "ratio": 0.243,
+   "ci95": [
+    0.192,
+    0.302
+   ],
+   "n_draws_used": 10000,
+   "n_days": 732
+  },
+  "nonfloor_share": {
+   "ratio": 0.757,
+   "ci95": [
+    0.698,
+    0.808
+   ],
+   "n_draws_used": 10000,
+   "n_days": 732
+  },
+  "slot_pooled": {
+   "mae_base_all": 2.1506,
+   "mae_head_all": 1.8989,
+   "mae_base_floor": 5.242,
+   "mae_head_floor": 3.392,
+   "mae_base_nonfloor": 2.044,
+   "mae_head_nonfloor": 1.848,
+   "intensity_floor": 1.85,
+   "intensity_nonfloor": 0.196,
+   "intensity_pooled": 0.2517,
+   "intensity_multiple_floor_over_pooled": 7.35,
+   "prevalence_times_multiple": 0.245,
+   "floor_share_slot_pooled": 0.245
+  },
+  "per_area": {
+   "chubu": {
+    "total_gain": 0.2545,
+    "floor_contribution": 0.0499,
+    "nonfloor_contribution": 0.2047,
+    "floor_share": {
+     "ratio": 0.196,
+     "ci95": [
+      0.134,
+      0.267
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 1.655,
+    "n_days": 732
+   },
+   "chugoku": {
+    "total_gain": 0.3008,
+    "floor_contribution": 0.0679,
+    "nonfloor_contribution": 0.233,
+    "floor_share": {
+     "ratio": 0.226,
+     "ci95": [
+      0.162,
+      0.296
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 2.948,
+    "n_days": 732
+   },
+   "hokkaido": {
+    "total_gain": 0.0916,
+    "floor_contribution": 0.0166,
+    "nonfloor_contribution": 0.075,
+    "floor_share": {
+     "ratio": 0.182,
+     "ci95": [
+      0.041,
+      0.34
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 3.162,
+    "n_days": 732
+   },
+   "hokuriku": {
+    "total_gain": 0.1777,
+    "floor_contribution": 0.0294,
+    "nonfloor_contribution": 0.1483,
+    "floor_share": {
+     "ratio": 0.165,
+     "ci95": [
+      0.095,
+      0.255
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 2.02,
+    "n_days": 732
+   },
+   "kansai": {
+    "total_gain": 0.2403,
+    "floor_contribution": 0.0476,
+    "nonfloor_contribution": 0.1927,
+    "floor_share": {
+     "ratio": 0.198,
+     "ci95": [
+      0.13,
+      0.279
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 2.163,
+    "n_days": 732
+   },
+   "kyushu": {
+    "total_gain": 0.3634,
+    "floor_contribution": 0.1451,
+    "nonfloor_contribution": 0.2183,
+    "floor_share": {
+     "ratio": 0.399,
+     "ci95": [
+      0.328,
+      0.476
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 6.697,
+    "n_days": 732
+   },
+   "shikoku": {
+    "total_gain": 0.2296,
+    "floor_contribution": 0.0858,
+    "nonfloor_contribution": 0.1438,
+    "floor_share": {
+     "ratio": 0.374,
+     "ci95": [
+      0.287,
+      0.468
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 6.934,
+    "n_days": 732
+   },
+   "tohoku": {
+    "total_gain": 0.3778,
+    "floor_contribution": 0.084,
+    "nonfloor_contribution": 0.2938,
+    "floor_share": {
+     "ratio": 0.222,
+     "ci95": [
+      0.164,
+      0.284
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 3.396,
+    "n_days": 732
+   },
+   "tokyo": {
+    "total_gain": 0.2406,
+    "floor_contribution": 0.0273,
+    "nonfloor_contribution": 0.2134,
+    "floor_share": {
+     "ratio": 0.113,
+     "ci95": [
+      0.062,
+      0.175
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    },
+    "floor_prevalence_pct": 0.999,
+    "n_days": 732
+   }
+  }
+ },
+ "metadata": {
+  "script": "s_20260819_phase103b_floor_channel_hurdle.py",
+  "git_sha": "95e6d3ae11960713e5e5c1e772466ea1dd011330",
+  "generated_utc": "2026-08-19T09:33:38.705053+00:00",
+  "inputs": [
+   "data/runs/phase85_exact_ladder_per_slot.parquet",
+   "data/runs/phase85_exact_ladder.json",
+   "data/runs/phase103_floor_channel_decomposition.json",
+   "s_20260819_phase103_floor_channel_decomposition.py",
+   "data/runs/phase103b_hurdle_components"
+  ],
+  "reused_modules": {
+   "phase85": "panel, folds, cells, learner, block bootstrap, HLN-DM",
+   "phase103": "component build (rebinds phase85 _design/_fit), Part I state partition and its positive controls"
+  },
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block": 7
+ }
+}

@@ -1,0 +1,63 @@
+{
+  "phase": "phase36_skill_degradation",
+  "note": "GPV exact-issuance forecast degraded by Gaussian noise; skill = midday pooled corr(noised forecast shortwave, realised ERA5 shortwave), as in phase27.0. improvement = mean MAE reduction (price+weather vs price-only); concentration = Spearman(per-area improvement, PV/peak). H1': skill UP -> mean value UP, concentration DOWN.",
+  "n_areas": 8,
+  "midday_window": [
+    9,
+    16
+  ],
+  "curve": [
+    {
+      "noise_frac": 4.5,
+      "skill_corr": 0.175,
+      "mean_improvement_yen_kwh": 0.0259,
+      "concentration_rho_vs_pvpeak": -0.262,
+      "concentration_p": 0.531
+    },
+    {
+      "noise_frac": 3.0,
+      "skill_corr": 0.257,
+      "mean_improvement_yen_kwh": 0.0357,
+      "concentration_rho_vs_pvpeak": -0.048,
+      "concentration_p": 0.911
+    },
+    {
+      "noise_frac": 1.8,
+      "skill_corr": 0.403,
+      "mean_improvement_yen_kwh": 0.0677,
+      "concentration_rho_vs_pvpeak": -0.071,
+      "concentration_p": 0.867
+    },
+    {
+      "noise_frac": 1.0,
+      "skill_corr": 0.595,
+      "mean_improvement_yen_kwh": 0.115,
+      "concentration_rho_vs_pvpeak": -0.095,
+      "concentration_p": 0.823
+    },
+    {
+      "noise_frac": 0.5,
+      "skill_corr": 0.753,
+      "mean_improvement_yen_kwh": 0.1808,
+      "concentration_rho_vs_pvpeak": -0.048,
+      "concentration_p": 0.911
+    },
+    {
+      "noise_frac": 0.0,
+      "skill_corr": 0.841,
+      "mean_improvement_yen_kwh": 0.2584,
+      "concentration_rho_vs_pvpeak": -0.262,
+      "concentration_p": 0.531
+    }
+  ],
+  "per_area_pvpeak": {
+    "hokkaido": 0.499,
+    "tohoku": 0.569,
+    "tokyo": 0.241,
+    "hokuriku": 0.39,
+    "kansai": 0.348,
+    "chugoku": 0.539,
+    "shikoku": 0.921,
+    "kyushu": 0.78
+  }
+}

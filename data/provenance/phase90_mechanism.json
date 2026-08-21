@@ -1,0 +1,186 @@
+{
+ "phase": 90,
+ "title": "Mechanism: does the post-gate innovation reach the price?",
+ "precommit_doc": "docs/research/2026-08-13_phase90_mechanism_precommit.md",
+ "design": {
+  "innovation": "proxy_scaled(post-gate) - proxy_scaled(pre-gate) per slot, standardised; both proxies are the cross-fitted physical predictions of phase89",
+  "physical_residual": "target_mw - proxy_scaled(pre-gate)",
+  "price_residual": "y_actual - y_pred(pre-gate cell)",
+  "inference": "OLS with cluster-robust SE on area x delivery day",
+  "innovation_sd_mw": 531.32,
+  "n_slots": 77744,
+  "n_clusters": 5560
+ },
+ "regressions": {
+  "physical_residual_on_innovation": {
+   "slope": 499.768462,
+   "se_cluster": 20.418605,
+   "t": 24.476,
+   "p_two_sided": 0.0,
+   "n": 77744,
+   "n_clusters": 5560,
+   "r2_increment": 0.140193
+  },
+  "price_residual_on_innovation": {
+   "slope": -0.387866,
+   "se_cluster": 0.037613,
+   "t": -10.312,
+   "p_two_sided": 0.0,
+   "n": 77744,
+   "n_clusters": 5560,
+   "r2_increment": 0.011938
+  },
+  "placebo_physical": {
+   "slope": -9.230878,
+   "se_cluster": 4.733708,
+   "t": -1.95,
+   "p_two_sided": 0.051172,
+   "n": 77744,
+   "n_clusters": 5560,
+   "r2_increment": 4.8e-05
+  },
+  "placebo_price": {
+   "slope": -0.012537,
+   "se_cluster": 0.012623,
+   "t": -0.993,
+   "p_two_sided": 0.320622,
+   "n": 77744,
+   "n_clusters": 5560,
+   "r2_increment": 1.2e-05
+  }
+ },
+ "splits": {
+  "floor": {
+   "physical": {
+    "slope": 421.189909,
+    "se_cluster": 54.280863,
+    "t": 7.759,
+    "p_two_sided": 0.0,
+    "n": 8504,
+    "n_clusters": 1090,
+    "r2_increment": 0.077716
+   },
+   "price": {
+    "slope": -0.28793,
+    "se_cluster": 0.098412,
+    "t": -2.926,
+    "p_two_sided": 0.003436,
+    "n": 8504,
+    "n_clusters": 1090,
+    "r2_increment": 0.005077
+   }
+  },
+  "non_floor": {
+   "physical": {
+    "slope": 504.058675,
+    "se_cluster": 21.131185,
+    "t": 23.854,
+    "p_two_sided": 0.0,
+    "n": 69240,
+    "n_clusters": 5404,
+    "r2_increment": 0.144944
+   },
+   "price": {
+    "slope": -0.381423,
+    "se_cluster": 0.037688,
+    "t": -10.121,
+    "p_two_sided": 0.0,
+    "n": 69240,
+    "n_clusters": 5404,
+    "r2_increment": 0.012871
+   }
+  },
+  "curtailed": {
+   "physical": {
+    "slope": 395.013839,
+    "se_cluster": 37.183996,
+    "t": 10.623,
+    "p_two_sided": 0.0,
+    "n": 10805,
+    "n_clusters": 1008,
+    "r2_increment": 0.075744
+   },
+   "price": {
+    "slope": -0.458295,
+    "se_cluster": 0.110109,
+    "t": -4.162,
+    "p_two_sided": 3.2e-05,
+    "n": 10805,
+    "n_clusters": 1008,
+    "r2_increment": 0.014741
+   }
+  },
+  "not_curtailed": {
+   "physical": {
+    "slope": 510.09441,
+    "se_cluster": 22.016395,
+    "t": 23.169,
+    "p_two_sided": 0.0,
+    "n": 66939,
+    "n_clusters": 5059,
+    "r2_increment": 0.148529
+   },
+   "price": {
+    "slope": -0.368761,
+    "se_cluster": 0.038887,
+    "t": -9.483,
+    "p_two_sided": 0.0,
+    "n": 66939,
+    "n_clusters": 5059,
+    "r2_increment": 0.011137
+   }
+  }
+ },
+ "gates": {
+  "gate56_mechanism": {
+   "placebo_null": true,
+   "physical_p": 0.0,
+   "price_p": 0.0,
+   "branch": "b",
+   "reading": "the innovation explains both residuals: the divergence is not about price formation and the expectations reading is withdrawn",
+   "wording_rule": "no branch licenses 'identifies' or 'locates the expectations channel'; the permitted phrasing is 'target divergence, consistent with'"
+  }
+ },
+ "implied_price_value": {
+  "panel": "the slots where both a physical and a price residual exist: daylight hours in the eight areas with published PV actuals, which is a HARDER sub-panel than the full ladder -- see implied_price_value_full_panel for the like-for-like figure",
+  "n_slots": 77744,
+  "mae_pre_gate_residual": 2.4544,
+  "mae_after_removing_projection": 2.4431,
+  "implied_mae_reduction": 0.0113,
+  "in_ticks": 1.13,
+  "reading": "an in-sample ceiling on what a linear use of the excluded run's innovation could take off the pooled MAE. Compare it with the equivalence margin (0.01) and with the gate-timing delta the ladder measures: the ceiling is about one tick, and the learner realises a fraction of it"
+ },
+ "implied_price_value_full_panel": {
+  "panel": "every slot the ladder scores, nine areas. The sub-panel's own slope is applied where the innovation exists and nowhere else",
+  "n_slots": 315414,
+  "n_slots_with_innovation": 77744,
+  "share_of_slots_covered_pct": 24.6,
+  "mae_pre_gate_residual": 1.8989,
+  "ols_slope": -0.38787,
+  "mae_after_removing_ols_projection": 1.8955,
+  "ols_mae_reduction": 0.0034,
+  "mae_optimal_slope": -0.32121,
+  "mae_after_removing_optimal": 1.8953,
+  "implied_mae_reduction": 0.0036,
+  "in_ticks": 0.36,
+  "refit_on_full_panel_would_give": -0.0016,
+  "reading": "the like-for-like ceiling: compare THIS with the equivalence margin and with the gate-timing delta, both full-panel. The sub-panel figure is larger because the sub-panel is harder and because the innovation is zero on three quarters of the ladder's slots by construction"
+ },
+ "realised_vs_ceiling": {
+  "ceiling_full_panel": 0.0036,
+  "measured_gate_timing_delta": 0.0026,
+  "measured_ci95": [
+   -0.0047,
+   0.0099
+  ],
+  "realised_share_pct": 72.0,
+  "extraction_gap": 0.001,
+  "equivalence_margin": 0.01,
+  "reading": "both the ceiling and what the design realises sit inside the equivalence margin, which is why the pooled test reports equivalence. The gap between them bounds how much a better encoding of this information could add"
+ },
+ "metadata": {
+  "script": "s_20260813_phase90_mechanism.py",
+  "git_sha": "3962afdfc871ec9a9edd190eff2aec39346fce99",
+  "seed": 2026
+ }
+}

@@ -1,0 +1,1112 @@
+{
+  "phase": "phase47_tier_probabilistic",
+  "generated_utc": "2026-07-24T05:27:50+00:00",
+  "started_utc": "2026-07-24T04:43:53+00:00",
+  "script": "s_20260724_phase47_tier_probabilistic.py",
+  "git_sha": "744a3d960f068f31dc0286e535c76de46a9d43f4",
+  "runtime_seconds": 2636.8,
+  "partial": false,
+  "errors": {},
+  "protocol": {
+    "fold_protocol": "phase35 all-hours verbatim: INITIAL_TRAIN_END 2024-09-01 JST, VAL 14d, TEST 1d, STEP 3d, 140 nominal folds, MIN_TEST_DAY 2024-11-15, expanding window, clean JST-midnight day boundaries",
+    "fold_step": 1,
+    "fold_thinning": "none (all nominal folds)",
+    "n_effective_folds_per_area": {
+      "chubu": 119,
+      "chugoku": 119,
+      "hokkaido": 119,
+      "hokuriku": 119,
+      "kansai": 119,
+      "kyushu": 119,
+      "shikoku": 119,
+      "tohoku": 119,
+      "tokyo": 119
+    },
+    "test_day_range": [
+      "2024-11-17",
+      "2025-11-06"
+    ],
+    "estimator": "appendix-F protocol (phase23): 7 independent XGBRegressor reg:quantileerror (n_estimators=300, max_depth=4, lr=0.05, seed=2026, tree_method=hist), post-hoc monotone rearrangement",
+    "quantiles": [
+      0.05,
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9,
+      0.95
+    ],
+    "cells": {
+      "price_only": "price lags 48/96/336/672 + calendar (sin/cos hour/dow/month, is_holiday)",
+      "era5_proxy": "price_only + ERA5 reanalysis weather lag-48 (lagged-reanalysis proxy tier)",
+      "histfc": "price_only + Open-Meteo historical-forecast reconstruction, same-slot (operational tier; per phase44, no per-slot GPV cache exists and GPV~=histfc per-area, so histfc is the honest operational tier for refits)"
+    },
+    "sample": "same-sample across cells: drop_nulls over the union of all three feature sets (price lags + era5 lag-48 + histfc columns)",
+    "areas": [
+      "hokkaido",
+      "tohoku",
+      "tokyo",
+      "chubu",
+      "hokuriku",
+      "kansai",
+      "chugoku",
+      "shikoku",
+      "kyushu"
+    ],
+    "n_areas": 9,
+    "metrics": {
+      "pinball": "mean over 7-quantile grid of mean pinball loss, JPY/kWh",
+      "crps": "quantile-sum approximation = 2 x mean pinball (Gneiting & Raftery 2007)",
+      "pi80": "empirical coverage of [q10, q90], nominal 0.80",
+      "mae_q50": "point MAE of the median forecast (internal cross-check vs point results)"
+    },
+    "crps_identity_note": "CRPS_qsum = 2 x mean pinball by construction, so CRPS- and pinball-based improvement multiples are identical."
+  },
+  "inputs": {
+    "jepx": "data/raw/jepx/spot_{2024,2025}.csv (cache, download=False)",
+    "era5": "data/raw/open_meteo/ per-coordinate yearly JSON (cache, download=False)",
+    "histfc": "data/raw/open_meteo_historical_forecast/ span 2024-09-15..2025-12-31 per coordinate (cache, download=False)",
+    "coords": {
+      "hokkaido": {
+        "lat": 43.07,
+        "lon": 141.35,
+        "city": "Sapporo"
+      },
+      "tohoku": {
+        "lat": 38.27,
+        "lon": 140.87,
+        "city": "Sendai"
+      },
+      "tokyo": {
+        "lat": 35.68,
+        "lon": 139.76,
+        "city": "Tokyo"
+      },
+      "chubu": {
+        "lat": 35.18,
+        "lon": 136.91,
+        "city": "Nagoya"
+      },
+      "hokuriku": {
+        "lat": 36.56,
+        "lon": 136.66,
+        "city": "Kanazawa"
+      },
+      "kansai": {
+        "lat": 34.69,
+        "lon": 135.5,
+        "city": "Osaka"
+      },
+      "chugoku": {
+        "lat": 34.4,
+        "lon": 132.46,
+        "city": "Hiroshima"
+      },
+      "shikoku": {
+        "lat": 34.34,
+        "lon": 134.05,
+        "city": "Takamatsu"
+      },
+      "kyushu": {
+        "lat": 33.59,
+        "lon": 130.4,
+        "city": "Fukuoka"
+      }
+    }
+  },
+  "per_area": {
+    "chubu": {
+      "runtime_s": 2608.3,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.5525467442286599,
+            "crps": 1.1050934884573198,
+            "pi80": 0.757703081232493,
+            "mae_q50": 1.7940650761970618,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5525467442286602,
+            "pinball_sd": 0.27745240985110686,
+            "crps_mean": 1.1050934884573205,
+            "crps_sd": 0.5549048197022137,
+            "pi80_mean": 0.7577030812324931,
+            "pi80_sd": 0.18236586557356455,
+            "mae_q50_mean": 1.7940650761970618,
+            "mae_q50_sd": 0.881629768556017,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.5490575612485417,
+            "crps": 1.0981151224970833,
+            "pi80": 0.7514005602240896,
+            "mae_q50": 1.7695244982776022,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5490575612485415,
+            "pinball_sd": 0.27480121031252613,
+            "crps_mean": 1.098115122497083,
+            "crps_sd": 0.5496024206250523,
+            "pi80_mean": 0.7514005602240896,
+            "pi80_sd": 0.1771867654986025,
+            "mae_q50_mean": 1.7695244982776022,
+            "mae_q50_sd": 0.8609665038790021,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.4883270575075652,
+            "crps": 0.9766541150151304,
+            "pi80": 0.7634803921568627,
+            "mae_q50": 1.5700705465819706,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.4883270575075652,
+            "pinball_sd": 0.24829769248685696,
+            "crps_mean": 0.9766541150151304,
+            "crps_sd": 0.4965953849737139,
+            "pi80_mean": 0.7634803921568628,
+            "pi80_sd": 0.17668487564255236,
+            "mae_q50_mean": 1.5700705465819706,
+            "mae_q50_sd": 0.7556721437973085,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.003489182980118244,
+          "crps": 0.006978365960236488,
+          "mae_q50": 0.024540577919459627
+        },
+        "histfc": {
+          "pinball": 0.06421968672109468,
+          "crps": 0.12843937344218936,
+          "mae_q50": 0.22399452961509114
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 18.405365120438127,
+          "crps": 18.405365120438127,
+          "mae_q50": 9.127516489229583
+        }
+      }
+    },
+    "chugoku": {
+      "runtime_s": 2625.7,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.5375813489333281,
+            "crps": 1.0751626978666562,
+            "pi80": 0.7158613445378151,
+            "mae_q50": 1.7722579003541787,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.537581348933328,
+            "pinball_sd": 0.31293566998868694,
+            "crps_mean": 1.075162697866656,
+            "crps_sd": 0.6258713399773739,
+            "pi80_mean": 0.7158613445378149,
+            "pi80_sd": 0.1937466035414925,
+            "mae_q50_mean": 1.7722579003541783,
+            "mae_q50_sd": 0.9557232620141932,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.528956837652731,
+            "crps": 1.057913675305462,
+            "pi80": 0.7156862745098039,
+            "mae_q50": 1.7384883007624239,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.528956837652731,
+            "pinball_sd": 0.2967135771131104,
+            "crps_mean": 1.057913675305462,
+            "crps_sd": 0.5934271542262208,
+            "pi80_mean": 0.7156862745098039,
+            "pi80_sd": 0.19221910214152366,
+            "mae_q50_mean": 1.738488300762424,
+            "mae_q50_sd": 0.9033003895126407,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.4771407264199422,
+            "crps": 0.9542814528398844,
+            "pi80": 0.7121848739495799,
+            "mae_q50": 1.5795499754495883,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.4771407264199422,
+            "pinball_sd": 0.2642350725767282,
+            "crps_mean": 0.9542814528398844,
+            "crps_sd": 0.5284701451534564,
+            "pi80_mean": 0.7121848739495799,
+            "pi80_sd": 0.19041917754765808,
+            "mae_q50_mean": 1.5795499754495885,
+            "mae_q50_sd": 0.7830126409867065,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.008624511280597047,
+          "crps": 0.017249022561194094,
+          "mae_q50": 0.03376959959175485
+        },
+        "histfc": {
+          "pinball": 0.06044062251338589,
+          "crps": 0.12088124502677178,
+          "mae_q50": 0.19270792490459043
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 7.0080055028001285,
+          "crps": 7.0080055028001285,
+          "mae_q50": 5.706550484289479
+        }
+      }
+    },
+    "hokkaido": {
+      "runtime_s": 2630.2,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.7081220167091683,
+            "crps": 1.4162440334183366,
+            "pi80": 0.6920518207282913,
+            "mae_q50": 2.246675936598905,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.7081220167091682,
+            "pinball_sd": 0.43278137189909294,
+            "crps_mean": 1.4162440334183364,
+            "crps_sd": 0.8655627437981859,
+            "pi80_mean": 0.6920518207282914,
+            "pi80_sd": 0.18513415727563534,
+            "mae_q50_mean": 2.2466759365989044,
+            "mae_q50_sd": 1.2130660626000902,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.7060835579207847,
+            "crps": 1.4121671158415694,
+            "pi80": 0.6931022408963585,
+            "mae_q50": 2.2413541963504473,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.7060835579207846,
+            "pinball_sd": 0.44061547518769584,
+            "crps_mean": 1.4121671158415692,
+            "crps_sd": 0.8812309503753917,
+            "pi80_mean": 0.6931022408963586,
+            "pi80_sd": 0.18448807895237695,
+            "mae_q50_mean": 2.2413541963504473,
+            "mae_q50_sd": 1.2101648951545534,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.6856010081415166,
+            "crps": 1.3712020162830332,
+            "pi80": 0.6885504201680672,
+            "mae_q50": 2.1524473248975853,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.6856010081415166,
+            "pinball_sd": 0.42448585268215544,
+            "crps_mean": 1.3712020162830332,
+            "crps_sd": 0.8489717053643109,
+            "pi80_mean": 0.688550420168067,
+            "pi80_sd": 0.19511092450191367,
+            "mae_q50_mean": 2.1524473248975853,
+            "mae_q50_sd": 1.1405005025777608,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.0020384587883836014,
+          "crps": 0.004076917576767203,
+          "mae_q50": 0.0053217402484575516
+        },
+        "histfc": {
+          "pinball": 0.022521008567651712,
+          "crps": 0.045042017135303425,
+          "mae_q50": 0.09422861170131958
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 11.048056843724456,
+          "crps": 11.048056843724456,
+          "mae_q50": 17.706353054084275
+        }
+      }
+    },
+    "hokuriku": {
+      "runtime_s": 2622.8,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.5753254953535147,
+            "crps": 1.1506509907070295,
+            "pi80": 0.7246148459383753,
+            "mae_q50": 1.8755562725729973,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5753254953535148,
+            "pinball_sd": 0.33059391040158165,
+            "crps_mean": 1.1506509907070297,
+            "crps_sd": 0.6611878208031633,
+            "pi80_mean": 0.7246148459383754,
+            "pi80_sd": 0.19362180741569512,
+            "mae_q50_mean": 1.8755562725729968,
+            "mae_q50_sd": 1.0064326897651565,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.5659032915910949,
+            "crps": 1.1318065831821897,
+            "pi80": 0.7149859943977591,
+            "mae_q50": 1.8503886111552308,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5659032915910949,
+            "pinball_sd": 0.32881987841239024,
+            "crps_mean": 1.1318065831821897,
+            "crps_sd": 0.6576397568247805,
+            "pi80_mean": 0.7149859943977592,
+            "pi80_sd": 0.19212999706461487,
+            "mae_q50_mean": 1.8503886111552308,
+            "mae_q50_sd": 1.0012366700835371,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.5253141935603974,
+            "crps": 1.0506283871207949,
+            "pi80": 0.6999299719887955,
+            "mae_q50": 1.6852093560063393,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5253141935603974,
+            "pinball_sd": 0.2944434189009246,
+            "crps_mean": 1.0506283871207949,
+            "crps_sd": 0.5888868378018492,
+            "pi80_mean": 0.6999299719887956,
+            "pi80_sd": 0.2053157041461269,
+            "mae_q50_mean": 1.6852093560063395,
+            "mae_q50_sd": 0.8579841773134418,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.009422203762419867,
+          "crps": 0.018844407524839735,
+          "mae_q50": 0.025167661417766496
+        },
+        "histfc": {
+          "pinball": 0.0500113017931173,
+          "crps": 0.1000226035862346,
+          "mae_q50": 0.19034691656665803
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 5.307813655292156,
+          "crps": 5.307813655292156,
+          "mae_q50": 7.563154693120882
+        }
+      }
+    },
+    "kansai": {
+      "runtime_s": 2624.3,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.5648474834732903,
+            "crps": 1.1296949669465806,
+            "pi80": 0.7190126050420168,
+            "mae_q50": 1.8687565593176239,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5648474834732903,
+            "pinball_sd": 0.3195302393876091,
+            "crps_mean": 1.1296949669465806,
+            "crps_sd": 0.6390604787752182,
+            "pi80_mean": 0.7190126050420168,
+            "pi80_sd": 0.19365421106963263,
+            "mae_q50_mean": 1.8687565593176239,
+            "mae_q50_sd": 0.9812791847645154,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.5561922020655242,
+            "crps": 1.1123844041310484,
+            "pi80": 0.71656162464986,
+            "mae_q50": 1.8328104489492263,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5561922020655241,
+            "pinball_sd": 0.3139667726775657,
+            "crps_mean": 1.1123844041310482,
+            "crps_sd": 0.6279335453551314,
+            "pi80_mean": 0.7165616246498597,
+            "pi80_sd": 0.18990180318246605,
+            "mae_q50_mean": 1.8328104489492263,
+            "mae_q50_sd": 0.97551442580603,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.5082550292143193,
+            "crps": 1.0165100584286386,
+            "pi80": 0.7109593837535014,
+            "mae_q50": 1.6504092063441484,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5082550292143193,
+            "pinball_sd": 0.2824502490674607,
+            "crps_mean": 1.0165100584286386,
+            "crps_sd": 0.5649004981349214,
+            "pi80_mean": 0.7109593837535014,
+            "pi80_sd": 0.19374325328923653,
+            "mae_q50_mean": 1.6504092063441487,
+            "mae_q50_sd": 0.8297375851123986,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.008655281407766058,
+          "crps": 0.017310562815532116,
+          "mae_q50": 0.035946110368397566
+        },
+        "histfc": {
+          "pinball": 0.05659245425897097,
+          "crps": 0.11318490851794194,
+          "mae_q50": 0.2183473529734754
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 6.538488073674034,
+          "crps": 6.538488073674034,
+          "mae_q50": 6.074297072359684
+        }
+      }
+    },
+    "kyushu": {
+      "runtime_s": 2621.5,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.5489470735192771,
+            "crps": 1.0978941470385541,
+            "pi80": 0.7296918767507002,
+            "mae_q50": 1.8361942109739255,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5489470735192772,
+            "pinball_sd": 0.31901448632555035,
+            "crps_mean": 1.0978941470385544,
+            "crps_sd": 0.6380289726511007,
+            "pi80_mean": 0.7296918767507004,
+            "pi80_sd": 0.2007896624092994,
+            "mae_q50_mean": 1.8361942109739255,
+            "mae_q50_sd": 1.0633202634410974,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.5333682219017594,
+            "crps": 1.0667364438035187,
+            "pi80": 0.7226890756302521,
+            "mae_q50": 1.7944171090166512,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5333682219017593,
+            "pinball_sd": 0.3111678370314613,
+            "crps_mean": 1.0667364438035185,
+            "crps_sd": 0.6223356740629226,
+            "pi80_mean": 0.722689075630252,
+            "pi80_sd": 0.18901903311478124,
+            "mae_q50_mean": 1.7944171090166512,
+            "mae_q50_sd": 1.0146222204660484,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.4949144114044407,
+            "crps": 0.9898288228088814,
+            "pi80": 0.6988795518207283,
+            "mae_q50": 1.6536310503953882,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.4949144114044407,
+            "pinball_sd": 0.29499482725367565,
+            "crps_mean": 0.9898288228088814,
+            "crps_sd": 0.5899896545073513,
+            "pi80_mean": 0.6988795518207284,
+            "pi80_sd": 0.19315750445551175,
+            "mae_q50_mean": 1.653631050395388,
+            "mae_q50_sd": 0.9017908951234028,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.015578851617517708,
+          "crps": 0.031157703235035417,
+          "mae_q50": 0.041777101957274354
+        },
+        "histfc": {
+          "pinball": 0.05403266211483637,
+          "crps": 0.10806532422967274,
+          "mae_q50": 0.1825631605785374
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 3.468334087865572,
+          "crps": 3.468334087865572,
+          "mae_q50": 4.36993357665751
+        }
+      }
+    },
+    "shikoku": {
+      "runtime_s": 2634.2,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.6597768115522689,
+            "crps": 1.3195536231045377,
+            "pi80": 0.7020308123249299,
+            "mae_q50": 2.1525295135517233,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.6597768115522687,
+            "pinball_sd": 0.4516241202148214,
+            "crps_mean": 1.3195536231045375,
+            "crps_sd": 0.9032482404296428,
+            "pi80_mean": 0.7020308123249299,
+            "pi80_sd": 0.19733606150578548,
+            "mae_q50_mean": 2.1525295135517233,
+            "mae_q50_sd": 1.37382569337372,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.6390991895129435,
+            "crps": 1.278198379025887,
+            "pi80": 0.7085084033613446,
+            "mae_q50": 2.134933018072199,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.6390991895129433,
+            "pinball_sd": 0.3865350934980061,
+            "crps_mean": 1.2781983790258866,
+            "crps_sd": 0.7730701869960122,
+            "pi80_mean": 0.7085084033613447,
+            "pi80_sd": 0.1900427048954102,
+            "mae_q50_mean": 2.1349330180721995,
+            "mae_q50_sd": 1.345555325380991,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.6144598886084889,
+            "crps": 1.2289197772169778,
+            "pi80": 0.6887254901960784,
+            "mae_q50": 2.007037411210628,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.6144598886084888,
+            "pinball_sd": 0.3711580938624417,
+            "crps_mean": 1.2289197772169775,
+            "crps_sd": 0.7423161877248834,
+            "pi80_mean": 0.6887254901960783,
+            "pi80_sd": 0.20466930010386805,
+            "mae_q50_mean": 2.007037411210628,
+            "mae_q50_sd": 1.203012995307604,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.020677622039325327,
+          "crps": 0.041355244078650655,
+          "mae_q50": 0.017596495479524243
+        },
+        "histfc": {
+          "pinball": 0.04531692294377998,
+          "crps": 0.09063384588755996,
+          "mae_q50": 0.1454921023410951
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 2.191592575664401,
+          "crps": 2.191592575664401,
+          "mae_q50": 8.268243100473821
+        }
+      }
+    },
+    "tohoku": {
+      "runtime_s": 2613.1,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.5727303376842906,
+            "crps": 1.1454606753685812,
+            "pi80": 0.7219887955182073,
+            "mae_q50": 1.8693045910655361,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5727303376842905,
+            "pinball_sd": 0.3474180332059822,
+            "crps_mean": 1.145460675368581,
+            "crps_sd": 0.6948360664119644,
+            "pi80_mean": 0.7219887955182073,
+            "pi80_sd": 0.1921587918514921,
+            "mae_q50_mean": 1.8693045910655361,
+            "mae_q50_sd": 1.0525168440451174,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.5649760063383474,
+            "crps": 1.1299520126766949,
+            "pi80": 0.7083333333333334,
+            "mae_q50": 1.8370011623042077,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.5649760063383474,
+            "pinball_sd": 0.3281589746053209,
+            "crps_mean": 1.1299520126766949,
+            "crps_sd": 0.6563179492106418,
+            "pi80_mean": 0.7083333333333333,
+            "pi80_sd": 0.2017680209422517,
+            "mae_q50_mean": 1.837001162304208,
+            "mae_q50_sd": 0.983723430103002,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.47543270667883136,
+            "crps": 0.9508654133576627,
+            "pi80": 0.7281162464985994,
+            "mae_q50": 1.5417835549448866,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.47543270667883136,
+            "pinball_sd": 0.23529282292415768,
+            "crps_mean": 0.9508654133576627,
+            "crps_sd": 0.47058564584831536,
+            "pi80_mean": 0.7281162464985993,
+            "pi80_sd": 0.1666633284335486,
+            "mae_q50_mean": 1.5417835549448864,
+            "mae_q50_sd": 0.7319924308360908,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.007754331345943166,
+          "crps": 0.015508662691886332,
+          "mae_q50": 0.03230342876132841
+        },
+        "histfc": {
+          "pinball": 0.09729763100545924,
+          "crps": 0.19459526201091848,
+          "mae_q50": 0.32752103612064953
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 12.547520432740141,
+          "crps": 12.547520432740141,
+          "mae_q50": 10.138893878433631
+        }
+      }
+    },
+    "tokyo": {
+      "runtime_s": 2608.9,
+      "cells": {
+        "price_only": {
+          "pooled": {
+            "pinball": 0.49529394240611774,
+            "crps": 0.9905878848122355,
+            "pi80": 0.7155112044817927,
+            "mae_q50": 1.6056694759307455,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.49529394240611785,
+            "pinball_sd": 0.28030823229131124,
+            "crps_mean": 0.9905878848122357,
+            "crps_sd": 0.5606164645826225,
+            "pi80_mean": 0.7155112044817927,
+            "pi80_sd": 0.17540721753619823,
+            "mae_q50_mean": 1.6056694759307457,
+            "mae_q50_sd": 0.8764788219811962,
+            "n_folds": 119
+          }
+        },
+        "era5_proxy": {
+          "pooled": {
+            "pinball": 0.48703837645545656,
+            "crps": 0.9740767529109131,
+            "pi80": 0.7018557422969187,
+            "mae_q50": 1.5834936139480076,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.48703837645545645,
+            "pinball_sd": 0.2710429057851221,
+            "crps_mean": 0.9740767529109129,
+            "crps_sd": 0.5420858115702442,
+            "pi80_mean": 0.7018557422969188,
+            "pi80_sd": 0.17816010902135684,
+            "mae_q50_mean": 1.5834936139480076,
+            "mae_q50_sd": 0.8322187122379808,
+            "n_folds": 119
+          }
+        },
+        "histfc": {
+          "pooled": {
+            "pinball": 0.43258663331239816,
+            "crps": 0.8651732666247963,
+            "pi80": 0.6973039215686274,
+            "mae_q50": 1.4073494776332076,
+            "n_slots": 5712
+          },
+          "per_fold": {
+            "pinball_mean": 0.4325866333123981,
+            "pinball_sd": 0.21595338893227908,
+            "crps_mean": 0.8651732666247962,
+            "crps_sd": 0.43190677786455817,
+            "pi80_mean": 0.6973039215686274,
+            "pi80_sd": 0.16998427235192823,
+            "mae_q50_mean": 1.4073494776332078,
+            "mae_q50_sd": 0.6361966825207036,
+            "n_folds": 119
+          }
+        }
+      },
+      "improvements_over_price_only": {
+        "era5_proxy": {
+          "pinball": 0.008255565950661181,
+          "crps": 0.016511131901322362,
+          "mae_q50": 0.02217586198273791
+        },
+        "histfc": {
+          "pinball": 0.06270730909371958,
+          "crps": 0.12541461818743915,
+          "mae_q50": 0.19831999829753788
+        },
+        "value_multiple_histfc_over_proxy": {
+          "pinball": 7.595761389162836,
+          "crps": 7.595761389162836,
+          "mae_q50": 8.943057025332937
+        }
+      }
+    }
+  },
+  "pooled_9area": {
+    "cells": {
+      "price_only": {
+        "pooled": {
+          "pinball": 0.5794634726511017,
+          "crps": 1.1589269453022033,
+          "pi80": 0.7198295985060691,
+          "mae_q50": 1.8912232818402994,
+          "n_slots": 51408
+        },
+        "per_fold": {
+          "pinball_mean": 0.5794634726511018,
+          "pinball_sd": 0.350293165455882,
+          "crps_mean": 1.1589269453022035,
+          "crps_sd": 0.700586330911764,
+          "pi80_mean": 0.7198295985060691,
+          "pi80_sd": 0.1906864856553374,
+          "mae_q50_mean": 1.8912232818402996,
+          "mae_q50_sd": 1.067779341561108,
+          "n_folds": 1071
+        }
+      },
+      "era5_proxy": {
+        "pooled": {
+          "pinball": 0.5700750271874647,
+          "crps": 1.1401500543749294,
+          "pi80": 0.7147914721444133,
+          "mae_q50": 1.864712328759555,
+          "n_slots": 51408
+        },
+        "per_fold": {
+          "pinball_mean": 0.5700750271874647,
+          "pinball_sd": 0.336364854828829,
+          "crps_mean": 1.1401500543749294,
+          "crps_sd": 0.672729709657658,
+          "pi80_mean": 0.7147914721444134,
+          "pi80_sd": 0.18838175661744194,
+          "mae_q50_mean": 1.864712328759555,
+          "mae_q50_sd": 1.0398417298908207,
+          "n_folds": 1071
+        }
+      },
+      "histfc": {
+        "pooled": {
+          "pinball": 0.5224479616497666,
+          "crps": 1.0448959232995332,
+          "pi80": 0.7097922502334267,
+          "mae_q50": 1.6941653226070827,
+          "n_slots": 51408
+        },
+        "per_fold": {
+          "pinball_mean": 0.5224479616497667,
+          "pinball_sd": 0.30704644691027444,
+          "crps_mean": 1.0448959232995334,
+          "crps_sd": 0.6140928938205489,
+          "pi80_mean": 0.7097922502334267,
+          "pi80_sd": 0.1895031324265918,
+          "mae_q50_mean": 1.6941653226070825,
+          "mae_q50_sd": 0.9130742135622895,
+          "n_folds": 1071
+        }
+      }
+    },
+    "improvements_over_price_only": {
+      "era5_proxy": {
+        "pinball": 0.00938844546363693,
+        "crps": 0.01877689092727386,
+        "mae_q50": 0.02651095308074436
+      },
+      "histfc": {
+        "pinball": 0.05701551100133506,
+        "crps": 0.11403102200267012,
+        "mae_q50": 0.19705795923321667
+      },
+      "value_multiple_histfc_over_proxy": {
+        "pinball": 6.072944793913538,
+        "crps": 6.072944793913538,
+        "mae_q50": 7.433077137326509
+      }
+    }
+  },
+  "pooled_8area_ex_chubu": {
+    "cells": {
+      "price_only": {
+        "pooled": {
+          "pinball": 0.5828280637039069,
+          "crps": 1.1656561274078139,
+          "pi80": 0.7150954131652661,
+          "mae_q50": 1.9033680575457042,
+          "n_slots": 45696
+        },
+        "per_fold": {
+          "pinball_mean": 0.5828280637039068,
+          "pinball_sd": 0.35833775898473047,
+          "crps_mean": 1.1656561274078137,
+          "crps_sd": 0.7166755179694609,
+          "pi80_mean": 0.715095413165266,
+          "pi80_sd": 0.1912662891001826,
+          "mae_q50_mean": 1.9033680575457044,
+          "mae_q50_sd": 1.0885996015493067,
+          "n_folds": 952
+        }
+      },
+      "era5_proxy": {
+        "pooled": {
+          "pinball": 0.5727022104298302,
+          "crps": 1.1454044208596603,
+          "pi80": 0.7102153361344538,
+          "mae_q50": 1.8766108075697991,
+          "n_slots": 45696
+        },
+        "per_fold": {
+          "pinball_mean": 0.5727022104298302,
+          "pinball_sd": 0.34331717824445157,
+          "crps_mean": 1.1454044208596603,
+          "crps_sd": 0.6866343564889031,
+          "pi80_mean": 0.7102153361344538,
+          "pi80_sd": 0.1893254779613882,
+          "mae_q50_mean": 1.8766108075697994,
+          "mae_q50_sd": 1.059868107130886,
+          "n_folds": 952
+        }
+      },
+      "histfc": {
+        "pooled": {
+          "pinball": 0.5267130746675418,
+          "crps": 1.0534261493350836,
+          "pi80": 0.7030812324929971,
+          "mae_q50": 1.709677169610221,
+          "n_slots": 45696
+        },
+        "per_fold": {
+          "pinball_mean": 0.5267130746675418,
+          "pinball_sd": 0.31346605309708314,
+          "crps_mean": 1.0534261493350836,
+          "crps_sd": 0.6269321061941663,
+          "pi80_mean": 0.7030812324929971,
+          "pi80_sd": 0.1900680157750242,
+          "mae_q50_mean": 1.7096771696102218,
+          "mae_q50_sd": 0.9300562831824005,
+          "n_folds": 952
+        }
+      }
+    },
+    "improvements_over_price_only": {
+      "era5_proxy": {
+        "pinball": 0.01012585327407678,
+        "crps": 0.02025170654815356,
+        "mae_q50": 0.026757249975905006
+      },
+      "histfc": {
+        "pinball": 0.05611498903636514,
+        "crps": 0.11222997807273027,
+        "mae_q50": 0.19369088793548306
+      },
+      "value_multiple_histfc_over_proxy": {
+        "pinball": 5.541754113702719,
+        "crps": 5.541754113702719,
+        "mae_q50": 7.238818941031023
+      }
+    }
+  },
+  "pooled_all_completed_areas": {
+    "cells": {
+      "price_only": {
+        "pooled": {
+          "pinball": 0.5794634726511017,
+          "crps": 1.1589269453022033,
+          "pi80": 0.7198295985060691,
+          "mae_q50": 1.8912232818402994,
+          "n_slots": 51408
+        },
+        "per_fold": {
+          "pinball_mean": 0.5794634726511018,
+          "pinball_sd": 0.350293165455882,
+          "crps_mean": 1.1589269453022035,
+          "crps_sd": 0.700586330911764,
+          "pi80_mean": 0.7198295985060691,
+          "pi80_sd": 0.1906864856553374,
+          "mae_q50_mean": 1.8912232818402996,
+          "mae_q50_sd": 1.067779341561108,
+          "n_folds": 1071
+        }
+      },
+      "era5_proxy": {
+        "pooled": {
+          "pinball": 0.5700750271874647,
+          "crps": 1.1401500543749294,
+          "pi80": 0.7147914721444133,
+          "mae_q50": 1.864712328759555,
+          "n_slots": 51408
+        },
+        "per_fold": {
+          "pinball_mean": 0.5700750271874647,
+          "pinball_sd": 0.336364854828829,
+          "crps_mean": 1.1401500543749294,
+          "crps_sd": 0.672729709657658,
+          "pi80_mean": 0.7147914721444134,
+          "pi80_sd": 0.18838175661744194,
+          "mae_q50_mean": 1.864712328759555,
+          "mae_q50_sd": 1.0398417298908207,
+          "n_folds": 1071
+        }
+      },
+      "histfc": {
+        "pooled": {
+          "pinball": 0.5224479616497666,
+          "crps": 1.0448959232995332,
+          "pi80": 0.7097922502334267,
+          "mae_q50": 1.6941653226070827,
+          "n_slots": 51408
+        },
+        "per_fold": {
+          "pinball_mean": 0.5224479616497667,
+          "pinball_sd": 0.30704644691027444,
+          "crps_mean": 1.0448959232995334,
+          "crps_sd": 0.6140928938205489,
+          "pi80_mean": 0.7097922502334267,
+          "pi80_sd": 0.1895031324265918,
+          "mae_q50_mean": 1.6941653226070825,
+          "mae_q50_sd": 0.9130742135622895,
+          "n_folds": 1071
+        }
+      }
+    },
+    "improvements_over_price_only": {
+      "era5_proxy": {
+        "pinball": 0.00938844546363693,
+        "crps": 0.01877689092727386,
+        "mae_q50": 0.02651095308074436
+      },
+      "histfc": {
+        "pinball": 0.05701551100133506,
+        "crps": 0.11403102200267012,
+        "mae_q50": 0.19705795923321667
+      },
+      "value_multiple_histfc_over_proxy": {
+        "pinball": 6.072944793913538,
+        "crps": 6.072944793913538,
+        "mae_q50": 7.433077137326509
+      }
+    }
+  },
+  "artifacts": {
+    "per_slot_parquet": "data/runs/phase47_tier_probabilistic_per_slot.parquet",
+    "per_slot_sha256": "d0944a01fb491e4c11c727575d92e239b76b27aff03ef079816cb194365f342c",
+    "per_fold_parquet": "data/runs/phase47_tier_probabilistic_per_fold.parquet",
+    "per_fold_sha256": "dbb6c7bbe8f569042dcfdeb3ab77e6a4d13ac3bcccff65ed31a84b649bca57a7"
+  },
+  "point_reference_committed": {
+    "phase35_allhours_mae_multiple_histfc_over_proxy": 7.514106583072101,
+    "phase26_1_mae_multiple_histfc_over_proxy": 7.013112657298721,
+    "phase26_1_rmse_multiple_histfc_over_proxy": 7.125498907141076,
+    "source": "phase44_metrics_broadening.json / phase35_allhours_headtohead.json"
+  }
+}

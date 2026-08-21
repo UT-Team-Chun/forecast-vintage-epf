@@ -1,0 +1,213 @@
+{
+  "phase": 74,
+  "title": "Run-pinned ladder on capacity-weighted multi-point weather",
+  "precommit_doc": "docs/research/2026-08-03_phase74_cw_precommit.md",
+  "gate5": {
+    "n_rows_joined": 307638,
+    "cells": [
+      "y_pred_price_only",
+      "y_pred_era5",
+      "y_pred_prev2",
+      "y_pred_prev1",
+      "y_pred_histfc",
+      "y_pred_oracle",
+      "y_pred_msm_d2_12z",
+      "y_pred_msm_gate_composite",
+      "y_pred_msm_d1_00z"
+    ],
+    "max_abs_pred_diff": 0.0,
+    "tol": 1e-09,
+    "passed": true
+  },
+  "panel": {
+    "n_days_cw_complete": 714,
+    "n_slots": 307638,
+    "weight_vintage": "2024-09"
+  },
+  "tiers": {
+    "msm_d2_12z": {
+      "improvement": 0.2289,
+      "ci95": [
+        0.1855,
+        0.2738
+      ],
+      "dm_l3": {
+        "mean_diff": 0.22893,
+        "t_hln": 11.813,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 3
+      },
+      "dm_l9": {
+        "mean_diff": 0.22893,
+        "t_hln": 9.038,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 9
+      }
+    },
+    "msm_gate_composite": {
+      "improvement": 0.2306,
+      "ci95": [
+        0.1865,
+        0.276
+      ],
+      "dm_l3": {
+        "mean_diff": 0.23059,
+        "t_hln": 11.67,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 3
+      },
+      "dm_l9": {
+        "mean_diff": 0.23059,
+        "t_hln": 8.981,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 9
+      }
+    },
+    "msm_d1_00z": {
+      "improvement": 0.2319,
+      "ci95": [
+        0.1874,
+        0.2783
+      ],
+      "dm_l3": {
+        "mean_diff": 0.23187,
+        "t_hln": 11.604,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 3
+      },
+      "dm_l9": {
+        "mean_diff": 0.23187,
+        "t_hln": 8.894,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 9
+      }
+    },
+    "msm_d2_12z_cw": {
+      "improvement": 0.2576,
+      "ci95": [
+        0.2107,
+        0.3058
+      ],
+      "dm_l3": {
+        "mean_diff": 0.25759,
+        "t_hln": 12.375,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 3
+      },
+      "dm_l9": {
+        "mean_diff": 0.25759,
+        "t_hln": 9.451,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 9
+      }
+    },
+    "msm_gate_composite_cw": {
+      "improvement": 0.2585,
+      "ci95": [
+        0.2117,
+        0.3069
+      ],
+      "dm_l3": {
+        "mean_diff": 0.25849,
+        "t_hln": 12.293,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 3
+      },
+      "dm_l9": {
+        "mean_diff": 0.25849,
+        "t_hln": 9.414,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 9
+      }
+    },
+    "msm_d1_00z_cw": {
+      "improvement": 0.2602,
+      "ci95": [
+        0.2127,
+        0.3085
+      ],
+      "dm_l3": {
+        "mean_diff": 0.26017,
+        "t_hln": 12.325,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 3
+      },
+      "dm_l9": {
+        "mean_diff": 0.26017,
+        "t_hln": 9.404,
+        "p_hln": 0.0,
+        "n_days": 714,
+        "nw_lag": 9
+      }
+    }
+  },
+  "cw_uplift_by_tier": {
+    "msm_d2_12z": 0.0287,
+    "msm_gate_composite": 0.0279,
+    "msm_d1_00z": 0.0283
+  },
+  "n_points": 46,
+  "gate36_gate_timing_cw": {
+    "headline_pre_gate_cw": "msm_d2_12z_cw",
+    "delta": 0.0026,
+    "ci95": [
+      -0.0049,
+      0.0099
+    ],
+    "dm_l3": {
+      "mean_diff": 0.00258,
+      "t_hln": 0.671,
+      "p_hln": 0.5023253,
+      "n_days": 714,
+      "nw_lag": 3
+    },
+    "dm_l9": {
+      "mean_diff": 0.00258,
+      "t_hln": 0.689,
+      "p_hln": 0.49080406,
+      "n_days": 714,
+      "nw_lag": 9
+    },
+    "tost_one_tick": {
+      "boot_p": 0.0238,
+      "l3": 0.027045,
+      "l9": 0.023985,
+      "equivalent": true
+    },
+    "branch": "7b",
+    "reading": "null holds and one-tick equivalence is established: the single-point conclusion is not a measurement artefact"
+  },
+  "measurement_interaction": {
+    "gate_step_cw_minus_single": -0.0004,
+    "ci95": [
+      -0.0064,
+      0.0057
+    ],
+    "dm_l3": {
+      "mean_diff": -0.00037,
+      "t_hln": -0.117,
+      "p_hln": 0.90709298,
+      "n_days": 714,
+      "nw_lag": 3
+    },
+    "reading": "the reviewer's conjecture is exactly this interaction: positive means CW measurement reveals later-gate value that the single point hid"
+  },
+  "metadata": {
+    "script": "s_20260803_phase74_cw_ladder.py",
+    "git_sha": "ef67934e30c2c52c5b617b3907f31def725a2d54",
+    "generated_utc": "2026-08-04T02:48:15.573417+00:00",
+    "seed": 2026,
+    "n_boot": 10000
+  }
+}

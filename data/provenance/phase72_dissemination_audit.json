@@ -1,0 +1,104 @@
+{
+  "phase": 72,
+  "title": "Dissemination timing measured from the archive's own timestamps",
+  "method": "one HTTP HEAD per (delivery day, run, FH file); Last-Modified recorded; no bodies downloaded",
+  "interpretation": {
+    "what_the_timestamp_is": "the RISH mirror's file-write time, an UPPER BOUND on true dissemination completion (mirror-write follows the feed)",
+    "direction_of_bias": "conservative for every pre-gate claim: a mirror timestamp before the gate implies true dissemination before the gate. For the post-gate run the mirror alone cannot prove lateness; the JMBSC specification (init + 2 h 30 m) is the load-bearing source there, and these measurements corroborate it",
+    "spec_lag_minutes": 150
+  },
+  "window": [
+    "2024-03-01",
+    "2026-07-29"
+  ],
+  "totals": {
+    "n_file_records": 7048,
+    "n_ok": 7048,
+    "n_days": 881
+  },
+  "per_run": {
+    "msm_d1_00z": {
+      "n_files": 2643,
+      "n_days_complete": 881,
+      "per_file_lag_minutes": {
+        "median": 135.8,
+        "p95": 135.97,
+        "p99": 136.05,
+        "max": 137.27,
+        "min": 135.58
+      },
+      "per_run_completion_lag_minutes": {
+        "median": 135.9,
+        "p95": 136.02,
+        "p99": 136.12,
+        "max": 137.27
+      },
+      "share_days_within_spec_150min": 1.0
+    },
+    "msm_d2_12z": {
+      "n_files": 2643,
+      "n_days_complete": 881,
+      "per_file_lag_minutes": {
+        "median": 135.92,
+        "p95": 136.1,
+        "p99": 136.23,
+        "max": 159.47,
+        "min": 135.7
+      },
+      "per_run_completion_lag_minutes": {
+        "median": 136.02,
+        "p95": 136.17,
+        "p99": 136.27,
+        "max": 159.47
+      },
+      "share_days_within_spec_150min": 0.9989
+    },
+    "msm_d2_21z": {
+      "n_files": 1762,
+      "n_days_complete": 881,
+      "per_file_lag_minutes": {
+        "median": 135.87,
+        "p95": 136.02,
+        "p99": 136.12,
+        "max": 136.37,
+        "min": 135.7
+      },
+      "per_run_completion_lag_minutes": {
+        "median": 135.92,
+        "p95": 136.05,
+        "p99": 136.15,
+        "max": 136.37
+      },
+      "share_days_within_spec_150min": 1.0
+    }
+  },
+  "gate_checks": {
+    "msm_d2_21z": {
+      "gate_minus_init_minutes": 240,
+      "n_days": 881,
+      "n_days_all_files_before_gate": 881,
+      "share_before_gate": 1.0,
+      "worst_completion_lag_minutes": 136.37,
+      "worst_margin_minutes": 103.63
+    },
+    "msm_d2_12z": {
+      "gate_minus_init_minutes": 780,
+      "n_days": 881,
+      "n_days_all_files_before_gate": 881,
+      "share_before_gate": 1.0,
+      "worst_completion_lag_minutes": 159.47,
+      "worst_margin_minutes": 620.53
+    }
+  },
+  "missing_or_error_files": {
+    "n": 0,
+    "by_run": {},
+    "days": []
+  },
+  "per_file_parquet": "phase72_dissemination_audit_per_file.parquet",
+  "metadata": {
+    "script": "s_20260731_phase72_dissemination_audit.py",
+    "git_sha": "010161130b8d330c40a880948fa3a393b64f13fb",
+    "generated_utc": "2026-08-03T04:33:46.513513+00:00"
+  }
+}

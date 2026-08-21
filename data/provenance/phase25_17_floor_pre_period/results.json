@@ -1,0 +1,120 @@
+{
+  "phase": "25.17 / P2a (Round-17 polish)",
+  "headline_threshold_jpy_per_kwh": 0.5,
+  "training_fold_start": "2024-09-15",
+  "areas": [
+    "hokkaido",
+    "tohoku",
+    "tokyo",
+    "chubu",
+    "hokuriku",
+    "kansai",
+    "chugoku",
+    "shikoku",
+    "kyushu"
+  ],
+  "weather_delta_by_area_fy2024_fy2025": {
+    "hokkaido": -0.019039233794347164,
+    "tohoku": -0.10232037273091488,
+    "tokyo": -0.03213883590562984,
+    "chubu": -0.03384665801470066,
+    "hokuriku": -0.055769985441695015,
+    "kansai": -0.05008217510366757,
+    "chugoku": -0.060939573334851525,
+    "shikoku": -0.10312707455546616,
+    "kyushu": -0.08749212323518614
+  },
+  "specifications": [
+    {
+      "name": "headline_fy2024_fy2025",
+      "description": "FLOOR rate computed on JEPX 2024+2025 full-year price history (matches phase23 headline). FLOOR threshold = 0.5 JPY/kWh.",
+      "n_days_per_area": 730,
+      "per_area_floor_rate_pct": {
+        "hokkaido": 2.78824200913242,
+        "tohoku": 2.925228310502283,
+        "tokyo": 1.172945205479452,
+        "chubu": 2.3316210045662102,
+        "hokuriku": 2.999429223744292,
+        "kansai": 3.259132420091324,
+        "chugoku": 3.5273972602739727,
+        "shikoku": 6.36986301369863,
+        "kyushu": 6.598173515981735
+      },
+      "cross_area_floor_vs_delta_mae": {
+        "spearman_rho": -0.7333333333333334,
+        "spearman_p": 0.024554150071469705,
+        "pearson_r": -0.7059781995611342,
+        "pearson_p": 0.03355355588860041,
+        "n": 9
+      }
+    },
+    {
+      "name": "pre_evaluation_2022_to_2024_09_14",
+      "description": "FLOOR rate computed STRICTLY before the daily-rolling fold-1 test day (2024-09-15). FLOOR threshold = 0.5 JPY/kWh. Severs the outcome-overlap concern.",
+      "n_days_per_area": 898,
+      "per_area_floor_rate_pct": {
+        "hokkaido": 4.91137713437268,
+        "tohoku": 5.683927245731255,
+        "tokyo": 2.2155716406829993,
+        "chubu": 4.927616926503341,
+        "hokuriku": 6.563195991091314,
+        "kansai": 6.690794357832219,
+        "chugoku": 6.7928730512249444,
+        "shikoku": 7.268466963622866,
+        "kyushu": 11.85504825538233
+      },
+      "cross_area_floor_vs_delta_mae": {
+        "spearman_rho": -0.7666666666666667,
+        "spearman_p": 0.01594401657897403,
+        "pearson_r": -0.5805491143991047,
+        "pearson_p": 0.1012032687713284,
+        "n": 9
+      }
+    },
+    {
+      "name": "fy2024_only_apr_2024_mar_2025",
+      "description": "FLOOR rate computed on FY2024 only (Apr 2024 - Mar 2025). Approximates the training-window-only specification. FLOOR threshold = 0.5 JPY/kWh.",
+      "n_days_per_area": 365,
+      "per_area_floor_rate_pct": {
+        "hokkaido": 2.4600456621004567,
+        "tohoku": 2.5513698630136985,
+        "tokyo": 1.4269406392694064,
+        "chubu": 3.1963470319634704,
+        "hokuriku": 4.103881278538813,
+        "kansai": 4.372146118721461,
+        "chugoku": 4.474885844748859,
+        "shikoku": 6.94634703196347,
+        "kyushu": 7.2146118721461185
+      },
+      "cross_area_floor_vs_delta_mae": {
+        "spearman_rho": -0.6833333333333333,
+        "spearman_p": 0.04244227208707231,
+        "pearson_r": -0.6270055577175255,
+        "pearson_p": 0.07072389735074149,
+        "n": 9
+      }
+    },
+    {
+      "name": "pv_peak_fully_pre_determined",
+      "description": "Cross-area Spearman of weather Delta MAE vs.  PV/peak capacity ratio (OCCTO 2024 supply-plan figures), which is fully pre-determined and independent of price process.",
+      "per_area_pv_peak": {
+        "hokkaido": 0.49900199600798406,
+        "tohoku": 0.5692883895131086,
+        "tokyo": 0.24096385542168675,
+        "chubu": 0.518887505188875,
+        "hokuriku": 0.3901437371663244,
+        "kansai": 0.34756327918398183,
+        "chugoku": 0.5389797882579402,
+        "shikoku": 0.9205020920502093,
+        "kyushu": 0.7802340702210663
+      },
+      "cross_area_pv_peak_vs_delta_mae": {
+        "spearman_rho": -0.7999999999999999,
+        "spearman_p": 0.009627924725379839,
+        "pearson_r": -0.7179352733626121,
+        "pearson_p": 0.029393626692673428,
+        "n": 9
+      }
+    }
+  ]
+}

@@ -1,0 +1,638 @@
+{
+ "phase": 101,
+ "title": "The physical-target contrast in normalised, interpretable units",
+ "question": "MW is not comparable across areas of different installed capacity, and Methods calls the MW-averaged figure scale-free. What is the same contrast as a share of installed capacity, of the comparison arm's own error, and of mean observed output?",
+ "inputs": {
+  "per_slot_artefact": "data/runs/phase89_physical_per_slot.parquet",
+  "price_panel_for_common_days": "data/runs/phase85_exact_ladder_per_slot.parquet",
+  "capacity_register_primary": "data/reference/area_points_capacity.csv",
+  "capacity_register_primary_sha256": "7cb12053fbc114ac62d56c8e6ffbcade5eabb42b66bb2c9c7d80a3a63df7047a",
+  "capacity_register_primary_vintage": "2024-09",
+  "capacity_register_sensitivity": "data/reference/area_capacity.csv",
+  "capacity_register_sensitivity_sha256": "9426febf19fea1fbfdd55675061e1ad0b27c0ed9ff1d2b15747d01b47cf88301",
+  "phase89_provenance": "data/runs/phase89_physical_target.json",
+  "reused_module": "s_20260813_phase89_physical_target.py"
+ },
+ "panel": {
+  "n_days": 696,
+  "n_areas": 8,
+  "areas": [
+   "chugoku",
+   "hokkaido",
+   "hokuriku",
+   "kansai",
+   "kyushu",
+   "shikoku",
+   "tohoku",
+   "tokyo"
+  ],
+  "slots_per_area_day": 14,
+  "n_slots_per_tier": 77952,
+  "n_slot_pairs": 77952,
+  "window_jst": [
+   9,
+   15
+  ],
+  "pre_gate_tier": "msm_d2_12z_cw",
+  "post_gate_tier": "msm_d1_00z_cw",
+  "target": "potential output = recorded + curtailed",
+  "excluded_area": "chubu (feed keeps only the current month)",
+  "null_counts": {
+   "area": 0,
+   "datetime_jst": 0,
+   "day": 0,
+   "tier": 0,
+   "proxy_scaled_cf": 0,
+   "target_mw": 0,
+   "curtail_mw": 0
+  },
+  "nonfinite_counts": {
+   "proxy_scaled_cf": 0,
+   "target_mw": 0,
+   "curtail_mw": 0
+  }
+ },
+ "positive_control_mw": {
+  "recomputed_delta_mw": 59.88,
+  "paper_delta_mw": 59.9,
+  "recomputed_ci95_mw": [
+   49.64,
+   70.55
+  ],
+  "paper_ci95_mw": [
+   49.6,
+   70.6
+  ],
+  "n_days": 696,
+  "n_areas": 8,
+  "n_slots_per_tier": 77952,
+  "tolerance_mw": 0.01,
+  "passes": true,
+  "failed_components": []
+ },
+ "positive_control_identity_denominator": {
+  "passes": true,
+  "note": "with every denominator set to 1 MW the normalised statistics reproduce the MW statistics exactly"
+ },
+ "levels_mw": {
+  "pooled_pre_gate_mae_mw": 878.4,
+  "pooled_post_gate_mae_mw": 818.6,
+  "per_area_mae_pre_mw": {
+   "chugoku": 791.9,
+   "hokkaido": 322.4,
+   "hokuriku": 161.3,
+   "kansai": 839.8,
+   "kyushu": 1255.6,
+   "shikoku": 350.1,
+   "tohoku": 953.5,
+   "tokyo": 2352.8
+  },
+  "per_area_mae_post_mw": {
+   "chugoku": 735.4,
+   "hokkaido": 313.6,
+   "hokuriku": 155.1,
+   "kansai": 780.5,
+   "kyushu": 1154.4,
+   "shikoku": 330.1,
+   "tohoku": 912.9,
+   "tokyo": 2166.5
+  },
+  "per_area_delta_mw": {
+   "chugoku": 56.56,
+   "hokkaido": 8.83,
+   "hokuriku": 6.28,
+   "kansai": 59.36,
+   "kyushu": 101.19,
+   "shikoku": 19.99,
+   "tohoku": 40.6,
+   "tokyo": 186.24
+  }
+ },
+ "q1_nmae_by_installed_capacity": {
+  "d1_fit_register_2024_09": {
+   "per_area": {
+    "chugoku": {
+     "nmae_pre_pct": 12.442,
+     "nmae_post_pct": 11.553,
+     "nmae_delta_pp": 0.8885,
+     "denominator_mw": 6365.2
+    },
+    "hokkaido": {
+     "nmae_pre_pct": 14.386,
+     "nmae_post_pct": 13.992,
+     "nmae_delta_pp": 0.3939,
+     "denominator_mw": 2241.0
+    },
+    "hokuriku": {
+     "nmae_pre_pct": 13.068,
+     "nmae_post_pct": 12.559,
+     "nmae_delta_pp": 0.5084,
+     "denominator_mw": 1234.7
+    },
+    "kansai": {
+     "nmae_pre_pct": 12.077,
+     "nmae_post_pct": 11.223,
+     "nmae_delta_pp": 0.8536,
+     "denominator_mw": 6953.8
+    },
+    "kyushu": {
+     "nmae_pre_pct": 11.022,
+     "nmae_post_pct": 10.133,
+     "nmae_delta_pp": 0.8882,
+     "denominator_mw": 11392.4
+    },
+    "shikoku": {
+     "nmae_pre_pct": 11.3,
+     "nmae_post_pct": 10.655,
+     "nmae_delta_pp": 0.6451,
+     "denominator_mw": 3098.6
+    },
+    "tohoku": {
+     "nmae_pre_pct": 10.962,
+     "nmae_post_pct": 10.495,
+     "nmae_delta_pp": 0.4667,
+     "denominator_mw": 8698.5
+    },
+    "tokyo": {
+     "nmae_pre_pct": 13.359,
+     "nmae_post_pct": 12.301,
+     "nmae_delta_pp": 1.0575,
+     "denominator_mw": 17612.2
+    }
+   },
+   "macro_mean_of_area_ratios": {
+    "nmae_pre_pct": 12.327,
+    "nmae_post_pct": 11.614,
+    "nmae_delta_pp": 0.7128,
+    "nmae_delta_ci95_pp": [
+     0.5781,
+     0.8548
+    ]
+   },
+   "capacity_weighted": {
+    "nmae_pre_pct": 12.201,
+    "nmae_post_pct": 11.37,
+    "nmae_delta_pp": 0.8317,
+    "nmae_delta_ci95_pp": [
+     0.6895,
+     0.9799
+    ]
+   }
+  },
+  "d2_occto_area_capacity": {
+   "per_area": {
+    "chugoku": {
+     "nmae_pre_pct": 14.142,
+     "nmae_post_pct": 13.132,
+     "nmae_delta_pp": 1.01,
+     "denominator_mw": 5600.0
+    },
+    "hokkaido": {
+     "nmae_pre_pct": 12.896,
+     "nmae_post_pct": 12.543,
+     "nmae_delta_pp": 0.3531,
+     "denominator_mw": 2500.0
+    },
+    "hokuriku": {
+     "nmae_pre_pct": 8.492,
+     "nmae_post_pct": 8.161,
+     "nmae_delta_pp": 0.3304,
+     "denominator_mw": 1900.0
+    },
+    "kansai": {
+     "nmae_pre_pct": 9.128,
+     "nmae_post_pct": 8.483,
+     "nmae_delta_pp": 0.6452,
+     "denominator_mw": 9200.0
+    },
+    "kyushu": {
+     "nmae_pre_pct": 10.464,
+     "nmae_post_pct": 9.62,
+     "nmae_delta_pp": 0.8433,
+     "denominator_mw": 12000.0
+    },
+    "shikoku": {
+     "nmae_pre_pct": 7.958,
+     "nmae_post_pct": 7.503,
+     "nmae_delta_pp": 0.4543,
+     "denominator_mw": 4400.0
+    },
+    "tohoku": {
+     "nmae_pre_pct": 12.546,
+     "nmae_post_pct": 12.012,
+     "nmae_delta_pp": 0.5342,
+     "denominator_mw": 7600.0
+    },
+    "tokyo": {
+     "nmae_pre_pct": 18.098,
+     "nmae_post_pct": 16.666,
+     "nmae_delta_pp": 1.4326,
+     "denominator_mw": 13000.0
+    }
+   },
+   "macro_mean_of_area_ratios": {
+    "nmae_pre_pct": 11.715,
+    "nmae_post_pct": 11.015,
+    "nmae_delta_pp": 0.7004,
+    "nmae_delta_ci95_pp": [
+     0.5755,
+     0.8325
+    ]
+   },
+   "capacity_weighted": {
+    "nmae_pre_pct": 12.505,
+    "nmae_post_pct": 11.652,
+    "nmae_delta_pp": 0.8524,
+    "nmae_delta_ci95_pp": [
+     0.7066,
+     1.0043
+    ]
+   }
+  },
+  "d3_max_realised_potential": {
+   "per_area": {
+    "chugoku": {
+     "nmae_pre_pct": 12.531,
+     "nmae_post_pct": 11.636,
+     "nmae_delta_pp": 0.8949,
+     "denominator_mw": 6320.0
+    },
+    "hokkaido": {
+     "nmae_pre_pct": 14.19,
+     "nmae_post_pct": 13.802,
+     "nmae_delta_pp": 0.3885,
+     "denominator_mw": 2272.0
+    },
+    "hokuriku": {
+     "nmae_pre_pct": 12.775,
+     "nmae_post_pct": 12.278,
+     "nmae_delta_pp": 0.497,
+     "denominator_mw": 1263.0
+    },
+    "kansai": {
+     "nmae_pre_pct": 13.141,
+     "nmae_post_pct": 12.212,
+     "nmae_delta_pp": 0.9288,
+     "denominator_mw": 6391.0
+    },
+    "kyushu": {
+     "nmae_pre_pct": 12.058,
+     "nmae_post_pct": 11.086,
+     "nmae_delta_pp": 0.9718,
+     "denominator_mw": 10413.0
+    },
+    "shikoku": {
+     "nmae_pre_pct": 12.968,
+     "nmae_post_pct": 12.228,
+     "nmae_delta_pp": 0.7403,
+     "denominator_mw": 2700.0
+    },
+    "tohoku": {
+     "nmae_pre_pct": 11.637,
+     "nmae_post_pct": 11.142,
+     "nmae_delta_pp": 0.4954,
+     "denominator_mw": 8194.0
+    },
+    "tokyo": {
+     "nmae_pre_pct": 13.485,
+     "nmae_post_pct": 12.418,
+     "nmae_delta_pp": 1.0675,
+     "denominator_mw": 17447.0
+    }
+   },
+   "macro_mean_of_area_ratios": {
+    "nmae_pre_pct": 12.848,
+    "nmae_post_pct": 12.1,
+    "nmae_delta_pp": 0.748,
+    "nmae_delta_ci95_pp": [
+     0.6067,
+     0.8967
+    ]
+   },
+   "capacity_weighted": {
+    "nmae_pre_pct": 12.777,
+    "nmae_post_pct": 11.906,
+    "nmae_delta_pp": 0.871,
+    "nmae_delta_ci95_pp": [
+     0.722,
+     1.0262
+    ]
+   }
+  },
+  "note": "d1 is primary: it is the register whose within-area shares the proxy already uses, at the vintage the paper prints. d2 carries a documented nameplate defect. d3 carries no capacity vintage."
+ },
+ "q2_relative_improvement": {
+  "definition": "percentage improvement of the excluded (post-gate) run over the headline pre-gate arm, denominated in the pre-gate arm's own MAE",
+  "pooled_ratio_of_means_pct": 6.817,
+  "pooled_ratio_of_means_ci95_pct": [
+   5.7227,
+   7.9375
+  ],
+  "macro_mean_of_area_ratios_pct": 5.848,
+  "macro_mean_of_area_ratios_ci95_pct": [
+   4.8075,
+   6.9001
+  ],
+  "alt_denominator_post_gate_pct": 7.315,
+  "per_area_pct": {
+   "chugoku": 7.142,
+   "hokkaido": 2.738,
+   "hokuriku": 3.891,
+   "kansai": 7.068,
+   "kyushu": 8.059,
+   "shikoku": 5.709,
+   "tohoku": 4.258,
+   "tokyo": 7.916
+  }
+ },
+ "bridge_published_mw_to_normalised": {
+  "mean_installed_capacity_mw": 7199.6,
+  "total_installed_capacity_mw": 57596.5,
+  "published_delta_mw": 59.88,
+  "published_delta_as_pp_of_mean_capacity": 0.8317,
+  "equals_which_arm": "capacity_weighted",
+  "scale_free_arm_pp": 0.7128,
+  "gap_pp": 0.1189,
+  "gap_relative": 0.1668,
+  "note": "the MW figure the manuscript prints, normalised by mean installed capacity, is the capacity-weighted arm; the arm that is actually scale-free normalises WITHIN area first and is smaller, because the largest fleet also carries the largest capacity-normalised step"
+ },
+ "per_area_dispersion": {
+  "n_areas": 8,
+  "areas_delta_positive": 8,
+  "areas_relative_ge_material_threshold": 5,
+  "areas_nmae_ge_material_threshold": 8,
+  "relative_pct_min_area": "hokkaido",
+  "relative_pct_min": 2.738,
+  "relative_pct_max_area": "kyushu",
+  "relative_pct_max": 8.059,
+  "nmae_delta_pp_min": 0.3939,
+  "nmae_delta_pp_max": 1.0575,
+  "note": "all eight areas move in the same direction, but the relative step spans a factor of about three across areas, so the aggregate is a summary of a dispersed quantity"
+ },
+ "q3_nmae_by_mean_observed_output": {
+  "mean_observed_potential": {
+   "per_area": {
+    "chugoku": {
+     "nmae_pre_pct": 26.084,
+     "nmae_post_pct": 24.221,
+     "nmae_delta_pp": 1.8628,
+     "denominator_mw": 3036.1
+    },
+    "hokkaido": {
+     "nmae_pre_pct": 32.335,
+     "nmae_post_pct": 31.449,
+     "nmae_delta_pp": 0.8854,
+     "denominator_mw": 997.1
+    },
+    "hokuriku": {
+     "nmae_pre_pct": 30.145,
+     "nmae_post_pct": 28.972,
+     "nmae_delta_pp": 1.1728,
+     "denominator_mw": 535.2
+    },
+    "kansai": {
+     "nmae_pre_pct": 27.062,
+     "nmae_post_pct": 25.149,
+     "nmae_delta_pp": 1.9128,
+     "denominator_mw": 3103.3
+    },
+    "kyushu": {
+     "nmae_pre_pct": 24.74,
+     "nmae_post_pct": 22.746,
+     "nmae_delta_pp": 1.9938,
+     "denominator_mw": 5075.2
+    },
+    "shikoku": {
+     "nmae_pre_pct": 26.072,
+     "nmae_post_pct": 24.583,
+     "nmae_delta_pp": 1.4884,
+     "denominator_mw": 1343.0
+    },
+    "tohoku": {
+     "nmae_pre_pct": 26.458,
+     "nmae_post_pct": 25.331,
+     "nmae_delta_pp": 1.1265,
+     "denominator_mw": 3604.0
+    },
+    "tokyo": {
+     "nmae_pre_pct": 28.047,
+     "nmae_post_pct": 25.827,
+     "nmae_delta_pp": 2.2202,
+     "denominator_mw": 8388.6
+    }
+   },
+   "macro_mean_of_area_ratios": {
+    "nmae_pre_pct": 27.618,
+    "nmae_post_pct": 26.035,
+    "nmae_delta_pp": 1.5828,
+    "nmae_delta_ci95_pp": [
+     1.2825,
+     1.8989
+    ]
+   },
+   "capacity_weighted": {
+    "nmae_pre_pct": 26.944,
+    "nmae_post_pct": 25.107,
+    "nmae_delta_pp": 1.8367,
+    "nmae_delta_ci95_pp": [
+     1.5225,
+     2.164
+    ]
+   }
+  },
+  "mean_recorded_only": {
+   "per_area": {
+    "chugoku": {
+     "nmae_pre_pct": 26.598,
+     "nmae_post_pct": 24.699,
+     "nmae_delta_pp": 1.8996,
+     "denominator_mw": 2977.4
+    },
+    "hokkaido": {
+     "nmae_pre_pct": 32.731,
+     "nmae_post_pct": 31.835,
+     "nmae_delta_pp": 0.8962,
+     "denominator_mw": 985.0
+    },
+    "hokuriku": {
+     "nmae_pre_pct": 30.422,
+     "nmae_post_pct": 29.238,
+     "nmae_delta_pp": 1.1836,
+     "denominator_mw": 530.4
+    },
+    "kansai": {
+     "nmae_pre_pct": 27.576,
+     "nmae_post_pct": 25.627,
+     "nmae_delta_pp": 1.9492,
+     "denominator_mw": 3045.4
+    },
+    "kyushu": {
+     "nmae_pre_pct": 27.03,
+     "nmae_post_pct": 24.852,
+     "nmae_delta_pp": 2.1784,
+     "denominator_mw": 4645.3
+    },
+    "shikoku": {
+     "nmae_pre_pct": 27.258,
+     "nmae_post_pct": 25.702,
+     "nmae_delta_pp": 1.5562,
+     "denominator_mw": 1284.5
+    },
+    "tohoku": {
+     "nmae_pre_pct": 27.713,
+     "nmae_post_pct": 26.533,
+     "nmae_delta_pp": 1.1799,
+     "denominator_mw": 3440.8
+    },
+    "tokyo": {
+     "nmae_pre_pct": 28.197,
+     "nmae_post_pct": 25.965,
+     "nmae_delta_pp": 2.232,
+     "denominator_mw": 8344.1
+    }
+   },
+   "macro_mean_of_area_ratios": {
+    "nmae_pre_pct": 28.441,
+    "nmae_post_pct": 26.806,
+    "nmae_delta_pp": 1.6344,
+    "nmae_delta_ci95_pp": [
+     1.3275,
+     1.9596
+    ]
+   },
+   "capacity_weighted": {
+    "nmae_pre_pct": 27.829,
+    "nmae_post_pct": 25.932,
+    "nmae_delta_pp": 1.897,
+    "nmae_delta_ci95_pp": [
+     1.5726,
+     2.2351
+    ]
+   }
+  },
+  "note": "the denominator is each area's panel-mean observed output inside the scored window, held fixed across days so the statistic stays a linear functional of the daily MAEs and the paper's day-block bootstrap applies unchanged"
+ },
+ "q4_denominator_sensitivity": {
+  "d1_vs_d2_level_relative_move": 0.0496,
+  "d1_vs_d2_delta_relative_move": 0.0174,
+  "threshold": 0.2,
+  "denominator_sensitive": false
+ },
+ "q5_register_sanity": {
+  "per_area": {
+   "chugoku": {
+    "max_realised_potential_mw": 6320.0,
+    "over_fit_register": 0.993,
+    "over_occto_register": 1.129,
+    "mean_capacity_factor_window_fit": 0.477,
+    "mean_curtail_mw": 58.7
+   },
+   "hokkaido": {
+    "max_realised_potential_mw": 2272.0,
+    "over_fit_register": 1.014,
+    "over_occto_register": 0.909,
+    "mean_capacity_factor_window_fit": 0.445,
+    "mean_curtail_mw": 12.1
+   },
+   "hokuriku": {
+    "max_realised_potential_mw": 1263.0,
+    "over_fit_register": 1.023,
+    "over_occto_register": 0.665,
+    "mean_capacity_factor_window_fit": 0.433,
+    "mean_curtail_mw": 4.9
+   },
+   "kansai": {
+    "max_realised_potential_mw": 6391.0,
+    "over_fit_register": 0.919,
+    "over_occto_register": 0.695,
+    "mean_capacity_factor_window_fit": 0.446,
+    "mean_curtail_mw": 57.9
+   },
+   "kyushu": {
+    "max_realised_potential_mw": 10413.0,
+    "over_fit_register": 0.914,
+    "over_occto_register": 0.868,
+    "mean_capacity_factor_window_fit": 0.445,
+    "mean_curtail_mw": 430.0
+   },
+   "shikoku": {
+    "max_realised_potential_mw": 2700.0,
+    "over_fit_register": 0.871,
+    "over_occto_register": 0.614,
+    "mean_capacity_factor_window_fit": 0.433,
+    "mean_curtail_mw": 58.5
+   },
+   "tohoku": {
+    "max_realised_potential_mw": 8194.0,
+    "over_fit_register": 0.942,
+    "over_occto_register": 1.078,
+    "mean_capacity_factor_window_fit": 0.414,
+    "mean_curtail_mw": 163.2
+   },
+   "tokyo": {
+    "max_realised_potential_mw": 17447.0,
+    "over_fit_register": 0.991,
+    "over_occto_register": 1.342,
+    "mean_capacity_factor_window_fit": 0.476,
+    "mean_curtail_mw": 44.5
+   }
+  },
+  "areas_with_realised_above_nameplate": {
+   "fit": [
+    "hokkaido",
+    "hokuriku"
+   ],
+   "occto": [
+    "chugoku",
+    "tohoku",
+    "tokyo"
+   ]
+  }
+ },
+ "reading": {
+  "branch": "MATERIAL",
+  "note": "both pre-registered thresholds are cleared with intervals off zero",
+  "thresholds": {
+   "relative_material_pct": 5.0,
+   "nmae_material_pp": 0.25,
+   "relative_trivial_pct": 2.0,
+   "nmae_trivial_pp": 0.1
+  },
+  "clears": {
+   "relative_ge_5pct": true,
+   "nmae_ge_0p25pp": true
+  },
+  "any_aggregate_ci_covers_zero": false,
+  "headline_triplet": {
+   "nmae_delta_pp_of_installed_capacity": 0.7128,
+   "nmae_delta_ci95_pp": [
+    0.5781,
+    0.8548
+   ],
+   "relative_improvement_pct": 6.817,
+   "relative_improvement_ci95_pct": [
+    5.7227,
+    7.9375
+   ],
+   "delta_pct_of_mean_observed_output": 1.5828,
+   "delta_pct_of_mean_observed_output_ci95": [
+    1.2825,
+    1.8989
+   ]
+  }
+ },
+ "inference": {
+  "bootstrap": "phase89's circular block bootstrap, reused: block 7 days, 10000 draws, seed 2026, resampling unit = delivery day",
+  "equivalence_check_vs_phase89_boot_ci_mw": [
+   49.639515,
+   70.551476
+  ]
+ },
+ "metadata": {
+  "script": "s_20260819_phase101_physical_normalisation.py",
+  "git_sha": "fb08d9c7ad5e9585417912cfab71147d522523b4",
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block_days": 7
+ }
+}

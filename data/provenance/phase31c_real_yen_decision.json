@@ -1,0 +1,21 @@
+{
+  "phase": "phase31c_real_yen_decision",
+  "n_obs": 44928,
+  "n_floor": 1499,
+  "floor_real_over_cost_yen_kwh_median": 6.34,
+  "tiers": {
+    "price_only": {
+      "floor_recall": 0.5,
+      "unhedged_real_exposure_yen_kwh": 4836.3,
+      "real_decision_cost_yen_per_mw_yr": 1885962.0
+    },
+    "operational": {
+      "floor_recall": 0.549,
+      "unhedged_real_exposure_yen_kwh": 4381.3,
+      "real_decision_cost_yen_per_mw_yr": 1708535.0
+    }
+  },
+  "operational_value_yen_per_mw_yr": 177427.0,
+  "total_real_floor_exposure_yen_kwh": 10427.3,
+  "note": "REAL JEPX imbalance settlement (shortage price vs collapsed spot) on floored slots; operational forecast flags more floors -> avoids more exposure. Replaces phase26.2's normalized-illustrative cost-ratio grid."
+}

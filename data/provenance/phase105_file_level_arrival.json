@@ -1,0 +1,158 @@
+{
+  "verdict": "B_NO_FILE_EVER_BEAT_THE_GATE",
+  "per_run": {
+    "msm_d1_00z": {
+      "n_files": 2643,
+      "n_days": 881,
+      "earliest_min_after_gate": 75.58333333333333,
+      "earliest_arrival_jst": "2024-03-04 11:15:35+00:00",
+      "median_min_after_gate": 75.8,
+      "latest_min_after_gate": 77.26666666666667,
+      "arrival_spread_min": 1.6833333333333371,
+      "n_files_before_gate": 0,
+      "n_days_with_any_pre_gate_file": 0,
+      "fh_median_spread_seconds": 15.0,
+      "fh_medians_min_after_gate": {
+        "FH00-15": 75.65,
+        "FH16-33": 75.8,
+        "FH34-39": 75.9
+      }
+    },
+    "msm_d2_12z": {
+      "n_files": 2643,
+      "n_days": 881,
+      "earliest_min_after_gate": -644.3,
+      "earliest_arrival_jst": "2024-03-26 23:15:42+00:00",
+      "median_min_after_gate": -644.0833333333334,
+      "latest_min_after_gate": -620.5333333333333,
+      "arrival_spread_min": 23.76666666666665,
+      "n_files_before_gate": 2643,
+      "n_days_with_any_pre_gate_file": 881,
+      "fh_median_spread_seconds": 13.000000000001819,
+      "fh_medians_min_after_gate": {
+        "FH16-33": -644.2,
+        "FH34-39": -644.0833333333334,
+        "FH40-51": -643.9833333333333
+      }
+    },
+    "msm_d2_21z": {
+      "n_files": 1762,
+      "n_days": 881,
+      "earliest_min_after_gate": -104.3,
+      "earliest_arrival_jst": "2024-02-29 08:15:42+00:00",
+      "median_min_after_gate": -104.13333333333334,
+      "latest_min_after_gate": -103.63333333333334,
+      "arrival_spread_min": 0.6666666666666572,
+      "n_files_before_gate": 1762,
+      "n_days_with_any_pre_gate_file": 881,
+      "fh_median_spread_seconds": 6.000000000000512,
+      "fh_medians_min_after_gate": {
+        "FH16-33": -104.18333333333334,
+        "FH34-39": -104.08333333333333
+      }
+    }
+  },
+  "per_run_fh": [
+    {
+      "run": "msm_d1_00z",
+      "fh": "FH00-15",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": 75.58333333333333,
+      "p01_min_after_gate": 75.58333333333333,
+      "median_min_after_gate": 75.65,
+      "latest_min_after_gate": 76.41666666666667,
+      "n_files_before_gate": 0,
+      "earliest_arrival_jst": "2024-03-04 11:15:35+00:00"
+    },
+    {
+      "run": "msm_d1_00z",
+      "fh": "FH16-33",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": 75.68333333333334,
+      "p01_min_after_gate": 75.7,
+      "median_min_after_gate": 75.8,
+      "latest_min_after_gate": 76.78333333333333,
+      "n_files_before_gate": 0,
+      "earliest_arrival_jst": "2024-11-06 11:15:41+00:00"
+    },
+    {
+      "run": "msm_d1_00z",
+      "fh": "FH34-39",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": 75.78333333333333,
+      "p01_min_after_gate": 75.8,
+      "median_min_after_gate": 75.9,
+      "latest_min_after_gate": 77.26666666666667,
+      "n_files_before_gate": 0,
+      "earliest_arrival_jst": "2024-03-01 11:15:47+00:00"
+    },
+    {
+      "run": "msm_d2_12z",
+      "fh": "FH16-33",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": -644.3,
+      "p01_min_after_gate": -644.2833333333333,
+      "median_min_after_gate": -644.2,
+      "latest_min_after_gate": -620.75,
+      "n_files_before_gate": 881,
+      "earliest_arrival_jst": "2024-03-26 23:15:42+00:00"
+    },
+    {
+      "run": "msm_d2_12z",
+      "fh": "FH34-39",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": -644.2166666666667,
+      "p01_min_after_gate": -644.2,
+      "median_min_after_gate": -644.0833333333334,
+      "latest_min_after_gate": -620.6333333333333,
+      "n_files_before_gate": 881,
+      "earliest_arrival_jst": "2024-03-26 23:15:47+00:00"
+    },
+    {
+      "run": "msm_d2_12z",
+      "fh": "FH40-51",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": -644.1333333333333,
+      "p01_min_after_gate": -644.1,
+      "median_min_after_gate": -643.9833333333333,
+      "latest_min_after_gate": -620.5333333333333,
+      "n_files_before_gate": 881,
+      "earliest_arrival_jst": "2024-04-13 23:15:52+00:00"
+    },
+    {
+      "run": "msm_d2_21z",
+      "fh": "FH16-33",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": -104.3,
+      "p01_min_after_gate": -104.28333333333333,
+      "median_min_after_gate": -104.18333333333334,
+      "latest_min_after_gate": -103.76666666666667,
+      "n_files_before_gate": 881,
+      "earliest_arrival_jst": "2024-02-29 08:15:42+00:00"
+    },
+    {
+      "run": "msm_d2_21z",
+      "fh": "FH34-39",
+      "n_files": 881,
+      "n_days": 881,
+      "earliest_min_after_gate": -104.21666666666667,
+      "p01_min_after_gate": -104.18333333333334,
+      "median_min_after_gate": -104.08333333333333,
+      "latest_min_after_gate": -103.63333333333334,
+      "n_files_before_gate": 881,
+      "earliest_arrival_jst": "2024-04-16 08:15:47+00:00"
+    }
+  ],
+  "gate_definition": "10:00 JST on D-1 for delivery day D (= D-1 01:00 UTC)",
+  "input": "data/runs/phase72_dissemination_audit_per_file.parquet",
+  "n_files_total": 7048,
+  "git_sha": "fb08d9c7ad5e9585417912cfab71147d522523b4",
+  "script": "s_20260819_phase105_file_level_arrival.py"
+}

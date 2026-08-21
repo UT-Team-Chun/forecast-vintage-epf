@@ -1,0 +1,608 @@
+{
+ "phase": "82b",
+ "title": "Absolute performance and standard relative metrics",
+ "precommit_doc": "docs/research/2026-08-13_phase82b_absolute_metrics_precommit.md",
+ "design": {
+  "panel": {
+   "slots": 315414,
+   "days": 732,
+   "areas": 9
+  },
+  "naive_benchmark": "y_actual lagged 168 h in the same area; the EPF-standard seasonal persistence forecast",
+  "naive_unavailable_slots": 5130,
+  "naive_unavailable_days": 14,
+  "subpanel_slots": 310284,
+  "subpanel_days": 722,
+  "partially_affected_days": [
+   "2024-11-19",
+   "2025-11-18",
+   "2026-04-13",
+   "2026-04-17"
+  ],
+  "relative_block_rule": "every relative figure is computed on the sub-panel where the naive benchmark exists, so numerator and denominator span the same slots",
+  "near_floor_threshold": 0.5,
+  "equivalence_margin_jpykwh": 0.01,
+  "slice_definitions": {
+   "daylight": "06:00-17:59 JST",
+   "midday": "09:00-14:59 JST",
+   "floor": "y_actual <= 0.5 JPY/kWh"
+  }
+ },
+ "absolute": {
+  "all": {
+   "price_only": {
+    "mae": 2.1506,
+    "rmse": 3.3545,
+    "n_slots": 315414
+   },
+   "era5_cw": {
+    "mae": 2.1044,
+    "rmse": 3.2793,
+    "n_slots": 315414
+   },
+   "msm_d2_12z_cw": {
+    "mae": 1.8989,
+    "rmse": 2.9492,
+    "n_slots": 315414
+   },
+   "msm_gate_composite_cw": {
+    "mae": 1.898,
+    "rmse": 2.9516,
+    "n_slots": 315414
+   },
+   "msm_d1_00z_cw": {
+    "mae": 1.8963,
+    "rmse": 2.9467,
+    "n_slots": 315414
+   },
+   "oracle_cw": {
+    "mae": 1.9114,
+    "rmse": 2.9737,
+    "n_slots": 315414
+   }
+  },
+  "daylight": {
+   "price_only": {
+    "mae": 2.7516,
+    "rmse": 4.0623,
+    "n_slots": 157662
+   },
+   "era5_cw": {
+    "mae": 2.6824,
+    "rmse": 3.9613,
+    "n_slots": 157662
+   },
+   "msm_d2_12z_cw": {
+    "mae": 2.3206,
+    "rmse": 3.4466,
+    "n_slots": 157662
+   },
+   "msm_gate_composite_cw": {
+    "mae": 2.3166,
+    "rmse": 3.4464,
+    "n_slots": 157662
+   },
+   "msm_d1_00z_cw": {
+    "mae": 2.3162,
+    "rmse": 3.4435,
+    "n_slots": 157662
+   },
+   "oracle_cw": {
+    "mae": 2.3442,
+    "rmse": 3.486,
+    "n_slots": 157662
+   }
+  },
+  "midday": {
+   "price_only": {
+    "mae": 3.0633,
+    "rmse": 4.3853,
+    "n_slots": 78840
+   },
+   "era5_cw": {
+    "mae": 2.9779,
+    "rmse": 4.264,
+    "n_slots": 78840
+   },
+   "msm_d2_12z_cw": {
+    "mae": 2.4466,
+    "rmse": 3.5213,
+    "n_slots": 78840
+   },
+   "msm_gate_composite_cw": {
+    "mae": 2.4361,
+    "rmse": 3.5101,
+    "n_slots": 78840
+   },
+   "msm_d1_00z_cw": {
+    "mae": 2.4354,
+    "rmse": 3.5117,
+    "n_slots": 78840
+   },
+   "oracle_cw": {
+    "mae": 2.481,
+    "rmse": 3.584,
+    "n_slots": 78840
+   }
+  },
+  "floor": {
+   "price_only": {
+    "mae": 5.2422,
+    "rmse": 5.9917,
+    "n_slots": 10504
+   },
+   "era5_cw": {
+    "mae": 4.9959,
+    "rmse": 5.7294,
+    "n_slots": 10504
+   },
+   "msm_d2_12z_cw": {
+    "mae": 3.392,
+    "rmse": 4.3709,
+    "n_slots": 10504
+   },
+   "msm_gate_composite_cw": {
+    "mae": 3.3229,
+    "rmse": 4.3023,
+    "n_slots": 10504
+   },
+   "msm_d1_00z_cw": {
+    "mae": 3.3296,
+    "rmse": 4.316,
+    "n_slots": 10504
+   },
+   "oracle_cw": {
+    "mae": 3.4776,
+    "rmse": 4.4575,
+    "n_slots": 10504
+   }
+  },
+  "non_floor": {
+   "price_only": {
+    "mae": 2.0441,
+    "rmse": 3.2254,
+    "n_slots": 304910
+   },
+   "era5_cw": {
+    "mae": 2.0048,
+    "rmse": 3.1613,
+    "n_slots": 304910
+   },
+   "msm_d2_12z_cw": {
+    "mae": 1.8475,
+    "rmse": 2.8878,
+    "n_slots": 304910
+   },
+   "msm_gate_composite_cw": {
+    "mae": 1.8489,
+    "rmse": 2.8938,
+    "n_slots": 304910
+   },
+   "msm_d1_00z_cw": {
+    "mae": 1.847,
+    "rmse": 2.888,
+    "n_slots": 304910
+   },
+   "oracle_cw": {
+    "mae": 1.8574,
+    "rmse": 2.9092,
+    "n_slots": 304910
+   }
+  }
+ },
+ "relative": {
+  "all": {
+   "naive168": {
+    "mae": 3.0965,
+    "rmse": 4.7478,
+    "n_slots": 310284
+   },
+   "price_only": {
+    "mae": 2.1421,
+    "rmse": 3.3406,
+    "n_slots": 310284
+   },
+   "tiers": {
+    "price_only": {
+     "mae": 2.1421,
+     "rmse": 3.3406,
+     "rmae_vs_naive168": 0.6918,
+     "rrmse_vs_naive168": 0.7036,
+     "rmae_vs_price_only": 1.0,
+     "rrmse_vs_price_only": 1.0
+    },
+    "era5_cw": {
+     "mae": 2.0954,
+     "rmse": 3.265,
+     "rmae_vs_naive168": 0.6767,
+     "rrmse_vs_naive168": 0.6877,
+     "rmae_vs_price_only": 0.9782,
+     "rrmse_vs_price_only": 0.9774
+    },
+    "msm_d2_12z_cw": {
+     "mae": 1.8904,
+     "rmse": 2.9362,
+     "rmae_vs_naive168": 0.6105,
+     "rrmse_vs_naive168": 0.6184,
+     "rmae_vs_price_only": 0.8825,
+     "rrmse_vs_price_only": 0.8789
+    },
+    "msm_gate_composite_cw": {
+     "mae": 1.8897,
+     "rmse": 2.9385,
+     "rmae_vs_naive168": 0.6103,
+     "rrmse_vs_naive168": 0.6189,
+     "rmae_vs_price_only": 0.8822,
+     "rrmse_vs_price_only": 0.8796
+    },
+    "msm_d1_00z_cw": {
+     "mae": 1.8875,
+     "rmse": 2.9329,
+     "rmae_vs_naive168": 0.6096,
+     "rrmse_vs_naive168": 0.6177,
+     "rmae_vs_price_only": 0.8811,
+     "rrmse_vs_price_only": 0.878
+    },
+    "oracle_cw": {
+     "mae": 1.9031,
+     "rmse": 2.962,
+     "rmae_vs_naive168": 0.6146,
+     "rrmse_vs_naive168": 0.6239,
+     "rmae_vs_price_only": 0.8884,
+     "rrmse_vs_price_only": 0.8867
+    }
+   }
+  },
+  "daylight": {
+   "naive168": {
+    "mae": 3.8388,
+    "rmse": 5.6606,
+    "n_slots": 155052
+   },
+   "price_only": {
+    "mae": 2.7452,
+    "rmse": 4.0534,
+    "n_slots": 155052
+   },
+   "tiers": {
+    "price_only": {
+     "mae": 2.7452,
+     "rmse": 4.0534,
+     "rmae_vs_naive168": 0.7151,
+     "rrmse_vs_naive168": 0.7161,
+     "rmae_vs_price_only": 1.0,
+     "rrmse_vs_price_only": 1.0
+    },
+    "era5_cw": {
+     "mae": 2.6753,
+     "rmse": 3.9529,
+     "rmae_vs_naive168": 0.6969,
+     "rrmse_vs_naive168": 0.6983,
+     "rmae_vs_price_only": 0.9745,
+     "rrmse_vs_price_only": 0.9752
+    },
+    "msm_d2_12z_cw": {
+     "mae": 2.3137,
+     "rmse": 3.4392,
+     "rmae_vs_naive168": 0.6027,
+     "rrmse_vs_naive168": 0.6076,
+     "rmae_vs_price_only": 0.8428,
+     "rrmse_vs_price_only": 0.8485
+    },
+    "msm_gate_composite_cw": {
+     "mae": 2.3097,
+     "rmse": 3.4391,
+     "rmae_vs_naive168": 0.6017,
+     "rrmse_vs_naive168": 0.6076,
+     "rmae_vs_price_only": 0.8414,
+     "rrmse_vs_price_only": 0.8484
+    },
+    "msm_d1_00z_cw": {
+     "mae": 2.3084,
+     "rmse": 3.4354,
+     "rmae_vs_naive168": 0.6013,
+     "rrmse_vs_naive168": 0.6069,
+     "rmae_vs_price_only": 0.8409,
+     "rrmse_vs_price_only": 0.8475
+    },
+    "oracle_cw": {
+     "mae": 2.3375,
+     "rmse": 3.4806,
+     "rmae_vs_naive168": 0.6089,
+     "rrmse_vs_naive168": 0.6149,
+     "rmae_vs_price_only": 0.8515,
+     "rrmse_vs_price_only": 0.8587
+    }
+   }
+  },
+  "midday": {
+   "naive168": {
+    "mae": 4.1318,
+    "rmse": 5.9905,
+    "n_slots": 77544
+   },
+   "price_only": {
+    "mae": 3.0585,
+    "rmse": 4.3775,
+    "n_slots": 77544
+   },
+   "tiers": {
+    "price_only": {
+     "mae": 3.0585,
+     "rmse": 4.3775,
+     "rmae_vs_naive168": 0.7402,
+     "rrmse_vs_naive168": 0.7307,
+     "rmae_vs_price_only": 1.0,
+     "rrmse_vs_price_only": 1.0
+    },
+    "era5_cw": {
+     "mae": 2.9729,
+     "rmse": 4.2569,
+     "rmae_vs_naive168": 0.7195,
+     "rrmse_vs_naive168": 0.7106,
+     "rmae_vs_price_only": 0.972,
+     "rrmse_vs_price_only": 0.9725
+    },
+    "msm_d2_12z_cw": {
+     "mae": 2.4427,
+     "rmse": 3.5175,
+     "rmae_vs_naive168": 0.5912,
+     "rrmse_vs_naive168": 0.5872,
+     "rmae_vs_price_only": 0.7987,
+     "rrmse_vs_price_only": 0.8035
+    },
+    "msm_gate_composite_cw": {
+     "mae": 2.4316,
+     "rmse": 3.5054,
+     "rmae_vs_naive168": 0.5885,
+     "rrmse_vs_naive168": 0.5852,
+     "rmae_vs_price_only": 0.795,
+     "rrmse_vs_price_only": 0.8008
+    },
+    "msm_d1_00z_cw": {
+     "mae": 2.4301,
+     "rmse": 3.5069,
+     "rmae_vs_naive168": 0.5881,
+     "rrmse_vs_naive168": 0.5854,
+     "rmae_vs_price_only": 0.7945,
+     "rrmse_vs_price_only": 0.8011
+    },
+    "oracle_cw": {
+     "mae": 2.4778,
+     "rmse": 3.583,
+     "rmae_vs_naive168": 0.5997,
+     "rrmse_vs_naive168": 0.5981,
+     "rmae_vs_price_only": 0.8101,
+     "rrmse_vs_price_only": 0.8185
+    }
+   }
+  },
+  "floor": {
+   "naive168": {
+    "mae": 5.4809,
+    "rmse": 7.5558,
+    "n_slots": 10379
+   },
+   "price_only": {
+    "mae": 5.2235,
+    "rmse": 5.9693,
+    "n_slots": 10379
+   },
+   "tiers": {
+    "price_only": {
+     "mae": 5.2235,
+     "rmse": 5.9693,
+     "rmae_vs_naive168": 0.953,
+     "rrmse_vs_naive168": 0.79,
+     "rmae_vs_price_only": 1.0,
+     "rrmse_vs_price_only": 1.0
+    },
+    "era5_cw": {
+     "mae": 4.9751,
+     "rmse": 5.707,
+     "rmae_vs_naive168": 0.9077,
+     "rrmse_vs_naive168": 0.7553,
+     "rmae_vs_price_only": 0.9524,
+     "rrmse_vs_price_only": 0.9561
+    },
+    "msm_d2_12z_cw": {
+     "mae": 3.3834,
+     "rmse": 4.3594,
+     "rmae_vs_naive168": 0.6173,
+     "rrmse_vs_naive168": 0.577,
+     "rmae_vs_price_only": 0.6477,
+     "rrmse_vs_price_only": 0.7303
+    },
+    "msm_gate_composite_cw": {
+     "mae": 3.3132,
+     "rmse": 4.2899,
+     "rmae_vs_naive168": 0.6045,
+     "rrmse_vs_naive168": 0.5678,
+     "rmae_vs_price_only": 0.6343,
+     "rrmse_vs_price_only": 0.7187
+    },
+    "msm_d1_00z_cw": {
+     "mae": 3.3221,
+     "rmse": 4.3079,
+     "rmae_vs_naive168": 0.6061,
+     "rrmse_vs_naive168": 0.5701,
+     "rmae_vs_price_only": 0.636,
+     "rrmse_vs_price_only": 0.7217
+    },
+    "oracle_cw": {
+     "mae": 3.4684,
+     "rmse": 4.4501,
+     "rmae_vs_naive168": 0.6328,
+     "rrmse_vs_naive168": 0.589,
+     "rmae_vs_price_only": 0.664,
+     "rrmse_vs_price_only": 0.7455
+    }
+   }
+  },
+  "non_floor": {
+   "naive168": {
+    "mae": 3.0139,
+    "rmse": 4.6202,
+    "n_slots": 299905
+   },
+   "price_only": {
+    "mae": 2.0355,
+    "rmse": 3.2113,
+    "n_slots": 299905
+   },
+   "tiers": {
+    "price_only": {
+     "mae": 2.0355,
+     "rmse": 3.2113,
+     "rmae_vs_naive168": 0.6754,
+     "rrmse_vs_naive168": 0.6951,
+     "rmae_vs_price_only": 1.0,
+     "rrmse_vs_price_only": 1.0
+    },
+    "era5_cw": {
+     "mae": 1.9957,
+     "rmse": 3.1467,
+     "rmae_vs_naive168": 0.6622,
+     "rrmse_vs_naive168": 0.6811,
+     "rmae_vs_price_only": 0.9804,
+     "rrmse_vs_price_only": 0.9799
+    },
+    "msm_d2_12z_cw": {
+     "mae": 1.8387,
+     "rmse": 2.8744,
+     "rmae_vs_naive168": 0.6101,
+     "rrmse_vs_naive168": 0.6221,
+     "rmae_vs_price_only": 0.9033,
+     "rrmse_vs_price_only": 0.8951
+    },
+    "msm_gate_composite_cw": {
+     "mae": 1.8404,
+     "rmse": 2.8804,
+     "rmae_vs_naive168": 0.6106,
+     "rrmse_vs_naive168": 0.6234,
+     "rmae_vs_price_only": 0.9042,
+     "rrmse_vs_price_only": 0.897
+    },
+    "msm_d1_00z_cw": {
+     "mae": 1.8378,
+     "rmse": 2.8736,
+     "rmae_vs_naive168": 0.6098,
+     "rrmse_vs_naive168": 0.622,
+     "rmae_vs_price_only": 0.9029,
+     "rrmse_vs_price_only": 0.8948
+    },
+    "oracle_cw": {
+     "mae": 1.8489,
+     "rmse": 2.8968,
+     "rmae_vs_naive168": 0.6135,
+     "rrmse_vs_naive168": 0.627,
+     "rmae_vs_price_only": 0.9083,
+     "rrmse_vs_price_only": 0.9021
+    }
+   }
+  }
+ },
+ "per_area": {
+  "hokuriku": {
+   "price_only": 2.0764,
+   "era5_cw": 2.0381,
+   "msm_d2_12z_cw": 1.8987,
+   "msm_gate_composite_cw": 1.8878,
+   "msm_d1_00z_cw": 1.8934,
+   "oracle_cw": 1.8745
+  },
+  "kansai": {
+   "price_only": 2.0632,
+   "era5_cw": 1.9997,
+   "msm_d2_12z_cw": 1.8227,
+   "msm_gate_composite_cw": 1.817,
+   "msm_d1_00z_cw": 1.8204,
+   "oracle_cw": 1.837
+  },
+  "tohoku": {
+   "price_only": 2.1678,
+   "era5_cw": 2.1056,
+   "msm_d2_12z_cw": 1.793,
+   "msm_gate_composite_cw": 1.7887,
+   "msm_d1_00z_cw": 1.7859,
+   "oracle_cw": 1.8242
+  },
+  "chubu": {
+   "price_only": 2.1667,
+   "era5_cw": 2.118,
+   "msm_d2_12z_cw": 1.9172,
+   "msm_gate_composite_cw": 1.9203,
+   "msm_d1_00z_cw": 1.9078,
+   "oracle_cw": 1.9184
+  },
+  "hokkaido": {
+   "price_only": 2.4607,
+   "era5_cw": 2.4516,
+   "msm_d2_12z_cw": 2.3687,
+   "msm_gate_composite_cw": 2.3648,
+   "msm_d1_00z_cw": 2.3546,
+   "oracle_cw": 2.3541
+  },
+  "chugoku": {
+   "price_only": 2.0202,
+   "era5_cw": 1.9447,
+   "msm_d2_12z_cw": 1.7196,
+   "msm_gate_composite_cw": 1.7277,
+   "msm_d1_00z_cw": 1.7272,
+   "oracle_cw": 1.7536
+  },
+  "kyushu": {
+   "price_only": 2.0028,
+   "era5_cw": 1.9472,
+   "msm_d2_12z_cw": 1.6389,
+   "msm_gate_composite_cw": 1.6429,
+   "msm_d1_00z_cw": 1.6541,
+   "oracle_cw": 1.6662
+  },
+  "shikoku": {
+   "price_only": 2.3905,
+   "era5_cw": 2.3601,
+   "msm_d2_12z_cw": 2.1615,
+   "msm_gate_composite_cw": 2.1711,
+   "msm_d1_00z_cw": 2.1634,
+   "oracle_cw": 2.1851
+  },
+  "tokyo": {
+   "price_only": 2.0073,
+   "era5_cw": 1.9745,
+   "msm_d2_12z_cw": 1.7702,
+   "msm_gate_composite_cw": 1.7618,
+   "msm_d1_00z_cw": 1.7603,
+   "oracle_cw": 1.7892
+  }
+ },
+ "gates": {
+  "gate55_denominator_ordering": {
+   "ordering_by_naive168": [
+    "msm_d1_00z_cw",
+    "msm_gate_composite_cw",
+    "msm_d2_12z_cw",
+    "oracle_cw",
+    "era5_cw"
+   ],
+   "ordering_by_price_only": [
+    "msm_d1_00z_cw",
+    "msm_gate_composite_cw",
+    "msm_d2_12z_cw",
+    "oracle_cw",
+    "era5_cw"
+   ],
+   "orderings_agree": true,
+   "reading": "the two denominators induce the same tier ordering, so the paper's relative figures are not an artefact of dividing by its own baseline"
+  },
+  "gate55b_naive_is_a_floor": {
+   "naive_mae": 3.0965,
+   "tiers_not_better_than_naive": [],
+   "ok": true
+  }
+ },
+ "metadata": {
+  "script": "s_20260813_phase82b_absolute_metrics.py",
+  "git_sha": "dc7171ec267333b1c1749b44e45f3a12082b583d"
+ }
+}

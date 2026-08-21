@@ -1,0 +1,1012 @@
+{
+  "phase": "phase44_metrics_broadening",
+  "generated_utc": "2026-07-24T03:05:50+00:00",
+  "script": "s_20260724_phase44_metrics_broadening.py",
+  "git_sha": "ebc754982c21fe9cc9d5b6b25c9cf655940d21c3",
+  "no_refit": true,
+  "naive_benchmark": {
+    "definition": "same-slot JEPX spot price 168 h (7 days) earlier (lag-336 for 30-min slots), attached by exact datetime self-join; standard EPF naive following Lago et al. (2021)",
+    "drift_check": {
+      "vs": "phase23_daily_baselines_summary.json (per-fold MAE then nanmean, n=140 folds)",
+      "recomputed_per_area": {
+        "hokkaido": 3.0755089285714283,
+        "tohoku": 2.7918660714285717,
+        "tokyo": 2.518273809523809,
+        "chubu": 2.9412514880952383,
+        "hokuriku": 3.1025416666666663,
+        "kansai": 3.0686755952380955,
+        "chugoku": 3.004035714285714,
+        "shikoku": 3.1968407738095244,
+        "kyushu": 2.918386904761905
+      },
+      "committed_per_area": {
+        "hokkaido": 3.0755089285714283,
+        "tohoku": 2.7918660714285717,
+        "tokyo": 2.518273809523809,
+        "chubu": 2.9412514880952383,
+        "hokuriku": 3.1025416666666663,
+        "kansai": 3.0686755952380955,
+        "chugoku": 3.004035714285714,
+        "shikoku": 3.1968407738095244,
+        "kyushu": 2.918386904761905
+      },
+      "max_abs_diff": 0.0,
+      "tolerance": 1e-06,
+      "pass": true,
+      "aggregation_note": "committed phase23 fold windows carry a tz-strip quirk: datetime_jst.to_numpy() is UTC-rendered but bounds were tz-stripped JST, so each committed fold spans JST 09:00..next-day 09:00. Reproduced verbatim here (hence the bit-exact match). Clean JST-midnight windows shift per-area naive MAE by 0.02-0.08 JPY/kWh (see clean_jst_midnight_per_area). Irrelevant for phase44 rMAE, which joins the naive prediction on the identical artifact slots.",
+      "clean_jst_midnight_per_area": {
+        "hokkaido": 3.153519345238095,
+        "tohoku": 2.8652157738095236,
+        "tokyo": 2.5652440476190472,
+        "chubu": 3.0070625,
+        "hokuriku": 3.131941964285714,
+        "kansai": 3.0935386904761906,
+        "chugoku": 3.030425595238095,
+        "shikoku": 3.2348616071428573,
+        "kyushu": 2.953889880952381
+      }
+    }
+  },
+  "metric_definitions": {
+    "mae": "mean(|y - yhat|), JPY/kWh, pooled over slots",
+    "rmse": "sqrt(mean((y - yhat)^2)), JPY/kWh, pooled over slots (computed from per-slot absolute errors; |e|^2 == e^2)",
+    "rmae": "MAE(model) / MAE(naive-168h) on the identical slot sample",
+    "rrmse": "RMSE(model) / RMSE(naive-168h) on the identical slot sample"
+  },
+  "artifacts": {
+    "phase26_1_pv_surplus_8area": {
+      "pooled": {
+        "naive_168h": {
+          "mae": 3.008561580882353,
+          "rmse": 4.494268033520625,
+          "rmae": 1.0,
+          "rrmse": 1.0
+        },
+        "price_only": {
+          "mae": 2.025063490613492,
+          "rmse": 3.0791806697091895,
+          "rmae": 0.6731002295188453,
+          "rrmse": 0.6851350757771973
+        },
+        "era5_proxy": {
+          "mae": 1.9909847485968049,
+          "rmse": 3.025696172788599,
+          "rmae": 0.6617729752478217,
+          "rrmse": 0.6732344733828419
+        },
+        "histfc_reconstruction": {
+          "mae": 1.7860654336314463,
+          "rmse": 2.6980769453525313,
+          "rmae": 0.5936609192182889,
+          "rrmse": 0.6003373464218974
+        },
+        "oracle_realised": {
+          "mae": 1.757386377600228,
+          "rmse": 2.628527470455289,
+          "rmae": 0.5841284382435079,
+          "rrmse": 0.5848621957681078
+        }
+      },
+      "per_area": {
+        "chugoku": {
+          "naive_168h": {
+            "mae": 3.0212955182072827,
+            "rmse": 4.5604841350692675,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.8897200635002522,
+            "rmse": 2.7821099189990095,
+            "rmae": 0.6254668079015115,
+            "rrmse": 0.6100470556634779
+          },
+          "era5_proxy": {
+            "mae": 1.8520206630789267,
+            "rmse": 2.716872576051226,
+            "rmae": 0.6129889154894197,
+            "rrmse": 0.5957421395590405
+          },
+          "histfc_reconstruction": {
+            "mae": 1.64610453019644,
+            "rmse": 2.398441358886369,
+            "rmae": 0.5448340025914358,
+            "rrmse": 0.5259181454974934
+          },
+          "oracle_realised": {
+            "mae": 1.637289835088195,
+            "rmse": 2.366162437371076,
+            "rmae": 0.5419164809338803,
+            "rrmse": 0.5188401861056221
+          }
+        },
+        "hokkaido": {
+          "naive_168h": {
+            "mae": 3.2171918767507,
+            "rmse": 4.569529386000687,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.38522960872345,
+            "rmse": 3.6014654071305348,
+            "rmae": 0.7414011038510033,
+            "rrmse": 0.7881479913804834
+          },
+          "era5_proxy": {
+            "mae": 2.3903202065733633,
+            "rmse": 3.591736101604893,
+            "rmae": 0.7429834147746075,
+            "rrmse": 0.7860188212398014
+          },
+          "histfc_reconstruction": {
+            "mae": 2.2827169895220383,
+            "rmse": 3.457350886707053,
+            "rmae": 0.7095370984920977,
+            "rrmse": 0.7566098376123964
+          },
+          "oracle_realised": {
+            "mae": 2.2278637835598376,
+            "rmse": 3.3615417323191155,
+            "rmae": 0.69248707223827,
+            "rrmse": 0.7356428744320171
+          }
+        },
+        "hokuriku": {
+          "naive_168h": {
+            "mae": 3.1141071428571427,
+            "rmse": 4.737113242973055,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.0038567053957608,
+            "rmse": 3.0276104494751213,
+            "rmae": 0.6434771231272585,
+            "rrmse": 0.639125622332593
+          },
+          "era5_proxy": {
+            "mae": 1.9774124503973611,
+            "rmse": 2.9904373889566633,
+            "rmae": 0.6349853616735606,
+            "rrmse": 0.6312784253981308
+          },
+          "histfc_reconstruction": {
+            "mae": 1.7889809861005197,
+            "rmse": 2.6809913752446453,
+            "rmae": 0.5744763760630145,
+            "rrmse": 0.565954672758051
+          },
+          "oracle_realised": {
+            "mae": 1.7665897451389676,
+            "rmse": 2.611940472404888,
+            "rmae": 0.5672861157622696,
+            "rrmse": 0.5513780943023457
+          }
+        },
+        "kansai": {
+          "naive_168h": {
+            "mae": 3.095892857142857,
+            "rmse": 4.716866207634926,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.9776645425695234,
+            "rmse": 2.948864181037168,
+            "rmae": 0.6388026439631616,
+            "rrmse": 0.625174438118259
+          },
+          "era5_proxy": {
+            "mae": 1.9374970359597858,
+            "rmse": 2.91962471939966,
+            "rmae": 0.6258281941151758,
+            "rrmse": 0.6189755212208113
+          },
+          "histfc_reconstruction": {
+            "mae": 1.698648811100515,
+            "rmse": 2.498516133141207,
+            "rmae": 0.5486781647437783,
+            "rrmse": 0.5296983257860907
+          },
+          "oracle_realised": {
+            "mae": 1.7072733346753717,
+            "rmse": 2.5593230045090736,
+            "rmae": 0.5514639599805089,
+            "rrmse": 0.5425896966011972
+          }
+        },
+        "kyushu": {
+          "naive_168h": {
+            "mae": 2.9456425070028014,
+            "rmse": 4.392345915744504,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.9486420863570715,
+            "rmse": 2.9210216578441135,
+            "rmae": 0.6615338017850033,
+            "rrmse": 0.6650254132703024
+          },
+          "era5_proxy": {
+            "mae": 1.8660037026248077,
+            "rmse": 2.8173073226656378,
+            "rmae": 0.6334793506641344,
+            "rrmse": 0.6414128979611806
+          },
+          "histfc_reconstruction": {
+            "mae": 1.7082937460886878,
+            "rmse": 2.588108591944809,
+            "rmae": 0.5799392635146622,
+            "rrmse": 0.5892315044376745
+          },
+          "oracle_realised": {
+            "mae": 1.6531440216796969,
+            "rmse": 2.480871458570116,
+            "rmae": 0.561216786405549,
+            "rrmse": 0.5648169579898872
+          }
+        },
+        "shikoku": {
+          "naive_168h": {
+            "mae": 3.2851278011204483,
+            "rmse": 4.9106760535817555,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.300499491153549,
+            "rmse": 3.5178608797907684,
+            "rmae": 0.7002770152104659,
+            "rrmse": 0.7163699746035795
+          },
+          "era5_proxy": {
+            "mae": 2.24826803191938,
+            "rmse": 3.4643850993280214,
+            "rmae": 0.6843776461763741,
+            "rrmse": 0.7054802763463014
+          },
+          "histfc_reconstruction": {
+            "mae": 2.0923866572154877,
+            "rmse": 3.14894126728675,
+            "rmae": 0.636927018943325,
+            "rrmse": 0.6412439413489658
+          },
+          "oracle_realised": {
+            "mae": 2.0319094418593306,
+            "rmse": 2.9438588877060594,
+            "rmae": 0.6185176239311949,
+            "rrmse": 0.5994813861848745
+          }
+        },
+        "tohoku": {
+          "naive_168h": {
+            "mae": 2.8724142156862746,
+            "rmse": 4.172267046513558,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.979880703476555,
+            "rmse": 3.0595045021912135,
+            "rmae": 0.6892740930832372,
+            "rrmse": 0.733295464571906
+          },
+          "era5_proxy": {
+            "mae": 1.9251488116982325,
+            "rmse": 2.933030838397486,
+            "rmae": 0.6702197758195809,
+            "rrmse": 0.702982528610769
+          },
+          "histfc_reconstruction": {
+            "mae": 1.609136615434325,
+            "rmse": 2.4174671281065394,
+            "rmae": 0.5602035412047532,
+            "rrmse": 0.5794133264136653
+          },
+          "oracle_realised": {
+            "mae": 1.6048230817509133,
+            "rmse": 2.3838867334817935,
+            "rmae": 0.5587018310196917,
+            "rrmse": 0.5713648495903022
+          }
+        },
+        "tokyo": {
+          "naive_168h": {
+            "mae": 2.5168207282913166,
+            "rmse": 3.7953424021529116,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.7150147237317739,
+            "rmse": 2.6475714546495928,
+            "rmae": 0.6814210898906998,
+            "rrmse": 0.6975843478964521
+          },
+          "era5_proxy": {
+            "mae": 1.731207086522581,
+            "rmse": 2.6358973760311435,
+            "rmae": 0.6878547474845008,
+            "rrmse": 0.6945084518687769
+          },
+          "histfc_reconstruction": {
+            "mae": 1.4622551333935572,
+            "rmse": 2.1546636379753723,
+            "rmae": 0.5809929634465026,
+            "rrmse": 0.5677125828629157
+          },
+          "oracle_realised": {
+            "mae": 1.4301977770495116,
+            "rmse": 2.120908821664789,
+            "rmae": 0.5682557207880597,
+            "rrmse": 0.5588188355447723
+          }
+        }
+      },
+      "improvements_pooled_over_price_only": {
+        "mae": {
+          "era5_proxy": 0.034078742016687036,
+          "histfc_reconstruction": 0.23899805698204557,
+          "oracle_realised": 0.2676771130132638
+        },
+        "rmse": {
+          "era5_proxy": 0.05348449692059054,
+          "histfc_reconstruction": 0.3811037243566582,
+          "oracle_realised": 0.45065319925390046
+        }
+      },
+      "parquet": "data/runs/phase26.1_pv_surplus_per_slot.parquet",
+      "parquet_sha256": "c7dee97d1cb6b049e14715591fd663fb63f77b71fafe85cdd7e58a33bee0c6dc",
+      "n_slots": 45696,
+      "n_areas": 8,
+      "test_day_range": [
+        "2024-11-17",
+        "2025-11-06"
+      ],
+      "drift_check": {
+        "vs": "phase26.1_pv_surplus_identification.json",
+        "quantities": "per-area + mean MAE-improvement, era5 & histfc tiers",
+        "max_abs_diff": 0.0,
+        "tolerance": 1e-06,
+        "pass": true,
+        "internal_delta_vs_pred_max_abs_diff": 0.0
+      },
+      "value_multiple_histfc_over_proxy": {
+        "mae": 7.013112657298721,
+        "rmse": 7.125498907141076
+      }
+    },
+    "phase26_0_probe_9area": {
+      "pooled": {
+        "naive_168h": {
+          "mae": 3.0076125766053825,
+          "rmse": 4.555312445137187,
+          "rmae": 1.0,
+          "rrmse": 1.0
+        },
+        "price_only": {
+          "mae": 2.063684128950727,
+          "rmse": 3.182325575420782,
+          "rmae": 0.6861535774265034,
+          "rrmse": 0.6985965537485637
+        },
+        "era5_proxy": {
+          "mae": 2.023278916360951,
+          "rmse": 3.119840729573005,
+          "rmae": 0.6727192631454466,
+          "rrmse": 0.6848796360617253
+        },
+        "histfc_reconstruction": {
+          "mae": 1.8184549261297633,
+          "rmse": 2.8183242233673784,
+          "rmae": 0.6046174099265831,
+          "rrmse": 0.6186895536388398
+        }
+      },
+      "per_area": {
+        "chubu": {
+          "naive_168h": {
+            "mae": 3.010503597122302,
+            "rmse": 4.95045515130033,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.085635068205496,
+            "rmse": 3.5519321575073395,
+            "rmae": 0.6927861073473305,
+            "rrmse": 0.7174960784311636
+          },
+          "era5_proxy": {
+            "mae": 2.100925331509335,
+            "rmse": 3.6300638525864435,
+            "rmae": 0.6978650792902489,
+            "rrmse": 0.7332788080370628
+          },
+          "histfc_reconstruction": {
+            "mae": 1.8896604667906485,
+            "rmse": 3.482021300865382,
+            "rmae": 0.6276891575871054,
+            "rrmse": 0.7033739715732529
+          }
+        },
+        "chugoku": {
+          "naive_168h": {
+            "mae": 3.0319754196642688,
+            "rmse": 4.567195007202226,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.9118890513254583,
+            "rmse": 2.8167679504913306,
+            "rmae": 0.6305753796437974,
+            "rrmse": 0.6167391464672377
+          },
+          "era5_proxy": {
+            "mae": 1.8665093445091796,
+            "rmse": 2.735017926092787,
+            "rmae": 0.6156083365332357,
+            "rrmse": 0.5988397521410422
+          },
+          "histfc_reconstruction": {
+            "mae": 1.673489573277329,
+            "rmse": 2.4362642289655247,
+            "rmae": 0.5519469460153588,
+            "rrmse": 0.5334268024736549
+          }
+        },
+        "hokkaido": {
+          "naive_168h": {
+            "mae": 3.163802458033573,
+            "rmse": 4.527741228525986,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.406979224713032,
+            "rmse": 3.6198926069295174,
+            "rmae": 0.7607868242851874,
+            "rrmse": 0.7994919374197494
+          },
+          "era5_proxy": {
+            "mae": 2.410909898910019,
+            "rmse": 3.611975627632923,
+            "rmae": 0.7620292135459349,
+            "rrmse": 0.7977433880002917
+          },
+          "histfc_reconstruction": {
+            "mae": 2.2835709011638916,
+            "rmse": 3.4420618214097503,
+            "rmae": 0.7217804940271841,
+            "rrmse": 0.7602161094639941
+          }
+        },
+        "hokuriku": {
+          "naive_168h": {
+            "mae": 3.134222122302158,
+            "rmse": 4.776428686602725,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.0622047708745446,
+            "rmse": 3.1517076612614225,
+            "rmae": 0.6579638233680157,
+            "rrmse": 0.6598460624151181
+          },
+          "era5_proxy": {
+            "mae": 1.9937793915623205,
+            "rmse": 3.0281538191269872,
+            "rmae": 0.6361321290457371,
+            "rrmse": 0.6339786517949223
+          },
+          "histfc_reconstruction": {
+            "mae": 1.8174976621652401,
+            "rmse": 2.7292245460277815,
+            "rmae": 0.5798879566424113,
+            "rrmse": 0.5713943879624769
+          }
+        },
+        "kansai": {
+          "naive_168h": {
+            "mae": 3.095542565947242,
+            "rmse": 4.700970708217653,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.9876456212681746,
+            "rmse": 2.9605941257601796,
+            "rmae": 0.6420992698124799,
+            "rrmse": 0.6297835722704752
+          },
+          "era5_proxy": {
+            "mae": 1.9373597128673685,
+            "rmse": 2.9017028879283497,
+            "rmae": 0.6258546511940897,
+            "rrmse": 0.6172561090108375
+          },
+          "histfc_reconstruction": {
+            "mae": 1.721623188802432,
+            "rmse": 2.5340736628113096,
+            "rmae": 0.5561620142915438,
+            "rrmse": 0.5390532764608715
+          }
+        },
+        "kyushu": {
+          "naive_168h": {
+            "mae": 2.9424775179856115,
+            "rmse": 4.4132093165657285,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.982164225262708,
+            "rmse": 2.9874400665311076,
+            "rmae": 0.6736378487675503,
+            "rrmse": 0.6769314238772327
+          },
+          "era5_proxy": {
+            "mae": 1.9087172375028345,
+            "rmse": 2.8855036876276454,
+            "rmae": 0.6486769145510827,
+            "rrmse": 0.6538334079909645
+          },
+          "histfc_reconstruction": {
+            "mae": 1.753183978382879,
+            "rmse": 2.6546556829549983,
+            "rmae": 0.5958189884771287,
+            "rrmse": 0.6015249884002326
+          }
+        },
+        "shikoku": {
+          "naive_168h": {
+            "mae": 3.2378821942446043,
+            "rmse": 4.840245120522163,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.265241547529206,
+            "rmse": 3.4488800316239003,
+            "rmae": 0.6996059188180827,
+            "rrmse": 0.7125424324071912
+          },
+          "era5_proxy": {
+            "mae": 2.2068051180399384,
+            "rmse": 3.3818793870533432,
+            "rmae": 0.6815581870033985,
+            "rrmse": 0.6987000250699096
+          },
+          "histfc_reconstruction": {
+            "mae": 2.039598550235571,
+            "rmse": 3.0635783256019735,
+            "rmae": 0.629917466997717,
+            "rrmse": 0.6329386734181504
+          }
+        },
+        "tohoku": {
+          "naive_168h": {
+            "mae": 2.876882494004796,
+            "rmse": 4.215582888371313,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.036205591325787,
+            "rmse": 3.134685336870832,
+            "rmae": 0.7077819812137215,
+            "rrmse": 0.7435947578015516
+          },
+          "era5_proxy": {
+            "mae": 1.9655389125175087,
+            "rmse": 2.972121866257835,
+            "rmae": 0.6832183506325136,
+            "rrmse": 0.7050322446408145
+          },
+          "histfc_reconstruction": {
+            "mae": 1.65188057570467,
+            "rmse": 2.461573345708252,
+            "rmae": 0.574191187560515,
+            "rrmse": 0.583922416161832
+          }
+        },
+        "tokyo": {
+          "naive_168h": {
+            "mae": 2.575224820143885,
+            "rmse": 3.9118028067683532,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.8351920600521334,
+            "rmse": 2.8542136996482896,
+            "rmae": 0.712633726460277,
+            "rrmse": 0.7296415081838528
+          },
+          "era5_proxy": {
+            "mae": 1.8189652998300552,
+            "rmse": 2.776735084001288,
+            "rmae": 0.7063326221469178,
+            "rrmse": 0.7098351377009273
+          },
+          "histfc_reconstruction": {
+            "mae": 1.5355894386452091,
+            "rmse": 2.284002910924358,
+            "rmae": 0.5962933514128725,
+            "rrmse": 0.5838747564096245
+          }
+        }
+      },
+      "improvements_pooled_over_price_only": {
+        "mae": {
+          "era5_proxy": 0.04040521258977581,
+          "histfc_reconstruction": 0.2452292028209635
+        },
+        "rmse": {
+          "era5_proxy": 0.06248484584777714,
+          "histfc_reconstruction": 0.3640013520534038
+        }
+      },
+      "parquet": "data/runs/phase26.0_probe_histfc_per_slot.parquet",
+      "parquet_sha256": "7771815964771ec81e14cb2fd09022ad1fe8ce080c95499e7562fc60844d70a5",
+      "n_slots": 60048,
+      "n_areas": 9,
+      "test_day_range": [
+        "2024-09-18",
+        "2025-11-06"
+      ],
+      "datetime_reconstruction": "test_day + 30min * slot_idx (generation order); verified: 48 rows per (area, test_day), reconstructed hour == stored hour on all rows, and y_actual == JEPX spot price on all joined slots",
+      "drift_check": {
+        "vs": "phase26.0_probe_histfc.json",
+        "quantities": "per-area MAE-improvement, era5_lag48 & histfc tiers",
+        "max_abs_diff": 4.440892098500626e-16,
+        "tolerance": 1e-06,
+        "pass": true
+      },
+      "value_multiple_histfc_over_proxy": {
+        "mae": 6.069246691280042,
+        "rmse": 5.825434105097547
+      }
+    },
+    "phase25_10_production_baseline_8area": {
+      "pooled": {
+        "naive_168h": {
+          "mae": 3.0035796130952384,
+          "rmse": 4.496554199897856,
+          "rmae": 1.0,
+          "rrmse": 1.0
+        },
+        "price_only": {
+          "mae": 1.9398350613704558,
+          "rmse": 2.9302405176866784,
+          "rmae": 0.6458410667434994,
+          "rrmse": 0.6516635600107393
+        },
+        "weather": {
+          "mae": 1.9044526364617576,
+          "rmse": 2.8895161631632367,
+          "rmae": 0.6340609811568096,
+          "rrmse": 0.6426067683625107
+        },
+        "production": {
+          "mae": 1.9285301149003362,
+          "rmse": 2.9002196118691916,
+          "rmae": 0.6420772422652563,
+          "rrmse": 0.6449871352457117
+        },
+        "production_weather": {
+          "mae": 1.901059804538488,
+          "rmse": 2.8743966311964515,
+          "rmae": 0.632931385021426,
+          "rrmse": 0.6392442976138809
+        }
+      },
+      "per_area": {
+        "chugoku": {
+          "naive_168h": {
+            "mae": 3.030425595238096,
+            "rmse": 4.559739295231274,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.8098458212419868,
+            "rmse": 2.658133330010065,
+            "rmae": 0.5972249653929517,
+            "rrmse": 0.5829573047717944
+          },
+          "weather": {
+            "mae": 1.7942801199084413,
+            "rmse": 2.6410885656409357,
+            "rmae": 0.5920884917048977,
+            "rrmse": 0.5792192041336823
+          },
+          "production": {
+            "mae": 1.806431910412106,
+            "rmse": 2.6729307295062865,
+            "rmae": 0.5960984203838133,
+            "rrmse": 0.586202534057534
+          },
+          "production_weather": {
+            "mae": 1.7692939524596911,
+            "rmse": 2.5937477469692145,
+            "rmae": 0.5838433899317301,
+            "rrmse": 0.5688368520721879
+          }
+        },
+        "hokkaido": {
+          "naive_168h": {
+            "mae": 3.1535193452380956,
+            "rmse": 4.5164885568247115,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.2751359378886105,
+            "rmse": 3.4434536549080947,
+            "rmae": 0.7214593249044534,
+            "rrmse": 0.7624183282175728
+          },
+          "weather": {
+            "mae": 2.287746318016024,
+            "rmse": 3.462261214753576,
+            "rmae": 0.7254581524830619,
+            "rrmse": 0.7665825278184025
+          },
+          "production": {
+            "mae": 2.289529126175336,
+            "rmse": 3.443140271574283,
+            "rmae": 0.7260234917006583,
+            "rrmse": 0.762348941717448
+          },
+          "production_weather": {
+            "mae": 2.2836067060099117,
+            "rmse": 3.4619961769407626,
+            "rmae": 0.7241454565541902,
+            "rrmse": 0.7665238455457744
+          }
+        },
+        "hokuriku": {
+          "naive_168h": {
+            "mae": 3.1319419642857147,
+            "rmse": 4.767835873191366,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.8899697049653068,
+            "rmse": 2.8282242349891322,
+            "rmae": 0.6034497849950876,
+            "rrmse": 0.5931882535830771
+          },
+          "weather": {
+            "mae": 1.8414162169579593,
+            "rmse": 2.8166565390835268,
+            "rmae": 0.5879471069247355,
+            "rrmse": 0.5907620593487813
+          },
+          "production": {
+            "mae": 1.8940576837720973,
+            "rmse": 2.841022136092776,
+            "rmae": 0.6047550386854199,
+            "rrmse": 0.5958724695343023
+          },
+          "production_weather": {
+            "mae": 1.866958049633917,
+            "rmse": 2.8486470811534397,
+            "rmae": 0.5961023770310202,
+            "rrmse": 0.5974717160820993
+          }
+        },
+        "kansai": {
+          "naive_168h": {
+            "mae": 3.0935386904761906,
+            "rmse": 4.692784002745979,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.8723670314994774,
+            "rmse": 2.7796676784946452,
+            "rmae": 0.6052508854225006,
+            "rrmse": 0.5923280672769351
+          },
+          "weather": {
+            "mae": 1.8235748183668723,
+            "rmse": 2.7318366853806246,
+            "rmae": 0.5894785877354481,
+            "rrmse": 0.5821356115649244
+          },
+          "production": {
+            "mae": 1.8712260790832034,
+            "rmse": 2.800561040594236,
+            "rmae": 0.604882067531266,
+            "rrmse": 0.596780299062452
+          },
+          "production_weather": {
+            "mae": 1.8365600177533037,
+            "rmse": 2.7812871889153192,
+            "rmae": 0.5936761106002526,
+            "rrmse": 0.5926731738106529
+          }
+        },
+        "kyushu": {
+          "naive_168h": {
+            "mae": 2.953889880952381,
+            "rmse": 4.425198468780269,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.8506489683364606,
+            "rmse": 2.7887557335307696,
+            "rmae": 0.6265125116105486,
+            "rrmse": 0.6301990189152902
+          },
+          "weather": {
+            "mae": 1.7930903757629428,
+            "rmse": 2.7079049086031017,
+            "rmae": 0.60702681820516,
+            "rrmse": 0.6119284655156925
+          },
+          "production": {
+            "mae": 1.8292297987458075,
+            "rmse": 2.7648093377203917,
+            "rmae": 0.6192613375810864,
+            "rrmse": 0.6247876467521387
+          },
+          "production_weather": {
+            "mae": 1.7965401630022793,
+            "rmse": 2.732992213366354,
+            "rmae": 0.6081946976381686,
+            "rrmse": 0.6175976586468577
+          }
+        },
+        "shikoku": {
+          "naive_168h": {
+            "mae": 3.2348616071428573,
+            "rmse": 4.831312156933984,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 2.157802547300434,
+            "rmse": 3.2083200836908046,
+            "rmae": 0.6670463251150582,
+            "rrmse": 0.6640680584230451
+          },
+          "weather": {
+            "mae": 2.1264821858336886,
+            "rmse": 3.18869071171104,
+            "rmae": 0.6573641917596197,
+            "rrmse": 0.6600051100268021
+          },
+          "production": {
+            "mae": 2.0746630273763507,
+            "rmse": 3.0240940255307507,
+            "rmae": 0.6413452194663639,
+            "rrmse": 0.6259363765577677
+          },
+          "production_weather": {
+            "mae": 2.064738868178578,
+            "rmse": 3.017891355474848,
+            "rmae": 0.6382773419485563,
+            "rrmse": 0.6246525286393506
+          }
+        },
+        "tohoku": {
+          "naive_168h": {
+            "mae": 2.8652157738095236,
+            "rmse": 4.2034197511272495,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.934350173098878,
+            "rmse": 2.9612977809561087,
+            "rmae": 0.6751150090616077,
+            "rrmse": 0.7044972799021474
+          },
+          "weather": {
+            "mae": 1.8796657800872236,
+            "rmse": 2.8572496658786957,
+            "rmae": 0.6560293982983572,
+            "rrmse": 0.6797440738847113
+          },
+          "production": {
+            "mae": 1.9055308363962744,
+            "rmse": 2.8828292025321316,
+            "rmae": 0.6650566612868829,
+            "rrmse": 0.6858294848519543
+          },
+          "production_weather": {
+            "mae": 1.8597687255322843,
+            "rmse": 2.830780602230338,
+            "rmae": 0.649085050603215,
+            "rrmse": 0.6734470430822891
+          }
+        },
+        "tokyo": {
+          "naive_168h": {
+            "mae": 2.5652440476190472,
+            "rmse": 3.900631897068547,
+            "rmae": 1.0,
+            "rrmse": 1.0
+          },
+          "price_only": {
+            "mae": 1.728560306632492,
+            "rmse": 2.6837035014832558,
+            "rmae": 0.6738385411075681,
+            "rrmse": 0.6880176269645303
+          },
+          "weather": {
+            "mae": 1.6893652767609095,
+            "rmse": 2.602108546890424,
+            "rmae": 0.6585592814566349,
+            "rrmse": 0.6670992330360611
+          },
+          "production": {
+            "mae": 1.7575724572415155,
+            "rmse": 2.6973780384027948,
+            "rmae": 0.685148245007262,
+            "rrmse": 0.691523350467898
+          },
+          "production_weather": {
+            "mae": 1.7310119537379414,
+            "rmse": 2.6350941033452226,
+            "rmae": 0.6747942580140064,
+            "rrmse": 0.6755556978666923
+          }
+        }
+      },
+      "improvements_pooled_over_price_only": {
+        "mae": {
+          "weather": 0.03538242490869825,
+          "production": 0.011304946470119592,
+          "production_weather": 0.0387752568319677
+        },
+        "rmse": {
+          "weather": 0.0407243545234417,
+          "production": 0.03002090581748673,
+          "production_weather": 0.05584388649022687
+        }
+      },
+      "parquet": "data/runs/phase25.10_production_baseline_predictions.parquet",
+      "parquet_sha256": "96b63694e9928774ee2ee650f8b14ada7728b01900db1f1009d4bc4b0ca38fc2",
+      "n_slots_per_cell": 53760,
+      "n_areas": 8,
+      "drift_check": {
+        "vs": "phase25.10_production_baseline_summary.parquet",
+        "quantities": "per-area per-cell pooled MAE (4 cells x 8 areas)",
+        "max_abs_diff": 8.43769498715119e-15,
+        "tolerance": 1e-06,
+        "pass": true
+      }
+    }
+  },
+  "not_computable_from_cache": {
+    "gpv_exact_issuance_tier": "phase31b/phase35/phase41 head-to-head scripts wrote aggregate JSONs only; no per-slot GPV predictions are cached anywhere in data/runs/. rMAE/RMSE for the GPV tier would require refitting (forbidden in this phase).",
+    "phase35_41_committed_MAE_improvements": "proxy 0.0319 / histfc 0.2397 / gpv 0.2531 JPY/kWh (8-area) and 0.0214 / 0.2342 / 0.2484 (9-area) are therefore reconciled at the JSON level only, not recomputed from per-slot cache."
+  },
+  "headline_value_multiples": {
+    "committed_mae_phase35_allhours": {
+      "gpv_over_proxy_mae": 7.934169278996865,
+      "histfc_over_proxy_mae": 7.514106583072101,
+      "source": "phase35_allhours_headtohead.json (aggregate MAE improvements; no per-slot cache exists for this run)"
+    },
+    "rmse_analogue_histfc_over_proxy": {
+      "phase26_1_8area": {
+        "mae": 7.013112657298721,
+        "rmse": 7.125498907141076
+      },
+      "phase26_0_9area": {
+        "mae": 6.069246691280042,
+        "rmse": 5.825434105097547
+      }
+    }
+  }
+}

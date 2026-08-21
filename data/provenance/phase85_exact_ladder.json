@@ -1,0 +1,1965 @@
+{
+ "phase": 85,
+ "title": "CW-primary vintage ladder on >=730 test days (Gate 35 executed)",
+ "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+ "gate35_execution_note": "Gate 35 (2026-08-03 precommit) fired 7/8 on 2026-08-04 and is EXECUTED here, not re-evaluated. The 2026-08-04 deferral and its reasons are disclosed in the results doc and the manuscript ledger.",
+ "panel": {
+  "n_slots": 315414,
+  "n_areas": 9,
+  "n_test_days": 732,
+  "first_test_day": "2024-08-01",
+  "last_test_day": "2026-08-05",
+  "slots_per_area": 35046
+ },
+ "gate45_reproducibility": {
+  "frozen_window_end": "2026-07-18",
+  "tolerance": 1e-09,
+  "45b_vs_phase59": {
+   "reference": "phase59_exact_ladder_per_slot.parquet",
+   "reference_sha256": "60ad160d3cf80e65aeb8cf32cb4b3e725138ea5f78bdbf276099f2d3d98bfa31",
+   "n_slots_reference": 307638,
+   "n_slots_frozen_window": 307638,
+   "n_slots_matched": 307638,
+   "row_set_identical": true,
+   "max_abs_diff": {
+    "price_only": 0.0,
+    "era5": 0.0,
+    "prev2": 0.0,
+    "prev1": 0.0,
+    "histfc": 0.0,
+    "oracle": 0.0,
+    "msm_d2_12z": 0.0,
+    "msm_gate_composite": 0.0,
+    "msm_d1_00z": 0.0,
+    "y_actual": 0.0
+   },
+   "verdict": "PASS"
+  },
+  "45c_vs_phase74": {
+   "reference": "phase74_cw_ladder_per_slot.parquet",
+   "reference_sha256": "4434b28624ddfd48e9d8b35d138de945734c40aab1b1acc1a5a360057720c0fb",
+   "n_slots_reference": 307638,
+   "n_slots_frozen_window": 307638,
+   "n_slots_matched": 307638,
+   "row_set_identical": true,
+   "max_abs_diff": {
+    "msm_d2_12z_cw": 0.0,
+    "msm_gate_composite_cw": 0.0,
+    "msm_d1_00z_cw": 0.0,
+    "y_actual": 0.0
+   },
+   "verdict": "PASS"
+  },
+  "verdict": "PASS",
+  "consequence_if_fail": "Abort. Either a frozen input moved (45a violation) or the harness has unaccounted non-determinism; the new numbers cannot be trusted either."
+ },
+ "gate49_panel_size": {
+  "n_test_days": 732,
+  "required": 730,
+  "verdict": "PASS",
+  "rule_if_fail": "extend ERA5_END day by day per the precommit's data-availability rule and rebuild"
+ },
+ "cw_coverage": {
+  "n_slots_cw_complete": 315414,
+  "share_of_panel": 1.0,
+  "n_test_days_cw": 732
+ },
+ "arm_cw_primary": {
+  "tiers": {
+   "msm_d2_12z_cw": {
+    "improvement": 0.2529,
+    "ci95": [
+     0.208,
+     0.2998
+    ],
+    "dm_l3": {
+     "mean_diff": 0.25294,
+     "t_hln": 12.368,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.25294,
+     "t_hln": 9.433,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "msm_gate_composite_cw": {
+    "improvement": 0.2538,
+    "ci95": [
+     0.2091,
+     0.3011
+    ],
+    "dm_l3": {
+     "mean_diff": 0.25376,
+     "t_hln": 12.283,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.25376,
+     "t_hln": 9.392,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "msm_d1_00z_cw": {
+    "improvement": 0.2555,
+    "ci95": [
+     0.2101,
+     0.3031
+    ],
+    "dm_l3": {
+     "mean_diff": 0.25551,
+     "t_hln": 12.321,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.25551,
+     "t_hln": 9.387,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "oracle_cw": {
+    "improvement": 0.2405,
+    "ci95": [
+     0.1975,
+     0.2854
+    ],
+    "dm_l3": {
+     "mean_diff": 0.24048,
+     "t_hln": 12.378,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.24048,
+     "t_hln": 9.387,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "era5_cw": {
+    "improvement": 0.0469,
+    "ci95": [
+     0.0302,
+     0.0632
+    ],
+    "dm_l3": {
+     "mean_diff": 0.04688,
+     "t_hln": 5.736,
+     "p_hln": 1e-08,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.04688,
+     "t_hln": 5.251,
+     "p_hln": 2e-07,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 8,
+    "areas_sig_l3_holm": 7,
+    "areas_sig_l3_bh": 8
+   }
+  },
+  "per_area": {
+   "msm_d2_12z_cw": {
+    "chubu": {
+     "improvement": 0.2545,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.3008,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.0916,
+     "p_l3": 1.8e-07,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1777,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2403,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.3634,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.2296,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3778,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2406,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "msm_gate_composite_cw": {
+    "chubu": {
+     "improvement": 0.2501,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2929,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.0954,
+     "p_l3": 1.8e-07,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1888,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2461,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.3592,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.2203,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3817,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2493,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "msm_d1_00z_cw": {
+    "chubu": {
+     "improvement": 0.2625,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2933,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.1063,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1832,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.243,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.3484,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.228,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3845,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2505,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "oracle_cw": {
+    "chubu": {
+     "improvement": 0.253,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2668,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.1069,
+     "p_l3": 2e-08,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.2023,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2263,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.3356,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.2057,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3461,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2216,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "era5_cw": {
+    "chubu": {
+     "improvement": 0.0496,
+     "p_l3": 0.00024752,
+     "p_l3_holm": 0.001238,
+     "p_l3_bh": 0.000446
+    },
+    "chugoku": {
+     "improvement": 0.0757,
+     "p_l3": 1.6e-07,
+     "p_l3_holm": 1e-06,
+     "p_l3_bh": 1e-06
+    },
+    "hokkaido": {
+     "improvement": 0.009,
+     "p_l3": 0.41336507,
+     "p_l3_holm": 0.413365,
+     "p_l3_bh": 0.413365
+    },
+    "hokuriku": {
+     "improvement": 0.0392,
+     "p_l3": 0.00188774,
+     "p_l3_holm": 0.007551,
+     "p_l3_bh": 0.002832
+    },
+    "kansai": {
+     "improvement": 0.0637,
+     "p_l3": 1.58e-06,
+     "p_l3_holm": 1.3e-05,
+     "p_l3_bh": 7e-06
+    },
+    "kyushu": {
+     "improvement": 0.0553,
+     "p_l3": 1.387e-05,
+     "p_l3_holm": 8.3e-05,
+     "p_l3_bh": 3.1e-05
+    },
+    "shikoku": {
+     "improvement": 0.0306,
+     "p_l3": 0.03842337,
+     "p_l3_holm": 0.076847,
+     "p_l3_bh": 0.043226
+    },
+    "tohoku": {
+     "improvement": 0.0647,
+     "p_l3": 5.23e-06,
+     "p_l3_holm": 3.7e-05,
+     "p_l3_bh": 1.6e-05
+    },
+    "tokyo": {
+     "improvement": 0.0341,
+     "p_l3": 0.005575,
+     "p_l3_holm": 0.016725,
+     "p_l3_bh": 0.007168
+    }
+   }
+  },
+  "gate46_47_48_pregate_value": {
+   "candidates": {
+    "msm_d2_12z_cw": {
+     "improvement": 0.2529,
+     "ci95": [
+      0.208,
+      0.2998
+     ],
+     "dm_p_l3": 0.0,
+     "dm_p_l9": 0.0,
+     "passes": true
+    },
+    "msm_gate_composite_cw": {
+     "improvement": 0.2538,
+     "ci95": [
+      0.2091,
+      0.3011
+     ],
+     "dm_p_l3": 0.0,
+     "dm_p_l9": 0.0,
+     "passes": true
+    }
+   },
+   "headline_tier": "msm_d2_12z_cw",
+   "headline_rule": "the smaller of the two pre-gate tiers, fixed before results (conservative, phase51/59 rule)",
+   "verdict": "PASS"
+  },
+  "gate46_47_48_gate_timing": {
+   "post_gate_tier": "msm_d1_00z_cw",
+   "pre_gate_tier": "msm_d2_12z_cw",
+   "delta": 0.0026,
+   "ci95": [
+    -0.0047,
+    0.0099
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00257,
+    "t_hln": 0.682,
+    "p_hln": 0.49547417,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00257,
+    "t_hln": 0.702,
+    "p_hln": 0.48320234,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 732,
+    "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+      "boot": {
+       "p_lower": 0.0001,
+       "p_upper": 0.0234,
+       "p_tost": 0.0234,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.003766,
+       "t_lower": 3.3376,
+       "t_upper": -1.9736,
+       "p_lower": 0.00044389,
+       "p_upper": 0.02440074,
+       "p_tost": 0.02440074,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.003658,
+       "t_lower": 3.4355,
+       "t_upper": -2.0315,
+       "p_lower": 0.00031244,
+       "p_upper": 0.02128305,
+       "p_tost": 0.02128305,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.864
+     },
+     "relevance": {
+      "delta_margin": 0.05058,
+      "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.003766,
+       "t_lower": 14.1141,
+       "t_upper": -12.7501,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.003658,
+       "t_lower": 14.528,
+       "t_upper": -13.124,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.171
+     }
+    },
+    "ci90": [
+     -0.00361,
+     0.00864
+    ],
+    "smallest_margin_supported": 0.00864,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   },
+   "branch": "b",
+   "reading": "CI covers zero and the one-tick TOST passes all three arms: the null holds, equivalence claimed for the POOLED MEAN at the tick margin only",
+   "upper_bound_if_b": 0.0099
+  },
+  "headline_retention_of_post_gate_pct": 99.0,
+  "per_area_gate_timing": {
+   "areas": {
+    "chubu": {
+     "delta": 0.0079,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "chugoku": {
+     "delta": -0.0076,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "hokkaido": {
+     "delta": 0.0147,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "hokuriku": {
+     "delta": 0.0055,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "kansai": {
+     "delta": 0.0027,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "kyushu": {
+     "delta": -0.015,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "shikoku": {
+     "delta": -0.0016,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "tohoku": {
+     "delta": 0.0067,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "tokyo": {
+     "delta": 0.0098,
+     "tick_verdict": "NOT_EQUIVALENT"
+    }
+   },
+   "n_areas_equivalent_at_tick": 0
+  },
+  "gate46_47_48_decomposition": {
+   "label_rule": "The stale-proxy multiple is a COMPOSITE contrast of product, vintage and availability. It is never to be called a vintage effect on its own.",
+   "within_era5_vintage_effect": {
+    "delta": 0.1936,
+    "ci95": [
+     0.1587,
+     0.2304
+    ],
+    "dm_l3": {
+     "mean_diff": 0.1936,
+     "t_hln": 12.118,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.1936,
+     "t_hln": 9.349,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732
+   },
+   "product_bound": {
+    "delta": 0.0125,
+    "ci95": [
+     0.0018,
+     0.0229
+    ],
+    "dm_l3": {
+     "mean_diff": 0.01246,
+     "t_hln": 2.214,
+     "p_hln": 0.02714363,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.01246,
+     "t_hln": 2.38,
+     "p_hln": 0.01754772,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732
+   },
+   "composite_multiple": 5.392,
+   "headline_vs_stale": {
+    "difference": {
+     "delta": 0.2061,
+     "ci95": [
+      0.169,
+      0.2456
+     ],
+     "dm_l3": {
+      "mean_diff": 0.20606,
+      "t_hln": 11.95,
+      "p_hln": 0.0,
+      "n_days": 732,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.20606,
+      "t_hln": 9.292,
+      "p_hln": 0.0,
+      "n_days": 732,
+      "nw_lag": 9
+     },
+     "n_days": 732
+    },
+    "ratio": {
+     "ratio": 5.395,
+     "ci95": [
+      4.23,
+      7.713
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    }
+   }
+  }
+ },
+ "arm_sp_robustness": {
+  "tiers": {
+   "era5": {
+    "improvement": 0.0411,
+    "ci95": [
+     0.0245,
+     0.057
+    ],
+    "dm_l3": {
+     "mean_diff": 0.04105,
+     "t_hln": 5.115,
+     "p_hln": 4e-07,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.04105,
+     "t_hln": 4.676,
+     "p_hln": 3.48e-06,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 7,
+    "areas_sig_l3_holm": 7,
+    "areas_sig_l3_bh": 7
+   },
+   "prev2": {
+    "improvement": 0.212,
+    "ci95": [
+     0.1732,
+     0.2527
+    ],
+    "dm_l3": {
+     "mean_diff": 0.21197,
+     "t_hln": 11.974,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.21197,
+     "t_hln": 9.106,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "prev1": {
+    "improvement": 0.2284,
+    "ci95": [
+     0.1856,
+     0.2728
+    ],
+    "dm_l3": {
+     "mean_diff": 0.22839,
+     "t_hln": 11.712,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.22839,
+     "t_hln": 8.917,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "histfc": {
+    "improvement": 0.2175,
+    "ci95": [
+     0.1764,
+     0.2605
+    ],
+    "dm_l3": {
+     "mean_diff": 0.21754,
+     "t_hln": 11.702,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.21754,
+     "t_hln": 8.938,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "oracle": {
+    "improvement": 0.2173,
+    "ci95": [
+     0.1777,
+     0.2584
+    ],
+    "dm_l3": {
+     "mean_diff": 0.21727,
+     "t_hln": 12.142,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.21727,
+     "t_hln": 9.241,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "msm_d2_12z": {
+    "improvement": 0.2249,
+    "ci95": [
+     0.1829,
+     0.2685
+    ],
+    "dm_l3": {
+     "mean_diff": 0.22487,
+     "t_hln": 11.81,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.22487,
+     "t_hln": 9.034,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "msm_gate_composite": {
+    "improvement": 0.2265,
+    "ci95": [
+     0.1843,
+     0.2712
+    ],
+    "dm_l3": {
+     "mean_diff": 0.22649,
+     "t_hln": 11.674,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.22649,
+     "t_hln": 8.973,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   },
+   "msm_d1_00z": {
+    "improvement": 0.2284,
+    "ci95": [
+     0.1855,
+     0.273
+    ],
+    "dm_l3": {
+     "mean_diff": 0.22835,
+     "t_hln": 11.654,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.22835,
+     "t_hln": 8.928,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732,
+    "areas_improved": 9,
+    "areas_sig_l3": 9,
+    "areas_sig_l3_holm": 9,
+    "areas_sig_l3_bh": 9
+   }
+  },
+  "per_area": {
+   "era5": {
+    "chubu": {
+     "improvement": 0.0373,
+     "p_l3": 0.0046711,
+     "p_l3_holm": 0.014013,
+     "p_l3_bh": 0.006006
+    },
+    "chugoku": {
+     "improvement": 0.0587,
+     "p_l3": 4.06e-06,
+     "p_l3_holm": 3.2e-05,
+     "p_l3_bh": 1.8e-05
+    },
+    "hokkaido": {
+     "improvement": 0.0042,
+     "p_l3": 0.70387786,
+     "p_l3_holm": 0.703878,
+     "p_l3_bh": 0.703878
+    },
+    "hokuriku": {
+     "improvement": 0.047,
+     "p_l3": 0.00024813,
+     "p_l3_holm": 0.001489,
+     "p_l3_bh": 0.000558
+    },
+    "kansai": {
+     "improvement": 0.0574,
+     "p_l3": 2.45e-06,
+     "p_l3_holm": 2.2e-05,
+     "p_l3_bh": 1.8e-05
+    },
+    "kyushu": {
+     "improvement": 0.0497,
+     "p_l3": 0.00242314,
+     "p_l3_holm": 0.012116,
+     "p_l3_bh": 0.004362
+    },
+    "shikoku": {
+     "improvement": 0.0257,
+     "p_l3": 0.09443397,
+     "p_l3_holm": 0.188868,
+     "p_l3_bh": 0.106238
+    },
+    "tohoku": {
+     "improvement": 0.0564,
+     "p_l3": 2.162e-05,
+     "p_l3_holm": 0.000151,
+     "p_l3_bh": 6.5e-05
+    },
+    "tokyo": {
+     "improvement": 0.0332,
+     "p_l3": 0.0029589,
+     "p_l3_holm": 0.012116,
+     "p_l3_bh": 0.004438
+    }
+   },
+   "prev2": {
+    "chubu": {
+     "improvement": 0.2156,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2596,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.0823,
+     "p_l3": 1.9e-07,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.166,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2176,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.2974,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.1915,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.284,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.1937,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "prev1": {
+    "chubu": {
+     "improvement": 0.2437,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2676,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.1037,
+     "p_l3": 1e-08,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1817,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2257,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.286,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.1975,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3367,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2128,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "histfc": {
+    "chubu": {
+     "improvement": 0.2282,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2473,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.1006,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1746,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2011,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.2782,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.1886,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3291,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2103,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "oracle": {
+    "chubu": {
+     "improvement": 0.245,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.238,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.1098,
+     "p_l3": 1e-08,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1828,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2243,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.2856,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.1901,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.2961,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.1838,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "msm_d2_12z": {
+    "chubu": {
+     "improvement": 0.2291,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2745,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.0916,
+     "p_l3": 1.8e-07,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1731,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2216,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.29,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.199,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3304,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2145,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "msm_gate_composite": {
+    "chubu": {
+     "improvement": 0.2351,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2704,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.0954,
+     "p_l3": 1.8e-07,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1734,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2272,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.2907,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.1968,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3308,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2187,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   },
+   "msm_d1_00z": {
+    "chubu": {
+     "improvement": 0.2348,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "chugoku": {
+     "improvement": 0.2739,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokkaido": {
+     "improvement": 0.1063,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "hokuriku": {
+     "improvement": 0.1843,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kansai": {
+     "improvement": 0.2226,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "kyushu": {
+     "improvement": 0.2835,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "shikoku": {
+     "improvement": 0.1964,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tohoku": {
+     "improvement": 0.3359,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    },
+    "tokyo": {
+     "improvement": 0.2175,
+     "p_l3": 0.0,
+     "p_l3_holm": 0.0,
+     "p_l3_bh": 0.0
+    }
+   }
+  },
+  "gate50_sp_pregate_value": {
+   "candidates": {
+    "msm_d2_12z": {
+     "improvement": 0.2249,
+     "ci95": [
+      0.1829,
+      0.2685
+     ],
+     "dm_p_l3": 0.0,
+     "dm_p_l9": 0.0,
+     "passes": true
+    },
+    "msm_gate_composite": {
+     "improvement": 0.2265,
+     "ci95": [
+      0.1843,
+      0.2712
+     ],
+     "dm_p_l3": 0.0,
+     "dm_p_l9": 0.0,
+     "passes": true
+    }
+   },
+   "headline_tier": "msm_d2_12z",
+   "headline_rule": "the smaller of the two pre-gate tiers, fixed before results (conservative, phase51/59 rule)",
+   "verdict": "PASS"
+  },
+  "gate50_sp_gate_timing": {
+   "post_gate_tier": "msm_d1_00z",
+   "pre_gate_tier": "msm_d2_12z",
+   "delta": 0.0035,
+   "ci95": [
+    -0.0032,
+    0.0102
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00348,
+    "t_hln": 0.975,
+    "p_hln": 0.32979363,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00348,
+    "t_hln": 1.015,
+    "p_hln": 0.31022058,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 732,
+    "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0285,
+       "p_tost": 0.0285,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.003571,
+       "t_lower": 3.7757,
+       "t_upper": -1.8257,
+       "p_lower": 8.626e-05,
+       "p_upper": 0.03415256,
+       "p_tost": 0.03415256,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.00343,
+       "t_lower": 3.9306,
+       "t_upper": -1.9006,
+       "p_lower": 4.639e-05,
+       "p_upper": 0.02887457,
+       "p_tost": 0.02887457,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.918
+     },
+     "relevance": {
+      "delta_margin": 0.04498,
+      "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.003571,
+       "t_lower": 13.5725,
+       "t_upper": -11.6225,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.00343,
+       "t_lower": 14.1293,
+       "t_upper": -12.0993,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.204
+     }
+    },
+    "ci90": [
+     -0.0022,
+     0.00918
+    ],
+    "smallest_margin_supported": 0.00918,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   },
+   "branch": "b",
+   "reading": "CI covers zero and the one-tick TOST passes all three arms: the null holds, equivalence claimed for the POOLED MEAN at the tick margin only",
+   "upper_bound_if_b": 0.0102
+  },
+  "headline_retention_of_post_gate_pct": 98.5,
+  "per_area_gate_timing": {
+   "areas": {
+    "chubu": {
+     "delta": 0.0057,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "chugoku": {
+     "delta": -0.0007,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "hokkaido": {
+     "delta": 0.0147,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "hokuriku": {
+     "delta": 0.0112,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "kansai": {
+     "delta": 0.001,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "kyushu": {
+     "delta": -0.0065,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "shikoku": {
+     "delta": -0.0026,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "tohoku": {
+     "delta": 0.0055,
+     "tick_verdict": "NOT_EQUIVALENT"
+    },
+    "tokyo": {
+     "delta": 0.0031,
+     "tick_verdict": "NOT_EQUIVALENT"
+    }
+   },
+   "n_areas_equivalent_at_tick": 0
+  },
+  "gate50_sp_decomposition": {
+   "label_rule": "The stale-proxy multiple is a COMPOSITE contrast of product, vintage and availability. It is never to be called a vintage effect on its own.",
+   "within_era5_vintage_effect": {
+    "delta": 0.1762,
+    "ci95": [
+     0.1446,
+     0.2098
+    ],
+    "dm_l3": {
+     "mean_diff": 0.17622,
+     "t_hln": 12.093,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.17622,
+     "t_hln": 9.45,
+     "p_hln": 0.0,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732
+   },
+   "product_bound": {
+    "delta": 0.0076,
+    "ci95": [
+     -0.0024,
+     0.0177
+    ],
+    "dm_l3": {
+     "mean_diff": 0.0076,
+     "t_hln": 1.447,
+     "p_hln": 0.14838429,
+     "n_days": 732,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.0076,
+     "t_hln": 1.514,
+     "p_hln": 0.13053553,
+     "n_days": 732,
+     "nw_lag": 9
+    },
+    "n_days": 732
+   },
+   "composite_multiple": 5.472,
+   "headline_vs_stale": {
+    "difference": {
+     "delta": 0.1838,
+     "ci95": [
+      0.1498,
+      0.2208
+     ],
+     "dm_l3": {
+      "mean_diff": 0.18382,
+      "t_hln": 11.502,
+      "p_hln": 0.0,
+      "n_days": 732,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.18382,
+      "t_hln": 9.043,
+      "p_hln": 0.0,
+      "n_days": 732,
+      "nw_lag": 9
+     },
+     "n_days": 732
+    },
+    "ratio": {
+     "ratio": 5.478,
+     "ci95": [
+      4.188,
+      8.412
+     ],
+     "n_draws_used": 10000,
+     "n_days": 732
+    }
+   }
+  }
+ },
+ "gate50_ingestion_sp": {
+  "delta": -0.0,
+  "ci95": [
+   -0.0037,
+   0.0036
+  ],
+  "dm_l3": {
+   "mean_diff": -4e-05,
+   "t_hln": -0.02,
+   "p_hln": 0.98372822,
+   "n_days": 732,
+   "nw_lag": 3
+  },
+  "dm_l9": {
+   "mean_diff": -4e-05,
+   "t_hln": -0.02,
+   "p_hln": 0.98403339,
+   "n_days": 732,
+   "nw_lag": 9
+  },
+  "n_days": 732,
+  "equivalence": {
+   "alpha": 0.05,
+   "n_days": 732,
+   "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+   "margins": {
+    "tick": {
+     "delta_margin": 0.01,
+     "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.00188,
+      "t_lower": 5.3002,
+      "t_upper": -5.3402,
+      "p_lower": 8e-08,
+      "p_upper": 6e-08,
+      "p_tost": 8e-08,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.00188,
+      "t_lower": 5.3002,
+      "t_upper": -5.3402,
+      "p_lower": 8e-08,
+      "p_upper": 6e-08,
+      "p_tost": 8e-08,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.316
+    },
+    "relevance": {
+     "delta_margin": 0.04498,
+     "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.00188,
+      "t_lower": 23.9101,
+      "t_upper": -23.9501,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.00188,
+      "t_lower": 23.9101,
+      "t_upper": -23.9501,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.07
+    }
+   },
+   "ci90": [
+    -0.00316,
+    0.003
+   ],
+   "smallest_margin_supported": 0.00316,
+   "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+  },
+  "note": "same nominal initialisation, pinned run vs fixed-lead composite; both sides single-point. Reported whatever the sign."
+ },
+ "gate50_composite_vs_pinned_sp": {
+  "delta": -0.0129,
+  "ci95": [
+   -0.0215,
+   -0.0047
+  ],
+  "dm_l3": {
+   "mean_diff": -0.0129,
+   "t_hln": -3.015,
+   "p_hln": 0.00266054,
+   "n_days": 732,
+   "nw_lag": 3
+  },
+  "dm_l9": {
+   "mean_diff": -0.0129,
+   "t_hln": -2.949,
+   "p_hln": 0.00328779,
+   "n_days": 732,
+   "nw_lag": 9
+  },
+  "n_days": 732,
+  "equivalence": {
+   "alpha": 0.05,
+   "n_days": 732,
+   "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+   "margins": {
+    "tick": {
+     "delta_margin": 0.01,
+     "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+     "boot": {
+      "p_lower": 0.7511,
+      "p_upper": 0.0,
+      "p_tost": 0.7511,
+      "equivalent": false
+     },
+     "dm_l3": {
+      "se": 0.00428,
+      "t_lower": -0.6786,
+      "t_upper": -5.3514,
+      "p_lower": 0.75119327,
+      "p_upper": 6e-08,
+      "p_tost": 0.75119327,
+      "equivalent": false
+     },
+     "dm_l9": {
+      "se": 0.004376,
+      "t_lower": -0.6637,
+      "t_upper": -5.2343,
+      "p_lower": 0.74646499,
+      "p_upper": 1.1e-07,
+      "p_tost": 0.74646499,
+      "equivalent": false
+     },
+     "verdict": "NOT_EQUIVALENT",
+     "ci90_within_margin": false,
+     "margin_utilisation": 2.009
+    },
+    "relevance": {
+     "delta_margin": 0.04498,
+     "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.00428,
+      "t_lower": 7.4942,
+      "t_upper": -13.5242,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.004376,
+      "t_lower": 7.3301,
+      "t_upper": -13.2281,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.447
+    }
+   },
+   "ci90": [
+    -0.02009,
+    -0.00593
+   ],
+   "smallest_margin_supported": 0.02009,
+   "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+  },
+  "note": "fixed-lead composite minus run-pinned pre-gate headline, both single-point."
+ },
+ "cross_measurement": {
+  "flag": "CROSS-MEASUREMENT contrasts: capacity-weighted vs single-point of the same run. Reported for the uplift and the measurement-x-lead interaction only; never mixed into a ladder contrast.",
+  "uplift_msm_d2_12z": {
+   "delta": 0.0281,
+   "ci95": [
+    0.0218,
+    0.0344
+   ],
+   "dm_l3": {
+    "mean_diff": 0.02806,
+    "t_hln": 8.701,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.02806,
+    "t_hln": 8.315,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "uplift_msm_gate_composite": {
+   "delta": 0.0273,
+   "ci95": [
+    0.0214,
+    0.0331
+   ],
+   "dm_l3": {
+    "mean_diff": 0.02727,
+    "t_hln": 8.911,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.02727,
+    "t_hln": 8.942,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "uplift_msm_d1_00z": {
+   "delta": 0.0272,
+   "ci95": [
+    0.0212,
+    0.0331
+   ],
+   "dm_l3": {
+    "mean_diff": 0.02715,
+    "t_hln": 8.927,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.02715,
+    "t_hln": 8.748,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "measurement_x_lead_interaction": {
+   "delta": -0.00091,
+   "ci95": [
+    -0.00688,
+    0.00521
+   ],
+   "dm_l3": {
+    "mean_diff": -0.00091,
+    "t_hln": -0.298,
+    "p_hln": 0.76603445,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": -0.00091,
+    "t_hln": -0.291,
+    "p_hln": 0.77107642,
+    "n_days": 732,
+    "nw_lag": 9
+   }
+  }
+ },
+ "arms_agreement": {
+  "cw_branch": "b",
+  "sp_branch": "b",
+  "agree": true,
+  "rule": "if the arms disagree, the CW branch governs the manuscript (Gate 35 made CW primary) and the interaction is reported prominently"
+ },
+ "metadata": {
+  "script": "s_20260811_phase85_cw_primary_ladder.py",
+  "git_sha": "549cbb3aec6c2aad494dfe018e5b71627799fcff",
+  "generated_utc": "2026-08-18T04:53:18.728847+00:00",
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block_days": 7,
+  "weight_vintage": "2024-09",
+  "versions": {
+   "xgboost": "3.2.0",
+   "polars": "1.40.1",
+   "numpy": "2.4.4"
+  },
+  "uv_lock_sha256": "0c02412ea0c72fc6a3621046fa55dc80453342bdced4343ba4cdc23d6194215a",
+  "protocol": {
+   "initial_train_end": "2024-07-18",
+   "val_window_days": 14,
+   "step_days": 1,
+   "panel_start": "2024-03-02",
+   "weather_end": "2026-08-08",
+   "era5_end": "2026-08-05",
+   "frozen_window": "identical to phase51/59/74 through 2026-07-18 (Gate 45 verifies)"
+  }
+ }
+}

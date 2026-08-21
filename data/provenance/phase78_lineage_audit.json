@@ -1,0 +1,285 @@
+{
+ "phase": 78,
+ "title": "Feature lineage audit",
+ "precommit_doc": "docs/research/2026-08-11_phase78_lineage_audit_precommit.md",
+ "buffers_min": [
+  0,
+  30,
+  60,
+  90,
+  120
+ ],
+ "run_dissemination": {
+  "msm_d2_21z": {
+   "n_days": 881,
+   "median_lag_min": 135.92,
+   "p99_lag_min": 136.15,
+   "worst_lag_min": 136.37,
+   "gate_minus_init_min": 240,
+   "worst_margin_min": 103.63,
+   "admissible_under_buffer_min": {
+    "0": 1.0,
+    "30": 1.0,
+    "60": 1.0,
+    "90": 1.0,
+    "120": 0.0
+   }
+  },
+  "msm_d1_00z": {
+   "n_days": 881,
+   "median_lag_min": 135.9,
+   "p99_lag_min": 136.12,
+   "worst_lag_min": 137.27,
+   "gate_minus_init_min": 60,
+   "worst_margin_min": -77.27,
+   "admissible_under_buffer_min": {
+    "0": 0.0,
+    "30": 0.0,
+    "60": 0.0,
+    "90": 0.0,
+    "120": 0.0
+   }
+  },
+  "msm_d2_12z": {
+   "n_days": 881,
+   "median_lag_min": 136.02,
+   "p99_lag_min": 136.27,
+   "worst_lag_min": 159.47,
+   "gate_minus_init_min": 780,
+   "worst_margin_min": 620.53,
+   "admissible_under_buffer_min": {
+    "0": 1.0,
+    "30": 1.0,
+    "60": 1.0,
+    "90": 1.0,
+    "120": 1.0
+   }
+  },
+  "msm_d3_12z": {
+   "n_days": 891,
+   "median_lag_min": 136.18,
+   "p99_lag_min": 136.43,
+   "worst_lag_min": 159.67,
+   "gate_minus_init_min": 2220,
+   "worst_margin_min": 2060.33,
+   "admissible_under_buffer_min": {
+    "0": 1.0,
+    "30": 1.0,
+    "60": 1.0,
+    "90": 1.0,
+    "120": 1.0
+   }
+  },
+  "msm_d2_18z": {
+   "n_days": 891,
+   "median_lag_min": 135.92,
+   "p99_lag_min": 136.15,
+   "worst_lag_min": 150.57,
+   "gate_minus_init_min": 420,
+   "worst_margin_min": 269.43,
+   "admissible_under_buffer_min": {
+    "0": 1.0,
+    "30": 1.0,
+    "60": 1.0,
+    "90": 1.0,
+    "120": 1.0
+   }
+  }
+ },
+ "families": [
+  {
+   "family": "Area price lags (48/96/336/672 slots)",
+   "source": "JEPX day-ahead auction results",
+   "first_publication": "auction results published on D-2, hours after the 10:00 D-2 gate (jepx2024rules)",
+   "measured": null,
+   "gate_margin": ">= 22 h",
+   "revision_risk": "OBSERVED: JEPX back-fills recently-empty columns (2026-07-26/27 rows, caught live by the Gate-45a audit); price columns for delivery days inside the panel were bit-identical",
+   "admissible": true
+  },
+  {
+   "family": "System price / spread / neighbour prices (lag-48)",
+   "source": "JEPX, one day earlier",
+   "first_publication": "as above",
+   "measured": null,
+   "gate_margin": ">= 22 h",
+   "revision_risk": "as above",
+   "admissible": true
+  },
+  {
+   "family": "Calendar",
+   "source": "deterministic",
+   "first_publication": "known in advance",
+   "measured": null,
+   "gate_margin": "unbounded",
+   "revision_risk": "none",
+   "admissible": true
+  },
+  {
+   "family": "ERA5 reanalysis (lag-48/96) / realised ex-post",
+   "source": "ECMWF via Open-Meteo archive",
+   "first_publication": "ERA5T ~5 days after valid time; final ERA5 ~2-3 months (hersbach2020era5)",
+   "measured": "phase85 overlap diagnostic: ZERO drift on the frozen boundary day across all areas (the documented ERA5T->ERA5 revision risk did not materialise at this boundary; the freeze policy protects against it regardless)",
+   "gate_margin": "NEGATIVE (publishes after the gate)",
+   "revision_risk": "ERA5T -> ERA5 revisions documented (ECMWF); not observed at our frozen boundary",
+   "admissible": false,
+   "role": "research tiers only, labelled non-admissible"
+  },
+  {
+   "family": "JMA-MSM pre-gate, run-pinned (D-2 12Z)",
+   "source": "RISH archive, per-run GRIB2",
+   "first_publication": "spec: init + 2h30m (jmbsc2025msmgpv)",
+   "measured": {
+    "n_days": 881,
+    "median_lag_min": 136.02,
+    "p99_lag_min": 136.27,
+    "worst_lag_min": 159.47,
+    "gate_minus_init_min": 780,
+    "worst_margin_min": 620.53,
+    "admissible_under_buffer_min": {
+     "0": 1.0,
+     "30": 1.0,
+     "60": 1.0,
+     "90": 1.0,
+     "120": 1.0
+    }
+   },
+   "gate_margin": "worst 621 min",
+   "revision_risk": "none: an archived run is immutable",
+   "admissible": true
+  },
+  {
+   "family": "JMA-MSM pre-gate, freshest per slot (D-2 21Z + 12Z)",
+   "source": "RISH archive",
+   "first_publication": "spec: init + 2h30m",
+   "measured": {
+    "n_days": 881,
+    "median_lag_min": 135.92,
+    "p99_lag_min": 136.15,
+    "worst_lag_min": 136.37,
+    "gate_minus_init_min": 240,
+    "worst_margin_min": 103.63,
+    "admissible_under_buffer_min": {
+     "0": 1.0,
+     "30": 1.0,
+     "60": 1.0,
+     "90": 1.0,
+     "120": 0.0
+    }
+   },
+   "gate_margin": "worst 104 min (admissible at every buffer <= 90 min on all days; the 120-min buffer removes it and the ladder's fallback is the already-estimated D-2 12Z cell)",
+   "revision_risk": "none",
+   "admissible": true
+  },
+  {
+   "family": "JMA-MSM cycle rungs (D-3 12Z, D-2 18Z)",
+   "source": "RISH archive",
+   "first_publication": "spec: init + 2h30m",
+   "measured": {
+    "msm_d3_12z": {
+     "n_days": 891,
+     "median_lag_min": 136.18,
+     "p99_lag_min": 136.43,
+     "worst_lag_min": 159.67,
+     "gate_minus_init_min": 2220,
+     "worst_margin_min": 2060.33,
+     "admissible_under_buffer_min": {
+      "0": 1.0,
+      "30": 1.0,
+      "60": 1.0,
+      "90": 1.0,
+      "120": 1.0
+     }
+    },
+    "msm_d2_18z": {
+     "n_days": 891,
+     "median_lag_min": 135.92,
+     "p99_lag_min": 136.15,
+     "worst_lag_min": 150.57,
+     "gate_minus_init_min": 420,
+     "worst_margin_min": 269.43,
+     "admissible_under_buffer_min": {
+      "0": 1.0,
+      "30": 1.0,
+      "60": 1.0,
+      "90": 1.0,
+      "120": 1.0
+     }
+    }
+   },
+   "gate_margin": "hours (see measured)",
+   "revision_risk": "none",
+   "admissible": true
+  },
+  {
+   "family": "JMA-MSM first post-gate (D-1 00Z)",
+   "source": "RISH archive",
+   "first_publication": "spec: init + 2h30m -> ~11:30 JST",
+   "measured": {
+    "n_days": 881,
+    "median_lag_min": 135.9,
+    "p99_lag_min": 136.12,
+    "worst_lag_min": 137.27,
+    "gate_minus_init_min": 60,
+    "worst_margin_min": -77.27,
+    "admissible_under_buffer_min": {
+     "0": 0.0,
+     "30": 0.0,
+     "60": 0.0,
+     "90": 0.0,
+     "120": 0.0
+    }
+   },
+   "gate_margin": "NEGATIVE: completes 77 min after the gate at worst",
+   "revision_risk": "none",
+   "admissible": false,
+   "role": "gate-timing comparison only"
+  },
+  {
+   "family": "OCCTO supply mix (lag-96)",
+   "source": "TSO area supply-demand actuals; monthly consolidated CSVs used for values",
+   "first_publication": "TIMING citable: OCCTO framework requires publication ~1 h after real time (system-dependent clause), and TEPCO/Kyushu/Tohoku/Hokkaido document same-day or within-1-hour feeds; unconditional floor is monthly",
+   "evidence": {
+    "occto_framework": {
+     "quote": "実需給後１時間程度以内に、公開を行う (システム整備後); 無条件の下限は１時間値を最低月１回の更新",
+     "url": "https://www.occto.or.jp/assets/keitoujouhou/files/4.souden_kouhyou_koumoku_oldnew2304.pdf"
+    },
+    "tepco": {
+     "quote": "毎30分データについて、実需給後1時間以内での公表を予定",
+     "url": "https://www.tepco.co.jp/forecast/html/area_data-j.html"
+    },
+    "kyuden": {
+     "quote": "実需給後、1時間以内を目処に30分値を更新; 当月分は推計実績を含む速報値…実需給の翌月末を目処に、実績値への上書き更新",
+     "url": "https://www.kyuden.co.jp/td_area_jukyu/jukyu.html"
+    },
+    "tohoku": {
+     "quote": "当日 CSV (realtime_jukyu); 数値は、過去にさかのぼって修正されることがあります",
+     "url": "https://setsuden.nw.tohoku-epco.co.jp/realtime_jukyu.html"
+    },
+    "hepco": {
+     "quote": "当日実績のみグラフで表示; 発電実績および需要実績は速報値",
+     "url": "http://denkiyoho.hepco.co.jp/supply_demand_results.html"
+    }
+   },
+   "measured": null,
+   "gate_margin": ">= 23 h for the last D-2 slot under the within-1-hour feeds",
+   "revision_risk": "DOCUMENTED: gate-time values are provisional (Kyushu: overwritten with finals by end of the following month); our training values are the finalized monthly files, so value provenance -- not timing -- is the honest caveat",
+   "admissible": "timing yes (cited); value-identity caveated; V-drop and V-lag144 sensitivities reported per the precommit"
+  },
+  {
+   "family": "Commercial vendor forecasts",
+   "source": "vendor products",
+   "first_publication": "publish D-1 afternoon",
+   "measured": null,
+   "gate_margin": "NEGATIVE",
+   "revision_risk": "n/a",
+   "admissible": false,
+   "role": "excluded from every cell"
+  }
+ ],
+ "phase54_variants": "pending: V-current / V-drop / V-lag144 are queued behind the phase85 sweep and appended on landing",
+ "metadata": {
+  "script": "s_20260811_phase78_lineage_audit.py",
+  "git_sha": "7b90dc372b453985aa824c60454dfa5a6c372cf4",
+  "generated_utc": "2026-08-11T06:55:46.012345+00:00"
+ }
+}

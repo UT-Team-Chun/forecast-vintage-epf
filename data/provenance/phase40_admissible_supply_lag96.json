@@ -1,0 +1,172 @@
+{
+  "phase": "phase32_honest_baseline_enriched",
+  "n_areas": 8,
+  "supply_lag_slots": 96,
+  "supply_bid_close_admissible": true,
+  "note": "Enriched baseline (price + system + neighbour at lag-48 + OCCTO supply-mix at lag-96); demand/solar/fuel FORECASTS excluded (not admissible). Supply-mix at lag-96 (D-2) is bid-close-admissible for every delivery slot, so this is a GENUINELY bid-close-admissible public baseline. Weather marginal value (proxy era5 + operational histfc) and cross-area concentration RE-TESTED over this baseline on a common same-sample basis.",
+  "era5_proxy_over_enriched": {
+    "mean_yen_kwh": 0.0311,
+    "spearman_vs_pv_peak": {
+      "rho": -0.048,
+      "p": 0.911,
+      "ci90": [
+        -0.854,
+        0.575
+      ]
+    },
+    "n_areas_dm_sig_below_0p05": 5
+  },
+  "operational_histfc_over_enriched": {
+    "mean_yen_kwh": 0.2158,
+    "spearman_vs_pv_peak": {
+      "rho": -0.19,
+      "p": 0.651,
+      "ci90": [
+        -0.78,
+        0.579
+      ]
+    },
+    "n_areas_dm_sig_below_0p05": 8
+  },
+  "enrichment_strength": {
+    "mean_enrichment_gain_over_price_yen_kwh": 0.0321,
+    "note": "positive = the enriched baseline beats price-only -> baseline is genuinely strong"
+  },
+  "per_area": [
+    {
+      "area": "shikoku",
+      "mae_price_only": 2.3005,
+      "mae_enriched": 2.2097,
+      "mae_enriched_era5": 2.2021,
+      "mae_enriched_histfc": 2.0186,
+      "era5_improvement_over_enriched": 0.0075,
+      "histfc_improvement_over_enriched": 0.191,
+      "enrichment_gain_over_price": 0.0908,
+      "dm_p_era5_vs_enriched": 0.5917,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.9205,
+      "n_folds": 119
+    },
+    {
+      "area": "kyushu",
+      "mae_price_only": 1.9486,
+      "mae_enriched": 1.899,
+      "mae_enriched_era5": 1.8681,
+      "mae_enriched_histfc": 1.6801,
+      "era5_improvement_over_enriched": 0.0309,
+      "histfc_improvement_over_enriched": 0.2188,
+      "enrichment_gain_over_price": 0.0497,
+      "dm_p_era5_vs_enriched": 0.0125,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.7802,
+      "n_folds": 119
+    },
+    {
+      "area": "tohoku",
+      "mae_price_only": 1.9799,
+      "mae_enriched": 1.9448,
+      "mae_enriched_era5": 1.9011,
+      "mae_enriched_histfc": 1.6285,
+      "era5_improvement_over_enriched": 0.0436,
+      "histfc_improvement_over_enriched": 0.3162,
+      "enrichment_gain_over_price": 0.0351,
+      "dm_p_era5_vs_enriched": 0.0003,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.5693,
+      "n_folds": 119
+    },
+    {
+      "area": "chugoku",
+      "mae_price_only": 1.8897,
+      "mae_enriched": 1.8656,
+      "mae_enriched_era5": 1.8012,
+      "mae_enriched_histfc": 1.6384,
+      "era5_improvement_over_enriched": 0.0644,
+      "histfc_improvement_over_enriched": 0.2272,
+      "enrichment_gain_over_price": 0.0242,
+      "dm_p_era5_vs_enriched": 0.0,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.539,
+      "n_folds": 119
+    },
+    {
+      "area": "hokkaido",
+      "mae_price_only": 2.3852,
+      "mae_enriched": 2.3755,
+      "mae_enriched_era5": 2.3858,
+      "mae_enriched_histfc": 2.2579,
+      "era5_improvement_over_enriched": -0.0103,
+      "histfc_improvement_over_enriched": 0.1176,
+      "enrichment_gain_over_price": 0.0097,
+      "dm_p_era5_vs_enriched": 0.4084,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.499,
+      "n_folds": 119
+    },
+    {
+      "area": "hokuriku",
+      "mae_price_only": 2.0039,
+      "mae_enriched": 1.9874,
+      "mae_enriched_era5": 1.9369,
+      "mae_enriched_histfc": 1.7877,
+      "era5_improvement_over_enriched": 0.0505,
+      "histfc_improvement_over_enriched": 0.1997,
+      "enrichment_gain_over_price": 0.0164,
+      "dm_p_era5_vs_enriched": 0.0004,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.3901,
+      "n_folds": 119
+    },
+    {
+      "area": "kansai",
+      "mae_price_only": 1.9777,
+      "mae_enriched": 1.9684,
+      "mae_enriched_era5": 1.9089,
+      "mae_enriched_histfc": 1.7371,
+      "era5_improvement_over_enriched": 0.0595,
+      "histfc_improvement_over_enriched": 0.2313,
+      "enrichment_gain_over_price": 0.0093,
+      "dm_p_era5_vs_enriched": 0.0,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.3476,
+      "n_folds": 119
+    },
+    {
+      "area": "tokyo",
+      "mae_price_only": 1.715,
+      "mae_enriched": 1.6932,
+      "mae_enriched_era5": 1.6906,
+      "mae_enriched_histfc": 1.4686,
+      "era5_improvement_over_enriched": 0.0026,
+      "histfc_improvement_over_enriched": 0.2246,
+      "enrichment_gain_over_price": 0.0218,
+      "dm_p_era5_vs_enriched": 0.8126,
+      "dm_p_histfc_vs_enriched": 0.0,
+      "pv_peak": 0.241,
+      "n_folds": 119
+    }
+  ],
+  "config": {
+    "areas": [
+      "hokkaido",
+      "tohoku",
+      "tokyo",
+      "hokuriku",
+      "kansai",
+      "chugoku",
+      "shikoku",
+      "kyushu"
+    ],
+    "n_folds": 140,
+    "step_days": 3,
+    "learner": "XGBoost(300,4,0.05,seed2026)",
+    "price_lag_horizon_min": 1440,
+    "supply_lag_horizon_min": 2880,
+    "admissible_excluded": [
+      "demand_forecast",
+      "solar_forecast",
+      "fuel_JKM"
+    ],
+    "common_sample": "operational-reconstruction-available days (all 4 cells identical rows)"
+  }
+}

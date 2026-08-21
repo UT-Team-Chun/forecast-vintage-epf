@@ -1,0 +1,2671 @@
+{
+ "phase": "102 (companion run: signal vs learner)",
+ "title": "Is the post-gate price null a property of the signal or of the learner? The run-to-run innovation handed directly to the ladder's own learner, out of sample",
+ "question": "phase85's post-gate cell REPLACES the pre-gate field, and an axis-aligned tree cannot form the difference of two columns. This feeds the difference itself as extra columns and measures what the learner does with it.",
+ "verdict": "SIGNAL-NULL",
+ "branch": "b",
+ "gate_a_harness": {
+  "part1_row_set": {
+   "n_slots_phase85": 315414,
+   "n_slots_pass_q": 315414,
+   "n_slots_matched": 315414,
+   "row_set_identical": true,
+   "max_abs_diff_y_actual": 0.0,
+   "cw_flags_identical": true,
+   "why": "adding columns to the design must not move a single row; a duplicating join would show up here as a row-count change"
+  },
+  "tolerance": 1e-09,
+  "part2_bit_reproduction": {
+   "status": "PRESENT",
+   "fold_step_days": 5,
+   "n_slots_refit": 63072,
+   "n_slots_matched": 63072,
+   "refit_rows_are_a_subset_of_phase85": true,
+   "n_test_days_refit": 146,
+   "first_test_day": "2024-08-01",
+   "last_test_day": "2026-08-01",
+   "max_abs_diff": 0.0,
+   "mean_abs_diff": 0.0
+  },
+  "part4_full_panel_bit_reproduction": {
+   "areas_with_no_observed_pv_innovation": [
+    "chubu"
+   ],
+   "chubu": {
+    "n_slots": 35046,
+    "n_test_days": 732,
+    "max_abs_diff": 0.0,
+    "n_slots_differing": 0
+   },
+   "status": "PRESENT",
+   "max_abs_diff_over_areas": 0.0,
+   "why": "a full-panel, all-folds bit reproduction of phase85's headline cell through this script's harness, obtained as a by-product of an all-missing feature column"
+  },
+  "verdict": "PASS",
+  "consequence_if_fail": "Abort the price reading: a refit of phase85's own headline cell on phase85's own folds that does not reproduce means any delta measured against it mixes the added columns with an unexplained harness difference.",
+  "part3_statistics_path": {
+   "reproduced_gate_timing_delta": 0.0026,
+   "published_phase85_value": 0.0026,
+   "reproduced_ci95": [
+    -0.0047,
+    0.0099
+   ],
+   "published_ci95": [
+    -0.0047,
+    0.0099
+   ],
+   "reproduced_n_days": 732,
+   "published_n_days": 732,
+   "abs_gap": 0.0,
+   "matches": true,
+   "why": "recomputing phase85's OWN published gate-timing contrast from its parquet through this script's aggregation, subset and bootstrap. If this does not land on +0.0026 over 732 days then the pipeline reporting the innovation contrast is not the pipeline that produced the paper's number."
+  }
+ },
+ "gate_b_physical_positive_control": {
+  "phase89_reference_gain_mw": 59.88,
+  "required_recovery_fraction": 0.5,
+  "reproduction_of_phase89_max_abs_mw": 0.0,
+  "reproduction_tolerance_mw": 1e-06,
+  "reproduction_ok": true,
+  "per_area_reproduction": {
+   "chugoku": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "hokkaido": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "hokuriku": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "kansai": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "kyushu": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "shikoku": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "tohoku": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   },
+   "tokyo": {
+    "n_phase89_rows": 11284,
+    "n_compared": 11284,
+    "max_abs_diff_mw": 0.0,
+    "n_scored_all_cells": 11284
+   }
+  },
+  "candidates": {
+   "C_pre_plus_pv_innov": {
+    "delta_mw": 61.03,
+    "ci95": [
+     51.2,
+     71.33
+    ],
+    "n_days": 696,
+    "excludes_zero": true,
+    "recovered_fraction_of_phase89_gain": 1.019
+   },
+   "D_pre_plus_wx_innov": {
+    "delta_mw": 59.46,
+    "ci95": [
+     49.75,
+     69.58
+    ],
+    "n_days": 696,
+    "excludes_zero": true,
+    "recovered_fraction_of_phase89_gain": 0.993
+   }
+  },
+  "noise_placebo": {
+   "delta_mw": -0.36,
+   "ci95": [
+    -0.7,
+    0.0
+   ],
+   "n_days": 696,
+   "excludes_zero": false
+  },
+  "post_only_reference": {
+   "delta_mw": 59.88,
+   "ci95": [
+    49.64,
+    70.55
+   ],
+   "n_days": 696,
+   "excludes_zero": true
+  },
+  "levels_mae_mw_common_panel": {
+   "A_pre_only": {
+    "mae_mw": 878.4,
+    "n_days": 696
+   },
+   "B_post_only": {
+    "mae_mw": 818.6,
+    "n_days": 696
+   },
+   "C_pre_plus_pv_innov": {
+    "mae_mw": 817.4,
+    "n_days": 696
+   },
+   "D_pre_plus_wx_innov": {
+    "mae_mw": 819.0,
+    "n_days": 696
+   },
+   "E_pre_plus_noise": {
+    "mae_mw": 878.8,
+    "n_days": 696
+   }
+  },
+  "per_area_gains": {
+   "B_post_only": {
+    "chugoku": {
+     "delta_mw": 56.56,
+     "ci95": [
+      39.4,
+      74.84
+     ],
+     "n_days": 696
+    },
+    "hokkaido": {
+     "delta_mw": 8.83,
+     "ci95": [
+      2.66,
+      15.19
+     ],
+     "n_days": 696
+    },
+    "hokuriku": {
+     "delta_mw": 6.28,
+     "ci95": [
+      1.98,
+      10.71
+     ],
+     "n_days": 696
+    },
+    "kansai": {
+     "delta_mw": 59.36,
+     "ci95": [
+      39.05,
+      79.56
+     ],
+     "n_days": 696
+    },
+    "kyushu": {
+     "delta_mw": 101.19,
+     "ci95": [
+      75.19,
+      128.7
+     ],
+     "n_days": 696
+    },
+    "shikoku": {
+     "delta_mw": 19.99,
+     "ci95": [
+      12.32,
+      27.95
+     ],
+     "n_days": 696
+    },
+    "tohoku": {
+     "delta_mw": 40.6,
+     "ci95": [
+      22.99,
+      59.08
+     ],
+     "n_days": 696
+    },
+    "tokyo": {
+     "delta_mw": 186.24,
+     "ci95": [
+      139.73,
+      234.13
+     ],
+     "n_days": 696
+    }
+   },
+   "C_pre_plus_pv_innov": {
+    "chugoku": {
+     "delta_mw": 56.44,
+     "ci95": [
+      39.5,
+      74.49
+     ],
+     "n_days": 696
+    },
+    "hokkaido": {
+     "delta_mw": 14.66,
+     "ci95": [
+      10.42,
+      19.05
+     ],
+     "n_days": 696
+    },
+    "hokuriku": {
+     "delta_mw": 8.15,
+     "ci95": [
+      5.11,
+      11.28
+     ],
+     "n_days": 696
+    },
+    "kansai": {
+     "delta_mw": 59.25,
+     "ci95": [
+      38.8,
+      79.59
+     ],
+     "n_days": 696
+    },
+    "kyushu": {
+     "delta_mw": 100.98,
+     "ci95": [
+      75.39,
+      128.1
+     ],
+     "n_days": 696
+    },
+    "shikoku": {
+     "delta_mw": 20.8,
+     "ci95": [
+      13.69,
+      28.26
+     ],
+     "n_days": 696
+    },
+    "tohoku": {
+     "delta_mw": 44.39,
+     "ci95": [
+      28.98,
+      60.65
+     ],
+     "n_days": 696
+    },
+    "tokyo": {
+     "delta_mw": 183.56,
+     "ci95": [
+      139.03,
+      229.16
+     ],
+     "n_days": 696
+    }
+   },
+   "D_pre_plus_wx_innov": {
+    "chugoku": {
+     "delta_mw": 54.99,
+     "ci95": [
+      38.13,
+      72.94
+     ],
+     "n_days": 696
+    },
+    "hokkaido": {
+     "delta_mw": 14.25,
+     "ci95": [
+      10.06,
+      18.59
+     ],
+     "n_days": 696
+    },
+    "hokuriku": {
+     "delta_mw": 7.35,
+     "ci95": [
+      4.29,
+      10.45
+     ],
+     "n_days": 696
+    },
+    "kansai": {
+     "delta_mw": 57.76,
+     "ci95": [
+      37.23,
+      78.0
+     ],
+     "n_days": 696
+    },
+    "kyushu": {
+     "delta_mw": 98.77,
+     "ci95": [
+      72.8,
+      126.08
+     ],
+     "n_days": 696
+    },
+    "shikoku": {
+     "delta_mw": 20.11,
+     "ci95": [
+      13.03,
+      27.52
+     ],
+     "n_days": 696
+    },
+    "tohoku": {
+     "delta_mw": 43.61,
+     "ci95": [
+      27.97,
+      60.21
+     ],
+     "n_days": 696
+    },
+    "tokyo": {
+     "delta_mw": 178.82,
+     "ci95": [
+      135.49,
+      223.57
+     ],
+     "n_days": 696
+    }
+   },
+   "E_pre_plus_noise": {
+    "chugoku": {
+     "delta_mw": -0.22,
+     "ci95": [
+      -0.7,
+      0.27
+     ],
+     "n_days": 696
+    },
+    "hokkaido": {
+     "delta_mw": -0.08,
+     "ci95": [
+      -0.26,
+      0.11
+     ],
+     "n_days": 696
+    },
+    "hokuriku": {
+     "delta_mw": -0.04,
+     "ci95": [
+      -0.16,
+      0.08
+     ],
+     "n_days": 696
+    },
+    "kansai": {
+     "delta_mw": -0.43,
+     "ci95": [
+      -1.15,
+      0.32
+     ],
+     "n_days": 696
+    },
+    "kyushu": {
+     "delta_mw": -0.59,
+     "ci95": [
+      -1.16,
+      -0.03
+     ],
+     "n_days": 696
+    },
+    "shikoku": {
+     "delta_mw": -0.14,
+     "ci95": [
+      -0.51,
+      0.24
+     ],
+     "n_days": 696
+    },
+    "tohoku": {
+     "delta_mw": -0.29,
+     "ci95": [
+      -0.78,
+      0.2
+     ],
+     "n_days": 696
+    },
+    "tokyo": {
+     "delta_mw": -1.06,
+     "ci95": [
+      -3.47,
+      1.4
+     ],
+     "n_days": 696
+    }
+   }
+  },
+  "cells_that_pass": [
+   "C_pre_plus_pv_innov",
+   "D_pre_plus_wx_innov"
+  ],
+  "verdict": "PASS",
+  "consequence_if_fail": "UNDETERMINED-CONSTRUCTION-BROKEN: the innovation is by construction the update to the weather field, so a physical arm that does not improve means the construction is wrong and NO price branch may be read."
+ },
+ "gate_c_innovation_non_degenerate": {
+  "floor": 0.01,
+  "mean_abs_over_field_sd": {
+   "temperature_c__innov": 0.03951,
+   "cloud_cover_pct__innov": 0.32917,
+   "shortwave_radiation_wm2__innov": 0.06985,
+   "wind_speed_kmh__innov": 0.22172
+  },
+  "n_channels_above_floor": 4,
+  "n_channels": 4,
+  "treated_cell_predictions_differ": {
+   "max_abs_pred_diff": 23.18565,
+   "mean_abs_pred_diff": 0.31789,
+   "n_rows": 315414,
+   "n_rows_bit_identical": 0,
+   "share_bit_identical": 0.0,
+   "verdict": "PASS",
+   "why": "a null from a treatment that never reached the model is not the null this phase is testing for"
+  },
+  "verdict": "PASS",
+  "consequence_if_fail": "UNDETERMINED: a numerically zero innovation means the two GPV caches hold the same data, which is a data defect, not a finding about price."
+ },
+ "gate_d_price": {
+  "statistic": "pooled daily improvement of pre_plus_wx_innov minus that of msm_d2_12z_cw, on phase85's CW-complete subset, with phase85's 7-day circular block bootstrap (10000 draws) and HLN-DM at L=3 and L=9 -- i.e. phase85's own gate-timing construction with the cell swapped",
+  "delta": 0.0029,
+  "ci95": [
+   -0.0016,
+   0.0076
+  ],
+  "n_days": 732,
+  "dm_p_l3": 0.21573354,
+  "dm_p_l9": 0.21062068,
+  "tick": 0.01,
+  "equivalence_at_tick": "EQUIVALENT",
+  "equivalence_detail": {
+   "alpha": 0.05,
+   "n_days": 732,
+   "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+   "margins": {
+    "tick": {
+     "delta_margin": 0.01,
+     "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0012,
+      "p_tost": 0.0012,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.002367,
+      "t_lower": 5.4644,
+      "t_upper": -2.9864,
+      "p_lower": 3e-08,
+      "p_upper": 0.00145879,
+      "p_tost": 0.00145879,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.00234,
+      "t_lower": 5.5261,
+      "t_upper": -3.0201,
+      "p_lower": 2e-08,
+      "p_upper": 0.00130747,
+      "p_tost": 0.00130747,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.683
+    },
+    "relevance": {
+     "delta_margin": 0.05059,
+     "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.002367,
+      "t_lower": 22.614,
+      "t_upper": -20.136,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.00234,
+      "t_lower": 22.8695,
+      "t_upper": -20.3635,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.135
+    }
+   },
+   "ci90": [
+    -0.00087,
+    0.00683
+   ],
+   "smallest_margin_supported": 0.00683,
+   "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+  },
+  "noise_placebo_delta_thinned": -0.0028,
+  "ladder_post_gate_delta_published": 0.0026,
+  "branch": "b",
+  "verdict": "SIGNAL-NULL"
+ },
+ "gate_e_representation": {
+  "on_thinned_day_set": 244,
+  "wx_differenced_basis_delta": -0.0007,
+  "wx_ci95": [
+   -0.0098,
+   0.0077
+  ],
+  "raw_union_basis_delta": 0.0051,
+  "raw_ci95": [
+   -0.0032,
+   0.0135
+  ],
+  "difference": -0.0058,
+  "reading": "positive means the DIFFERENCED basis extracts more than the raw-union basis, i.e. part of the ladder's post-gate null was a representation artefact"
+ },
+ "build_passes": {
+  "q": {
+   "dir": "phase102sl_ckpt_q",
+   "cells": [
+    "pre_plus_wx_innov",
+    "pre_plus_pv_innov"
+   ],
+   "fold_step_days": 1,
+   "n_area_files": 9,
+   "n_finite_pre_plus_wx_innov": 315414,
+   "n_finite_pre_plus_pv_innov": 315414,
+   "status": "PRESENT",
+   "n_slots": 315414,
+   "n_areas": 9,
+   "n_test_days": 732
+  },
+  "r": {
+   "dir": "phase102sl_ckpt_r",
+   "cells": [
+    "msm_d2_12z_cw"
+   ],
+   "fold_step_days": 5,
+   "n_area_files": 9,
+   "n_finite_msm_d2_12z_cw": 63072,
+   "status": "PRESENT",
+   "n_slots": 63072,
+   "n_areas": 9,
+   "n_test_days": 146
+  },
+  "b": {
+   "dir": "phase102sl_ckpt_b",
+   "cells": [
+    "pre_plus_noise",
+    "pre_plus_post_raw"
+   ],
+   "fold_step_days": 3,
+   "n_area_files": 9,
+   "n_finite_pre_plus_noise": 105408,
+   "n_finite_pre_plus_post_raw": 105408,
+   "status": "PRESENT",
+   "n_slots": 105408,
+   "n_areas": 9,
+   "n_test_days": 244
+  },
+  "cells_read_from_phase85_parquet": [
+   "price_only",
+   "msm_d2_12z_cw",
+   "msm_d1_00z_cw"
+  ]
+ },
+ "panel": {
+  "n_slots_panel": 315414,
+  "n_slots_cw_complete": 315414,
+  "share_of_panel": 1.0,
+  "n_test_days_cw": 732,
+  "n_areas": 9,
+  "subset_rule": "phase85's own: every cw_ok_* flag true, so the CW arm is scored where every CW tier exists"
+ },
+ "levels_mae_jpy_kwh": {
+  "price_only": 2.153,
+  "msm_d2_12z_cw": 1.9001,
+  "msm_d1_00z_cw": 1.8975,
+  "pre_plus_wx_innov": 1.8971,
+  "pre_plus_pv_innov": 1.894
+ },
+ "improvements_vs_price_only": {
+  "msm_d2_12z_cw": {
+   "improvement": 0.2529,
+   "ci95": [
+    0.208,
+    0.2998
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25294,
+    "t_hln": 12.368,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.25294,
+    "t_hln": 9.433,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "msm_d1_00z_cw": {
+   "improvement": 0.2555,
+   "ci95": [
+    0.2101,
+    0.3031
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25551,
+    "t_hln": 12.321,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.25551,
+    "t_hln": 9.387,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "pre_plus_wx_innov": {
+   "improvement": 0.2559,
+   "ci95": [
+    0.2106,
+    0.3037
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25587,
+    "t_hln": 12.282,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.25587,
+    "t_hln": 9.405,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "pre_plus_pv_innov": {
+   "improvement": 0.259,
+   "ci95": [
+    0.2138,
+    0.3065
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25904,
+    "t_hln": 12.543,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.25904,
+    "t_hln": 9.608,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  }
+ },
+ "contrasts_vs_pre_gate_full_panel": {
+  "pre_plus_wx_innov_minus_pre_gate": {
+   "delta": 0.0029,
+   "ci95": [
+    -0.0016,
+    0.0076
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00293,
+    "t_hln": 1.239,
+    "p_hln": 0.21573354,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00293,
+    "t_hln": 1.253,
+    "p_hln": 0.21062068,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 732,
+    "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0012,
+       "p_tost": 0.0012,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.002367,
+       "t_lower": 5.4644,
+       "t_upper": -2.9864,
+       "p_lower": 3e-08,
+       "p_upper": 0.00145879,
+       "p_tost": 0.00145879,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.00234,
+       "t_lower": 5.5261,
+       "t_upper": -3.0201,
+       "p_lower": 2e-08,
+       "p_upper": 0.00130747,
+       "p_tost": 0.00130747,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.683
+     },
+     "relevance": {
+      "delta_margin": 0.05059,
+      "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.002367,
+       "t_lower": 22.614,
+       "t_upper": -20.136,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.00234,
+       "t_lower": 22.8695,
+       "t_upper": -20.3635,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.135
+     }
+    },
+    "ci90": [
+     -0.00087,
+     0.00683
+    ],
+    "smallest_margin_supported": 0.00683,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   }
+  },
+  "pre_plus_pv_innov_minus_pre_gate": {
+   "delta": 0.0061,
+   "ci95": [
+    0.0007,
+    0.0128
+   ],
+   "dm_l3": {
+    "mean_diff": 0.0061,
+    "t_hln": 2.163,
+    "p_hln": 0.03083336,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.0061,
+    "t_hln": 1.892,
+    "p_hln": 0.05883456,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 732,
+    "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.1087,
+       "p_tost": 0.1087,
+       "equivalent": false
+      },
+      "dm_l3": {
+       "se": 0.002821,
+       "t_lower": 5.708,
+       "t_upper": -1.382,
+       "p_lower": 1e-08,
+       "p_upper": 0.08370315,
+       "p_tost": 0.08370315,
+       "equivalent": false
+      },
+      "dm_l9": {
+       "se": 0.003225,
+       "t_lower": 4.9928,
+       "t_upper": -1.2088,
+       "p_lower": 3.7e-07,
+       "p_upper": 0.11356235,
+       "p_tost": 0.11356235,
+       "equivalent": false
+      },
+      "verdict": "NOT_EQUIVALENT",
+      "ci90_within_margin": false,
+      "margin_utilisation": 1.151
+     },
+     "relevance": {
+      "delta_margin": 0.05059,
+      "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.002821,
+       "t_lower": 20.096,
+       "t_upper": -15.77,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.003225,
+       "t_lower": 17.5782,
+       "t_upper": -13.7942,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.228
+     }
+    },
+    "ci90": [
+     0.00137,
+     0.01151
+    ],
+    "smallest_margin_supported": 0.01151,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   }
+  },
+  "post_gate_minus_pre_gate_REPRODUCED": {
+   "delta": 0.0026,
+   "ci95": [
+    -0.0047,
+    0.0099
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00257,
+    "t_hln": 0.682,
+    "p_hln": 0.49547417,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00257,
+    "t_hln": 0.702,
+    "p_hln": 0.48320234,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 732,
+    "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+      "boot": {
+       "p_lower": 0.0001,
+       "p_upper": 0.0234,
+       "p_tost": 0.0234,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.003766,
+       "t_lower": 3.3376,
+       "t_upper": -1.9736,
+       "p_lower": 0.00044389,
+       "p_upper": 0.02440074,
+       "p_tost": 0.02440074,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.003658,
+       "t_lower": 3.4355,
+       "t_upper": -2.0315,
+       "p_lower": 0.00031244,
+       "p_upper": 0.02128305,
+       "p_tost": 0.02128305,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.864
+     },
+     "relevance": {
+      "delta_margin": 0.05059,
+      "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.003766,
+       "t_lower": 14.1161,
+       "t_upper": -12.7521,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.003658,
+       "t_lower": 14.53,
+       "t_upper": -13.126,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.171
+     }
+    },
+    "ci90": [
+     -0.00361,
+     0.00864
+    ],
+    "smallest_margin_supported": 0.00864,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   }
+  },
+  "wx_innov_minus_post_gate_cell": {
+   "delta": 0.0004,
+   "ci95": [
+    -0.0062,
+    0.0071
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00036,
+    "t_hln": 0.109,
+    "p_hln": 0.91349435,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00036,
+    "t_hln": 0.107,
+    "p_hln": 0.91517771,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  }
+ },
+ "per_area_descriptive_full_panel": {
+  "chubu": {
+   "pre_plus_wx_innov": {
+    "delta": -0.006,
+    "ci95": [
+     -0.0208,
+     0.0089
+    ],
+    "dm_p_l3": 0.43460889,
+    "dm_p_l9": 0.43434678,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "dm_p_l3": 1.0,
+    "dm_p_l9": 1.0,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": true
+   }
+  },
+  "chugoku": {
+   "pre_plus_wx_innov": {
+    "delta": -0.006,
+    "ci95": [
+     -0.0169,
+     0.0044
+    ],
+    "dm_p_l3": 0.27067499,
+    "dm_p_l9": 0.28669654,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": -0.0004,
+    "ci95": [
+     -0.012,
+     0.0118
+    ],
+    "dm_p_l3": 0.9477851,
+    "dm_p_l9": 0.9534525,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "hokkaido": {
+   "pre_plus_wx_innov": {
+    "delta": 0.0041,
+    "ci95": [
+     -0.0072,
+     0.0156
+    ],
+    "dm_p_l3": 0.47462114,
+    "dm_p_l9": 0.48104588,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.0043,
+    "ci95": [
+     -0.0059,
+     0.0143
+    ],
+    "dm_p_l3": 0.38966982,
+    "dm_p_l9": 0.42218745,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "hokuriku": {
+   "pre_plus_wx_innov": {
+    "delta": -0.0007,
+    "ci95": [
+     -0.0137,
+     0.0125
+    ],
+    "dm_p_l3": 0.91460011,
+    "dm_p_l9": 0.91496379,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.007,
+    "ci95": [
+     -0.0066,
+     0.022
+    ],
+    "dm_p_l3": 0.29163343,
+    "dm_p_l9": 0.36346823,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "kansai": {
+   "pre_plus_wx_innov": {
+    "delta": 0.0098,
+    "ci95": [
+     -0.002,
+     0.0215
+    ],
+    "dm_p_l3": 0.08378146,
+    "dm_p_l9": 0.11434447,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.0121,
+    "ci95": [
+     0.0005,
+     0.0247
+    ],
+    "dm_p_l3": 0.0438483,
+    "dm_p_l9": 0.04432825,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "kyushu": {
+   "pre_plus_wx_innov": {
+    "delta": 0.0001,
+    "ci95": [
+     -0.0102,
+     0.0106
+    ],
+    "dm_p_l3": 0.98862302,
+    "dm_p_l9": 0.98863911,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": -0.0005,
+    "ci95": [
+     -0.0117,
+     0.0117
+    ],
+    "dm_p_l3": 0.93288128,
+    "dm_p_l9": 0.93657717,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "shikoku": {
+   "pre_plus_wx_innov": {
+    "delta": 0.0101,
+    "ci95": [
+     0.0001,
+     0.0204
+    ],
+    "dm_p_l3": 0.05138802,
+    "dm_p_l9": 0.05054411,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.0067,
+    "ci95": [
+     -0.0026,
+     0.0162
+    ],
+    "dm_p_l3": 0.14421855,
+    "dm_p_l9": 0.14308899,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "tohoku": {
+   "pre_plus_wx_innov": {
+    "delta": 0.0124,
+    "ci95": [
+     0.0011,
+     0.0238
+    ],
+    "dm_p_l3": 0.04051634,
+    "dm_p_l9": 0.03039811,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.0091,
+    "ci95": [
+     -0.0011,
+     0.0198
+    ],
+    "dm_p_l3": 0.08867063,
+    "dm_p_l9": 0.09478283,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "tokyo": {
+   "pre_plus_wx_innov": {
+    "delta": 0.0025,
+    "ci95": [
+     -0.0091,
+     0.0142
+    ],
+    "dm_p_l3": 0.67778984,
+    "dm_p_l9": 0.67327643,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   },
+   "pre_plus_pv_innov": {
+    "delta": 0.0165,
+    "ci95": [
+     0.0039,
+     0.0306
+    ],
+    "dm_p_l3": 0.00985214,
+    "dm_p_l9": 0.01918852,
+    "n_days": 732,
+    "degenerate_identical_to_baseline": false
+   }
+  },
+  "_multiplicity": {
+   "pre_plus_wx_innov": {
+    "n_tests": 9,
+    "areas_included": [
+     "chubu",
+     "chugoku",
+     "hokkaido",
+     "hokuriku",
+     "kansai",
+     "kyushu",
+     "shikoku",
+     "tohoku",
+     "tokyo"
+    ],
+    "areas_excluded_degenerate": [],
+    "p_l3_holm": {
+     "chubu": 1.0,
+     "chugoku": 1.0,
+     "hokkaido": 1.0,
+     "hokuriku": 1.0,
+     "kansai": 0.5865,
+     "kyushu": 1.0,
+     "shikoku": 0.4111,
+     "tohoku": 0.3646,
+     "tokyo": 1.0
+    },
+    "p_l3_bh": {
+     "chubu": 0.7119,
+     "chugoku": 0.609,
+     "hokkaido": 0.7119,
+     "hokuriku": 0.9886,
+     "kansai": 0.2513,
+     "kyushu": 0.9886,
+     "shikoku": 0.2312,
+     "tohoku": 0.2312,
+     "tokyo": 0.8714
+    },
+    "n_holm_below_0.10": 0,
+    "n_bh_below_0.10": 0,
+    "note": "per-area DM tests are DESCRIPTIVE here; the pre-registered statistic is the pooled one"
+   },
+   "pre_plus_pv_innov": {
+    "n_tests": 8,
+    "areas_included": [
+     "chugoku",
+     "hokkaido",
+     "hokuriku",
+     "kansai",
+     "kyushu",
+     "shikoku",
+     "tohoku",
+     "tokyo"
+    ],
+    "areas_excluded_degenerate": [
+     "chubu"
+    ],
+    "p_l3_holm": {
+     "chugoku": 1.0,
+     "hokkaido": 1.0,
+     "hokuriku": 1.0,
+     "kansai": 0.3069,
+     "kyushu": 1.0,
+     "shikoku": 0.7211,
+     "tohoku": 0.532,
+     "tokyo": 0.0788
+    },
+    "p_l3_bh": {
+     "chugoku": 0.9478,
+     "hokkaido": 0.5196,
+     "hokuriku": 0.4666,
+     "kansai": 0.1754,
+     "kyushu": 0.9478,
+     "shikoku": 0.2884,
+     "tohoku": 0.2365,
+     "tokyo": 0.0788
+    },
+    "n_holm_below_0.10": 1,
+    "n_bh_below_0.10": 1,
+    "note": "per-area DM tests are DESCRIPTIVE here; the pre-registered statistic is the pooled one"
+   }
+  }
+ },
+ "controls_thinned_panel": {
+  "status": "PRESENT",
+  "fold_step_days": 3,
+  "n_test_days": 244,
+  "n_slots": 105408,
+  "note": "a matched subsample of the SAME folds (phase85's schedule with STEP widened to 3 days); the primary and reference contrasts are recomputed on exactly these days so every number in this block is like for like",
+  "levels_mae": {
+   "price_only": 2.111,
+   "msm_d2_12z_cw": 1.8708,
+   "msm_d1_00z_cw": 1.8677,
+   "pre_plus_wx_innov": 1.8715,
+   "pre_plus_pv_innov": 1.8658,
+   "pre_plus_noise": 1.8737,
+   "pre_plus_post_raw": 1.8658
+  },
+  "contrasts_vs_pre_gate": {
+   "pre_plus_wx_innov_minus_pre_gate": {
+    "delta": -0.0007,
+    "ci95": [
+     -0.0098,
+     0.0077
+    ],
+    "dm_l3": {
+     "mean_diff": -0.00068,
+     "t_hln": -0.154,
+     "p_hln": 0.87781573,
+     "n_days": 244,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.00068,
+     "t_hln": -0.144,
+     "p_hln": 0.88589662,
+     "n_days": 244,
+     "nw_lag": 9
+    },
+    "n_days": 244
+   },
+   "pre_plus_pv_innov_minus_pre_gate": {
+    "delta": 0.0051,
+    "ci95": [
+     -0.0039,
+     0.015
+    ],
+    "dm_l3": {
+     "mean_diff": 0.00506,
+     "t_hln": 1.028,
+     "p_hln": 0.30514677,
+     "n_days": 244,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.00506,
+     "t_hln": 1.106,
+     "p_hln": 0.26967495,
+     "n_days": 244,
+     "nw_lag": 9
+    },
+    "n_days": 244
+   },
+   "pre_plus_noise_minus_pre_gate": {
+    "delta": -0.0028,
+    "ci95": [
+     -0.0054,
+     -0.0005
+    ],
+    "dm_l3": {
+     "mean_diff": -0.00285,
+     "t_hln": -2.179,
+     "p_hln": 0.03029298,
+     "n_days": 244,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.00285,
+     "t_hln": -2.302,
+     "p_hln": 0.02216334,
+     "n_days": 244,
+     "nw_lag": 9
+    },
+    "n_days": 244
+   },
+   "pre_plus_post_raw_minus_pre_gate": {
+    "delta": 0.0051,
+    "ci95": [
+     -0.0032,
+     0.0135
+    ],
+    "dm_l3": {
+     "mean_diff": 0.00507,
+     "t_hln": 1.151,
+     "p_hln": 0.25102112,
+     "n_days": 244,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.00507,
+     "t_hln": 1.189,
+     "p_hln": 0.23563994,
+     "n_days": 244,
+     "nw_lag": 9
+    },
+    "n_days": 244
+   },
+   "msm_d1_00z_cw_minus_pre_gate": {
+    "delta": 0.0031,
+    "ci95": [
+     -0.0119,
+     0.0186
+    ],
+    "dm_l3": {
+     "mean_diff": 0.00315,
+     "t_hln": 0.4,
+     "p_hln": 0.68924264,
+     "n_days": 244,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.00315,
+     "t_hln": 0.404,
+     "p_hln": 0.68643424,
+     "n_days": 244,
+     "nw_lag": 9
+    },
+    "n_days": 244
+   }
+  },
+  "per_area_descriptive": {
+   "chubu": {
+    "pre_plus_noise": {
+     "delta": 0.0017,
+     "ci95": [
+      -0.0073,
+      0.0097
+     ],
+     "dm_p_l3": 0.70404598,
+     "dm_p_l9": 0.67477362,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": -0.0015,
+     "ci95": [
+      -0.0323,
+      0.0351
+     ],
+     "dm_p_l3": 0.93075299,
+     "dm_p_l9": 0.92743454,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "chugoku": {
+    "pre_plus_noise": {
+     "delta": -0.0014,
+     "ci95": [
+      -0.008,
+      0.0044
+     ],
+     "dm_p_l3": 0.63522093,
+     "dm_p_l9": 0.65394809,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0058,
+     "ci95": [
+      -0.0117,
+      0.0246
+     ],
+     "dm_p_l3": 0.52839747,
+     "dm_p_l9": 0.55097127,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "hokkaido": {
+    "pre_plus_noise": {
+     "delta": -0.0037,
+     "ci95": [
+      -0.0109,
+      0.0032
+     ],
+     "dm_p_l3": 0.329461,
+     "dm_p_l9": 0.2770384,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": -0.0067,
+     "ci95": [
+      -0.0302,
+      0.0181
+     ],
+     "dm_p_l3": 0.58394441,
+     "dm_p_l9": 0.58641299,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "hokuriku": {
+    "pre_plus_noise": {
+     "delta": -0.0089,
+     "ci95": [
+      -0.0162,
+      -0.0022
+     ],
+     "dm_p_l3": 0.01605423,
+     "dm_p_l9": 0.01065375,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0003,
+     "ci95": [
+      -0.0252,
+      0.0251
+     ],
+     "dm_p_l3": 0.98036399,
+     "dm_p_l9": 0.97922539,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "kansai": {
+    "pre_plus_noise": {
+     "delta": -0.0038,
+     "ci95": [
+      -0.0091,
+      0.0014
+     ],
+     "dm_p_l3": 0.19967176,
+     "dm_p_l9": 0.09065647,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0024,
+     "ci95": [
+      -0.0179,
+      0.023
+     ],
+     "dm_p_l3": 0.81982079,
+     "dm_p_l9": 0.81287946,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "kyushu": {
+    "pre_plus_noise": {
+     "delta": -0.0047,
+     "ci95": [
+      -0.0106,
+      0.0009
+     ],
+     "dm_p_l3": 0.11226874,
+     "dm_p_l9": 0.10274649,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0101,
+     "ci95": [
+      -0.0081,
+      0.0286
+     ],
+     "dm_p_l3": 0.27157306,
+     "dm_p_l9": 0.28407104,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "shikoku": {
+    "pre_plus_noise": {
+     "delta": -0.0013,
+     "ci95": [
+      -0.009,
+      0.0064
+     ],
+     "dm_p_l3": 0.74038934,
+     "dm_p_l9": 0.75017754,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0141,
+     "ci95": [
+      -0.0035,
+      0.032
+     ],
+     "dm_p_l3": 0.15244183,
+     "dm_p_l9": 0.10345811,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "tohoku": {
+    "pre_plus_noise": {
+     "delta": -0.0009,
+     "ci95": [
+      -0.0073,
+      0.0053
+     ],
+     "dm_p_l3": 0.77206603,
+     "dm_p_l9": 0.78298099,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0169,
+     "ci95": [
+      -0.0027,
+      0.0361
+     ],
+     "dm_p_l3": 0.0978377,
+     "dm_p_l9": 0.08719196,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "tokyo": {
+    "pre_plus_noise": {
+     "delta": -0.0026,
+     "ci95": [
+      -0.0073,
+      0.0021
+     ],
+     "dm_p_l3": 0.38873989,
+     "dm_p_l9": 0.22844093,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    },
+    "pre_plus_post_raw": {
+     "delta": 0.0042,
+     "ci95": [
+      -0.0121,
+      0.0204
+     ],
+     "dm_p_l3": 0.61185281,
+     "dm_p_l9": 0.61921002,
+     "n_days": 244,
+     "degenerate_identical_to_baseline": false
+    }
+   },
+   "_multiplicity": {
+    "pre_plus_noise": {
+     "n_tests": 9,
+     "areas_included": [
+      "chubu",
+      "chugoku",
+      "hokkaido",
+      "hokuriku",
+      "kansai",
+      "kyushu",
+      "shikoku",
+      "tohoku",
+      "tokyo"
+     ],
+     "areas_excluded_degenerate": [],
+     "p_l3_holm": {
+      "chubu": 1.0,
+      "chugoku": 1.0,
+      "hokkaido": 1.0,
+      "hokuriku": 0.1445,
+      "kansai": 1.0,
+      "kyushu": 0.8981,
+      "shikoku": 1.0,
+      "tohoku": 1.0,
+      "tokyo": 1.0
+     },
+     "p_l3_bh": {
+      "chubu": 0.7721,
+      "chugoku": 0.7721,
+      "hokkaido": 0.6997,
+      "hokuriku": 0.1445,
+      "kansai": 0.599,
+      "kyushu": 0.5052,
+      "shikoku": 0.7721,
+      "tohoku": 0.7721,
+      "tokyo": 0.6997
+     },
+     "n_holm_below_0.10": 0,
+     "n_bh_below_0.10": 0,
+     "note": "per-area DM tests are DESCRIPTIVE here; the pre-registered statistic is the pooled one"
+    },
+    "pre_plus_post_raw": {
+     "n_tests": 9,
+     "areas_included": [
+      "chubu",
+      "chugoku",
+      "hokkaido",
+      "hokuriku",
+      "kansai",
+      "kyushu",
+      "shikoku",
+      "tohoku",
+      "tokyo"
+     ],
+     "areas_excluded_degenerate": [],
+     "p_l3_holm": {
+      "chubu": 1.0,
+      "chugoku": 1.0,
+      "hokkaido": 1.0,
+      "hokuriku": 1.0,
+      "kansai": 1.0,
+      "kyushu": 1.0,
+      "shikoku": 1.0,
+      "tohoku": 0.8805,
+      "tokyo": 1.0
+     },
+     "p_l3_bh": {
+      "chubu": 0.9804,
+      "chugoku": 0.9178,
+      "hokkaido": 0.9178,
+      "hokuriku": 0.9804,
+      "kansai": 0.9804,
+      "kyushu": 0.8147,
+      "shikoku": 0.686,
+      "tohoku": 0.686,
+      "tokyo": 0.9178
+     },
+     "n_holm_below_0.10": 0,
+     "n_bh_below_0.10": 0,
+     "note": "per-area DM tests are DESCRIPTIVE here; the pre-registered statistic is the pooled one"
+    }
+   }
+  }
+ },
+ "pv_cell_daylight_sub_panel_descriptive": {
+  "window_jst": [
+   9,
+   15
+  ],
+  "areas": [
+   "chugoku",
+   "hokkaido",
+   "hokuriku",
+   "kansai",
+   "kyushu",
+   "shikoku",
+   "tohoku",
+   "tokyo"
+  ],
+  "n_slots": 81776,
+  "n_test_days": 731,
+  "note": "DESCRIPTIVE sub-panel, not pre-registered: the rows where Delta-PV-hat is an observed number rather than a structural night zero or a NaN",
+  "restriction": "daylight hours AND phase89 areas",
+  "n_areas": 8,
+  "levels_mae": {
+   "price_only": 3.0728,
+   "msm_d2_12z_cw": 2.4903,
+   "msm_d1_00z_cw": 2.4774,
+   "pre_plus_wx_innov": 2.4747,
+   "pre_plus_pv_innov": 2.4795
+  },
+  "contrasts_vs_pre_gate": {
+   "pre_plus_wx_innov_minus_pre_gate": {
+    "delta": 0.0156,
+    "ci95": [
+     0.0044,
+     0.0274
+    ],
+    "dm_l3": {
+     "mean_diff": 0.01564,
+     "t_hln": 2.711,
+     "p_hln": 0.00686919,
+     "n_days": 731,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.01564,
+     "t_hln": 2.628,
+     "p_hln": 0.00877225,
+     "n_days": 731,
+     "nw_lag": 9
+    },
+    "n_days": 731
+   },
+   "pre_plus_pv_innov_minus_pre_gate": {
+    "delta": 0.0109,
+    "ci95": [
+     0.0004,
+     0.0218
+    ],
+    "dm_l3": {
+     "mean_diff": 0.01085,
+     "t_hln": 1.943,
+     "p_hln": 0.05241835,
+     "n_days": 731,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.01085,
+     "t_hln": 1.97,
+     "p_hln": 0.04924636,
+     "n_days": 731,
+     "nw_lag": 9
+    },
+    "n_days": 731
+   },
+   "msm_d1_00z_cw_minus_pre_gate": {
+    "delta": 0.0129,
+    "ci95": [
+     -0.0064,
+     0.032
+    ],
+    "dm_l3": {
+     "mean_diff": 0.01292,
+     "t_hln": 1.314,
+     "p_hln": 0.18932747,
+     "n_days": 731,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.01292,
+     "t_hln": 1.3,
+     "p_hln": 0.19392516,
+     "n_days": 731,
+     "nw_lag": 9
+    },
+    "n_days": 731
+   }
+  },
+  "wx_innov_minus_post_gate_cell": {
+   "delta": 0.0027,
+   "ci95": [
+    -0.0132,
+    0.019
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00272,
+    "t_hln": 0.337,
+    "p_hln": 0.73606112,
+    "n_days": 731,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00272,
+    "t_hln": 0.325,
+    "p_hln": 0.7454103,
+    "n_days": 731,
+    "nw_lag": 9
+   },
+   "n_days": 731
+  },
+  "decomposition_of_the_restriction": {
+   "hours_only_all_nine_areas": {
+    "restriction": "daylight hours only, all nine areas",
+    "n_slots": 91998,
+    "n_test_days": 731,
+    "n_areas": 9,
+    "levels_mae": {
+     "price_only": 3.0767,
+     "msm_d2_12z_cw": 2.4882,
+     "msm_d1_00z_cw": 2.4757,
+     "pre_plus_wx_innov": 2.4735,
+     "pre_plus_pv_innov": 2.4786
+    },
+    "contrasts_vs_pre_gate": {
+     "pre_plus_wx_innov_minus_pre_gate": {
+      "delta": 0.0148,
+      "ci95": [
+       0.0037,
+       0.0263
+      ],
+      "dm_l3": {
+       "mean_diff": 0.01475,
+       "t_hln": 2.596,
+       "p_hln": 0.00962762,
+       "n_days": 731,
+       "nw_lag": 3
+      },
+      "dm_l9": {
+       "mean_diff": 0.01475,
+       "t_hln": 2.502,
+       "p_hln": 0.01255884,
+       "n_days": 731,
+       "nw_lag": 9
+      },
+      "n_days": 731
+     },
+     "pre_plus_pv_innov_minus_pre_gate": {
+      "delta": 0.0096,
+      "ci95": [
+       0.0004,
+       0.0194
+      ],
+      "dm_l3": {
+       "mean_diff": 0.00965,
+       "t_hln": 1.943,
+       "p_hln": 0.05241835,
+       "n_days": 731,
+       "nw_lag": 3
+      },
+      "dm_l9": {
+       "mean_diff": 0.00965,
+       "t_hln": 1.97,
+       "p_hln": 0.04924636,
+       "n_days": 731,
+       "nw_lag": 9
+      },
+      "n_days": 731
+     },
+     "msm_d1_00z_cw_minus_pre_gate": {
+      "delta": 0.0125,
+      "ci95": [
+       -0.0062,
+       0.0314
+      ],
+      "dm_l3": {
+       "mean_diff": 0.0125,
+       "t_hln": 1.288,
+       "p_hln": 0.19818676,
+       "n_days": 731,
+       "nw_lag": 3
+      },
+      "dm_l9": {
+       "mean_diff": 0.0125,
+       "t_hln": 1.285,
+       "p_hln": 0.19929792,
+       "n_days": 731,
+       "nw_lag": 9
+      },
+      "n_days": 731
+     }
+    },
+    "wx_innov_minus_post_gate_cell": {
+     "delta": 0.0023,
+     "ci95": [
+      -0.013,
+      0.0176
+     ],
+     "dm_l3": {
+      "mean_diff": 0.00225,
+      "t_hln": 0.292,
+      "p_hln": 0.76999994,
+      "n_days": 731,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.00225,
+      "t_hln": 0.284,
+      "p_hln": 0.77615398,
+      "n_days": 731,
+      "nw_lag": 9
+     },
+     "n_days": 731
+    }
+   },
+   "areas_only_all_hours": {
+    "restriction": "phase89 areas only, all hours",
+    "n_slots": 280368,
+    "n_test_days": 732,
+    "n_areas": 8,
+    "levels_mae": {
+     "price_only": 2.1503,
+     "msm_d2_12z_cw": 1.8976,
+     "msm_d1_00z_cw": 1.8957,
+     "pre_plus_wx_innov": 1.8935,
+     "pre_plus_pv_innov": 1.8907
+    },
+    "contrasts_vs_pre_gate": {
+     "pre_plus_wx_innov_minus_pre_gate": {
+      "delta": 0.004,
+      "ci95": [
+       -0.0005,
+       0.0087
+      ],
+      "dm_l3": {
+       "mean_diff": 0.00404,
+       "t_hln": 1.721,
+       "p_hln": 0.08568201,
+       "n_days": 732,
+       "nw_lag": 3
+      },
+      "dm_l9": {
+       "mean_diff": 0.00404,
+       "t_hln": 1.718,
+       "p_hln": 0.0861858,
+       "n_days": 732,
+       "nw_lag": 9
+      },
+      "n_days": 732
+     },
+     "pre_plus_pv_innov_minus_pre_gate": {
+      "delta": 0.0069,
+      "ci95": [
+       0.0008,
+       0.0144
+      ],
+      "dm_l3": {
+       "mean_diff": 0.00686,
+       "t_hln": 2.163,
+       "p_hln": 0.03083336,
+       "n_days": 732,
+       "nw_lag": 3
+      },
+      "dm_l9": {
+       "mean_diff": 0.00686,
+       "t_hln": 1.892,
+       "p_hln": 0.05883456,
+       "n_days": 732,
+       "nw_lag": 9
+      },
+      "n_days": 732
+     },
+     "msm_d1_00z_cw_minus_pre_gate": {
+      "delta": 0.0019,
+      "ci95": [
+       -0.0053,
+       0.0088
+      ],
+      "dm_l3": {
+       "mean_diff": 0.0019,
+       "t_hln": 0.511,
+       "p_hln": 0.60925433,
+       "n_days": 732,
+       "nw_lag": 3
+      },
+      "dm_l9": {
+       "mean_diff": 0.0019,
+       "t_hln": 0.529,
+       "p_hln": 0.59723405,
+       "n_days": 732,
+       "nw_lag": 9
+      },
+      "n_days": 732
+     }
+    },
+    "wx_innov_minus_post_gate_cell": {
+     "delta": 0.0021,
+     "ci95": [
+      -0.0045,
+      0.0089
+     ],
+     "dm_l3": {
+      "mean_diff": 0.00214,
+      "t_hln": 0.636,
+      "p_hln": 0.52487209,
+      "n_days": 732,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.00214,
+      "t_hln": 0.638,
+      "p_hln": 0.52368408,
+      "n_days": 732,
+      "nw_lag": 9
+     },
+     "n_days": 732
+    }
+   },
+   "why": "the headline sub-panel restricts hours AND areas at once; printing each restriction alone shows which one carries the difference"
+  }
+ },
+ "innovation_magnitude_and_nulls_on_scored_rows": {
+  "n_scored_rows": 315414,
+  "n_scored_rows_absent_from_side_artefact": 0,
+  "temperature_c__innov": {
+   "n_null_or_nan_on_scored_rows": 0,
+   "mean_abs": 0.37652,
+   "sd": 0.56718,
+   "pre_gate_field_sd": 9.53063,
+   "mean_abs_over_field_sd": 0.03951
+  },
+  "cloud_cover_pct__innov": {
+   "n_null_or_nan_on_scored_rows": 0,
+   "mean_abs": 9.95075,
+   "sd": 14.80466,
+   "pre_gate_field_sd": 30.23007,
+   "mean_abs_over_field_sd": 0.32917
+  },
+  "shortwave_radiation_wm2__innov": {
+   "n_null_or_nan_on_scored_rows": 0,
+   "mean_abs": 16.45455,
+   "sd": 40.59421,
+   "pre_gate_field_sd": 235.57764,
+   "mean_abs_over_field_sd": 0.06985
+  },
+  "wind_speed_kmh__innov": {
+   "n_null_or_nan_on_scored_rows": 0,
+   "mean_abs": 0.86193,
+   "sd": 1.31995,
+   "pre_gate_field_sd": 3.88753,
+   "mean_abs_over_field_sd": 0.22172
+  },
+  "training_support": {
+   "channel_measured": "temperature_c__innov",
+   "first_datetime_with_innovation": "2024-03-01 00:00:00+09:00",
+   "last_datetime_with_innovation": "2026-08-08 23:30:00+09:00",
+   "n_rows_design_frame": 531360,
+   "n_rows_with_innovation": 384912,
+   "per_area_first": {
+    "chubu": "2024-03-01 00:00:00+09:00",
+    "chugoku": "2024-03-01 00:00:00+09:00",
+    "hokkaido": "2024-03-01 00:00:00+09:00",
+    "hokuriku": "2024-03-01 00:00:00+09:00",
+    "kansai": "2024-03-01 00:00:00+09:00",
+    "kyushu": "2024-03-01 00:00:00+09:00",
+    "shikoku": "2024-03-01 00:00:00+09:00",
+    "tohoku": "2024-03-01 00:00:00+09:00",
+    "tokyo": "2024-03-01 00:00:00+09:00"
+   },
+   "note": "rows outside this range enter XGBoost as missing on the innovation columns, exactly as phase85's own CW tier columns do on days a cache lacks"
+  },
+  "pv_innov": {
+   "provenance_counts": {
+    "night_zero": 188800,
+    "missing": 48870,
+    "phase89": 77744
+   },
+   "n_nan_on_scored_rows": 48870,
+   "mean_abs_where_observed": 287.928,
+   "note": "night_zero is a structural zero (Delta-PV-hat of a PV quantity at night); missing is NaN and is never silently zero"
+  }
+ },
+ "build_diagnostics_design_frame": {
+  "status": "present",
+  "n_files": 9,
+  "areas": {
+   "chubu": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.36326,
+      "sd": 0.55054,
+      "field_sd": 9.00631,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 9.07448,
+      "sd": 13.27598,
+      "field_sd": 29.38955,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 16.27789,
+      "sd": 40.76634,
+      "field_sd": 248.73572,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.73269,
+      "sd": 1.07246,
+      "field_sd": 3.11931,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "missing": 59040
+     },
+     "n_nan": 59040,
+     "mean_abs_where_from_phase89": 0.0
+    },
+    "noise_sd_used": [
+     0.55054,
+     13.27598,
+     40.76634,
+     1.07246
+    ]
+   },
+   "chugoku": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.35519,
+      "sd": 0.52583,
+      "field_sd": 9.0286,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 9.49387,
+      "sd": 13.76232,
+      "field_sd": 29.19666,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 16.63348,
+      "sd": 40.90045,
+      "field_sd": 248.08786,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.619,
+      "sd": 0.90374,
+      "field_sd": 2.62831,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "phase89": 11284,
+      "missing": 20352,
+      "night_zero": 27404
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 274.425
+    },
+    "noise_sd_used": [
+     0.52583,
+     13.76232,
+     40.90045,
+     0.90374
+    ]
+   },
+   "hokkaido": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.54692,
+      "sd": 0.80697,
+      "field_sd": 10.16898,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 14.23233,
+      "sd": 21.32387,
+      "field_sd": 34.33261,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 21.39527,
+      "sd": 51.77934,
+      "field_sd": 229.3361,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 1.18874,
+      "sd": 1.76692,
+      "field_sd": 3.66846,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "night_zero": 27404,
+      "missing": 20352,
+      "phase89": 11284
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 122.173
+    },
+    "noise_sd_used": [
+     0.80697,
+     21.32387,
+     51.77934,
+     1.76692
+    ]
+   },
+   "hokuriku": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.44433,
+      "sd": 0.66051,
+      "field_sd": 8.94234,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 11.50786,
+      "sd": 16.77101,
+      "field_sd": 31.07673,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 20.50942,
+      "sd": 48.40626,
+      "field_sd": 236.86654,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 1.31265,
+      "sd": 1.98205,
+      "field_sd": 5.12808,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "missing": 20352,
+      "phase89": 11284,
+      "night_zero": 27404
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 69.687
+    },
+    "noise_sd_used": [
+     0.66051,
+     16.77101,
+     48.40626,
+     1.98205
+    ]
+   },
+   "kansai": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.38006,
+      "sd": 0.58481,
+      "field_sd": 8.80639,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 11.04819,
+      "sd": 16.49079,
+      "field_sd": 31.32471,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 19.22146,
+      "sd": 47.76073,
+      "field_sd": 250.27737,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.7982,
+      "sd": 1.19643,
+      "field_sd": 3.10319,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "missing": 20352,
+      "night_zero": 27404,
+      "phase89": 11284
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 332.912
+    },
+    "noise_sd_used": [
+     0.58481,
+     16.49079,
+     47.76073,
+     1.19643
+    ]
+   },
+   "kyushu": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.30149,
+      "sd": 0.43796,
+      "field_sd": 7.99574,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 8.32518,
+      "sd": 11.82999,
+      "field_sd": 28.52895,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 15.57177,
+      "sd": 38.24199,
+      "field_sd": 246.65112,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.83497,
+      "sd": 1.19584,
+      "field_sd": 4.06487,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "phase89": 11284,
+      "night_zero": 27404,
+      "missing": 20352
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 452.125
+    },
+    "noise_sd_used": [
+     0.43796,
+     11.82999,
+     38.24199,
+     1.19584
+    ]
+   },
+   "shikoku": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.34435,
+      "sd": 0.50307,
+      "field_sd": 8.34027,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 9.93689,
+      "sd": 14.50833,
+      "field_sd": 30.36418,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 17.97719,
+      "sd": 45.28649,
+      "field_sd": 253.90709,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.8978,
+      "sd": 1.31244,
+      "field_sd": 4.36085,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "night_zero": 27404,
+      "missing": 20352,
+      "phase89": 11284
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 141.816
+    },
+    "noise_sd_used": [
+     0.50307,
+     14.50833,
+     45.28649,
+     1.31244
+    ]
+   },
+   "tohoku": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.37486,
+      "sd": 0.54412,
+      "field_sd": 9.51132,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 9.14989,
+      "sd": 13.10995,
+      "field_sd": 27.31222,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 15.09859,
+      "sd": 36.47425,
+      "field_sd": 231.07868,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.7564,
+      "sd": 1.08611,
+      "field_sd": 3.35999,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "phase89": 11284,
+      "night_zero": 27404,
+      "missing": 20352
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 306.861
+    },
+    "noise_sd_used": [
+     0.54412,
+     13.10995,
+     36.47425,
+     1.08611
+    ]
+   },
+   "tokyo": {
+    "n_rows": 59040,
+    "innov_wx": {
+     "temperature_c__innov": {
+      "mean_abs": 0.40069,
+      "sd": 0.59761,
+      "field_sd": 8.94259,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "cloud_cover_pct__innov": {
+      "mean_abs": 8.87754,
+      "sd": 13.39427,
+      "field_sd": 32.7367,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "shortwave_radiation_wm2__innov": {
+      "mean_abs": 16.71841,
+      "sd": 41.80674,
+      "field_sd": 243.02967,
+      "n_null": 16272,
+      "n_nan": 0
+     },
+     "wind_speed_kmh__innov": {
+      "mean_abs": 0.75752,
+      "sd": 1.13532,
+      "field_sd": 3.05146,
+      "n_null": 16272,
+      "n_nan": 0
+     }
+    },
+    "pv_innov": {
+     "provenance_counts": {
+      "night_zero": 27404,
+      "missing": 20352,
+      "phase89": 11284
+     },
+     "n_nan": 20352,
+     "mean_abs_where_from_phase89": 769.028
+    },
+    "noise_sd_used": [
+     0.59761,
+     13.39427,
+     41.80674,
+     1.13532
+    ]
+   }
+  },
+  "design_frame_rows": 531360,
+  "design_frame_rows_with_null_innovation": 146448,
+  "design_frame_null_share": 0.2756,
+  "note": "nulls are the pre-CW-cache training period; they enter XGBoost as missing, as phase85's own CW columns do. Every SCORED row is CW-complete, so the innovation is finite on every row the contrast is measured on -- see innovation_magnitude_and_nulls_on_scored_rows."
+ },
+ "feature_importance_descriptive": {
+  "source": "phase102_innovation_importance.json",
+  "note": "DESCRIPTIVE, from an earlier session of the committed phase102 module: total_gain share of the four innovation columns in the pre_plus_wx_innov cell, on ten real folds per area. It says the learner DOES split on them, which is what makes a null a statement about the signal rather than about the feature reaching the model.",
+  "design": {
+   "cell": "pre_plus_wx_innov",
+   "fold_step_days": 73,
+   "n_folds_per_area": 10,
+   "importance_type": "total_gain",
+   "note": "DESCRIPTIVE, not pre-registered. Ten of the panel's real test days per area; each fit is bit-identical to phase85's `_fit` on the same fold (asserted)."
+  },
+  "per_area_mean_innovation_gain_share": {
+   "hokkaido": 0.02683,
+   "tohoku": 0.02952,
+   "tokyo": 0.02257,
+   "chubu": 0.02568,
+   "hokuriku": 0.03092,
+   "kansai": 0.02488,
+   "chugoku": 0.02015,
+   "shikoku": 0.02432,
+   "kyushu": 0.01732
+  },
+  "n_innovation_cols_used": {
+   "hokkaido": 4.0,
+   "tohoku": 4.0,
+   "tokyo": 4.0,
+   "chubu": 4.0,
+   "hokuriku": 4.0,
+   "kansai": 4.0,
+   "chugoku": 4.0,
+   "shikoku": 4.0,
+   "kyushu": 4.0
+  }
+ },
+ "estimator": {
+  "model": "phase85's XGBRegressor verbatim: n_estimators=300, max_depth=4, learning_rate=0.05, random_state=2026, n_jobs=4, tree_method=hist",
+  "reuse": "phase85's panel, fold schedule (expanding window, STEP=1d for the question, VAL_WINDOW=14d, INITIAL_TRAIN_END=2024-07-18), design matrix, CW-complete subset, per-day aggregation, 7-day circular block bootstrap and HLN-DM are IMPORTED AND CALLED, not reimplemented. The innovation construction and the _design/_fit rebinding are the committed phase102 module's; the rebinding is asserted in force, asserted called for exactly the requested areas, and demonstrated by GATE A.",
+  "physical": "expanding-window OLS through the origin on phase89's row set, target, daylight window, per-area stamp convention and burn-in (min_train_rows=200); day t fitted on days strictly before t. k=1 is phase89's own model."
+ },
+ "inputs": {
+  "phase85_parquet": "data/runs/phase85_exact_ladder_per_slot.parquet",
+  "phase85_json": "data/runs/phase85_exact_ladder.json",
+  "phase89_json": "data/runs/phase89_physical_target.json",
+  "phase89_per_slot": "data/runs/phase89_physical_per_slot.parquet",
+  "phase90_json": "data/runs/phase90_mechanism.json",
+  "phase102_importance_json": "data/runs/phase102_innovation_importance.json",
+  "physical_panel_built_here": "data/runs/phase102sl_physical_per_slot.parquet",
+  "physical_arm_json": "data/runs/phase102sl_phys_arm.json",
+  "price_checkpoints": {
+   "q": "data/runs/phase102sl_ckpt_q",
+   "r": "data/runs/phase102sl_ckpt_r",
+   "b": "data/runs/phase102sl_ckpt_b"
+  },
+  "scripts_reused": [
+   "s_20260811_phase85_cw_primary_ladder.py",
+   "s_20260813_phase89_physical_target.py",
+   "s_20260819_phase102_innovation_learner.py"
+  ]
+ },
+ "metadata": {
+  "script": "s_20260819_phase102_signal_vs_learner.py",
+  "git_sha": "95e6d3ae11960713e5e5c1e772466ea1dd011330"
+ }
+}

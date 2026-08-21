@@ -1,0 +1,1076 @@
+{
+  "phase": "49",
+  "title": "data-window refresh + full-year previous-day-run (true-forecast) replication",
+  "data_freeze_date_utc": "2026-07-24",
+  "probe": {
+    "endpoint": "https://historical-forecast-api.open-meteo.com/v1/forecast",
+    "models_checked": [
+      "jma_msm",
+      "jma_seamless"
+    ],
+    "model_selected": "jma_msm",
+    "variables_api": [
+      "temperature_2m_previous_day1",
+      "cloud_cover_previous_day1",
+      "shortwave_radiation_previous_day1",
+      "wind_speed_10m_previous_day1"
+    ],
+    "points": {
+      "kyushu": [
+        33.59,
+        130.4
+      ],
+      "tokyo": [
+        35.68,
+        139.76
+      ]
+    },
+    "per_variable_first_full_day": {
+      "jma_msm": {
+        "temperature_2m": "2024-01-01",
+        "cloud_cover": "2024-01-01",
+        "shortwave_radiation": "2024-02-16",
+        "wind_speed_10m": "2024-01-01"
+      },
+      "jma_seamless": {
+        "temperature_2m": "2024-01-01",
+        "cloud_cover": "2024-01-01",
+        "shortwave_radiation": "2024-02-16",
+        "wind_speed_10m": "2024-01-01"
+      }
+    },
+    "latest_full_day": "2026-07-23",
+    "all4_first_full_day_kyushu": "2024-02-16",
+    "all4_first_full_day_tokyo": "2024-02-16",
+    "operational_tier_definition": "previous_day1 variables on the Historical-Forecast API = value for each delivery hour taken from the JMA-MSM run initialised ~24-27 h before delivery (a TRUE previous-day model run, day-ahead class, run-pinned to D-1). JEPX gate closure D-1 10:00 JST: delivery slots 00:00-10:00 JST use a run initialised strictly before the gate; slots 10:30-23:30 may use a D-1 run initialised up to ~13.5 h after the gate (reconstruction-ambiguity class of phase45 DE; never a same-day run). NOT called 'exact-issuance'.",
+    "gate": {
+      "criterion": ">= 540 days (1.5 y, full seasonal cycle) of previous_day1 coverage over Japanese points, all 4 paper variables",
+      "coverage_days": 888,
+      "decision": "PASS"
+    }
+  },
+  "metadata": {
+    "script": "s_20260724_phase49_exante_fullyear.py",
+    "git_sha": "51286226e89dd396a7d4e83287b10469a3b3f23b",
+    "generated_utc": "2026-07-24T08:14:00+00:00",
+    "total_runtime_s_last_invocation": 2.7
+  },
+  "freeze": {
+    "data_freeze_date_utc": "2026-07-24",
+    "files": {
+      "jepx_spot_2026": {
+        "path": "data/raw/jepx/spot_2026.csv",
+        "source_url": "https://www.jepx.jp/market/excel/spot_2026.csv",
+        "sha256": "ad8e668218038747bbef62f65e38a345eca32d8fd7700d4aa4d1af6c0ff0020c",
+        "rows": 50112,
+        "last_slot_jst": "2026-07-25T23:30:00+09:00"
+      },
+      "era5_2026_9points": {
+        "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+        "end_date_override": "2026-07-16",
+        "per_area": {
+          "hokkaido": {
+            "path": "data/raw/open_meteo/open_meteo_43p0700_141p3500_2026.json",
+            "sha256": "2ae0cd7aa7bc08646e804706e40460ab78ecbc622dbc800bcfe0dcf95d7e7d0f",
+            "end_date": "2026-07-16"
+          },
+          "tohoku": {
+            "path": "data/raw/open_meteo/open_meteo_38p2700_140p8700_2026.json",
+            "sha256": "f7ae7636a401f9389c40810ab23b200e3ad144b6240239e50fdcda0f06b3f8d9",
+            "end_date": "2026-07-16"
+          },
+          "tokyo": {
+            "path": "data/raw/open_meteo/open_meteo_35p6800_139p7600_2026.json",
+            "sha256": "25922486cbef78a288b52ec1cf15b320c436c66658fb13fb9a5613ecadad7807",
+            "end_date": "2026-07-16"
+          },
+          "chubu": {
+            "path": "data/raw/open_meteo/open_meteo_35p1800_136p9100_2026.json",
+            "sha256": "0247d3033177e02b5cc2f0456d104cfb4d402bd122dcd0c13b70a01699344ada",
+            "end_date": "2026-07-16"
+          },
+          "hokuriku": {
+            "path": "data/raw/open_meteo/open_meteo_36p5600_136p6600_2026.json",
+            "sha256": "ca909df6e5c179b6492e5d3318e1ef336af719b80af4b6e2036e4522e7945ade",
+            "end_date": "2026-07-16"
+          },
+          "kansai": {
+            "path": "data/raw/open_meteo/open_meteo_34p6900_135p5000_2026.json",
+            "sha256": "6bf4e68ebe52b2153b4fb507ab70d3de248d7ccd05f91acd074c83e83e9e21e9",
+            "end_date": "2026-07-16"
+          },
+          "chugoku": {
+            "path": "data/raw/open_meteo/open_meteo_34p4000_132p4600_2026.json",
+            "sha256": "9db92d88dbfc65527d60b794a8961544b42734138da9eb1b588025472014083a",
+            "end_date": "2026-07-16"
+          },
+          "shikoku": {
+            "path": "data/raw/open_meteo/open_meteo_34p3400_134p0500_2026.json",
+            "sha256": "eb4c959a9cef0b9b919da75c54c779e5482e6a221a5afda6bc42b15022c81c36",
+            "end_date": "2026-07-16"
+          },
+          "kyushu": {
+            "path": "data/raw/open_meteo/open_meteo_33p5900_130p4000_2026.json",
+            "sha256": "b9591a5759ff851656b218dd9d3c222f4e312a1ac5166505b28ac63c771d7465",
+            "end_date": "2026-07-16"
+          }
+        }
+      },
+      "jepx_imbalance_extension": {
+        "source": "https://www.imbalanceprices-cs.jp/public/price/<path> (paths from /imbalance-price-list/priceList)",
+        "committed_window": "2024-09..2025-10 (phase31; untouched)",
+        "new_months": {
+          "2025/11/202511_imbalance-price_02.csv": {
+            "cached_as": "2025_11_202511_imbalance-price_02.csv",
+            "sha256": "529edef6a42b952befb3d515e12d68141673726c5166de602704ff963e175486",
+            "newly_downloaded": true
+          },
+          "2025/12/202512_imbalance-price_02.csv": {
+            "cached_as": "2025_12_202512_imbalance-price_02.csv",
+            "sha256": "1dfb8dd16597e6874e991b415eb64a223c18ace72c96f8995e60e72e208b4383",
+            "newly_downloaded": true
+          },
+          "2026/01/202601_imbalance-price_01.csv": {
+            "cached_as": "2026_01_202601_imbalance-price_01.csv",
+            "sha256": "82bee65a914800cc5927a9b5cfdfc7a72907a7e6248af3e74742f529dc1d870d",
+            "newly_downloaded": true
+          },
+          "2026/02/202602_imbalance-price_02.csv": {
+            "cached_as": "2026_02_202602_imbalance-price_02.csv",
+            "sha256": "535cfeb1c22a8b41134280fa21bfa9f91291e78318946c104073fba74c1a9237",
+            "newly_downloaded": true
+          },
+          "2026/03/202603_imbalance-price_02.csv": {
+            "cached_as": "2026_03_202603_imbalance-price_02.csv",
+            "sha256": "2a1cd25db7624a4ba84fa09234e22eebfc494bfbb698bb6efc9bdcbd46689a1a",
+            "newly_downloaded": true
+          },
+          "2026/04/202604_imbalance-price_02.csv": {
+            "cached_as": "2026_04_202604_imbalance-price_02.csv",
+            "sha256": "d73012f0837221dfeb9d88f7d67c6db610785953732cb425aefbf1d76094a294",
+            "newly_downloaded": true
+          },
+          "2026/05/202605_imbalance-price_03.csv": {
+            "cached_as": "2026_05_202605_imbalance-price_03.csv",
+            "sha256": "05dbb811d2d9bd85dd3287bdcda6c6348e8865be8b853150a0ed4b787c412eeb",
+            "newly_downloaded": true
+          },
+          "2026/06/202606_imbalance-price_01.csv": {
+            "cached_as": "2026_06_202606_imbalance-price_01.csv",
+            "sha256": "46337ec9f7390ae8cad0c03263377f999980f2b9e3016a6232dd9bca25bb6af8",
+            "newly_downloaded": true
+          },
+          "2026/07/202607_imbalance-price_01.csv": {
+            "cached_as": "2026_07_202607_imbalance-price_01.csv",
+            "sha256": "7f69367c111c37a70ab2672c096ee5b60a7c69678e18f4ea9d073ac8eb6817f1",
+            "newly_downloaded": true
+          }
+        },
+        "n_new_months": 9
+      },
+      "open_meteo_prev1_caches": {
+        "open_meteo_prev1_jma_msm_chubu_35.1800_136.9100_2024.parquet": "3901ccd300666755b5ddefb35a3c7b3a1d661ed2e1a8c7e9134c8fe52b0799de",
+        "open_meteo_prev1_jma_msm_chubu_35.1800_136.9100_2025.parquet": "4f63d5b1da9e19e82bf4dda6921ecba54ba8e141a76af001ef1cf97afdcaad2b",
+        "open_meteo_prev1_jma_msm_chubu_35.1800_136.9100_2026.parquet": "7f4ca608f6a4dd824bdff2dd4cce7a254a27c30ccccb2a55bb8d6e6766567f1c",
+        "open_meteo_prev1_jma_msm_chugoku_34.4000_132.4600_2024.parquet": "7baeb2e727781a81e0e5d5be6027f0836ba2c7d45db1a62d22a6faef212856e7",
+        "open_meteo_prev1_jma_msm_chugoku_34.4000_132.4600_2025.parquet": "6b97ef385be4772e9e5d07d2bfd06c8afe0449abcde673daee5c074be3fa31ca",
+        "open_meteo_prev1_jma_msm_chugoku_34.4000_132.4600_2026.parquet": "824a85357df9aa3945e7d467c19c173192c655e30cdacd1f4f7346dd5426d6f8",
+        "open_meteo_prev1_jma_msm_hokkaido_43.0700_141.3500_2024.parquet": "9deac61e0b4269c4934723538db25f0608ee6c124c8ba0728fe0f836f539f36c",
+        "open_meteo_prev1_jma_msm_hokkaido_43.0700_141.3500_2025.parquet": "738255019ca0367d165e0e10f8867f7269f566918a53bd9eef367665de0de603",
+        "open_meteo_prev1_jma_msm_hokkaido_43.0700_141.3500_2026.parquet": "3fe240007f11cdde3f952fed7a6230cb53e5e20679d0a18dd2789cf3633f8290",
+        "open_meteo_prev1_jma_msm_hokuriku_36.5600_136.6600_2024.parquet": "a3c8eabdac27d6388df493f3953bc71b4b8ce44e5a23040f9bfa614074fe3fc0",
+        "open_meteo_prev1_jma_msm_hokuriku_36.5600_136.6600_2025.parquet": "e6b4752bc996547837f6a5366ee68abb6c38519b768d7577b53c88e548701c6e",
+        "open_meteo_prev1_jma_msm_hokuriku_36.5600_136.6600_2026.parquet": "6041606d1e18011cb2b03ffa994520d68b7cbb9e7608d7c4622fa47e69120800",
+        "open_meteo_prev1_jma_msm_kansai_34.6900_135.5000_2024.parquet": "01e702be68f906eea9abd5ce17cc866dadbdb7ac0ab08dd95d7de31f6adf6cab",
+        "open_meteo_prev1_jma_msm_kansai_34.6900_135.5000_2025.parquet": "da28dcafe0e3cefbe22ff8f8c345c250489711c0040286829871900639d1d82b",
+        "open_meteo_prev1_jma_msm_kansai_34.6900_135.5000_2026.parquet": "d12d05064ea8fa6754e28fa5bbfb90f91e798753d457a12a8e4d5136ac1fb628",
+        "open_meteo_prev1_jma_msm_kyushu_33.5900_130.4000_2024.parquet": "685ae1baee92da96da395a158c440568516c190f8618b8134ec104ab3cc9189c",
+        "open_meteo_prev1_jma_msm_kyushu_33.5900_130.4000_2025.parquet": "de54030030d364fac29c15e0535a2a6da788ffd798fc8bcf721c346b5427c63d",
+        "open_meteo_prev1_jma_msm_kyushu_33.5900_130.4000_2026.parquet": "b7832f16b117e41d2494943132bf605c975e30ca2f00d6265d725d786747f5db",
+        "open_meteo_prev1_jma_msm_shikoku_34.3400_134.0500_2024.parquet": "3020d763c3f233be4ca67aada0cb1915bce503af542a28d8e67986e64b048168",
+        "open_meteo_prev1_jma_msm_shikoku_34.3400_134.0500_2025.parquet": "ff01b05659d43b1b743c7b981d8549ded9bc804a562b76d7face3b4acb9e7877",
+        "open_meteo_prev1_jma_msm_shikoku_34.3400_134.0500_2026.parquet": "6f839ac3236f5bbd09cb7ee8925c91a9d0b2b8bd88f91baf64c6857d59ee5a7d",
+        "open_meteo_prev1_jma_msm_tohoku_38.2700_140.8700_2024.parquet": "8cef723c83c5840d79d3572de0b1103d7a4f7cdc1872adb846057597c6f96172",
+        "open_meteo_prev1_jma_msm_tohoku_38.2700_140.8700_2025.parquet": "20e510f962a8802abef14f8755d98a7e80e939f92745880497ea0c697deaa422",
+        "open_meteo_prev1_jma_msm_tohoku_38.2700_140.8700_2026.parquet": "58a9abc30af46287f66b4c56b21757d9f51a5596540330e5e3e88eb94ca77d2f",
+        "open_meteo_prev1_jma_msm_tokyo_35.6800_139.7600_2024.parquet": "94d7901df8ed1550559de16b0a90c4f5546b9086314f58dfb483ceea5249f483",
+        "open_meteo_prev1_jma_msm_tokyo_35.6800_139.7600_2025.parquet": "636489bf37ed0cfd7f044a82b564d9fb57df072961374e7349c63343c8d25f6e",
+        "open_meteo_prev1_jma_msm_tokyo_35.6800_139.7600_2026.parquet": "66ad3ab5f2a73ed5f26d1d06897c1f2367136ee7715f7d5ced838a7b11a6e921"
+      },
+      "open_meteo_histfc_extended_span": {
+        "open_meteo_histfc_jma_msm_33p5900_130p4000_20240401_20260722.json": "610bd21beeba7b8e8067d3f65b11a7b0c90a2077e1c78e982a59844f668a32b5",
+        "open_meteo_histfc_jma_msm_34p3400_134p0500_20240401_20260722.json": "8bac3d4d924fb7cb7ad1e88d9f34e961aa4a638aac32116b17cfb1236a8f24d4",
+        "open_meteo_histfc_jma_msm_34p4000_132p4600_20240401_20260722.json": "ed28b2cc5e52932fb0f57d0a54f06747b122a0a9995e23b6226a2a75a3dbb9f5",
+        "open_meteo_histfc_jma_msm_34p6900_135p5000_20240401_20260722.json": "e7f04e4e559371e4a1365759b59475556b6219d020db17fa6e35893273357fc6",
+        "open_meteo_histfc_jma_msm_35p1800_136p9100_20240401_20260722.json": "e0938aab5b4fa31e40d45e852aae4123ac3902e17a10e32b3f272a913320567f",
+        "open_meteo_histfc_jma_msm_35p6800_139p7600_20240401_20260722.json": "e54976e16cdd5069f65b4404430b90c3e343c0697813786928932fecbbd61921",
+        "open_meteo_histfc_jma_msm_36p5600_136p6600_20240401_20260722.json": "fb4543818d5362b029f5242f704f75df8315554803dddb1702cb6c1234d291eb",
+        "open_meteo_histfc_jma_msm_38p2700_140p8700_20240401_20260722.json": "4ea971070016df38a4f3f4b59883c84033c3fd48e6d7a33bcab5c865f9d47403",
+        "open_meteo_histfc_jma_msm_43p0700_141p3500_20240401_20260722.json": "6ed24bd2489c6e7d6c0b13f471902181bd019f5e276eac83886957246278e21e"
+      }
+    }
+  },
+  "headtohead": {
+    "protocol": "phase35/41 all-hours protocol unchanged: XGBRegressor(300, depth 4, lr 0.05, seed 2026), walk-forward initial_train_end 2024-09-01, val 14 d, test 1 d, step 3 d, min test day 2024-11-15, 4 same-sample cells on identical folds; panel from 2024-04-01 (FY2024)",
+    "tiers": {
+      "era5": "lag-48 ERA5 lagged-reanalysis proxy (paper convention)",
+      "histfc": "jma_msm Historical-Forecast reconstruction (paper op tier)",
+      "prev1": "jma_msm previous_day1 = TRUE previous-day run (day-ahead class, run-pinned to D-1); see probe note"
+    },
+    "window": {
+      "first_test_day": "2024-11-17",
+      "last_test_day": "2026-07-16",
+      "n_test_days": 202,
+      "n_folds_per_area": {
+        "chubu": 202,
+        "chugoku": 202,
+        "hokkaido": 202,
+        "hokuriku": 202,
+        "kansai": 202,
+        "kyushu": 202,
+        "shikoku": 202,
+        "tohoku": 202,
+        "tokyo": 202
+      },
+      "n_obs": 87264,
+      "n_areas": 9,
+      "calendar_months_covered": [
+        "2024-11",
+        "2024-12",
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06",
+        "2026-07"
+      ],
+      "n_calendar_months": 21,
+      "test_days_by_calendar_month": {
+        "01": 21,
+        "02": 19,
+        "03": 20,
+        "04": 19,
+        "05": 21,
+        "06": 20,
+        "07": 16,
+        "08": 10,
+        "09": 10,
+        "10": 11,
+        "11": 15,
+        "12": 20
+      }
+    },
+    "pooled_improvement_yen_kwh": {
+      "era5": 0.0271,
+      "histfc": 0.211,
+      "prev1": 0.2188
+    },
+    "per_area": {
+      "shikoku": {
+        "imp_era5": 0.005,
+        "imp_histfc": 0.2068,
+        "imp_prev1": 0.2064,
+        "pv_peak": 0.921,
+        "n": 9696
+      },
+      "kyushu": {
+        "imp_era5": 0.0843,
+        "imp_histfc": 0.2741,
+        "imp_prev1": 0.2426,
+        "pv_peak": 0.78,
+        "n": 9696
+      },
+      "tohoku": {
+        "imp_era5": 0.0414,
+        "imp_histfc": 0.3578,
+        "imp_prev1": 0.3816,
+        "pv_peak": 0.569,
+        "n": 9696
+      },
+      "chugoku": {
+        "imp_era5": 0.0505,
+        "imp_histfc": 0.2569,
+        "imp_prev1": 0.2643,
+        "pv_peak": 0.539,
+        "n": 9696
+      },
+      "chubu": {
+        "imp_era5": -0.0074,
+        "imp_histfc": 0.2077,
+        "imp_prev1": 0.2233,
+        "pv_peak": 0.519,
+        "n": 9696
+      },
+      "hokkaido": {
+        "imp_era5": -0.0282,
+        "imp_histfc": 0.0485,
+        "imp_prev1": 0.0504,
+        "pv_peak": 0.499,
+        "n": 9696
+      },
+      "hokuriku": {
+        "imp_era5": 0.026,
+        "imp_histfc": 0.1432,
+        "imp_prev1": 0.1521,
+        "pv_peak": 0.39,
+        "n": 9696
+      },
+      "kansai": {
+        "imp_era5": 0.049,
+        "imp_histfc": 0.207,
+        "imp_prev1": 0.2165,
+        "pv_peak": 0.348,
+        "n": 9696
+      },
+      "tokyo": {
+        "imp_era5": 0.0234,
+        "imp_histfc": 0.1973,
+        "imp_prev1": 0.232,
+        "pv_peak": 0.241,
+        "n": 9696
+      }
+    },
+    "dm_hln_nw_l3": {
+      "prev1_vs_price_only": {
+        "per_area": {
+          "chubu": {
+            "mean_diff": -0.22329,
+            "t_hln": -4.184,
+            "p_hln": 4.3e-05,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "chugoku": {
+            "mean_diff": -0.26433,
+            "t_hln": -5.988,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokkaido": {
+            "mean_diff": -0.05037,
+            "t_hln": -1.564,
+            "p_hln": 0.119375,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokuriku": {
+            "mean_diff": -0.15208,
+            "t_hln": -3.635,
+            "p_hln": 0.000353,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kansai": {
+            "mean_diff": -0.21646,
+            "t_hln": -4.74,
+            "p_hln": 4e-06,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kyushu": {
+            "mean_diff": -0.24262,
+            "t_hln": -4.994,
+            "p_hln": 1e-06,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "shikoku": {
+            "mean_diff": -0.20638,
+            "t_hln": -4.374,
+            "p_hln": 2e-05,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tohoku": {
+            "mean_diff": -0.38161,
+            "t_hln": -6.859,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tokyo": {
+            "mean_diff": -0.23203,
+            "t_hln": -4.528,
+            "p_hln": 1e-05,
+            "n": 202,
+            "nw_lag": 3
+          }
+        },
+        "pooled_across_areas": {
+          "mean_diff": -0.2188,
+          "t_hln": -6.479,
+          "p_hln": 0.0,
+          "n": 202,
+          "nw_lag": 3
+        },
+        "n_areas_p_lt_05_a_better": 8
+      },
+      "prev1_vs_era5_proxy": {
+        "per_area": {
+          "chubu": {
+            "mean_diff": -0.23073,
+            "t_hln": -4.493,
+            "p_hln": 1.2e-05,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "chugoku": {
+            "mean_diff": -0.2138,
+            "t_hln": -5.669,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokkaido": {
+            "mean_diff": -0.07862,
+            "t_hln": -2.563,
+            "p_hln": 0.011118,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokuriku": {
+            "mean_diff": -0.12603,
+            "t_hln": -3.258,
+            "p_hln": 0.001316,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kansai": {
+            "mean_diff": -0.16748,
+            "t_hln": -4.201,
+            "p_hln": 4e-05,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kyushu": {
+            "mean_diff": -0.15835,
+            "t_hln": -3.718,
+            "p_hln": 0.00026,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "shikoku": {
+            "mean_diff": -0.20139,
+            "t_hln": -4.634,
+            "p_hln": 6e-06,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tohoku": {
+            "mean_diff": -0.34024,
+            "t_hln": -6.855,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tokyo": {
+            "mean_diff": -0.20862,
+            "t_hln": -4.282,
+            "p_hln": 2.9e-05,
+            "n": 202,
+            "nw_lag": 3
+          }
+        },
+        "pooled_across_areas": {
+          "mean_diff": -0.1917,
+          "t_hln": -7.352,
+          "p_hln": 0.0,
+          "n": 202,
+          "nw_lag": 3
+        },
+        "n_areas_p_lt_05_a_better": 9
+      },
+      "histfc_vs_price_only": {
+        "per_area": {
+          "chubu": {
+            "mean_diff": -0.20766,
+            "t_hln": -3.869,
+            "p_hln": 0.000148,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "chugoku": {
+            "mean_diff": -0.25692,
+            "t_hln": -5.951,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokkaido": {
+            "mean_diff": -0.04853,
+            "t_hln": -1.628,
+            "p_hln": 0.105056,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokuriku": {
+            "mean_diff": -0.14322,
+            "t_hln": -3.527,
+            "p_hln": 0.000521,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kansai": {
+            "mean_diff": -0.20701,
+            "t_hln": -5.246,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kyushu": {
+            "mean_diff": -0.27406,
+            "t_hln": -5.534,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "shikoku": {
+            "mean_diff": -0.20679,
+            "t_hln": -4.586,
+            "p_hln": 8e-06,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tohoku": {
+            "mean_diff": -0.35777,
+            "t_hln": -7.257,
+            "p_hln": 0.0,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tokyo": {
+            "mean_diff": -0.19732,
+            "t_hln": -3.986,
+            "p_hln": 9.4e-05,
+            "n": 202,
+            "nw_lag": 3
+          }
+        },
+        "pooled_across_areas": {
+          "mean_diff": -0.21103,
+          "t_hln": -6.735,
+          "p_hln": 0.0,
+          "n": 202,
+          "nw_lag": 3
+        },
+        "n_areas_p_lt_05_a_better": 8
+      },
+      "era5_vs_price_only": {
+        "per_area": {
+          "chubu": {
+            "mean_diff": 0.00744,
+            "t_hln": 0.181,
+            "p_hln": 0.856445,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "chugoku": {
+            "mean_diff": -0.05053,
+            "t_hln": -2.131,
+            "p_hln": 0.034318,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokkaido": {
+            "mean_diff": 0.02825,
+            "t_hln": 1.382,
+            "p_hln": 0.168372,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokuriku": {
+            "mean_diff": -0.02605,
+            "t_hln": -0.929,
+            "p_hln": 0.353939,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kansai": {
+            "mean_diff": -0.04898,
+            "t_hln": -2.072,
+            "p_hln": 0.039528,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kyushu": {
+            "mean_diff": -0.08427,
+            "t_hln": -3.414,
+            "p_hln": 0.000775,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "shikoku": {
+            "mean_diff": -0.00499,
+            "t_hln": -0.203,
+            "p_hln": 0.839141,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tohoku": {
+            "mean_diff": -0.04137,
+            "t_hln": -2.039,
+            "p_hln": 0.042771,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tokyo": {
+            "mean_diff": -0.02341,
+            "t_hln": -1.4,
+            "p_hln": 0.162984,
+            "n": 202,
+            "nw_lag": 3
+          }
+        },
+        "pooled_across_areas": {
+          "mean_diff": -0.0271,
+          "t_hln": -1.868,
+          "p_hln": 0.063278,
+          "n": 202,
+          "nw_lag": 3
+        },
+        "n_areas_p_lt_05_a_better": 4
+      },
+      "prev1_vs_histfc": {
+        "per_area": {
+          "chubu": {
+            "mean_diff": -0.01562,
+            "t_hln": -0.814,
+            "p_hln": 0.416587,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "chugoku": {
+            "mean_diff": -0.00741,
+            "t_hln": -0.386,
+            "p_hln": 0.699881,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokkaido": {
+            "mean_diff": -0.00184,
+            "t_hln": -0.103,
+            "p_hln": 0.91801,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokuriku": {
+            "mean_diff": -0.00886,
+            "t_hln": -0.445,
+            "p_hln": 0.657054,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kansai": {
+            "mean_diff": -0.00944,
+            "t_hln": -0.465,
+            "p_hln": 0.642224,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kyushu": {
+            "mean_diff": 0.03144,
+            "t_hln": 1.649,
+            "p_hln": 0.100742,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "shikoku": {
+            "mean_diff": 0.00041,
+            "t_hln": 0.019,
+            "p_hln": 0.984704,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tohoku": {
+            "mean_diff": -0.02383,
+            "t_hln": -1.276,
+            "p_hln": 0.203264,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tokyo": {
+            "mean_diff": -0.03471,
+            "t_hln": -2.08,
+            "p_hln": 0.038771,
+            "n": 202,
+            "nw_lag": 3
+          }
+        },
+        "pooled_across_areas": {
+          "mean_diff": -0.00776,
+          "t_hln": -0.938,
+          "p_hln": 0.349526,
+          "n": 202,
+          "nw_lag": 3
+        },
+        "n_areas_p_lt_05_a_better": 1
+      }
+    },
+    "cross_area_spearman_vs_pvpeak": {
+      "era5": {
+        "rho": 0.183,
+        "p": 0.637
+      },
+      "histfc": {
+        "rho": 0.55,
+        "p": 0.125
+      },
+      "prev1": {
+        "rho": 0.3,
+        "p": 0.433
+      }
+    },
+    "reconstruction_vs_true_forecast": {
+      "per_area_gap_histfc_minus_prev1_yen_kwh": {
+        "shikoku": 0.0004,
+        "kyushu": 0.0314,
+        "tohoku": -0.0238,
+        "chugoku": -0.0074,
+        "chubu": -0.0156,
+        "hokkaido": -0.0018,
+        "hokuriku": -0.0089,
+        "kansai": -0.0094,
+        "tokyo": -0.0347
+      },
+      "mean_abs_gap_yen_kwh": 0.0148,
+      "mean_gap_yen_kwh": -0.0078,
+      "midday_shortwave_corr_histfc_vs_prev1": {
+        "chubu": 0.8843,
+        "chugoku": 0.8865,
+        "hokkaido": 0.8899,
+        "hokuriku": 0.8945,
+        "kansai": 0.8753,
+        "kyushu": 0.8797,
+        "shikoku": 0.8771,
+        "tohoku": 0.8746,
+        "tokyo": 0.8672
+      },
+      "midday_shortwave_corr_mean": 0.881,
+      "dm_prev1_vs_histfc": {
+        "per_area": {
+          "chubu": {
+            "mean_diff": -0.01562,
+            "t_hln": -0.814,
+            "p_hln": 0.416587,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "chugoku": {
+            "mean_diff": -0.00741,
+            "t_hln": -0.386,
+            "p_hln": 0.699881,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokkaido": {
+            "mean_diff": -0.00184,
+            "t_hln": -0.103,
+            "p_hln": 0.91801,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "hokuriku": {
+            "mean_diff": -0.00886,
+            "t_hln": -0.445,
+            "p_hln": 0.657054,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kansai": {
+            "mean_diff": -0.00944,
+            "t_hln": -0.465,
+            "p_hln": 0.642224,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "kyushu": {
+            "mean_diff": 0.03144,
+            "t_hln": 1.649,
+            "p_hln": 0.100742,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "shikoku": {
+            "mean_diff": 0.00041,
+            "t_hln": 0.019,
+            "p_hln": 0.984704,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tohoku": {
+            "mean_diff": -0.02383,
+            "t_hln": -1.276,
+            "p_hln": 0.203264,
+            "n": 202,
+            "nw_lag": 3
+          },
+          "tokyo": {
+            "mean_diff": -0.03471,
+            "t_hln": -2.08,
+            "p_hln": 0.038771,
+            "n": 202,
+            "nw_lag": 3
+          }
+        },
+        "pooled_across_areas": {
+          "mean_diff": -0.00776,
+          "t_hln": -0.938,
+          "p_hln": 0.349526,
+          "n": 202,
+          "nw_lag": 3
+        },
+        "n_areas_p_lt_05_a_better": 1
+      }
+    },
+    "strictly_admissible_morning_subset": {
+      "definition": "delivery slots 00:00-10:00 JST only: the previous_day1 run (init ~24-27 h before delivery) is initialised strictly before the D-1 10:00 JST JEPX gate closure",
+      "n_obs": 38178,
+      "pooled_improvement_yen_kwh": {
+        "era5": 0.0178,
+        "histfc": 0.1397,
+        "prev1": 0.1364
+      },
+      "dm_prev1_vs_price_only_pooled": {
+        "mean_diff": -0.13644,
+        "t_hln": -5.214,
+        "p_hln": 0.0,
+        "n": 202,
+        "nw_lag": 3
+      },
+      "dm_prev1_vs_era5_pooled": {
+        "mean_diff": -0.11867,
+        "t_hln": -5.501,
+        "p_hln": 0.0,
+        "n": 202,
+        "nw_lag": 3
+      }
+    },
+    "window_split": {
+      "committed_window_test_days_le_2025_11_06": {
+        "n_obs": 51408,
+        "improvement": {
+          "era5": 0.0159,
+          "histfc": 0.1873,
+          "prev1": 0.1967
+        }
+      },
+      "extension_only_test_days_gt_2025_11_06": {
+        "n_obs": 35856,
+        "improvement": {
+          "era5": 0.0432,
+          "histfc": 0.245,
+          "prev1": 0.2505
+        }
+      }
+    },
+    "committed_reference_phase41": {
+      "note": "committed FY2024-25 study-window numbers (untouched): phase41_allhours_headtohead_9area.json, n=50,544",
+      "era5_proxy": 0.0214,
+      "histfc_reconstruction": 0.2342,
+      "gpv_exact_issuance": 0.2484
+    },
+    "runtime_s_per_area": {
+      "chubu": 219.1,
+      "chugoku": 212.8,
+      "hokkaido": 221.7,
+      "hokuriku": 220.1,
+      "kansai": 217.5,
+      "kyushu": 200.7,
+      "shikoku": 219.6,
+      "tohoku": 216.3,
+      "tokyo": 211.4
+    }
+  },
+  "decision_extended": {
+    "protocol": "phase31c real-yen floor-decision protocol unchanged: floor = y_actual <= 0.5 yen/kWh; real over-forecast cost = max(shortage_imbalance - spot, 0); cross-fitted max-F1 threshold (5-fold on area|test_day groups, seed 2026); 1 MWh/slot continuous-throughput scaling to yen/MW/yr",
+    "committed_reference": {
+      "note": "committed phase31c cell (UNTOUCHED): phase26.1 histfc panel x imbalance 2024-09..2025-10, 8 areas, window 2024-11-17..2025-11-06",
+      "operational_value_yen_per_mw_yr": 177427.0
+    },
+    "predictions_source": "phase49 per-slot walk-forward (this run); tiers price_only / prev1 (true previous-day run) / histfc (reconstruction)",
+    "extended_window_8area": {
+      "label": "EXTENDED-WINDOW (phase49 panel, 8 committed decision areas)",
+      "n_obs": 77568,
+      "n_floor": 3211,
+      "first_test_day": "2024-11-17",
+      "last_test_day": "2026-07-16",
+      "floor_real_over_cost_yen_kwh_median": 0.0,
+      "total_real_floor_exposure_yen_kwh": 13487.2,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.615,
+          "unhedged_real_exposure_yen_kwh": 5235.8,
+          "real_decision_cost_yen_per_mw_yr": 1182595.0
+        },
+        "operational_prev1": {
+          "floor_recall": 0.647,
+          "unhedged_real_exposure_yen_kwh": 4750.0,
+          "real_decision_cost_yen_per_mw_yr": 1072863.0
+        },
+        "operational_histfc": {
+          "floor_recall": 0.59,
+          "unhedged_real_exposure_yen_kwh": 5798.6,
+          "real_decision_cost_yen_per_mw_yr": 1309706.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": {
+        "prev1": 109732.0,
+        "histfc": -127111.0
+      }
+    },
+    "old_window_bridge_8area": {
+      "label": "bridge: phase49 panel restricted to committed test window (<= 2025-11-06), 8 areas",
+      "n_obs": 45696,
+      "n_floor": 1506,
+      "first_test_day": "2024-11-17",
+      "last_test_day": "2025-11-06",
+      "floor_real_over_cost_yen_kwh_median": 6.325,
+      "total_real_floor_exposure_yen_kwh": 10438.6,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.515,
+          "unhedged_real_exposure_yen_kwh": 4546.7,
+          "real_decision_cost_yen_per_mw_yr": 1743228.0
+        },
+        "operational_prev1": {
+          "floor_recall": 0.58,
+          "unhedged_real_exposure_yen_kwh": 3939.7,
+          "real_decision_cost_yen_per_mw_yr": 1510475.0
+        },
+        "operational_histfc": {
+          "floor_recall": 0.541,
+          "unhedged_real_exposure_yen_kwh": 4507.4,
+          "real_decision_cost_yen_per_mw_yr": 1728148.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": {
+        "prev1": 232753.0,
+        "histfc": 15080.0
+      }
+    },
+    "extended_window_9area": {
+      "label": "EXTENDED-WINDOW (phase49 panel, 9 areas incl. Chubu; secondary)",
+      "n_obs": 87264,
+      "n_floor": 3409,
+      "first_test_day": "2024-11-17",
+      "last_test_day": "2026-07-16",
+      "floor_real_over_cost_yen_kwh_median": 0.0,
+      "total_real_floor_exposure_yen_kwh": 14030.3,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.615,
+          "unhedged_real_exposure_yen_kwh": 5262.7,
+          "real_decision_cost_yen_per_mw_yr": 1056595.0
+        },
+        "operational_prev1": {
+          "floor_recall": 0.642,
+          "unhedged_real_exposure_yen_kwh": 5018.7,
+          "real_decision_cost_yen_per_mw_yr": 1007607.0
+        },
+        "operational_histfc": {
+          "floor_recall": 0.564,
+          "unhedged_real_exposure_yen_kwh": 6604.0,
+          "real_decision_cost_yen_per_mw_yr": 1325892.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": {
+        "prev1": 48988.0,
+        "histfc": -269297.0
+      }
+    },
+    "floor_wedge_by_quarter_8area": {
+      "note": "median/mean of max(shortage_imbalance - spot, 0) on floored slots, by test-day quarter; documents the wedge regime shift after the committed window",
+      "rows": [
+        {
+          "q": "2024Q4",
+          "n_floor": 38,
+          "wedge_median": 7.37,
+          "wedge_mean": 6.61,
+          "wedge_p75": 12.59
+        },
+        {
+          "q": "2025Q1",
+          "n_floor": 550,
+          "wedge_median": 6.78,
+          "wedge_mean": 7.255,
+          "wedge_p75": 11.74
+        },
+        {
+          "q": "2025Q2",
+          "n_floor": 804,
+          "wedge_median": 7.5,
+          "wedge_mean": 7.187,
+          "wedge_p75": 13.15
+        },
+        {
+          "q": "2025Q3",
+          "n_floor": 64,
+          "wedge_median": 4.55,
+          "wedge_mean": 3.3,
+          "wedge_p75": 5.35
+        },
+        {
+          "q": "2025Q4",
+          "n_floor": 109,
+          "wedge_median": 0.0,
+          "wedge_mean": 2.194,
+          "wedge_p75": 4.59
+        },
+        {
+          "q": "2026Q1",
+          "n_floor": 338,
+          "wedge_median": 0.0,
+          "wedge_mean": 1.616,
+          "wedge_p75": 0.0
+        },
+        {
+          "q": "2026Q2",
+          "n_floor": 1304,
+          "wedge_median": 0.0,
+          "wedge_mean": 1.869,
+          "wedge_p75": 0.0
+        },
+        {
+          "q": "2026Q3",
+          "n_floor": 4,
+          "wedge_median": 10.79,
+          "wedge_mean": 8.44,
+          "wedge_p75": 10.79
+        }
+      ]
+    },
+    "phase26_panel_imbalance_extended": {
+      "label": "phase31c inputs with imbalance cache extended to freeze date (adds matched slots only 2025-11-01..2025-11-06)",
+      "n_obs": 45696,
+      "n_floor": 1506,
+      "total_real_floor_exposure_yen_kwh": 10438.6,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.503,
+          "unhedged_real_exposure_yen_kwh": 4836.3,
+          "real_decision_cost_yen_per_mw_yr": 1854265.0
+        },
+        "operational_histfc": {
+          "floor_recall": 0.577,
+          "unhedged_real_exposure_yen_kwh": 4178.7,
+          "real_decision_cost_yen_per_mw_yr": 1602131.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 252134.0
+    }
+  }
+}

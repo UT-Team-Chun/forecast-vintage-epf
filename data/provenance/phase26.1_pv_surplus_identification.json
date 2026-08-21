@@ -1,0 +1,251 @@
+{
+  "phase": "26.1_pv_surplus_panel",
+  "areas": [
+    "chugoku",
+    "hokkaido",
+    "hokuriku",
+    "kansai",
+    "kyushu",
+    "shikoku",
+    "tohoku",
+    "tokyo"
+  ],
+  "n_areas": 8,
+  "dependent_variable": "delta_abs_err = |err_weather| - |err_priceonly| (per 30-min slot)",
+  "identification_note": "Within-area within-day FE panel; identifies off hour-to-hour PV-surplus variation, not the n=9 between-area ranks. 8 OCCTO areas (chubu purged).",
+  "self_referential_treatment_bug": "FIXED (triple treatment & model feature share one bid-close-admissible signal per tier)",
+  "area_capacity_csv_sha256": "9426febf19fea1fbfdd55675061e1ad0b27c0ed9ff1d2b15747d01b47cf88301",
+  "min_test_day": "2024-11-15",
+  "cross_area_gradient": {
+    "areas": [
+      "chugoku",
+      "hokkaido",
+      "hokuriku",
+      "kansai",
+      "kyushu",
+      "shikoku",
+      "tohoku",
+      "tokyo"
+    ],
+    "era5": {
+      "mean_improvement": 0.03407874201668704,
+      "improvement_by_area": {
+        "chugoku": 0.03769940042132589,
+        "hokkaido": -0.005090597849913173,
+        "hokuriku": 0.02644425499839943,
+        "kansai": 0.04016750660973746,
+        "kyushu": 0.0826383837322634,
+        "shikoku": 0.0522314592341681,
+        "tohoku": 0.05473189177832251,
+        "tokyo": -0.016192362790807286
+      },
+      "spearman_vs_pv_peak": {
+        "rho": 0.7619047619047621,
+        "p": 0.028004939153071815
+      },
+      "spearman_vs_floor": {
+        "rho": 0.7425282823862205,
+        "p": 0.03485503933666419
+      }
+    },
+    "histfc": {
+      "mean_improvement": 0.2389980569820455,
+      "improvement_by_area": {
+        "chugoku": 0.24361553330381214,
+        "hokkaido": 0.10251261920141216,
+        "hokuriku": 0.2148757192952407,
+        "kansai": 0.27901573146900804,
+        "kyushu": 0.2403483402683838,
+        "shikoku": 0.20811283393806052,
+        "tohoku": 0.37074408804223,
+        "tokyo": 0.25275959033821643
+      },
+      "spearman_vs_pv_peak": {
+        "rho": -0.28571428571428575,
+        "p": 0.49272624501695705
+      },
+      "spearman_vs_floor": {
+        "rho": -0.3353353533357125,
+        "p": 0.416791590964274
+      }
+    }
+  },
+  "results": {
+    "era5__expected": {
+      "treatment": "expected",
+      "weather_tier": "era5",
+      "n_obs": 45696,
+      "n_clusters_area": 8,
+      "spec0_no_fe_wild_cluster": {
+        "beta_observed": 0.43474476594904393,
+        "se_cluster_observed": 0.15302265351632566,
+        "t_observed": 2.841048406618187,
+        "p_asymptotic_cluster_t": 0.02500701588576293,
+        "p_wild_cluster_bootstrap_two_sided": 0.0785,
+        "n_boot_valid": 2000,
+        "n_boot_total": 2000,
+        "ci_studentized_lo": -0.051470609410417756,
+        "ci_studentized_hi": 0.9183010155035227,
+        "ci_naive_percentile_lo": -0.4490652624658356,
+        "ci_naive_percentile_hi": 0.4541916042733528,
+        "n_clusters": 8,
+        "n_obs": 45696
+      },
+      "fe_specs_twoway_cluster": {
+        "spec1_area_date_hour": {
+          "beta_triple": 0.629381836334584,
+          "se_twoway_area_date": 0.4425647550871657,
+          "t": 1.422123721105228,
+          "p_asymptotic_twoway": 0.19798224178386414,
+          "n_params": 151
+        },
+        "spec2_areaXhour_date": {
+          "beta_triple": 0.7465967443117227,
+          "se_twoway_area_date": 0.5828053826156129,
+          "t": 1.2810395486757846,
+          "p_asymptotic_twoway": 0.24098460413874845,
+          "n_params": 312
+        },
+        "spec3_areaXmonth_hour": {
+          "beta_triple": 0.4991142152904238,
+          "se_twoway_area_date": 0.43277487343889287,
+          "t": 1.1532883397882803,
+          "p_asymptotic_twoway": 0.2866468955205079,
+          "n_params": 121
+        }
+      }
+    },
+    "era5__physical": {
+      "treatment": "physical",
+      "weather_tier": "era5",
+      "n_obs": 45577,
+      "n_clusters_area": 8,
+      "spec0_no_fe_wild_cluster": {
+        "beta_observed": -0.09231442690649772,
+        "se_cluster_observed": 0.11003064150737263,
+        "t_observed": -0.8389883548966872,
+        "p_asymptotic_cluster_t": 0.4291929233564562,
+        "p_wild_cluster_bootstrap_two_sided": 0.4655,
+        "n_boot_valid": 2000,
+        "n_boot_total": 2000,
+        "ci_studentized_lo": -0.3116849282489424,
+        "ci_studentized_hi": 0.12705607443599726,
+        "ci_naive_percentile_lo": -0.1964104209103574,
+        "ci_naive_percentile_hi": 0.2091082958800714,
+        "n_clusters": 8,
+        "n_obs": 45577
+      },
+      "fe_specs_twoway_cluster": {
+        "spec1_area_date_hour": {
+          "beta_triple": -0.03496476947009091,
+          "se_twoway_area_date": 0.18676876701328646,
+          "t": -0.18720886810589465,
+          "p_asymptotic_twoway": 0.8568074760896907,
+          "n_params": 151
+        },
+        "spec2_areaXhour_date": {
+          "beta_triple": -0.12222795534046049,
+          "se_twoway_area_date": 0.27739397994672155,
+          "t": -0.4406294446762563,
+          "p_asymptotic_twoway": 0.6727678476645773,
+          "n_params": 312
+        },
+        "spec3_areaXmonth_hour": {
+          "beta_triple": -0.049588289065546035,
+          "se_twoway_area_date": 0.16551160653357497,
+          "t": -0.29960611285279726,
+          "p_asymptotic_twoway": 0.7731782471336746,
+          "n_params": 121
+        }
+      }
+    },
+    "histfc__expected": {
+      "treatment": "expected",
+      "weather_tier": "histfc",
+      "n_obs": 45696,
+      "n_clusters_area": 8,
+      "spec0_no_fe_wild_cluster": {
+        "beta_observed": 0.6411922796955826,
+        "se_cluster_observed": 0.39441306199290027,
+        "t_observed": 1.6256872337233206,
+        "p_asymptotic_cluster_t": 0.14804322608899345,
+        "p_wild_cluster_bootstrap_two_sided": 0.147,
+        "n_boot_valid": 2000,
+        "n_boot_total": 2000,
+        "ci_studentized_lo": -0.2954144852942524,
+        "ci_studentized_hi": 1.6263427807696407,
+        "ci_naive_percentile_lo": -0.9441844861305835,
+        "ci_naive_percentile_hi": 0.8462555740616133,
+        "n_clusters": 8,
+        "n_obs": 45696
+      },
+      "fe_specs_twoway_cluster": {
+        "spec1_area_date_hour": {
+          "beta_triple": -0.49071538617486965,
+          "se_twoway_area_date": 0.5996214972931969,
+          "t": -0.8183752390300386,
+          "p_asymptotic_twoway": 0.44010866506171276,
+          "n_params": 151
+        },
+        "spec2_areaXhour_date": {
+          "beta_triple": -0.5890597519808127,
+          "se_twoway_area_date": NaN,
+          "t": NaN,
+          "p_asymptotic_twoway": NaN,
+          "n_params": 312
+        },
+        "spec3_areaXmonth_hour": {
+          "beta_triple": -0.3902216524291017,
+          "se_twoway_area_date": 0.5086730732690357,
+          "t": -0.7671364436912402,
+          "p_asymptotic_twoway": 0.4680801461279551,
+          "n_params": 121
+        }
+      }
+    },
+    "histfc__physical": {
+      "treatment": "physical",
+      "weather_tier": "histfc",
+      "n_obs": 45577,
+      "n_clusters_area": 8,
+      "spec0_no_fe_wild_cluster": {
+        "beta_observed": -0.046652821758415924,
+        "se_cluster_observed": 0.3224900189955138,
+        "t_observed": -0.14466438962585354,
+        "p_asymptotic_cluster_t": 0.8890529349958862,
+        "p_wild_cluster_bootstrap_two_sided": 0.897,
+        "n_boot_valid": 2000,
+        "n_boot_total": 2000,
+        "ci_studentized_lo": -0.8435524188361594,
+        "ci_studentized_hi": 0.7376750080685721,
+        "ci_naive_percentile_lo": -0.576332758560572,
+        "ci_naive_percentile_hi": 0.5895992309410366,
+        "n_clusters": 8,
+        "n_obs": 45577
+      },
+      "fe_specs_twoway_cluster": {
+        "spec1_area_date_hour": {
+          "beta_triple": -0.3649186725148942,
+          "se_twoway_area_date": 0.3948683757152902,
+          "t": -0.9241526922834902,
+          "p_asymptotic_twoway": 0.3861555982145908,
+          "n_params": 151
+        },
+        "spec2_areaXhour_date": {
+          "beta_triple": -0.4041706946367179,
+          "se_twoway_area_date": 0.5193546813447965,
+          "t": -0.7782171012499094,
+          "p_asymptotic_twoway": 0.46193031703556997,
+          "n_params": 312
+        },
+        "spec3_areaXmonth_hour": {
+          "beta_triple": -0.37704771013507116,
+          "se_twoway_area_date": 0.4176930464472018,
+          "t": -0.9026908954844945,
+          "p_asymptotic_twoway": 0.39668807110682325,
+          "n_params": 121
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "phase": 108,
+  "title": "Cost--loss increment against a fallback an actor would use",
+  "defect": "the published increment differences against a forecast whose value score is negative above alpha = 0.44, i.e. strictly dominated by climatology",
+  "n_alpha": 49,
+  "alpha_where_without_weather_turns_negative": 0.44,
+  "n_alpha_dominated": 28,
+  "peak_raw_difference": {
+    "alpha": 0.64,
+    "value": 0.3606
+  },
+  "peak_vs_usable_fallback": {
+    "alpha": 0.42,
+    "value": 0.3194
+  },
+  "v_with_at_lowest_alpha": {
+    "alpha": 0.02,
+    "value": 0.7593
+  },
+  "v_with_at_highest_alpha": {
+    "alpha": 0.98,
+    "value": 0.0339
+  },
+  "v_with_fold_decline_low_to_high": 22.398230088495573,
+  "reading": "V_with declines steeply in alpha, so the vintage is worth most to actors whose protection is CHEAP relative to exposure. The article concluded the opposite",
+  "curve": [
+    {
+      "alpha": 0.02,
+      "v_with": 0.7593,
+      "v_without": 0.7028,
+      "increment_raw": 0.0566,
+      "increment_vs_usable_fallback": 0.056499999999999995
+    },
+    {
+      "alpha": 0.04,
+      "v_with": 0.757,
+      "v_without": 0.6739,
+      "increment_raw": 0.0831,
+      "increment_vs_usable_fallback": 0.08309999999999995
+    },
+    {
+      "alpha": 0.06,
+      "v_with": 0.7263,
+      "v_without": 0.629,
+      "increment_raw": 0.0973,
+      "increment_vs_usable_fallback": 0.09729999999999994
+    },
+    {
+      "alpha": 0.08,
+      "v_with": 0.6865,
+      "v_without": 0.5772,
+      "increment_raw": 0.1094,
+      "increment_vs_usable_fallback": 0.10929999999999995
+    },
+    {
+      "alpha": 0.1,
+      "v_with": 0.654,
+      "v_without": 0.5229,
+      "increment_raw": 0.131,
+      "increment_vs_usable_fallback": 0.1311
+    },
+    {
+      "alpha": 0.12,
+      "v_with": 0.6257,
+      "v_without": 0.4691,
+      "increment_raw": 0.1566,
+      "increment_vs_usable_fallback": 0.15660000000000002
+    },
+    {
+      "alpha": 0.14,
+      "v_with": 0.5984,
+      "v_without": 0.4245,
+      "increment_raw": 0.1739,
+      "increment_vs_usable_fallback": 0.17390000000000005
+    },
+    {
+      "alpha": 0.16,
+      "v_with": 0.5735,
+      "v_without": 0.3822,
+      "increment_raw": 0.1913,
+      "increment_vs_usable_fallback": 0.19130000000000003
+    },
+    {
+      "alpha": 0.18,
+      "v_with": 0.5464,
+      "v_without": 0.346,
+      "increment_raw": 0.2005,
+      "increment_vs_usable_fallback": 0.20040000000000002
+    },
+    {
+      "alpha": 0.2,
+      "v_with": 0.5206,
+      "v_without": 0.3116,
+      "increment_raw": 0.209,
+      "increment_vs_usable_fallback": 0.20899999999999996
+    },
+    {
+      "alpha": 0.22,
+      "v_with": 0.4984,
+      "v_without": 0.2798,
+      "increment_raw": 0.2186,
+      "increment_vs_usable_fallback": 0.21860000000000002
+    },
+    {
+      "alpha": 0.24,
+      "v_with": 0.4751,
+      "v_without": 0.2449,
+      "increment_raw": 0.2302,
+      "increment_vs_usable_fallback": 0.23020000000000002
+    },
+    {
+      "alpha": 0.26,
+      "v_with": 0.4562,
+      "v_without": 0.2122,
+      "increment_raw": 0.244,
+      "increment_vs_usable_fallback": 0.244
+    },
+    {
+      "alpha": 0.28,
+      "v_with": 0.4388,
+      "v_without": 0.1834,
+      "increment_raw": 0.2555,
+      "increment_vs_usable_fallback": 0.2554
+    },
+    {
+      "alpha": 0.3,
+      "v_with": 0.4183,
+      "v_without": 0.1498,
+      "increment_raw": 0.2685,
+      "increment_vs_usable_fallback": 0.2685
+    },
+    {
+      "alpha": 0.32,
+      "v_with": 0.4036,
+      "v_without": 0.1209,
+      "increment_raw": 0.2827,
+      "increment_vs_usable_fallback": 0.2827
+    },
+    {
+      "alpha": 0.34,
+      "v_with": 0.3878,
+      "v_without": 0.0954,
+      "increment_raw": 0.2924,
+      "increment_vs_usable_fallback": 0.2924
+    },
+    {
+      "alpha": 0.36,
+      "v_with": 0.3704,
+      "v_without": 0.0663,
+      "increment_raw": 0.3041,
+      "increment_vs_usable_fallback": 0.30410000000000004
+    },
+    {
+      "alpha": 0.38,
+      "v_with": 0.3522,
+      "v_without": 0.0427,
+      "increment_raw": 0.3096,
+      "increment_vs_usable_fallback": 0.3095
+    },
+    {
+      "alpha": 0.4,
+      "v_with": 0.3367,
+      "v_without": 0.0252,
+      "increment_raw": 0.3115,
+      "increment_vs_usable_fallback": 0.3115
+    },
+    {
+      "alpha": 0.42,
+      "v_with": 0.3236,
+      "v_without": 0.0042,
+      "increment_raw": 0.3193,
+      "increment_vs_usable_fallback": 0.3194
+    },
+    {
+      "alpha": 0.44,
+      "v_with": 0.3096,
+      "v_without": -0.0165,
+      "increment_raw": 0.3261,
+      "increment_vs_usable_fallback": 0.3096
+    },
+    {
+      "alpha": 0.46,
+      "v_with": 0.2955,
+      "v_without": -0.0343,
+      "increment_raw": 0.3298,
+      "increment_vs_usable_fallback": 0.2955
+    },
+    {
+      "alpha": 0.48,
+      "v_with": 0.2811,
+      "v_without": -0.0553,
+      "increment_raw": 0.3364,
+      "increment_vs_usable_fallback": 0.2811
+    },
+    {
+      "alpha": 0.5,
+      "v_with": 0.2678,
+      "v_without": -0.0706,
+      "increment_raw": 0.3384,
+      "increment_vs_usable_fallback": 0.2678
+    },
+    {
+      "alpha": 0.52,
+      "v_with": 0.2555,
+      "v_without": -0.0832,
+      "increment_raw": 0.3387,
+      "increment_vs_usable_fallback": 0.2555
+    },
+    {
+      "alpha": 0.54,
+      "v_with": 0.2432,
+      "v_without": -0.0958,
+      "increment_raw": 0.339,
+      "increment_vs_usable_fallback": 0.2432
+    },
+    {
+      "alpha": 0.56,
+      "v_with": 0.2282,
+      "v_without": -0.1138,
+      "increment_raw": 0.342,
+      "increment_vs_usable_fallback": 0.2282
+    },
+    {
+      "alpha": 0.58,
+      "v_with": 0.217,
+      "v_without": -0.1278,
+      "increment_raw": 0.3449,
+      "increment_vs_usable_fallback": 0.217
+    },
+    {
+      "alpha": 0.6,
+      "v_with": 0.2062,
+      "v_without": -0.1426,
+      "increment_raw": 0.3489,
+      "increment_vs_usable_fallback": 0.2062
+    },
+    {
+      "alpha": 0.62,
+      "v_with": 0.2018,
+      "v_without": -0.1582,
+      "increment_raw": 0.36,
+      "increment_vs_usable_fallback": 0.2018
+    },
+    {
+      "alpha": 0.64,
+      "v_with": 0.1871,
+      "v_without": -0.1734,
+      "increment_raw": 0.3606,
+      "increment_vs_usable_fallback": 0.1871
+    },
+    {
+      "alpha": 0.66,
+      "v_with": 0.1712,
+      "v_without": -0.1865,
+      "increment_raw": 0.3577,
+      "increment_vs_usable_fallback": 0.1712
+    },
+    {
+      "alpha": 0.68,
+      "v_with": 0.1556,
+      "v_without": -0.1969,
+      "increment_raw": 0.3525,
+      "increment_vs_usable_fallback": 0.1556
+    },
+    {
+      "alpha": 0.7,
+      "v_with": 0.142,
+      "v_without": -0.2102,
+      "increment_raw": 0.3522,
+      "increment_vs_usable_fallback": 0.142
+    },
+    {
+      "alpha": 0.72,
+      "v_with": 0.1259,
+      "v_without": -0.2213,
+      "increment_raw": 0.3472,
+      "increment_vs_usable_fallback": 0.1259
+    },
+    {
+      "alpha": 0.74,
+      "v_with": 0.1151,
+      "v_without": -0.2325,
+      "increment_raw": 0.3476,
+      "increment_vs_usable_fallback": 0.1151
+    },
+    {
+      "alpha": 0.76,
+      "v_with": 0.1031,
+      "v_without": -0.2367,
+      "increment_raw": 0.3398,
+      "increment_vs_usable_fallback": 0.1031
+    },
+    {
+      "alpha": 0.78,
+      "v_with": 0.0958,
+      "v_without": -0.2445,
+      "increment_raw": 0.3403,
+      "increment_vs_usable_fallback": 0.0958
+    },
+    {
+      "alpha": 0.8,
+      "v_with": 0.0846,
+      "v_without": -0.2457,
+      "increment_raw": 0.3302,
+      "increment_vs_usable_fallback": 0.0846
+    },
+    {
+      "alpha": 0.82,
+      "v_with": 0.0771,
+      "v_without": -0.2507,
+      "increment_raw": 0.3278,
+      "increment_vs_usable_fallback": 0.0771
+    },
+    {
+      "alpha": 0.84,
+      "v_with": 0.0659,
+      "v_without": -0.2576,
+      "increment_raw": 0.3235,
+      "increment_vs_usable_fallback": 0.0659
+    },
+    {
+      "alpha": 0.86,
+      "v_with": 0.0533,
+      "v_without": -0.2581,
+      "increment_raw": 0.3114,
+      "increment_vs_usable_fallback": 0.0533
+    },
+    {
+      "alpha": 0.88,
+      "v_with": 0.0427,
+      "v_without": -0.2689,
+      "increment_raw": 0.3115,
+      "increment_vs_usable_fallback": 0.0427
+    },
+    {
+      "alpha": 0.9,
+      "v_with": 0.0575,
+      "v_without": -0.2436,
+      "increment_raw": 0.3011,
+      "increment_vs_usable_fallback": 0.0575
+    },
+    {
+      "alpha": 0.92,
+      "v_with": 0.0436,
+      "v_without": -0.225,
+      "increment_raw": 0.2687,
+      "increment_vs_usable_fallback": 0.0436
+    },
+    {
+      "alpha": 0.94,
+      "v_with": 0.0432,
+      "v_without": -0.1781,
+      "increment_raw": 0.2213,
+      "increment_vs_usable_fallback": 0.0432
+    },
+    {
+      "alpha": 0.96,
+      "v_with": 0.0425,
+      "v_without": -0.0777,
+      "increment_raw": 0.1202,
+      "increment_vs_usable_fallback": 0.0425
+    },
+    {
+      "alpha": 0.98,
+      "v_with": 0.0339,
+      "v_without": -0.0329,
+      "increment_raw": 0.0668,
+      "increment_vs_usable_fallback": 0.0339
+    }
+  ],
+  "source": "phase97_cost_loss.json",
+  "git_sha": "1a4b1eaf0bdddc324bfd9e5db3223cb25e050c72",
+  "script": "s_20260820_phase108_costloss_dominated.py"
+}

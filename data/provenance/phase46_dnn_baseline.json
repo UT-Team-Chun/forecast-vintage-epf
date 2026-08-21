@@ -1,0 +1,324 @@
+{
+  "phase": "phase46_dnn_baseline",
+  "learner": "torch_mlp (fixed architecture, frozen config)",
+  "frozen_config": {
+    "learner": "torch_mlp",
+    "torch_version": "2.11.0",
+    "architecture": "feed-forward, 2 hidden layers (Lago-style DNN)",
+    "hidden_units": [
+      128,
+      64
+    ],
+    "activation": "relu",
+    "dropout": 0.2,
+    "optimizer": "adam",
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "batch_size": 256,
+    "max_epochs": 200,
+    "early_stopping": {
+      "val_tail_days": 14,
+      "patience": 10,
+      "metric": "val_mse_on_standardized_target",
+      "min_delta": 1e-06,
+      "restore_best_weights": true
+    },
+    "standardization": "z-score of X and y using fit-portion statistics (train window minus the 14-day validation tail)",
+    "seed_rule": "seed = crc32('{area}|{fold_k}|{tier}') ^ 2026 (deterministic per fit)",
+    "device": "cpu",
+    "single_config_for_all": "one config for all areas/folds/tiers; frozen before any result outside the calibration fold was computed",
+    "calibration_scope": "first evaluated fold (k=21, test day 2024-11-17) of Kyushu ONLY"
+  },
+  "protocol": "identical to phase35_allhours_headtohead (same 8 areas, same folds, same features, same all-hours evaluation slots incl. GPV-null drop); only the learner differs. DNN early stopping holds out the last 14 days of each training window (XGB trains on the full window).",
+  "partial": false,
+  "errors": {},
+  "n_obs": 44928,
+  "n_areas": 8,
+  "fold_stride": 1,
+  "n_folds_eval_per_area": {
+    "hokkaido": 117,
+    "tohoku": 117,
+    "tokyo": 117,
+    "hokuriku": 117,
+    "kansai": 117,
+    "chugoku": 117,
+    "shikoku": 117,
+    "kyushu": 117
+  },
+  "mae_by_cell_pooled_yen_kwh": {
+    "priceonly": 2.0172,
+    "era5": 2.0267,
+    "histfc": 1.9195,
+    "gpv": 1.908
+  },
+  "mean_improvement_yen_kwh": {
+    "era5_proxy": -0.0095,
+    "histfc_reconstruction": 0.0978,
+    "gpv_exact_issuance": 0.1092
+  },
+  "cross_area_spearman_vs_pvpeak": {
+    "era5_proxy": {
+      "rho": 0.619,
+      "p": 0.102
+    },
+    "histfc_reconstruction": {
+      "rho": 0.452,
+      "p": 0.26
+    },
+    "gpv_exact_issuance": {
+      "rho": 0.19,
+      "p": 0.651
+    }
+  },
+  "dm_hln_per_area_vs_priceonly": {
+    "hokkaido": {
+      "era5": {
+        "d_bar": 0.0473,
+        "t_hln": 1.51,
+        "p_hln": 0.1337
+      },
+      "histfc": {
+        "d_bar": -0.0216,
+        "t_hln": -0.51,
+        "p_hln": 0.611
+      },
+      "gpv": {
+        "d_bar": 0.0011,
+        "t_hln": 0.025,
+        "p_hln": 0.9801
+      }
+    },
+    "tohoku": {
+      "era5": {
+        "d_bar": 0.0157,
+        "t_hln": 0.572,
+        "p_hln": 0.5684
+      },
+      "histfc": {
+        "d_bar": -0.2008,
+        "t_hln": -2.398,
+        "p_hln": 0.0181
+      },
+      "gpv": {
+        "d_bar": -0.2328,
+        "t_hln": -2.948,
+        "p_hln": 0.0039
+      }
+    },
+    "tokyo": {
+      "era5": {
+        "d_bar": 0.0462,
+        "t_hln": 1.381,
+        "p_hln": 0.1699
+      },
+      "histfc": {
+        "d_bar": -0.1185,
+        "t_hln": -1.904,
+        "p_hln": 0.0594
+      },
+      "gpv": {
+        "d_bar": -0.139,
+        "t_hln": -1.996,
+        "p_hln": 0.0483
+      }
+    },
+    "hokuriku": {
+      "era5": {
+        "d_bar": 0.0067,
+        "t_hln": 0.132,
+        "p_hln": 0.8948
+      },
+      "histfc": {
+        "d_bar": -0.0652,
+        "t_hln": -0.988,
+        "p_hln": 0.3252
+      },
+      "gpv": {
+        "d_bar": -0.0519,
+        "t_hln": -0.798,
+        "p_hln": 0.4267
+      }
+    },
+    "kansai": {
+      "era5": {
+        "d_bar": 0.003,
+        "t_hln": 0.074,
+        "p_hln": 0.9413
+      },
+      "histfc": {
+        "d_bar": -0.0245,
+        "t_hln": -0.299,
+        "p_hln": 0.7656
+      },
+      "gpv": {
+        "d_bar": -0.1059,
+        "t_hln": -1.473,
+        "p_hln": 0.1435
+      }
+    },
+    "chugoku": {
+      "era5": {
+        "d_bar": -0.0019,
+        "t_hln": -0.059,
+        "p_hln": 0.9533
+      },
+      "histfc": {
+        "d_bar": -0.1219,
+        "t_hln": -1.88,
+        "p_hln": 0.0626
+      },
+      "gpv": {
+        "d_bar": -0.0831,
+        "t_hln": -1.258,
+        "p_hln": 0.211
+      }
+    },
+    "shikoku": {
+      "era5": {
+        "d_bar": -0.0061,
+        "t_hln": -0.147,
+        "p_hln": 0.8833
+      },
+      "histfc": {
+        "d_bar": -0.0981,
+        "t_hln": -1.819,
+        "p_hln": 0.0715
+      },
+      "gpv": {
+        "d_bar": -0.0988,
+        "t_hln": -1.566,
+        "p_hln": 0.1201
+      }
+    },
+    "kyushu": {
+      "era5": {
+        "d_bar": -0.0348,
+        "t_hln": -1.085,
+        "p_hln": 0.2803
+      },
+      "histfc": {
+        "d_bar": -0.1316,
+        "t_hln": -1.853,
+        "p_hln": 0.0665
+      },
+      "gpv": {
+        "d_bar": -0.1628,
+        "t_hln": -2.155,
+        "p_hln": 0.0332
+      }
+    }
+  },
+  "dm_hln_note": "per-fold (daily) MAE, h=1, Bartlett NW L=3, HLN correction; same helper as phase23. Significant = improvement (d_bar<0) & p<0.05.",
+  "dm_n_areas_significant_improvement_p05": {
+    "era5": 0,
+    "histfc": 1,
+    "gpv": 3
+  },
+  "xgb_reference_phase35": {
+    "mean_improvement_yen_kwh": {
+      "era5_proxy": 0.0319,
+      "histfc_reconstruction": 0.2397,
+      "gpv_exact_issuance": 0.2531
+    },
+    "source": "data/runs/phase35_allhours_headtohead.json"
+  },
+  "inputs": {
+    "jepx_spot": "load_jepx_spot years=[2024,2025]",
+    "era5_proxy": "load_open_meteo_weather (lagged 48 slots in design)",
+    "histfc": "load_open_meteo_historical_forecast_archive",
+    "gpv": "data/raw/jma_gpv_allhours/jma_gpv"
+  },
+  "per_area": {
+    "shikoku": {
+      "imp_era5": 0.006,
+      "imp_histfc": 0.098,
+      "imp_gpv": 0.099,
+      "pv_peak": 0.921,
+      "n": 5616,
+      "mae_priceonly": 2.2971,
+      "mae_era5": 2.2909,
+      "mae_histfc": 2.199,
+      "mae_gpv": 2.1983
+    },
+    "kyushu": {
+      "imp_era5": 0.035,
+      "imp_histfc": 0.132,
+      "imp_gpv": 0.163,
+      "pv_peak": 0.78,
+      "n": 5616,
+      "mae_priceonly": 1.997,
+      "mae_era5": 1.9622,
+      "mae_histfc": 1.8654,
+      "mae_gpv": 1.8342
+    },
+    "tohoku": {
+      "imp_era5": -0.016,
+      "imp_histfc": 0.201,
+      "imp_gpv": 0.233,
+      "pv_peak": 0.569,
+      "n": 5616,
+      "mae_priceonly": 1.9707,
+      "mae_era5": 1.9864,
+      "mae_histfc": 1.7699,
+      "mae_gpv": 1.7378
+    },
+    "chugoku": {
+      "imp_era5": 0.002,
+      "imp_histfc": 0.122,
+      "imp_gpv": 0.083,
+      "pv_peak": 0.539,
+      "n": 5616,
+      "mae_priceonly": 1.9109,
+      "mae_era5": 1.909,
+      "mae_histfc": 1.789,
+      "mae_gpv": 1.8278
+    },
+    "hokkaido": {
+      "imp_era5": -0.047,
+      "imp_histfc": 0.022,
+      "imp_gpv": -0.001,
+      "pv_peak": 0.499,
+      "n": 5616,
+      "mae_priceonly": 2.2646,
+      "mae_era5": 2.3119,
+      "mae_histfc": 2.243,
+      "mae_gpv": 2.2657
+    },
+    "hokuriku": {
+      "imp_era5": -0.007,
+      "imp_histfc": 0.065,
+      "imp_gpv": 0.052,
+      "pv_peak": 0.39,
+      "n": 5616,
+      "mae_priceonly": 2.0046,
+      "mae_era5": 2.0114,
+      "mae_histfc": 1.9395,
+      "mae_gpv": 1.9527
+    },
+    "kansai": {
+      "imp_era5": -0.003,
+      "imp_histfc": 0.024,
+      "imp_gpv": 0.106,
+      "pv_peak": 0.348,
+      "n": 5616,
+      "mae_priceonly": 1.9721,
+      "mae_era5": 1.9751,
+      "mae_histfc": 1.9476,
+      "mae_gpv": 1.8662
+    },
+    "tokyo": {
+      "imp_era5": -0.046,
+      "imp_histfc": 0.118,
+      "imp_gpv": 0.139,
+      "pv_peak": 0.241,
+      "n": 5616,
+      "mae_priceonly": 1.7206,
+      "mae_era5": 1.7668,
+      "mae_histfc": 1.6021,
+      "mae_gpv": 1.5816
+    }
+  },
+  "runtime_seconds": 338.1,
+  "git_sha": "ebc754982c21fe9cc9d5b6b25c9cf655940d21c3",
+  "timestamp_utc": "2026-07-24T04:36:27+00:00"
+}

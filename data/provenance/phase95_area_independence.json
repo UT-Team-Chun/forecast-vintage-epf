@@ -1,0 +1,38 @@
+{
+ "phase": "95",
+ "title": "Effective independence of the nine JEPX areas",
+ "why": "\"positive in all nine areas\" is the paper's principal robustness currency; interconnection capacity is allocated through the spot auction, so area prices coincide whenever no interface binds and nine areas may not be nine replications",
+ "institutional_coupling": {
+  "n_slots": 35040,
+  "n_areas": 9,
+  "slots_all_areas_same_price_pct": 8.2,
+  "share_in_main_block_pct": {
+   "chubu": 61.6,
+   "chugoku": 89.8,
+   "hokkaido": 21.8,
+   "hokuriku": 94.8,
+   "kansai": 91.4,
+   "kyushu": 72.8,
+   "shikoku": 63.8,
+   "tohoku": 26.9,
+   "tokyo": 30.6
+  },
+  "near_floor_slots": 3424,
+  "near_floor_slots_unsplit_pct": 6.78,
+  "reading": "the share of slots on which every area clears at one price. High values mean the areas are one market most of the time and the per-area counts are not independent"
+ },
+ "statistical_coupling": {
+  "quantity": "per-area daily improvement of the headline pre-gate tier over the price-only baseline -- the series the 'nine of nine' counts are made about",
+  "n_days": 732,
+  "mean_pairwise_corr": 0.338,
+  "min_pairwise_corr": 0.019,
+  "max_pairwise_corr": 0.711,
+  "effective_n_areas": 4.11,
+  "effective_n_areas_prices": 1.53,
+  "reading": "the effective number of independent improvement series, by the participation ratio of the correlation matrix's eigenvalues. Nine means independent, one means identical"
+ },
+ "metadata": {
+  "script": "s_20260819_phase95_area_independence.py",
+  "git_sha": "72ce906a7d5ac7c0f7bd0986073fc5be7a60a9fc"
+ }
+}

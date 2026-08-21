@@ -1,0 +1,128 @@
+# Reproducibility
+
+This document says, for each result in the paper, what it takes to reproduce it
+and what "reproduced" should mean on a machine that is not ours.
+
+## Three levels, and which one you want
+
+| Level | Command | Needs | Time | What it establishes |
+|---|---|---|---|---|
+| **1. Provenance** | `make verify-paper` | this repo only | ~1 s | Every headline number in the manuscript matches the frozen JSON it came from, no macro prints an unaccounted number, and no retracted wording survives in the shipped figure PDFs. |
+| **2. Analysis** | `make reproduce` | extracted caches; network for the settlement/netting/timing targets | ~1 day | Every JSON this repository's scripts own is regenerated from the per-slot panels. |
+| **3. Acquisition** | `make acquire extract` | network, ~30 GB transient | ~1–2 days | The panels are rebuilt from the public sources. |
+
+Most readers want level 1. It is the level at which a claim of the form *"the
+paper says X and the analysis produced X"* is checkable in about a second, with
+no data, no network and no GPU. `make verify-paper-strict` is the stricter
+submission-time variant: the same checks, but macros still on the guard's
+declared-TODO ledger become failures instead of counted warnings — the ledger
+is not yet empty, so today that target fails by design and level 1 is the one
+that must pass.
+
+## Level 1: the drift guard
+
+`scripts/verify_macros.py` re-derives 407 headline quantities from
+`data/provenance/` and compares them to `docs/macros.tex`, the definitions the
+manuscript actually prints. It also enforces four things that ordinary
+number-checking misses:
+
+- **An unchecked-macro ratchet.** Any macro that puts a quantity on the page and
+  is not accounted for by a check, an exemption with a stated source, or a
+  declared TODO is a failure. Numbers cannot enter the paper unguarded, and
+  spelled-out quantities ("zero") are caught alongside digits.
+- **Aggregate bindings.** A macro that prints "the lowest per-area improvement"
+  is bound to the *argmin over the container*, not to whichever area happens to
+  be lowest today, so a re-run that reorders the areas cannot pass silently.
+- **A retired-term audit over built PDFs and submission files.** Wording the
+  manuscript has retracted is scanned for in the compiled artefacts, not just
+  the sources, with whitespace flattened first — a phrase that wraps across a
+  PDF line break used to slip through, and a deliberate-breakage test caught it.
+- **Generated-artefact freshness.** Tables and the Editorial Manager abstract
+  are emitted from provenance; `--check` fails if what is on disk is not what
+  the emitter would write now.
+
+The guard is meant to be attacked. If you want to convince yourself it works,
+change a digit in `docs/macros.tex` and run it.
+
+## Level 2: the analysis chain
+
+`make reproduce` runs the analyses in dependency order.
+[`scripts/README.md`](scripts/README.md) maps each script to the provenance
+JSON it writes and to the section of the paper it backs. Times are for a
+12-core Apple-silicon laptop with 64 GB. Three targets in this level do reach
+the network: `settlement`, `netting` and `netting_exact` fetch the
+imbalance-price basis first (via `acquire_ics`), and `dissemination_audit` is
+nothing but HTTP HEAD requests against the archive.
+
+| Target | Script | Time | Notes |
+|---|---|---|---|
+| `ladder` | `10_vintage_ladder.py` | ~4 h | 9 areas × ~740 folds × 9 cells; per-area checkpoints, so it resumes |
+| `cycle_curve` | `11_cycle_curve.py` | ~3 h | 6 cells on the common daytime window; parallelises by area |
+| `capacity_weighted` | `12_capacity_weighted_ladder.py` | ~3.5 h | 12 cells; **Gate 5 blocks the phase** if the shared cells do not reproduce the ladder's per-slot predictions |
+| `enriched_baseline` | `13_enriched_baseline.py` | minutes | the strongest gate-available baseline, off the extracted caches |
+| `proxy_validation` | `14_proxy_validation.py` | minutes | representative point vs the operators' published output (Gate 35's criterion) |
+| `decision` | `20_commitment_decision.py` | ~3 min | three operational tiers off the ladder panel |
+| `wedge` | `32_wedge_continuous.py` | ~10 min | bootstraps and permutations |
+| `system` | `33_system_metrics_band.py` | ~5 min | nomination-band grid |
+| `floor_regime` | `30_floor_regime_evaluation.py` | ~4 h | functional bootstrap dominates |
+| `settlement`, `netting`, `netting_exact` | `31`, `34`, `35` | ~10 min | need `acquire_ics` first |
+| `decision_equivalence` | `21_decision_equivalence.py` | ~1 min | post-processes two committed panels |
+| `nomination_rules` | `22_nomination_rules.py` | ~1 min | blocking step-0 identity check, then five rules |
+| `dissemination_audit` | `40_dissemination_audit.py` | ~2 h | ~7,000 HTTP HEAD requests at one per second, out of courtesy to the mirror |
+| `tables`, `figures` | `90`, `91`, `92` | ~1 min | read provenance only |
+
+### Determinism, and the honest caveat
+
+Every stochastic step is seeded (`SEED = 2026`): the stationary and circular
+block bootstraps, the permutation tests, and the gradient-boosting fits. On the
+same machine and the same locked environment, re-running a phase reproduces its
+JSON to the digit.
+
+Across machines it will not, exactly. XGBoost's histogram method depends on
+build flags and core count, and floating-point summation order differs. This
+matters in one specific place: **Gate 5** requires the cells shared with an
+earlier phase to reproduce that phase's per-slot predictions to within 1e-9,
+and it is designed to abort the whole sweep if they do not. On our hardware the
+observed difference is exactly zero across all 307,638 slots. On different
+hardware Gate 5 may fail *for reasons that are not a defect in the analysis*.
+If that happens:
+
+- The correct reading is "this machine cannot bit-reproduce the reference
+  panel", not "the result is wrong".
+- Compare the improvements and their intervals instead. Differences of order
+  1e-6 JPY/kWh against reported effects of order 1e-1 with intervals of order
+  1e-2 are not a disagreement.
+
+We chose a hard gate over a soft one because its purpose is to catch *silent
+harness drift* when we add cells, and for that job a tolerance that absorbs real
+non-determinism would be useless.
+
+## Level 3: acquisition
+
+`data/README.md` gives the endpoints, windows and hashes. Two notes:
+
+- **The MSM-GPV archive is a research mirror.** The extraction scripts sleep
+  between requests deliberately. Please do not remove that; a full pin of one
+  run plan is ~880 days of files. The GRIB2 decoder needs the `geo` extra
+  (`uv sync --extra geo`; the wheel bundles the ecCodes binary).
+- **`make extract` is resumable.** Each plan writes per-area caches and a
+  progress file, and a re-run skips days already complete against the plan's
+  declared hour coverage.
+
+## What is not in this repository
+
+- Raw third-party data (JEPX, OCCTO, the operators' imbalance disclosures, JMA
+  MSM-GPV, Open-Meteo, the METI FIT register). All are public;
+  `data/README.md` says how to get each one.
+- Per-slot panels. They are large and fully derivable; the frozen JSON that the
+  paper's numbers actually come from *is* included.
+- The manuscript sources. This repository backs the paper's numbers; the paper
+  itself is with the publisher.
+
+## Environment
+
+`uv.lock` pins the exact dependency graph. `uv sync --all-extras` reproduces it.
+Python 3.12 is required (`requires-python = ">=3.12,<3.13"`); the GRIB2 decoder
+and XGBoost are the version-sensitive pieces. The dependency list is exactly
+the import surface of `alg/` and `scripts/` — if it is installed, something
+here imports it.

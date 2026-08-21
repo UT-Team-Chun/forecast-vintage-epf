@@ -1,0 +1,1392 @@
+{
+ "phase": 89,
+ "title": "Physical target, cross-fitted and common-panel",
+ "precommit_doc": "docs/research/2026-08-13_phase89_physical_target_precommit.md",
+ "conventions": {
+  "daylight_hours_jst": [
+   9,
+   15
+  ],
+  "daylight_slots_per_area_day": 14,
+  "derate": "shortwave x (1 - 0.004 x (T - 25.0))",
+  "weighting": "per-point derate then capacity weight, vintage 2024-09",
+  "scaling": "origin OLS, EXPANDING WINDOW (day t uses days before t)",
+  "scaling_superseded": "phase79 used origin OLS on the full sample",
+  "stamp_shift_min": {
+   "kyushu": -30,
+   "hokkaido": 0,
+   "tohoku": 0,
+   "tokyo": 0,
+   "hokuriku": 0,
+   "kansai": 0,
+   "chugoku": 0,
+   "shikoku": 0
+  },
+  "stamp_shift_superseded": "phase79 applied -30 to all areas",
+  "unit": "MW; the pooled figure is the unweighted MEAN ACROSS AREAS of each area's daylight-slot MAE, not a fleet total",
+  "min_train_rows": 200
+ },
+ "targets": {
+  "potential": {
+   "tiers": {
+    "era5_cw_stale": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 1189.5,
+       "mae_is_mw": 1175.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.50763
+      },
+      "hokkaido": {
+       "mae_cf_mw": 441.8,
+       "mae_is_mw": 441.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.94033
+      },
+      "hokuriku": {
+       "mae_cf_mw": 261.3,
+       "mae_is_mw": 260.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.04684
+      },
+      "kansai": {
+       "mae_cf_mw": 1257.6,
+       "mae_is_mw": 1248.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.51618
+      },
+      "kyushu": {
+       "mae_cf_mw": 1981.3,
+       "mae_is_mw": 1962.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.08198
+      },
+      "shikoku": {
+       "mae_cf_mw": 537.3,
+       "mae_is_mw": 536.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.40773
+      },
+      "tohoku": {
+       "mae_cf_mw": 1516.1,
+       "mae_is_mw": 1513.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.16207
+      },
+      "tokyo": {
+       "mae_cf_mw": 3644.1,
+       "mae_is_mw": 3623.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 15.4267
+      }
+     },
+     "pooled_mae_cf_mw": 1353.6,
+     "pooled_mae_is_mw": 1345.2,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 1321.5,
+     "n_days_common": 696
+    },
+    "msm_d2_12z_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 796.2,
+       "mae_is_mw": 784.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.05648
+      },
+      "hokkaido": {
+       "mae_cf_mw": 321.4,
+       "mae_is_mw": 321.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.15715
+      },
+      "hokuriku": {
+       "mae_cf_mw": 164.1,
+       "mae_is_mw": 163.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.21758
+      },
+      "kansai": {
+       "mae_cf_mw": 858.5,
+       "mae_is_mw": 847.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.09293
+      },
+      "kyushu": {
+       "mae_cf_mw": 1265.5,
+       "mae_is_mw": 1244.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 10.19534
+      },
+      "shikoku": {
+       "mae_cf_mw": 357.4,
+       "mae_is_mw": 355.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.642
+      },
+      "tohoku": {
+       "mae_cf_mw": 945.4,
+       "mae_is_mw": 940.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.80564
+      },
+      "tokyo": {
+       "mae_cf_mw": 2353.3,
+       "mae_is_mw": 2335.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.90623
+      }
+     },
+     "pooled_mae_cf_mw": 882.7,
+     "pooled_mae_is_mw": 874.1,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 878.4,
+     "n_days_common": 696
+    },
+    "msm_gate_composite_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 745.5,
+       "mae_is_mw": 741.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.15704
+      },
+      "hokkaido": {
+       "mae_cf_mw": 313.2,
+       "mae_is_mw": 313.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.15262
+      },
+      "hokuriku": {
+       "mae_cf_mw": 158.9,
+       "mae_is_mw": 158.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.23025
+      },
+      "kansai": {
+       "mae_cf_mw": 790.0,
+       "mae_is_mw": 787.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.22202
+      },
+      "kyushu": {
+       "mae_cf_mw": 1161.4,
+       "mae_is_mw": 1153.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 10.3487
+      },
+      "shikoku": {
+       "mae_cf_mw": 336.0,
+       "mae_is_mw": 335.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.6943
+      },
+      "tohoku": {
+       "mae_cf_mw": 904.1,
+       "mae_is_mw": 903.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.82226
+      },
+      "tokyo": {
+       "mae_cf_mw": 2181.7,
+       "mae_is_mw": 2171.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.12337
+      }
+     },
+     "pooled_mae_cf_mw": 823.9,
+     "pooled_mae_is_mw": 820.5,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 828.1,
+     "n_days_common": 696
+    },
+    "msm_d1_00z_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 729.3,
+       "mae_is_mw": 725.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.16569
+      },
+      "hokkaido": {
+       "mae_cf_mw": 312.7,
+       "mae_is_mw": 312.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.15795
+      },
+      "hokuriku": {
+       "mae_cf_mw": 157.6,
+       "mae_is_mw": 157.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.23899
+      },
+      "kansai": {
+       "mae_cf_mw": 781.4,
+       "mae_is_mw": 778.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.23697
+      },
+      "kyushu": {
+       "mae_cf_mw": 1142.4,
+       "mae_is_mw": 1137.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 10.35821
+      },
+      "shikoku": {
+       "mae_cf_mw": 328.8,
+       "mae_is_mw": 328.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.70407
+      },
+      "tohoku": {
+       "mae_cf_mw": 898.7,
+       "mae_is_mw": 897.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.847
+      },
+      "tokyo": {
+       "mae_cf_mw": 2149.7,
+       "mae_is_mw": 2141.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.2387
+      }
+     },
+     "pooled_mae_cf_mw": 812.6,
+     "pooled_mae_is_mw": 810.0,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 818.6,
+     "n_days_common": 696
+    },
+    "oracle_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 619.8,
+       "mae_is_mw": 619.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.99129
+      },
+      "hokkaido": {
+       "mae_cf_mw": 305.9,
+       "mae_is_mw": 306.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.09606
+      },
+      "hokuriku": {
+       "mae_cf_mw": 145.7,
+       "mae_is_mw": 145.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.16252
+      },
+      "kansai": {
+       "mae_cf_mw": 665.0,
+       "mae_is_mw": 663.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.03423
+      },
+      "kyushu": {
+       "mae_cf_mw": 1039.3,
+       "mae_is_mw": 1040.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.88903
+      },
+      "shikoku": {
+       "mae_cf_mw": 287.4,
+       "mae_is_mw": 287.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.62592
+      },
+      "tohoku": {
+       "mae_cf_mw": 836.7,
+       "mae_is_mw": 839.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.82983
+      },
+      "tokyo": {
+       "mae_cf_mw": 1879.2,
+       "mae_is_mw": 1886.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.10428
+      }
+     },
+     "pooled_mae_cf_mw": 722.4,
+     "pooled_mae_is_mw": 723.5,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 736.6,
+     "n_days_common": 696
+    },
+    "era5_cw_stale__legacyshift": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 1274.4,
+       "mae_is_mw": 1267.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.31359
+      },
+      "hokkaido": {
+       "mae_cf_mw": 463.6,
+       "mae_is_mw": 464.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.82933
+      },
+      "hokuriku": {
+       "mae_cf_mw": 271.8,
+       "mae_is_mw": 271.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.00751
+      },
+      "kansai": {
+       "mae_cf_mw": 1347.2,
+       "mae_is_mw": 1343.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.29327
+      },
+      "kyushu": {
+       "mae_cf_mw": 1981.3,
+       "mae_is_mw": 1962.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.08198
+      },
+      "shikoku": {
+       "mae_cf_mw": 581.0,
+       "mae_is_mw": 580.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.31677
+      },
+      "tohoku": {
+       "mae_cf_mw": 1599.9,
+       "mae_is_mw": 1599.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.80775
+      },
+      "tokyo": {
+       "mae_cf_mw": 3857.9,
+       "mae_is_mw": 3854.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 14.7118
+      }
+     },
+     "pooled_mae_cf_mw": 1422.1,
+     "pooled_mae_is_mw": 1417.8,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 1396.3,
+     "n_days_common": 696
+    },
+    "msm_d2_12z_cw__legacyshift": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 937.8,
+       "mae_is_mw": 932.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.84552
+      },
+      "hokkaido": {
+       "mae_cf_mw": 360.9,
+       "mae_is_mw": 361.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.03729
+      },
+      "hokuriku": {
+       "mae_cf_mw": 187.9,
+       "mae_is_mw": 187.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.172
+      },
+      "kansai": {
+       "mae_cf_mw": 1014.1,
+       "mae_is_mw": 1007.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.84378
+      },
+      "kyushu": {
+       "mae_cf_mw": 1265.5,
+       "mae_is_mw": 1244.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 10.19534
+      },
+      "shikoku": {
+       "mae_cf_mw": 427.0,
+       "mae_is_mw": 425.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.54251
+      },
+      "tohoku": {
+       "mae_cf_mw": 1119.7,
+       "mae_is_mw": 1118.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.42506
+      },
+      "tokyo": {
+       "mae_cf_mw": 2818.4,
+       "mae_is_mw": 2809.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.09521
+      }
+     },
+     "pooled_mae_cf_mw": 1016.4,
+     "pooled_mae_is_mw": 1010.9,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 1017.9,
+     "n_days_common": 696
+    },
+    "msm_gate_composite_cw__legacyshift": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 895.4,
+       "mae_is_mw": 894.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.9427
+      },
+      "hokkaido": {
+       "mae_cf_mw": 354.4,
+       "mae_is_mw": 354.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.03336
+      },
+      "hokuriku": {
+       "mae_cf_mw": 184.2,
+       "mae_is_mw": 183.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.18385
+      },
+      "kansai": {
+       "mae_cf_mw": 957.4,
+       "mae_is_mw": 955.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.96743
+      },
+      "kyushu": {
+       "mae_cf_mw": 1161.4,
+       "mae_is_mw": 1153.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 10.3487
+      },
+      "shikoku": {
+       "mae_cf_mw": 409.9,
+       "mae_is_mw": 409.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.5929
+      },
+      "tohoku": {
+       "mae_cf_mw": 1086.3,
+       "mae_is_mw": 1086.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.44039
+      },
+      "tokyo": {
+       "mae_cf_mw": 2679.2,
+       "mae_is_mw": 2675.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.30374
+      }
+     },
+     "pooled_mae_cf_mw": 966.0,
+     "pooled_mae_is_mw": 964.2,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 975.4,
+     "n_days_common": 696
+    },
+    "msm_d1_00z_cw__legacyshift": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 882.3,
+       "mae_is_mw": 882.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.95084
+      },
+      "hokkaido": {
+       "mae_cf_mw": 354.0,
+       "mae_is_mw": 354.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.03791
+      },
+      "hokuriku": {
+       "mae_cf_mw": 182.8,
+       "mae_is_mw": 182.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.19218
+      },
+      "kansai": {
+       "mae_cf_mw": 952.1,
+       "mae_is_mw": 950.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.98066
+      },
+      "kyushu": {
+       "mae_cf_mw": 1142.4,
+       "mae_is_mw": 1137.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 10.35821
+      },
+      "shikoku": {
+       "mae_cf_mw": 403.9,
+       "mae_is_mw": 403.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.60205
+      },
+      "tohoku": {
+       "mae_cf_mw": 1082.5,
+       "mae_is_mw": 1083.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.46338
+      },
+      "tokyo": {
+       "mae_cf_mw": 2652.5,
+       "mae_is_mw": 2649.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.41476
+      }
+     },
+     "pooled_mae_cf_mw": 956.6,
+     "pooled_mae_is_mw": 955.3,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 967.8,
+     "n_days_common": 696
+    },
+    "oracle_cw__legacyshift": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 798.8,
+       "mae_is_mw": 800.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.78309
+      },
+      "hokkaido": {
+       "mae_cf_mw": 350.3,
+       "mae_is_mw": 350.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.97831
+      },
+      "hokuriku": {
+       "mae_cf_mw": 175.7,
+       "mae_is_mw": 175.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.11784
+      },
+      "kansai": {
+       "mae_cf_mw": 857.6,
+       "mae_is_mw": 857.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.78692
+      },
+      "kyushu": {
+       "mae_cf_mw": 1039.3,
+       "mae_is_mw": 1040.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.88903
+      },
+      "shikoku": {
+       "mae_cf_mw": 372.5,
+       "mae_is_mw": 372.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.52713
+      },
+      "tohoku": {
+       "mae_cf_mw": 1043.2,
+       "mae_is_mw": 1046.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.44194
+      },
+      "tokyo": {
+       "mae_cf_mw": 2423.5,
+       "mae_is_mw": 2431.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.30185
+      }
+     },
+     "pooled_mae_cf_mw": 882.6,
+     "pooled_mae_is_mw": 884.4,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 899.4,
+     "n_days_common": 696
+    }
+   }
+  },
+  "curtail_excluded": {
+   "tiers": {
+    "era5_cw_stale": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 1172.6,
+       "mae_is_mw": 1145.7,
+       "n_days": 748,
+       "burn_in_slots": 212,
+       "scale_in_sample": 5.24379
+      },
+      "hokkaido": {
+       "mae_cf_mw": 437.0,
+       "mae_is_mw": 436.6,
+       "n_days": 769,
+       "burn_in_slots": 200,
+       "scale_in_sample": 1.91117
+      },
+      "hokuriku": {
+       "mae_cf_mw": 256.7,
+       "mae_is_mw": 255.6,
+       "n_days": 759,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.02875
+      },
+      "kansai": {
+       "mae_cf_mw": 1184.5,
+       "mae_is_mw": 1169.0,
+       "n_days": 706,
+       "burn_in_slots": 211,
+       "scale_in_sample": 5.16649
+      },
+      "kyushu": {
+       "mae_cf_mw": 1800.4,
+       "mae_is_mw": 1765.1,
+       "n_days": 604,
+       "burn_in_slots": 201,
+       "scale_in_sample": 8.01186
+      },
+      "shikoku": {
+       "mae_cf_mw": 510.9,
+       "mae_is_mw": 509.5,
+       "n_days": 713,
+       "burn_in_slots": 213,
+       "scale_in_sample": 2.26699
+      },
+      "tohoku": {
+       "mae_cf_mw": 1394.3,
+       "mae_is_mw": 1389.0,
+       "n_days": 711,
+       "burn_in_slots": 206,
+       "scale_in_sample": 6.55681
+      },
+      "tokyo": {
+       "mae_cf_mw": 3602.2,
+       "mae_is_mw": 3584.8,
+       "n_days": 787,
+       "burn_in_slots": 210,
+       "scale_in_sample": 15.31535
+      }
+     },
+     "pooled_mae_cf_mw": 1232.4,
+     "pooled_mae_is_mw": 1219.9,
+     "n_days_pooled": 556,
+     "pooled_mae_cf_common_mw": 1203.6,
+     "n_days_common": 491
+    },
+    "msm_d2_12z_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 816.2,
+       "mae_is_mw": 796.1,
+       "n_days": 748,
+       "burn_in_slots": 212,
+       "scale_in_sample": 6.00756
+      },
+      "hokkaido": {
+       "mae_cf_mw": 319.9,
+       "mae_is_mw": 319.8,
+       "n_days": 769,
+       "burn_in_slots": 200,
+       "scale_in_sample": 2.14686
+      },
+      "hokuriku": {
+       "mae_cf_mw": 164.3,
+       "mae_is_mw": 163.4,
+       "n_days": 759,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.22109
+      },
+      "kansai": {
+       "mae_cf_mw": 857.9,
+       "mae_is_mw": 848.7,
+       "n_days": 706,
+       "burn_in_slots": 211,
+       "scale_in_sample": 6.05729
+      },
+      "kyushu": {
+       "mae_cf_mw": 1257.4,
+       "mae_is_mw": 1211.0,
+       "n_days": 604,
+       "burn_in_slots": 201,
+       "scale_in_sample": 10.28288
+      },
+      "shikoku": {
+       "mae_cf_mw": 364.4,
+       "mae_is_mw": 362.3,
+       "n_days": 713,
+       "burn_in_slots": 213,
+       "scale_in_sample": 2.64798
+      },
+      "tohoku": {
+       "mae_cf_mw": 945.6,
+       "mae_is_mw": 939.3,
+       "n_days": 711,
+       "burn_in_slots": 206,
+       "scale_in_sample": 7.66767
+      },
+      "tokyo": {
+       "mae_cf_mw": 2358.6,
+       "mae_is_mw": 2340.6,
+       "n_days": 787,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.90227
+      }
+     },
+     "pooled_mae_cf_mw": 877.8,
+     "pooled_mae_is_mw": 857.7,
+     "n_days_pooled": 556,
+     "pooled_mae_cf_common_mw": 864.3,
+     "n_days_common": 491
+    },
+    "msm_gate_composite_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 766.3,
+       "mae_is_mw": 757.7,
+       "n_days": 748,
+       "burn_in_slots": 212,
+       "scale_in_sample": 6.12546
+      },
+      "hokkaido": {
+       "mae_cf_mw": 311.8,
+       "mae_is_mw": 312.0,
+       "n_days": 769,
+       "burn_in_slots": 200,
+       "scale_in_sample": 2.14741
+      },
+      "hokuriku": {
+       "mae_cf_mw": 159.5,
+       "mae_is_mw": 158.8,
+       "n_days": 759,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.23536
+      },
+      "kansai": {
+       "mae_cf_mw": 796.8,
+       "mae_is_mw": 795.4,
+       "n_days": 706,
+       "burn_in_slots": 211,
+       "scale_in_sample": 6.20824
+      },
+      "kyushu": {
+       "mae_cf_mw": 1154.0,
+       "mae_is_mw": 1140.8,
+       "n_days": 604,
+       "burn_in_slots": 201,
+       "scale_in_sample": 10.55249
+      },
+      "shikoku": {
+       "mae_cf_mw": 343.7,
+       "mae_is_mw": 342.3,
+       "n_days": 713,
+       "burn_in_slots": 213,
+       "scale_in_sample": 2.70664
+      },
+      "tohoku": {
+       "mae_cf_mw": 903.3,
+       "mae_is_mw": 900.9,
+       "n_days": 711,
+       "burn_in_slots": 206,
+       "scale_in_sample": 7.70448
+      },
+      "tokyo": {
+       "mae_cf_mw": 2182.8,
+       "mae_is_mw": 2172.4,
+       "n_days": 787,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.11761
+      }
+     },
+     "pooled_mae_cf_mw": 816.8,
+     "pooled_mae_is_mw": 806.2,
+     "n_days_pooled": 556,
+     "pooled_mae_cf_common_mw": 811.8,
+     "n_days_common": 491
+    },
+    "msm_d1_00z_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 748.2,
+       "mae_is_mw": 741.1,
+       "n_days": 748,
+       "burn_in_slots": 212,
+       "scale_in_sample": 6.13727
+      },
+      "hokkaido": {
+       "mae_cf_mw": 310.7,
+       "mae_is_mw": 310.7,
+       "n_days": 769,
+       "burn_in_slots": 200,
+       "scale_in_sample": 2.15294
+      },
+      "hokuriku": {
+       "mae_cf_mw": 157.9,
+       "mae_is_mw": 157.3,
+       "n_days": 759,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.24345
+      },
+      "kansai": {
+       "mae_cf_mw": 781.3,
+       "mae_is_mw": 780.0,
+       "n_days": 706,
+       "burn_in_slots": 211,
+       "scale_in_sample": 6.23146
+      },
+      "kyushu": {
+       "mae_cf_mw": 1145.6,
+       "mae_is_mw": 1133.4,
+       "n_days": 604,
+       "burn_in_slots": 201,
+       "scale_in_sample": 10.54544
+      },
+      "shikoku": {
+       "mae_cf_mw": 335.7,
+       "mae_is_mw": 334.6,
+       "n_days": 713,
+       "burn_in_slots": 213,
+       "scale_in_sample": 2.71712
+      },
+      "tohoku": {
+       "mae_cf_mw": 899.1,
+       "mae_is_mw": 897.1,
+       "n_days": 711,
+       "burn_in_slots": 206,
+       "scale_in_sample": 7.73417
+      },
+      "tokyo": {
+       "mae_cf_mw": 2149.1,
+       "mae_is_mw": 2140.7,
+       "n_days": 787,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.2364
+      }
+     },
+     "pooled_mae_cf_mw": 802.4,
+     "pooled_mae_is_mw": 792.4,
+     "n_days_pooled": 556,
+     "pooled_mae_cf_common_mw": 799.7,
+     "n_days_common": 491
+    },
+    "oracle_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 628.9,
+       "mae_is_mw": 627.9,
+       "n_days": 748,
+       "burn_in_slots": 212,
+       "scale_in_sample": 5.90375
+      },
+      "hokkaido": {
+       "mae_cf_mw": 306.6,
+       "mae_is_mw": 306.8,
+       "n_days": 769,
+       "burn_in_slots": 200,
+       "scale_in_sample": 2.08719
+      },
+      "hokuriku": {
+       "mae_cf_mw": 146.8,
+       "mae_is_mw": 146.4,
+       "n_days": 759,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.15706
+      },
+      "kansai": {
+       "mae_cf_mw": 655.4,
+       "mae_is_mw": 656.2,
+       "n_days": 706,
+       "burn_in_slots": 211,
+       "scale_in_sample": 5.91317
+      },
+      "kyushu": {
+       "mae_cf_mw": 999.3,
+       "mae_is_mw": 994.8,
+       "n_days": 604,
+       "burn_in_slots": 201,
+       "scale_in_sample": 9.49993
+      },
+      "shikoku": {
+       "mae_cf_mw": 294.1,
+       "mae_is_mw": 293.0,
+       "n_days": 713,
+       "burn_in_slots": 213,
+       "scale_in_sample": 2.59788
+      },
+      "tohoku": {
+       "mae_cf_mw": 827.5,
+       "mae_is_mw": 830.5,
+       "n_days": 711,
+       "burn_in_slots": 206,
+       "scale_in_sample": 7.63128
+      },
+      "tokyo": {
+       "mae_cf_mw": 1877.8,
+       "mae_is_mw": 1884.5,
+       "n_days": 787,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.06453
+      }
+     },
+     "pooled_mae_cf_mw": 702.1,
+     "pooled_mae_is_mw": 702.1,
+     "n_days_pooled": 556,
+     "pooled_mae_cf_common_mw": 713.9,
+     "n_days_common": 491
+    }
+   }
+  },
+  "recorded": {
+   "tiers": {
+    "era5_cw_stale": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 1164.1,
+       "mae_is_mw": 1146.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.34379
+      },
+      "hokkaido": {
+       "mae_cf_mw": 436.4,
+       "mae_is_mw": 436.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.91691
+      },
+      "hokuriku": {
+       "mae_cf_mw": 258.5,
+       "mae_is_mw": 257.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.0313
+      },
+      "kansai": {
+       "mae_cf_mw": 1230.3,
+       "mae_is_mw": 1219.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.36991
+      },
+      "kyushu": {
+       "mae_cf_mw": 1835.6,
+       "mae_is_mw": 1828.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 8.24811
+      },
+      "shikoku": {
+       "mae_cf_mw": 517.1,
+       "mae_is_mw": 516.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.28641
+      },
+      "tohoku": {
+       "mae_cf_mw": 1422.6,
+       "mae_is_mw": 1418.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.79923
+      },
+      "tokyo": {
+       "mae_cf_mw": 3614.6,
+       "mae_is_mw": 3596.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 15.35151
+      }
+     },
+     "pooled_mae_cf_mw": 1309.9,
+     "pooled_mae_is_mw": 1302.5,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 1279.6,
+     "n_days_common": 696
+    },
+    "msm_d2_12z_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 808.0,
+       "mae_is_mw": 795.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.84683
+      },
+      "hokkaido": {
+       "mae_cf_mw": 320.7,
+       "mae_is_mw": 320.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.12732
+      },
+      "hokuriku": {
+       "mae_cf_mw": 167.7,
+       "mae_is_mw": 166.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.19491
+      },
+      "kansai": {
+       "mae_cf_mw": 885.3,
+       "mae_is_mw": 871.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.89144
+      },
+      "kyushu": {
+       "mae_cf_mw": 1371.8,
+       "mae_is_mw": 1361.6,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.07133
+      },
+      "shikoku": {
+       "mae_cf_mw": 374.2,
+       "mae_is_mw": 373.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.48161
+      },
+      "tohoku": {
+       "mae_cf_mw": 979.6,
+       "mae_is_mw": 972.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.32019
+      },
+      "tokyo": {
+       "mae_cf_mw": 2363.0,
+       "mae_is_mw": 2347.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.79608
+      }
+     },
+     "pooled_mae_cf_mw": 908.8,
+     "pooled_mae_is_mw": 901.2,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 906.6,
+     "n_days_common": 696
+    },
+    "msm_gate_composite_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 761.1,
+       "mae_is_mw": 755.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.94441
+      },
+      "hokkaido": {
+       "mae_cf_mw": 313.7,
+       "mae_is_mw": 313.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.12205
+      },
+      "hokuriku": {
+       "mae_cf_mw": 162.9,
+       "mae_is_mw": 162.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.20717
+      },
+      "kansai": {
+       "mae_cf_mw": 819.5,
+       "mae_is_mw": 812.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.0181
+      },
+      "kyushu": {
+       "mae_cf_mw": 1287.5,
+       "mae_is_mw": 1285.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.20636
+      },
+      "shikoku": {
+       "mae_cf_mw": 356.1,
+       "mae_is_mw": 355.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.53063
+      },
+      "tohoku": {
+       "mae_cf_mw": 942.3,
+       "mae_is_mw": 935.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.33583
+      },
+      "tokyo": {
+       "mae_cf_mw": 2191.7,
+       "mae_is_mw": 2183.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.01304
+      }
+     },
+     "pooled_mae_cf_mw": 854.4,
+     "pooled_mae_is_mw": 850.5,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 859.3,
+     "n_days_common": 696
+    },
+    "msm_d1_00z_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 745.7,
+       "mae_is_mw": 739.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.95348
+      },
+      "hokkaido": {
+       "mae_cf_mw": 313.1,
+       "mae_is_mw": 313.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.12746
+      },
+      "hokuriku": {
+       "mae_cf_mw": 161.4,
+       "mae_is_mw": 160.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.21592
+      },
+      "kansai": {
+       "mae_cf_mw": 812.8,
+       "mae_is_mw": 804.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 6.03152
+      },
+      "kyushu": {
+       "mae_cf_mw": 1271.7,
+       "mae_is_mw": 1270.5,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 9.21457
+      },
+      "shikoku": {
+       "mae_cf_mw": 348.4,
+       "mae_is_mw": 347.8,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.54004
+      },
+      "tohoku": {
+       "mae_cf_mw": 938.1,
+       "mae_is_mw": 931.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.35876
+      },
+      "tokyo": {
+       "mae_cf_mw": 2160.2,
+       "mae_is_mw": 2153.4,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 17.12781
+      }
+     },
+     "pooled_mae_cf_mw": 843.9,
+     "pooled_mae_is_mw": 840.1,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 849.7,
+     "n_days_common": 696
+    },
+    "oracle_cw": {
+     "per_area": {
+      "chugoku": {
+       "mae_cf_mw": 626.9,
+       "mae_is_mw": 622.1,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.79395
+      },
+      "hokkaido": {
+       "mae_cf_mw": 305.8,
+       "mae_is_mw": 305.9,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.06731
+      },
+      "hokuriku": {
+       "mae_cf_mw": 148.1,
+       "mae_is_mw": 147.7,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 1.14269
+      },
+      "kansai": {
+       "mae_cf_mw": 683.1,
+       "mae_is_mw": 678.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 5.84823
+      },
+      "kyushu": {
+       "mae_cf_mw": 1107.5,
+       "mae_is_mw": 1108.0,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 8.85695
+      },
+      "shikoku": {
+       "mae_cf_mw": 301.5,
+       "mae_is_mw": 301.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 2.47414
+      },
+      "tohoku": {
+       "mae_cf_mw": 851.4,
+       "mae_is_mw": 850.3,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 7.35984
+      },
+      "tokyo": {
+       "mae_cf_mw": 1884.5,
+       "mae_is_mw": 1890.2,
+       "n_days": 806,
+       "burn_in_slots": 210,
+       "scale_in_sample": 16.99897
+      }
+     },
+     "pooled_mae_cf_mw": 738.6,
+     "pooled_mae_is_mw": 737.9,
+     "n_days_pooled": 806,
+     "pooled_mae_cf_common_mw": 753.7,
+     "n_days_common": 696
+    }
+   }
+  }
+ },
+ "gates": {
+  "gate51_physical_gain_crossfit_common": {
+   "delta_mw": 59.88,
+   "ci95": [
+    49.64,
+    70.55
+   ],
+   "n_days": 696,
+   "definition": "daily pooled scaled MAE(pre-gate) - MAE(post-gate); positive means the post-gate run tracks the physical day better. MW is a per-area mean.",
+   "excludes_zero": true,
+   "branch": "a",
+   "reading": "physical gain stands; report as target divergence, not identification"
+  },
+  "gate51_sensitivity_wide_panel": {
+   "delta_mw": 70.14,
+   "ci95": [
+    59.1,
+    81.96
+   ],
+   "n_days": 806,
+   "definition": "daily pooled scaled MAE(pre-gate) - MAE(post-gate); positive means the post-gate run tracks the physical day better. MW is a per-area mean."
+  },
+  "gate52_curtailment_sign_stability": {
+   "delta_by_target": {
+    "potential": 59.8,
+    "curtail_excluded": 64.6,
+    "recorded": 56.9
+   },
+   "signs_agree": true
+  },
+  "gate53_lookahead_cost": {
+   "pre_gate_mae_in_sample_mw": 874.1,
+   "pre_gate_mae_crossfit_mw": 882.7,
+   "difference_mw": 8.6,
+   "note": "the in-sample scale is the superseded phase79 convention; the difference is what the look-ahead was worth"
+  },
+  "gate54_stamp_convention": {
+   "per_area_shift_mae_mw": 882.7,
+   "legacy_uniform_shift_mae_mw": 1016.4,
+   "difference_mw": -133.7
+  }
+ },
+ "metadata": {
+  "script": "s_20260813_phase89_physical_target.py",
+  "git_sha": "456971f7d1947b6b33a44bd1f4141ad3819070fd",
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block_days": 7
+ }
+}

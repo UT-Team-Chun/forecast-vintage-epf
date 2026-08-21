@@ -1,0 +1,66 @@
+{
+  "phase": 74,
+  "gate": 35,
+  "criterion": "CW proxy beats single-point in >= 6 of 8 supply-covered areas (Pearson r vs OCCTO realised PV potential); fixed in the precommit, no metric substitution",
+  "weather_plan": "msm_d2_12z",
+  "weight_vintage": "2024-09",
+  "proxy_construction": "per-point temperature derate, then capacity weights (fleet-physical order)",
+  "per_area": {
+    "chugoku": {
+      "n": 35040,
+      "pearson_r_single": 0.835,
+      "pearson_r_cw": 0.8473,
+      "cw_wins": true
+    },
+    "hokkaido": {
+      "n": 35040,
+      "pearson_r_single": 0.8027,
+      "pearson_r_cw": 0.8027,
+      "cw_wins": false
+    },
+    "hokuriku": {
+      "n": 35040,
+      "pearson_r_single": 0.8458,
+      "pearson_r_cw": 0.8476,
+      "cw_wins": true
+    },
+    "kansai": {
+      "n": 35040,
+      "pearson_r_single": 0.8361,
+      "pearson_r_cw": 0.8409,
+      "cw_wins": true
+    },
+    "kyushu": {
+      "n": 34310,
+      "pearson_r_single": 0.8825,
+      "pearson_r_cw": 0.9157,
+      "cw_wins": true
+    },
+    "shikoku": {
+      "n": 35040,
+      "pearson_r_single": 0.839,
+      "pearson_r_cw": 0.8455,
+      "cw_wins": true
+    },
+    "tohoku": {
+      "n": 35040,
+      "pearson_r_single": 0.829,
+      "pearson_r_cw": 0.8462,
+      "cw_wins": true
+    },
+    "tokyo": {
+      "n": 35040,
+      "pearson_r_single": 0.8383,
+      "pearson_r_cw": 0.8451,
+      "cw_wins": true
+    }
+  },
+  "cw_wins": 7,
+  "n_areas": 8,
+  "cw_becomes_primary": true,
+  "metadata": {
+    "script": "s_20260803_phase74_cw_ladder.py",
+    "git_sha": "ef67934e30c2c52c5b617b3907f31def725a2d54",
+    "generated_utc": "2026-08-03T19:07:43.560691+00:00"
+  }
+}

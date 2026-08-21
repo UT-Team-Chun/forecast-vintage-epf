@@ -1,0 +1,84 @@
+{
+ "phase": "96",
+ "title": "The headline weather increment on LEAR instead of XGBoost",
+ "why": "Section 4.4 names LEAR as a scale anchor and the ladder never ran it on the 732-fold panel, so a reader could not tell whether the headline increment is a property of the information set or of one learner",
+ "estimator": {
+  "model": "LEAR (LassoCV over a fixed alpha path, standardised features, one model per delivery half-hour)",
+  "alphas": [
+   0.0001,
+   10.0
+  ],
+  "n_alphas": 24,
+  "cv_folds": 5,
+  "seed": 2026,
+  "note": "phase85's panel, design matrix, folds and cells verbatim; only the learner differs"
+ },
+ "panel": {
+  "n_test_days": 732,
+  "n_areas": 9,
+  "n_slots": 315414
+ },
+ "levels_mae": {
+  "price_only": 2.2161,
+  "pre_gate": 2.0881
+ },
+ "weather_increment": {
+  "improvement": 0.128,
+  "ci95": [
+   0.0896,
+   0.1683
+  ],
+  "dm_l3": {
+   "t": 7.443,
+   "p": 0.0
+  },
+  "dm_l9": {
+   "t": 5.616,
+   "p": 0.0
+  },
+  "areas_improved": 9,
+  "n_areas": 9
+ },
+ "per_area": {
+  "chubu": {
+   "improvement": 0.1132,
+   "p_l3": 4e-06
+  },
+  "chugoku": {
+   "improvement": 0.158,
+   "p_l3": 0.0
+  },
+  "hokkaido": {
+   "improvement": 0.067,
+   "p_l3": 0.0
+  },
+  "hokuriku": {
+   "improvement": 0.0674,
+   "p_l3": 0.000423
+  },
+  "kansai": {
+   "improvement": 0.0808,
+   "p_l3": 0.000589
+  },
+  "kyushu": {
+   "improvement": 0.2044,
+   "p_l3": 0.0
+  },
+  "shikoku": {
+   "improvement": 0.1155,
+   "p_l3": 0.0
+  },
+  "tohoku": {
+   "improvement": 0.2686,
+   "p_l3": 0.0
+  },
+  "tokyo": {
+   "improvement": 0.0771,
+   "p_l3": 1.9e-05
+  }
+ },
+ "metadata": {
+  "script": "s_20260819_phase96_lear_ladder.py",
+  "git_sha": "3be0b620b5b99d2fbbd3a5efba25c4dcd657a21c"
+ }
+}

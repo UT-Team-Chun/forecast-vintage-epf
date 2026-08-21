@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Test / lint caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data — raw downloads and run outputs are NOT redistributed.
+# See data/README.md for acquisition. Provenance JSONs under
+# data/provenance/ ARE tracked (they back the paper macros).
+data/raw/
+data/processed/
+data/runs/
+data/mlruns/
+mlruns/
+wandb/
+# figures/ IS tracked: the paper's figures ship with this repository and the
+# drift guard scans them for retracted wording. Scripts write their scratch
+# output under data/runs/, which is ignored above.
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+
+# LaTeX scratch (paper sources are NOT in this repo, but in case
+# anyone runs latexmk against research-log fragments)
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.out
+*.bbl
+*.bcf
+*.run.xml
+*.blg

@@ -1,0 +1,2749 @@
+{
+ "phase": 53,
+ "tier": "jma_msm_gpv_pregate (exact-issuance, pre-gate admissible)",
+ "generated_at": "2026-07-28T03:41:10.937800+00:00",
+ "coverage": {
+  "delivery_days": 881,
+  "first_day": "2024-03-01",
+  "last_day": "2026-07-29",
+  "areas": [
+   "hokkaido",
+   "tohoku",
+   "tokyo",
+   "chubu",
+   "hokuriku",
+   "kansai",
+   "chugoku",
+   "shikoku",
+   "kyushu"
+  ],
+  "slots_per_day": 24,
+  "slot_grid": "hourly JST (00..23); JEPX half-hour slots inherit the containing hour",
+  "total_rows_per_area": 21144,
+  "missing_days_in_span": [],
+  "channels": [
+   "temperature_c",
+   "cloud_cover_pct",
+   "shortwave_radiation_wm2",
+   "wind_speed_kmh"
+  ]
+ },
+ "run_rule": {
+  "gate": "JEPX day-ahead gate closure D-1 10:00 JST",
+  "admissibility": "nominal dissemination (init + 2h30m, per JMBSC) <= gate",
+  "run_21z": "D-2 21UTC run, FH18-39 -> delivery hours 00-21 JST (files FH16-33 + FH34-39), margin +90 min",
+  "run_12z": "D-2 12UTC run, FH49-50 -> delivery hours 22-23 JST (= half-hour slots 21:30-23:30; file FH40-51), margin +630 min"
+ },
+ "issuance_accounting": {
+  "run_21z": {
+   "init_utc": "2026-07-27T21:00:00+00:00",
+   "nominal_dissemination_jst": "2026-07-28T08:30:00+09:00",
+   "gate_jst": "2026-07-28T10:00:00+09:00",
+   "margin_minutes_before_gate": 90,
+   "delivery_slots": "delivery 00:00-21:00 JST (hourly 00..21)",
+   "forecast_hours_used": "FH18-39"
+  },
+  "run_12z": {
+   "init_utc": "2026-07-27T12:00:00+00:00",
+   "nominal_dissemination_jst": "2026-07-27T23:30:00+09:00",
+   "gate_jst": "2026-07-28T10:00:00+09:00",
+   "margin_minutes_before_gate": 630,
+   "delivery_slots": "delivery 21:30-23:30 JST slots (hourly 22,23)",
+   "forecast_hours_used": "FH49-50"
+  }
+ },
+ "vintage_age_hours": {
+  "exact_pregate_min": 18,
+  "exact_pregate_max": 50,
+  "exact_pregate_mean": 30.25,
+  "note": "prev2 = ~48 h nominal vintage (Open-Meteo previous_day2); the exact pre-gate set is the last vintage whose nominal dissemination precedes the D-1 10:00 gate"
+ },
+ "validation": {
+  "diurnal": {
+   "hokkaido": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 514.21,
+    "diurnal_ok": true
+   },
+   "tohoku": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 544.03,
+    "diurnal_ok": true
+   },
+   "tokyo": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 571.29,
+    "diurnal_ok": true
+   },
+   "chubu": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 580.33,
+    "diurnal_ok": true
+   },
+   "hokuriku": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 504.99,
+    "diurnal_ok": true
+   },
+   "kansai": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 564.41,
+    "diurnal_ok": true
+   },
+   "chugoku": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 570.55,
+    "diurnal_ok": true
+   },
+   "shikoku": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 581.41,
+    "diurnal_ok": true
+   },
+   "kyushu": {
+    "sw_mean_h00": 0.0,
+    "sw_mean_h12": 549.32,
+    "diurnal_ok": true
+   }
+  }
+ },
+ "per_area": {
+  "hokkaido": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 9.815,
+     "std": 10.149,
+     "min": -10.953,
+     "max": 34.934
+    },
+    "cloud_cover_pct": {
+     "mean": 50.974,
+     "std": 34.403,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 157.833,
+     "std": 230.102,
+     "min": 0.0,
+     "max": 937.496
+    },
+    "wind_speed_kmh": {
+     "mean": 6.865,
+     "std": 3.687,
+     "min": 0.075,
+     "max": 26.216
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9938,
+     "rmse": 1.172,
+     "mae": 0.827,
+     "bias": -0.306
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.6813,
+     "rmse": 27.956,
+     "mae": 19.827,
+     "bias": 8.824
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9549,
+     "rmse": 69.031,
+     "mae": 28.465,
+     "bias": 0.049
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8032,
+     "rmse": 2.305,
+     "mae": 1.54,
+     "bias": 0.071
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9991,
+     "rmse": 0.438,
+     "mae": 0.266,
+     "bias": -0.003
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9148,
+     "rmse": 14.064,
+     "mae": 8.177,
+     "bias": 0.079
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9912,
+     "rmse": 29.009,
+     "mae": 10.722,
+     "bias": 0.193
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9597,
+     "rmse": 1.025,
+     "mae": 0.622,
+     "bias": -0.008
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9983,
+     "rmse": 0.637,
+     "mae": 0.455,
+     "bias": -0.253
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.833,
+     "rmse": 21.082,
+     "mae": 14.667,
+     "bias": 8.406
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.9904,
+     "rmse": 31.817,
+     "mae": 11.914,
+     "bias": 0.225
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9346,
+     "rmse": 1.335,
+     "mae": 0.835,
+     "bias": -0.001
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9939,
+     "rmse": 1.184,
+     "mae": 0.832,
+     "bias": -0.338
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6825,
+     "rmse": 27.678,
+     "mae": 19.674,
+     "bias": 8.914
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9538,
+     "rmse": 66.732,
+     "mae": 27.135,
+     "bias": 0.031
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8059,
+     "rmse": 2.249,
+     "mae": 1.492,
+     "bias": -0.003
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9991,
+     "rmse": 0.438,
+     "mae": 0.266,
+     "bias": -0.003
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9148,
+     "rmse": 14.064,
+     "mae": 8.177,
+     "bias": 0.079
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9912,
+     "rmse": 29.009,
+     "mae": 10.722,
+     "bias": 0.193
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9597,
+     "rmse": 1.025,
+     "mae": 0.622,
+     "bias": -0.008
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9982,
+     "rmse": 0.654,
+     "mae": 0.466,
+     "bias": -0.247
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8283,
+     "rmse": 21.112,
+     "mae": 14.68,
+     "bias": 8.314
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9903,
+     "rmse": 30.599,
+     "mae": 11.562,
+     "bias": 0.192
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9291,
+     "rmse": 1.362,
+     "mae": 0.843,
+     "bias": 0.018
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9937,
+     "rmse": 1.201,
+     "mae": 0.856,
+     "bias": -0.336
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6552,
+     "rmse": 28.701,
+     "mae": 20.685,
+     "bias": 8.839
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9567,
+     "rmse": 64.528,
+     "mae": 26.664,
+     "bias": -0.162
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8,
+     "rmse": 2.285,
+     "mae": 1.568,
+     "bias": 0.004
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "tohoku": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 13.707,
+     "std": 9.161,
+     "min": -6.117,
+     "max": 35.108
+    },
+    "cloud_cover_pct": {
+     "mean": 47.717,
+     "std": 34.526,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 163.722,
+     "std": 237.661,
+     "min": 0.0,
+     "max": 953.778
+    },
+    "wind_speed_kmh": {
+     "mean": 5.269,
+     "std": 3.301,
+     "min": 0.151,
+     "max": 25.606
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9934,
+     "rmse": 1.052,
+     "mae": 0.708,
+     "bias": -0.065
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.6935,
+     "rmse": 27.641,
+     "mae": 19.313,
+     "bias": 8.913
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9586,
+     "rmse": 69.032,
+     "mae": 28.462,
+     "bias": -2.554
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8412,
+     "rmse": 1.866,
+     "mae": 1.221,
+     "bias": 0.021
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9987,
+     "rmse": 0.474,
+     "mae": 0.305,
+     "bias": 0.005
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.895,
+     "rmse": 15.311,
+     "mae": 9.198,
+     "bias": -0.053
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9898,
+     "rmse": 32.148,
+     "mae": 12.41,
+     "bias": 1.438
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9407,
+     "rmse": 1.083,
+     "mae": 0.662,
+     "bias": 0.031
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.998,
+     "rmse": 0.581,
+     "mae": 0.385,
+     "bias": -0.003
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8207,
+     "rmse": 21.625,
+     "mae": 14.791,
+     "bias": 8.206
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.9899,
+     "rmse": 33.78,
+     "mae": 13.097,
+     "bias": 0.356
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9305,
+     "rmse": 1.233,
+     "mae": 0.781,
+     "bias": -0.019
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9938,
+     "rmse": 1.04,
+     "mae": 0.705,
+     "bias": -0.131
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6705,
+     "rmse": 27.824,
+     "mae": 19.91,
+     "bias": 9.666
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9551,
+     "rmse": 68.169,
+     "mae": 27.931,
+     "bias": -2.877
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8383,
+     "rmse": 1.792,
+     "mae": 1.181,
+     "bias": -0.004
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9987,
+     "rmse": 0.474,
+     "mae": 0.305,
+     "bias": 0.005
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.895,
+     "rmse": 15.311,
+     "mae": 9.198,
+     "bias": -0.053
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9898,
+     "rmse": 32.148,
+     "mae": 12.41,
+     "bias": 1.438
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9407,
+     "rmse": 1.083,
+     "mae": 0.662,
+     "bias": 0.031
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9979,
+     "rmse": 0.602,
+     "mae": 0.399,
+     "bias": -0.004
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8025,
+     "rmse": 22.164,
+     "mae": 15.5,
+     "bias": 8.971
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.989,
+     "rmse": 33.404,
+     "mae": 13.22,
+     "bias": 1.041
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9169,
+     "rmse": 1.283,
+     "mae": 0.798,
+     "bias": -0.003
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9933,
+     "rmse": 1.08,
+     "mae": 0.755,
+     "bias": -0.137
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6452,
+     "rmse": 28.772,
+     "mae": 20.77,
+     "bias": 9.719
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9557,
+     "rmse": 67.68,
+     "mae": 28.035,
+     "bias": -4.315
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8208,
+     "rmse": 1.88,
+     "mae": 1.272,
+     "bias": -0.034
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "tokyo": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 17.079,
+     "std": 8.71,
+     "min": -2.484,
+     "max": 37.317
+    },
+    "cloud_cover_pct": {
+     "mean": 44.422,
+     "std": 36.15,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 169.742,
+     "std": 245.975,
+     "min": 0.0,
+     "max": 956.992
+    },
+    "wind_speed_kmh": {
+     "mean": 5.486,
+     "std": 2.929,
+     "min": 0.06,
+     "max": 30.562
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9924,
+     "rmse": 1.078,
+     "mae": 0.687,
+     "bias": -0.088
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.7631,
+     "rmse": 25.198,
+     "mae": 17.141,
+     "bias": 8.102
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9612,
+     "rmse": 68.65,
+     "mae": 27.408,
+     "bias": -1.342
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8112,
+     "rmse": 1.787,
+     "mae": 1.191,
+     "bias": 0.097
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9986,
+     "rmse": 0.462,
+     "mae": 0.286,
+     "bias": 0.014
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9258,
+     "rmse": 13.693,
+     "mae": 8.166,
+     "bias": -0.481
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9909,
+     "rmse": 32.256,
+     "mae": 12.317,
+     "bias": 1.267
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9359,
+     "rmse": 1.004,
+     "mae": 0.633,
+     "bias": 0.012
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9978,
+     "rmse": 0.584,
+     "mae": 0.371,
+     "bias": -0.017
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8564,
+     "rmse": 20.014,
+     "mae": 13.094,
+     "bias": 7.058
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.989,
+     "rmse": 36.342,
+     "mae": 13.774,
+     "bias": 1.138
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9186,
+     "rmse": 1.181,
+     "mae": 0.761,
+     "bias": 0.018
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9928,
+     "rmse": 1.066,
+     "mae": 0.675,
+     "bias": -0.111
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.7704,
+     "rmse": 24.179,
+     "mae": 16.426,
+     "bias": 7.262
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9605,
+     "rmse": 67.195,
+     "mae": 26.155,
+     "bias": 0.572
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.79,
+     "rmse": 1.805,
+     "mae": 1.21,
+     "bias": 0.12
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9986,
+     "rmse": 0.462,
+     "mae": 0.286,
+     "bias": 0.014
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9258,
+     "rmse": 13.693,
+     "mae": 8.166,
+     "bias": -0.481
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9909,
+     "rmse": 32.256,
+     "mae": 12.317,
+     "bias": 1.267
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9359,
+     "rmse": 1.004,
+     "mae": 0.633,
+     "bias": 0.012
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9979,
+     "rmse": 0.578,
+     "mae": 0.369,
+     "bias": -0.022
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8565,
+     "rmse": 19.681,
+     "mae": 12.987,
+     "bias": 7.107
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9904,
+     "rmse": 33.14,
+     "mae": 12.92,
+     "bias": 1.222
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.909,
+     "rmse": 1.2,
+     "mae": 0.773,
+     "bias": 0.032
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9924,
+     "rmse": 1.097,
+     "mae": 0.712,
+     "bias": -0.125
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.7442,
+     "rmse": 25.569,
+     "mae": 17.675,
+     "bias": 7.745
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9611,
+     "rmse": 66.557,
+     "mae": 26.265,
+     "bias": -0.695
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.7604,
+     "rmse": 1.922,
+     "mae": 1.309,
+     "bias": 0.108
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "chubu": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 17.002,
+     "std": 9.179,
+     "min": -3.65,
+     "max": 37.65
+    },
+    "cloud_cover_pct": {
+     "mean": 46.062,
+     "std": 33.846,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 175.36,
+     "std": 253.491,
+     "min": 0.0,
+     "max": 1000.89
+    },
+    "wind_speed_kmh": {
+     "mean": 4.959,
+     "std": 3.137,
+     "min": 0.123,
+     "max": 22.494
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9939,
+     "rmse": 1.017,
+     "mae": 0.661,
+     "bias": -0.02
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.7221,
+     "rmse": 25.811,
+     "mae": 18.339,
+     "bias": 9.066
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9649,
+     "rmse": 67.097,
+     "mae": 27.999,
+     "bias": 0.021
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8549,
+     "rmse": 1.68,
+     "mae": 1.097,
+     "bias": 0.125
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9987,
+     "rmse": 0.479,
+     "mae": 0.295,
+     "bias": -0.011
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.904,
+     "rmse": 14.279,
+     "mae": 8.97,
+     "bias": -0.052
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.989,
+     "rmse": 35.981,
+     "mae": 13.678,
+     "bias": 0.321
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9565,
+     "rmse": 0.911,
+     "mae": 0.595,
+     "bias": -0.01
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9982,
+     "rmse": 0.558,
+     "mae": 0.363,
+     "bias": -0.003
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8315,
+     "rmse": 20.998,
+     "mae": 14.69,
+     "bias": 9.091
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.9892,
+     "rmse": 37.121,
+     "mae": 14.098,
+     "bias": 0.499
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9409,
+     "rmse": 1.082,
+     "mae": 0.711,
+     "bias": 0.011
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9943,
+     "rmse": 1.003,
+     "mae": 0.649,
+     "bias": -0.031
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.714,
+     "rmse": 25.157,
+     "mae": 18.139,
+     "bias": 8.781
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.965,
+     "rmse": 64.415,
+     "mae": 26.788,
+     "bias": 0.628
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8541,
+     "rmse": 1.65,
+     "mae": 1.087,
+     "bias": 0.171
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9987,
+     "rmse": 0.479,
+     "mae": 0.295,
+     "bias": -0.011
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.904,
+     "rmse": 14.279,
+     "mae": 8.97,
+     "bias": -0.052
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.989,
+     "rmse": 35.981,
+     "mae": 13.678,
+     "bias": 0.321
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9565,
+     "rmse": 0.911,
+     "mae": 0.595,
+     "bias": -0.01
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9982,
+     "rmse": 0.568,
+     "mae": 0.371,
+     "bias": -0.003
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8192,
+     "rmse": 21.065,
+     "mae": 15.077,
+     "bias": 9.479
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9886,
+     "rmse": 36.713,
+     "mae": 14.329,
+     "bias": 0.006
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9414,
+     "rmse": 1.058,
+     "mae": 0.705,
+     "bias": 0.008
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9937,
+     "rmse": 1.049,
+     "mae": 0.699,
+     "bias": -0.021
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6875,
+     "rmse": 26.264,
+     "mae": 19.029,
+     "bias": 8.833
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9618,
+     "rmse": 67.232,
+     "mae": 27.665,
+     "bias": 0.306
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8422,
+     "rmse": 1.72,
+     "mae": 1.171,
+     "bias": 0.181
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "hokuriku": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 15.562,
+     "std": 8.98,
+     "min": -3.664,
+     "max": 35.973
+    },
+    "cloud_cover_pct": {
+     "mean": 57.842,
+     "std": 33.358,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 154.424,
+     "std": 234.839,
+     "min": 0.0,
+     "max": 977.257
+    },
+    "wind_speed_kmh": {
+     "mean": 6.079,
+     "std": 3.311,
+     "min": 0.171,
+     "max": 26.451
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9924,
+     "rmse": 1.208,
+     "mae": 0.87,
+     "bias": -0.491
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.7195,
+     "rmse": 26.307,
+     "mae": 19.118,
+     "bias": 9.404
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9565,
+     "rmse": 69.714,
+     "mae": 30.281,
+     "bias": -1.77
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8173,
+     "rmse": 1.986,
+     "mae": 1.305,
+     "bias": 0.033
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9981,
+     "rmse": 0.562,
+     "mae": 0.336,
+     "bias": 0.017
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8936,
+     "rmse": 14.936,
+     "mae": 9.486,
+     "bias": -0.248
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9855,
+     "rmse": 38.271,
+     "mae": 14.973,
+     "bias": 1.195
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9325,
+     "rmse": 1.246,
+     "mae": 0.741,
+     "bias": 0.018
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9973,
+     "rmse": 0.775,
+     "mae": 0.582,
+     "bias": -0.408
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8201,
+     "rmse": 21.542,
+     "mae": 15.376,
+     "bias": 8.951
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.987,
+     "rmse": 37.758,
+     "mae": 15.051,
+     "bias": 0.608
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9149,
+     "rmse": 1.37,
+     "mae": 0.864,
+     "bias": 0.029
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9925,
+     "rmse": 1.237,
+     "mae": 0.896,
+     "bias": -0.517
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.7031,
+     "rmse": 26.21,
+     "mae": 19.448,
+     "bias": 9.164
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9534,
+     "rmse": 68.786,
+     "mae": 30.107,
+     "bias": -0.658
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8194,
+     "rmse": 2.02,
+     "mae": 1.324,
+     "bias": 0.052
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9981,
+     "rmse": 0.562,
+     "mae": 0.336,
+     "bias": 0.017
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8936,
+     "rmse": 14.936,
+     "mae": 9.486,
+     "bias": -0.248
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9855,
+     "rmse": 38.271,
+     "mae": 14.973,
+     "bias": 1.195
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9325,
+     "rmse": 1.246,
+     "mae": 0.741,
+     "bias": 0.018
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9973,
+     "rmse": 0.788,
+     "mae": 0.588,
+     "bias": -0.403
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8018,
+     "rmse": 22.099,
+     "mae": 15.989,
+     "bias": 9.345
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9852,
+     "rmse": 38.725,
+     "mae": 15.447,
+     "bias": 0.987
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9131,
+     "rmse": 1.416,
+     "mae": 0.895,
+     "bias": 0.017
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9922,
+     "rmse": 1.26,
+     "mae": 0.915,
+     "bias": -0.534
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6712,
+     "rmse": 27.504,
+     "mae": 20.58,
+     "bias": 9.414
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9495,
+     "rmse": 71.483,
+     "mae": 30.88,
+     "bias": -1.854
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8042,
+     "rmse": 2.099,
+     "mae": 1.419,
+     "bias": 0.035
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "kansai": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 17.234,
+     "std": 8.784,
+     "min": -2.048,
+     "max": 35.952
+    },
+    "cloud_cover_pct": {
+     "mean": 46.002,
+     "std": 33.529,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 170.345,
+     "std": 247.034,
+     "min": 0.0,
+     "max": 972.027
+    },
+    "wind_speed_kmh": {
+     "mean": 5.422,
+     "std": 3.132,
+     "min": 0.163,
+     "max": 25.107
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9938,
+     "rmse": 0.973,
+     "mae": 0.625,
+     "bias": -0.004
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.7132,
+     "rmse": 25.942,
+     "mae": 18.343,
+     "bias": 8.923
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9615,
+     "rmse": 68.726,
+     "mae": 28.256,
+     "bias": -1.539
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.824,
+     "rmse": 1.853,
+     "mae": 1.204,
+     "bias": 0.116
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9985,
+     "rmse": 0.498,
+     "mae": 0.295,
+     "bias": -0.014
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9015,
+     "rmse": 14.396,
+     "mae": 8.992,
+     "bias": -0.01
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9881,
+     "rmse": 37.007,
+     "mae": 13.63,
+     "bias": -0.731
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9423,
+     "rmse": 1.063,
+     "mae": 0.675,
+     "bias": 0.006
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.998,
+     "rmse": 0.557,
+     "mae": 0.355,
+     "bias": 0.028
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.827,
+     "rmse": 20.743,
+     "mae": 14.396,
+     "bias": 8.226
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.9889,
+     "rmse": 36.752,
+     "mae": 13.878,
+     "bias": -0.19
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9226,
+     "rmse": 1.238,
+     "mae": 0.796,
+     "bias": 0.016
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.994,
+     "rmse": 0.986,
+     "mae": 0.624,
+     "bias": -0.01
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.7054,
+     "rmse": 25.41,
+     "mae": 18.244,
+     "bias": 8.68
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.962,
+     "rmse": 65.969,
+     "mae": 27.095,
+     "bias": 0.013
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.834,
+     "rmse": 1.79,
+     "mae": 1.194,
+     "bias": 0.099
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9985,
+     "rmse": 0.498,
+     "mae": 0.295,
+     "bias": -0.014
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9015,
+     "rmse": 14.396,
+     "mae": 8.992,
+     "bias": -0.01
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9881,
+     "rmse": 37.007,
+     "mae": 13.63,
+     "bias": -0.731
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9423,
+     "rmse": 1.063,
+     "mae": 0.675,
+     "bias": 0.006
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9978,
+     "rmse": 0.601,
+     "mae": 0.38,
+     "bias": 0.03
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8081,
+     "rmse": 21.166,
+     "mae": 14.808,
+     "bias": 8.504
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9876,
+     "rmse": 37.782,
+     "mae": 14.227,
+     "bias": -0.704
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9172,
+     "rmse": 1.278,
+     "mae": 0.824,
+     "bias": 0.012
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.994,
+     "rmse": 0.99,
+     "mae": 0.653,
+     "bias": 0.003
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6953,
+     "rmse": 25.725,
+     "mae": 18.776,
+     "bias": 8.692
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9662,
+     "rmse": 62.341,
+     "mae": 26.018,
+     "bias": 0.745
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8274,
+     "rmse": 1.829,
+     "mae": 1.267,
+     "bias": 0.093
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "chugoku": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 16.636,
+     "std": 8.941,
+     "min": -3.794,
+     "max": 36.076
+    },
+    "cloud_cover_pct": {
+     "mean": 45.557,
+     "std": 33.447,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 174.746,
+     "std": 252.271,
+     "min": 0.0,
+     "max": 989.123
+    },
+    "wind_speed_kmh": {
+     "mean": 5.365,
+     "std": 2.879,
+     "min": 0.048,
+     "max": 22.879
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9946,
+     "rmse": 1.051,
+     "mae": 0.779,
+     "bias": -0.497
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.7202,
+     "rmse": 25.492,
+     "mae": 18.221,
+     "bias": 8.631
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.9645,
+     "rmse": 67.158,
+     "mae": 27.981,
+     "bias": 0.088
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8103,
+     "rmse": 1.766,
+     "mae": 1.152,
+     "bias": 0.087
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9989,
+     "rmse": 0.429,
+     "mae": 0.264,
+     "bias": -0.007
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9227,
+     "rmse": 12.715,
+     "mae": 7.869,
+     "bias": 0.492
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9923,
+     "rmse": 30.568,
+     "mae": 11.234,
+     "bias": -1.312
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9391,
+     "rmse": 1.023,
+     "mae": 0.626,
+     "bias": -0.008
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9984,
+     "rmse": 0.683,
+     "mae": 0.555,
+     "bias": -0.467
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8438,
+     "rmse": 20.276,
+     "mae": 14.165,
+     "bias": 9.32
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.992,
+     "rmse": 31.909,
+     "mae": 12.02,
+     "bias": -0.411
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.916,
+     "rmse": 1.18,
+     "mae": 0.743,
+     "bias": -0.002
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9949,
+     "rmse": 1.063,
+     "mae": 0.782,
+     "bias": -0.508
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.7095,
+     "rmse": 25.146,
+     "mae": 18.113,
+     "bias": 8.652
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9644,
+     "rmse": 65.355,
+     "mae": 26.858,
+     "bias": 1.163
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8014,
+     "rmse": 1.849,
+     "mae": 1.193,
+     "bias": 0.104
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9989,
+     "rmse": 0.429,
+     "mae": 0.264,
+     "bias": -0.007
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9227,
+     "rmse": 12.715,
+     "mae": 7.869,
+     "bias": 0.492
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9923,
+     "rmse": 30.568,
+     "mae": 11.234,
+     "bias": -1.312
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9391,
+     "rmse": 1.023,
+     "mae": 0.626,
+     "bias": -0.008
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9985,
+     "rmse": 0.698,
+     "mae": 0.568,
+     "bias": -0.479
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8335,
+     "rmse": 20.391,
+     "mae": 14.434,
+     "bias": 9.649
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9921,
+     "rmse": 31.012,
+     "mae": 11.671,
+     "bias": -1.416
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9141,
+     "rmse": 1.215,
+     "mae": 0.766,
+     "bias": -0.004
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9944,
+     "rmse": 1.101,
+     "mae": 0.8,
+     "bias": -0.501
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6957,
+     "rmse": 25.434,
+     "mae": 18.461,
+     "bias": 8.158
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9639,
+     "rmse": 66.063,
+     "mae": 26.853,
+     "bias": 2.476
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.7898,
+     "rmse": 1.894,
+     "mae": 1.266,
+     "bias": 0.112
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "shikoku": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 17.469,
+     "std": 8.194,
+     "min": -1.211,
+     "max": 34.145
+    },
+    "cloud_cover_pct": {
+     "mean": 45.043,
+     "std": 33.223,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 176.557,
+     "std": 255.151,
+     "min": 0.0,
+     "max": 1007.686
+    },
+    "wind_speed_kmh": {
+     "mean": 10.163,
+     "std": 6.725,
+     "min": 0.194,
+     "max": 45.344
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20907,
+     "pearson_r": 0.9951,
+     "rmse": 0.827,
+     "mae": 0.565,
+     "bias": -0.164
+    },
+    "cloud_cover_pct": {
+     "n": 20907,
+     "pearson_r": 0.7031,
+     "rmse": 26.055,
+     "mae": 18.429,
+     "bias": 8.437
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21014,
+     "pearson_r": 0.962,
+     "rmse": 70.397,
+     "mae": 29.184,
+     "bias": -1.381
+    },
+    "wind_speed_kmh": {
+     "n": 20907,
+     "pearson_r": 0.8874,
+     "rmse": 3.184,
+     "mae": 2.119,
+     "bias": 0.133
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.999,
+     "rmse": 0.384,
+     "mae": 0.245,
+     "bias": 0.007
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8998,
+     "rmse": 14.459,
+     "mae": 8.956,
+     "bias": 0.08
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.989,
+     "rmse": 36.717,
+     "mae": 13.223,
+     "bias": -0.373
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9663,
+     "rmse": 1.767,
+     "mae": 1.131,
+     "bias": -0.014
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9984,
+     "rmse": 0.481,
+     "mae": 0.33,
+     "bias": -0.116
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8282,
+     "rmse": 20.562,
+     "mae": 14.257,
+     "bias": 8.278
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.9901,
+     "rmse": 35.789,
+     "mae": 13.463,
+     "bias": -0.106
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9515,
+     "rmse": 2.097,
+     "mae": 1.367,
+     "bias": -0.023
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9955,
+     "rmse": 0.821,
+     "mae": 0.552,
+     "bias": -0.161
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6992,
+     "rmse": 25.435,
+     "mae": 18.256,
+     "bias": 8.299
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9636,
+     "rmse": 66.678,
+     "mae": 27.456,
+     "bias": -0.084
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8855,
+     "rmse": 3.247,
+     "mae": 2.151,
+     "bias": 0.138
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.999,
+     "rmse": 0.384,
+     "mae": 0.245,
+     "bias": 0.007
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8998,
+     "rmse": 14.459,
+     "mae": 8.956,
+     "bias": 0.08
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.989,
+     "rmse": 36.717,
+     "mae": 13.223,
+     "bias": -0.373
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9663,
+     "rmse": 1.767,
+     "mae": 1.131,
+     "bias": -0.014
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9984,
+     "rmse": 0.493,
+     "mae": 0.334,
+     "bias": -0.112
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8173,
+     "rmse": 20.657,
+     "mae": 14.452,
+     "bias": 8.554
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9887,
+     "rmse": 37.241,
+     "mae": 13.683,
+     "bias": -0.621
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.951,
+     "rmse": 2.131,
+     "mae": 1.407,
+     "bias": 0.005
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9952,
+     "rmse": 0.845,
+     "mae": 0.586,
+     "bias": -0.168
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6849,
+     "rmse": 25.971,
+     "mae": 18.968,
+     "bias": 8.219
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9636,
+     "rmse": 66.751,
+     "mae": 27.75,
+     "bias": 0.289
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.875,
+     "rmse": 3.394,
+     "mae": 2.341,
+     "bias": 0.152
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  },
+  "kyushu": {
+   "channel_summary": {
+    "temperature_c": {
+     "mean": 17.994,
+     "std": 7.807,
+     "min": -1.419,
+     "max": 35.077
+    },
+    "cloud_cover_pct": {
+     "mean": 49.529,
+     "std": 33.61,
+     "min": 0.0,
+     "max": 100.0
+    },
+    "shortwave_radiation_wm2": {
+     "mean": 170.562,
+     "std": 250.441,
+     "min": 0.0,
+     "max": 996.691
+    },
+    "wind_speed_kmh": {
+     "mean": 11.306,
+     "std": 7.288,
+     "min": 0.05,
+     "max": 61.618
+    }
+   },
+   "vs_prev2": {
+    "temperature_c": {
+     "n": 20931,
+     "pearson_r": 0.9941,
+     "rmse": 0.85,
+     "mae": 0.574,
+     "bias": -0.056
+    },
+    "cloud_cover_pct": {
+     "n": 20931,
+     "pearson_r": 0.7149,
+     "rmse": 25.839,
+     "mae": 18.581,
+     "bias": 7.886
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21038,
+     "pearson_r": 0.9582,
+     "rmse": 72.314,
+     "mae": 29.829,
+     "bias": 1.303
+    },
+    "wind_speed_kmh": {
+     "n": 20931,
+     "pearson_r": 0.8965,
+     "rmse": 3.318,
+     "mae": 2.165,
+     "bias": 0.116
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-25 23:00:00+09:00"
+    ]
+   },
+   "vs_postgate_00utc": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9989,
+     "rmse": 0.389,
+     "mae": 0.234,
+     "bias": -0.021
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9087,
+     "rmse": 14.041,
+     "mae": 8.542,
+     "bias": 0.524
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9905,
+     "rmse": 33.568,
+     "mae": 12.607,
+     "bias": -1.012
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9709,
+     "rmse": 1.753,
+     "mae": 1.07,
+     "bias": -0.022
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "vs_prev1_context": {
+    "temperature_c": {
+     "n": 21024,
+     "pearson_r": 0.9981,
+     "rmse": 0.479,
+     "mae": 0.303,
+     "bias": -0.014
+    },
+    "cloud_cover_pct": {
+     "n": 20917,
+     "pearson_r": 0.8308,
+     "rmse": 21.115,
+     "mae": 14.845,
+     "bias": 9.34
+    },
+    "shortwave_radiation_wm2": {
+     "n": 21024,
+     "pearson_r": 0.9902,
+     "rmse": 34.921,
+     "mae": 13.135,
+     "bias": -0.554
+    },
+    "wind_speed_kmh": {
+     "n": 20917,
+     "pearson_r": 0.9554,
+     "rmse": 2.187,
+     "mae": 1.362,
+     "bias": -0.059
+    },
+    "window": [
+     "2024-03-01 00:00:00+09:00",
+     "2026-07-24 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev2": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9944,
+     "rmse": 0.876,
+     "mae": 0.592,
+     "bias": -0.102
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.7027,
+     "rmse": 25.845,
+     "mae": 18.767,
+     "bias": 7.72
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9586,
+     "rmse": 69.667,
+     "mae": 29.086,
+     "bias": 2.561
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8882,
+     "rmse": 3.433,
+     "mae": 2.235,
+     "bias": 0.14
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_postgate": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9989,
+     "rmse": 0.389,
+     "mae": 0.234,
+     "bias": -0.021
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.9087,
+     "rmse": 14.041,
+     "mae": 8.542,
+     "bias": 0.524
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9905,
+     "rmse": 33.568,
+     "mae": 12.607,
+     "bias": -1.012
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9709,
+     "rmse": 1.753,
+     "mae": 1.07,
+     "bias": -0.022
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "common_window_vs_prev1": {
+    "temperature_c": {
+     "n": 10224,
+     "pearson_r": 0.9983,
+     "rmse": 0.476,
+     "mae": 0.308,
+     "bias": -0.016
+    },
+    "cloud_cover_pct": {
+     "n": 10224,
+     "pearson_r": 0.8198,
+     "rmse": 21.507,
+     "mae": 15.21,
+     "bias": 9.817
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10224,
+     "pearson_r": 0.9903,
+     "rmse": 33.812,
+     "mae": 12.941,
+     "bias": -1.087
+    },
+    "wind_speed_kmh": {
+     "n": 10224,
+     "pearson_r": 0.9534,
+     "rmse": 2.221,
+     "mae": 1.387,
+     "bias": -0.029
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   },
+   "prev2_vs_postgate": {
+    "temperature_c": {
+     "n": 10219,
+     "pearson_r": 0.9938,
+     "rmse": 0.914,
+     "mae": 0.638,
+     "bias": -0.081
+    },
+    "cloud_cover_pct": {
+     "n": 10219,
+     "pearson_r": 0.6742,
+     "rmse": 26.729,
+     "mae": 19.587,
+     "bias": 7.194
+    },
+    "shortwave_radiation_wm2": {
+     "n": 10219,
+     "pearson_r": 0.9551,
+     "rmse": 72.663,
+     "mae": 30.312,
+     "bias": 3.574
+    },
+    "wind_speed_kmh": {
+     "n": 10219,
+     "pearson_r": 0.8821,
+     "rmse": 3.523,
+     "mae": 2.412,
+     "bias": 0.162
+    },
+    "window": [
+     "2024-09-01 00:00:00+09:00",
+     "2025-10-31 23:00:00+09:00"
+    ]
+   }
+  }
+ },
+ "pooled": {
+  "vs_prev2": {
+   "temperature_c": {
+    "n": 188187,
+    "rmse": 1.032,
+    "mae": 0.7,
+    "mean_area_r_fisher": 0.9938,
+    "min_area_r": 0.9924
+   },
+   "cloud_cover_pct": {
+    "n": 188187,
+    "rmse": 26.264,
+    "mae": 18.59,
+    "mean_area_r_fisher": 0.7153,
+    "min_area_r": 0.6813
+   },
+   "shortwave_radiation_wm2": {
+    "n": 189150,
+    "rmse": 69.141,
+    "mae": 28.652,
+    "mean_area_r_fisher": 0.9604,
+    "min_area_r": 0.9549
+   },
+   "wind_speed_kmh": {
+    "n": 188187,
+    "rmse": 2.272,
+    "mae": 1.444,
+    "mean_area_r_fisher": 0.8418,
+    "min_area_r": 0.8032
+   }
+  },
+  "vs_postgate_00utc": {
+   "temperature_c": {
+    "n": 92016,
+    "rmse": 0.46,
+    "mae": 0.281,
+    "mean_area_r_fisher": 0.9988,
+    "min_area_r": 0.9981
+   },
+   "cloud_cover_pct": {
+    "n": 92016,
+    "rmse": 14.228,
+    "mae": 8.706,
+    "mean_area_r_fisher": 0.908,
+    "min_area_r": 0.8936
+   },
+   "shortwave_radiation_wm2": {
+    "n": 92016,
+    "rmse": 34.081,
+    "mae": 12.755,
+    "mean_area_r_fisher": 0.9898,
+    "min_area_r": 0.9855
+   },
+   "wind_speed_kmh": {
+    "n": 92016,
+    "rmse": 1.247,
+    "mae": 0.751,
+    "mean_area_r_fisher": 0.9512,
+    "min_area_r": 0.9325
+   }
+  },
+  "vs_prev1_context": {
+   "temperature_c": {
+    "n": 189216,
+    "rmse": 0.599,
+    "mae": 0.411,
+    "mean_area_r_fisher": 0.9981,
+    "min_area_r": 0.9973
+   },
+   "cloud_cover_pct": {
+    "n": 188253,
+    "rmse": 20.89,
+    "mae": 14.476,
+    "mean_area_r_fisher": 0.8327,
+    "min_area_r": 0.8201
+   },
+   "shortwave_radiation_wm2": {
+    "n": 189216,
+    "rmse": 35.193,
+    "mae": 13.381,
+    "mean_area_r_fisher": 0.9897,
+    "min_area_r": 0.987
+   },
+   "wind_speed_kmh": {
+    "n": 188253,
+    "rmse": 1.485,
+    "mae": 0.913,
+    "mean_area_r_fisher": 0.9332,
+    "min_area_r": 0.9149
+   }
+  },
+  "prev2_vs_postgate": {
+   "temperature_c": {
+    "n": 91971,
+    "rmse": 1.067,
+    "mae": 0.735,
+    "mean_area_r_fisher": 0.9937,
+    "min_area_r": 0.9922
+   },
+   "cloud_cover_pct": {
+    "n": 91971,
+    "rmse": 26.769,
+    "mae": 19.392,
+    "mean_area_r_fisher": 0.6847,
+    "min_area_r": 0.6452
+   },
+   "shortwave_radiation_wm2": {
+    "n": 91971,
+    "rmse": 67.322,
+    "mae": 27.827,
+    "mean_area_r_fisher": 0.9596,
+    "min_area_r": 0.9495
+   },
+   "wind_speed_kmh": {
+    "n": 91971,
+    "rmse": 2.373,
+    "mae": 1.558,
+    "mean_area_r_fisher": 0.8262,
+    "min_area_r": 0.7604
+   }
+  },
+  "common_window_vs_prev2": {
+   "temperature_c": {
+    "n": 91971,
+    "rmse": 1.038,
+    "mae": 0.701,
+    "mean_area_r_fisher": 0.9941,
+    "min_area_r": 0.9925
+   },
+   "cloud_cover_pct": {
+    "n": 91971,
+    "rmse": 25.901,
+    "mae": 18.553,
+    "mean_area_r_fisher": 0.7074,
+    "min_area_r": 0.6705
+   },
+   "shortwave_radiation_wm2": {
+    "n": 91971,
+    "rmse": 67.015,
+    "mae": 27.623,
+    "mean_area_r_fisher": 0.9598,
+    "min_area_r": 0.9534
+   },
+   "wind_speed_kmh": {
+    "n": 91971,
+    "rmse": 2.292,
+    "mae": 1.452,
+    "mean_area_r_fisher": 0.8385,
+    "min_area_r": 0.79
+   }
+  },
+  "common_window_vs_postgate": {
+   "temperature_c": {
+    "n": 92016,
+    "rmse": 0.46,
+    "mae": 0.281,
+    "mean_area_r_fisher": 0.9988,
+    "min_area_r": 0.9981
+   },
+   "cloud_cover_pct": {
+    "n": 92016,
+    "rmse": 14.228,
+    "mae": 8.706,
+    "mean_area_r_fisher": 0.908,
+    "min_area_r": 0.8936
+   },
+   "shortwave_radiation_wm2": {
+    "n": 92016,
+    "rmse": 34.081,
+    "mae": 12.755,
+    "mean_area_r_fisher": 0.9898,
+    "min_area_r": 0.9855
+   },
+   "wind_speed_kmh": {
+    "n": 92016,
+    "rmse": 1.247,
+    "mae": 0.751,
+    "mean_area_r_fisher": 0.9512,
+    "min_area_r": 0.9325
+   }
+  },
+  "common_window_vs_prev1": {
+   "temperature_c": {
+    "n": 92016,
+    "rmse": 0.613,
+    "mae": 0.42,
+    "mean_area_r_fisher": 0.9981,
+    "min_area_r": 0.9973
+   },
+   "cloud_cover_pct": {
+    "n": 92016,
+    "rmse": 21.107,
+    "mae": 14.793,
+    "mean_area_r_fisher": 0.8215,
+    "min_area_r": 0.8018
+   },
+   "shortwave_radiation_wm2": {
+    "n": 92016,
+    "rmse": 34.829,
+    "mae": 13.333,
+    "mean_area_r_fisher": 0.9893,
+    "min_area_r": 0.9852
+   },
+   "wind_speed_kmh": {
+    "n": 92016,
+    "rmse": 1.515,
+    "mae": 0.933,
+    "mean_area_r_fisher": 0.9292,
+    "min_area_r": 0.909
+   }
+  }
+ },
+ "verdict": {
+  "basis": "common-window legs (identical slots for both comparisons; the post-gate 00UTC cache spans only the committed FY2024-25 window)",
+  "per_channel": {
+   "temperature_c": {
+    "rmse_vs_prev2": 1.038,
+    "rmse_vs_postgate": 0.46,
+    "closer_to": "postgate_00utc",
+    "ratio_prev2_over_postgate": 2.26
+   },
+   "cloud_cover_pct": {
+    "rmse_vs_prev2": 25.901,
+    "rmse_vs_postgate": 14.228,
+    "closer_to": "postgate_00utc",
+    "ratio_prev2_over_postgate": 1.82
+   },
+   "shortwave_radiation_wm2": {
+    "rmse_vs_prev2": 67.015,
+    "rmse_vs_postgate": 34.081,
+    "closer_to": "postgate_00utc",
+    "ratio_prev2_over_postgate": 1.97
+   },
+   "wind_speed_kmh": {
+    "rmse_vs_prev2": 2.292,
+    "rmse_vs_postgate": 1.247,
+    "closer_to": "postgate_00utc",
+    "ratio_prev2_over_postgate": 1.84
+   }
+  },
+  "summary": "the exact pre-gate series is closer to the post-gate D-1 00UTC run than to prev2 on every channel",
+  "interpretation": "corroborates the vintage ordering (older vintage = larger departure from the freshest run) and shows the manuscript's prev2 pre-gate tier is CONSERVATIVE: the true last-admissible vintage carries information much closer to the post-gate run. It does NOT re-estimate the price-forecast ladder -- no price sweep was run."
+ }
+}

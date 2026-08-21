@@ -1,0 +1,12 @@
+{
+  "pearson_r": -0.5033458253711247,
+  "pearson_p": 0.1671688058640648,
+  "spearman_rho": -0.3,
+  "spearman_p": 0.43284532670948234,
+  "permutation_p": 0.4375,
+  "linregress_slope": -0.006647188535471046,
+  "linregress_r_squared": 0.25335701991853865,
+  "n_areas": 9,
+  "n_folds": 140,
+  "design": "lag-96 (D-2 same-clock-time weather, pre-shift +48h)"
+}

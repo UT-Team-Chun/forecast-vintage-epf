@@ -1,0 +1,410 @@
+{
+  "phase": 107,
+  "title": "Literature-audit robustness check, re-sliced on what was actually read",
+  "defect": "the published check sliced on access_level, which records PUBLISHER accessibility, not whether the text was read",
+  "n_included": 43,
+  "n_full_text_read": 42,
+  "n_not_read": 0,
+  "n_unclassified": 1,
+  "unclassified_indices": [
+    "25"
+  ],
+  "corrected_subset_rates": {
+    "gate_time_stated": {
+      "n": 42,
+      "k": 18,
+      "pct": 42.857142857142854
+    },
+    "publication_time_stated": {
+      "n": 42,
+      "k": 2,
+      "pct": 4.761904761904762
+    },
+    "gate_admissibility_checked": {
+      "n": 42,
+      "k": 2,
+      "pct": 4.761904761904762
+    }
+  },
+  "headline_all_included_rates": {
+    "gate_time_stated": {
+      "n": 43,
+      "k": 18,
+      "pct": 41.86046511627907
+    },
+    "publication_time_stated": {
+      "n": 43,
+      "k": 2,
+      "pct": 4.651162790697675
+    },
+    "gate_admissibility_checked": {
+      "n": 43,
+      "k": 2,
+      "pct": 4.651162790697675
+    }
+  },
+  "reading": "no included study is coded as unread, so the read subset is 42 of 43 and its rates are within rounding of the headline. The access objection does not apply to the headline at all",
+  "superseded_access_level_subset": {
+    "gate_time_stated": {
+      "n": 20,
+      "k": 10
+    },
+    "publication_time_stated": {
+      "n": 20,
+      "k": 0
+    },
+    "gate_admissibility_checked": {
+      "n": 20,
+      "k": 0
+    }
+  },
+  "per_row_classification": [
+    {
+      "index": "1",
+      "access_level": "abstract-only",
+      "read_class": "read",
+      "gate_time_stated": "Partial - day-ahead quoting on day t-1 for delivery day t stated; no clock-time gate closure (e.g. Elspot noon) given",
+      "publication_time_stated": "Partial - said 'available in real time when prices are traded' via Bloomberg; no dissemination clock time stated",
+      "gate_admissibility_checked": "Partial - pre-gate availability asserted/assumed ('logical to assume operators had received this information in real time'); not verified with timestamps"
+    },
+    {
+      "index": "3",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes — prices set 'right after gate-closure at noon'; noon gate explicit.",
+      "publication_time_stated": "Partial — availability stated relative to gate ('issued before gate-closure') but no exact publication time.",
+      "gate_admissibility_checked": "Yes — explicitly asserts inputs issued pre-gate and grounds rationale in the gate-closure information set."
+    },
+    {
+      "index": "4",
+      "access_level": "abstract-only",
+      "read_class": "read",
+      "gate_time_stated": "No - day-ahead auction named, but 12:00 gate-closure time never mentioned anywhere",
+      "publication_time_stated": "No - source URLs given, but publication/dissemination times of feed-in/load never stated",
+      "gate_admissibility_checked": "Partial - explicit no-future-information design at midnight origin; 12:00 auction gate never reconciled"
+    },
+    {
+      "index": "5",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Partial - generic European framing: price computed 12:00 day D, bids >=1 h before; not MIBEL-specific",
+      "publication_time_stated": "Partial - forecasts assumed available at hour t=0 of day D; no actual dissemination time stated",
+      "gate_admissibility_checked": "Partial - explicit time framework excludes unavailable D-lag generations; NWP availability at t=0 asserted, not verified"
+    },
+    {
+      "index": "6",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes — 'daily auctions at 12:00 CET for the hours of the next day' (Sec.2, p.6)",
+      "publication_time_stated": "Partial — 'known one day in advance'; no clock time, unlike EXAA benchmark (10:12/10:20 stated)",
+      "gate_admissibility_checked": "Partial — asserted 'indeed available before the auction starts', encoded via d+1 lag design; no timestamp verification"
+    },
+    {
+      "index": "8",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "No — bidding gate/closure time never mentioned anywhere in the paper",
+      "publication_time_stated": "No — when Windfinder wind data become available is never stated",
+      "gate_admissibility_checked": "No — inputs lagged 24 h before forecast hour, but gate never referenced or verified"
+    },
+    {
+      "index": "9",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes — DA bids until noon (Fig. 1, 12:00); each ID session closes 2h15min pre-delivery.",
+      "publication_time_stated": "Partial — retrieval fixed at t−60 min before each gate; actual TSO publication schedule not documented.",
+      "gate_admissibility_checked": "Partial — operational pre-gate-availability scenario explicitly asserted and simulated (Sec. 4.1, Figs. 5–6); timestamp-level verification of TSO feeds not shown."
+    },
+    {
+      "index": "11",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Partial — generic 'deadline occurs at 11:00 am or 12:00 am' day d-1; no EPEX-specific gate",
+      "publication_time_stated": "Partial — asserts forecasts 'available before the bid deadline'; no publication clock time given",
+      "gate_admissibility_checked": "Partial — pre-gate availability asserted and forecaster framed on pre-deadline info; never verified against archives"
+    },
+    {
+      "index": "13",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "No — bidding/auction described only qualitatively; no gate-closure or bid-submission time given",
+      "publication_time_stated": "Partial — assumes real-time temperature measured over [00:00,08:00] available at 08:00; no latency discussed",
+      "gate_admissibility_checked": "No — compensation uses delivery-day 00:00–08:00 realised data; day-ahead gate never considered"
+    },
+    {
+      "index": "14",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes - bids due 'up to 12 PM' day before delivery (Section 4.1, p.7)",
+      "publication_time_stated": "Partial - REE 'publishes daily forecasts...for the next day'; no publication clock time given",
+      "gate_admissibility_checked": "Partial - argues realised values unknown at auction so forecasts used; ESIOS timestamps never checked against 12:00 gate"
+    },
+    {
+      "index": "15",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "No: day-ahead auction mechanism described, but bidding gate / offer deadline time never stated.",
+      "publication_time_stated": "No: inputs only described as 'made available by' GME/Terna; no publication/dissemination time given.",
+      "gate_admissibility_checked": "Partial: forecast regressors chosen 'taking the availability of predicted exogenous regressors into account'; no timing verification."
+    },
+    {
+      "index": "16",
+      "access_level": "abstract-only",
+      "read_class": "read",
+      "gate_time_stated": "Partial — generic 'submit... by 11 a.m.' deadline stated; no per-market official gate-closure times",
+      "publication_time_stated": "Partial — ECMWF run 'updates from 05.40 a.m. to 06.55 a.m.'; TSO publication times unstated",
+      "gate_admissibility_checked": "Partial — explicit pre-gate availability argument for ECMWF inputs and lagged fuels; TSO inputs unverified"
+    },
+    {
+      "index": "18",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Partial — bids 'before gate closure on day d−1 … typically around midday'; no exact per-market times",
+      "publication_time_stated": "Partial — forecasts only described as 'available on day d−1'; no publication clock time",
+      "gate_admissibility_checked": "No — pre-gate availability assumed via 'available on day d−1'; never verified against publication schedules"
+    },
+    {
+      "index": "21",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes — task is predicting 'before noon'; 'European market closes at noon' (Secs. 2, 4.2)",
+      "publication_time_stated": "Partial — forecasts 'available... before noon'; exact times only for Swiss prices (11:15am), gas index (6pm)",
+      "gate_admissibility_checked": "Partial — asserts pre-noon availability and lags gas index two days; no timestamp verification"
+    },
+    {
+      "index": "22",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes — auction at 12.00 pm on previous day stated (Secs. 1.1 and 5)",
+      "publication_time_stated": "No — publication/availability timing of weather or load inputs never stated",
+      "gate_admissibility_checked": "No — realised future weather knowingly fed over forecast interval; admissibility deliberately not enforced"
+    },
+    {
+      "index": "24",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes — day-ahead market \"traded at 12 o'clock for the next day\" (Sec. 4)",
+      "publication_time_stated": "Not stated — EEX Transparency publication/dissemination time of expected infeed never given",
+      "gate_admissibility_checked": "Partial — asserts prices up to current day and next-day infeed forecasts usable at 12:00; no timestamp verification"
+    },
+    {
+      "index": "25",
+      "access_level": "abstract-only",
+      "read_class": "unclassified",
+      "gate_time_stated": "Not stated — no mention of KPX bidding deadline or SMP determination/announcement time",
+      "publication_time_stated": "No — never states when KMA weather data are published or become available",
+      "gate_admissibility_checked": "No — no check that weather/load inputs precede any bidding gate"
+    },
+    {
+      "index": "26",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "No — Nord Pool 12:00 CET day-ahead gate closure never mentioned.",
+      "publication_time_stated": "No — publication/dissemination times of any input never stated.",
+      "gate_admissibility_checked": "No — one-day-lag features partly post-gate for delivery-day forecasts; never discussed."
+    },
+    {
+      "index": "28",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes — auction 'takes place once a day at noon'; information cutoff 'around 11:30 CET on day T−1'",
+      "publication_time_stated": "Partial — asserts inputs available by ~11:30 CET day T−1; no actual publication/dissemination times given",
+      "gate_admissibility_checked": "Partial — asserted ('considered input does not violate this assumption'), enforced via T−2 lags for EUA/fuels, but never verified with timestamps"
+    },
+    {
+      "index": "29",
+      "access_level": "abstract-only",
+      "read_class": "read",
+      "gate_time_stated": "Yes - market 'opens nine days before' delivery and 'closes at noon on the day before delivery'.",
+      "publication_time_stated": "Yes - RTR updates end 7.40/6.55 a.m.; ENTSO-E by 10 a.m.; fuel settlements ~7 p.m.",
+      "gate_admissibility_checked": "Yes - each input's release time explicitly compared to the noon gate; untimely actuals deliberately lagged."
+    },
+    {
+      "index": "30",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "No — auction gate-closure time never given; market description deferred to Lago et al. (2020)",
+      "publication_time_stated": "No — publication/dissemination timing of exogenous forecast inputs never stated",
+      "gate_admissibility_checked": "No — no pre-gate availability verification; timing assumptions inherited from Lago et al. benchmark"
+    },
+    {
+      "index": "31",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes — states bids \"must be bid by 10 AM the day before the trading day\"",
+      "publication_time_stated": "No — GPV dissemination time relative to 10 AM gate never stated",
+      "gate_admissibility_checked": "No — forecast inputs used, but pre-gate availability never verified or discussed"
+    },
+    {
+      "index": "32",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes — \"10 AM the day before the transaction date\" (Sec. 4.1)",
+      "publication_time_stated": "No — JMA dissemination times never stated; only an assumed 3 PM D-2 snapshot",
+      "gate_admissibility_checked": "Partial — deliberately uses data \"as of 3 PM two days before\"; actual availability unverified"
+    },
+    {
+      "index": "33",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "No — only generic 'once-per-day uniform-price auction'; no gate-closure clock time given",
+      "publication_time_stated": "No — publication/dissemination times of day-ahead load/wind/solar forecasts never stated",
+      "gate_admissibility_checked": "No — no availability check; admissibility implicit in 'day-ahead forecast' labels of Lago benchmark"
+    },
+    {
+      "index": "34",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes - 'the day-ahead auction closes at noon'; no time zone (CET/UTC) specified.",
+      "publication_time_stated": "Yes - forecast explicitly selected 'in terms of publication time'; hourly updates, 10am issue.",
+      "gate_admissibility_checked": "Partial - 10am issue vs noon gate asserted by construction; dissemination lag not verified."
+    },
+    {
+      "index": "36",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Partial — states NEM has no day-ahead gate, continuous rebidding until dispatch; forecast issue time (midnight) stated",
+      "publication_time_stated": "Not stated — never says when World Weather Online data is published/disseminated",
+      "gate_admissibility_checked": "No — never verifies weather inputs were available at the midnight forecast time"
+    },
+    {
+      "index": "37",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Partial — bidding described only qualitatively as \"conducted in the morning\"; no clock time or gate-closure hour.",
+      "publication_time_stated": "Partial — stated for grid inputs (reserve margin evening of D-1; weekly issued Thursdays); not for weather.",
+      "gate_admissibility_checked": "Partial — explicitly verified and enforced for reserve margin; weather forecast admissibility asserted, never timed or checked."
+    },
+    {
+      "index": "38",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes - bidding deadline stated as 10:00 JST; forecast point 05:00 JST (5 h buffer).",
+      "publication_time_stated": "Partial - JMBSC 'issues' times equated with initialisation cycles; no dissemination lag or latency given.",
+      "gate_admissibility_checked": "Partial - explicit 05:00 JST cutoff before 10:00 gate, but availability inferred from initialisation."
+    },
+    {
+      "index": "39",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes - gate closure 11:00 D-1, prices released 13:00 D-1 (Sec 1.1)",
+      "publication_time_stated": "No - only publication frequency (hourly/daily/monthly) noted, never availability timing",
+      "gate_admissibility_checked": "No - contemporaneous realised weather/system values matched to target hour; look-ahead never discussed"
+    },
+    {
+      "index": "40",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Not stated — only \"one day before the bidding date\"; no clock time, no gate closure",
+      "publication_time_stated": "No — nothing on when JMA temperature or TEPCO net-demand data were published",
+      "gate_admissibility_checked": "No — delivery-day inputs T(d,t), Dn(d,t) used with no pre-gate availability check"
+    },
+    {
+      "index": "41",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes — orders placed until 12:00 (Section 2.1)",
+      "publication_time_stated": "No — ENTSO-E forecast publication/dissemination time relative to auction never stated",
+      "gate_admissibility_checked": "Partial — asserts 'no hidden assumption about availability' but no check versus 12:00 gate"
+    },
+    {
+      "index": "42",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Not stated - no gate closure time, auction deadline, or 12:00 CET mentioned anywhere",
+      "publication_time_stated": "Not stated - never says when TSO forecasts were published or disseminated",
+      "gate_admissibility_checked": "No - inputs simply labelled 'day-ahead exogenous variables'; no pre-gate availability verification"
+    },
+    {
+      "index": "43",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes: 'bidding deadline of 10:00 JST'; forecast issued 05:00 JST with 5-h buffer",
+      "publication_time_stated": "Not stated: no dissemination time for JMBSC GPV files; only 'accessed 2023-7-15'",
+      "gate_admissibility_checked": "Partial: block-level temporal-delay design and 05:00 issue time, but NWP-run admissibility unverified"
+    },
+    {
+      "index": "44",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Partial - only 'morning of day d-1' and 'time of bidding'; no clock time.",
+      "publication_time_stated": "No - ENTSO-E publication time of RES/load forecasts never stated; only fuel prices are gate-anchored.",
+      "gate_admissibility_checked": "Partial - explicit only for fuel/EUA closing prices ('last known ... at the time of bidding'); the ENTSO-E day-ahead load and RES forecasts are assumed admissible by their 'day-ahead' label and by the statement that forecasts are computed in the morning of day d-1, but no check that those exact series were published before gate closure is reported."
+    },
+    {
+      "index": "45",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Partial - forecast computed at 10:00 stated; DA auction gate closure (12:00 CET) never mentioned",
+      "publication_time_stated": "Not stated - never says when the load/wind/PV forecasts were published or disseminated",
+      "gate_admissibility_checked": "Partial - timing enforced only for ID3 price input; RES/load forecast availability never verified"
+    },
+    {
+      "index": "46",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Yes — published version states DAM bids submitted 'by 12:00 CET'; absent from arXiv v1.",
+      "publication_time_stated": "Partial — BM horizon justified by \"SEMO's publication schedule\"; no clock time or cut-off given.",
+      "gate_admissibility_checked": "Partial — gate and BM rule-based horizon stated; no per-vintage availability check or leakage test."
+    },
+    {
+      "index": "49",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "No - no bid deadline, gate closure, or submission cut-off mentioned anywhere.",
+      "publication_time_stated": "No - report publication dates absent; annual reports necessarily post-date the forecast year.",
+      "gate_admissibility_checked": "No - no availability or leakage check; annual reports unavailable at forecast time."
+    },
+    {
+      "index": "50",
+      "access_level": "abstract-only",
+      "read_class": "read",
+      "gate_time_stated": "Partial — bids submitted day t−1 until \"a specified deadline\"; no clock time given",
+      "publication_time_stated": "Not stated — no release/dissemination time for load or RES forecasts",
+      "gate_admissibility_checked": "Partial — availability argued only for fuel/EUA lags (t−2); no equivalent check for load/RES"
+    },
+    {
+      "index": "51",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Not stated — no bid submission/gate-closure time anywhere; NEM real-time spot, no day-ahead auction discussed",
+      "publication_time_stated": "No — news items carry 'posted at HH:MM' timestamps, temperature values carry no publication timestamp",
+      "gate_admissibility_checked": "No — no leakage/availability check; only a same-day alignment convention, no gate or cut-off reasoning"
+    },
+    {
+      "index": "52",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Not stated - no auction/gate-closure time (e.g. 12:00 CET) appears anywhere in text",
+      "publication_time_stated": "Not stated - 'available at time t' asserted qualitatively, with no dissemination timestamp",
+      "gate_admissibility_checked": "No - availability asserted in passing, never verified against any stated bidding gate"
+    },
+    {
+      "index": "53",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Partial - only \"typically around midday on day D\"; no clock time, no timezone, no per-zone gate",
+      "publication_time_stated": "Partial - asserts forecasts \"made on D before gate closure\"; no publication/dissemination time given",
+      "gate_admissibility_checked": "Partial - availability asserted by design; no timestamp check, vintage audit, or leakage test"
+    },
+    {
+      "index": "56",
+      "access_level": "partial",
+      "read_class": "read",
+      "gate_time_stated": "Yes — Sec. 4.1: market 'cleared at 12:00 CET' for next-day delivery",
+      "publication_time_stated": "Not stated — dissemination time of residual-load input never given; only market clearing time",
+      "gate_admissibility_checked": "No — never checks residual load was published before 12:00 CET gate"
+    },
+    {
+      "index": "57",
+      "access_level": "full-text",
+      "read_class": "read",
+      "gate_time_stated": "Partial — no clock time or 12:00 CET gate closure; only 'beginning of day d-1' stated",
+      "publication_time_stated": "Partial — day-granularity availability asserted (Fig. 3); no publication or dissemination clock time given",
+      "gate_admissibility_checked": "Partial — explicit information-set reasoning (observations only to d-2); never checked against auction gate"
+    }
+  ],
+  "source_csv": "docs/paper/paper_a_main/submission/lit_audit_dataset.csv",
+  "git_sha": "29903ca86ae51a0962251d34a923396755dabd60",
+  "script": "s_20260820_phase107_litaudit_reslice.py"
+}

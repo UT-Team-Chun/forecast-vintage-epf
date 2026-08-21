@@ -1,0 +1,1979 @@
+{
+ "phase": 59,
+ "title": "Vintage ladder on run-pinned tiers",
+ "precommit_doc": "docs/research/2026-07-29_phase58_exactrun_precommit.md",
+ "panel": {
+  "n_slots": 307638,
+  "n_areas": 9,
+  "n_test_days": 714,
+  "first_test_day": "2024-08-01",
+  "last_test_day": "2026-07-18",
+  "slots_per_area": 34182
+ },
+ "tier_definitions": {
+  "msm_d2_12z": "D-2 12 UTC run, FH27-50, one run per whole day; disseminated D-2 23:30 JST (+10h30m pre-gate)",
+  "msm_gate_composite": "per-slot freshest admissible run: D-2 21 UTC for hours 00-21 (+90 min pre-gate), D-2 12 UTC for hours 22-23",
+  "msm_d1_00z": "D-1 00 UTC run, FH15-38, one run per whole day; disseminated D-1 11:30 JST (1h30m POST-gate)"
+ },
+ "gate5_reproducibility": {
+  "reference": "phase51_vintage_ladder_per_slot.parquet",
+  "reference_sha256": "7f2ebe2e421efcbaa03f271d8bc882aaa3ad3476bcb7fbe135d6b5c266ea3928",
+  "n_slots_new": 307638,
+  "n_slots_reference": 307638,
+  "n_slots_matched": 307638,
+  "panel_identical": true,
+  "max_abs_diff": {
+   "price_only": 0.0,
+   "era5": 0.0,
+   "prev2": 0.0,
+   "prev1": 0.0,
+   "histfc": 0.0,
+   "oracle": 0.0,
+   "y_actual": 0.0
+  },
+  "tolerance": 1e-09,
+  "verdict": "PASS",
+  "consequence_if_fail": "Abort. Unaccounted non-determinism in the harness would make the new run-pinned numbers untrustworthy as well."
+ },
+ "tiers": {
+  "era5": {
+   "improvement": 0.0406,
+   "ci95": [
+    0.0237,
+    0.0577
+   ],
+   "dm_l3": {
+    "mean_diff": 0.04065,
+    "t_hln": 4.988,
+    "p_hln": 7.7e-07,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.04065,
+    "t_hln": 4.536,
+    "p_hln": 6.74e-06,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 7
+  },
+  "prev2": {
+   "improvement": 0.2157,
+   "ci95": [
+    0.1751,
+    0.2572
+   ],
+   "dm_l3": {
+    "mean_diff": 0.21567,
+    "t_hln": 11.967,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.21567,
+    "t_hln": 9.107,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  },
+  "prev1": {
+   "improvement": 0.2323,
+   "ci95": [
+    0.1875,
+    0.2784
+   ],
+   "dm_l3": {
+    "mean_diff": 0.23226,
+    "t_hln": 11.689,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.23226,
+    "t_hln": 8.903,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  },
+  "histfc": {
+   "improvement": 0.2215,
+   "ci95": [
+    0.1787,
+    0.2654
+   ],
+   "dm_l3": {
+    "mean_diff": 0.22146,
+    "t_hln": 11.697,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.22146,
+    "t_hln": 8.939,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  },
+  "oracle": {
+   "improvement": 0.2204,
+   "ci95": [
+    0.1795,
+    0.2622
+   ],
+   "dm_l3": {
+    "mean_diff": 0.22045,
+    "t_hln": 12.083,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.22045,
+    "t_hln": 9.193,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  },
+  "msm_d2_12z": {
+   "improvement": 0.2289,
+   "ci95": [
+    0.1855,
+    0.2738
+   ],
+   "dm_l3": {
+    "mean_diff": 0.22893,
+    "t_hln": 11.813,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.22893,
+    "t_hln": 9.038,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  },
+  "msm_gate_composite": {
+   "improvement": 0.2306,
+   "ci95": [
+    0.1865,
+    0.276
+   ],
+   "dm_l3": {
+    "mean_diff": 0.23059,
+    "t_hln": 11.67,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.23059,
+    "t_hln": 8.981,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  },
+  "msm_d1_00z": {
+   "improvement": 0.2319,
+   "ci95": [
+    0.1874,
+    0.2783
+   ],
+   "dm_l3": {
+    "mean_diff": 0.23187,
+    "t_hln": 11.604,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.23187,
+    "t_hln": 8.894,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "areas_improved": 9,
+   "areas_sig_l3": 9
+  }
+ },
+ "per_area": {
+  "era5": {
+   "chubu": {
+    "improvement": 0.0344,
+    "p_l3": 0.00779836
+   },
+   "chugoku": {
+    "improvement": 0.0589,
+    "p_l3": 5.71e-06
+   },
+   "hokkaido": {
+    "improvement": 0.0053,
+    "p_l3": 0.63903423
+   },
+   "hokuriku": {
+    "improvement": 0.0492,
+    "p_l3": 0.00011593
+   },
+   "kansai": {
+    "improvement": 0.0552,
+    "p_l3": 5.24e-06
+   },
+   "kyushu": {
+    "improvement": 0.052,
+    "p_l3": 0.00181097
+   },
+   "shikoku": {
+    "improvement": 0.0232,
+    "p_l3": 0.13797038
+   },
+   "tohoku": {
+    "improvement": 0.0564,
+    "p_l3": 1.913e-05
+   },
+   "tokyo": {
+    "improvement": 0.0313,
+    "p_l3": 0.00576186
+   }
+  },
+  "prev2": {
+   "chubu": {
+    "improvement": 0.2229,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2647,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.0809,
+    "p_l3": 5.2e-07
+   },
+   "hokuriku": {
+    "improvement": 0.1686,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.219,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.3048,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.191,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.2933,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.1959,
+    "p_l3": 0.0
+   }
+  },
+  "prev1": {
+   "chubu": {
+    "improvement": 0.252,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2737,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.1045,
+    "p_l3": 2e-08
+   },
+   "hokuriku": {
+    "improvement": 0.1833,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.2275,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.2923,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.1985,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.3438,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.2147,
+    "p_l3": 0.0
+   }
+  },
+  "histfc": {
+   "chubu": {
+    "improvement": 0.2355,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2525,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.1006,
+    "p_l3": 0.0
+   },
+   "hokuriku": {
+    "improvement": 0.1789,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.2017,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.2863,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.1882,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.3367,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.2127,
+    "p_l3": 0.0
+   }
+  },
+  "oracle": {
+   "chubu": {
+    "improvement": 0.2483,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2413,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.1093,
+    "p_l3": 2e-08
+   },
+   "hokuriku": {
+    "improvement": 0.1837,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.2243,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.2935,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.1928,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.304,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.1868,
+    "p_l3": 0.0
+   }
+  },
+  "msm_d2_12z": {
+   "chubu": {
+    "improvement": 0.2394,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2801,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.0896,
+    "p_l3": 5.8e-07
+   },
+   "hokuriku": {
+    "improvement": 0.1771,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.2215,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.2981,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.1993,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.338,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.2171,
+    "p_l3": 0.0
+   }
+  },
+  "msm_gate_composite": {
+   "chubu": {
+    "improvement": 0.2423,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2762,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.0953,
+    "p_l3": 3.5e-07
+   },
+   "hokuriku": {
+    "improvement": 0.177,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.2282,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.2981,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.1971,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.3401,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.2209,
+    "p_l3": 0.0
+   }
+  },
+  "msm_d1_00z": {
+   "chubu": {
+    "improvement": 0.2415,
+    "p_l3": 0.0
+   },
+   "chugoku": {
+    "improvement": 0.2792,
+    "p_l3": 0.0
+   },
+   "hokkaido": {
+    "improvement": 0.1062,
+    "p_l3": 1e-08
+   },
+   "hokuriku": {
+    "improvement": 0.1867,
+    "p_l3": 0.0
+   },
+   "kansai": {
+    "improvement": 0.2243,
+    "p_l3": 0.0
+   },
+   "kyushu": {
+    "improvement": 0.2906,
+    "p_l3": 0.0
+   },
+   "shikoku": {
+    "improvement": 0.197,
+    "p_l3": 0.0
+   },
+   "tohoku": {
+    "improvement": 0.3426,
+    "p_l3": 0.0
+   },
+   "tokyo": {
+    "improvement": 0.2187,
+    "p_l3": 0.0
+   }
+  }
+ },
+ "gate6_pregate_value": {
+  "candidates": {
+   "msm_d2_12z": {
+    "improvement": 0.2289,
+    "ci95": [
+     0.1855,
+     0.2738
+    ],
+    "dm_p_l3": 0.0,
+    "dm_p_l9": 0.0,
+    "passes": true
+   },
+   "msm_gate_composite": {
+    "improvement": 0.2306,
+    "ci95": [
+     0.1865,
+     0.276
+    ],
+    "dm_p_l3": 0.0,
+    "dm_p_l9": 0.0,
+    "passes": true
+   }
+  },
+  "headline_tier": "msm_d2_12z",
+  "headline_rule": "the smaller of the two run-pinned pre-gate tiers, fixed before results (conservative)",
+  "verdict": "PASS"
+ },
+ "gate7_gate_timing": {
+  "post_gate_tier": "msm_d1_00z",
+  "pre_gate_tier": "msm_d2_12z",
+  "delta": 0.0029,
+  "ci95": [
+   -0.004,
+   0.0098
+  ],
+  "dm_l3": {
+   "mean_diff": 0.00295,
+   "t_hln": 0.812,
+   "p_hln": 0.41711396,
+   "n_days": 714,
+   "nw_lag": 3
+  },
+  "dm_l9": {
+   "mean_diff": 0.00295,
+   "t_hln": 0.849,
+   "p_hln": 0.39617849,
+   "n_days": 714,
+   "nw_lag": 9
+  },
+  "n_days": 714,
+  "equivalence": {
+   "alpha": 0.05,
+   "n_days": 714,
+   "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+   "margins": {
+    "tick": {
+     "delta_margin": 0.01,
+     "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0228,
+      "p_tost": 0.0228,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.003628,
+      "t_lower": 3.5685,
+      "t_upper": -1.9445,
+      "p_lower": 0.00019154,
+      "p_upper": 0.02611442,
+      "p_tost": 0.02611442,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.00347,
+      "t_lower": 3.7311,
+      "t_upper": -2.0331,
+      "p_lower": 0.00010291,
+      "p_upper": 0.0212063,
+      "p_tost": 0.0212063,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.865
+    },
+    "relevance": {
+     "delta_margin": 0.0458,
+     "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.003628,
+      "t_lower": 13.4367,
+      "t_upper": -11.8127,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.00347,
+      "t_lower": 14.049,
+      "t_upper": -12.351,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.189
+    }
+   },
+   "ci90": [
+    -0.00292,
+    0.00865
+   ],
+   "smallest_margin_supported": 0.00865,
+   "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+  },
+  "reading": "7b: the value of the run the gate excludes is not distinguishable from zero; reported as an upper bound",
+  "upper_bound_if_7b": 0.0098
+ },
+ "per_area_gate_timing": {
+  "definition": "MAE(msm_d2_12z) - MAE(msm_d1_00z) per area; positive means the post-gate run is more accurate",
+  "areas": {
+   "chubu": {
+    "delta": 0.0021,
+    "ci95": [
+     -0.0201,
+     0.0244
+    ],
+    "p_l3": 0.85426434,
+    "p_l9": 0.84766581,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.1425,
+        "p_upper": 0.2369,
+        "p_tost": 0.2369,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.011598,
+        "t_lower": 1.0462,
+        "t_upper": -0.6782,
+        "p_lower": 0.14790148,
+        "p_upper": 0.24891853,
+        "p_tost": 0.24891853,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.011114,
+        "t_lower": 1.0917,
+        "t_upper": -0.7077,
+        "p_lower": 0.13765965,
+        "p_upper": 0.23967122,
+        "p_tost": 0.23967122,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 2.061
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0001,
+        "p_tost": 0.0001,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.011598,
+        "t_lower": 4.1331,
+        "t_upper": -3.7651,
+        "p_lower": 2.002e-05,
+        "p_upper": 9.011e-05,
+        "p_tost": 9.011e-05,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.011114,
+        "t_lower": 4.3128,
+        "t_upper": -3.9288,
+        "p_lower": 9.2e-06,
+        "p_upper": 4.684e-05,
+        "p_tost": 4.684e-05,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.45
+      }
+     },
+     "ci90": [
+      -0.01684,
+      0.02061
+     ],
+     "smallest_margin_supported": 0.02061,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "chugoku": {
+    "delta": -0.0009,
+    "ci95": [
+     -0.0164,
+     0.0144
+    ],
+    "p_l3": 0.91033739,
+    "p_l9": 0.90902182,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.1212,
+        "p_upper": 0.0792,
+        "p_tost": 0.1212,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.008043,
+        "t_lower": 1.1304,
+        "t_upper": -1.3564,
+        "p_lower": 0.1293488,
+        "p_upper": 0.08770433,
+        "p_tost": 0.1293488,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.007972,
+        "t_lower": 1.1404,
+        "t_upper": -1.3684,
+        "p_lower": 0.12725545,
+        "p_upper": 0.08581208,
+        "p_tost": 0.12725545,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.39
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.008043,
+        "t_lower": 5.5817,
+        "t_upper": -5.8077,
+        "p_lower": 2e-08,
+        "p_upper": 0.0,
+        "p_tost": 2e-08,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.007972,
+        "t_lower": 5.6311,
+        "t_upper": -5.8591,
+        "p_lower": 1e-08,
+        "p_upper": 0.0,
+        "p_tost": 1e-08,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.303
+      }
+     },
+     "ci90": [
+      -0.0139,
+      0.01192
+     ],
+     "smallest_margin_supported": 0.0139,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "hokkaido": {
+    "delta": 0.0166,
+    "ci95": [
+     0.0011,
+     0.0325
+    ],
+    "p_l3": 0.05654942,
+    "p_l9": 0.03371233,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.0003,
+        "p_upper": 0.7916,
+        "p_tost": 0.7916,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.008698,
+        "t_lower": 3.0597,
+        "t_upper": 0.7603,
+        "p_lower": 0.00114914,
+        "p_upper": 0.77632241,
+        "p_tost": 0.77632241,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.007807,
+        "t_lower": 3.409,
+        "t_upper": 0.847,
+        "p_lower": 0.00034438,
+        "p_upper": 0.80136713,
+        "p_tost": 0.80136713,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 3.008
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0001,
+        "p_tost": 0.0001,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.008698,
+        "t_lower": 7.1758,
+        "t_upper": -3.3558,
+        "p_lower": 0.0,
+        "p_upper": 0.00041658,
+        "p_tost": 0.00041658,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.007807,
+        "t_lower": 7.9949,
+        "t_upper": -3.7389,
+        "p_lower": 0.0,
+        "p_upper": 9.984e-05,
+        "p_tost": 9.984e-05,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.657
+      }
+     },
+     "ci90": [
+      0.00338,
+      0.03008
+     ],
+     "smallest_margin_supported": 0.03008,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "hokuriku": {
+    "delta": 0.0096,
+    "ci95": [
+     -0.0049,
+     0.0238
+    ],
+    "p_l3": 0.21082205,
+    "p_l9": 0.17982888,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.0034,
+        "p_upper": 0.4735,
+        "p_tost": 0.4735,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.007668,
+        "t_lower": 2.5561,
+        "t_upper": -0.0521,
+        "p_lower": 0.00539592,
+        "p_upper": 0.47923662,
+        "p_tost": 0.47923662,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.007149,
+        "t_lower": 2.7419,
+        "t_upper": -0.0559,
+        "p_lower": 0.00313107,
+        "p_upper": 0.47772898,
+        "p_tost": 0.47772898,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 2.176
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.007668,
+        "t_lower": 7.2247,
+        "t_upper": -4.7207,
+        "p_lower": 0.0,
+        "p_upper": 1.41e-06,
+        "p_tost": 1.41e-06,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.007149,
+        "t_lower": 7.7498,
+        "t_upper": -5.0638,
+        "p_lower": 0.0,
+        "p_upper": 2.6e-07,
+        "p_tost": 2.6e-07,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.475
+      }
+     },
+     "ci90": [
+      -0.00244,
+      0.02176
+     ],
+     "smallest_margin_supported": 0.02176,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "kansai": {
+    "delta": 0.0028,
+    "ci95": [
+     -0.0148,
+     0.0201
+    ],
+    "p_l3": 0.75780298,
+    "p_l9": 0.75800099,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.0798,
+        "p_upper": 0.2092,
+        "p_tost": 0.2092,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.008959,
+        "t_lower": 1.4242,
+        "t_upper": -0.8082,
+        "p_lower": 0.07741085,
+        "p_upper": 0.20961816,
+        "p_tost": 0.20961816,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.008959,
+        "t_lower": 1.4242,
+        "t_upper": -0.8082,
+        "p_lower": 0.07741085,
+        "p_upper": 0.20961816,
+        "p_tost": 0.20961816,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.748
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.008959,
+        "t_lower": 5.4203,
+        "t_upper": -4.8043,
+        "p_lower": 4e-08,
+        "p_upper": 9.5e-07,
+        "p_tost": 9.5e-07,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.008959,
+        "t_lower": 5.4203,
+        "t_upper": -4.8043,
+        "p_lower": 4e-08,
+        "p_upper": 9.5e-07,
+        "p_tost": 9.5e-07,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.382
+      }
+     },
+     "ci90": [
+      -0.01203,
+      0.01748
+     ],
+     "smallest_margin_supported": 0.01748,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "kyushu": {
+    "delta": -0.0075,
+    "ci95": [
+     -0.025,
+     0.0095
+    ],
+    "p_l3": 0.38840662,
+    "p_l9": 0.38934312,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.3825,
+        "p_upper": 0.0222,
+        "p_tost": 0.3825,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.008721,
+        "t_lower": 0.2837,
+        "t_upper": -2.0097,
+        "p_lower": 0.38837251,
+        "p_upper": 0.02242117,
+        "p_tost": 0.38837251,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.008741,
+        "t_lower": 0.283,
+        "t_upper": -2.005,
+        "p_lower": 0.38862435,
+        "p_upper": 0.02266958,
+        "p_tost": 0.38862435,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 2.216
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0001,
+        "p_upper": 0.0,
+        "p_tost": 0.0001,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.008721,
+        "t_lower": 4.3888,
+        "t_upper": -6.1148,
+        "p_lower": 6.56e-06,
+        "p_upper": 0.0,
+        "p_tost": 6.56e-06,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.008741,
+        "t_lower": 4.3786,
+        "t_upper": -6.1006,
+        "p_lower": 6.87e-06,
+        "p_upper": 0.0,
+        "p_tost": 6.87e-06,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.484
+      }
+     },
+     "ci90": [
+      -0.02216,
+      0.00671
+     ],
+     "smallest_margin_supported": 0.02216,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "shikoku": {
+    "delta": -0.0023,
+    "ci95": [
+     -0.0236,
+     0.0178
+    ],
+    "p_l3": 0.82881687,
+    "p_l9": 0.82271284,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.2321,
+        "p_upper": 0.1215,
+        "p_tost": 0.2321,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.010747,
+        "t_lower": 0.7145,
+        "t_upper": -1.1465,
+        "p_lower": 0.23756544,
+        "p_upper": 0.12597943,
+        "p_tost": 0.23756544,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.010363,
+        "t_lower": 0.741,
+        "t_upper": -1.189,
+        "p_lower": 0.22946923,
+        "p_upper": 0.11741809,
+        "p_tost": 0.22946923,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 2.016
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.010747,
+        "t_lower": 4.0458,
+        "t_upper": -4.4778,
+        "p_lower": 2.891e-05,
+        "p_upper": 4.39e-06,
+        "p_tost": 2.891e-05,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.010363,
+        "t_lower": 4.1957,
+        "t_upper": -4.6437,
+        "p_lower": 1.532e-05,
+        "p_upper": 2.04e-06,
+        "p_tost": 1.532e-05,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.44
+      }
+     },
+     "ci90": [
+      -0.02016,
+      0.01484
+     ],
+     "smallest_margin_supported": 0.02016,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "tohoku": {
+    "delta": 0.0046,
+    "ci95": [
+     -0.0157,
+     0.0257
+    ],
+    "p_l3": 0.64843772,
+    "p_l9": 0.67514708,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.0862,
+        "p_upper": 0.303,
+        "p_tost": 0.303,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.010045,
+        "t_lower": 1.4516,
+        "t_upper": -0.5396,
+        "p_lower": 0.07353176,
+        "p_upper": 0.29483409,
+        "p_tost": 0.29483409,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.010932,
+        "t_lower": 1.3338,
+        "t_upper": -0.4958,
+        "p_lower": 0.09135078,
+        "p_upper": 0.31010087,
+        "p_tost": 0.31010087,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 2.212
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0003,
+        "p_tost": 0.0003,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.010045,
+        "t_lower": 5.0157,
+        "t_upper": -4.1037,
+        "p_lower": 3.3e-07,
+        "p_upper": 2.268e-05,
+        "p_tost": 2.268e-05,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.010932,
+        "t_lower": 4.6087,
+        "t_upper": -3.7707,
+        "p_lower": 2.4e-06,
+        "p_upper": 8.814e-05,
+        "p_tost": 8.814e-05,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.483
+      }
+     },
+     "ci90": [
+      -0.01275,
+      0.02212
+     ],
+     "smallest_margin_supported": 0.02212,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "tokyo": {
+    "delta": 0.0016,
+    "ci95": [
+     -0.0149,
+     0.018
+    ],
+    "p_l3": 0.85605227,
+    "p_l9": 0.84828693,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 714,
+     "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+       "boot": {
+        "p_lower": 0.0838,
+        "p_upper": 0.1622,
+        "p_tost": 0.1622,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.008738,
+        "t_lower": 1.3254,
+        "t_upper": -0.9634,
+        "p_lower": 0.09272955,
+        "p_upper": 0.16783373,
+        "p_tost": 0.16783373,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.008281,
+        "t_lower": 1.3986,
+        "t_upper": -1.0166,
+        "p_lower": 0.08117802,
+        "p_upper": 0.154835,
+        "p_tost": 0.154835,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.546
+      },
+      "relevance": {
+       "delta_margin": 0.0458,
+       "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.008738,
+        "t_lower": 5.4224,
+        "t_upper": -5.0604,
+        "p_lower": 4e-08,
+        "p_upper": 2.7e-07,
+        "p_tost": 2.7e-07,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.008281,
+        "t_lower": 5.722,
+        "t_upper": -5.34,
+        "p_lower": 1e-08,
+        "p_upper": 6e-08,
+        "p_tost": 6e-08,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.338
+      }
+     },
+     "ci90": [
+      -0.01219,
+      0.01546
+     ],
+     "smallest_margin_supported": 0.01546,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   }
+  },
+  "n_areas_equivalent_at_tick": 0,
+  "n_areas_sig_l3": 0
+ },
+ "gate8_product_confound": {
+  "label_rule": "The stale-proxy multiple is a COMPOSITE contrast of product, vintage and availability. It is never to be called a vintage effect on its own.",
+  "within_era5_vintage_effect": {
+   "delta": 0.1798,
+   "ci95": [
+    0.1472,
+    0.2137
+   ],
+   "dm_l3": {
+    "mean_diff": 0.1798,
+    "t_hln": 12.13,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.1798,
+    "t_hln": 9.501,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 714,
+    "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l3": {
+       "se": 0.014823,
+       "t_lower": 12.8046,
+       "t_upper": 11.4554,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l9": {
+       "se": 0.018924,
+       "t_lower": 10.0294,
+       "t_upper": 8.9726,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "verdict": "NOT_EQUIVALENT",
+      "ci90_within_margin": false,
+      "margin_utilisation": 20.78
+     },
+     "relevance": {
+      "delta_margin": 0.0458,
+      "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l3": {
+       "se": 0.014823,
+       "t_lower": 15.2199,
+       "t_upper": 9.0401,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l9": {
+       "se": 0.018924,
+       "t_lower": 11.9212,
+       "t_upper": 7.0808,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "verdict": "NOT_EQUIVALENT",
+      "ci90_within_margin": false,
+      "margin_utilisation": 4.537
+     }
+    },
+    "ci90": [
+     0.15231,
+     0.2078
+    ],
+    "smallest_margin_supported": 0.2078,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   }
+  },
+  "within_era5_note": "product held fixed (ERA5 both sides): realised vs day-lagged. This is a pure vintage effect.",
+  "product_bound": {
+   "delta": 0.0085,
+   "ci95": [
+    -0.0017,
+    0.0186
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00848,
+    "t_hln": 1.585,
+    "p_hln": 0.11333512,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00848,
+    "t_hln": 1.664,
+    "p_hln": 0.09662331,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 714,
+    "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.3929,
+       "p_tost": 0.3929,
+       "equivalent": false
+      },
+      "dm_l3": {
+       "se": 0.005348,
+       "t_lower": 3.4548,
+       "t_upper": -0.2848,
+       "p_lower": 0.00029164,
+       "p_upper": 0.38793609,
+       "p_tost": 0.38793609,
+       "equivalent": false
+      },
+      "dm_l9": {
+       "se": 0.005094,
+       "t_lower": 3.627,
+       "t_upper": -0.299,
+       "p_lower": 0.00015358,
+       "p_upper": 0.38251133,
+       "p_tost": 0.38251133,
+       "equivalent": false
+      },
+      "verdict": "NOT_EQUIVALENT",
+      "ci90_within_margin": false,
+      "margin_utilisation": 1.689
+     },
+     "relevance": {
+      "delta_margin": 0.0458,
+      "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l3": {
+       "se": 0.005348,
+       "t_lower": 10.1487,
+       "t_upper": -6.9787,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "dm_l9": {
+       "se": 0.005094,
+       "t_lower": 10.6546,
+       "t_upper": -7.3266,
+       "p_lower": 0.0,
+       "p_upper": 0.0,
+       "p_tost": 0.0,
+       "equivalent": true
+      },
+      "verdict": "EQUIVALENT",
+      "ci90_within_margin": true,
+      "margin_utilisation": 0.369
+     }
+    },
+    "ci90": [
+     2e-05,
+     0.01689
+    ],
+    "smallest_margin_supported": 0.01689,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   }
+  },
+  "product_bound_note": "vintage roughly held fixed at the realised frontier: run-pinned NWP vs realised ERA5. Bounds the product contribution.",
+  "composite_multiple": 5.638
+ },
+ "gate9_ingestion": {
+  "delta": -0.0004,
+  "ci95": [
+   -0.004,
+   0.0032
+  ],
+  "dm_l3": {
+   "mean_diff": -0.00038,
+   "t_hln": -0.21,
+   "p_hln": 0.8335497,
+   "n_days": 714,
+   "nw_lag": 3
+  },
+  "dm_l9": {
+   "mean_diff": -0.00038,
+   "t_hln": -0.206,
+   "p_hln": 0.83649409,
+   "n_days": 714,
+   "nw_lag": 9
+  },
+  "n_days": 714,
+  "equivalence": {
+   "alpha": 0.05,
+   "n_days": 714,
+   "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+   "margins": {
+    "tick": {
+     "delta_margin": 0.01,
+     "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.001832,
+      "t_lower": 5.2479,
+      "t_upper": -5.6679,
+      "p_lower": 1e-07,
+      "p_upper": 1e-08,
+      "p_tost": 1e-07,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.001868,
+      "t_lower": 5.148,
+      "t_upper": -5.56,
+      "p_lower": 1.7e-07,
+      "p_upper": 2e-08,
+      "p_tost": 1.7e-07,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.338
+    },
+    "relevance": {
+     "delta_margin": 0.0458,
+     "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.001832,
+      "t_lower": 24.7873,
+      "t_upper": -25.2073,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.001868,
+      "t_lower": 24.3152,
+      "t_upper": -24.7272,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.074
+    }
+   },
+   "ci90": [
+    -0.00338,
+    0.00264
+   ],
+   "smallest_margin_supported": 0.00338,
+   "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+  },
+  "note": "same nominal initialisation, taken from the per-run GRIB2 archive versus the fixed-lead previous-runs composite. Reported whatever the sign."
+ },
+ "gate10_dose_response": {
+  "points": [
+   {
+    "tier": "msm_d2_12z",
+    "mean_lead_h": 38.5,
+    "improvement": 0.2289
+   },
+   {
+    "tier": "msm_gate_composite",
+    "mean_lead_h": 30.25,
+    "improvement": 0.2306
+   },
+   {
+    "tier": "msm_d1_00z",
+    "mean_lead_h": 26.5,
+    "improvement": 0.2319
+   }
+  ],
+  "slope_per_lead_hour": -0.00024,
+  "gate_band_lead_hours": [
+   26.5,
+   30.25
+  ],
+  "excluded_composites": [
+   "prev2",
+   "prev1",
+   "histfc"
+  ],
+  "note": "Only run-pinned tiers enter the regression, because a fixed-lead composite has no single lead. Composites are plotted as open markers and annotated as such."
+ },
+ "composite_vs_pinned": {
+  "delta": -0.0133,
+  "ci95": [
+   -0.0219,
+   -0.0047
+  ],
+  "dm_l3": {
+   "mean_diff": -0.01326,
+   "t_hln": -3.051,
+   "p_hln": 0.00236611,
+   "n_days": 714,
+   "nw_lag": 3
+  },
+  "dm_l9": {
+   "mean_diff": -0.01326,
+   "t_hln": -2.97,
+   "p_hln": 0.00307382,
+   "n_days": 714,
+   "nw_lag": 9
+  },
+  "n_days": 714,
+  "equivalence": {
+   "alpha": 0.05,
+   "n_days": 714,
+   "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+   "margins": {
+    "tick": {
+     "delta_margin": 0.01,
+     "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+     "boot": {
+      "p_lower": 0.7721,
+      "p_upper": 0.0,
+      "p_tost": 0.7721,
+      "equivalent": false
+     },
+     "dm_l3": {
+      "se": 0.004345,
+      "t_lower": -0.7496,
+      "t_upper": -5.3524,
+      "p_lower": 0.77312868,
+      "p_upper": 6e-08,
+      "p_tost": 0.77312868,
+      "equivalent": false
+     },
+     "dm_l9": {
+      "se": 0.004464,
+      "t_lower": -0.7297,
+      "t_upper": -5.2103,
+      "p_lower": 0.76709324,
+      "p_upper": 1.2e-07,
+      "p_tost": 0.76709324,
+      "equivalent": false
+     },
+     "verdict": "NOT_EQUIVALENT",
+     "ci90_within_margin": false,
+     "margin_utilisation": 2.041
+    },
+    "relevance": {
+     "delta_margin": 0.0458,
+     "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+     "boot": {
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l3": {
+      "se": 0.004345,
+      "t_lower": 7.4894,
+      "t_upper": -13.5914,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "dm_l9": {
+      "se": 0.004464,
+      "t_lower": 7.2906,
+      "t_upper": -13.2306,
+      "p_lower": 0.0,
+      "p_upper": 0.0,
+      "p_tost": 0.0,
+      "equivalent": true
+     },
+     "verdict": "EQUIVALENT",
+     "ci90_within_margin": true,
+     "margin_utilisation": 0.446
+    }
+   },
+   "ci90": [
+    -0.02041,
+    -0.00608
+   ],
+   "smallest_margin_supported": 0.02041,
+   "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+  },
+  "note": "previous_day2 fixed-lead composite minus the run-pinned pre-gate headline. Quantifies what the old construction was measuring relative to a real information set."
+ },
+ "headline_vs_stale": {
+  "difference": {
+   "delta": 0.1883,
+   "ci95": [
+    0.1529,
+    0.2254
+   ],
+   "dm_l3": {
+    "mean_diff": 0.18828,
+    "t_hln": 11.598,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.18828,
+    "t_hln": 9.155,
+    "p_hln": 0.0,
+    "n_days": 714,
+    "nw_lag": 9
+   },
+   "n_days": 714,
+   "equivalence": {
+    "alpha": 0.05,
+    "n_days": 714,
+    "precommit_doc": "docs/research/2026-07-29_phase67_equivalence_precommit.md",
+    "margins": {
+     "tick": {
+      "delta_margin": 0.01,
+      "rationale": "one JEPX price tick, verified as the exact 0.01 JPY/kWh grid of all realised prices in the panel. A smallness benchmark grounded in the market's own price granularity, NOT an operational no-impact threshold: the tested quantity is the pooled mean absolute error, and mean-level equivalence does not bound individual slot forecast differences or imply that no bid would change. The decision-scale consequence is tested separately (phase75)",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l3": {
+       "se": 0.016233,
+       "t_lower": 12.214,
+       "t_upper": 10.982,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l9": {
+       "se": 0.020565,
+       "t_lower": 9.6413,
+       "t_upper": 8.6687,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "verdict": "NOT_EQUIVALENT",
+      "ci90_within_margin": false,
+      "margin_utilisation": 21.925
+     },
+     "relevance": {
+      "delta_margin": 0.0458,
+      "rationale": "20% of the pre-gate improvement; a practical-relevance margin, reported as SECONDARY because it is anchored on an estimate rather than on the market's price granularity",
+      "boot": {
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l3": {
+       "se": 0.016233,
+       "t_lower": 14.4193,
+       "t_upper": 8.7767,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "dm_l9": {
+       "se": 0.020565,
+       "t_lower": 11.382,
+       "t_upper": 6.928,
+       "p_lower": 0.0,
+       "p_upper": 1.0,
+       "p_tost": 1.0,
+       "equivalent": false
+      },
+      "verdict": "NOT_EQUIVALENT",
+      "ci90_within_margin": false,
+      "margin_utilisation": 4.787
+     }
+    },
+    "ci90": [
+     0.15821,
+     0.21925
+    ],
+    "smallest_margin_supported": 0.21925,
+    "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+   }
+  },
+  "ratio": {
+   "ratio": 5.632,
+   "ci95": [
+    4.273,
+    8.729
+   ],
+   "n_draws_used": 10000,
+   "n_days": 714
+  },
+  "note": "The ratio is a COMPOSITE contrast of product, vintage and availability (Gate 8), never a vintage effect alone."
+ },
+ "headline_retention_of_post_gate_pct": 98.7,
+ "metadata": {
+  "script": "s_20260729_phase59_exact_ladder.py",
+  "git_sha": "a75c0f3e744fce941059e98b2d10c9d9b0a02165",
+  "generated_utc": "2026-08-03T02:36:27.415448+00:00",
+  "protocol": {
+   "initial_train_end": "2024-07-18",
+   "val_window_days": 14,
+   "step_days": 1,
+   "seed": 2026,
+   "panel_start": "2024-03-02",
+   "era5_end": "2026-07-18",
+   "identical_to": "phase51 (Gate 5 verifies this)"
+  }
+ }
+}

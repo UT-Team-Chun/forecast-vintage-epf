@@ -1,0 +1,194 @@
+{
+ "phase": 91,
+ "title": "Capacity-weight sensitivity of the headline and the gate contrast",
+ "precommit_doc": "docs/research/2026-08-13_phase91_weight_sensitivity_precommit.md",
+ "scope": {
+  "cells_re_estimated": [
+   "price_only",
+   "msm_d2_12z_cw",
+   "msm_d1_00z_cw"
+  ],
+  "not_propagated": "floor models, the physical target and the second-provider check keep the 2024-09 weights",
+  "gate45c_applicability": "Gate 45c pins the capacity-weighted cells to phase74 bit for bit and does NOT extend to the re-weighted arms: different weights are different inputs. The 2024-09 arm here is checked against phase85 instead, by Gate 60",
+  "time_varying_weights": "not computable: AreaPoint carries no time axis and the reference CSV holds two workbook snapshots, so a monthly or quarterly weight series cannot be built. Recorded as a limitation rather than approximated"
+ },
+ "arms": {
+  "2024-09": {
+   "n_areas": 9,
+   "n_slots": 315414,
+   "n_days": 732,
+   "tiers": {
+    "msm_d2_12z_cw": {
+     "improvement": 0.2529,
+     "ci95": [
+      0.208,
+      0.2998
+     ],
+     "n_days": 732
+    },
+    "msm_d1_00z_cw": {
+     "improvement": 0.2555,
+     "ci95": [
+      0.2101,
+      0.3031
+     ],
+     "n_days": 732
+    }
+   },
+   "equivalence_at_tick": {
+    "margin": 0.01,
+    "p_tost": 0.0234,
+    "equivalent": true,
+    "ci90": [
+     -0.0036,
+     0.0086
+    ]
+   },
+   "gate_timing_delta": {
+    "delta": 0.0026,
+    "ci95": [
+     -0.0047,
+     0.0099
+    ],
+    "n_days": 732,
+    "definition": "MAE(headline) - MAE(excluded run), pooled daily; positive means the EXCLUDED run is better, matching phase85's gate_timing_delta"
+   }
+  },
+  "2025-12": {
+   "n_areas": 9,
+   "n_slots": 315414,
+   "n_days": 732,
+   "tiers": {
+    "msm_d2_12z_cw": {
+     "improvement": 0.2508,
+     "ci95": [
+      0.206,
+      0.2978
+     ],
+     "n_days": 732
+    },
+    "msm_d1_00z_cw": {
+     "improvement": 0.2557,
+     "ci95": [
+      0.2104,
+      0.3031
+     ],
+     "n_days": 732
+    }
+   },
+   "equivalence_at_tick": {
+    "margin": 0.01,
+    "p_tost": 0.0774,
+    "equivalent": false,
+    "ci90": [
+     -0.0011,
+     0.0109
+    ]
+   },
+   "gate_timing_delta": {
+    "delta": 0.0049,
+    "ci95": [
+     -0.0021,
+     0.0121
+    ],
+    "n_days": 732,
+    "definition": "MAE(headline) - MAE(excluded run), pooled daily; positive means the EXCLUDED run is better, matching phase85's gate_timing_delta"
+   }
+  },
+  "equal": {
+   "n_areas": 9,
+   "n_slots": 315414,
+   "n_days": 732,
+   "tiers": {
+    "msm_d2_12z_cw": {
+     "improvement": 0.2539,
+     "ci95": [
+      0.2088,
+      0.3011
+     ],
+     "n_days": 732
+    },
+    "msm_d1_00z_cw": {
+     "improvement": 0.2543,
+     "ci95": [
+      0.2096,
+      0.3014
+     ],
+     "n_days": 732
+    }
+   },
+   "equivalence_at_tick": {
+    "margin": 0.01,
+    "p_tost": 0.0054,
+    "equivalent": true,
+    "ci90": [
+     -0.006,
+     0.0067
+    ]
+   },
+   "gate_timing_delta": {
+    "delta": 0.0004,
+    "ci95": [
+     -0.0071,
+     0.0078
+    ],
+    "n_days": 732,
+    "definition": "MAE(headline) - MAE(excluded run), pooled daily; positive means the EXCLUDED run is better, matching phase85's gate_timing_delta"
+   }
+  }
+ },
+ "gates": {
+  "gate60_harness_reproduces_phase85": {
+   "phase85_headline": 0.2529,
+   "phase91_headline": 0.2529,
+   "phase85_excluded_run": 0.2555,
+   "phase91_excluded_run": 0.2555,
+   "phase85_gate_timing": 0.0026,
+   "phase91_gate_timing": 0.0026,
+   "abs_differences": {
+    "headline": 0.0,
+    "excluded_run": 0.0,
+    "gate_timing": 0.0
+   },
+   "abs_difference": 0.0,
+   "tol": 0.0005,
+   "ok": true,
+   "reading": "the re-implementation is anchored on all three quantities INCLUDING THE SIGN of the gate-timing delta: whatever the other arms show is a weight effect, not a harness effect"
+  },
+  "gate59_weight_sensitivity": {
+   "arms": [
+    "2024-09",
+    "2025-12",
+    "equal"
+   ],
+   "later_register_arm": "2025-12",
+   "headline_ci_overlap_all_pairs": true,
+   "headline_spread": 0.0031,
+   "gate_delta_sign_by_arm": {
+    "2024-09": true,
+    "2025-12": true,
+    "equal": true
+   },
+   "gate_delta_straddles_zero_by_arm": {
+    "2024-09": true,
+    "2025-12": true,
+    "equal": true
+   },
+   "equivalence_at_tick_by_arm": {
+    "2024-09": true,
+    "2025-12": false,
+    "equal": true
+   },
+   "branch": "b",
+   "reading": "branch b: the weighting matters. Promote static weights to a primary limitation and show which arm changes what"
+  }
+ },
+ "metadata": {
+  "script": "s_20260813_phase91_weight_sensitivity.py",
+  "git_sha": "4ee7e56de6999985679b11de4a3920561728957b",
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block_days": 7,
+  "weights_csv": "data/reference/area_points_capacity.csv"
+ }
+}

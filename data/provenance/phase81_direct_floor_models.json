@@ -1,0 +1,1206 @@
+{
+ "phase": 81,
+ "title": "Direct probabilistic floor models",
+ "precommit_doc": "docs/research/2026-08-11_phase81_direct_floor_models_precommit.md",
+ "m3_note": "hurdle's floor-probability equals M2 by construction (its price leg reuses the existing point forecast); not a separate row",
+ "panel": {
+  "n_slots": 302454,
+  "n_test_days": 702,
+  "burn_in_days": 30
+ },
+ "results": {
+  "allhours_thr0.01": {
+   "m0": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 9045,
+     "pr_auc": 0.64436,
+     "roc_auc": 0.9671,
+     "brier": 0.016172,
+     "log_loss": 0.063512,
+     "recall_at_fpr_0.005": 0.46003,
+     "recall_at_fpr_0.01": 0.57623,
+     "recall_at_fpr_0.05": 0.84422,
+     "recall_at_fpr_0.1": 0.92095,
+     "ece": 0.001863,
+     "mce": 0.006761,
+     "calibration_slope": 1.02189,
+     "calibration_intercept": 0.00125
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.59114,
+      "brier": 0.007938
+     },
+     "chugoku": {
+      "pr_auc": 0.54696,
+      "brier": 0.015702
+     },
+     "hokkaido": {
+      "pr_auc": 0.45805,
+      "brier": 0.020326
+     },
+     "hokuriku": {
+      "pr_auc": 0.46467,
+      "brier": 0.011125
+     },
+     "kansai": {
+      "pr_auc": 0.52569,
+      "brier": 0.011278
+     },
+     "kyushu": {
+      "pr_auc": 0.84755,
+      "brier": 0.021436
+     },
+     "shikoku": {
+      "pr_auc": 0.54824,
+      "brier": 0.038003
+     },
+     "tohoku": {
+      "pr_auc": 0.73155,
+      "brier": 0.014767
+     },
+     "tokyo": {
+      "pr_auc": 0.4559,
+      "brier": 0.00497
+     }
+    },
+    "macro_pr_auc": 0.57442
+   },
+   "m1": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 9045,
+     "pr_auc": 0.59959,
+     "roc_auc": 0.96478,
+     "brier": 0.01773,
+     "log_loss": 0.06415,
+     "recall_at_fpr_0.005": 0.39337,
+     "recall_at_fpr_0.01": 0.51786,
+     "recall_at_fpr_0.05": 0.81592,
+     "recall_at_fpr_0.1": 0.90437,
+     "ece": 0.00348,
+     "mce": 0.030544,
+     "calibration_slope": 0.89366,
+     "calibration_intercept": 0.00082
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.46576,
+      "brier": 0.00958
+     },
+     "chugoku": {
+      "pr_auc": 0.54358,
+      "brier": 0.016541
+     },
+     "hokkaido": {
+      "pr_auc": 0.46028,
+      "brier": 0.020609
+     },
+     "hokuriku": {
+      "pr_auc": 0.40943,
+      "brier": 0.012129
+     },
+     "kansai": {
+      "pr_auc": 0.41544,
+      "brier": 0.013589
+     },
+     "kyushu": {
+      "pr_auc": 0.79736,
+      "brier": 0.026276
+     },
+     "shikoku": {
+      "pr_auc": 0.52349,
+      "brier": 0.039914
+     },
+     "tohoku": {
+      "pr_auc": 0.72617,
+      "brier": 0.015111
+     },
+     "tokyo": {
+      "pr_auc": 0.36664,
+      "brier": 0.005827
+     }
+    },
+    "macro_pr_auc": 0.52313
+   },
+   "m2": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 9045,
+     "pr_auc": 0.67634,
+     "roc_auc": 0.97461,
+     "brier": 0.015937,
+     "log_loss": 0.058557,
+     "recall_at_fpr_0.005": 0.47529,
+     "recall_at_fpr_0.01": 0.5853,
+     "recall_at_fpr_0.05": 0.85451,
+     "recall_at_fpr_0.1": 0.93919,
+     "ece": 0.00219,
+     "mce": 0.013549,
+     "calibration_slope": 0.98428,
+     "calibration_intercept": 0.00213
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.65939,
+      "brier": 0.007517
+     },
+     "chugoku": {
+      "pr_auc": 0.6507,
+      "brier": 0.014655
+     },
+     "hokkaido": {
+      "pr_auc": 0.4832,
+      "brier": 0.020471
+     },
+     "hokuriku": {
+      "pr_auc": 0.53581,
+      "brier": 0.011017
+     },
+     "kansai": {
+      "pr_auc": 0.57725,
+      "brier": 0.011845
+     },
+     "kyushu": {
+      "pr_auc": 0.86788,
+      "brier": 0.021196
+     },
+     "shikoku": {
+      "pr_auc": 0.5979,
+      "brier": 0.036781
+     },
+     "tohoku": {
+      "pr_auc": 0.75468,
+      "brier": 0.01488
+     },
+     "tokyo": {
+      "pr_auc": 0.5064,
+      "brier": 0.005075
+     }
+    },
+    "macro_pr_auc": 0.62591
+   },
+   "m2p": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 9045,
+     "pr_auc": 0.38629,
+     "roc_auc": 0.95426,
+     "brier": 0.022779,
+     "log_loss": 0.080671,
+     "recall_at_fpr_0.005": 0.17667,
+     "recall_at_fpr_0.01": 0.29917,
+     "recall_at_fpr_0.05": 0.71598,
+     "recall_at_fpr_0.1": 0.87662,
+     "ece": 0.005649,
+     "mce": 0.023964,
+     "calibration_slope": 0.90271,
+     "calibration_intercept": 0.00368
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.27126,
+      "brier": 0.012768
+     },
+     "chugoku": {
+      "pr_auc": 0.30893,
+      "brier": 0.021885
+     },
+     "hokkaido": {
+      "pr_auc": 0.4161,
+      "brier": 0.021634
+     },
+     "hokuriku": {
+      "pr_auc": 0.28946,
+      "brier": 0.01493
+     },
+     "kansai": {
+      "pr_auc": 0.28168,
+      "brier": 0.01626
+     },
+     "kyushu": {
+      "pr_auc": 0.52668,
+      "brier": 0.039886
+     },
+     "shikoku": {
+      "pr_auc": 0.37188,
+      "brier": 0.046593
+     },
+     "tohoku": {
+      "pr_auc": 0.42002,
+      "brier": 0.023011
+     },
+     "tokyo": {
+      "pr_auc": 0.2383,
+      "brier": 0.008044
+     }
+    },
+    "macro_pr_auc": 0.34715
+   },
+   "m4": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 9045,
+     "pr_auc": 0.53812,
+     "roc_auc": 0.91324,
+     "brier": 0.023849,
+     "log_loss": 0.121297,
+     "recall_at_fpr_0.005": 0.34439,
+     "recall_at_fpr_0.01": 0.50282,
+     "recall_at_fpr_0.05": 0.82189,
+     "recall_at_fpr_0.1": 0.86003,
+     "ece": 0.022726,
+     "mce": 0.186992,
+     "calibration_slope": 3.54222,
+     "calibration_intercept": 0.00447
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.51892,
+      "brier": 0.010205
+     },
+     "chugoku": {
+      "pr_auc": 0.48552,
+      "brier": 0.020446
+     },
+     "hokkaido": {
+      "pr_auc": 0.41767,
+      "brier": 0.025215
+     },
+     "hokuriku": {
+      "pr_auc": 0.45497,
+      "brier": 0.012557
+     },
+     "kansai": {
+      "pr_auc": 0.43896,
+      "brier": 0.014094
+     },
+     "kyushu": {
+      "pr_auc": 0.77237,
+      "brier": 0.050359
+     },
+     "shikoku": {
+      "pr_auc": 0.47946,
+      "brier": 0.05031
+     },
+     "tohoku": {
+      "pr_auc": 0.6412,
+      "brier": 0.025457
+     },
+     "tokyo": {
+      "pr_auc": 0.44684,
+      "brier": 0.005997
+     }
+    },
+    "macro_pr_auc": 0.51732
+   }
+  },
+  "allhours_thr0.5": {
+   "m0": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 10504,
+     "pr_auc": 0.65591,
+     "roc_auc": 0.96363,
+     "brier": 0.018427,
+     "log_loss": 0.07263,
+     "recall_at_fpr_0.005": 0.44678,
+     "recall_at_fpr_0.01": 0.56274,
+     "recall_at_fpr_0.05": 0.82959,
+     "recall_at_fpr_0.1": 0.91403,
+     "ece": 0.003202,
+     "mce": 0.017463,
+     "calibration_slope": 1.05625,
+     "calibration_intercept": 0.00143
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.60327,
+      "brier": 0.00988
+     },
+     "chugoku": {
+      "pr_auc": 0.58105,
+      "brier": 0.017758
+     },
+     "hokkaido": {
+      "pr_auc": 0.47319,
+      "brier": 0.022343
+     },
+     "hokuriku": {
+      "pr_auc": 0.48237,
+      "brier": 0.014243
+     },
+     "kansai": {
+      "pr_auc": 0.54373,
+      "brier": 0.013993
+     },
+     "kyushu": {
+      "pr_auc": 0.85496,
+      "brier": 0.022101
+     },
+     "shikoku": {
+      "pr_auc": 0.58288,
+      "brier": 0.043068
+     },
+     "tohoku": {
+      "pr_auc": 0.74624,
+      "brier": 0.016027
+     },
+     "tokyo": {
+      "pr_auc": 0.50527,
+      "brier": 0.006432
+     }
+    },
+    "macro_pr_auc": 0.597
+   },
+   "m1": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 10504,
+     "pr_auc": 0.60992,
+     "roc_auc": 0.96223,
+     "brier": 0.020316,
+     "log_loss": 0.072998,
+     "recall_at_fpr_0.005": 0.37748,
+     "recall_at_fpr_0.01": 0.50228,
+     "recall_at_fpr_0.05": 0.79589,
+     "recall_at_fpr_0.1": 0.89366,
+     "ece": 0.004709,
+     "mce": 0.038258,
+     "calibration_slope": 0.88315,
+     "calibration_intercept": 0.00142
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.49551,
+      "brier": 0.011889
+     },
+     "chugoku": {
+      "pr_auc": 0.56789,
+      "brier": 0.019254
+     },
+     "hokkaido": {
+      "pr_auc": 0.47049,
+      "brier": 0.022632
+     },
+     "hokuriku": {
+      "pr_auc": 0.39933,
+      "brier": 0.015766
+     },
+     "kansai": {
+      "pr_auc": 0.43901,
+      "brier": 0.016605
+     },
+     "kyushu": {
+      "pr_auc": 0.80291,
+      "brier": 0.027426
+     },
+     "shikoku": {
+      "pr_auc": 0.55694,
+      "brier": 0.04501
+     },
+     "tohoku": {
+      "pr_auc": 0.73316,
+      "brier": 0.016745
+     },
+     "tokyo": {
+      "pr_auc": 0.44003,
+      "brier": 0.007513
+     }
+    },
+    "macro_pr_auc": 0.54503
+   },
+   "m2": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 10504,
+     "pr_auc": 0.69247,
+     "roc_auc": 0.97354,
+     "brier": 0.017982,
+     "log_loss": 0.064928,
+     "recall_at_fpr_0.005": 0.47134,
+     "recall_at_fpr_0.01": 0.57759,
+     "recall_at_fpr_0.05": 0.8473,
+     "recall_at_fpr_0.1": 0.93412,
+     "ece": 0.003459,
+     "mce": 0.016229,
+     "calibration_slope": 0.95696,
+     "calibration_intercept": 0.00253
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.67981,
+      "brier": 0.009549
+     },
+     "chugoku": {
+      "pr_auc": 0.67042,
+      "brier": 0.016611
+     },
+     "hokkaido": {
+      "pr_auc": 0.51437,
+      "brier": 0.022119
+     },
+     "hokuriku": {
+      "pr_auc": 0.54527,
+      "brier": 0.014021
+     },
+     "kansai": {
+      "pr_auc": 0.62018,
+      "brier": 0.014156
+     },
+     "kyushu": {
+      "pr_auc": 0.87848,
+      "brier": 0.021207
+     },
+     "shikoku": {
+      "pr_auc": 0.61916,
+      "brier": 0.041862
+     },
+     "tohoku": {
+      "pr_auc": 0.77499,
+      "brier": 0.015681
+     },
+     "tokyo": {
+      "pr_auc": 0.57011,
+      "brier": 0.006637
+     }
+    },
+    "macro_pr_auc": 0.65253
+   },
+   "m2p": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 10504,
+     "pr_auc": 0.40512,
+     "roc_auc": 0.95241,
+     "brier": 0.025686,
+     "log_loss": 0.089292,
+     "recall_at_fpr_0.005": 0.15642,
+     "recall_at_fpr_0.01": 0.28789,
+     "recall_at_fpr_0.05": 0.7122,
+     "recall_at_fpr_0.1": 0.8711,
+     "ece": 0.00693,
+     "mce": 0.032703,
+     "calibration_slope": 0.88825,
+     "calibration_intercept": 0.00423
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.30095,
+      "brier": 0.01568
+     },
+     "chugoku": {
+      "pr_auc": 0.33758,
+      "brier": 0.02526
+     },
+     "hokkaido": {
+      "pr_auc": 0.43766,
+      "brier": 0.023602
+     },
+     "hokuriku": {
+      "pr_auc": 0.30728,
+      "brier": 0.0185
+     },
+     "kansai": {
+      "pr_auc": 0.32034,
+      "brier": 0.019373
+     },
+     "kyushu": {
+      "pr_auc": 0.52451,
+      "brier": 0.041606
+     },
+     "shikoku": {
+      "pr_auc": 0.40588,
+      "brier": 0.052401
+     },
+     "tohoku": {
+      "pr_auc": 0.45145,
+      "brier": 0.02471
+     },
+     "tokyo": {
+      "pr_auc": 0.29993,
+      "brier": 0.010039
+     }
+    },
+    "macro_pr_auc": 0.37618
+   },
+   "m4": {
+    "pooled": {
+     "n": 302454,
+     "n_pos": 10504,
+     "pr_auc": 0.6251,
+     "roc_auc": 0.92601,
+     "brier": 0.022577,
+     "log_loss": 0.11229,
+     "recall_at_fpr_0.005": 0.44564,
+     "recall_at_fpr_0.01": 0.55008,
+     "recall_at_fpr_0.05": 0.82235,
+     "recall_at_fpr_0.1": 0.88547,
+     "ece": 0.01971,
+     "mce": 0.155963,
+     "calibration_slope": 2.02313,
+     "calibration_intercept": 0.00434
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.57508,
+      "brier": 0.01146
+     },
+     "chugoku": {
+      "pr_auc": 0.57839,
+      "brier": 0.020174
+     },
+     "hokkaido": {
+      "pr_auc": 0.46361,
+      "brier": 0.025141
+     },
+     "hokuriku": {
+      "pr_auc": 0.50464,
+      "brier": 0.015099
+     },
+     "kansai": {
+      "pr_auc": 0.51457,
+      "brier": 0.015276
+     },
+     "kyushu": {
+      "pr_auc": 0.82023,
+      "brier": 0.035707
+     },
+     "shikoku": {
+      "pr_auc": 0.57547,
+      "brier": 0.049709
+     },
+     "tohoku": {
+      "pr_auc": 0.71071,
+      "brier": 0.022589
+     },
+     "tokyo": {
+      "pr_auc": 0.50748,
+      "brier": 0.008035
+     }
+    },
+    "macro_pr_auc": 0.58335
+   }
+  },
+  "midday_thr0.01": {
+   "m0": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 7883,
+     "pr_auc": 0.67738,
+     "roc_auc": 0.93568,
+     "brier": 0.045721,
+     "log_loss": 0.174347,
+     "recall_at_fpr_0.005": 0.29938,
+     "recall_at_fpr_0.01": 0.40911,
+     "recall_at_fpr_0.05": 0.69187,
+     "recall_at_fpr_0.1": 0.80667,
+     "ece": 0.006473,
+     "mce": 0.014592,
+     "calibration_slope": 0.99228,
+     "calibration_intercept": 0.00711
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.6178,
+      "brier": 0.02377
+     },
+     "chugoku": {
+      "pr_auc": 0.56511,
+      "brier": 0.046532
+     },
+     "hokkaido": {
+      "pr_auc": 0.48066,
+      "brier": 0.059572
+     },
+     "hokuriku": {
+      "pr_auc": 0.48607,
+      "brier": 0.032594
+     },
+     "kansai": {
+      "pr_auc": 0.5508,
+      "brier": 0.033137
+     },
+     "kyushu": {
+      "pr_auc": 0.86522,
+      "brier": 0.061989
+     },
+     "shikoku": {
+      "pr_auc": 0.61219,
+      "brier": 0.094229
+     },
+     "tohoku": {
+      "pr_auc": 0.74412,
+      "brier": 0.044395
+     },
+     "tokyo": {
+      "pr_auc": 0.46493,
+      "brier": 0.015272
+     }
+    },
+    "macro_pr_auc": 0.59854
+   },
+   "m1": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 7883,
+     "pr_auc": 0.6318,
+     "roc_auc": 0.92267,
+     "brier": 0.050783,
+     "log_loss": 0.175527,
+     "recall_at_fpr_0.005": 0.25701,
+     "recall_at_fpr_0.01": 0.3467,
+     "recall_at_fpr_0.05": 0.63834,
+     "recall_at_fpr_0.1": 0.76418,
+     "ece": 0.014376,
+     "mce": 0.088505,
+     "calibration_slope": 0.85589,
+     "calibration_intercept": 0.00564
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.48088,
+      "brier": 0.029331
+     },
+     "chugoku": {
+      "pr_auc": 0.56615,
+      "brier": 0.049249
+     },
+     "hokkaido": {
+      "pr_auc": 0.47892,
+      "brier": 0.060578
+     },
+     "hokuriku": {
+      "pr_auc": 0.42453,
+      "brier": 0.036134
+     },
+     "kansai": {
+      "pr_auc": 0.4349,
+      "brier": 0.040783
+     },
+     "kyushu": {
+      "pr_auc": 0.81733,
+      "brier": 0.078068
+     },
+     "shikoku": {
+      "pr_auc": 0.58813,
+      "brier": 0.099678
+     },
+     "tohoku": {
+      "pr_auc": 0.74212,
+      "brier": 0.045193
+     },
+     "tokyo": {
+      "pr_auc": 0.3756,
+      "brier": 0.018034
+     }
+    },
+    "macro_pr_auc": 0.5454
+   },
+   "m2": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 7883,
+     "pr_auc": 0.70802,
+     "roc_auc": 0.93974,
+     "brier": 0.045011,
+     "log_loss": 0.159817,
+     "recall_at_fpr_0.005": 0.35862,
+     "recall_at_fpr_0.01": 0.4445,
+     "recall_at_fpr_0.05": 0.69098,
+     "recall_at_fpr_0.1": 0.81746,
+     "ece": 0.016779,
+     "mce": 0.071272,
+     "calibration_slope": 0.8862,
+     "calibration_intercept": 0.0124
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.6876,
+      "brier": 0.022046
+     },
+     "chugoku": {
+      "pr_auc": 0.6754,
+      "brier": 0.042788
+     },
+     "hokkaido": {
+      "pr_auc": 0.5086,
+      "brier": 0.05996
+     },
+     "hokuriku": {
+      "pr_auc": 0.56317,
+      "brier": 0.03194
+     },
+     "kansai": {
+      "pr_auc": 0.59809,
+      "brier": 0.035073
+     },
+     "kyushu": {
+      "pr_auc": 0.88458,
+      "brier": 0.061675
+     },
+     "shikoku": {
+      "pr_auc": 0.65523,
+      "brier": 0.091379
+     },
+     "tohoku": {
+      "pr_auc": 0.76994,
+      "brier": 0.044713
+     },
+     "tokyo": {
+      "pr_auc": 0.51253,
+      "brier": 0.015527
+     }
+    },
+    "macro_pr_auc": 0.65057
+   },
+   "m2p": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 7883,
+     "pr_auc": 0.40396,
+     "roc_auc": 0.88028,
+     "brier": 0.066684,
+     "log_loss": 0.22879,
+     "recall_at_fpr_0.005": 0.05252,
+     "recall_at_fpr_0.01": 0.10935,
+     "recall_at_fpr_0.05": 0.41583,
+     "recall_at_fpr_0.1": 0.61918,
+     "ece": 0.029104,
+     "mce": 0.136467,
+     "calibration_slope": 0.75746,
+     "calibration_intercept": 0.02305
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.2954,
+      "brier": 0.038401
+     },
+     "chugoku": {
+      "pr_auc": 0.32311,
+      "brier": 0.065634
+     },
+     "hokkaido": {
+      "pr_auc": 0.44038,
+      "brier": 0.063366
+     },
+     "hokuriku": {
+      "pr_auc": 0.29578,
+      "brier": 0.044691
+     },
+     "kansai": {
+      "pr_auc": 0.29179,
+      "brier": 0.048575
+     },
+     "kyushu": {
+      "pr_auc": 0.53588,
+      "brier": 0.122141
+     },
+     "shikoku": {
+      "pr_auc": 0.39228,
+      "brier": 0.1235
+     },
+     "tohoku": {
+      "pr_auc": 0.4435,
+      "brier": 0.069023
+     },
+     "tokyo": {
+      "pr_auc": 0.24789,
+      "brier": 0.024823
+     }
+    },
+    "macro_pr_auc": 0.36289
+   },
+   "m4": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 7883,
+     "pr_auc": 0.56964,
+     "roc_auc": 0.89323,
+     "brier": 0.070293,
+     "log_loss": 0.333219,
+     "recall_at_fpr_0.005": 0.15946,
+     "recall_at_fpr_0.01": 0.3165,
+     "recall_at_fpr_0.05": 0.57757,
+     "recall_at_fpr_0.1": 0.75644,
+     "ece": 0.067336,
+     "mce": 0.351793,
+     "calibration_slope": 3.06518,
+     "calibration_intercept": 0.02186
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.54605,
+      "brier": 0.031099
+     },
+     "chugoku": {
+      "pr_auc": 0.50622,
+      "brier": 0.061811
+     },
+     "hokkaido": {
+      "pr_auc": 0.4459,
+      "brier": 0.075013
+     },
+     "hokuriku": {
+      "pr_auc": 0.48441,
+      "brier": 0.036968
+     },
+     "kansai": {
+      "pr_auc": 0.46323,
+      "brier": 0.041919
+     },
+     "kyushu": {
+      "pr_auc": 0.79784,
+      "brier": 0.156104
+     },
+     "shikoku": {
+      "pr_auc": 0.53737,
+      "brier": 0.132928
+     },
+     "tohoku": {
+      "pr_auc": 0.66152,
+      "brier": 0.078523
+     },
+     "tokyo": {
+      "pr_auc": 0.46239,
+      "brier": 0.018275
+     }
+    },
+    "macro_pr_auc": 0.54499
+   }
+  },
+  "midday_thr0.5": {
+   "m0": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 9081,
+     "pr_auc": 0.69259,
+     "roc_auc": 0.93149,
+     "brier": 0.051223,
+     "log_loss": 0.195919,
+     "recall_at_fpr_0.005": 0.29512,
+     "recall_at_fpr_0.01": 0.39896,
+     "recall_at_fpr_0.05": 0.67471,
+     "recall_at_fpr_0.1": 0.79826,
+     "ece": 0.010811,
+     "mce": 0.021985,
+     "calibration_slope": 1.01452,
+     "calibration_intercept": 0.00947
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.62798,
+      "brier": 0.029565
+     },
+     "chugoku": {
+      "pr_auc": 0.6015,
+      "brier": 0.052348
+     },
+     "hokkaido": {
+      "pr_auc": 0.4987,
+      "brier": 0.06448
+     },
+     "hokuriku": {
+      "pr_auc": 0.50631,
+      "brier": 0.041959
+     },
+     "kansai": {
+      "pr_auc": 0.57056,
+      "brier": 0.041219
+     },
+     "kyushu": {
+      "pr_auc": 0.87415,
+      "brier": 0.062962
+     },
+     "shikoku": {
+      "pr_auc": 0.65977,
+      "brier": 0.101798
+     },
+     "tohoku": {
+      "pr_auc": 0.76331,
+      "brier": 0.047161
+     },
+     "tokyo": {
+      "pr_auc": 0.51844,
+      "brier": 0.019515
+     }
+    },
+    "macro_pr_auc": 0.62452
+   },
+   "m1": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 9081,
+     "pr_auc": 0.64483,
+     "roc_auc": 0.91677,
+     "brier": 0.057347,
+     "log_loss": 0.197041,
+     "recall_at_fpr_0.005": 0.24821,
+     "recall_at_fpr_0.01": 0.33168,
+     "recall_at_fpr_0.05": 0.6213,
+     "recall_at_fpr_0.1": 0.7508,
+     "ece": 0.017275,
+     "mce": 0.095744,
+     "calibration_slope": 0.85336,
+     "calibration_intercept": 0.007
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.51225,
+      "brier": 0.036227
+     },
+     "chugoku": {
+      "pr_auc": 0.59021,
+      "brier": 0.057334
+     },
+     "hokkaido": {
+      "pr_auc": 0.49118,
+      "brier": 0.06556
+     },
+     "hokuriku": {
+      "pr_auc": 0.4131,
+      "brier": 0.047202
+     },
+     "kansai": {
+      "pr_auc": 0.45591,
+      "brier": 0.049977
+     },
+     "kyushu": {
+      "pr_auc": 0.82451,
+      "brier": 0.080659
+     },
+     "shikoku": {
+      "pr_auc": 0.63128,
+      "brier": 0.107205
+     },
+     "tohoku": {
+      "pr_auc": 0.75276,
+      "brier": 0.049164
+     },
+     "tokyo": {
+      "pr_auc": 0.45967,
+      "brier": 0.022794
+     }
+    },
+    "macro_pr_auc": 0.5701
+   },
+   "m2": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 9081,
+     "pr_auc": 0.72775,
+     "roc_auc": 0.93858,
+     "brier": 0.049836,
+     "log_loss": 0.17363,
+     "recall_at_fpr_0.005": 0.34996,
+     "recall_at_fpr_0.01": 0.42969,
+     "recall_at_fpr_0.05": 0.68858,
+     "recall_at_fpr_0.1": 0.80971,
+     "ece": 0.015814,
+     "mce": 0.074719,
+     "calibration_slope": 0.88961,
+     "calibration_intercept": 0.01214
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.70828,
+      "brier": 0.02806
+     },
+     "chugoku": {
+      "pr_auc": 0.69336,
+      "brier": 0.048477
+     },
+     "hokkaido": {
+      "pr_auc": 0.54006,
+      "brier": 0.06382
+     },
+     "hokuriku": {
+      "pr_auc": 0.57057,
+      "brier": 0.040803
+     },
+     "kansai": {
+      "pr_auc": 0.64132,
+      "brier": 0.041871
+     },
+     "kyushu": {
+      "pr_auc": 0.89676,
+      "brier": 0.06056
+     },
+     "shikoku": {
+      "pr_auc": 0.68947,
+      "brier": 0.098565
+     },
+     "tohoku": {
+      "pr_auc": 0.79285,
+      "brier": 0.046221
+     },
+     "tokyo": {
+      "pr_auc": 0.58345,
+      "brier": 0.020151
+     }
+    },
+    "macro_pr_auc": 0.67957
+   },
+   "m2p": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 9081,
+     "pr_auc": 0.42569,
+     "roc_auc": 0.8772,
+     "brier": 0.074103,
+     "log_loss": 0.249881,
+     "recall_at_fpr_0.005": 0.04273,
+     "recall_at_fpr_0.01": 0.09492,
+     "recall_at_fpr_0.05": 0.40932,
+     "recall_at_fpr_0.1": 0.61612,
+     "ece": 0.030623,
+     "mce": 0.147202,
+     "calibration_slope": 0.76623,
+     "calibration_intercept": 0.02497
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.31804,
+      "brier": 0.047265
+     },
+     "chugoku": {
+      "pr_auc": 0.35223,
+      "brier": 0.07554
+     },
+     "hokkaido": {
+      "pr_auc": 0.46578,
+      "brier": 0.06804
+     },
+     "hokuriku": {
+      "pr_auc": 0.317,
+      "brier": 0.055415
+     },
+     "kansai": {
+      "pr_auc": 0.3371,
+      "brier": 0.057624
+     },
+     "kyushu": {
+      "pr_auc": 0.53498,
+      "brier": 0.126231
+     },
+     "shikoku": {
+      "pr_auc": 0.43858,
+      "brier": 0.133055
+     },
+     "tohoku": {
+      "pr_auc": 0.47492,
+      "brier": 0.073284
+     },
+     "tokyo": {
+      "pr_auc": 0.31233,
+      "brier": 0.030476
+     }
+    },
+    "macro_pr_auc": 0.39455
+   },
+   "m4": {
+    "pooled": {
+     "n": 88218,
+     "n_pos": 9081,
+     "pr_auc": 0.66619,
+     "roc_auc": 0.90966,
+     "brier": 0.064092,
+     "log_loss": 0.289865,
+     "recall_at_fpr_0.005": 0.28951,
+     "recall_at_fpr_0.01": 0.39005,
+     "recall_at_fpr_0.05": 0.67052,
+     "recall_at_fpr_0.1": 0.7835,
+     "ece": 0.056117,
+     "mce": 0.310563,
+     "calibration_slope": 1.90183,
+     "calibration_intercept": 0.01389
+    },
+    "per_area": {
+     "chubu": {
+      "pr_auc": 0.60423,
+      "brier": 0.034459
+     },
+     "chugoku": {
+      "pr_auc": 0.60538,
+      "brier": 0.059694
+     },
+     "hokkaido": {
+      "pr_auc": 0.49527,
+      "brier": 0.073075
+     },
+     "hokuriku": {
+      "pr_auc": 0.53697,
+      "brier": 0.044467
+     },
+     "kansai": {
+      "pr_auc": 0.54435,
+      "brier": 0.044948
+     },
+     "kyushu": {
+      "pr_auc": 0.84775,
+      "brier": 0.105725
+     },
+     "shikoku": {
+      "pr_auc": 0.64589,
+      "brier": 0.123167
+     },
+     "tohoku": {
+      "pr_auc": 0.74049,
+      "brier": 0.066951
+     },
+     "tokyo": {
+      "pr_auc": 0.53396,
+      "brier": 0.024338
+     }
+    },
+    "macro_pr_auc": 0.61714
+   }
+  }
+ },
+ "primary_metric": {
+  "definition": "macro PR-AUC, threshold 0.5, all-hours",
+  "ranking_best_last": [
+   [
+    0.37618,
+    "m2p"
+   ],
+   [
+    0.54503,
+    "m1"
+   ],
+   [
+    0.58335,
+    "m4"
+   ],
+   [
+    0.597,
+    "m0"
+   ],
+   [
+    0.65253,
+    "m2"
+   ]
+  ],
+  "winner": "m2",
+  "multiplicity_note": "five models compared; the winner is reported with this note, per the precommit"
+ },
+ "metadata": {
+  "script": "s_20260811_phase81_direct_floor_models.py",
+  "git_sha": "563c3e3faff69fb56aba742081e04e510a3bea05",
+  "generated_utc": "2026-08-11T19:37:25.731092+00:00",
+  "seed": 2026,
+  "taus": [
+   0.02,
+   0.05,
+   0.1,
+   0.2,
+   0.35,
+   0.5
+  ],
+  "thresholds": [
+   0.01,
+   0.5
+  ]
+ }
+}

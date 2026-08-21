@@ -1,0 +1,306 @@
+{
+  "phase": "45",
+  "title": "EPEX-DE multi-year two-tier external replication (proxy vs operational)",
+  "market": "EPEX-DE/LU (Germany), day-ahead hourly",
+  "probe": {
+    "endpoint": "https://historical-forecast-api.open-meteo.com/v1/forecast",
+    "grid_point": [
+      51.2,
+      10.4
+    ],
+    "models_checked": [
+      "icon_seamless",
+      "icon_eu",
+      "icon_d2"
+    ],
+    "model_selected": "icon_seamless",
+    "model_notes": "icon_seamless base archive from ~2022-11; icon_eu from ~2022-12; icon_d2 has archive holes (e.g. 2024-01-15 empty) -> excluded.",
+    "variables": [
+      "shortwave_radiation",
+      "temperature_2m",
+      "cloud_cover",
+      "wind_speed_10m",
+      "wind_speed_100m"
+    ],
+    "base_archive_first_full_day": "2022-11-14",
+    "previous_day1_first_full_day_core4": "2024-01-20",
+    "previous_day1_first_full_day_wind100m": "2024-02-17",
+    "operational_tier_definition": "previous_day1 variables on the Historical-Forecast API = value for each delivery hour taken from the ICON run issued ~1 day earlier (init ~24-27 h before delivery), i.e. the day-ahead-class forecast around EPEX DE/LU gate closure (12:00 CET D-1). Morning delivery hours strictly admissible; afternoon/evening hours may use a D-1 run up to ~11 h after gate closure (reconstruction ambiguity, same class as the Japan histfc tier).",
+    "gate": {
+      "criterion": ">= 1 year of DE operational-forecast (previous_day1) coverage overlapping SMARD",
+      "operational_coverage_start": "2024-02-17",
+      "operational_coverage_days": 885,
+      "decision": "PASS"
+    }
+  },
+  "fetch_params": {
+    "smard": {
+      "endpoint": "https://www.smard.de/app/chart_data",
+      "ids": {
+        "price": 4169,
+        "pv": 4068,
+        "load": 410,
+        "wind_onshore": 4067,
+        "wind_offshore": 1225
+      },
+      "region": "DE",
+      "resolution": "hour",
+      "start": "2020-01-01"
+    },
+    "era5": {
+      "endpoint": "https://archive-api.open-meteo.com/v1/archive",
+      "point": [
+        51.2,
+        10.4
+      ],
+      "vars": [
+        "shortwave_radiation",
+        "temperature_2m",
+        "cloud_cover",
+        "wind_speed_10m",
+        "wind_speed_100m"
+      ],
+      "start": "2020-01-01",
+      "end": "2026-07-16"
+    },
+    "operational": {
+      "endpoint": "https://historical-forecast-api.open-meteo.com/v1/forecast",
+      "model": "icon_seamless",
+      "vars": [
+        "shortwave_radiation_previous_day1",
+        "temperature_2m_previous_day1",
+        "cloud_cover_previous_day1",
+        "wind_speed_10m_previous_day1",
+        "wind_speed_100m_previous_day1"
+      ],
+      "point": [
+        51.2,
+        10.4
+      ],
+      "start": "2024-02-01",
+      "end": "2026-07-21"
+    }
+  },
+  "protocol": {
+    "learner": "XGBRegressor(n_estimators=300, max_depth=6, lr=0.05, subsample=0.8, colsample_bytree=0.8, seed=2026) [phase38]",
+    "walk_forward": "daily-rolling 1-day-ahead, expanding train window, burn-in 120 days, skip test days < 20 h [phase38]",
+    "features_base": "hour, dow, doy, price_lag24/48/168 [phase38]",
+    "proxy_tier": "ERA5 5 channels lagged 24 h (JEPX paper proxy convention; NOTE phase38's script actually fed delivery-hour realised ERA5 -- kept here as robustness cell era5_realized_p38)",
+    "operational_tier": "icon_seamless previous_day1 5 channels at delivery hour",
+    "dm": "HLN small-sample DM with Newey-West (Bartlett) HAC on daily MAE diffs, h=1, L=3 (phase23.5 convention) + automatic-lag robustness"
+  },
+  "coverage": {
+    "panel_hourly_rows": 57508,
+    "head_to_head_test_days": 762,
+    "head_to_head_first_day": "2024-06-15",
+    "head_to_head_last_day": "2026-07-16"
+  },
+  "pooled": {
+    "mae_price_only_eur_mwh": 25.367,
+    "improvement_proxy_eur_mwh": 0.186,
+    "improvement_op_eur_mwh": 3.1885,
+    "ratio_op_over_proxy": 17.142,
+    "dm_proxy_vs_price": {
+      "mean_diff": -0.18600874359174258,
+      "t_hln": -1.0651052848090132,
+      "p_hln": 0.2871661062067046,
+      "n": 762,
+      "nw_lag": 3,
+      "p_lauto": 0.2833501931680147,
+      "lag_auto": 13
+    },
+    "dm_op_vs_price": {
+      "mean_diff": -3.1884833396497663,
+      "t_hln": -8.652366463470756,
+      "p_hln": 0.0,
+      "n": 762,
+      "nw_lag": 3,
+      "p_lauto": 1.0538236949741986e-12,
+      "lag_auto": 13
+    },
+    "dm_op_vs_proxy": {
+      "mean_diff": -3.0024745960580237,
+      "t_hln": -8.173275778259624,
+      "p_hln": 1.3322676295501878e-15,
+      "n": 762,
+      "nw_lag": 3,
+      "p_lauto": 3.2889246881495637e-12,
+      "lag_auto": 13
+    },
+    "robustness_era5_realized_p38_improvement": 0.6636
+  },
+  "per_year": [
+    {
+      "year": 2024,
+      "n_days": 200,
+      "d_first": "2024-06-15",
+      "d_last": "2024-12-31",
+      "mae_price_only": 29.822,
+      "improvement_proxy": 0.212,
+      "improvement_op": 5.389,
+      "ratio_op_over_proxy": 25.46,
+      "dm_p_proxy_vs_price_l3": 0.58654,
+      "dm_p_op_vs_price_l3": 0.0,
+      "dm_p_op_vs_proxy_l3": 0.0,
+      "neg_price_share": 0.0627
+    },
+    {
+      "year": 2025,
+      "n_days": 365,
+      "d_first": "2025-01-01",
+      "d_last": "2025-12-31",
+      "mae_price_only": 23.002,
+      "improvement_proxy": 0.149,
+      "improvement_op": 2.339,
+      "ratio_op_over_proxy": 15.68,
+      "dm_p_proxy_vs_price_l3": 0.54971,
+      "dm_p_op_vs_price_l3": 1e-05,
+      "dm_p_op_vs_proxy_l3": 4e-05,
+      "neg_price_share": 0.0748
+    },
+    {
+      "year": 2026,
+      "n_days": 197,
+      "d_first": "2026-01-01",
+      "d_last": "2026-07-16",
+      "mae_price_only": 25.226,
+      "improvement_proxy": 0.228,
+      "improvement_op": 2.528,
+      "ratio_op_over_proxy": 11.07,
+      "dm_p_proxy_vs_price_l3": 0.4384,
+      "dm_p_op_vs_price_l3": 0.0,
+      "dm_p_op_vs_proxy_l3": 0.0,
+      "neg_price_share": 0.0749
+    }
+  ],
+  "channel_ablation": {
+    "design": "add-one channel family on top of price_only, per tier, identical folds; gain = mean(MAE_price_only - MAE_cell); delta_op_minus_proxy = op gain - proxy gain per family",
+    "families": {
+      "solar": {
+        "gain_proxy_eur_mwh": 0.0921,
+        "gain_op_eur_mwh": 0.5458,
+        "delta_op_minus_proxy": 0.4537,
+        "dm_p_op_vs_price_l3": 5e-05,
+        "dm_p_op_vs_proxy_l3": 6e-05
+      },
+      "cloud": {
+        "gain_proxy_eur_mwh": 0.098,
+        "gain_op_eur_mwh": 0.2661,
+        "delta_op_minus_proxy": 0.1681,
+        "dm_p_op_vs_price_l3": 0.02229,
+        "dm_p_op_vs_proxy_l3": 0.09398
+      },
+      "temp": {
+        "gain_proxy_eur_mwh": 0.0437,
+        "gain_op_eur_mwh": 0.143,
+        "delta_op_minus_proxy": 0.0993,
+        "dm_p_op_vs_price_l3": 0.30574,
+        "dm_p_op_vs_proxy_l3": 0.47587
+      },
+      "wind": {
+        "gain_proxy_eur_mwh": 0.0327,
+        "gain_op_eur_mwh": 2.2391,
+        "delta_op_minus_proxy": 2.2064,
+        "dm_p_op_vs_price_l3": 0.0,
+        "dm_p_op_vs_proxy_l3": 0.0
+      }
+    },
+    "rank_by_delta_op_minus_proxy": [
+      "wind",
+      "solar",
+      "cloud",
+      "temp"
+    ],
+    "wind_rank_of_4": 1
+  },
+  "exploratory_negative_price_gradient": {
+    "label": "EXPLORATORY ONLY (pre-committed gate; do not promote regardless of outcome)",
+    "spearman_daily_improvement_vs_negshare": {
+      "op": {
+        "rho": 0.121,
+        "p": 0.0008
+      },
+      "proxy": {
+        "rho": 0.0505,
+        "p": 0.1639
+      }
+    },
+    "long_proxy_walk_forward_per_year": [
+      {
+        "year": 2020,
+        "n_days": 94,
+        "improvement_proxy": 0.207,
+        "dm_p_l3": 0.27203,
+        "mae_price_only": 9.939,
+        "neg_price_share": 0.023,
+        "pv_share_of_load": 0.0344
+      },
+      {
+        "year": 2021,
+        "n_days": 365,
+        "improvement_proxy": 0.106,
+        "dm_p_l3": 0.74938,
+        "mae_price_only": 22.994,
+        "neg_price_share": 0.0167,
+        "pv_share_of_load": 0.0916
+      },
+      {
+        "year": 2022,
+        "n_days": 365,
+        "improvement_proxy": 0.695,
+        "dm_p_l3": 0.2561,
+        "mae_price_only": 52.6,
+        "neg_price_share": 0.0087,
+        "pv_share_of_load": 0.1155
+      },
+      {
+        "year": 2023,
+        "n_days": 365,
+        "improvement_proxy": 0.499,
+        "dm_p_l3": 0.03633,
+        "mae_price_only": 24.372,
+        "neg_price_share": 0.037,
+        "pv_share_of_load": 0.1212
+      },
+      {
+        "year": 2024,
+        "n_days": 366,
+        "improvement_proxy": 0.055,
+        "dm_p_l3": 0.78695,
+        "mae_price_only": 23.06,
+        "neg_price_share": 0.0591,
+        "pv_share_of_load": 0.1357
+      },
+      {
+        "year": 2025,
+        "n_days": 365,
+        "improvement_proxy": 0.259,
+        "dm_p_l3": 0.11058,
+        "mae_price_only": 23.067,
+        "neg_price_share": 0.0748,
+        "pv_share_of_load": 0.1584
+      },
+      {
+        "year": 2026,
+        "n_days": 198,
+        "improvement_proxy": 0.663,
+        "dm_p_l3": 0.00873,
+        "mae_price_only": 24.945,
+        "neg_price_share": 0.0745,
+        "pv_share_of_load": 0.1942
+      }
+    ],
+    "long_proxy_note": "single-design expanding-window WF (train from 2020-06), proxy tier only; tests whether proxy weather value grows with negative-price exposure as DE PV share grows. Overlaps the head-to-head window with a deeper train history, so 2024+ numbers differ slightly from the main run."
+  },
+  "replication_gate": {
+    "criteria": "op improvement > 0 AND DM(op vs price) p<0.05 AND DM(op vs proxy) p<0.05 AND ratio op/proxy > 1.5",
+    "decision": "CLEAN -> promote to External-validity results subsection"
+  },
+  "metadata": {
+    "script": "s_20260724_phase45_epex_de_tiered.py",
+    "git_sha": "744a3d960f068f31dc0286e535c76de46a9d43f4",
+    "generated_utc": "2026-07-24T05:27:15+00:00",
+    "per_day_parquet": "data/runs/phase45_epex_de_tiered_per_day.parquet",
+    "long_proxy_parquet": "data/runs/phase45_epex_de_long_proxy_per_day.parquet"
+  }
+}

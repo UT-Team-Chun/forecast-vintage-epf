@@ -1,0 +1,153 @@
+{
+ "phase": "88b",
+ "title": "Inter-coder reliability of the weather-input-timing audit",
+ "precommit_doc": "docs/research/2026-08-13_phase88b_audit_reliability_precommit.md",
+ "design": "independent agent coders per paper; several papers were coded more than once because runs were retried after session limits, giving a genuine multi-coder subset",
+ "n_papers_multicoded": 28,
+ "n_codings": 88,
+ "n_paper_pairs": 104,
+ "n_column_pairs": 624,
+ "agreement": {
+  "observed": 0.7532,
+  "expected": 0.2973,
+  "cohens_kappa": 0.6488
+ },
+ "yes_vs_not_yes": {
+  "flip_rate": 0.0096,
+  "n_flips": 6,
+  "observed": 0.9904,
+  "expected": 0.8419,
+  "cohens_kappa": 0.9392,
+  "why_this_is_the_binding_statistic": "every reported rate is a share of papers coded Yes, so a disagreement that does not cross the Yes boundary cannot move any rate in the paper"
+ },
+ "per_column": {
+  "gate_time_stated": {
+   "agreement": 0.8654,
+   "yes_flip_rate": 0.0192,
+   "pairs": 104
+  },
+  "model_run_id_stated": {
+   "agreement": 0.6058,
+   "yes_flip_rate": 0.0192,
+   "pairs": 104
+  },
+  "init_time_stated": {
+   "agreement": 0.5769,
+   "yes_flip_rate": 0.0,
+   "pairs": 104
+  },
+  "publication_time_stated": {
+   "agreement": 0.6635,
+   "yes_flip_rate": 0.0,
+   "pairs": 104
+  },
+  "gate_admissibility_checked": {
+   "agreement": 0.9423,
+   "yes_flip_rate": 0.0192,
+   "pairs": 104
+  },
+  "revision_handling": {
+   "agreement": 0.8654,
+   "yes_flip_rate": 0.0,
+   "pairs": 104
+  }
+ },
+ "label_marginals": {
+  "Partial": 245,
+  "No": 467,
+  "Not stated": 416,
+  "Yes": 108,
+  "Not verifiable": 12
+ },
+ "yes_flip_cases": [
+  {
+   "key": "v2:783826aedf67f8a5c328c84fb77aff0f7bac6dc1fcee90cbcfe15698873ff0ec",
+   "column": "gate_admissibility_checked",
+   "verdicts": [
+    "Yes",
+    "Partial"
+   ],
+   "market": "MIBEL (Iberia) day-ahead plus six intraday sessions; Portuguese prices; June 2015-June 2017",
+   "cells": [
+    "Yes - operational simulation conditions all inputs on pre-gate public availability (Sec. 4.1, Figs. 5-6)",
+    "Partial — operational simulation enforces pre-gate cutoff by design; input publication timestamps not independently verified."
+   ]
+  },
+  {
+   "key": "v2:783826aedf67f8a5c328c84fb77aff0f7bac6dc1fcee90cbcfe15698873ff0ec",
+   "column": "gate_admissibility_checked",
+   "verdicts": [
+    "Yes",
+    "Partial"
+   ],
+   "market": "MIBEL (Iberia) day-ahead plus six intraday sessions; Portuguese prices; June 2015-June 2017",
+   "cells": [
+    "Yes - operational simulation conditions all inputs on pre-gate public availability (Sec. 4.1, Figs. 5-6)",
+    "Partial — operational pre-gate-availability scenario explicitly asserted and simulated (Sec. 4.1, Figs. 5–6); timestamp-level verification of TSO feeds not shown."
+   ]
+  },
+  {
+   "key": "v2:095e129a890ba53b6a28dbd2f8eb55b2c4d402cde6cca4c44d239323115f998b",
+   "column": "gate_time_stated",
+   "verdicts": [
+    "Not verifiable",
+    "Yes"
+   ],
+   "market": "JEPX spot (day-ahead auction), Japan; area vs system price not determinable from accessible text",
+   "cells": [
+    "Not verifiable — full text inaccessible; abstract does not mention the 10:00 JST gate",
+    "Yes - Introduction states bids due 'by 10 AM the day before the trading day'"
+   ]
+  },
+  {
+   "key": "v2:095e129a890ba53b6a28dbd2f8eb55b2c4d402cde6cca4c44d239323115f998b",
+   "column": "gate_time_stated",
+   "verdicts": [
+    "Not verifiable",
+    "Yes"
+   ],
+   "market": "JEPX spot (day-ahead auction), Japan; area vs system price not determinable from accessible text",
+   "cells": [
+    "Not verifiable — full text inaccessible; abstract does not mention the 10:00 JST gate",
+    "Yes — states bids \"must be bid by 10 AM the day before the trading day\""
+   ]
+  },
+  {
+   "key": "v2:ca9e3bc2932791fb4f2b1374ca8a9f398372697d8bc6e3ffddad16a39a6a3133",
+   "column": "model_run_id_stated",
+   "verdicts": [
+    "Partial",
+    "Yes"
+   ],
+   "market": "JEPX day-ahead spot market, Kyushu area, Japan; 48 half-hourly prices per day",
+   "cells": [
+    "Partial — MSM-GPV named, cycle cutoff 18:00 UTC given; per-day run/lead-time mapping unspecified",
+    "Yes — MSM-GPV named; run used is latest with base time up to 18:00 UTC"
+   ]
+  },
+  {
+   "key": "v2:ca9e3bc2932791fb4f2b1374ca8a9f398372697d8bc6e3ffddad16a39a6a3133",
+   "column": "model_run_id_stated",
+   "verdicts": [
+    "Partial",
+    "Yes"
+   ],
+   "market": "JEPX day-ahead spot market, Kyushu area, Japan; 48 half-hourly prices per day",
+   "cells": [
+    "Partial — MSM-GPV named, cycle cutoff 18:00 UTC given; per-day run/lead-time mapping unspecified",
+    "Yes - MSM-GPV product named, 39 h forecast files, 18:00 UTC cycle identified as used."
+   ]
+  }
+ ],
+ "metadata": {
+  "script": "s_20260813_phase88b_audit_reliability.py",
+  "columns": [
+   "gate_time_stated",
+   "model_run_id_stated",
+   "init_time_stated",
+   "publication_time_stated",
+   "gate_admissibility_checked",
+   "revision_handling"
+  ]
+ }
+}

@@ -1,0 +1,404 @@
+{
+  "phase": "phase43_decision_sensitivity",
+  "script": "s_20260724_phase43_decision_sensitivity.py",
+  "git_sha": "ebc754982c21fe9cc9d5b6b25c9cf655940d21c3",
+  "run_timestamp_utc": "2026-07-24T02:57:28+00:00",
+  "inputs": {
+    "per_slot_panel": "data/runs/phase26.1_pv_surplus_per_slot.parquet",
+    "imbalance_cache_dir": "data/raw/jepx_imbalance",
+    "imbalance_csv_count": 14,
+    "spot_csvs": [
+      "data/raw/jepx/spot_2024.csv",
+      "data/raw/jepx/spot_2025.csv",
+      "data/raw/jepx/spot_2026.csv"
+    ]
+  },
+  "protocol": {
+    "floor_threshold_yen_kwh": 0.5,
+    "slots_per_year": 17520,
+    "scaling": "1 MWh/slot continuous throughput (matches phase31c/26.2)",
+    "crossfit": "5-fold on (area|test_day) groups, rng seed 2026 (phase31c)"
+  },
+  "n_obs": 44928,
+  "n_floor": 1499,
+  "reference_reproduction": {
+    "ok": true,
+    "expected": {
+      "price_only_yen_per_mw_yr": 1885962.0,
+      "operational_yen_per_mw_yr": 1708535.0,
+      "value_yen_per_mw_yr": 177427.0
+    },
+    "computed": {
+      "price_only_yen_per_mw_yr": 1885962.0,
+      "operational_yen_per_mw_yr": 1708535.0,
+      "value_yen_per_mw_yr": 177427.0
+    }
+  },
+  "threshold_rules": {
+    "max_f1_crossfit_reference": {
+      "description": "phase31c reference: cross-fitted max-F1 tau (y_pred <= tau => floor)",
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.5,
+          "n_flagged": 1996,
+          "unhedged_real_exposure_yen_kwh": 4836.3,
+          "real_decision_cost_yen_per_mw_yr": 1885962.0
+        },
+        "operational": {
+          "floor_recall": 0.549,
+          "n_flagged": 1466,
+          "unhedged_real_exposure_yen_kwh": 4381.3,
+          "real_decision_cost_yen_per_mw_yr": 1708535.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 177427.0
+    },
+    "max_net_value_crossfit_fa0": {
+      "description": "cross-fitted max-net-value tau (avoided exposure minus 0 yen/kWh per flagged slot), same folds as reference",
+      "false_alarm_cost_yen_kwh": 0.0,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.939,
+          "n_flagged": 13431,
+          "unhedged_real_exposure_yen_kwh": 610.7,
+          "real_decision_cost_yen_per_mw_yr": 238162.0
+        },
+        "operational": {
+          "floor_recall": 0.971,
+          "n_flagged": 13380,
+          "unhedged_real_exposure_yen_kwh": 227.7,
+          "real_decision_cost_yen_per_mw_yr": 88789.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 149373.0,
+      "operational_net_value_at_fa_cost_yen_per_mw_yr": 149373.0
+    },
+    "max_net_value_crossfit_fa0.5": {
+      "description": "cross-fitted max-net-value tau (avoided exposure minus 0.5 yen/kWh per flagged slot), same folds as reference",
+      "false_alarm_cost_yen_kwh": 0.5,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.73,
+          "n_flagged": 4712,
+          "unhedged_real_exposure_yen_kwh": 2838.0,
+          "real_decision_cost_yen_per_mw_yr": 1106683.0
+        },
+        "operational": {
+          "floor_recall": 0.831,
+          "n_flagged": 4334,
+          "unhedged_real_exposure_yen_kwh": 1548.2,
+          "real_decision_cost_yen_per_mw_yr": 603720.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 502963.0,
+      "operational_net_value_at_fa_cost_yen_per_mw_yr": 576665.0
+    },
+    "max_net_value_crossfit_fa1": {
+      "description": "cross-fitted max-net-value tau (avoided exposure minus 1 yen/kWh per flagged slot), same folds as reference",
+      "false_alarm_cost_yen_kwh": 1.0,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.568,
+          "n_flagged": 2671,
+          "unhedged_real_exposure_yen_kwh": 4280.3,
+          "real_decision_cost_yen_per_mw_yr": 1669146.0
+        },
+        "operational": {
+          "floor_recall": 0.759,
+          "n_flagged": 2982,
+          "unhedged_real_exposure_yen_kwh": 2349.1,
+          "real_decision_cost_yen_per_mw_yr": 916053.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 753093.0,
+      "operational_net_value_at_fa_cost_yen_per_mw_yr": 631817.0
+    },
+    "max_net_value_crossfit_fa2": {
+      "description": "cross-fitted max-net-value tau (avoided exposure minus 2 yen/kWh per flagged slot), same folds as reference",
+      "false_alarm_cost_yen_kwh": 2.0,
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.416,
+          "n_flagged": 1595,
+          "unhedged_real_exposure_yen_kwh": 5785.2,
+          "real_decision_cost_yen_per_mw_yr": 2256000.0
+        },
+        "operational": {
+          "floor_recall": 0.53,
+          "n_flagged": 1333,
+          "unhedged_real_exposure_yen_kwh": 4605.2,
+          "real_decision_cost_yen_per_mw_yr": 1795816.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 460185.0,
+      "operational_net_value_at_fa_cost_yen_per_mw_yr": 664522.0
+    },
+    "fixed_quantile_q5": {
+      "description": "label-free fixed rule: tau = 5th pct of tier predictions",
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.526,
+          "n_flagged": 2247,
+          "unhedged_real_exposure_yen_kwh": 4554.6,
+          "real_decision_cost_yen_per_mw_yr": 1776119.0
+        },
+        "operational": {
+          "floor_recall": 0.684,
+          "n_flagged": 2247,
+          "unhedged_real_exposure_yen_kwh": 3231.2,
+          "real_decision_cost_yen_per_mw_yr": 1260038.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 516081.0
+    },
+    "fixed_quantile_q10": {
+      "description": "label-free fixed rule: tau = 10th pct of tier predictions",
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.726,
+          "n_flagged": 4493,
+          "unhedged_real_exposure_yen_kwh": 2704.0,
+          "real_decision_cost_yen_per_mw_yr": 1054429.0
+        },
+        "operational": {
+          "floor_recall": 0.848,
+          "n_flagged": 4493,
+          "unhedged_real_exposure_yen_kwh": 1337.7,
+          "real_decision_cost_yen_per_mw_yr": 521642.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 532787.0
+    },
+    "fixed_quantile_q20": {
+      "description": "label-free fixed rule: tau = 20th pct of tier predictions",
+      "tiers": {
+        "price_only": {
+          "floor_recall": 0.877,
+          "n_flagged": 8986,
+          "unhedged_real_exposure_yen_kwh": 1193.9,
+          "real_decision_cost_yen_per_mw_yr": 465558.0
+        },
+        "operational": {
+          "floor_recall": 0.943,
+          "n_flagged": 8986,
+          "unhedged_real_exposure_yen_kwh": 459.3,
+          "real_decision_cost_yen_per_mw_yr": 179107.0
+        }
+      },
+      "operational_value_yen_per_mw_yr": 286451.0
+    }
+  },
+  "threshold_rule_value_summary_yen_per_mw_yr": {
+    "max_f1_crossfit_reference": 177427.0,
+    "max_net_value_crossfit_fa0": 149373.0,
+    "max_net_value_crossfit_fa0.5": 502963.0,
+    "max_net_value_crossfit_fa1": 753093.0,
+    "max_net_value_crossfit_fa2": 460185.0,
+    "fixed_quantile_q5": 516081.0,
+    "fixed_quantile_q10": 532787.0,
+    "fixed_quantile_q20": 286451.0
+  },
+  "hedge_cost_grid": {
+    "rule": "max_f1_crossfit_reference",
+    "definition": "net value(c) = [exposure_po + c*n_flagged_po] - [exposure_op + c*n_flagged_op], scaled to yen/MW/yr; every flagged slot pays c (yen/kWh, 1 MWh slot) whether or not it floors",
+    "cost_grid_yen_kwh": [
+      0.0,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "net_value_yen_per_mw_yr": {
+      "0": 177427.0,
+      "0.5": 280765.0,
+      "1": 384104.0,
+      "2": 590781.0
+    },
+    "n_flagged_price_only": 1996,
+    "n_flagged_operational": 1466,
+    "breakeven_hedge_cost_yen_kwh_grid_interp": null,
+    "breakeven_hedge_cost_yen_kwh_exact_linear": null
+  },
+  "subperiods": {
+    "split_at_jst": "2025-05-10 11:45:00+09:00",
+    "window_jst": [
+      "2024-11-17 00:00:00+09:00",
+      "2025-10-31 23:30:00+09:00"
+    ],
+    "note": "reference cross-fit flags held fixed; per-half sums scaled by per-half n_obs (same 1 MWh/slot scaling)",
+    "halves": {
+      "half1": {
+        "range_jst": [
+          "2024-11-17 00:00:00+09:00",
+          "2025-05-10 11:30:00+09:00"
+        ],
+        "n_obs": 22464,
+        "n_floor": 1022,
+        "total_floor_exposure_yen_kwh": 7865.4,
+        "tiers": {
+          "price_only": {
+            "floor_recall": 0.479,
+            "n_flagged": 1170,
+            "unhedged_real_exposure_yen_kwh": 3917.9,
+            "real_decision_cost_yen_per_mw_yr": 3055596.0
+          },
+          "operational": {
+            "floor_recall": 0.582,
+            "n_flagged": 985,
+            "unhedged_real_exposure_yen_kwh": 3117.3,
+            "real_decision_cost_yen_per_mw_yr": 2431267.0
+          }
+        },
+        "operational_value_yen_per_mw_yr": 624329.0
+      },
+      "half2": {
+        "range_jst": [
+          "2025-05-10 12:00:00+09:00",
+          "2025-10-31 23:30:00+09:00"
+        ],
+        "n_obs": 22464,
+        "n_floor": 477,
+        "total_floor_exposure_yen_kwh": 2561.9,
+        "tiers": {
+          "price_only": {
+            "floor_recall": 0.543,
+            "n_flagged": 826,
+            "unhedged_real_exposure_yen_kwh": 918.5,
+            "real_decision_cost_yen_per_mw_yr": 716328.0
+          },
+          "operational": {
+            "floor_recall": 0.478,
+            "n_flagged": 481,
+            "unhedged_real_exposure_yen_kwh": 1264.0,
+            "real_decision_cost_yen_per_mw_yr": 985804.0
+          }
+        },
+        "operational_value_yen_per_mw_yr": -269476.0
+      }
+    },
+    "per_rule_half_values_yen_per_mw_yr": {
+      "max_f1_crossfit_reference": {
+        "half1": 624329.0,
+        "half2": -269476.0
+      },
+      "max_net_value_crossfit_fa0": {
+        "half1": 271278.0,
+        "half2": 27469.0
+      },
+      "max_net_value_crossfit_fa0.5": {
+        "half1": 1068265.0,
+        "half2": -62339.0
+      },
+      "max_net_value_crossfit_fa1": {
+        "half1": 1581854.0,
+        "half2": -75667.0
+      },
+      "max_net_value_crossfit_fa2": {
+        "half1": 1054429.0,
+        "half2": -134060.0
+      },
+      "fixed_quantile_q5": {
+        "half1": 1183091.0,
+        "half2": -150929.0
+      },
+      "fixed_quantile_q10": {
+        "half1": 1039759.0,
+        "half2": 25815.0
+      },
+      "fixed_quantile_q20": {
+        "half1": 541775.0,
+        "half2": 31126.0
+      }
+    }
+  },
+  "per_area": [
+    {
+      "area": "shikoku",
+      "n_obs": 5616,
+      "n_floor": 385,
+      "total_floor_exposure_yen_kwh": 3176.2,
+      "unhedged_exposure_price_only_yen_kwh": 1739.5,
+      "unhedged_exposure_operational_yen_kwh": 1355.2,
+      "avoided_exposure_yen_kwh": 384.3,
+      "share_of_total_avoided_pct": 84.5,
+      "operational_value_yen_per_mw_yr_local": 1199009.0
+    },
+    {
+      "area": "tohoku",
+      "n_obs": 5616,
+      "n_floor": 171,
+      "total_floor_exposure_yen_kwh": 2105.2,
+      "unhedged_exposure_price_only_yen_kwh": 1002.2,
+      "unhedged_exposure_operational_yen_kwh": 778.5,
+      "avoided_exposure_yen_kwh": 223.7,
+      "share_of_total_avoided_pct": 49.2,
+      "operational_value_yen_per_mw_yr_local": 697774.0
+    },
+    {
+      "area": "kyushu",
+      "n_obs": 5616,
+      "n_floor": 338,
+      "total_floor_exposure_yen_kwh": 2700.2,
+      "unhedged_exposure_price_only_yen_kwh": 690.8,
+      "unhedged_exposure_operational_yen_kwh": 610.3,
+      "avoided_exposure_yen_kwh": 80.4,
+      "share_of_total_avoided_pct": 17.7,
+      "operational_value_yen_per_mw_yr_local": 250883.0
+    },
+    {
+      "area": "chugoku",
+      "n_obs": 5616,
+      "n_floor": 140,
+      "total_floor_exposure_yen_kwh": 559.7,
+      "unhedged_exposure_price_only_yen_kwh": 292.9,
+      "unhedged_exposure_operational_yen_kwh": 234.4,
+      "avoided_exposure_yen_kwh": 58.4,
+      "share_of_total_avoided_pct": 12.8,
+      "operational_value_yen_per_mw_yr_local": 182313.0
+    },
+    {
+      "area": "hokuriku",
+      "n_obs": 5616,
+      "n_floor": 123,
+      "total_floor_exposure_yen_kwh": 449.8,
+      "unhedged_exposure_price_only_yen_kwh": 326.2,
+      "unhedged_exposure_operational_yen_kwh": 309.5,
+      "avoided_exposure_yen_kwh": 16.7,
+      "share_of_total_avoided_pct": 3.7,
+      "operational_value_yen_per_mw_yr_local": 52098.0
+    },
+    {
+      "area": "kansai",
+      "n_obs": 5616,
+      "n_floor": 123,
+      "total_floor_exposure_yen_kwh": 383.5,
+      "unhedged_exposure_price_only_yen_kwh": 257.8,
+      "unhedged_exposure_operational_yen_kwh": 266.4,
+      "avoided_exposure_yen_kwh": -8.7,
+      "share_of_total_avoided_pct": -1.9,
+      "operational_value_yen_per_mw_yr_local": -27047.0
+    },
+    {
+      "area": "tokyo",
+      "n_obs": 5616,
+      "n_floor": 52,
+      "total_floor_exposure_yen_kwh": 228.3,
+      "unhedged_exposure_price_only_yen_kwh": 94.0,
+      "unhedged_exposure_operational_yen_kwh": 157.2,
+      "avoided_exposure_yen_kwh": -63.2,
+      "share_of_total_avoided_pct": -13.9,
+      "operational_value_yen_per_mw_yr_local": -197225.0
+    },
+    {
+      "area": "hokkaido",
+      "n_obs": 5616,
+      "n_floor": 167,
+      "total_floor_exposure_yen_kwh": 824.5,
+      "unhedged_exposure_price_only_yen_kwh": 433.1,
+      "unhedged_exposure_operational_yen_kwh": 669.8,
+      "avoided_exposure_yen_kwh": -236.7,
+      "share_of_total_avoided_pct": -52.0,
+      "operational_value_yen_per_mw_yr_local": -738392.0
+    }
+  ],
+  "note": "Sensitivity armor for the phase31c money number. All numbers computed on the identical joined panel (per-slot predictions x real shortage imbalance x spot); exposure = max(shortage_imb - spot, 0) on floored slots the forecast failed to flag. Items 4/5 hold the reference cross-fit flags fixed and decompose the sums."
+}

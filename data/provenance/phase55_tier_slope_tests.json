@@ -1,0 +1,426 @@
+{
+  "phase": "55",
+  "title": "tier slope-difference tests for the cross-area concentration claim",
+  "motivation": "reviewer major issue 4: 'proxy correlation significant, operational n.s.' does not establish that the correlations DIFFER; test the tier contrast directly",
+  "interpretation_rule_precommitted": "Pre-committed BEFORE results: whatever the outcome, phase55 lands as 'suggestive heterogeneity' evidence in the Discussion/Supplement. A significant tier difference does NOT get promoted to a headline claim (the n = 8-9 cross-area power limits in Section 7 stand as written); a non-significant tier difference closes the old 'significant vs n.s.' contrast honestly, i.e. the manuscript must not imply the correlations were shown to DIFFER.",
+  "inputs": {
+    "per_slot_parquet": "data/runs/phase51_vintage_ladder_per_slot.parquet",
+    "per_slot_parquet_sha256": "7f2ebe2e421efcbaa03f271d8bc882aaa3ad3476bcb7fbe135d6b5c266ea3928",
+    "n_slots": 307638,
+    "pv_peak_source": "data/reference/area_capacity.csv via area_capacity_loader (asserted == parquet column)",
+    "pv_peak_by_area": {
+      "chubu": 0.5189,
+      "chugoku": 0.539,
+      "hokkaido": 0.499,
+      "hokuriku": 0.3901,
+      "kansai": 0.3476,
+      "kyushu": 0.7802,
+      "shikoku": 0.9205,
+      "tohoku": 0.5693,
+      "tokyo": 0.241
+    }
+  },
+  "design": {
+    "improvement_unit": "I_ak = mean over test days of daily [MAE(price_only) - MAE(tier)] per area, yen/kWh; days equally weighted",
+    "slope": "OLS of I_ak on PV/peak across n=9 areas",
+    "rank_assoc": "Spearman rho of I_ak vs PV/peak (n=9)",
+    "bootstrap": {
+      "kind": "per-day paired circular block bootstrap, day indices shared across areas and tiers",
+      "block_len_days": 7,
+      "n_boot": 10000,
+      "seed": 2026
+    },
+    "permutation_within_area_day": {
+      "kind": "tier labels swapped independently within each (area, day) pair on grand-mean-centered daily improvements (centering removes the tier LEVEL difference, which slope/rho contrasts are invariant to; without it the test would reject on levels alone)",
+      "n_perm": 10000,
+      "seed": 2027
+    },
+    "permutation_area_level_exact": {
+      "kind": "tier labels swapped for entire areas, all 2^9 = 512 patterns enumerated (exact; robust to within-area serial dependence)"
+    },
+    "caveat": "bootstrap resamples DAYS with the 9-area panel fixed: it quantifies time-sampling noise of the tier contrast, not uncertainty from the areas themselves (the 9 areas are the full population of JEPX zones)"
+  },
+  "old_claim_context": {
+    "phase35_committed_window": "proxy rho=+0.833 (p=0.01, n=8, all-hours committed sample)",
+    "phase40_extension": "proxy rho=+0.72 (p=0.03)",
+    "phase51_extended_window": "all tiers n.s. (era5 rho=+0.03, prev2 +0.38, prev1 +0.42; n=9)"
+  },
+  "windows": {
+    "full_phase51": {
+      "n_test_days": 714,
+      "first_test_day": "2024-08-01",
+      "last_test_day": "2026-07-18",
+      "per_tier": {
+        "era5": {
+          "improvement_by_area": {
+            "chubu": 0.0344,
+            "chugoku": 0.0589,
+            "hokkaido": 0.0053,
+            "hokuriku": 0.0492,
+            "kansai": 0.0552,
+            "kyushu": 0.052,
+            "shikoku": 0.0232,
+            "tohoku": 0.0564,
+            "tokyo": 0.0313
+          },
+          "ols_slope_yenkwh_per_pvpeak": -0.009,
+          "ols_slope_p_classical": 0.7899,
+          "ols_slope_boot_ci95": [
+            -0.0523,
+            0.0318
+          ],
+          "spearman_rho": 0.117,
+          "spearman_p_classical": 0.765,
+          "spearman_rho_boot_ci95": [
+            -0.367,
+            0.45
+          ]
+        },
+        "prev2": {
+          "improvement_by_area": {
+            "chubu": 0.2229,
+            "chugoku": 0.2647,
+            "hokkaido": 0.0809,
+            "hokuriku": 0.1686,
+            "kansai": 0.219,
+            "kyushu": 0.3048,
+            "shikoku": 0.191,
+            "tohoku": 0.2933,
+            "tokyo": 0.1959
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0903,
+          "ols_slope_p_classical": 0.4718,
+          "ols_slope_boot_ci95": [
+            0.0108,
+            0.1718
+          ],
+          "spearman_rho": 0.433,
+          "spearman_p_classical": 0.244,
+          "spearman_rho_boot_ci95": [
+            0.217,
+            0.733
+          ]
+        },
+        "prev1": {
+          "improvement_by_area": {
+            "chubu": 0.252,
+            "chugoku": 0.2737,
+            "hokkaido": 0.1045,
+            "hokuriku": 0.1833,
+            "kansai": 0.2275,
+            "kyushu": 0.2923,
+            "shikoku": 0.1985,
+            "tohoku": 0.3438,
+            "tokyo": 0.2147
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0652,
+          "ols_slope_p_classical": 0.6092,
+          "ols_slope_boot_ci95": [
+            -0.0144,
+            0.1493
+          ],
+          "spearman_rho": 0.417,
+          "spearman_p_classical": 0.265,
+          "spearman_rho_boot_ci95": [
+            0.2,
+            0.717
+          ]
+        },
+        "histfc": {
+          "improvement_by_area": {
+            "chubu": 0.2355,
+            "chugoku": 0.2525,
+            "hokkaido": 0.1006,
+            "hokuriku": 0.1789,
+            "kansai": 0.2017,
+            "kyushu": 0.2863,
+            "shikoku": 0.1882,
+            "tohoku": 0.3367,
+            "tokyo": 0.2127
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.067,
+          "ols_slope_p_classical": 0.5906,
+          "ols_slope_boot_ci95": [
+            -0.0154,
+            0.154
+          ],
+          "spearman_rho": 0.4,
+          "spearman_p_classical": 0.286,
+          "spearman_rho_boot_ci95": [
+            0.15,
+            0.717
+          ]
+        },
+        "oracle": {
+          "improvement_by_area": {
+            "chubu": 0.2483,
+            "chugoku": 0.2413,
+            "hokkaido": 0.1093,
+            "hokuriku": 0.1837,
+            "kansai": 0.2243,
+            "kyushu": 0.2935,
+            "shikoku": 0.1928,
+            "tohoku": 0.304,
+            "tokyo": 0.1868
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0798,
+          "ols_slope_p_classical": 0.4687,
+          "ols_slope_boot_ci95": [
+            0.0049,
+            0.1554
+          ],
+          "spearman_rho": 0.533,
+          "spearman_p_classical": 0.139,
+          "spearman_rho_boot_ci95": [
+            0.2,
+            0.7
+          ]
+        }
+      },
+      "pair_tests": {
+        "era5_vs_prev2": {
+          "sign_convention": "Delta = stat(era5) - stat(prev2); positive = proxy more concentrated than prev2",
+          "delta_slope": {
+            "point": -0.0993,
+            "boot_lo95": -0.1838,
+            "boot_hi95": -0.0193,
+            "boot_p_two_sided": 0.013
+          },
+          "delta_rho": {
+            "point": -0.3167,
+            "boot_lo95": -0.9,
+            "boot_hi95": 0.05,
+            "boot_p_two_sided": 0.0916
+          },
+          "perm_within_area_day": {
+            "n_perm": 10000,
+            "p_two_sided_delta_slope": 0.0047,
+            "p_two_sided_delta_rho": 0.1595
+          },
+          "perm_area_level_exact": {
+            "n_patterns": 512,
+            "p_two_sided_delta_slope": 0.0586,
+            "p_two_sided_delta_rho": 0.0938
+          }
+        },
+        "era5_vs_prev1": {
+          "sign_convention": "Delta = stat(era5) - stat(prev1); positive = proxy more concentrated than prev1",
+          "delta_slope": {
+            "point": -0.0743,
+            "boot_lo95": -0.1559,
+            "boot_hi95": 0.0038,
+            "boot_p_two_sided": 0.064
+          },
+          "delta_rho": {
+            "point": -0.3,
+            "boot_lo95": -0.8167,
+            "boot_hi95": 0.05,
+            "boot_p_two_sided": 0.1002
+          },
+          "perm_within_area_day": {
+            "n_perm": 10000,
+            "p_two_sided_delta_slope": 0.0411,
+            "p_two_sided_delta_rho": 0.1275
+          },
+          "perm_area_level_exact": {
+            "n_patterns": 512,
+            "p_two_sided_delta_slope": 0.1406,
+            "p_two_sided_delta_rho": 0.1055
+          }
+        }
+      },
+      "definition": "all phase51 test days (densified full-window protocol, STEP=1 d, 9 areas, all hours)"
+    },
+    "committed_bridge": {
+      "n_test_days": 418,
+      "first_test_day": "2024-09-15",
+      "last_test_day": "2025-11-06",
+      "per_tier": {
+        "era5": {
+          "improvement_by_area": {
+            "chubu": 0.0271,
+            "chugoku": 0.0444,
+            "hokkaido": 0.027,
+            "hokuriku": 0.0562,
+            "kansai": 0.0445,
+            "kyushu": 0.0642,
+            "shikoku": 0.0318,
+            "tohoku": 0.0523,
+            "tokyo": 0.0322
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0085,
+          "ols_slope_p_classical": 0.7331,
+          "ols_slope_boot_ci95": [
+            -0.0352,
+            0.0515
+          ],
+          "spearman_rho": 0.117,
+          "spearman_p_classical": 0.765,
+          "spearman_rho_boot_ci95": [
+            -0.333,
+            0.617
+          ]
+        },
+        "prev2": {
+          "improvement_by_area": {
+            "chubu": 0.2445,
+            "chugoku": 0.2503,
+            "hokkaido": 0.0999,
+            "hokuriku": 0.187,
+            "kansai": 0.2447,
+            "kyushu": 0.2801,
+            "shikoku": 0.1827,
+            "tohoku": 0.2543,
+            "tokyo": 0.2286
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0091,
+          "ols_slope_p_classical": 0.9286,
+          "ols_slope_boot_ci95": [
+            -0.0816,
+            0.0975
+          ],
+          "spearman_rho": 0.283,
+          "spearman_p_classical": 0.46,
+          "spearman_rho_boot_ci95": [
+            -0.2,
+            0.55
+          ]
+        },
+        "prev1": {
+          "improvement_by_area": {
+            "chubu": 0.2594,
+            "chugoku": 0.2512,
+            "hokkaido": 0.129,
+            "hokuriku": 0.1948,
+            "kansai": 0.2519,
+            "kyushu": 0.2648,
+            "shikoku": 0.2136,
+            "tohoku": 0.3125,
+            "tokyo": 0.2579
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0032,
+          "ols_slope_p_classical": 0.9741,
+          "ols_slope_boot_ci95": [
+            -0.0851,
+            0.0923
+          ],
+          "spearman_rho": 0.233,
+          "spearman_p_classical": 0.546,
+          "spearman_rho_boot_ci95": [
+            -0.25,
+            0.617
+          ]
+        },
+        "histfc": {
+          "improvement_by_area": {
+            "chubu": 0.249,
+            "chugoku": 0.2386,
+            "hokkaido": 0.1204,
+            "hokuriku": 0.1883,
+            "kansai": 0.2213,
+            "kyushu": 0.2559,
+            "shikoku": 0.1762,
+            "tohoku": 0.3102,
+            "tokyo": 0.2437
+          },
+          "ols_slope_yenkwh_per_pvpeak": -0.0124,
+          "ols_slope_p_classical": 0.9029,
+          "ols_slope_boot_ci95": [
+            -0.104,
+            0.076
+          ],
+          "spearman_rho": 0.2,
+          "spearman_p_classical": 0.606,
+          "spearman_rho_boot_ci95": [
+            -0.2,
+            0.483
+          ]
+        },
+        "oracle": {
+          "improvement_by_area": {
+            "chubu": 0.2607,
+            "chugoku": 0.2341,
+            "hokkaido": 0.1296,
+            "hokuriku": 0.1991,
+            "kansai": 0.2565,
+            "kyushu": 0.2712,
+            "shikoku": 0.2041,
+            "tohoku": 0.2811,
+            "tokyo": 0.218
+          },
+          "ols_slope_yenkwh_per_pvpeak": 0.0227,
+          "ols_slope_p_classical": 0.7957,
+          "ols_slope_boot_ci95": [
+            -0.0622,
+            0.1076
+          ],
+          "spearman_rho": 0.333,
+          "spearman_p_classical": 0.381,
+          "spearman_rho_boot_ci95": [
+            -0.15,
+            0.617
+          ]
+        }
+      },
+      "pair_tests": {
+        "era5_vs_prev2": {
+          "sign_convention": "Delta = stat(era5) - stat(prev2); positive = proxy more concentrated than prev2",
+          "delta_slope": {
+            "point": -0.0006,
+            "boot_lo95": -0.0816,
+            "boot_hi95": 0.0856,
+            "boot_p_two_sided": 0.9768
+          },
+          "delta_rho": {
+            "point": -0.1667,
+            "boot_lo95": -0.5833,
+            "boot_hi95": 0.5167,
+            "boot_p_two_sided": 0.9088
+          },
+          "perm_within_area_day": {
+            "n_perm": 10000,
+            "p_two_sided_delta_slope": 0.9901,
+            "p_two_sided_delta_rho": 0.5652
+          },
+          "perm_area_level_exact": {
+            "n_patterns": 512,
+            "p_two_sided_delta_slope": 0.9883,
+            "p_two_sided_delta_rho": 0.582
+          }
+        },
+        "era5_vs_prev1": {
+          "sign_convention": "Delta = stat(era5) - stat(prev1); positive = proxy more concentrated than prev1",
+          "delta_slope": {
+            "point": 0.0054,
+            "boot_lo95": -0.0739,
+            "boot_hi95": 0.086,
+            "boot_p_two_sided": 0.8902
+          },
+          "delta_rho": {
+            "point": -0.1167,
+            "boot_lo95": -0.5333,
+            "boot_hi95": 0.5167,
+            "boot_p_two_sided": 1.0
+          },
+          "perm_within_area_day": {
+            "n_perm": 10000,
+            "p_two_sided_delta_slope": 0.9147,
+            "p_two_sided_delta_rho": 0.7614
+          },
+          "perm_area_level_exact": {
+            "n_patterns": 512,
+            "p_two_sided_delta_slope": 0.9023,
+            "p_two_sided_delta_rho": 0.75
+          }
+        }
+      },
+      "definition": "test_day in [2024-09-15, 2025-11-06]: 2024-09-15 = first test day reachable under the committed phase35/41 protocol; 2025-11-06 = last committed-record test day (phase40/41 extension). Closest reconstruction of the OLD committed window the phase51 parquet allows; protocol itself still phase51's (initial train end 2024-07-18, STEP=1 d, 9-area all-hours panel), NOT the committed 8-area phase35 sample on which rho=+0.833 was measured"
+    }
+  },
+  "metadata": {
+    "script": "s_20260726_phase55_tier_slope_tests.py",
+    "git_sha": "d2943d05aaa187da62641c10e04fc66d4e751e6b",
+    "generated_utc": "2026-07-27T01:12:01+00:00",
+    "runtime_s": 1.9
+  }
+}

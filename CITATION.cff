@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite the accompanying paper."
+title: "Dissemination-aware weather forecast vintages for day-ahead electricity price forecasting in Japan"
+type: software
+authors:
+  - family-names: "Okauchi"
+    given-names: "Ryota"
+    orcid: "https://orcid.org/0009-0001-5391-7133"
+    affiliation: "The University of Tokyo"
+    website: "https://github.com/R-Okauchi"
+  - family-names: "Chun"
+    given-names: "Pang-jo"
+    affiliation: "The University of Tokyo"
+abstract: >-
+  Reproduction companion for a study of how the DISSEMINATION time of a weather
+  forecast -- not its initialisation time -- determines what that forecast is
+  worth in a day-ahead electricity market. Japan's meso-scale model reaches
+  users about 2 h 16 min after initialisation (the median, measured here from
+  881 days of
+  archive timestamps, so the previous-day 00 UTC run arrives after the 10:00 JST
+  JEPX gate that an initialisation-time reading would admit. Rebuilding the
+  evaluation as a dissemination-correct ladder of run-pinned tiers, the
+  repository carries one script per analysis phase, a frozen provenance JSON per
+  phase, and a drift guard that re-derives every headline quantity in the
+  manuscript from that provenance without needing raw data.
+keywords:
+  - electricity price forecasting
+  - forecast vintage
+  - gate closure
+  - dissemination time
+  - value of information
+  - imbalance settlement
+  - solar curtailment
+  - price floor
+  - JEPX
+  - equivalence testing
+  - pre-registration
+license: MIT
+repository-code: "https://github.com/UT-Team-Chun/forecast-vintage-epf"

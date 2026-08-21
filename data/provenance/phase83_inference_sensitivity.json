@@ -1,0 +1,222 @@
+{
+ "phase": 83,
+ "title": "Inference sensitivity: blocks, clusters, margins",
+ "precommit_doc": "docs/research/2026-08-11_phase83_inference_sensitivity_precommit.md",
+ "differential": "daily pooled MAE(headline_cw) - MAE(post_cw); positive means the post-gate run is better",
+ "point": 0.00257,
+ "n_days": 732,
+ "headline_improvement": 0.25294,
+ "schemes": {
+  "circular_b7": {
+   "ci95": [
+    -0.00475,
+    0.00986
+   ],
+   "margins": {
+    "abs_0.005": {
+     "delta_margin": 0.005,
+     "p_tost": 0.2475,
+     "equivalent": false
+    },
+    "abs_0.01": {
+     "delta_margin": 0.01,
+     "p_tost": 0.0234,
+     "equivalent": true
+    },
+    "abs_0.02": {
+     "delta_margin": 0.02,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "abs_0.05": {
+     "delta_margin": 0.05,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_10pct": {
+     "delta_margin": 0.02529,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_20pct": {
+     "delta_margin": 0.05059,
+     "p_tost": 0.0001,
+     "equivalent": true
+    }
+   }
+  },
+  "circular_b14": {
+   "ci95": [
+    -0.00431,
+    0.00953
+   ],
+   "margins": {
+    "abs_0.005": {
+     "delta_margin": 0.005,
+     "p_tost": 0.2417,
+     "equivalent": false
+    },
+    "abs_0.01": {
+     "delta_margin": 0.01,
+     "p_tost": 0.0177,
+     "equivalent": true
+    },
+    "abs_0.02": {
+     "delta_margin": 0.02,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "abs_0.05": {
+     "delta_margin": 0.05,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_10pct": {
+     "delta_margin": 0.02529,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_20pct": {
+     "delta_margin": 0.05059,
+     "p_tost": 0.0001,
+     "equivalent": true
+    }
+   }
+  },
+  "circular_b28": {
+   "ci95": [
+    -0.00351,
+    0.00864
+   ],
+   "margins": {
+    "abs_0.005": {
+     "delta_margin": 0.005,
+     "p_tost": 0.2142,
+     "equivalent": false
+    },
+    "abs_0.01": {
+     "delta_margin": 0.01,
+     "p_tost": 0.0085,
+     "equivalent": true
+    },
+    "abs_0.02": {
+     "delta_margin": 0.02,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "abs_0.05": {
+     "delta_margin": 0.05,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_10pct": {
+     "delta_margin": 0.02529,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_20pct": {
+     "delta_margin": 0.05059,
+     "p_tost": 0.0001,
+     "equivalent": true
+    }
+   }
+  },
+  "stationary_pw": {
+   "ci95": [
+    -0.00487,
+    0.01013
+   ],
+   "margins": {
+    "abs_0.005": {
+     "delta_margin": 0.005,
+     "p_tost": 0.2668,
+     "equivalent": false
+    },
+    "abs_0.01": {
+     "delta_margin": 0.01,
+     "p_tost": 0.0267,
+     "equivalent": true
+    },
+    "abs_0.02": {
+     "delta_margin": 0.02,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "abs_0.05": {
+     "delta_margin": 0.05,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_10pct": {
+     "delta_margin": 0.02529,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_20pct": {
+     "delta_margin": 0.05059,
+     "p_tost": 0.0001,
+     "equivalent": true
+    }
+   }
+  },
+  "month_cluster": {
+   "ci95": [
+    -0.00371,
+    0.00838
+   ],
+   "margins": {
+    "abs_0.005": {
+     "delta_margin": 0.005,
+     "p_tost": 0.2145,
+     "equivalent": false
+    },
+    "abs_0.01": {
+     "delta_margin": 0.01,
+     "p_tost": 0.0054,
+     "equivalent": true
+    },
+    "abs_0.02": {
+     "delta_margin": 0.02,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "abs_0.05": {
+     "delta_margin": 0.05,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_10pct": {
+     "delta_margin": 0.02529,
+     "p_tost": 0.0001,
+     "equivalent": true
+    },
+    "rel_20pct": {
+     "delta_margin": 0.05059,
+     "p_tost": 0.0001,
+     "equivalent": true
+    }
+   }
+  }
+ },
+ "politis_white_block_days": 2.01,
+ "permutation_signflip": {
+  "p": 0.4955
+ },
+ "wording_rule": {
+  "unconditional_equivalence_permitted": true,
+  "rule": "tick TOST must pass under circular blocks 7/14/28 AND the month cluster; otherwise the abstract drops the equivalence word and shows the CI",
+  "verdict_inputs": {
+   "circular_b7": true,
+   "circular_b14": true,
+   "circular_b28": true,
+   "month_cluster": true
+  }
+ },
+ "metadata": {
+  "script": "s_20260811_phase83_inference_sensitivity.py",
+  "git_sha": "d2e91563b4199e94bfe71551ebf040c70914703e",
+  "generated_utc": "2026-08-11T11:42:20.612224+00:00",
+  "seed": 2026,
+  "n_boot": 10000
+ }
+}

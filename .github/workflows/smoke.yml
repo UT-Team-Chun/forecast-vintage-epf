@@ -1,0 +1,51 @@
+name: smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Smoke CI verifies the install surface AND runs the drift guard, which
+# re-derives every headline number in the paper from data/provenance and
+# compares it to docs/macros.tex. That needs no raw data, so CI can protect
+# the paper's numbers on every push. It does NOT run any analysis script
+# under `scripts/` — those need data the user acquires (see data/README.md).
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "latest"
+
+      - name: Set up Python 3.12
+        run: uv python install 3.12
+
+      - name: Install poppler (pdftotext)
+        # The drift guard's retired-term audit reads the shipped figure
+        # PDFs with pdftotext; without poppler it fails loudly by design.
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends poppler-utils
+
+      - name: Sync dependencies
+        # dev for pytest/ruff; geo because the smoke test imports EVERY
+        # module under alg/, including the GRIB2 loader (the eccodeslib
+        # wheel bundles the ecCodes binary, so no system package needed).
+        run: uv sync --extra dev --extra geo
+
+      - name: Lint
+        run: |
+          uv run ruff format --check alg scripts tests
+          uv run ruff check alg scripts tests
+
+      - name: Smoke tests (imports, provenance integrity, drift guard)
+        run: uv run pytest tests/test_smoke.py -v
+
+      - name: Drift guard, explicitly
+        # Also run it directly so the job log shows the check count.
+        run: uv run python scripts/verify_macros.py

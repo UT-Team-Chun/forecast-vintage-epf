@@ -1,0 +1,2837 @@
+{
+ "phase": 62,
+ "title": "Single-point weather proxy validation against OCCTO actuals",
+ "purpose": "Quantify the single-point limitation rather than merely concede it. Capacity-weighted spatial aggregation is out of scope for this revision; this phase measures what the one-city proxy does and does not capture, and audits the capacity table it is scaled by.",
+ "inputs": {
+  "occto_parquet": "phase25.3_occto_generation.parquet",
+  "occto_sha256": "c444c529c1b6775ca1bc12faddab5c078dc6ba499bece981a1f1e46055041fb7",
+  "ladder_parquet": "phase51_vintage_ladder_per_slot.parquet"
+ },
+ "panel": {
+  "n_rows": 279590,
+  "n_areas": 8,
+  "first": "2024-03-31 23:30:00+09:00",
+  "last": "2026-03-31 23:00:00+09:00"
+ },
+ "proxy_skill": {
+  "areas": {
+   "chugoku": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.6398,
+      "spearman_r": 0.6308,
+      "mae_mw": 975.0,
+      "nrmse_pct_of_capacity": 21.36,
+      "bias_mw": -203.5,
+      "implied_scale": 5.709
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.3527,
+       "spearman_r": 0.3147,
+       "mae_mw": 972.5,
+       "nrmse_pct_of_capacity": 20.62,
+       "bias_mw": -229.4,
+       "implied_scale": 5.2926
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.6643,
+       "spearman_r": 0.6436,
+       "mae_mw": 1016.9,
+       "nrmse_pct_of_capacity": 22.39,
+       "bias_mw": -168.7,
+       "implied_scale": 5.3189
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.6936,
+       "spearman_r": 0.6685,
+       "mae_mw": 908.7,
+       "nrmse_pct_of_capacity": 20.25,
+       "bias_mw": -229.6,
+       "implied_scale": 6.1303
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.6037,
+       "spearman_r": 0.5835,
+       "mae_mw": 940.5,
+       "nrmse_pct_of_capacity": 20.61,
+       "bias_mw": -159.8,
+       "implied_scale": 6.186
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "insufficient": true
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8526,
+       "spearman_r": 0.889,
+       "mae_mw": 824.7,
+       "nrmse_pct_of_capacity": 18.66,
+       "bias_mw": -501.9,
+       "implied_scale": 8.8865
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.7304,
+       "spearman_r": 0.7242,
+       "mae_mw": 785.0,
+       "nrmse_pct_of_capacity": 17.8,
+       "bias_mw": -112.3,
+       "implied_scale": 5.4832
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8543,
+       "spearman_r": 0.8457,
+       "mae_mw": 177.4,
+       "nrmse_pct_of_capacity": 6.12,
+       "bias_mw": 48.3,
+       "implied_scale": 2.8232
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 580,
+       "pearson_r": 0.4893,
+       "spearman_r": 0.5028,
+       "mae_mw": 905.5,
+       "nrmse_pct_of_capacity": 19.96,
+       "bias_mw": -172.0,
+       "implied_scale": 6.1638
+      },
+      "non_floor": {
+       "n": 7932,
+       "pearson_r": 0.6008,
+       "spearman_r": 0.5872,
+       "mae_mw": 983.7,
+       "nrmse_pct_of_capacity": 21.34,
+       "bias_mw": -203.5,
+       "implied_scale": 5.8032
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.055,
+      "spearman_r": 0.2379,
+      "mae_mw": 46.3,
+      "nrmse_pct_of_capacity": 15.5,
+      "bias_mw": -46.2,
+      "implied_scale": 1978.0684
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.1416,
+       "spearman_r": 0.3103,
+       "mae_mw": 64.8,
+       "nrmse_pct_of_capacity": 19.72,
+       "bias_mw": -64.3,
+       "implied_scale": 18951.5814
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.0942,
+       "spearman_r": 0.1896,
+       "mae_mw": 45.1,
+       "nrmse_pct_of_capacity": 15.06,
+       "bias_mw": -44.9,
+       "implied_scale": 11945.9896
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.053,
+       "spearman_r": 0.0741,
+       "mae_mw": 34.2,
+       "nrmse_pct_of_capacity": 12.18,
+       "bias_mw": -34.1,
+       "implied_scale": 909.4617
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.1105,
+       "spearman_r": 0.2668,
+       "mae_mw": 40.4,
+       "nrmse_pct_of_capacity": 13.69,
+       "bias_mw": -40.2,
+       "implied_scale": 3157.8269
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.0321,
+       "spearman_r": 0.0936,
+       "mae_mw": 48.7,
+       "nrmse_pct_of_capacity": 16.03,
+       "bias_mw": -48.6,
+       "implied_scale": 852.9692
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.0529,
+       "spearman_r": 0.1655,
+       "mae_mw": 44.9,
+       "nrmse_pct_of_capacity": 15.31,
+       "bias_mw": -44.7,
+       "implied_scale": 17421.8556
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.2046,
+       "spearman_r": 0.4116,
+       "mae_mw": 45.8,
+       "nrmse_pct_of_capacity": 15.31,
+       "bias_mw": -44.8,
+       "implied_scale": 14196.9211
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.1148,
+       "spearman_r": 0.2504,
+       "mae_mw": 45.0,
+       "nrmse_pct_of_capacity": 15.06,
+       "bias_mw": -44.8,
+       "implied_scale": 6773.1442
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 627,
+       "pearson_r": 0.3094,
+       "spearman_r": 0.2603,
+       "mae_mw": 35.6,
+       "nrmse_pct_of_capacity": 12.48,
+       "bias_mw": -34.2,
+       "implied_scale": 274843.3642
+      },
+      "non_floor": {
+       "n": 28536,
+       "pearson_r": 0.0594,
+       "spearman_r": 0.2626,
+       "mae_mw": 46.9,
+       "nrmse_pct_of_capacity": 15.64,
+       "bias_mw": -46.8,
+       "implied_scale": 1950.5242
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.5335,
+      "spearman_r": 0.5678,
+      "mae_mw": 3645.7,
+      "nrmse_pct_of_capacity": 39.54,
+      "bias_mw": -2683.8,
+      "implied_scale": 685.4296
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.3844,
+       "spearman_r": 0.3464,
+       "mae_mw": 1714.3,
+       "nrmse_pct_of_capacity": 20.6,
+       "bias_mw": -593.7,
+       "implied_scale": 560.4082
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.5261,
+       "spearman_r": 0.4243,
+       "mae_mw": 3431.2,
+       "nrmse_pct_of_capacity": 37.93,
+       "bias_mw": -2768.7,
+       "implied_scale": 685.7951
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.7758,
+       "spearman_r": 0.7562,
+       "mae_mw": 3306.6,
+       "nrmse_pct_of_capacity": 36.8,
+       "bias_mw": -2457.0,
+       "implied_scale": 1313.4561
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.3843,
+       "spearman_r": 0.3763,
+       "mae_mw": 3962.0,
+       "nrmse_pct_of_capacity": 42.4,
+       "bias_mw": -3110.7,
+       "implied_scale": 1069.0826
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.7694,
+       "spearman_r": 0.6965,
+       "mae_mw": 3077.4,
+       "nrmse_pct_of_capacity": 34.5,
+       "bias_mw": -2415.8,
+       "implied_scale": 550.4488
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.54,
+       "spearman_r": 0.5389,
+       "mae_mw": 3716.7,
+       "nrmse_pct_of_capacity": 41.42,
+       "bias_mw": -2831.4,
+       "implied_scale": 659.8555
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.5671,
+       "spearman_r": 0.605,
+       "mae_mw": 3557.9,
+       "nrmse_pct_of_capacity": 39.25,
+       "bias_mw": -2529.2,
+       "implied_scale": 891.0549
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.5903,
+       "spearman_r": 0.6315,
+       "mae_mw": 3657.6,
+       "nrmse_pct_of_capacity": 39.37,
+       "bias_mw": -2657.0,
+       "implied_scale": 758.3942
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 627,
+       "pearson_r": 0.1674,
+       "spearman_r": 0.1933,
+       "mae_mw": 3928.1,
+       "nrmse_pct_of_capacity": 41.15,
+       "bias_mw": -3335.1,
+       "implied_scale": 844.3672
+      },
+      "non_floor": {
+       "n": 28536,
+       "pearson_r": 0.5103,
+       "spearman_r": 0.5493,
+       "mae_mw": 3435.2,
+       "nrmse_pct_of_capacity": 37.89,
+       "bias_mw": -2406.7,
+       "implied_scale": 665.8182
+      }
+     }
+    }
+   },
+   "hokkaido": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.5937,
+      "spearman_r": 0.5804,
+      "mae_mw": 370.3,
+      "nrmse_pct_of_capacity": 18.07,
+      "bias_mw": -69.5,
+      "implied_scale": 2.0086
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.4067,
+       "spearman_r": 0.3781,
+       "mae_mw": 348.0,
+       "nrmse_pct_of_capacity": 16.6,
+       "bias_mw": -50.1,
+       "implied_scale": 2.1844
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.5275,
+       "spearman_r": 0.5238,
+       "mae_mw": 391.5,
+       "nrmse_pct_of_capacity": 19.35,
+       "bias_mw": -67.4,
+       "implied_scale": 1.9436
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.5872,
+       "spearman_r": 0.5913,
+       "mae_mw": 349.2,
+       "nrmse_pct_of_capacity": 16.97,
+       "bias_mw": -71.7,
+       "implied_scale": 1.9
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.5868,
+       "spearman_r": 0.5775,
+       "mae_mw": 380.8,
+       "nrmse_pct_of_capacity": 18.43,
+       "bias_mw": -45.5,
+       "implied_scale": 2.2349
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.7364,
+       "spearman_r": 0.5295,
+       "mae_mw": 22.6,
+       "nrmse_pct_of_capacity": 2.7,
+       "bias_mw": -19.3,
+       "implied_scale": 17.9313
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.7984,
+       "spearman_r": 0.8261,
+       "mae_mw": 366.3,
+       "nrmse_pct_of_capacity": 17.98,
+       "bias_mw": -224.0,
+       "implied_scale": 3.1179
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.674,
+       "spearman_r": 0.667,
+       "mae_mw": 293.9,
+       "nrmse_pct_of_capacity": 14.73,
+       "bias_mw": -47.1,
+       "implied_scale": 1.8689
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8196,
+       "spearman_r": 0.7912,
+       "mae_mw": 36.8,
+       "nrmse_pct_of_capacity": 3.19,
+       "bias_mw": 10.8,
+       "implied_scale": 0.7297
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 530,
+       "pearson_r": 0.4876,
+       "spearman_r": 0.4536,
+       "mae_mw": 382.1,
+       "nrmse_pct_of_capacity": 19.04,
+       "bias_mw": -104.1,
+       "implied_scale": 2.318
+      },
+      "non_floor": {
+       "n": 7982,
+       "pearson_r": 0.5792,
+       "spearman_r": 0.5526,
+       "mae_mw": 364.6,
+       "nrmse_pct_of_capacity": 17.64,
+       "bias_mw": -60.3,
+       "implied_scale": 2.0605
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.1472,
+      "spearman_r": 0.2639,
+      "mae_mw": 341.6,
+      "nrmse_pct_of_capacity": 58.62,
+      "bias_mw": -338.9,
+      "implied_scale": 43002.0097
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.1055,
+       "spearman_r": 0.2476,
+       "mae_mw": 445.4,
+       "nrmse_pct_of_capacity": 72.59,
+       "bias_mw": -443.0,
+       "implied_scale": 29334.2888
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.218,
+       "spearman_r": 0.2999,
+       "mae_mw": 336.1,
+       "nrmse_pct_of_capacity": 56.05,
+       "bias_mw": -328.9,
+       "implied_scale": 54370.2656
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.0838,
+       "spearman_r": 0.1687,
+       "mae_mw": 253.8,
+       "nrmse_pct_of_capacity": 44.48,
+       "bias_mw": -252.8,
+       "implied_scale": 54644.2674
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.1629,
+       "spearman_r": 0.3495,
+       "mae_mw": 331.7,
+       "nrmse_pct_of_capacity": 57.9,
+       "bias_mw": -328.7,
+       "implied_scale": 57071.145
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.147,
+       "spearman_r": 0.2781,
+       "mae_mw": 352.7,
+       "nrmse_pct_of_capacity": 60.69,
+       "bias_mw": -350.6,
+       "implied_scale": 51856.6483
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.1522,
+       "spearman_r": 0.2979,
+       "mae_mw": 329.7,
+       "nrmse_pct_of_capacity": 56.38,
+       "bias_mw": -327.5,
+       "implied_scale": 24512.4317
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.2254,
+       "spearman_r": 0.3304,
+       "mae_mw": 332.2,
+       "nrmse_pct_of_capacity": 56.63,
+       "bias_mw": -322.6,
+       "implied_scale": 69129.9929
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.1401,
+       "spearman_r": 0.231,
+       "mae_mw": 341.9,
+       "nrmse_pct_of_capacity": 58.71,
+       "bias_mw": -338.5,
+       "implied_scale": 68609.2629
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 612,
+       "pearson_r": 0.1815,
+       "spearman_r": 0.3472,
+       "mae_mw": 396.2,
+       "nrmse_pct_of_capacity": 62.94,
+       "bias_mw": -386.1,
+       "implied_scale": 33534.6246
+      },
+      "non_floor": {
+       "n": 28551,
+       "pearson_r": 0.1495,
+       "spearman_r": 0.2823,
+       "mae_mw": 349.1,
+       "nrmse_pct_of_capacity": 60.08,
+       "bias_mw": -346.5,
+       "implied_scale": 41963.8065
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.6921,
+      "spearman_r": 0.6501,
+      "mae_mw": 1603.2,
+      "nrmse_pct_of_capacity": 39.12,
+      "bias_mw": -1248.6,
+      "implied_scale": 220.1679
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.4095,
+       "spearman_r": 0.3722,
+       "mae_mw": 518.7,
+       "nrmse_pct_of_capacity": 13.18,
+       "bias_mw": -101.0,
+       "implied_scale": 195.3811
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.6433,
+       "spearman_r": 0.6419,
+       "mae_mw": 1073.8,
+       "nrmse_pct_of_capacity": 27.25,
+       "bias_mw": -648.1,
+       "implied_scale": 235.0784
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.2858,
+       "spearman_r": 0.2201,
+       "mae_mw": 2354.7,
+       "nrmse_pct_of_capacity": 51.16,
+       "bias_mw": -2077.9,
+       "implied_scale": 751.2886
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.3994,
+       "spearman_r": 0.3418,
+       "mae_mw": 1686.3,
+       "nrmse_pct_of_capacity": 39.94,
+       "bias_mw": -1299.7,
+       "implied_scale": 285.8432
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.883,
+       "spearman_r": 0.8201,
+       "mae_mw": 1251.7,
+       "nrmse_pct_of_capacity": 31.57,
+       "bias_mw": -971.6,
+       "implied_scale": 201.1513
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.6808,
+       "spearman_r": 0.6345,
+       "mae_mw": 1696.4,
+       "nrmse_pct_of_capacity": 41.47,
+       "bias_mw": -1335.3,
+       "implied_scale": 222.1092
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.6136,
+       "spearman_r": 0.5791,
+       "mae_mw": 1827.7,
+       "nrmse_pct_of_capacity": 42.64,
+       "bias_mw": -1388.8,
+       "implied_scale": 256.4203
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.6932,
+       "spearman_r": 0.6463,
+       "mae_mw": 1647.2,
+       "nrmse_pct_of_capacity": 40.05,
+       "bias_mw": -1297.3,
+       "implied_scale": 222.2604
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 612,
+       "pearson_r": 0.2681,
+       "spearman_r": 0.1942,
+       "mae_mw": 1735.8,
+       "nrmse_pct_of_capacity": 40.56,
+       "bias_mw": -1375.0,
+       "implied_scale": 312.6014
+      },
+      "non_floor": {
+       "n": 28551,
+       "pearson_r": 0.7066,
+       "spearman_r": 0.7043,
+       "mae_mw": 1507.2,
+       "nrmse_pct_of_capacity": 37.75,
+       "bias_mw": -1144.0,
+       "implied_scale": 215.3224
+      }
+     }
+    }
+   },
+   "hokuriku": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.7126,
+      "spearman_r": 0.7163,
+      "mae_mw": 194.1,
+      "nrmse_pct_of_capacity": 12.98,
+      "bias_mw": -29.0,
+      "implied_scale": 1.1844
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.6244,
+       "spearman_r": 0.5751,
+       "mae_mw": 132.1,
+       "nrmse_pct_of_capacity": 9.14,
+       "bias_mw": -15.5,
+       "implied_scale": 1.0344
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.6729,
+       "spearman_r": 0.6691,
+       "mae_mw": 210.3,
+       "nrmse_pct_of_capacity": 13.82,
+       "bias_mw": -36.9,
+       "implied_scale": 1.1053
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.5714,
+       "spearman_r": 0.5367,
+       "mae_mw": 221.7,
+       "nrmse_pct_of_capacity": 14.66,
+       "bias_mw": -45.3,
+       "implied_scale": 1.2733
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.6143,
+       "spearman_r": 0.6108,
+       "mae_mw": 197.2,
+       "nrmse_pct_of_capacity": 12.73,
+       "bias_mw": -22.2,
+       "implied_scale": 1.2591
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.6359,
+       "spearman_r": 0.3661,
+       "mae_mw": 4.6,
+       "nrmse_pct_of_capacity": 0.98,
+       "bias_mw": -3.8,
+       "implied_scale": 43.8062
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8436,
+       "spearman_r": 0.8587,
+       "mae_mw": 153.4,
+       "nrmse_pct_of_capacity": 10.73,
+       "bias_mw": -76.9,
+       "implied_scale": 1.7415
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.7539,
+       "spearman_r": 0.7548,
+       "mae_mw": 174.5,
+       "nrmse_pct_of_capacity": 11.96,
+       "bias_mw": -19.9,
+       "implied_scale": 1.1361
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8477,
+       "spearman_r": 0.8415,
+       "mae_mw": 28.9,
+       "nrmse_pct_of_capacity": 3.25,
+       "bias_mw": 7.2,
+       "implied_scale": 0.5809
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 446,
+       "pearson_r": 0.7181,
+       "spearman_r": 0.6617,
+       "mae_mw": 183.9,
+       "nrmse_pct_of_capacity": 12.27,
+       "bias_mw": -27.4,
+       "implied_scale": 1.2191
+      },
+      "non_floor": {
+       "n": 8066,
+       "pearson_r": 0.7014,
+       "spearman_r": 0.7005,
+       "mae_mw": 190.7,
+       "nrmse_pct_of_capacity": 12.76,
+       "bias_mw": -24.7,
+       "implied_scale": 1.2087
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.1637,
+      "spearman_r": 0.3429,
+      "mae_mw": 18.8,
+      "nrmse_pct_of_capacity": 8.69,
+      "bias_mw": -18.6,
+      "implied_scale": 2896.1402
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.164,
+       "spearman_r": 0.3803,
+       "mae_mw": 30.7,
+       "nrmse_pct_of_capacity": 12.46,
+       "bias_mw": -30.2,
+       "implied_scale": 3433.1077
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.2229,
+       "spearman_r": 0.3655,
+       "mae_mw": 17.7,
+       "nrmse_pct_of_capacity": 7.99,
+       "bias_mw": -17.4,
+       "implied_scale": 4765.9099
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.1027,
+       "spearman_r": 0.242,
+       "mae_mw": 9.9,
+       "nrmse_pct_of_capacity": 4.87,
+       "bias_mw": -9.8,
+       "implied_scale": 1214.2544
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.0746,
+       "spearman_r": 0.2927,
+       "mae_mw": 17.2,
+       "nrmse_pct_of_capacity": 7.69,
+       "bias_mw": -17.2,
+       "implied_scale": 1399.5933
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.158,
+       "spearman_r": 0.2995,
+       "mae_mw": 19.4,
+       "nrmse_pct_of_capacity": 8.71,
+       "bias_mw": -19.2,
+       "implied_scale": 4192.1578
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.1091,
+       "spearman_r": 0.345,
+       "mae_mw": 17.9,
+       "nrmse_pct_of_capacity": 8.52,
+       "bias_mw": -17.7,
+       "implied_scale": 1938.161
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.2478,
+       "spearman_r": 0.429,
+       "mae_mw": 18.6,
+       "nrmse_pct_of_capacity": 8.7,
+       "bias_mw": -18.2,
+       "implied_scale": 4832.4641
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.1703,
+       "spearman_r": 0.3344,
+       "mae_mw": 19.0,
+       "nrmse_pct_of_capacity": 8.72,
+       "bias_mw": -18.8,
+       "implied_scale": 2528.713
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 489,
+       "pearson_r": 0.5417,
+       "spearman_r": 0.5848,
+       "mae_mw": 16.1,
+       "nrmse_pct_of_capacity": 7.26,
+       "bias_mw": -14.9,
+       "implied_scale": 11111.4631
+      },
+      "non_floor": {
+       "n": 28674,
+       "pearson_r": 0.1629,
+       "spearman_r": 0.3563,
+       "mae_mw": 20.5,
+       "nrmse_pct_of_capacity": 9.28,
+       "bias_mw": -20.3,
+       "implied_scale": 3062.9679
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.5682,
+      "spearman_r": 0.5693,
+      "mae_mw": 1687.7,
+      "nrmse_pct_of_capacity": 39.73,
+      "bias_mw": -1250.8,
+      "implied_scale": 316.7308
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.5054,
+       "spearman_r": 0.4933,
+       "mae_mw": 717.0,
+       "nrmse_pct_of_capacity": 18.53,
+       "bias_mw": -210.9,
+       "implied_scale": 270.8366
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.5397,
+       "spearman_r": 0.4746,
+       "mae_mw": 1447.0,
+       "nrmse_pct_of_capacity": 35.2,
+       "bias_mw": -1079.2,
+       "implied_scale": 305.1265
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.7183,
+       "spearman_r": 0.6677,
+       "mae_mw": 1635.2,
+       "nrmse_pct_of_capacity": 38.78,
+       "bias_mw": -1248.6,
+       "implied_scale": 701.9581
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.3338,
+       "spearman_r": 0.3399,
+       "mae_mw": 1938.3,
+       "nrmse_pct_of_capacity": 44.0,
+       "bias_mw": -1558.2,
+       "implied_scale": 475.4798
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.7986,
+       "spearman_r": 0.7261,
+       "mae_mw": 1448.9,
+       "nrmse_pct_of_capacity": 35.02,
+       "bias_mw": -1151.1,
+       "implied_scale": 268.606
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.5521,
+       "spearman_r": 0.5397,
+       "mae_mw": 1763.4,
+       "nrmse_pct_of_capacity": 41.74,
+       "bias_mw": -1313.5,
+       "implied_scale": 324.655
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.5484,
+       "spearman_r": 0.5582,
+       "mae_mw": 1777.3,
+       "nrmse_pct_of_capacity": 41.39,
+       "bias_mw": -1248.1,
+       "implied_scale": 391.1212
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.5817,
+       "spearman_r": 0.5715,
+       "mae_mw": 1679.0,
+       "nrmse_pct_of_capacity": 39.41,
+       "bias_mw": -1238.7,
+       "implied_scale": 323.3646
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 489,
+       "pearson_r": 0.2121,
+       "spearman_r": 0.1339,
+       "mae_mw": 1710.5,
+       "nrmse_pct_of_capacity": 39.11,
+       "bias_mw": -1392.5,
+       "implied_scale": 357.2857
+      },
+      "non_floor": {
+       "n": 28674,
+       "pearson_r": 0.5709,
+       "spearman_r": 0.5851,
+       "mae_mw": 1593.8,
+       "nrmse_pct_of_capacity": 38.24,
+       "bias_mw": -1140.0,
+       "implied_scale": 308.063
+      }
+     }
+    }
+   },
+   "kansai": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.6315,
+      "spearman_r": 0.6177,
+      "mae_mw": 1012.7,
+      "nrmse_pct_of_capacity": 13.5,
+      "bias_mw": -189.1,
+      "implied_scale": 5.9078
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.4052,
+       "spearman_r": 0.3599,
+       "mae_mw": 1007.2,
+       "nrmse_pct_of_capacity": 12.93,
+       "bias_mw": -173.6,
+       "implied_scale": 5.7742
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.6652,
+       "spearman_r": 0.664,
+       "mae_mw": 1075.1,
+       "nrmse_pct_of_capacity": 14.44,
+       "bias_mw": -190.2,
+       "implied_scale": 5.6053
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.6293,
+       "spearman_r": 0.5793,
+       "mae_mw": 981.1,
+       "nrmse_pct_of_capacity": 13.22,
+       "bias_mw": -229.1,
+       "implied_scale": 6.1792
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.574,
+       "spearman_r": 0.5636,
+       "mae_mw": 972.7,
+       "nrmse_pct_of_capacity": 12.97,
+       "bias_mw": -132.1,
+       "implied_scale": 6.1822
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.4537,
+       "spearman_r": 0.2592,
+       "mae_mw": 19.2,
+       "nrmse_pct_of_capacity": 0.89,
+       "bias_mw": -17.6,
+       "implied_scale": 465.2168
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8623,
+       "spearman_r": 0.8985,
+       "mae_mw": 836.0,
+       "nrmse_pct_of_capacity": 11.41,
+       "bias_mw": -492.2,
+       "implied_scale": 9.1142
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.7188,
+       "spearman_r": 0.714,
+       "mae_mw": 813.5,
+       "nrmse_pct_of_capacity": 11.27,
+       "bias_mw": -112.0,
+       "implied_scale": 5.6404
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8439,
+       "spearman_r": 0.8497,
+       "mae_mw": 156.0,
+       "nrmse_pct_of_capacity": 3.43,
+       "bias_mw": 43.1,
+       "implied_scale": 2.6786
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 490,
+       "pearson_r": 0.5588,
+       "spearman_r": 0.5819,
+       "mae_mw": 980.0,
+       "nrmse_pct_of_capacity": 12.87,
+       "bias_mw": -132.6,
+       "implied_scale": 6.4062
+      },
+      "non_floor": {
+       "n": 8022,
+       "pearson_r": 0.6021,
+       "spearman_r": 0.5829,
+       "mae_mw": 1003.4,
+       "nrmse_pct_of_capacity": 13.27,
+       "bias_mw": -178.5,
+       "implied_scale": 6.0051
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.034,
+      "spearman_r": 0.279,
+      "mae_mw": 39.1,
+      "nrmse_pct_of_capacity": 13.47,
+      "bias_mw": -39.0,
+      "implied_scale": 1382.5566
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.1898,
+       "spearman_r": 0.4147,
+       "mae_mw": 50.2,
+       "nrmse_pct_of_capacity": 16.06,
+       "bias_mw": -49.3,
+       "implied_scale": 28077.9764
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.0621,
+       "spearman_r": 0.1713,
+       "mae_mw": 45.1,
+       "nrmse_pct_of_capacity": 14.9,
+       "bias_mw": -45.0,
+       "implied_scale": 8489.9208
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.0356,
+       "spearman_r": 0.1721,
+       "mae_mw": 26.5,
+       "nrmse_pct_of_capacity": 9.72,
+       "bias_mw": -26.4,
+       "implied_scale": 522.6271
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.0411,
+       "spearman_r": 0.2105,
+       "mae_mw": 32.9,
+       "nrmse_pct_of_capacity": 11.65,
+       "bias_mw": -32.9,
+       "implied_scale": 6220.3939
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.0075,
+       "spearman_r": 0.2056,
+       "mae_mw": 38.6,
+       "nrmse_pct_of_capacity": 13.41,
+       "bias_mw": -38.5,
+       "implied_scale": 425.7464
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.0866,
+       "spearman_r": 0.2443,
+       "mae_mw": 36.6,
+       "nrmse_pct_of_capacity": 12.86,
+       "bias_mw": -36.4,
+       "implied_scale": 11822.4291
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.1829,
+       "spearman_r": 0.3838,
+       "mae_mw": 40.5,
+       "nrmse_pct_of_capacity": 13.69,
+       "bias_mw": -40.0,
+       "implied_scale": 13858.1218
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.1271,
+       "spearman_r": 0.2847,
+       "mae_mw": 39.3,
+       "nrmse_pct_of_capacity": 13.45,
+       "bias_mw": -39.1,
+       "implied_scale": 15276.8767
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 534,
+       "pearson_r": 0.0678,
+       "spearman_r": 0.3313,
+       "mae_mw": 35.8,
+       "nrmse_pct_of_capacity": 12.04,
+       "bias_mw": -35.3,
+       "implied_scale": 102752.8427
+      },
+      "non_floor": {
+       "n": 28629,
+       "pearson_r": 0.0352,
+       "spearman_r": 0.3014,
+       "mae_mw": 40.0,
+       "nrmse_pct_of_capacity": 13.69,
+       "bias_mw": -39.9,
+       "implied_scale": 1329.0824
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.3653,
+      "spearman_r": 0.4059,
+      "mae_mw": 9155.9,
+      "nrmse_pct_of_capacity": 38.97,
+      "bias_mw": -6524.9,
+      "implied_scale": 1709.1839
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.2033,
+       "spearman_r": 0.172,
+       "mae_mw": 4413.8,
+       "nrmse_pct_of_capacity": 20.4,
+       "bias_mw": -1385.4,
+       "implied_scale": 1370.5968
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.2999,
+       "spearman_r": 0.187,
+       "mae_mw": 8463.7,
+       "nrmse_pct_of_capacity": 36.85,
+       "bias_mw": -6741.3,
+       "implied_scale": 1619.0687
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.7858,
+       "spearman_r": 0.7734,
+       "mae_mw": 7555.4,
+       "nrmse_pct_of_capacity": 34.09,
+       "bias_mw": -5489.7,
+       "implied_scale": 3527.8109
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.2883,
+       "spearman_r": 0.252,
+       "mae_mw": 9780.9,
+       "nrmse_pct_of_capacity": 41.09,
+       "bias_mw": -7527.2,
+       "implied_scale": 2745.5051
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.6273,
+       "spearman_r": 0.5684,
+       "mae_mw": 7032.8,
+       "nrmse_pct_of_capacity": 31.07,
+       "bias_mw": -5496.8,
+       "implied_scale": 1249.942
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.3446,
+       "spearman_r": 0.3724,
+       "mae_mw": 9468.6,
+       "nrmse_pct_of_capacity": 41.41,
+       "bias_mw": -6996.0,
+       "implied_scale": 1629.117
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.543,
+       "spearman_r": 0.5784,
+       "mae_mw": 8913.0,
+       "nrmse_pct_of_capacity": 38.72,
+       "bias_mw": -6142.2,
+       "implied_scale": 2347.7985
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.4997,
+       "spearman_r": 0.5526,
+       "mae_mw": 9131.5,
+       "nrmse_pct_of_capacity": 38.62,
+       "bias_mw": -6507.5,
+       "implied_scale": 1965.5581
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 534,
+       "pearson_r": 0.2243,
+       "spearman_r": 0.2006,
+       "mae_mw": 9798.7,
+       "nrmse_pct_of_capacity": 40.42,
+       "bias_mw": -8469.3,
+       "implied_scale": 2080.3297
+      },
+      "non_floor": {
+       "n": 28629,
+       "pearson_r": 0.3382,
+       "spearman_r": 0.3791,
+       "mae_mw": 8683.1,
+       "nrmse_pct_of_capacity": 37.55,
+       "bias_mw": -5896.6,
+       "implied_scale": 1653.1463
+      }
+     }
+    }
+   },
+   "kyushu": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.696,
+      "spearman_r": 0.6987,
+      "mae_mw": 1557.5,
+      "nrmse_pct_of_capacity": 16.14,
+      "bias_mw": -487.6,
+      "implied_scale": 9.9973
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.6836,
+       "spearman_r": 0.6628,
+       "mae_mw": 1489.8,
+       "nrmse_pct_of_capacity": 15.11,
+       "bias_mw": -520.7,
+       "implied_scale": 12.1963
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.7362,
+       "spearman_r": 0.7262,
+       "mae_mw": 1502.5,
+       "nrmse_pct_of_capacity": 15.69,
+       "bias_mw": -283.2,
+       "implied_scale": 8.8436
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.7084,
+       "spearman_r": 0.687,
+       "mae_mw": 1463.9,
+       "nrmse_pct_of_capacity": 15.62,
+       "bias_mw": -418.7,
+       "implied_scale": 9.9933
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.6365,
+       "spearman_r": 0.6305,
+       "mae_mw": 1457.3,
+       "nrmse_pct_of_capacity": 15.13,
+       "bias_mw": -370.3,
+       "implied_scale": 10.7145
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "insufficient": true
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8707,
+       "spearman_r": 0.9168,
+       "mae_mw": 941.8,
+       "nrmse_pct_of_capacity": 11.15,
+       "bias_mw": -472.4,
+       "implied_scale": 13.2701
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.692,
+       "spearman_r": 0.6923,
+       "mae_mw": 1518.7,
+       "nrmse_pct_of_capacity": 16.03,
+       "bias_mw": -424.0,
+       "implied_scale": 9.8052
+      },
+      "evening": {
+       "n": 12390,
+       "pearson_r": 0.8969,
+       "spearman_r": 0.9115,
+       "mae_mw": 359.8,
+       "nrmse_pct_of_capacity": 5.57,
+       "bias_mw": 61.9,
+       "implied_scale": 6.6448
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 1532,
+       "pearson_r": 0.5424,
+       "spearman_r": 0.5535,
+       "mae_mw": 1401.4,
+       "nrmse_pct_of_capacity": 14.56,
+       "bias_mw": -352.0,
+       "implied_scale": 10.5322
+      },
+      "non_floor": {
+       "n": 6980,
+       "pearson_r": 0.6527,
+       "spearman_r": 0.6501,
+       "mae_mw": 1546.7,
+       "nrmse_pct_of_capacity": 15.95,
+       "bias_mw": -516.6,
+       "implied_scale": 10.4857
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 34310,
+      "pearson_r": 0.4229,
+      "spearman_r": 0.5396,
+      "mae_mw": 92.4,
+      "nrmse_pct_of_capacity": 20.86,
+      "bias_mw": -87.1,
+      "implied_scale": 837.859
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8460,
+       "pearson_r": 0.585,
+       "spearman_r": 0.7076,
+       "mae_mw": 106.3,
+       "nrmse_pct_of_capacity": 23.26,
+       "bias_mw": -90.4,
+       "implied_scale": 1106.44
+      },
+      "MAM": {
+       "n": 8648,
+       "pearson_r": 0.4114,
+       "spearman_r": 0.4629,
+       "mae_mw": 101.0,
+       "nrmse_pct_of_capacity": 21.9,
+       "bias_mw": -96.2,
+       "implied_scale": 1643.1405
+      },
+      "JJA": {
+       "n": 8648,
+       "pearson_r": 0.051,
+       "spearman_r": 0.1776,
+       "mae_mw": 66.4,
+       "nrmse_pct_of_capacity": 15.47,
+       "bias_mw": -65.9,
+       "implied_scale": 115.8509
+      },
+      "SON": {
+       "n": 8554,
+       "pearson_r": 0.5524,
+       "spearman_r": 0.5412,
+       "mae_mw": 77.8,
+       "nrmse_pct_of_capacity": 16.54,
+       "bias_mw": -72.7,
+       "implied_scale": 1724.9903
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.4678,
+       "spearman_r": 0.5988,
+       "mae_mw": 91.2,
+       "nrmse_pct_of_capacity": 20.18,
+       "bias_mw": -86.1,
+       "implied_scale": 903.3433
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.3945,
+       "spearman_r": 0.5795,
+       "mae_mw": 89.8,
+       "nrmse_pct_of_capacity": 20.46,
+       "bias_mw": -84.9,
+       "implied_scale": 772.4367
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.4111,
+       "spearman_r": 0.5083,
+       "mae_mw": 90.6,
+       "nrmse_pct_of_capacity": 21.17,
+       "bias_mw": -84.9,
+       "implied_scale": 850.4378
+      },
+      "evening": {
+       "n": 12410,
+       "pearson_r": 0.4167,
+       "spearman_r": 0.5238,
+       "mae_mw": 95.5,
+       "nrmse_pct_of_capacity": 21.4,
+       "bias_mw": -90.2,
+       "implied_scale": 827.1418
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 1610,
+       "pearson_r": 0.5272,
+       "spearman_r": 0.591,
+       "mae_mw": 79.8,
+       "nrmse_pct_of_capacity": 17.96,
+       "bias_mw": -72.4,
+       "implied_scale": 2213.756
+      },
+      "non_floor": {
+       "n": 26946,
+       "pearson_r": 0.4351,
+       "spearman_r": 0.5837,
+       "mae_mw": 94.5,
+       "nrmse_pct_of_capacity": 21.43,
+       "bias_mw": -88.2,
+       "implied_scale": 816.2045
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 34290,
+      "pearson_r": 0.466,
+      "spearman_r": 0.5206,
+      "mae_mw": 5632.4,
+      "nrmse_pct_of_capacity": 41.14,
+      "bias_mw": -4108.8,
+      "implied_scale": 1275.6522
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8460,
+       "pearson_r": 0.5188,
+       "spearman_r": 0.4966,
+       "mae_mw": 2614.2,
+       "nrmse_pct_of_capacity": 21.38,
+       "bias_mw": -1060.8,
+       "implied_scale": 1009.7369
+      },
+      "MAM": {
+       "n": 8648,
+       "pearson_r": 0.4854,
+       "spearman_r": 0.3405,
+       "mae_mw": 5125.4,
+       "nrmse_pct_of_capacity": 38.4,
+       "bias_mw": -4164.9,
+       "implied_scale": 1240.9072
+      },
+      "JJA": {
+       "n": 8648,
+       "pearson_r": 0.7176,
+       "spearman_r": 0.6997,
+       "mae_mw": 4578.7,
+       "nrmse_pct_of_capacity": 37.25,
+       "bias_mw": -3427.7,
+       "implied_scale": 2493.4667
+      },
+      "SON": {
+       "n": 8534,
+       "pearson_r": 0.5361,
+       "spearman_r": 0.4874,
+       "mae_mw": 5693.0,
+       "nrmse_pct_of_capacity": 41.97,
+       "bias_mw": -4497.5,
+       "implied_scale": 2245.0901
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.7204,
+       "spearman_r": 0.6562,
+       "mae_mw": 4765.2,
+       "nrmse_pct_of_capacity": 35.22,
+       "bias_mw": -3659.1,
+       "implied_scale": 1065.4893
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.5404,
+       "spearman_r": 0.5574,
+       "mae_mw": 5576.9,
+       "nrmse_pct_of_capacity": 41.03,
+       "bias_mw": -4156.2,
+       "implied_scale": 1219.7976
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.4236,
+       "spearman_r": 0.508,
+       "mae_mw": 6091.9,
+       "nrmse_pct_of_capacity": 44.23,
+       "bias_mw": -4349.4,
+       "implied_scale": 1416.1838
+      },
+      "evening": {
+       "n": 12390,
+       "pearson_r": 0.5088,
+       "spearman_r": 0.5664,
+       "mae_mw": 5786.2,
+       "nrmse_pct_of_capacity": 42.25,
+       "bias_mw": -4190.7,
+       "implied_scale": 1424.5782
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 1610,
+       "pearson_r": 0.3461,
+       "spearman_r": 0.2956,
+       "mae_mw": 5413.0,
+       "nrmse_pct_of_capacity": 40.4,
+       "bias_mw": -4414.8,
+       "implied_scale": 1209.1915
+      },
+      "non_floor": {
+       "n": 26946,
+       "pearson_r": 0.4464,
+       "spearman_r": 0.5069,
+       "mae_mw": 5311.4,
+       "nrmse_pct_of_capacity": 39.42,
+       "bias_mw": -3682.2,
+       "implied_scale": 1235.9285
+      }
+     }
+    }
+   },
+   "shikoku": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.6363,
+      "spearman_r": 0.6252,
+      "mae_mw": 442.7,
+      "nrmse_pct_of_capacity": 12.34,
+      "bias_mw": -86.2,
+      "implied_scale": 2.5344
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.4652,
+       "spearman_r": 0.4384,
+       "mae_mw": 418.8,
+       "nrmse_pct_of_capacity": 11.34,
+       "bias_mw": -88.5,
+       "implied_scale": 2.5984
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.6601,
+       "spearman_r": 0.648,
+       "mae_mw": 464.1,
+       "nrmse_pct_of_capacity": 13.0,
+       "bias_mw": -72.8,
+       "implied_scale": 2.3708
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.6509,
+       "spearman_r": 0.6084,
+       "mae_mw": 444.1,
+       "nrmse_pct_of_capacity": 12.39,
+       "bias_mw": -82.5,
+       "implied_scale": 2.6443
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.5522,
+       "spearman_r": 0.5369,
+       "mae_mw": 433.8,
+       "nrmse_pct_of_capacity": 12.15,
+       "bias_mw": -75.4,
+       "implied_scale": 2.6251
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "insufficient": true
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8475,
+       "spearman_r": 0.8742,
+       "mae_mw": 380.2,
+       "nrmse_pct_of_capacity": 10.88,
+       "bias_mw": -223.9,
+       "implied_scale": 3.9392
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.7254,
+       "spearman_r": 0.7204,
+       "mae_mw": 353.0,
+       "nrmse_pct_of_capacity": 10.25,
+       "bias_mw": -48.2,
+       "implied_scale": 2.4278
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8664,
+       "spearman_r": 0.8365,
+       "mae_mw": 71.5,
+       "nrmse_pct_of_capacity": 3.21,
+       "bias_mw": 20.6,
+       "implied_scale": 1.2352
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 1311,
+       "pearson_r": 0.584,
+       "spearman_r": 0.5926,
+       "mae_mw": 397.2,
+       "nrmse_pct_of_capacity": 11.2,
+       "bias_mw": -63.2,
+       "implied_scale": 2.5322
+      },
+      "non_floor": {
+       "n": 7201,
+       "pearson_r": 0.5674,
+       "spearman_r": 0.5544,
+       "mae_mw": 448.5,
+       "nrmse_pct_of_capacity": 12.42,
+       "bias_mw": -92.5,
+       "implied_scale": 2.5613
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.4022,
+      "spearman_r": 0.5261,
+      "mae_mw": 57.9,
+      "nrmse_pct_of_capacity": 39.21,
+      "bias_mw": -54.6,
+      "implied_scale": 879.162
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.4754,
+       "spearman_r": 0.6981,
+       "mae_mw": 75.1,
+       "nrmse_pct_of_capacity": 47.04,
+       "bias_mw": -65.6,
+       "implied_scale": 880.5199
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.2258,
+       "spearman_r": 0.3894,
+       "mae_mw": 67.9,
+       "nrmse_pct_of_capacity": 44.02,
+       "bias_mw": -65.8,
+       "implied_scale": 1276.6358
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.1032,
+       "spearman_r": 0.1424,
+       "mae_mw": 39.4,
+       "nrmse_pct_of_capacity": 28.31,
+       "bias_mw": -39.1,
+       "implied_scale": 273.3409
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.381,
+       "spearman_r": 0.4942,
+       "mae_mw": 47.1,
+       "nrmse_pct_of_capacity": 32.83,
+       "bias_mw": -44.5,
+       "implied_scale": 1465.5335
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.3403,
+       "spearman_r": 0.5459,
+       "mae_mw": 62.2,
+       "nrmse_pct_of_capacity": 41.84,
+       "bias_mw": -59.7,
+       "implied_scale": 792.6161
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.4182,
+       "spearman_r": 0.5417,
+       "mae_mw": 52.7,
+       "nrmse_pct_of_capacity": 36.41,
+       "bias_mw": -49.6,
+       "implied_scale": 865.9957
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.4649,
+       "spearman_r": 0.492,
+       "mae_mw": 51.6,
+       "nrmse_pct_of_capacity": 35.67,
+       "bias_mw": -47.5,
+       "implied_scale": 838.3865
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.415,
+       "spearman_r": 0.5361,
+       "mae_mw": 60.5,
+       "nrmse_pct_of_capacity": 40.3,
+       "bias_mw": -57.1,
+       "implied_scale": 972.9063
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 1579,
+       "pearson_r": 0.3647,
+       "spearman_r": 0.4841,
+       "mae_mw": 56.8,
+       "nrmse_pct_of_capacity": 38.54,
+       "bias_mw": -53.5,
+       "implied_scale": 1191.371
+      },
+      "non_floor": {
+       "n": 27584,
+       "pearson_r": 0.416,
+       "spearman_r": 0.5738,
+       "mae_mw": 60.0,
+       "nrmse_pct_of_capacity": 40.48,
+       "bias_mw": -56.2,
+       "implied_scale": 875.3193
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.4432,
+      "spearman_r": 0.4938,
+      "mae_mw": 1637.1,
+      "nrmse_pct_of_capacity": 38.68,
+      "bias_mw": -1179.4,
+      "implied_scale": 351.4133
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.4261,
+       "spearman_r": 0.3931,
+       "mae_mw": 697.3,
+       "nrmse_pct_of_capacity": 18.23,
+       "bias_mw": -228.3,
+       "implied_scale": 281.9184
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.4191,
+       "spearman_r": 0.3161,
+       "mae_mw": 1501.0,
+       "nrmse_pct_of_capacity": 36.6,
+       "bias_mw": -1201.5,
+       "implied_scale": 336.7611
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.7421,
+       "spearman_r": 0.7296,
+       "mae_mw": 1312.6,
+       "nrmse_pct_of_capacity": 33.69,
+       "bias_mw": -943.8,
+       "implied_scale": 698.9769
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.4274,
+       "spearman_r": 0.3842,
+       "mae_mw": 1728.1,
+       "nrmse_pct_of_capacity": 40.86,
+       "bias_mw": -1374.3,
+       "implied_scale": 619.6299
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.7572,
+       "spearman_r": 0.696,
+       "mae_mw": 1377.1,
+       "nrmse_pct_of_capacity": 33.01,
+       "bias_mw": -1057.0,
+       "implied_scale": 290.021
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.4041,
+       "spearman_r": 0.4289,
+       "mae_mw": 1707.7,
+       "nrmse_pct_of_capacity": 40.98,
+       "bias_mw": -1258.8,
+       "implied_scale": 339.2526
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.3455,
+       "spearman_r": 0.3827,
+       "mae_mw": 1767.3,
+       "nrmse_pct_of_capacity": 41.62,
+       "bias_mw": -1221.0,
+       "implied_scale": 416.4235
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.5306,
+       "spearman_r": 0.5756,
+       "mae_mw": 1621.4,
+       "nrmse_pct_of_capacity": 38.07,
+       "bias_mw": -1153.5,
+       "implied_scale": 385.1237
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 1579,
+       "pearson_r": 0.288,
+       "spearman_r": 0.2978,
+       "mae_mw": 1479.5,
+       "nrmse_pct_of_capacity": 36.0,
+       "bias_mw": -1066.7,
+       "implied_scale": 356.3484
+      },
+      "non_floor": {
+       "n": 27584,
+       "pearson_r": 0.4425,
+       "spearman_r": 0.5013,
+       "mae_mw": 1538.0,
+       "nrmse_pct_of_capacity": 36.91,
+       "bias_mw": -1058.4,
+       "implied_scale": 339.5355
+      }
+     }
+    }
+   },
+   "tohoku": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.624,
+      "spearman_r": 0.6185,
+      "mae_mw": 1236.9,
+      "nrmse_pct_of_capacity": 19.97,
+      "bias_mw": -165.0,
+      "implied_scale": 6.9373
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.4901,
+       "spearman_r": 0.4617,
+       "mae_mw": 1051.5,
+       "nrmse_pct_of_capacity": 16.74,
+       "bias_mw": -67.9,
+       "implied_scale": 6.1001
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.6648,
+       "spearman_r": 0.6467,
+       "mae_mw": 1232.9,
+       "nrmse_pct_of_capacity": 19.89,
+       "bias_mw": -120.9,
+       "implied_scale": 6.6977
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.5082,
+       "spearman_r": 0.5078,
+       "mae_mw": 1334.7,
+       "nrmse_pct_of_capacity": 21.94,
+       "bias_mw": -358.3,
+       "implied_scale": 7.1937
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.6083,
+       "spearman_r": 0.6061,
+       "mae_mw": 1231.4,
+       "nrmse_pct_of_capacity": 19.72,
+       "bias_mw": -112.3,
+       "implied_scale": 7.7527
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.7251,
+       "spearman_r": 0.5196,
+       "mae_mw": 46.0,
+       "nrmse_pct_of_capacity": 2.01,
+       "bias_mw": -37.0,
+       "implied_scale": 85.3857
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8156,
+       "spearman_r": 0.8458,
+       "mae_mw": 1117.0,
+       "nrmse_pct_of_capacity": 18.63,
+       "bias_mw": -608.0,
+       "implied_scale": 10.3685
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.6787,
+       "spearman_r": 0.6843,
+       "mae_mw": 1040.8,
+       "nrmse_pct_of_capacity": 17.23,
+       "bias_mw": -121.3,
+       "implied_scale": 6.532
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8283,
+       "spearman_r": 0.8226,
+       "mae_mw": 147.3,
+       "nrmse_pct_of_capacity": 4.16,
+       "bias_mw": 39.3,
+       "implied_scale": 2.9303
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 603,
+       "pearson_r": 0.2259,
+       "spearman_r": 0.1944,
+       "mae_mw": 1227.8,
+       "nrmse_pct_of_capacity": 20.28,
+       "bias_mw": -152.3,
+       "implied_scale": 7.4678
+      },
+      "non_floor": {
+       "n": 7909,
+       "pearson_r": 0.5804,
+       "spearman_r": 0.5748,
+       "mae_mw": 1225.9,
+       "nrmse_pct_of_capacity": 19.68,
+       "bias_mw": -141.4,
+       "implied_scale": 7.0594
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.1304,
+      "spearman_r": 0.2956,
+      "mae_mw": 584.6,
+      "nrmse_pct_of_capacity": 48.64,
+      "bias_mw": -581.3,
+      "implied_scale": 53172.6841
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.124,
+       "spearman_r": 0.3129,
+       "mae_mw": 1009.2,
+       "nrmse_pct_of_capacity": 71.26,
+       "bias_mw": -1002.1,
+       "implied_scale": 53313.0746
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.211,
+       "spearman_r": 0.3784,
+       "mae_mw": 561.8,
+       "nrmse_pct_of_capacity": 45.1,
+       "bias_mw": -555.8,
+       "implied_scale": 81785.4687
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.0621,
+       "spearman_r": 0.1959,
+       "mae_mw": 301.9,
+       "nrmse_pct_of_capacity": 26.28,
+       "bias_mw": -301.2,
+       "implied_scale": 17011.3141
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.117,
+       "spearman_r": 0.2302,
+       "mae_mw": 469.6,
+       "nrmse_pct_of_capacity": 40.79,
+       "bias_mw": -466.6,
+       "implied_scale": 232641.224
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.0959,
+       "spearman_r": 0.1984,
+       "mae_mw": 593.1,
+       "nrmse_pct_of_capacity": 48.63,
+       "bias_mw": -590.3,
+       "implied_scale": 67219.2161
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.1396,
+       "spearman_r": 0.2604,
+       "mae_mw": 549.2,
+       "nrmse_pct_of_capacity": 46.83,
+       "bias_mw": -546.6,
+       "implied_scale": 56534.6173
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.2049,
+       "spearman_r": 0.4695,
+       "mae_mw": 597.3,
+       "nrmse_pct_of_capacity": 49.59,
+       "bias_mw": -590.5,
+       "implied_scale": 52900.3315
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.0962,
+       "spearman_r": 0.2771,
+       "mae_mw": 593.1,
+       "nrmse_pct_of_capacity": 49.2,
+       "bias_mw": -590.3,
+       "implied_scale": 47308.0351
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 663,
+       "pearson_r": 0.3359,
+       "spearman_r": 0.625,
+       "mae_mw": 759.8,
+       "nrmse_pct_of_capacity": 56.37,
+       "bias_mw": -740.8,
+       "implied_scale": 77525.2329
+      },
+      "non_floor": {
+       "n": 28500,
+       "pearson_r": 0.1158,
+       "spearman_r": 0.2891,
+       "mae_mw": 618.8,
+       "nrmse_pct_of_capacity": 51.06,
+       "bias_mw": -615.6,
+       "implied_scale": 48503.8763
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.5351,
+      "spearman_r": 0.5184,
+      "mae_mw": 4844.4,
+      "nrmse_pct_of_capacity": 42.43,
+      "bias_mw": -3715.2,
+      "implied_scale": 754.243
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.3207,
+       "spearman_r": 0.2758,
+       "mae_mw": 2080.4,
+       "nrmse_pct_of_capacity": 19.25,
+       "bias_mw": -545.0,
+       "implied_scale": 661.1854
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.4667,
+       "spearman_r": 0.4113,
+       "mae_mw": 3792.1,
+       "nrmse_pct_of_capacity": 34.27,
+       "bias_mw": -2621.7,
+       "implied_scale": 773.2567
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.5998,
+       "spearman_r": 0.55,
+       "mae_mw": 5779.2,
+       "nrmse_pct_of_capacity": 47.73,
+       "bias_mw": -4784.6,
+       "implied_scale": 2186.1546
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.1997,
+       "spearman_r": 0.1834,
+       "mae_mw": 5422.5,
+       "nrmse_pct_of_capacity": 45.65,
+       "bias_mw": -4386.3,
+       "implied_scale": 1011.4926
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.8321,
+       "spearman_r": 0.7368,
+       "mae_mw": 3666.4,
+       "nrmse_pct_of_capacity": 33.92,
+       "bias_mw": -2965.2,
+       "implied_scale": 613.4203
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.5774,
+       "spearman_r": 0.5357,
+       "mae_mw": 4942.7,
+       "nrmse_pct_of_capacity": 44.04,
+       "bias_mw": -3864.0,
+       "implied_scale": 754.0474
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.5411,
+       "spearman_r": 0.5429,
+       "mae_mw": 5245.2,
+       "nrmse_pct_of_capacity": 44.89,
+       "bias_mw": -3876.7,
+       "implied_scale": 1036.3502
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.569,
+       "spearman_r": 0.5415,
+       "mae_mw": 4927.0,
+       "nrmse_pct_of_capacity": 42.95,
+       "bias_mw": -3791.2,
+       "implied_scale": 803.4334
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 663,
+       "pearson_r": 0.2363,
+       "spearman_r": 0.1488,
+       "mae_mw": 5024.4,
+       "nrmse_pct_of_capacity": 43.36,
+       "bias_mw": -4149.3,
+       "implied_scale": 1085.0726
+      },
+      "non_floor": {
+       "n": 28500,
+       "pearson_r": 0.5355,
+       "spearman_r": 0.5433,
+       "mae_mw": 4574.0,
+       "nrmse_pct_of_capacity": 40.9,
+       "bias_mw": -3383.9,
+       "implied_scale": 735.2071
+      }
+     }
+    }
+   },
+   "tokyo": {
+    "pv": {
+     "overall": {
+      "n": 10220,
+      "pearson_r": 0.6166,
+      "spearman_r": 0.6038,
+      "mae_mw": 2934.9,
+      "nrmse_pct_of_capacity": 27.36,
+      "bias_mw": -382.8,
+      "implied_scale": 15.8967
+     },
+     "by_season": {
+      "DJF": {
+       "n": 2520,
+       "pearson_r": 0.546,
+       "spearman_r": 0.5213,
+       "mae_mw": 2979.9,
+       "nrmse_pct_of_capacity": 26.77,
+       "bias_mw": -207.0,
+       "implied_scale": 17.6251
+      },
+      "MAM": {
+       "n": 2576,
+       "pearson_r": 0.6864,
+       "spearman_r": 0.6882,
+       "mae_mw": 2868.9,
+       "nrmse_pct_of_capacity": 27.24,
+       "bias_mw": -190.8,
+       "implied_scale": 14.3032
+      },
+      "JJA": {
+       "n": 2576,
+       "pearson_r": 0.5556,
+       "spearman_r": 0.5261,
+       "mae_mw": 2958.2,
+       "nrmse_pct_of_capacity": 27.8,
+       "bias_mw": -518.0,
+       "implied_scale": 16.1985
+      },
+      "SON": {
+       "n": 2548,
+       "pearson_r": 0.6143,
+       "spearman_r": 0.6166,
+       "mae_mw": 2777.1,
+       "nrmse_pct_of_capacity": 25.56,
+       "bias_mw": -291.5,
+       "implied_scale": 16.7341
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.6811,
+       "spearman_r": 0.5098,
+       "mae_mw": 58.1,
+       "nrmse_pct_of_capacity": 1.74,
+       "bias_mw": -44.1,
+       "implied_scale": 240.1915
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.8319,
+       "spearman_r": 0.8561,
+       "mae_mw": 2364.7,
+       "nrmse_pct_of_capacity": 23.28,
+       "bias_mw": -1230.7,
+       "implied_scale": 23.8335
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.6972,
+       "spearman_r": 0.6813,
+       "mae_mw": 2383.2,
+       "nrmse_pct_of_capacity": 22.95,
+       "bias_mw": -228.5,
+       "implied_scale": 15.1169
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.8355,
+       "spearman_r": 0.8255,
+       "mae_mw": 325.5,
+       "nrmse_pct_of_capacity": 5.29,
+       "bias_mw": 94.8,
+       "implied_scale": 6.1966
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 210,
+       "pearson_r": 0.3393,
+       "spearman_r": 0.2886,
+       "mae_mw": 2245.6,
+       "nrmse_pct_of_capacity": 21.19,
+       "bias_mw": -247.1,
+       "implied_scale": 17.2514
+      },
+      "non_floor": {
+       "n": 8302,
+       "pearson_r": 0.5928,
+       "spearman_r": 0.5807,
+       "mae_mw": 2950.7,
+       "nrmse_pct_of_capacity": 27.4,
+       "bias_mw": -369.7,
+       "implied_scale": 16.2171
+      }
+     }
+    },
+    "wind": {
+     "overall": {
+      "n": 35040,
+      "pearson_r": 0.0229,
+      "spearman_r": 0.2535,
+      "mae_mw": 108.8,
+      "nrmse_pct_of_capacity": 134.83,
+      "bias_mw": -108.7,
+      "implied_scale": 614.1252
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.1459,
+       "spearman_r": 0.2817,
+       "mae_mw": 142.5,
+       "nrmse_pct_of_capacity": 165.2,
+       "bias_mw": -141.5,
+       "implied_scale": 70464.8102
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.125,
+       "spearman_r": 0.2545,
+       "mae_mw": 120.2,
+       "nrmse_pct_of_capacity": 144.38,
+       "bias_mw": -119.6,
+       "implied_scale": 23249.4159
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.0631,
+       "spearman_r": 0.2637,
+       "mae_mw": 69.0,
+       "nrmse_pct_of_capacity": 92.43,
+       "bias_mw": -68.9,
+       "implied_scale": 447.0037
+      },
+      "SON": {
+       "n": 8736,
+       "pearson_r": 0.0186,
+       "spearman_r": 0.1906,
+       "mae_mw": 101.5,
+       "nrmse_pct_of_capacity": 122.97,
+       "bias_mw": -101.3,
+       "implied_scale": 5042.9502
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.0279,
+       "spearman_r": 0.2302,
+       "mae_mw": 110.3,
+       "nrmse_pct_of_capacity": 134.61,
+       "bias_mw": -110.2,
+       "implied_scale": 7988.8175
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.0347,
+       "spearman_r": 0.2322,
+       "mae_mw": 99.7,
+       "nrmse_pct_of_capacity": 126.67,
+       "bias_mw": -99.5,
+       "implied_scale": 5139.4623
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.1297,
+       "spearman_r": 0.3026,
+       "mae_mw": 105.9,
+       "nrmse_pct_of_capacity": 133.6,
+       "bias_mw": -105.1,
+       "implied_scale": 19352.4203
+      },
+      "evening": {
+       "n": 13140,
+       "pearson_r": 0.0269,
+       "spearman_r": 0.2545,
+       "mae_mw": 113.4,
+       "nrmse_pct_of_capacity": 139.0,
+       "bias_mw": -113.4,
+       "implied_scale": 474.0292
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 226,
+       "pearson_r": -0.0359,
+       "spearman_r": 0.2042,
+       "mae_mw": 152.9,
+       "nrmse_pct_of_capacity": 174.65,
+       "bias_mw": -149.7,
+       "implied_scale": 1087626.8219
+      },
+      "non_floor": {
+       "n": 28937,
+       "pearson_r": 0.021,
+       "spearman_r": 0.2494,
+       "mae_mw": 116.8,
+       "nrmse_pct_of_capacity": 142.59,
+       "bias_mw": -116.8,
+       "implied_scale": 593.697
+      }
+     }
+    },
+    "demand": {
+     "overall": {
+      "n": 35020,
+      "pearson_r": 0.3796,
+      "spearman_r": 0.4159,
+      "mae_mw": 18279.5,
+      "nrmse_pct_of_capacity": 38.15,
+      "bias_mw": -13033.4,
+      "implied_scale": 3456.9329
+     },
+     "by_season": {
+      "DJF": {
+       "n": 8640,
+       "pearson_r": 0.093,
+       "spearman_r": 0.0487,
+       "mae_mw": 9741.6,
+       "nrmse_pct_of_capacity": 21.83,
+       "bias_mw": -3318.2,
+       "implied_scale": 2758.5219
+      },
+      "MAM": {
+       "n": 8832,
+       "pearson_r": 0.3369,
+       "spearman_r": 0.19,
+       "mae_mw": 16911.1,
+       "nrmse_pct_of_capacity": 35.95,
+       "bias_mw": -13393.0,
+       "implied_scale": 3379.4579
+      },
+      "JJA": {
+       "n": 8832,
+       "pearson_r": 0.8069,
+       "spearman_r": 0.7931,
+       "mae_mw": 16239.3,
+       "nrmse_pct_of_capacity": 34.56,
+       "bias_mw": -11807.8,
+       "implied_scale": 6699.692
+      },
+      "SON": {
+       "n": 8716,
+       "pearson_r": 0.2636,
+       "spearman_r": 0.2038,
+       "mae_mw": 19470.9,
+       "nrmse_pct_of_capacity": 40.33,
+       "bias_mw": -15056.6,
+       "implied_scale": 5250.0078
+      }
+     },
+     "by_hour_band": {
+      "night": {
+       "n": 8760,
+       "pearson_r": 0.6209,
+       "spearman_r": 0.5594,
+       "mae_mw": 13879.4,
+       "nrmse_pct_of_capacity": 30.06,
+       "bias_mw": -10901.1,
+       "implied_scale": 2438.5828
+      },
+      "morning": {
+       "n": 7300,
+       "pearson_r": 0.4113,
+       "spearman_r": 0.4523,
+       "mae_mw": 18511.9,
+       "nrmse_pct_of_capacity": 39.67,
+       "bias_mw": -13619.0,
+       "implied_scale": 3291.5115
+      },
+      "midday": {
+       "n": 5840,
+       "pearson_r": 0.5927,
+       "spearman_r": 0.62,
+       "mae_mw": 17098.1,
+       "nrmse_pct_of_capacity": 37.01,
+       "bias_mw": -11903.2,
+       "implied_scale": 4782.6616
+      },
+      "evening": {
+       "n": 13120,
+       "pearson_r": 0.524,
+       "spearman_r": 0.5745,
+       "mae_mw": 18246.0,
+       "nrmse_pct_of_capacity": 38.09,
+       "bias_mw": -13134.6,
+       "implied_scale": 4103.9755
+      }
+     },
+     "by_floor": {
+      "floor": {
+       "n": 226,
+       "pearson_r": 0.2731,
+       "spearman_r": 0.3567,
+       "mae_mw": 18063.0,
+       "nrmse_pct_of_capacity": 36.81,
+       "bias_mw": -15231.9,
+       "implied_scale": 4733.8722
+      },
+      "non_floor": {
+       "n": 28937,
+       "pearson_r": 0.3494,
+       "spearman_r": 0.3906,
+       "mae_mw": 17545.1,
+       "nrmse_pct_of_capacity": 37.05,
+       "bias_mw": -12021.2,
+       "implied_scale": 3343.3992
+      }
+     }
+    }
+   }
+  },
+  "note": "The proxy is a resource index in arbitrary units, so it is rescaled to the target by least squares through the origin before error metrics are reported. Correlations are scale-free. PV and wind targets are POTENTIAL output (realised + curtailed), because the proxy models the resource rather than the dispatch decision.",
+  "summary": {
+   "pv": {
+    "pearson_r_min": 0.5937,
+    "pearson_r_max": 0.7126,
+    "pearson_r_median": 0.6339,
+    "n_areas": 8,
+    "areas_below_0p3": []
+   },
+   "wind": {
+    "pearson_r_min": 0.0229,
+    "pearson_r_max": 0.4229,
+    "pearson_r_median": 0.1388,
+    "n_areas": 8,
+    "areas_below_0p3": [
+     "chugoku",
+     "hokkaido",
+     "hokuriku",
+     "kansai",
+     "tohoku",
+     "tokyo"
+    ]
+   },
+   "demand": {
+    "pearson_r_min": 0.3653,
+    "pearson_r_max": 0.6921,
+    "pearson_r_median": 0.4998,
+    "n_areas": 8,
+    "areas_below_0p3": []
+   }
+  }
+ },
+ "capacity_integrity": {
+  "table": "data/reference/area_capacity.csv",
+  "table_vintage": "FY2023-24, marked 'approx'",
+  "rows": [
+   {
+    "area": "chugoku",
+    "channel": "pv",
+    "nameplate_mw": 5600.0,
+    "realised_max_mw": 6008.0,
+    "realised_over_nameplate_ratio": 1.073,
+    "impossible": true
+   },
+   {
+    "area": "chugoku",
+    "channel": "wind",
+    "nameplate_mw": 400.0,
+    "realised_max_mw": 341.0,
+    "realised_over_nameplate_ratio": 0.853,
+    "impossible": false
+   },
+   {
+    "area": "hokkaido",
+    "channel": "pv",
+    "nameplate_mw": 2500.0,
+    "realised_max_mw": 2141.0,
+    "realised_over_nameplate_ratio": 0.856,
+    "impossible": false
+   },
+   {
+    "area": "hokkaido",
+    "channel": "wind",
+    "nameplate_mw": 700.0,
+    "realised_max_mw": 1007.0,
+    "realised_over_nameplate_ratio": 1.439,
+    "impossible": true
+   },
+   {
+    "area": "hokuriku",
+    "channel": "pv",
+    "nameplate_mw": 1900.0,
+    "realised_max_mw": 1263.0,
+    "realised_over_nameplate_ratio": 0.665,
+    "impossible": false
+   },
+   {
+    "area": "hokuriku",
+    "channel": "wind",
+    "nameplate_mw": 300.0,
+    "realised_max_mw": 98.0,
+    "realised_over_nameplate_ratio": 0.327,
+    "impossible": false
+   },
+   {
+    "area": "kansai",
+    "channel": "pv",
+    "nameplate_mw": 9200.0,
+    "realised_max_mw": 6376.0,
+    "realised_over_nameplate_ratio": 0.693,
+    "impossible": false
+   },
+   {
+    "area": "kansai",
+    "channel": "wind",
+    "nameplate_mw": 400.0,
+    "realised_max_mw": 163.0,
+    "realised_over_nameplate_ratio": 0.407,
+    "impossible": false
+   },
+   {
+    "area": "kyushu",
+    "channel": "pv",
+    "nameplate_mw": 12000.0,
+    "realised_max_mw": 10413.0,
+    "realised_over_nameplate_ratio": 0.868,
+    "impossible": false
+   },
+   {
+    "area": "kyushu",
+    "channel": "wind",
+    "nameplate_mw": 600.0,
+    "realised_max_mw": 560.0,
+    "realised_over_nameplate_ratio": 0.933,
+    "impossible": false
+   },
+   {
+    "area": "shikoku",
+    "channel": "pv",
+    "nameplate_mw": 4400.0,
+    "realised_max_mw": 2691.0,
+    "realised_over_nameplate_ratio": 0.612,
+    "impossible": false
+   },
+   {
+    "area": "shikoku",
+    "channel": "wind",
+    "nameplate_mw": 200.0,
+    "realised_max_mw": 258.0,
+    "realised_over_nameplate_ratio": 1.29,
+    "impossible": true
+   },
+   {
+    "area": "tohoku",
+    "channel": "pv",
+    "nameplate_mw": 7600.0,
+    "realised_max_mw": 7773.0,
+    "realised_over_nameplate_ratio": 1.023,
+    "impossible": true
+   },
+   {
+    "area": "tohoku",
+    "channel": "wind",
+    "nameplate_mw": 1600.0,
+    "realised_max_mw": 2044.0,
+    "realised_over_nameplate_ratio": 1.278,
+    "impossible": true
+   },
+   {
+    "area": "tokyo",
+    "channel": "pv",
+    "nameplate_mw": 13000.0,
+    "realised_max_mw": 17120.0,
+    "realised_over_nameplate_ratio": 1.317,
+    "impossible": true
+   },
+   {
+    "area": "tokyo",
+    "channel": "wind",
+    "nameplate_mw": 100.0,
+    "realised_max_mw": 477.0,
+    "realised_over_nameplate_ratio": 4.77,
+    "impossible": true
+   }
+  ],
+  "n_impossible": 7,
+  "worst": {
+   "area": "tokyo",
+   "channel": "wind",
+   "nameplate_mw": 100.0,
+   "realised_max_mw": 477.0,
+   "realised_over_nameplate_ratio": 4.77,
+   "impossible": true
+  },
+  "peak_demand_gw": {
+   "chubu": 24.09,
+   "chugoku": 10.39,
+   "hokkaido": 5.01,
+   "hokuriku": 4.87,
+   "kansai": 26.47,
+   "kyushu": 15.38,
+   "shikoku": 4.78,
+   "tohoku": 13.35,
+   "tokyo": 53.95
+  },
+  "verdict": "The nameplate table is understated: realised potential output exceeds it in 7 of 16 area-channels. A constant per-area scale factor is absorbed by the learner, so the proxies used as REGRESSORS are unaffected. The cross-area PV/peak saturation index is NOT: it inherits the error directly, so a vintage-free index is computed below and both are reported."
+ },
+ "saturation_indices": {
+  "table_pv_over_peak": {
+   "chugoku": 0.539,
+   "hokkaido": 0.499,
+   "hokuriku": 0.3901,
+   "kansai": 0.3476,
+   "kyushu": 0.7802,
+   "shikoku": 0.9205,
+   "tohoku": 0.5693,
+   "tokyo": 0.241
+  },
+  "realised_pv_max_over_peak_demand": {
+   "chugoku": 0.5625,
+   "hokkaido": 0.4185,
+   "hokuriku": 0.2421,
+   "kansai": 0.2305,
+   "kyushu": 0.6085,
+   "shikoku": 0.5322,
+   "tohoku": 0.5388,
+   "tokyo": 0.2969
+  },
+  "rank_agreement_spearman": 0.7619,
+  "rank_agreement_p": 0.028,
+  "rank_changes": [
+   {
+    "area": "chugoku",
+    "table_rank": 4,
+    "realised_rank": 2
+   },
+   {
+    "area": "hokuriku",
+    "table_rank": 6,
+    "realised_rank": 7
+   },
+   {
+    "area": "kansai",
+    "table_rank": 7,
+    "realised_rank": 8
+   },
+   {
+    "area": "kyushu",
+    "table_rank": 2,
+    "realised_rank": 1
+   },
+   {
+    "area": "shikoku",
+    "table_rank": 1,
+    "realised_rank": 4
+   },
+   {
+    "area": "tokyo",
+    "table_rank": 8,
+    "realised_rank": 6
+   }
+  ],
+  "reading": "The realised index is observable and carries no capacity vintage. Where the two indices rank areas differently, any cross-area statistic computed on the table index is sensitive to the stale capacity figures, and the paper must show its conclusion under both. Feeding this index into the phase55 slope/rho tests is the follow-up."
+ },
+ "metadata": {
+  "script": "s_20260729_phase62_proxy_validation.py",
+  "git_sha": "84a43a9a70e1db385d79ba482505e32f714aff14",
+  "generated_utc": "2026-07-28T23:58:37.365988+00:00"
+ }
+}

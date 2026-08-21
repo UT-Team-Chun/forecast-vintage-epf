@@ -1,0 +1,1699 @@
+{
+ "phase": "81b",
+ "title": "Floor-model comparison: paired uncertainty, multiplicity, prevalence, and the gate contrast under the winner",
+ "precommit_doc": "docs/research/2026-08-13_phase81b_floor_inference_precommit.md",
+ "disclosed_deviation": "phase81 declared N_BOOT=10000 and BOOT_BLOCK=7 and used neither, against its own precommit; every interval in this file is the bootstrap that was promised there",
+ "panel": {
+  "n_slots": 302454,
+  "n_test_days": 702,
+  "n_areas": 9,
+  "burn_in_days": 30,
+  "threshold": 0.5,
+  "base_rate": 0.03473
+ },
+ "stage2_present": true,
+ "stage2_vs_stage1_mean_abs_diff": 0.01123,
+ "score_resolution": {
+  "m0": 19898,
+  "m0rank": 284101,
+  "baserank": 285160,
+  "m1": 301639,
+  "m2": 262509,
+  "m2p": 272749,
+  "m4": 27228,
+  "m0post": 20234,
+  "m0rankpost": 284084,
+  "m1post": 301639,
+  "m2post": 264608,
+  "m2ppost": 272749,
+  "m4post": 26929
+ },
+ "metrics": {
+  "m0": {
+   "label": "isotonic recalibration of the point forecast",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.597,
+   "micro_pr_auc": 0.65591,
+   "macro_ap_skill": 0.58391,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.60327,
+     "ap_skill": 0.5963,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.46055,
+      0.70209
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.58105,
+     "ap_skill": 0.56776,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.46696,
+      0.6766
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.47319,
+     "ap_skill": 0.45523,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.35393,
+      0.57205
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.48237,
+     "ap_skill": 0.47123,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.33239,
+      0.60651
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.54373,
+     "ap_skill": 0.5332,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.40985,
+      0.64887
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.85496,
+     "ap_skill": 0.84407,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.80984,
+      0.88968
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.58288,
+     "ap_skill": 0.55037,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.50809,
+      0.64668
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.74624,
+     "ap_skill": 0.73692,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.65983,
+      0.80429
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.50527,
+     "ap_skill": 0.50006,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.3219,
+      0.66976
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.50641,
+    0.66953
+   ]
+  },
+  "m0rank": {
+   "label": "the same chain ranked on the raw point forecast (calibration is monotone, so this is its ranking without the calibrator's ties)",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.63458,
+   "micro_pr_auc": 0.66407,
+   "macro_ap_skill": 0.62243,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.65273,
+     "ap_skill": 0.64664,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.51681,
+      0.74393
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.61563,
+     "ap_skill": 0.60344,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.49125,
+      0.71449
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.50472,
+     "ap_skill": 0.48784,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.389,
+      0.5987
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.52962,
+     "ap_skill": 0.5195,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.38094,
+      0.64562
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.5864,
+     "ap_skill": 0.57686,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.44699,
+      0.6911
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.86712,
+     "ap_skill": 0.85714,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.82651,
+      0.89869
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.59467,
+     "ap_skill": 0.56308,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.52126,
+      0.66015
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.76453,
+     "ap_skill": 0.75588,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.68202,
+      0.82174
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.59577,
+     "ap_skill": 0.59152,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.41085,
+      0.7345
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.54539,
+    0.70251
+   ]
+  },
+  "baserank": {
+   "label": "the price-only tier, ranked the same way: the baseline the manuscript's headline floor gain is measured against",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.33902,
+   "micro_pr_auc": 0.37172,
+   "macro_ap_skill": 0.31656,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.23473,
+     "ap_skill": 0.2213,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.14038,
+      0.34929
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.31686,
+     "ap_skill": 0.2952,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.23537,
+      0.4112
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.41211,
+     "ap_skill": 0.39207,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.29868,
+      0.52372
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.28429,
+     "ap_skill": 0.26888,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.18105,
+      0.41808
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.28349,
+     "ap_skill": 0.26695,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.18516,
+      0.41027
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.50981,
+     "ap_skill": 0.473,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.4314,
+      0.58732
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.38126,
+     "ap_skill": 0.33303,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.30171,
+      0.45547
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.40333,
+     "ap_skill": 0.38143,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.31696,
+      0.49473
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.22531,
+     "ap_skill": 0.21716,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.10333,
+      0.36734
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.26478,
+    0.42593
+   ]
+  },
+  "m1": {
+   "label": "walk-forward logistic regression",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.54503,
+   "micro_pr_auc": 0.60992,
+   "macro_ap_skill": 0.53042,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.49551,
+     "ap_skill": 0.48665,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.33922,
+      0.61449
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.56789,
+     "ap_skill": 0.55418,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.44472,
+      0.67148
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.47049,
+     "ap_skill": 0.45244,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.36925,
+      0.5644
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.39933,
+     "ap_skill": 0.38641,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.26977,
+      0.51994
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.43901,
+     "ap_skill": 0.42606,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.31327,
+      0.54861
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.80291,
+     "ap_skill": 0.78812,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.74056,
+      0.85209
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.55694,
+     "ap_skill": 0.5224,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.48319,
+      0.62273
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.73316,
+     "ap_skill": 0.72336,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.65202,
+      0.7902
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.44003,
+     "ap_skill": 0.43414,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.27574,
+      0.60643
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.45775,
+    0.62199
+   ]
+  },
+  "m2": {
+   "label": "direct gradient-boosted classifier",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.65253,
+   "micro_pr_auc": 0.69247,
+   "macro_ap_skill": 0.64111,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.67981,
+     "ap_skill": 0.67419,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.55451,
+      0.75952
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.67042,
+     "ap_skill": 0.65996,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.56041,
+      0.75053
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.51437,
+     "ap_skill": 0.49781,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.40196,
+      0.60529
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.54527,
+     "ap_skill": 0.53548,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.40168,
+      0.65315
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.62018,
+     "ap_skill": 0.61142,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.4851,
+      0.71388
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.87848,
+     "ap_skill": 0.86935,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.84112,
+      0.90708
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.61916,
+     "ap_skill": 0.58948,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.55034,
+      0.67758
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.77499,
+     "ap_skill": 0.76673,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.69737,
+      0.8287
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.57011,
+     "ap_skill": 0.56558,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.36825,
+      0.70193
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.56232,
+    0.71724
+   ]
+  },
+  "m2p": {
+   "label": "the same classifier, weather withheld",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.37618,
+   "micro_pr_auc": 0.40512,
+   "macro_ap_skill": 0.35478,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.30095,
+     "ap_skill": 0.28867,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.17987,
+      0.4272
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.33758,
+     "ap_skill": 0.31657,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.23972,
+      0.439
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.43766,
+     "ap_skill": 0.41849,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.32889,
+      0.53766
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.30728,
+     "ap_skill": 0.29237,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.1946,
+      0.4332
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.32034,
+     "ap_skill": 0.30465,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.20868,
+      0.44281
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.52451,
+     "ap_skill": 0.48881,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.44691,
+      0.59924
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.40588,
+     "ap_skill": 0.35957,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.32442,
+      0.48409
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.45145,
+     "ap_skill": 0.43131,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.35412,
+      0.54864
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.29993,
+     "ap_skill": 0.29256,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.13955,
+      0.45402
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.28527,
+    0.46898
+   ]
+  },
+  "m4": {
+   "label": "multi-quantile crossing",
+   "weather_vintage": "pre-gate",
+   "macro_pr_auc": 0.58335,
+   "micro_pr_auc": 0.6251,
+   "macro_ap_skill": 0.56965,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.57508,
+     "ap_skill": 0.56762,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.44159,
+      0.67183
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.57839,
+     "ap_skill": 0.56502,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.46646,
+      0.67291
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.46361,
+     "ap_skill": 0.44532,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.34706,
+      0.56232
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.50464,
+     "ap_skill": 0.49398,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.36233,
+      0.62337
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.51457,
+     "ap_skill": 0.50337,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.38434,
+      0.62383
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.82023,
+     "ap_skill": 0.80673,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.76998,
+      0.86085
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.57547,
+     "ap_skill": 0.54238,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.50265,
+      0.63774
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.71071,
+     "ap_skill": 0.70009,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.62172,
+      0.77508
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.50748,
+     "ap_skill": 0.5023,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.32734,
+      0.65156
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.4953,
+    0.65231
+   ]
+  },
+  "m0post": {
+   "label": "isotonic recalibration of the point forecast",
+   "weather_vintage": "post-gate",
+   "macro_pr_auc": 0.61185,
+   "micro_pr_auc": 0.66517,
+   "macro_ap_skill": 0.599,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.63382,
+     "ap_skill": 0.62739,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.50154,
+      0.72206
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.58486,
+     "ap_skill": 0.57169,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.47733,
+      0.6722
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.48851,
+     "ap_skill": 0.47107,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.37772,
+      0.58108
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.49714,
+     "ap_skill": 0.48632,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.35052,
+      0.6149
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.56327,
+     "ap_skill": 0.55319,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.4353,
+      0.66449
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.85684,
+     "ap_skill": 0.8461,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.80771,
+      0.89338
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.57229,
+     "ap_skill": 0.53895,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.49524,
+      0.63783
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.75551,
+     "ap_skill": 0.74653,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.68281,
+      0.80652
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.55445,
+     "ap_skill": 0.54976,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.35889,
+      0.70143
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.5226,
+    0.68107
+   ]
+  },
+  "m0rankpost": {
+   "label": "the same chain ranked on the raw point forecast (calibration is monotone, so this is its ranking without the calibrator's ties)",
+   "weather_vintage": "post-gate",
+   "macro_pr_auc": 0.64442,
+   "micro_pr_auc": 0.66946,
+   "macro_ap_skill": 0.6325,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.67263,
+     "ap_skill": 0.66688,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.54539,
+      0.75545
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.61948,
+     "ap_skill": 0.60741,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.50082,
+      0.70992
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.51463,
+     "ap_skill": 0.49808,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.40511,
+      0.60469
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.54143,
+     "ap_skill": 0.53156,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.39717,
+      0.65181
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.59989,
+     "ap_skill": 0.59066,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.47142,
+      0.69668
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.87259,
+     "ap_skill": 0.86302,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.82974,
+      0.90487
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.59081,
+     "ap_skill": 0.55891,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.51503,
+      0.65624
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.77148,
+     "ap_skill": 0.76309,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.69999,
+      0.8216
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.61688,
+     "ap_skill": 0.61285,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.43481,
+      0.74715
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.55841,
+    0.70883
+   ]
+  },
+  "m1post": {
+   "label": "walk-forward logistic regression",
+   "weather_vintage": "post-gate",
+   "macro_pr_auc": 0.55863,
+   "micro_pr_auc": 0.61308,
+   "macro_ap_skill": 0.5442,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.49461,
+     "ap_skill": 0.48573,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.35802,
+      0.60288
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.57129,
+     "ap_skill": 0.5577,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.44534,
+      0.67554
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.47234,
+     "ap_skill": 0.45435,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.36977,
+      0.56436
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.44277,
+     "ap_skill": 0.43078,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.30642,
+      0.56082
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.44388,
+     "ap_skill": 0.43105,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.32929,
+      0.54693
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.80725,
+     "ap_skill": 0.79277,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.74322,
+      0.85692
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.54635,
+     "ap_skill": 0.51099,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.4704,
+      0.61212
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.73755,
+     "ap_skill": 0.72791,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.65769,
+      0.79395
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.51166,
+     "ap_skill": 0.50652,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.33005,
+      0.65382
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.47048,
+    0.63177
+   ]
+  },
+  "m2post": {
+   "label": "direct gradient-boosted classifier",
+   "weather_vintage": "post-gate",
+   "macro_pr_auc": 0.65143,
+   "micro_pr_auc": 0.69133,
+   "macro_ap_skill": 0.63992,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.65723,
+     "ap_skill": 0.65121,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.53306,
+      0.73932
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.64586,
+     "ap_skill": 0.63463,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.53135,
+      0.72997
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.51216,
+     "ap_skill": 0.49553,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.39892,
+      0.60722
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.55953,
+     "ap_skill": 0.55005,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.42931,
+      0.6576
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.62275,
+     "ap_skill": 0.61405,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.49712,
+      0.71643
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.88686,
+     "ap_skill": 0.87837,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.84873,
+      0.91553
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.60542,
+     "ap_skill": 0.57467,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.53598,
+      0.66576
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.78163,
+     "ap_skill": 0.77361,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.71135,
+      0.83106
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.59144,
+     "ap_skill": 0.58714,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.41615,
+      0.70723
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.56635,
+    0.71452
+   ]
+  },
+  "m2ppost": {
+   "label": "the same classifier, weather withheld",
+   "weather_vintage": "post-gate",
+   "macro_pr_auc": 0.37618,
+   "micro_pr_auc": 0.40512,
+   "macro_ap_skill": 0.35478,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.30095,
+     "ap_skill": 0.28867,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.17987,
+      0.4272
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.33758,
+     "ap_skill": 0.31657,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.23972,
+      0.439
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.43766,
+     "ap_skill": 0.41849,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.32889,
+      0.53766
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.30728,
+     "ap_skill": 0.29237,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.1946,
+      0.4332
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.32034,
+     "ap_skill": 0.30465,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.20868,
+      0.44281
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.52451,
+     "ap_skill": 0.48881,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.44691,
+      0.59924
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.40588,
+     "ap_skill": 0.35957,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.32442,
+      0.48409
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.45145,
+     "ap_skill": 0.43131,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.35412,
+      0.54864
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.29993,
+     "ap_skill": 0.29256,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.13955,
+      0.45402
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.28527,
+    0.46898
+   ]
+  },
+  "m4post": {
+   "label": "multi-quantile crossing",
+   "weather_vintage": "post-gate",
+   "macro_pr_auc": 0.58991,
+   "micro_pr_auc": 0.62637,
+   "macro_ap_skill": 0.57626,
+   "per_area": {
+    "chubu": {
+     "pr_auc": 0.5742,
+     "ap_skill": 0.56673,
+     "base_rate": 0.01726,
+     "n_pos": 580,
+     "ci95": [
+      0.44911,
+      0.66571
+     ]
+    },
+    "chugoku": {
+     "pr_auc": 0.57438,
+     "ap_skill": 0.56089,
+     "base_rate": 0.03074,
+     "n_pos": 1033,
+     "ci95": [
+      0.46109,
+      0.66871
+     ]
+    },
+    "hokkaido": {
+     "pr_auc": 0.46744,
+     "ap_skill": 0.44928,
+     "base_rate": 0.03297,
+     "n_pos": 1108,
+     "ci95": [
+      0.35612,
+      0.564
+     ]
+    },
+    "hokuriku": {
+     "pr_auc": 0.52068,
+     "ap_skill": 0.51037,
+     "base_rate": 0.02107,
+     "n_pos": 708,
+     "ci95": [
+      0.37839,
+      0.63146
+     ]
+    },
+    "kansai": {
+     "pr_auc": 0.5335,
+     "ap_skill": 0.52274,
+     "base_rate": 0.02256,
+     "n_pos": 758,
+     "ci95": [
+      0.40234,
+      0.63968
+     ]
+    },
+    "kyushu": {
+     "pr_auc": 0.81945,
+     "ap_skill": 0.80589,
+     "base_rate": 0.06984,
+     "n_pos": 2347,
+     "ci95": [
+      0.76422,
+      0.86202
+     ]
+    },
+    "shikoku": {
+     "pr_auc": 0.56141,
+     "ap_skill": 0.52722,
+     "base_rate": 0.07231,
+     "n_pos": 2430,
+     "ci95": [
+      0.48878,
+      0.62408
+     ]
+    },
+    "tohoku": {
+     "pr_auc": 0.72897,
+     "ap_skill": 0.71902,
+     "base_rate": 0.03541,
+     "n_pos": 1190,
+     "ci95": [
+      0.64915,
+      0.78622
+     ]
+    },
+    "tokyo": {
+     "pr_auc": 0.52913,
+     "ap_skill": 0.52417,
+     "base_rate": 0.01041,
+     "n_pos": 350,
+     "ci95": [
+      0.35529,
+      0.66412
+     ]
+    }
+   },
+   "macro_ci95": [
+    0.50381,
+    0.6578
+   ]
+  }
+ },
+ "paired": {
+  "m2_minus_m0": {
+   "delta": 0.05553,
+   "ci95": [
+    0.02962,
+    0.08033
+   ],
+   "boot_mean_delta": 0.05378,
+   "p_boot": 0.0001,
+   "p_boot_at_resolution_floor": true,
+   "n_draws": 10000,
+   "note": "the winner over the recalibration chain, scored by its calibrated probability"
+  },
+  "m2_minus_m0rank": {
+   "delta": 0.01795,
+   "ci95": [
+    -0.00407,
+    0.03941
+   ],
+   "boot_mean_delta": 0.01698,
+   "p_boot": 0.1138,
+   "p_boot_at_resolution_floor": false,
+   "n_draws": 10000,
+   "note": "the winner over the SAME chain scored by its ranking -- the like-for-like comparison for a rank metric, because a monotone calibrator cannot reorder anything"
+  },
+  "m2_minus_m2p": {
+   "delta": 0.27635,
+   "ci95": [
+    0.21723,
+    0.32669
+   ],
+   "boot_mean_delta": 0.27301,
+   "p_boot": 0.0001,
+   "p_boot_at_resolution_floor": true,
+   "n_draws": 10000,
+   "note": "what the weather adds inside the winner"
+  },
+  "m2_minus_m1": {
+   "delta": 0.1075,
+   "ci95": [
+    0.06724,
+    0.14098
+   ],
+   "boot_mean_delta": 0.10451,
+   "p_boot": 0.0001,
+   "p_boot_at_resolution_floor": true,
+   "n_draws": 10000,
+   "note": "the winner over logistic regression"
+  },
+  "m2_minus_m4": {
+   "delta": 0.06918,
+   "ci95": [
+    0.04339,
+    0.08954
+   ],
+   "boot_mean_delta": 0.06733,
+   "p_boot": 0.0001,
+   "p_boot_at_resolution_floor": true,
+   "n_draws": 10000,
+   "note": "the winner over the quantile crossing"
+  },
+  "m0_minus_m2p": {
+   "delta": 0.22082,
+   "ci95": [
+    0.1621,
+    0.27327
+   ],
+   "boot_mean_delta": 0.21923,
+   "p_boot": 0.0001,
+   "p_boot_at_resolution_floor": true,
+   "n_draws": 10000,
+   "note": "the recalibration chain over the weather-withheld classifier"
+  },
+  "m0rank_minus_baserank": {
+   "delta": 0.29556,
+   "ci95": [
+    0.24264,
+    0.33584
+   ],
+   "boot_mean_delta": 0.29011,
+   "p_boot": 0.0001,
+   "p_boot_at_resolution_floor": true,
+   "n_draws": 10000,
+   "note": "THE MANUSCRIPT'S HEADLINE FLOOR GAIN: pre-gate over price-only, both ranked on their own forecasts, bootstrapped on the macro statistic rather than by averaging nine per-area interval endpoints"
+  },
+  "m0rankpost_minus_m0rank": {
+   "delta": 0.00984,
+   "ci95": [
+    -0.00207,
+    0.02341
+   ],
+   "boot_mean_delta": 0.00971,
+   "p_boot": 0.1156,
+   "p_boot_at_resolution_floor": false,
+   "n_draws": 10000,
+   "note": "THE TAIL GATE CONTRAST, same footing: the excluded run over the pre-gate run on the floor panel"
+  }
+ },
+ "multiplicity": {
+  "family": "five floor models compared on the same panel",
+  "n_models": 7,
+  "raw_p": {
+   "m2_minus_m0": 0.0001,
+   "m2_minus_m0rank": 0.1138,
+   "m2_minus_m2p": 0.0001,
+   "m2_minus_m1": 0.0001,
+   "m2_minus_m4": 0.0001,
+   "m0_minus_m2p": 0.0001,
+   "m0rank_minus_baserank": 0.0001,
+   "m0rankpost_minus_m0rank": 0.1156
+  },
+  "holm_adjusted_p": {
+   "m2_minus_m0": 0.0008,
+   "m2_minus_m2p": 0.0008,
+   "m2_minus_m1": 0.0008,
+   "m2_minus_m4": 0.0008,
+   "m0_minus_m2p": 0.0008,
+   "m0rank_minus_baserank": 0.0008,
+   "m2_minus_m0rank": 0.2276,
+   "m0rankpost_minus_m0rank": 0.2276
+  },
+  "note": "the winner is the winner of five, and the contrasts above are four of the comparisons that ranking implies"
+ },
+ "gate": {
+  "m0post_minus_m0": {
+   "delta": 0.01485,
+   "ci95": [
+    -0.00119,
+    0.03027
+   ],
+   "boot_mean_delta": 0.01415,
+   "p_boot": 0.073,
+   "p_boot_at_resolution_floor": false,
+   "n_draws": 10000,
+   "note": "isotonic chain: post-gate minus pre-gate",
+   "straddles_zero": true
+  },
+  "m2post_minus_m2": {
+   "delta": -0.0011,
+   "ci95": [
+    -0.01108,
+    0.01254
+   ],
+   "boot_mean_delta": -0.00029,
+   "p_boot": 0.9058,
+   "p_boot_at_resolution_floor": false,
+   "n_draws": 10000,
+   "note": "direct classifier: post-gate minus pre-gate",
+   "straddles_zero": true
+  }
+ },
+ "gates": {
+  "gate57_winner_margin": {
+   "rank_contrast_calibrated": {
+    "delta": 0.05553,
+    "ci95": [
+     0.02962,
+     0.08033
+    ]
+   },
+   "rank_contrast_like_for_like": {
+    "delta": 0.01795,
+    "ci95": [
+     -0.00407,
+     0.03941
+    ],
+    "p_boot": 0.1138
+   },
+   "proper_score_contrasts": {
+    "brier": {
+     "delta": -0.000444,
+     "ci95": [
+      -0.00115,
+      0.000236
+     ],
+     "p_boot": 0.2078,
+     "improves": true,
+     "note": "the classifier over the recalibration chain"
+    },
+    "log_score": {
+     "delta": -0.007689,
+     "ci95": [
+      -0.011579,
+      -0.004045
+     ],
+     "p_boot": 0.0001,
+     "improves": true,
+     "note": "the classifier over the recalibration chain"
+    }
+   },
+   "branch": "a/b",
+   "rank_diagnostic_indistinguishable": true,
+   "reading": "branch a/b: the pre-registered contrast -- every model scored on the probability it emits, the only common footing for five different constructions -- excludes zero, so the winner wording stands. The rank diagnostic qualifies WHAT it wins at: ranked on the forecast the chain recalibrates rather than on its daily-refitted probability, the gap is not distinguishable from zero, so the margin is about probability quality and not about ordering ability. The proper scores agree: the log score separates the two (p < 1e-4) and the Brier score does not (p = 0.21)"
+  },
+  "gate58_gate_contrast_under_winner": {
+   "tested_model": "direct classifier",
+   "delta": -0.0011,
+   "ci95": [
+    -0.01108,
+    0.01254
+   ],
+   "straddles_zero": true,
+   "branch": "a",
+   "reading": "branch a: the excluded run adds no detectable floor skill under this model either, so the null is not a property of the recalibration chain",
+   "stage2_complete": true
+  }
+ },
+ "proper_scores": {
+  "note": "macro over areas; lower is better. These separate the models the rank metric cannot",
+  "levels": {
+   "m0": {
+    "brier": 0.01839,
+    "log_score": 0.072484
+   },
+   "baserank": {
+    "brier": 164.200066,
+    "log_score": 0.475988
+   },
+   "m1": {
+    "brier": 0.020273,
+    "log_score": 0.072852
+   },
+   "m2": {
+    "brier": 0.017946,
+    "log_score": 0.064795
+   },
+   "m2p": {
+    "brier": 0.025637,
+    "log_score": 0.089117
+   },
+   "m4": {
+    "brier": 0.022531,
+    "log_score": 0.11205
+   }
+  },
+  "contrasts": {
+   "m2_minus_m0_brier": {
+    "delta": -0.000444,
+    "ci95": [
+     -0.00115,
+     0.000236
+    ],
+    "p_boot": 0.2078,
+    "improves": true,
+    "note": "the classifier over the recalibration chain"
+   },
+   "m2_minus_m0_log": {
+    "delta": -0.007689,
+    "ci95": [
+     -0.011579,
+     -0.004045
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "the classifier over the recalibration chain"
+   },
+   "m2_minus_m2p_brier": {
+    "delta": -0.007691,
+    "ci95": [
+     -0.010273,
+     -0.005438
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "what the weather adds inside the classifier"
+   },
+   "m2_minus_m2p_log": {
+    "delta": -0.024323,
+    "ci95": [
+     -0.03232,
+     -0.017381
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "what the weather adds inside the classifier"
+   },
+   "m2_minus_m1_brier": {
+    "delta": -0.002327,
+    "ci95": [
+     -0.003351,
+     -0.001399
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "over logistic regression"
+   },
+   "m2_minus_m1_log": {
+    "delta": -0.008057,
+    "ci95": [
+     -0.011784,
+     -0.004833
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "over logistic regression"
+   },
+   "m2_minus_m4_brier": {
+    "delta": -0.004585,
+    "ci95": [
+     -0.006698,
+     -0.002653
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "over the quantile crossing"
+   },
+   "m2_minus_m4_log": {
+    "delta": -0.047255,
+    "ci95": [
+     -0.062254,
+     -0.033694
+    ],
+    "p_boot": 0.0001,
+    "improves": true,
+    "note": "over the quantile crossing"
+   }
+  }
+ },
+ "metadata": {
+  "script": "s_20260813_phase81b_floor_inference.py",
+  "git_sha": "456971f7d1947b6b33a44bd1f4141ad3819070fd",
+  "generated_utc": "2026-08-18T05:49:18.417078+00:00",
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block_days": 7,
+  "bootstrap_statistic": "macro PR-AUC (across-area mean of per-area average precision), the statistic the manuscript reports; resampling unit is the delivery day in circular blocks, and all contrasts share one set of draws"
+ }
+}

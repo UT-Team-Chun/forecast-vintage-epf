@@ -1,0 +1,74 @@
+{
+ "phase": "89b",
+ "title": "Price-target improvement on the physical common panel",
+ "why": "Figure 5's panel (a) read the FULL ladder (732 days, 9 areas) while its panel (b) read the common panel (696 days, 8 areas), and the caption claimed both were the common panel",
+ "panel": {
+  "days": 696,
+  "areas": 8,
+  "slots": 266544,
+  "full_panel_days": 732,
+  "full_panel_areas": 9,
+  "areas_list": [
+   "chugoku",
+   "hokkaido",
+   "hokuriku",
+   "kansai",
+   "kyushu",
+   "shikoku",
+   "tohoku",
+   "tokyo"
+  ]
+ },
+ "inference": {
+  "seed": 2026,
+  "n_boot": 10000,
+  "block_days": 7,
+  "note": "phase85's estimator and settings, unchanged"
+ },
+ "tiers": {
+  "era5_cw": {
+   "improvement": 0.0453,
+   "ci95": [
+    0.0278,
+    0.0625
+   ],
+   "n_days": 696
+  },
+  "msm_d2_12z_cw": {
+   "improvement": 0.2589,
+   "ci95": [
+    0.2116,
+    0.3073
+   ],
+   "n_days": 696
+  },
+  "msm_gate_composite_cw": {
+   "improvement": 0.2601,
+   "ci95": [
+    0.2122,
+    0.3093
+   ],
+   "n_days": 696
+  },
+  "msm_d1_00z_cw": {
+   "improvement": 0.2607,
+   "ci95": [
+    0.2132,
+    0.3097
+   ],
+   "n_days": 696
+  },
+  "oracle_cw": {
+   "improvement": 0.2433,
+   "ci95": [
+    0.1983,
+    0.2889
+   ],
+   "n_days": 696
+  }
+ },
+ "metadata": {
+  "script": "s_20260813_phase89b_price_on_common_panel.py",
+  "git_sha": "42e81431d59da3a43d64b944d44d002e6b3580f5"
+ }
+}

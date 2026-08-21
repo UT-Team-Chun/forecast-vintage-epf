@@ -1,0 +1,396 @@
+"""Re-extract this replication package from the authors' research monorepo.
+
+This script IS the packaging process, checked in so the claim "the analysis
+code is untouched" is verifiable rather than asserted: run it against the
+monorepo and `git diff` shows exactly what changed. Only the authors can run
+it (it needs the private monorepo), but anyone can read it to see the complete
+list of transformations, and the test suite asserts its rename table matches
+``scripts/README.md``.
+
+What it does, exhaustively:
+
+1. ``scripts/`` -- copies each analysis script under its readable name (the
+   monorepo uses a dated sandbox convention that means nothing outside it) and
+   applies exactly THREE textual transforms, all confined to docstrings,
+   comments and log strings:
+     a. the docstring CLI heading  "CLI (from backend/packages/alg)"
+        becomes                    "CLI (from the repository root)";
+     b. the docstring line         "cd backend/packages/alg"
+        becomes                    "cd <repository root>";
+     c. references to a sibling script (with or without the monorepo's
+        ``sandbox/`` prefix) are rewritten to the sibling's name in
+        this repository.
+     d. any remaining mention of the monorepo's author-named sandbox
+        directory is dropped, keeping the filename or module tail. What
+        survives (c) names a script this package does not ship, so it cannot
+        be rewritten to a path here; the bare name still says which run
+        produced a result.
+   Nothing else is edited. In particular, provenance metadata stamps are NOT
+   rewritten -- the scripts stamp ``Path(__file__).name`` at run time.
+2. ``scripts/verify_macros.py`` -- copied VERBATIM, byte for byte. The guard
+   resolves its own layout and must stay diffable against the monorepo copy.
+3. ``alg/`` -- the transitive import closure of the scripts, iterated to a
+   fixed point, copied VERBATIM.
+4. ``data/provenance/`` -- every JSON the guard, the emitters and the figure
+   scripts read, plus the acquisition provenance. Copied verbatim except for
+   ONE substitution: an absolute path under the author's home directory is
+   rewritten repository-relative. Those paths are meaningful only on the
+   machine that wrote them and would publish its filesystem layout; no value,
+   count, interval or hash is touched. The research checkout has a guard
+   (``_provenance_paths_portable``) that fails if a script stamps one, so this
+   substitution is a backstop rather than the primary defence. A second,
+   narrower rewrite drops the ``sandbox/<author>/`` directory prefix from the
+   script name a run stamped, keeping the filename -- which is the provenance,
+   and which ``scripts/README.md`` maps to the name used here.
+5. ``data/reference/``, ``docs/macros.tex`` -- copied verbatim. ``figures/``
+   is NOT copied: the shipped figures are regenerated in this repository by
+   ``make figures`` from the shipped provenance, which is the stronger claim.
+
+Usage (authors only):
+    uv run python tools/extract_from_monorepo.py [--monorepo PATH] [--check]
+
+``--check`` copies nothing: it reports what would change, for use before a
+sync commit.
+"""
+
+from __future__ import annotations
+
+import argparse
+import os
+import re
+import sys
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parents[1]
+# The research repository this package is extracted from. It is private and the
+# manuscript does not name it, so the location is supplied by the author at run
+# time (--monorepo, or MONOREPO_PATH) rather than written down here.
+DEFAULT_MONOREPO = Path(os.environ["MONOREPO_PATH"]) if os.environ.get(
+    "MONOREPO_PATH") else HERE.parent / "research-monorepo"
+
+# ---------------------------------------------------------------- rename map
+# (new name here, monorepo sandbox name). scripts/README.md carries the same
+# table for readers; tests/test_smoke.py asserts the two agree.
+RENAMES: list[tuple[str, str]] = [
+    # --- acquisition and extraction -------------------------------------
+    ("01_extract_pinned_runs.py", "s_20260729_phase58_exact_run_extract.py"),
+    ("02_extract_pregate_composite.py", "s_20260726_phase53_rish_pregate_extract.py"),
+    ("03_build_area_points.py", "s_20260803_phase74_build_area_points.py"),
+    ("04_acquire_ics_basis.py", "s_20260730_phase71_ics_basis_acquire.py"),
+    ("05_extend_panel.py", "s_20260811_phase85_data_extension.py"),
+    ("06_extract_gfs.py", "s_20260811_phase86_gfs_extract.py"),
+    ("07_patch_gfs_shortwave.py", "s_20260812_phase86_sw_patch.py"),
+    # --- the ladder: primary, then the two references it reproduces -----
+    ("10_primary_ladder_cw.py", "s_20260811_phase85_cw_primary_ladder.py"),
+    ("11_cycle_curve.py", "s_20260811_phase73v2_cycle_curve_extended.py"),
+    ("12_single_point_ladder.py", "s_20260729_phase59_exact_ladder.py"),
+    ("13_capacity_weighted_ladder_prior.py", "s_20260803_phase74_cw_ladder.py"),
+    ("14_enriched_baseline.py", "s_20260812_phase54v2_current.py"),
+    ("14b_enriched_baseline_drop_supply.py", "s_20260812_phase54v2_drop.py"),
+    ("14c_enriched_baseline_lag144.py", "s_20260812_phase54v2_lag144.py"),
+    ("15_proxy_validation.py", "s_20260729_phase62_proxy_validation.py"),
+    ("16_tier_slope_tests.py", "s_20260726_phase55_tier_slope_tests.py"),
+    ("17_composite_ladder_superseded.py", "s_20260726_phase51_vintage_ladder.py"),
+    ("18_exante_fullyear.py", "s_20260724_phase49_exante_fullyear.py"),
+    ("19_epex_de_replication.py", "s_20260724_phase45_epex_de_tiered.py"),
+    # --- floor-event forecasting ----------------------------------------
+    ("30_floor_regime_evaluation.py", "s_20260811_phase66v2_floor_regime_cw.py"),  # now also carries the capacity-weighted pairings (phase66v3)
+    ("31_direct_floor_models.py", "s_20260811_phase81_direct_floor_models.py"),
+    # --- the dissemination audit and its lineage ------------------------
+    ("40_dissemination_audit.py", "s_20260731_phase72_dissemination_audit.py"),
+    ("41_lineage_audit.py", "s_20260811_phase78_lineage_audit.py"),
+    ("42_head_sweep.py", "s_20260811_phase84_head_sweep_ef.py"),
+    # --- the two-target contrast and the mechanism test ------------------
+    # 50 was phase79's expectations-channel script. phase89 supersedes it: the
+    # scale is cross-fitted, the panel is the one the price ladder shares, and
+    # the OCCTO stamp convention is corrected per operator. 51 is the mechanism
+    # test whose retraction branch fired.
+    ("50_physical_target.py", "s_20260813_phase89_physical_target.py"),
+    ("51_mechanism_test.py", "s_20260813_phase90_mechanism.py"),
+    # --- robustness families --------------------------------------------
+    ("60_version_robustness.py", "s_20260811_phase80_jma_version.py"),
+    ("61_weighted_metrics.py", "s_20260811_phase82_weighted_metrics.py"),
+    ("62_inference_sensitivity.py", "s_20260811_phase83_inference_sensitivity.py"),
+    ("63_gfs_provider_tier.py", "s_20260811_phase86_gfs_tier.py"),
+    ("64_absolute_metrics.py", "s_20260813_phase82b_absolute_metrics.py"),
+    ("65_floor_inference.py", "s_20260813_phase81b_floor_inference.py"),
+    ("66_weight_sensitivity.py", "s_20260813_phase91_weight_sensitivity.py"),
+    # 2026-08-13, second wave. 52 recomputes the price target on the physical
+    # common panel, because Figure 5's panel (a) had been reading the full ladder
+    # while its caption claimed the common panel.
+    ("52_price_on_common_panel.py",
+     "s_20260813_phase89b_price_on_common_panel.py"),
+    # --- the literature audit -------------------------------------------
+    ("70_lit_audit_assemble.py", "s_20260812_phase88_lit_audit_assemble.py"),
+    ("71_audit_reliability.py", "s_20260813_phase88b_audit_reliability.py"),
+    # --- the analyses added during the 2026-08 review rounds -------------
+    # Their provenance JSON already ships (the tool discovers provenance from
+    # what the guard and emitters read), but without these the reader could
+    # check the numbers and not regenerate them.
+    ("45_rish_cycle_horizon_probe.py", "s_20260819_phase100_rish_cycle_horizon_probe.py"),
+    ("46_file_level_arrival.py", "s_20260819_phase105_file_level_arrival.py"),
+    ("53_physical_normalisation.py", "s_20260819_phase101_physical_normalisation.py"),
+    ("54_signal_vs_learner.py", "s_20260819_phase102_signal_vs_learner.py"),
+    ("32_floor_channel_hurdle.py", "s_20260819_phase103b_floor_channel_hurdle.py"),
+    ("55_commensurable_asymmetry.py", "s_20260820_phase106_commensurable_asymmetry.py"),
+    ("72_litaudit_reslice.py", "s_20260820_phase107_litaudit_reslice.py"),
+    ("67_costloss_dominated.py", "s_20260820_phase108_costloss_dominated.py"),
+    ("47_evaluation_regime.py", "s_20260819_phase94_evaluation_regime.py"),
+    ("48_area_independence.py", "s_20260819_phase95_area_independence.py"),
+    ("18b_lear_ladder.py", "s_20260819_phase96_lear_ladder.py"),
+    ("66b_cost_loss.py", "s_20260819_phase97_cost_loss.py"),
+    ("40b_dissemination_detail.py", "s_20260819_phase98_dissemination_detail.py"),
+    ("43_curtailment_days.py", "s_20260814_phase92_curtailment_days.py"),
+    ("44_headline_cell_dispersion.py", "s_20260818_phase93_headline_cell_dispersion.py"),
+    # --- tables and figures ---------------------------------------------
+    ("90_emit_tables.py", "s_20260729_phase64_emit_supp_tables.py"),
+    ("91_figure_timeline.py", "s_20260812_phase87_timeline_split.py"),
+    ("92_figures_paper.py", "s_20260812_phase87_ae_figures.py"),
+    ("93_figures_results.py", "s_20260812_phase87_results_figures.py"),
+]
+VERBATIM_SCRIPTS = ("verify_macros.py",)
+
+# Scripts that this package used to ship and no longer should. The settlement
+# analyses moved to the companion paper when the manuscript was split; leaving
+# their files here would advertise results this package's provenance no longer
+# contains. Extraction deletes them rather than letting them rot.
+RETIRED_SCRIPTS = (
+    # phase79's physical-target script: superseded by 50_physical_target.py,
+    # whose scale carries no look-ahead. Shipping both would let a reader
+    # reproduce a number the manuscript has withdrawn.
+    "50_expectations_channel.py",
+    "10_vintage_ladder.py",
+    "12_capacity_weighted_ladder.py",
+    "13_enriched_baseline.py",
+    "14_proxy_validation.py",
+    "15_tier_slope_tests.py",
+    "16_composite_ladder_superseded.py",
+    "17_exante_fullyear.py",
+    "18_epex_de_replication.py",
+    "20_commitment_decision.py",
+    "21_decision_equivalence.py",
+    "22_nomination_rules.py",
+    "31_settlement_pricing.py",
+    "32_wedge_continuous.py",
+    "33_system_metrics_band.py",
+    "34_netting_direction.py",
+    "35_netting_exact.py",
+)
+
+# provenance shipped beyond what the guard itself references
+EXTRA_PROVENANCE = (
+    "phase35_allhours_headtohead.json",
+    "phase36_skill_degradation.json",
+    "phase51_vintage_ladder.json",
+    "phase72_dissemination_audit.json",
+)
+NESTED_PROVENANCE = (
+    "phase23-panel-daily/cluster_bootstrap.json",
+    "phase25_17_floor_pre_period/results.json",
+)
+
+
+def transform(text: str) -> str:
+    """The four documented transforms, and nothing else."""
+    text = text.replace("CLI (from backend/packages/alg)", "CLI (from the repository root)")
+    text = text.replace("cd backend/packages/alg", "cd <repository root>")
+    for new, old in RENAMES:
+        for box in ("research", "r_okauchi"):
+            text = text.replace(f"sandbox/{box}/{old}", f"scripts/{new}")
+        text = text.replace(old, new)
+    # (d) Any remaining reference to the monorepo's sandbox directory loses the
+    # directory and keeps the tail. What is left over after the loop above names a
+    # script this package does NOT ship -- a superseded run, or one whose result the
+    # article no longer cites -- so rewriting it to "scripts/<name>" would point at
+    # a file that is not here. Keeping the bare filename is honest: it says which
+    # run produced something without publishing one person's directory layout
+    # through forty-odd shipped files.
+    text = re.sub(r"(?:backend/packages/alg/)?sandbox/(?:research|r_okauchi)/",
+                  "", text)
+    text = re.sub(r"sandbox\.(?:research|r_okauchi)\.", "", text)
+    text = re.sub(r"(?:backend/packages/alg/)?sandbox/(?:research|r_okauchi)\b",
+                  "the research sandbox", text)
+    return text
+
+
+def imports_of(text: str) -> set[str]:
+    mods: set[str] = set()
+    for m in re.finditer(r"^\s*from (alg[\w.]*) import ([^\n(]+|\([^)]*\))", text, re.M):
+        base, names = m.group(1), m.group(2)
+        mods.add(base)
+        mods.update(f"{base}.{n}" for n in re.findall(r"[A-Za-z_]\w*", names))
+    for m in re.finditer(r"^\s*import (alg[\w.]*)", text, re.M):
+        mods.add(m.group(1))
+    return mods
+
+
+def alg_closure(monorepo_alg: Path, script_texts: list[str]) -> set[Path]:
+    """Relative alg/ paths: the fixed point of the import relation."""
+
+    def paths_for(mod: str) -> list[Path]:
+        p = Path(mod.replace(".", "/"))
+        out = []
+        if (monorepo_alg / p.with_suffix(".py")).exists():
+            out.append(p.with_suffix(".py"))
+        if (monorepo_alg / p).is_dir() and (monorepo_alg / p / "__init__.py").exists():
+            out.append(p / "__init__.py")
+        return out
+
+    have: set[Path] = set()
+    frontier = [m for t in script_texts for m in imports_of(t)]
+    while frontier:
+        mod = frontier.pop()
+        for rel in paths_for(mod):
+            if rel in have:
+                continue
+            have.add(rel)
+            frontier.extend(imports_of((monorepo_alg / rel).read_text()))
+    for rel in list(have):
+        for i in range(1, len(rel.parts)):
+            ini = Path(*rel.parts[:i]) / "__init__.py"
+            if (monorepo_alg / ini).exists():
+                have.add(ini)
+    return have
+
+
+def guard_provenance(guard_text: str) -> set[str]:
+    """Provenance the shipped guard needs -- excluding the settlement paper's.
+
+    The guard is shared verbatim with the research repository and still checks
+    the settlement macros there. Those checks carry ``paper_b=True``, and this
+    package ships neither their provenance nor the scripts that produced it, so
+    they must not be pulled in here: the guard skips them and says so. Parsing
+    is per MacroCheck block rather than per line because a check spans several
+    lines and its flag can sit far from its provenance string.
+    """
+    keep: set[str] = set()
+    for block in re.split(r"(?=MacroCheck\()", guard_text):
+        m = re.search(r'provenance="([^"]+)"', block)
+        if not m or m.group(1) == "TODO.json":
+            continue
+        if re.search(r"\bpaper_b\s*=\s*True\b", block):
+            continue
+        keep.add(m.group(1))
+
+    # WORD_CHECKS and STRING_CHECKS are tuples, not MacroCheck objects, so the
+    # loop above never saw them. That was invisible for as long as every file
+    # they name was also named by some MacroCheck -- and it stopped being
+    # invisible when phase100's provenance arrived referenced ONLY by word
+    # checks, so the shipped guard asked for a file this tool had not copied.
+    # Neither list carries the paper_b flag (it is a MacroCheck field), so
+    # everything they name belongs in the package.
+    for name in ("WORD_CHECKS", "STRING_CHECKS"):
+        m = re.search(rf"^{name}[^=]*=\s*\[(.*?)^\]", guard_text, re.S | re.M)
+        if not m:
+            continue
+        keep |= {j for j in re.findall(r'"([^"]+\.json)"', m.group(1))
+                 if j != "TODO.json"}
+    return keep
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--monorepo", type=Path, default=DEFAULT_MONOREPO)
+    ap.add_argument("--check", action="store_true", help="report differences, copy nothing")
+    args = ap.parse_args()
+    mono = args.monorepo.resolve()
+    sandbox = mono / "backend/packages/alg/sandbox/research"
+    mono_alg = mono / "backend/packages/alg"
+    runs = mono / "data/runs"
+    if not sandbox.is_dir():
+        sys.stderr.write(f"monorepo not found at {mono}\n")
+        return 2
+
+    changed: list[str] = []
+
+    def emit(dst: Path, content: bytes) -> None:
+        if dst.exists() and dst.read_bytes() == content:
+            return
+        changed.append(str(dst.relative_to(HERE)))
+        if not args.check:
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            dst.write_bytes(content)
+
+    # scripts
+    for new, old in RENAMES:
+        emit(HERE / "scripts" / new, transform((sandbox / old).read_text()).encode())
+    for name in VERBATIM_SCRIPTS:
+        emit(HERE / "scripts" / name, (sandbox / name).read_bytes())
+
+    # retired scripts: delete, do not leave stale
+    for name in RETIRED_SCRIPTS:
+        stale = HERE / "scripts" / name
+        if stale.exists():
+            changed.append(f"removed {stale.relative_to(HERE)}")
+            if not args.check:
+                stale.unlink()
+
+    # alg closure (verbatim)
+    texts = [(sandbox / old).read_text() for _, old in RENAMES] + [
+        (sandbox / n).read_text() for n in VERBATIM_SCRIPTS
+    ]
+    for rel in sorted(alg_closure(mono_alg, texts)):
+        emit(HERE / rel, (mono_alg / rel).read_bytes())
+
+    # provenance
+    def portable(raw: bytes) -> bytes:
+        """Rewrite an absolute path under the author's home repository-relative.
+
+        The only substitution applied to a provenance artefact. It touches paths
+        and nothing else: no value, count, interval or hash. See the module
+        docstring for why, and the research checkout's
+        ``_provenance_paths_portable`` guard for the primary defence.
+        """
+        mono_root = str(mono) + "/"
+        home = str(Path.home())
+        text = raw.decode("utf-8")
+        text = text.replace(mono_root, "")
+        text = text.replace(home + "/main_desk/UTokyo/from_202604/", "../")
+        text = text.replace(home + "/", "~/")
+        # Scripts stamp their own path, and the monorepo keeps them in a sandbox
+        # directory named after the author. The FILENAME is the provenance and is
+        # kept -- scripts/README.md maps it to the name here -- but the directory
+        # prefix names a layout that does not exist in this package and carries a
+        # person's name through 40-odd frozen artefacts for no benefit.
+        # frozen provenance from before the sandbox was renamed still records
+        # the old author-named directory, so both spellings are stripped
+        text = re.sub(r"(?:[\w./-]*?)sandbox/(?:research|r_okauchi)/(s_\d{8}_)",
+                      r"\1", text)
+        return text.encode("utf-8")
+
+    prov = guard_provenance((sandbox / "verify_macros.py").read_text())
+    prov.update(EXTRA_PROVENANCE)
+    for name in sorted(prov):
+        emit(HERE / "data/provenance" / name, portable((runs / name).read_bytes()))
+    for rel in NESTED_PROVENANCE:
+        emit(HERE / "data/provenance" / rel, portable((runs / rel).read_bytes()))
+
+    # Provenance this package no longer needs -- the settlement paper's, and
+    # anything a superseded check used to pull in. A frozen JSON whose script
+    # and whose citing sentence have both left is not evidence a reader can
+    # use; leaving it here would suggest the package still reproduces a result
+    # it does not.
+    expected = set(prov) | {Path(r).name for r in NESTED_PROVENANCE}
+    for f in sorted((HERE / "data/provenance").glob("*.json")):
+        if f.name not in expected:
+            changed.append(f"removed {f.relative_to(HERE)}")
+            if not args.check:
+                f.unlink()
+
+    # reference data + macros
+    for name in ("area_capacity.csv", "area_points_capacity.csv"):
+        emit(HERE / "data/reference" / name, (mono / "data/reference" / name).read_bytes())
+    emit(HERE / "docs/macros.tex",
+         (mono / "docs/paper/shared/macros.tex").read_bytes())
+
+    verb = "would change" if args.check else "updated"
+    print(f"{verb}: {len(changed)} file(s)")
+    for c in changed:
+        print("  ", c)
+    if args.check and changed:
+        return 1
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

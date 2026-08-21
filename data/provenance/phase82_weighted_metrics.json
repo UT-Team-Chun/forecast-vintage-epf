@@ -1,0 +1,236 @@
+{
+ "phase": 82,
+ "title": "Weighted metrics, relative displays, slices",
+ "precommit_doc": "docs/research/2026-08-11_phase82_weighted_metrics_precommit.md",
+ "traded_volume_weighting": "unavailable: per-area traded volume is not in the spot cache; not proxied",
+ "weights": {
+  "unweighted": {
+   "chubu": 0.1111,
+   "chugoku": 0.1111,
+   "hokkaido": 0.1111,
+   "hokuriku": 0.1111,
+   "kansai": 0.1111,
+   "kyushu": 0.1111,
+   "shikoku": 0.1111,
+   "tohoku": 0.1111,
+   "tokyo": 0.1111
+  },
+  "demand": {
+   "chubu": 0.0,
+   "chugoku": 0.0792,
+   "hokkaido": 0.0409,
+   "hokuriku": 0.038,
+   "kansai": 0.1928,
+   "kyushu": 0.1206,
+   "shikoku": 0.0354,
+   "tohoku": 0.1088,
+   "tokyo": 0.3843
+  },
+  "pv_capacity": {
+   "chubu": 0.182,
+   "chugoku": 0.0815,
+   "hokkaido": 0.0364,
+   "hokuriku": 0.0277,
+   "kansai": 0.1339,
+   "kyushu": 0.1747,
+   "shikoku": 0.064,
+   "tohoku": 0.1106,
+   "tokyo": 0.1892
+  }
+ },
+ "by_weighting": {
+  "unweighted": {
+   "msm_d2_12z_cw": {
+    "improvement": 0.2529,
+    "ci95": [
+     0.208,
+     0.2998
+    ],
+    "n_days": 732
+   },
+   "msm_d1_00z_cw": {
+    "improvement": 0.2555,
+    "ci95": [
+     0.2101,
+     0.3031
+    ],
+    "n_days": 732
+   },
+   "gate_timing_delta": {
+    "delta": 0.0026,
+    "ci95": [
+     -0.0047,
+     0.0099
+    ]
+   }
+  },
+  "demand": {
+   "msm_d2_12z_cw": {
+    "improvement": 0.2662,
+    "ci95": [
+     0.2181,
+     0.3167
+    ],
+    "n_days": 732
+   },
+   "msm_d1_00z_cw": {
+    "improvement": 0.2695,
+    "ci95": [
+     0.2203,
+     0.3219
+    ],
+    "n_days": 732
+   },
+   "gate_timing_delta": {
+    "delta": 0.0034,
+    "ci95": [
+     -0.0044,
+     0.0109
+    ]
+   }
+  },
+  "pv_capacity": {
+   "msm_d2_12z_cw": {
+    "improvement": 0.2768,
+    "ci95": [
+     0.2272,
+     0.3289
+    ],
+    "n_days": 732
+   },
+   "msm_d1_00z_cw": {
+    "improvement": 0.2785,
+    "ci95": [
+     0.2285,
+     0.3313
+    ],
+    "n_days": 732
+   },
+   "gate_timing_delta": {
+    "delta": 0.0017,
+    "ci95": [
+     -0.006,
+     0.0095
+    ]
+   }
+  }
+ },
+ "slices": {
+  "all": {
+   "improvement": 0.2529,
+   "ci95": [
+    0.208,
+    0.2998
+   ],
+   "n_days": 732
+  },
+  "daylight_6_18": {
+   "improvement": 0.4102,
+   "ci95": [
+    0.3343,
+    0.491
+   ],
+   "n_days": 731
+  },
+  "midday_9_15": {
+   "improvement": 0.5885,
+   "ci95": [
+    0.472,
+    0.7112
+   ],
+   "n_days": 731
+  },
+  "floor": {
+   "improvement": 0.6402,
+   "ci95": [
+    0.5137,
+    0.7724
+   ],
+   "n_days": 369
+  },
+  "non_floor": {
+   "improvement": 0.197,
+   "ci95": [
+    0.1589,
+    0.2362
+   ],
+   "n_days": 732
+  },
+  "DJF": {
+   "improvement": 0.129,
+   "ci95": [
+    0.0755,
+    0.1805
+   ],
+   "n_days": 180
+  },
+  "MAM": {
+   "improvement": 0.5191,
+   "ci95": [
+    0.4258,
+    0.6126
+   ],
+   "n_days": 181
+  },
+  "JJA": {
+   "improvement": 0.1312,
+   "ci95": [
+    0.0621,
+    0.2034
+   ],
+   "n_days": 189
+  },
+  "SON": {
+   "improvement": 0.2373,
+   "ci95": [
+    0.181,
+    0.2949
+   ],
+   "n_days": 182
+  }
+ },
+ "relative": {
+  "msm_d2_12z_cw": {
+   "baseline_mae": 2.153,
+   "tier_mae": 1.9001,
+   "improvement_pct_of_baseline": 11.7,
+   "rmae_vs_price_only": 0.8825
+  },
+  "msm_gate_composite_cw": {
+   "baseline_mae": 2.153,
+   "tier_mae": 1.8992,
+   "improvement_pct_of_baseline": 11.8,
+   "rmae_vs_price_only": 0.8821
+  },
+  "msm_d1_00z_cw": {
+   "baseline_mae": 2.153,
+   "tier_mae": 1.8975,
+   "improvement_pct_of_baseline": 11.9,
+   "rmae_vs_price_only": 0.8813
+  },
+  "oracle_cw": {
+   "baseline_mae": 2.153,
+   "tier_mae": 1.9125,
+   "improvement_pct_of_baseline": 11.2,
+   "rmae_vs_price_only": 0.8883
+  },
+  "era5_cw": {
+   "baseline_mae": 2.153,
+   "tier_mae": 2.1061,
+   "improvement_pct_of_baseline": 2.2,
+   "rmae_vs_price_only": 0.9782
+  }
+ },
+ "sign_stability": {
+  "headline_ci_excludes_zero_under_all_weights": true,
+  "weightings_with_ci_touching_zero": []
+ },
+ "metadata": {
+  "script": "s_20260811_phase82_weighted_metrics.py",
+  "git_sha": "d2e91563b4199e94bfe71551ebf040c70914703e",
+  "generated_utc": "2026-08-11T11:42:19.938092+00:00",
+  "seed": 2026,
+  "n_boot": 10000,
+  "boot_block_days": 7
+ }
+}

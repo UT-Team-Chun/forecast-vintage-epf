@@ -1,0 +1,146 @@
+{
+ "n_screened": 55,
+ "n_included": 43,
+ "n_excluded": 5,
+ "n_unresolved": 7,
+ "unresolved_papers": [
+  "The effect of wind generation and weekday on Spanish electricity spot price forecasting",
+  "Extended forecast methods for day-ahead electricity spot prices applying artificial neural networks",
+  "Enhancing load, wind and solar generation for day-ahead forecasting of electricity prices",
+  "Scenarios modelling for forecasting day-ahead electricity prices: Case studies in Australia",
+  "Forecasting Wholesale Electricity Market Prices Considering Bidding Conditions Using Price Sensitivity",
+  "Improving Day-Ahead Electricity Price Forecasting Accuracy in Australia's National Electricity Market with Kolmogorov-Arnold Networks",
+  "Day-ahead electricity price forecasting employing a novel hybrid frame of deep learning methods: A case study in NSW, Australia"
+ ],
+ "excluded_papers": [
+  {
+   "title": "Day-ahead electricity price forecasting with high-dimensional structures: Univariate vs. multivariate modeling frameworks",
+   "reason": "Pure price-only study: Section 4 explicitly excludes exogenous variables \"like weather, load or renewable energy generation forecasts\"; all 58 models use only lagged prices and deterministic calendar dummies, so no weather/NWP/renewable-forecast inputs exist to audit."
+  },
+  {
+   "title": "One-week-ahead electricity price forecasting using weather forecasts, and its application to arbitrage in the forward market: an empirical study of the Japan Electric Power Exchange",
+   "reason": "Forecast horizon is one week ahead (weekly-average JEPX spot price, decided in week t-1 for forward-market arbitrage), not day-ahead(ish) EPF; coded columns retained for reference since gate-vintage alignment is explicit."
+  },
+  {
+   "title": "Understanding electricity prices beyond the merit order principle using explainable AI",
+   "reason": "Explicitly not forecasting: \"we will not make predictions in the sense of a forecast\"; ex-post XAI explanation with weekly-shuffled (non-chronological) splits and post-clearing auction outcomes (day-ahead total scheduled generation, import/export) as inputs — not day-ahead-horizon EPF."
+  },
+  {
+   "title": "Hybrid Kolmogorov-Arnold Network and XGBoost Framework for Week-Ahead Price Forecasting in Australia's National Electricity Market",
+   "reason": "Horizon is week-ahead, not day-ahead: H = 168 hourly steps from a 336-hour look-back, and the paper positions itself explicitly against day-ahead work — \"Although day-ahead forecasting has been widely studied in the NEM, week-ahead hourly forecasting remains relatively underexplored despite its practical importance\" (Sec. I, p.1). It IS genuine electricity PRICE forecasting (RRP) with weather-derived inputs (temperature, wind speed, humidity, cloud cover) plus AEMO renewable generation forecasts, so it fails only the horizon criterion. Compounding this, the Australian NEM is a real-time dispatch market settled at five-minute resolution with rebidding, so there is no day-ahead auction and no day-ahead bidding gate against which input admissibility could be assessed. Columns are coded anyway as a near-miss/borderline record: the paper is a clean instance of the availability-timing gap, naming weather variables and renewable \"forecasts\" while never stating their vintage, publication time, or availability at the forecast origin."
+  },
+  {
+   "title": "The Evolution of Probabilistic Price Forecasting Techniques: A Review of the Day-Ahead, Intra-Day, and Balancing Markets",
+   "reason": "review, not a primary study — reports no empirical experiment of its own (no dataset, no case study, no numerical results); additionally uses no weather-derived inputs, since it conducts no forecasting."
+  }
+ ],
+ "access_levels": {
+  "abstract-only": 6,
+  "partial": 17,
+  "full-text": 20
+ },
+ "input_type_buckets": {
+  "mixed": 21,
+  "forecast": 19,
+  "realised/reanalysis": 3
+ },
+ "per_column_verdicts": {
+  "gate_time_stated": {
+   "Partial": 12,
+   "Yes": 18,
+   "No": 8,
+   "Not stated": 5
+  },
+  "model_run_id_stated": {
+   "No": 27,
+   "Partial": 4,
+   "Not stated": 10,
+   "Yes": 2
+  },
+  "init_time_stated": {
+   "Partial": 5,
+   "No": 16,
+   "Not stated": 21,
+   "Yes": 1
+  },
+  "publication_time_stated": {
+   "Partial": 17,
+   "No": 16,
+   "Not stated": 8,
+   "Yes": 2
+  },
+  "gate_admissibility_checked": {
+   "Partial": 24,
+   "Yes": 2,
+   "No": 17
+  },
+  "revision_handling": {
+   "Partial": 6,
+   "Not stated": 36,
+   "No": 1
+  }
+ },
+ "rates": {
+  "states_gate_time": {
+   "n_checkable": 43,
+   "n_positive": 18,
+   "share": 0.4186,
+   "n_not_verifiable": 0
+  },
+  "identifies_model_run": {
+   "n_checkable": 43,
+   "n_positive": 2,
+   "share": 0.0465,
+   "n_not_verifiable": 0
+  },
+  "states_initialisation": {
+   "n_checkable": 43,
+   "n_positive": 1,
+   "share": 0.0233,
+   "n_not_verifiable": 0
+  },
+  "states_publication_time": {
+   "n_checkable": 43,
+   "n_positive": 2,
+   "share": 0.0465,
+   "n_not_verifiable": 0
+  },
+  "checks_gate_admissibility": {
+   "n_checkable": 43,
+   "n_positive": 2,
+   "share": 0.0465,
+   "n_not_verifiable": 0
+  },
+  "handles_revisions": {
+   "n_checkable": 43,
+   "n_positive": 0,
+   "share": 0.0,
+   "n_not_verifiable": 0
+  }
+ },
+ "deduplication": {
+  "n_records_collected": 57,
+  "n_distinct_works": 55,
+  "dropped": [
+   {
+    "key": "doi:10.1016/j.csda.2010.06.021",
+    "dropped_title": "The power of weather: Some empirical evidence on predicting day-ahead power prices through weather forecasts",
+    "kept_title": "The power of weather",
+    "reason": "same work, second record"
+   },
+   {
+    "key": "arxiv:2501.06180",
+    "dropped_title": "Probabilistic forecasts of load, solar and wind for electricity price forecasting",
+    "kept_title": "The role of probabilistic load and renewable prediction in enhancing day-ahead electricity price forecasts (arXiv: Probabilistic Forecasts of Load, Solar and Wind for Electricity Price Forecasting)",
+    "reason": "same work, second record"
+   }
+  ]
+ },
+ "metadata": {
+  "phase": 88,
+  "protocol": "docs/research/2026-08-11_literature_audit_protocol.md",
+  "script": "s_20260812_phase88_lit_audit_assemble.py",
+  "dataset": "docs/paper/paper_a_main/submission/lit_audit_dataset.csv",
+  "coding_method": "one agent-assisted coder per paper reading the published text, each cell accompanied by verbatim evidence quotes and an explicit record of what was read; rates are computed over papers whose text could be checked"
+ }
+}

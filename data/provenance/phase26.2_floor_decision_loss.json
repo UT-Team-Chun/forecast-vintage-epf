@@ -1,0 +1,2557 @@
+{
+  "phase": "26.2_floor_decision_loss",
+  "floor_threshold": 0.5,
+  "cost_ratio_grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+  ],
+  "reference_cost_ratio": 2.0,
+  "tiers": [
+    "era5",
+    "histfc",
+    "oracle"
+  ],
+  "fairness_note": "price-only and +weather reported side by side; cost grid pre-specified (a frontier, not a tuned point); Brier & threshold are cross-fitted (leakage-free); a null is visible.",
+  "cost_ratio_rationale": "r = c_over/c_under > 1 because the costly error is over-forecasting a price that actually floors: a generator short into a floored area settles at the JEPX imbalance price, not the collapsed spot. We report the full frontier and the breakeven r* rather than commit to a single calibrated ratio.",
+  "base_rate_explains_f1_vs_auc": "The floor event is rare (see floor_base_rate); a high ROC-AUC ranker still faces a precision ceiling set by the base rate, so PR-AUC and F1 are the honest imbalance-aware summaries.",
+  "n_obs": 45696,
+  "areas": [
+    "chugoku",
+    "hokkaido",
+    "hokuriku",
+    "kansai",
+    "kyushu",
+    "shikoku",
+    "tohoku",
+    "tokyo"
+  ],
+  "pooled": {
+    "era5": {
+      "classification_price_only": {
+        "floor_base_rate": 0.032956932773109245,
+        "floor_precision": 0.6055555555555555,
+        "floor_recall": 0.07237715803452856,
+        "floor_f1": 0.12930011862396204,
+        "roc_auc_floor": 0.9254718322155295,
+        "pr_auc_floor": 0.36516176641851805,
+        "mae_floor": 5.137364650815924,
+        "mae_normal": 1.915572879834299
+      },
+      "classification_weather": {
+        "floor_base_rate": 0.032956932773109245,
+        "floor_precision": 0.5378787878787878,
+        "floor_recall": 0.04714475431606906,
+        "floor_f1": 0.0866910866910867,
+        "roc_auc_floor": 0.9396330045286156,
+        "pr_auc_floor": 0.40672304559596384,
+        "mae_floor": 4.8990895426075465,
+        "mae_normal": 1.8885888261463937
+      },
+      "calibration_price_only": {
+        "brier": 0.025339007201869667,
+        "n": 45696,
+        "calibration_bins": [
+          {
+            "bin_lo": 0.0,
+            "bin_hi": 0.1,
+            "mean_pred": 0.010372526200856708,
+            "obs_freq": 0.010754503146777266,
+            "n": 41471
+          },
+          {
+            "bin_lo": 0.1,
+            "bin_hi": 0.2,
+            "mean_pred": 0.14215625969426074,
+            "obs_freq": 0.1402757964812173,
+            "n": 2103
+          },
+          {
+            "bin_lo": 0.2,
+            "bin_hi": 0.30000000000000004,
+            "mean_pred": 0.258199596399639,
+            "obs_freq": 0.2979310344827586,
+            "n": 725
+          },
+          {
+            "bin_lo": 0.30000000000000004,
+            "bin_hi": 0.4,
+            "mean_pred": 0.34643907467097956,
+            "obs_freq": 0.34328358208955223,
+            "n": 804
+          },
+          {
+            "bin_lo": 0.4,
+            "bin_hi": 0.5,
+            "mean_pred": 0.4459130151385945,
+            "obs_freq": 0.39501779359430605,
+            "n": 281
+          },
+          {
+            "bin_lo": 0.5,
+            "bin_hi": 0.6000000000000001,
+            "mean_pred": 0.5350977723569771,
+            "obs_freq": 0.4686192468619247,
+            "n": 239
+          },
+          {
+            "bin_lo": 0.6000000000000001,
+            "bin_hi": 0.7000000000000001,
+            "mean_pred": 0.6631141267437778,
+            "obs_freq": 0.5833333333333334,
+            "n": 24
+          },
+          {
+            "bin_lo": 0.8,
+            "bin_hi": 0.9,
+            "mean_pred": 0.8833466215696795,
+            "obs_freq": 0.7441860465116279,
+            "n": 43
+          },
+          {
+            "bin_lo": 0.9,
+            "bin_hi": 1.0,
+            "mean_pred": 0.9833333333333334,
+            "obs_freq": 0.6666666666666666,
+            "n": 6
+          }
+        ]
+      },
+      "calibration_weather": {
+        "brier": 0.02384015373196211,
+        "n": 45696,
+        "calibration_bins": [
+          {
+            "bin_lo": 0.0,
+            "bin_hi": 0.1,
+            "mean_pred": 0.00943474033058201,
+            "obs_freq": 0.00948206032305713,
+            "n": 41974
+          },
+          {
+            "bin_lo": 0.1,
+            "bin_hi": 0.2,
+            "mean_pred": 0.1428346727545555,
+            "obs_freq": 0.14689709347996857,
+            "n": 1273
+          },
+          {
+            "bin_lo": 0.2,
+            "bin_hi": 0.30000000000000004,
+            "mean_pred": 0.2519256979957321,
+            "obs_freq": 0.2831389183457052,
+            "n": 943
+          },
+          {
+            "bin_lo": 0.30000000000000004,
+            "bin_hi": 0.4,
+            "mean_pred": 0.33960784201649796,
+            "obs_freq": 0.319672131147541,
+            "n": 732
+          },
+          {
+            "bin_lo": 0.4,
+            "bin_hi": 0.5,
+            "mean_pred": 0.4392744577665485,
+            "obs_freq": 0.44559585492227977,
+            "n": 193
+          },
+          {
+            "bin_lo": 0.5,
+            "bin_hi": 0.6000000000000001,
+            "mean_pred": 0.5601767012078339,
+            "obs_freq": 0.5574468085106383,
+            "n": 235
+          },
+          {
+            "bin_lo": 0.6000000000000001,
+            "bin_hi": 0.7000000000000001,
+            "mean_pred": 0.6124315617726235,
+            "obs_freq": 0.5856697819314641,
+            "n": 321
+          },
+          {
+            "bin_lo": 0.7000000000000001,
+            "bin_hi": 0.8,
+            "mean_pred": 0.7431513837923779,
+            "obs_freq": 0.0,
+            "n": 2
+          },
+          {
+            "bin_lo": 0.8,
+            "bin_hi": 0.9,
+            "mean_pred": 0.8401930352250121,
+            "obs_freq": 0.4666666666666667,
+            "n": 15
+          },
+          {
+            "bin_lo": 0.9,
+            "bin_hi": 1.0,
+            "mean_pred": 0.9732892574292029,
+            "obs_freq": 1.0,
+            "n": 8
+          }
+        ]
+      },
+      "classification_ci_price_only": {
+        "f1_ci90": [
+          0.08327025092643171,
+          0.1823931750608933
+        ],
+        "roc_auc_ci90": [
+          0.908134101942607,
+          0.9404843631274921
+        ],
+        "pr_auc_ci90": [
+          0.30304355284607726,
+          0.43129770726800987
+        ]
+      },
+      "classification_ci_weather": {
+        "f1_ci90": [
+          0.05010348583877996,
+          0.12850791798670796
+        ],
+        "roc_auc_ci90": [
+          0.9298104576028952,
+          0.9496826177575123
+        ],
+        "pr_auc_ci90": [
+          0.34528338968157024,
+          0.47267423075965653
+        ]
+      },
+      "threshold_opt_price_only": {
+        "f1_naive_threshold": 0.12930011862396204,
+        "f1_crossfitted_threshold": 0.42622004042737505,
+        "tau_mean": 5.102439880371094,
+        "tau_min": 5.102439880371094,
+        "tau_max": 5.102439880371094
+      },
+      "threshold_opt_weather": {
+        "f1_naive_threshold": 0.0866910866910867,
+        "f1_crossfitted_threshold": 0.45604395604395603,
+        "tau_mean": 5.308279443581898,
+        "tau_min": 4.671344975630443,
+        "tau_max": 5.467513060569763
+      },
+      "cost_frontier": {
+        "frontier": [
+          {
+            "cost_ratio": 0.25,
+            "loss_price_only": 1.1993736834181246,
+            "loss_weather": 1.1546143394103108,
+            "delta_loss_yen_kwh": -0.044759344007813784,
+            "delta_loss_yen_mwh": -44.75934400781378
+          },
+          {
+            "cost_ratio": 0.5,
+            "loss_price_only": 1.474603619149914,
+            "loss_weather": 1.4334044758058089,
+            "delta_loss_yen_kwh": -0.041199143344105016,
+            "delta_loss_yen_mwh": -41.19914334410502
+          },
+          {
+            "cost_ratio": 1.0,
+            "loss_price_only": 2.025063490613492,
+            "loss_weather": 1.9909847485968049,
+            "delta_loss_yen_kwh": -0.034078742016687036,
+            "delta_loss_yen_mwh": -34.07874201668704
+          },
+          {
+            "cost_ratio": 2.0,
+            "loss_price_only": 3.125983233540648,
+            "loss_weather": 3.106145294178797,
+            "delta_loss_yen_kwh": -0.019837939361850854,
+            "delta_loss_yen_mwh": -19.837939361850854
+          },
+          {
+            "cost_ratio": 4.0,
+            "loss_price_only": 5.327822719394962,
+            "loss_weather": 5.336466385342781,
+            "delta_loss_yen_kwh": 0.008643665947819734,
+            "delta_loss_yen_mwh": 8.643665947819734
+          },
+          {
+            "cost_ratio": 8.0,
+            "loss_price_only": 9.731501691103587,
+            "loss_weather": 9.797108567670751,
+            "delta_loss_yen_kwh": 0.06560687656716446,
+            "delta_loss_yen_mwh": 65.60687656716446
+          }
+        ],
+        "breakeven_cost_ratio": null,
+        "delta_loss_at_ref_yen_kwh": -0.019837939361850854,
+        "delta_loss_at_ref_yen_per_mw_year_illustrative": 173780.34880981347
+      },
+      "delta_loss_at_ref_ratio": {
+        "ratio": 2.0,
+        "mean_delta_loss": -0.019837939361851294,
+        "ci90_lo": -0.06164119404579123,
+        "ci90_hi": 0.023435912930651503,
+        "fraction_folds": 952
+      },
+      "weather_predicted_floor_curtail_coincidence": 0.5606060606060606,
+      "price_only_predicted_floor_curtail_coincidence": 0.5333333333333333
+    },
+    "histfc": {
+      "classification_price_only": {
+        "floor_base_rate": 0.032956932773109245,
+        "floor_precision": 0.6055555555555555,
+        "floor_recall": 0.07237715803452856,
+        "floor_f1": 0.12930011862396204,
+        "roc_auc_floor": 0.9254718322155295,
+        "pr_auc_floor": 0.36516176641851805,
+        "mae_floor": 5.137364650815924,
+        "mae_normal": 1.915572879834299
+      },
+      "classification_weather": {
+        "floor_base_rate": 0.032956932773109245,
+        "floor_precision": 0.8680555555555556,
+        "floor_recall": 0.16600265604249667,
+        "floor_f1": 0.2787068004459308,
+        "roc_auc_floor": 0.9592454876879298,
+        "pr_auc_floor": 0.5869907662007617,
+        "mae_floor": 3.8703797028702343,
+        "mae_normal": 1.7117561152166085
+      },
+      "calibration_price_only": {
+        "brier": 0.025339007201869667,
+        "n": 45696,
+        "calibration_bins": [
+          {
+            "bin_lo": 0.0,
+            "bin_hi": 0.1,
+            "mean_pred": 0.010372526200856708,
+            "obs_freq": 0.010754503146777266,
+            "n": 41471
+          },
+          {
+            "bin_lo": 0.1,
+            "bin_hi": 0.2,
+            "mean_pred": 0.14215625969426074,
+            "obs_freq": 0.1402757964812173,
+            "n": 2103
+          },
+          {
+            "bin_lo": 0.2,
+            "bin_hi": 0.30000000000000004,
+            "mean_pred": 0.258199596399639,
+            "obs_freq": 0.2979310344827586,
+            "n": 725
+          },
+          {
+            "bin_lo": 0.30000000000000004,
+            "bin_hi": 0.4,
+            "mean_pred": 0.34643907467097956,
+            "obs_freq": 0.34328358208955223,
+            "n": 804
+          },
+          {
+            "bin_lo": 0.4,
+            "bin_hi": 0.5,
+            "mean_pred": 0.4459130151385945,
+            "obs_freq": 0.39501779359430605,
+            "n": 281
+          },
+          {
+            "bin_lo": 0.5,
+            "bin_hi": 0.6000000000000001,
+            "mean_pred": 0.5350977723569771,
+            "obs_freq": 0.4686192468619247,
+            "n": 239
+          },
+          {
+            "bin_lo": 0.6000000000000001,
+            "bin_hi": 0.7000000000000001,
+            "mean_pred": 0.6631141267437778,
+            "obs_freq": 0.5833333333333334,
+            "n": 24
+          },
+          {
+            "bin_lo": 0.8,
+            "bin_hi": 0.9,
+            "mean_pred": 0.8833466215696795,
+            "obs_freq": 0.7441860465116279,
+            "n": 43
+          },
+          {
+            "bin_lo": 0.9,
+            "bin_hi": 1.0,
+            "mean_pred": 0.9833333333333334,
+            "obs_freq": 0.6666666666666666,
+            "n": 6
+          }
+        ]
+      },
+      "calibration_weather": {
+        "brier": 0.01972482629139705,
+        "n": 45696,
+        "calibration_bins": [
+          {
+            "bin_lo": 0.0,
+            "bin_hi": 0.1,
+            "mean_pred": 0.007592521179344651,
+            "obs_freq": 0.007643131796843669,
+            "n": 42391
+          },
+          {
+            "bin_lo": 0.1,
+            "bin_hi": 0.2,
+            "mean_pred": 0.15161129127693648,
+            "obs_freq": 0.16394849785407725,
+            "n": 1165
+          },
+          {
+            "bin_lo": 0.2,
+            "bin_hi": 0.30000000000000004,
+            "mean_pred": 0.2514452966461614,
+            "obs_freq": 0.23949579831932774,
+            "n": 714
+          },
+          {
+            "bin_lo": 0.30000000000000004,
+            "bin_hi": 0.4,
+            "mean_pred": 0.3656729793709509,
+            "obs_freq": 0.3893805309734513,
+            "n": 339
+          },
+          {
+            "bin_lo": 0.4,
+            "bin_hi": 0.5,
+            "mean_pred": 0.4139678893798873,
+            "obs_freq": 0.4,
+            "n": 370
+          },
+          {
+            "bin_lo": 0.5,
+            "bin_hi": 0.6000000000000001,
+            "mean_pred": 0.5655161321313558,
+            "obs_freq": 0.6111111111111112,
+            "n": 54
+          },
+          {
+            "bin_lo": 0.6000000000000001,
+            "bin_hi": 0.7000000000000001,
+            "mean_pred": 0.6410579810602637,
+            "obs_freq": 0.5841584158415841,
+            "n": 202
+          },
+          {
+            "bin_lo": 0.7000000000000001,
+            "bin_hi": 0.8,
+            "mean_pred": 0.7676297047661448,
+            "obs_freq": 0.8251748251748252,
+            "n": 143
+          },
+          {
+            "bin_lo": 0.8,
+            "bin_hi": 0.9,
+            "mean_pred": 0.8589886566377288,
+            "obs_freq": 0.8565737051792829,
+            "n": 251
+          },
+          {
+            "bin_lo": 0.9,
+            "bin_hi": 1.0,
+            "mean_pred": 0.9388144408873527,
+            "obs_freq": 0.835820895522388,
+            "n": 67
+          }
+        ]
+      },
+      "classification_ci_price_only": {
+        "f1_ci90": [
+          0.08327025092643171,
+          0.1823931750608933
+        ],
+        "roc_auc_ci90": [
+          0.908134101942607,
+          0.9404843631274921
+        ],
+        "pr_auc_ci90": [
+          0.30304355284607726,
+          0.43129770726800987
+        ]
+      },
+      "classification_ci_weather": {
+        "f1_ci90": [
+          0.21896589759389004,
+          0.3365009552942191
+        ],
+        "roc_auc_ci90": [
+          0.9517211296917931,
+          0.9662276117201525
+        ],
+        "pr_auc_ci90": [
+          0.524446613615208,
+          0.643844113432753
+        ]
+      },
+      "threshold_opt_price_only": {
+        "f1_naive_threshold": 0.12930011862396204,
+        "f1_crossfitted_threshold": 0.42622004042737505,
+        "tau_mean": 5.102439880371094,
+        "tau_min": 5.102439880371094,
+        "tau_max": 5.102439880371094
+      },
+      "threshold_opt_weather": {
+        "f1_naive_threshold": 0.2787068004459308,
+        "f1_crossfitted_threshold": 0.5426980198019803,
+        "tau_mean": 4.375691857337952,
+        "tau_min": 3.538625526428223,
+        "tau_max": 4.725622582435608
+      },
+      "cost_frontier": {
+        "frontier": [
+          {
+            "cost_ratio": 0.25,
+            "loss_price_only": 1.1993736834181246,
+            "loss_weather": 1.0358796386699747,
+            "delta_loss_yen_kwh": -0.16349404474814988,
+            "delta_loss_yen_mwh": -163.4940447481499
+          },
+          {
+            "cost_ratio": 0.5,
+            "loss_price_only": 1.474603619149914,
+            "loss_weather": 1.2859415703237984,
+            "delta_loss_yen_kwh": -0.18866204882611548,
+            "delta_loss_yen_mwh": -188.6620488261155
+          },
+          {
+            "cost_ratio": 1.0,
+            "loss_price_only": 2.025063490613492,
+            "loss_weather": 1.7860654336314463,
+            "delta_loss_yen_kwh": -0.23899805698204557,
+            "delta_loss_yen_mwh": -238.99805698204557
+          },
+          {
+            "cost_ratio": 2.0,
+            "loss_price_only": 3.125983233540648,
+            "loss_weather": 2.786313160246742,
+            "delta_loss_yen_kwh": -0.33967007329390597,
+            "delta_loss_yen_mwh": -339.67007329390594
+          },
+          {
+            "cost_ratio": 4.0,
+            "loss_price_only": 5.327822719394962,
+            "loss_weather": 4.786808613477333,
+            "delta_loss_yen_kwh": -0.541014105917629,
+            "delta_loss_yen_mwh": -541.014105917629
+          },
+          {
+            "cost_ratio": 8.0,
+            "loss_price_only": 9.731501691103587,
+            "loss_weather": 8.787799519938515,
+            "delta_loss_yen_kwh": -0.9437021711650715,
+            "delta_loss_yen_mwh": -943.7021711650715
+          }
+        ],
+        "breakeven_cost_ratio": null,
+        "delta_loss_at_ref_yen_kwh": -0.33967007329390597,
+        "delta_loss_at_ref_yen_per_mw_year_illustrative": 2975509.842054616
+      },
+      "delta_loss_at_ref_ratio": {
+        "ratio": 2.0,
+        "mean_delta_loss": -0.3396700732939063,
+        "ci90_lo": -0.4032727828663065,
+        "ci90_hi": -0.2764541575156578,
+        "fraction_folds": 952
+      },
+      "weather_predicted_floor_curtail_coincidence": 0.8263888888888888,
+      "price_only_predicted_floor_curtail_coincidence": 0.5333333333333333
+    },
+    "oracle": {
+      "classification_price_only": {
+        "floor_base_rate": 0.032956932773109245,
+        "floor_precision": 0.6055555555555555,
+        "floor_recall": 0.07237715803452856,
+        "floor_f1": 0.12930011862396204,
+        "roc_auc_floor": 0.9254718322155295,
+        "pr_auc_floor": 0.36516176641851805,
+        "mae_floor": 5.137364650815924,
+        "mae_normal": 1.915572879834299
+      },
+      "classification_weather": {
+        "floor_base_rate": 0.032956932773109245,
+        "floor_precision": 0.867109634551495,
+        "floor_recall": 0.17330677290836655,
+        "floor_f1": 0.28887659103486446,
+        "roc_auc_floor": 0.9584619806960586,
+        "pr_auc_floor": 0.5685321380003792,
+        "mae_floor": 3.8709763844775793,
+        "mae_normal": 1.6820784901316668
+      },
+      "calibration_price_only": {
+        "brier": 0.025339007201869667,
+        "n": 45696,
+        "calibration_bins": [
+          {
+            "bin_lo": 0.0,
+            "bin_hi": 0.1,
+            "mean_pred": 0.010372526200856708,
+            "obs_freq": 0.010754503146777266,
+            "n": 41471
+          },
+          {
+            "bin_lo": 0.1,
+            "bin_hi": 0.2,
+            "mean_pred": 0.14215625969426074,
+            "obs_freq": 0.1402757964812173,
+            "n": 2103
+          },
+          {
+            "bin_lo": 0.2,
+            "bin_hi": 0.30000000000000004,
+            "mean_pred": 0.258199596399639,
+            "obs_freq": 0.2979310344827586,
+            "n": 725
+          },
+          {
+            "bin_lo": 0.30000000000000004,
+            "bin_hi": 0.4,
+            "mean_pred": 0.34643907467097956,
+            "obs_freq": 0.34328358208955223,
+            "n": 804
+          },
+          {
+            "bin_lo": 0.4,
+            "bin_hi": 0.5,
+            "mean_pred": 0.4459130151385945,
+            "obs_freq": 0.39501779359430605,
+            "n": 281
+          },
+          {
+            "bin_lo": 0.5,
+            "bin_hi": 0.6000000000000001,
+            "mean_pred": 0.5350977723569771,
+            "obs_freq": 0.4686192468619247,
+            "n": 239
+          },
+          {
+            "bin_lo": 0.6000000000000001,
+            "bin_hi": 0.7000000000000001,
+            "mean_pred": 0.6631141267437778,
+            "obs_freq": 0.5833333333333334,
+            "n": 24
+          },
+          {
+            "bin_lo": 0.8,
+            "bin_hi": 0.9,
+            "mean_pred": 0.8833466215696795,
+            "obs_freq": 0.7441860465116279,
+            "n": 43
+          },
+          {
+            "bin_lo": 0.9,
+            "bin_hi": 1.0,
+            "mean_pred": 0.9833333333333334,
+            "obs_freq": 0.6666666666666666,
+            "n": 6
+          }
+        ]
+      },
+      "calibration_weather": {
+        "brier": 0.0204215084080006,
+        "n": 45696,
+        "calibration_bins": [
+          {
+            "bin_lo": 0.0,
+            "bin_hi": 0.1,
+            "mean_pred": 0.007459966340830169,
+            "obs_freq": 0.007529300343317154,
+            "n": 42235
+          },
+          {
+            "bin_lo": 0.1,
+            "bin_hi": 0.2,
+            "mean_pred": 0.15745556301474128,
+            "obs_freq": 0.17871326449563146,
+            "n": 1259
+          },
+          {
+            "bin_lo": 0.2,
+            "bin_hi": 0.30000000000000004,
+            "mean_pred": 0.26431681233670673,
+            "obs_freq": 0.25337331334332835,
+            "n": 667
+          },
+          {
+            "bin_lo": 0.30000000000000004,
+            "bin_hi": 0.4,
+            "mean_pred": 0.36378586687922354,
+            "obs_freq": 0.3577863577863578,
+            "n": 777
+          },
+          {
+            "bin_lo": 0.4,
+            "bin_hi": 0.5,
+            "mean_pred": 0.43264687055126055,
+            "obs_freq": 0.3197278911564626,
+            "n": 147
+          },
+          {
+            "bin_lo": 0.5,
+            "bin_hi": 0.6000000000000001,
+            "mean_pred": 0.5732423954354315,
+            "obs_freq": 0.7962962962962963,
+            "n": 54
+          },
+          {
+            "bin_lo": 0.6000000000000001,
+            "bin_hi": 0.7000000000000001,
+            "mean_pred": 0.652891609361393,
+            "obs_freq": 0.6358695652173914,
+            "n": 184
+          },
+          {
+            "bin_lo": 0.7000000000000001,
+            "bin_hi": 0.8,
+            "mean_pred": 0.7708431751727918,
+            "obs_freq": 0.7942857142857143,
+            "n": 175
+          },
+          {
+            "bin_lo": 0.8,
+            "bin_hi": 0.9,
+            "mean_pred": 0.8289759829833169,
+            "obs_freq": 0.6545454545454545,
+            "n": 55
+          },
+          {
+            "bin_lo": 0.9,
+            "bin_hi": 1.0,
+            "mean_pred": 0.9610714893869942,
+            "obs_freq": 0.9370629370629371,
+            "n": 143
+          }
+        ]
+      },
+      "classification_ci_price_only": {
+        "f1_ci90": [
+          0.08327025092643171,
+          0.1823931750608933
+        ],
+        "roc_auc_ci90": [
+          0.908134101942607,
+          0.9404843631274921
+        ],
+        "pr_auc_ci90": [
+          0.30304355284607726,
+          0.43129770726800987
+        ]
+      },
+      "classification_ci_weather": {
+        "f1_ci90": [
+          0.23204540406894142,
+          0.35091651733078566
+        ],
+        "roc_auc_ci90": [
+          0.9507548818902543,
+          0.9657542661305065
+        ],
+        "pr_auc_ci90": [
+          0.5047340154818806,
+          0.6268763206469813
+        ]
+      },
+      "threshold_opt_price_only": {
+        "f1_naive_threshold": 0.12930011862396204,
+        "f1_crossfitted_threshold": 0.42622004042737505,
+        "tau_mean": 5.102439880371094,
+        "tau_min": 5.102439880371094,
+        "tau_max": 5.102439880371094
+      },
+      "threshold_opt_weather": {
+        "f1_naive_threshold": 0.28887659103486446,
+        "f1_crossfitted_threshold": 0.5382616228703436,
+        "tau_mean": 4.573107163111368,
+        "tau_min": 4.573107163111368,
+        "tau_max": 4.573107163111368
+      },
+      "cost_frontier": {
+        "frontier": [
+          {
+            "cost_ratio": 0.25,
+            "loss_price_only": 1.1993736834181246,
+            "loss_weather": 1.0356791459358425,
+            "delta_loss_yen_kwh": -0.16369453748228202,
+            "delta_loss_yen_mwh": -163.69453748228202
+          },
+          {
+            "cost_ratio": 0.5,
+            "loss_price_only": 1.474603619149914,
+            "loss_weather": 1.2762482231573045,
+            "delta_loss_yen_kwh": -0.19835539599260943,
+            "delta_loss_yen_mwh": -198.35539599260943
+          },
+          {
+            "cost_ratio": 1.0,
+            "loss_price_only": 2.025063490613492,
+            "loss_weather": 1.757386377600228,
+            "delta_loss_yen_kwh": -0.2676771130132638,
+            "delta_loss_yen_mwh": -267.6771130132638
+          },
+          {
+            "cost_ratio": 2.0,
+            "loss_price_only": 3.125983233540648,
+            "loss_weather": 2.719662686486075,
+            "delta_loss_yen_kwh": -0.40632054705457277,
+            "delta_loss_yen_mwh": -406.3205470545728
+          },
+          {
+            "cost_ratio": 4.0,
+            "loss_price_only": 5.327822719394962,
+            "loss_weather": 4.64421530425777,
+            "delta_loss_yen_kwh": -0.6836074151371916,
+            "delta_loss_yen_mwh": -683.6074151371915
+          },
+          {
+            "cost_ratio": 8.0,
+            "loss_price_only": 9.731501691103587,
+            "loss_weather": 8.493320539801157,
+            "delta_loss_yen_kwh": -1.2381811513024292,
+            "delta_loss_yen_mwh": -1238.1811513024293
+          }
+        ],
+        "breakeven_cost_ratio": null,
+        "delta_loss_at_ref_yen_kwh": -0.40632054705457277,
+        "delta_loss_at_ref_yen_per_mw_year_illustrative": 3559367.9921980575
+      },
+      "delta_loss_at_ref_ratio": {
+        "ratio": 2.0,
+        "mean_delta_loss": -0.40632054705457293,
+        "ci90_lo": -0.4773953943104313,
+        "ci90_hi": -0.33879569841960655,
+        "fraction_folds": 952
+      },
+      "weather_predicted_floor_curtail_coincidence": 0.7973421926910299,
+      "price_only_predicted_floor_curtail_coincidence": 0.5333333333333333
+    }
+  },
+  "per_area": {
+    "chugoku": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.024509803921568627,
+          "floor_precision": 1.0,
+          "floor_recall": 0.05,
+          "floor_f1": 0.09523809523809523,
+          "roc_auc_floor": 0.9387614090862475,
+          "pr_auc_floor": 0.41065209095705796,
+          "mae_floor": 4.87935562835421,
+          "mae_normal": 1.7759569704840699
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.024509803921568627,
+          "floor_precision": 0.6428571428571429,
+          "floor_recall": 0.06428571428571428,
+          "floor_f1": 0.11688311688311687,
+          "roc_auc_floor": 0.921265767613578,
+          "pr_auc_floor": 0.3241598537758848,
+          "mae_floor": 5.290186209619047,
+          "mae_normal": 1.8042812156078203
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.0866552048823104,
+              "loss_weather": 1.0471878019475094,
+              "delta_loss_yen_kwh": -0.039467402934801,
+              "delta_loss_yen_mwh": -39.467402934801
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.354343491088291,
+              "loss_weather": 1.3154654223246482,
+              "delta_loss_yen_kwh": -0.03887806876364275,
+              "delta_loss_yen_mwh": -38.878068763642744
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.8897200635002522,
+              "loss_weather": 1.8520206630789267,
+              "delta_loss_yen_kwh": -0.03769940042132558,
+              "delta_loss_yen_mwh": -37.69940042132558
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9604732083241747,
+              "loss_weather": 2.9251311445874824,
+              "delta_loss_yen_kwh": -0.03534206373669235,
+              "delta_loss_yen_mwh": -35.34206373669235
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.101979497972021,
+              "loss_weather": 5.0713521076045955,
+              "delta_loss_yen_kwh": -0.030627390367425456,
+              "delta_loss_yen_mwh": -30.627390367425456
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.384992077267711,
+              "loss_weather": 9.363794033638818,
+              "delta_loss_yen_kwh": -0.02119804362889255,
+              "delta_loss_yen_mwh": -21.19804362889255
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.03534206373669235,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 309596.478333425
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.024509803921568627,
+          "floor_precision": 0.8571428571428571,
+          "floor_recall": 0.17142857142857143,
+          "floor_f1": 0.2857142857142857,
+          "roc_auc_floor": 0.9627704850784535,
+          "pr_auc_floor": 0.5668041175723293,
+          "mae_floor": 3.6400871984405847,
+          "mae_normal": 1.5960044631551302
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.024509803921568627,
+          "floor_precision": 0.6428571428571429,
+          "floor_recall": 0.06428571428571428,
+          "floor_f1": 0.11688311688311687,
+          "roc_auc_floor": 0.921265767613578,
+          "pr_auc_floor": 0.3241598537758848,
+          "mae_floor": 5.290186209619047,
+          "mae_normal": 1.8042812156078203
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.0866552048823104,
+              "loss_weather": 0.9427605309447288,
+              "delta_loss_yen_kwh": -0.1438946739375816,
+              "delta_loss_yen_mwh": -143.8946739375816
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.354343491088291,
+              "loss_weather": 1.1772085306952993,
+              "delta_loss_yen_kwh": -0.1771349603929917,
+              "delta_loss_yen_mwh": -177.1349603929917
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.8897200635002522,
+              "loss_weather": 1.64610453019644,
+              "delta_loss_yen_kwh": -0.24361553330381214,
+              "delta_loss_yen_mwh": -243.61553330381213
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9604732083241747,
+              "loss_weather": 2.5838965291987224,
+              "delta_loss_yen_kwh": -0.37657667912545234,
+              "delta_loss_yen_mwh": -376.57667912545236
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.101979497972021,
+              "loss_weather": 4.459480527203286,
+              "delta_loss_yen_kwh": -0.6424989707687354,
+              "delta_loss_yen_mwh": -642.4989707687354
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.384992077267711,
+              "loss_weather": 8.210648523212416,
+              "delta_loss_yen_kwh": -1.1743435540552944,
+              "delta_loss_yen_mwh": -1174.3435540552944
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.37657667912545234,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3298811.7091389624
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.024509803921568627,
+          "floor_precision": 0.7142857142857143,
+          "floor_recall": 0.21428571428571427,
+          "floor_f1": 0.32967032967032966,
+          "roc_auc_floor": 0.968308378627833,
+          "pr_auc_floor": 0.48598191684912123,
+          "mae_floor": 3.333733554788999,
+          "mae_normal": 1.594665621025361
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.024509803921568627,
+          "floor_precision": 0.6428571428571429,
+          "floor_recall": 0.06428571428571428,
+          "floor_f1": 0.11688311688311687,
+          "roc_auc_floor": 0.921265767613578,
+          "pr_auc_floor": 0.3241598537758848,
+          "mae_floor": 5.290186209619047,
+          "mae_normal": 1.8042812156078203
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.0866552048823104,
+              "loss_weather": 0.9820536265338063,
+              "delta_loss_yen_kwh": -0.10460157834850403,
+              "delta_loss_yen_mwh": -104.60157834850403
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.354343491088291,
+              "loss_weather": 1.2004656960519358,
+              "delta_loss_yen_kwh": -0.15387779503635524,
+              "delta_loss_yen_mwh": -153.87779503635522
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.8897200635002522,
+              "loss_weather": 1.637289835088195,
+              "delta_loss_yen_kwh": -0.2524302284120572,
+              "delta_loss_yen_mwh": -252.4302284120572
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9604732083241747,
+              "loss_weather": 2.510938113160713,
+              "delta_loss_yen_kwh": -0.4495350951634616,
+              "delta_loss_yen_mwh": -449.53509516346156
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.101979497972021,
+              "loss_weather": 4.258234669305749,
+              "delta_loss_yen_kwh": -0.8437448286662717,
+              "delta_loss_yen_mwh": -843.7448286662717
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.384992077267711,
+              "loss_weather": 7.752827781595822,
+              "delta_loss_yen_kwh": -1.6321642956718891,
+              "delta_loss_yen_mwh": -1632.1642956718892
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.4495350951634616,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3937927.4336319235
+        }
+      }
+    },
+    "hokkaido": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.02923669467787115,
+          "floor_precision": 0.07142857142857142,
+          "floor_recall": 0.005988023952095809,
+          "floor_f1": 0.011049723756906077,
+          "roc_auc_floor": 0.9512615886351732,
+          "pr_auc_floor": 0.3231771503060871,
+          "mae_floor": 5.042026541318724,
+          "mae_normal": 2.284688402470924
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02923669467787115,
+          "floor_precision": 0.43478260869565216,
+          "floor_recall": 0.059880239520958084,
+          "floor_f1": 0.10526315789473685,
+          "roc_auc_floor": 0.952540185634142,
+          "pr_auc_floor": 0.34790886995185244,
+          "mae_floor": 4.730619112305835,
+          "mae_normal": 2.2877162218679534
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.4719118812790855,
+              "loss_weather": 1.4612412490419187,
+              "delta_loss_yen_kwh": -0.0106706322371668,
+              "delta_loss_yen_mwh": -10.6706322371668
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.7763511237605403,
+              "loss_weather": 1.7709342348857335,
+              "delta_loss_yen_kwh": -0.005416888874806736,
+              "delta_loss_yen_mwh": -5.416888874806736
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.38522960872345,
+              "loss_weather": 2.3903202065733633,
+              "delta_loss_yen_kwh": 0.00509059784991317,
+              "delta_loss_yen_mwh": 5.09059784991317
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.6029865786492694,
+              "loss_weather": 3.6290921499486237,
+              "delta_loss_yen_kwh": 0.026105571299354313,
+              "delta_loss_yen_mwh": 26.105571299354313
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 6.038500518500909,
+              "loss_weather": 6.106636036699142,
+              "delta_loss_yen_kwh": 0.06813551819823349,
+              "delta_loss_yen_mwh": 68.13551819823348
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 10.90952839820419,
+              "loss_weather": 11.06172381020018,
+              "delta_loss_yen_kwh": 0.15219541199599007,
+              "delta_loss_yen_mwh": 152.19541199599007
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": 0.026105571299354313,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": -228684.8045823438
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.02923669467787115,
+          "floor_precision": 0.8571428571428571,
+          "floor_recall": 0.03592814371257485,
+          "floor_f1": 0.06896551724137931,
+          "roc_auc_floor": 0.9488032051316664,
+          "pr_auc_floor": 0.42471624173646355,
+          "mae_floor": 4.898879987544821,
+          "mae_normal": 2.178325412215298
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02923669467787115,
+          "floor_precision": 0.43478260869565216,
+          "floor_recall": 0.059880239520958084,
+          "floor_f1": 0.10526315789473685,
+          "roc_auc_floor": 0.952540185634142,
+          "pr_auc_floor": 0.34790886995185244,
+          "mae_floor": 4.730619112305835,
+          "mae_normal": 2.2877162218679534
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.4719118812790855,
+              "loss_weather": 1.372646821644581,
+              "delta_loss_yen_kwh": -0.09926505963450438,
+              "delta_loss_yen_mwh": -99.26505963450438
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.7763511237605403,
+              "loss_weather": 1.6760035442704,
+              "delta_loss_yen_kwh": -0.10034757949014028,
+              "delta_loss_yen_mwh": -100.34757949014028
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.38522960872345,
+              "loss_weather": 2.2827169895220383,
+              "delta_loss_yen_kwh": -0.10251261920141186,
+              "delta_loss_yen_mwh": -102.51261920141187
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.6029865786492694,
+              "loss_weather": 3.4961438800253144,
+              "delta_loss_yen_kwh": -0.10684269862395501,
+              "delta_loss_yen_mwh": -106.84269862395502
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 6.038500518500909,
+              "loss_weather": 5.922997661031866,
+              "delta_loss_yen_kwh": -0.11550285746904265,
+              "delta_loss_yen_mwh": -115.50285746904265
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 10.90952839820419,
+              "loss_weather": 10.77670522304497,
+              "delta_loss_yen_kwh": -0.13282317515921882,
+              "delta_loss_yen_mwh": -132.8231751592188
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.10684269862395501,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 935942.039945846
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.02923669467787115,
+          "floor_precision": 1.0,
+          "floor_recall": 0.005988023952095809,
+          "floor_f1": 0.011904761904761906,
+          "roc_auc_floor": 0.9535493485526693,
+          "pr_auc_floor": 0.4027300201602836,
+          "mae_floor": 5.318704944477825,
+          "mae_normal": 2.1091266904038246
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02923669467787115,
+          "floor_precision": 0.43478260869565216,
+          "floor_recall": 0.059880239520958084,
+          "floor_f1": 0.10526315789473685,
+          "roc_auc_floor": 0.952540185634142,
+          "pr_auc_floor": 0.34790886995185244,
+          "mae_floor": 4.730619112305835,
+          "mae_normal": 2.2877162218679534
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.4719118812790855,
+              "loss_weather": 1.3303557749453108,
+              "delta_loss_yen_kwh": -0.1415561063337747,
+              "delta_loss_yen_mwh": -141.5561063337747
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.7763511237605403,
+              "loss_weather": 1.629525111150153,
+              "delta_loss_yen_kwh": -0.1468260126103873,
+              "delta_loss_yen_mwh": -146.8260126103873
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.38522960872345,
+              "loss_weather": 2.2278637835598376,
+              "delta_loss_yen_kwh": -0.15736582516361253,
+              "delta_loss_yen_mwh": -157.36582516361253
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.6029865786492694,
+              "loss_weather": 3.4245411283792064,
+              "delta_loss_yen_kwh": -0.17844545027006298,
+              "delta_loss_yen_mwh": -178.44545027006296
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 6.038500518500909,
+              "loss_weather": 5.817895818017945,
+              "delta_loss_yen_kwh": -0.22060470048296388,
+              "delta_loss_yen_mwh": -220.6047004829639
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 10.90952839820419,
+              "loss_weather": 10.604605197295422,
+              "delta_loss_yen_kwh": -0.30492320090876746,
+              "delta_loss_yen_mwh": -304.92320090876746
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.17844545027006298,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 1563182.1443657517
+        }
+      }
+    },
+    "hokuriku": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.16666666666666666,
+          "floor_recall": 0.024390243902439025,
+          "floor_f1": 0.0425531914893617,
+          "roc_auc_floor": 0.9422893692168268,
+          "pr_auc_floor": 0.30028264404407545,
+          "mae_floor": 4.975273000350812,
+          "mae_normal": 1.9114369900924273
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.3,
+          "floor_recall": 0.024390243902439025,
+          "floor_f1": 0.045112781954887216,
+          "roc_auc_floor": 0.925729547150544,
+          "pr_auc_floor": 0.23404377812217822,
+          "mae_floor": 5.85728443857131,
+          "mae_normal": 1.919052337676921
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1472331912855225,
+              "loss_weather": 1.116500979913529,
+              "delta_loss_yen_kwh": -0.030732211371993445,
+              "delta_loss_yen_mwh": -30.732211371993444
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4327743626556018,
+              "loss_weather": 1.4034714700748063,
+              "delta_loss_yen_kwh": -0.029302892580795437,
+              "delta_loss_yen_mwh": -29.302892580795437
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.0038567053957608,
+              "loss_weather": 1.9774124503973611,
+              "delta_loss_yen_kwh": -0.02644425499839964,
+              "delta_loss_yen_mwh": -26.444254998399643
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.1460213908760775,
+              "loss_weather": 3.1252944110424705,
+              "delta_loss_yen_kwh": -0.02072697983360694,
+              "delta_loss_yen_mwh": -20.72697983360694
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.430350761836713,
+              "loss_weather": 5.421058332332689,
+              "delta_loss_yen_kwh": -0.009292429504023758,
+              "delta_loss_yen_mwh": -9.292429504023758
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.999009503757982,
+              "loss_weather": 10.012586174913126,
+              "delta_loss_yen_kwh": 0.013576671155144382,
+              "delta_loss_yen_mwh": 13.576671155144382
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.02072697983360694,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 181568.34334239678
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.9285714285714286,
+          "floor_recall": 0.21138211382113822,
+          "floor_f1": 0.34437086092715236,
+          "roc_auc_floor": 0.9260132053816512,
+          "pr_auc_floor": 0.49040771292870694,
+          "mae_floor": 4.715566160912679,
+          "mae_normal": 1.7245741196661137
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.3,
+          "floor_recall": 0.024390243902439025,
+          "floor_f1": 0.045112781954887216,
+          "roc_auc_floor": 0.925729547150544,
+          "pr_auc_floor": 0.23404377812217822,
+          "mae_floor": 5.85728443857131,
+          "mae_normal": 1.919052337676921
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1472331912855225,
+              "loss_weather": 1.0150858493345134,
+              "delta_loss_yen_kwh": -0.13214734195100908,
+              "delta_loss_yen_mwh": -132.14734195100908
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4327743626556018,
+              "loss_weather": 1.273050894923182,
+              "delta_loss_yen_kwh": -0.15972346773241974,
+              "delta_loss_yen_mwh": -159.72346773241975
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.0038567053957608,
+              "loss_weather": 1.7889809861005197,
+              "delta_loss_yen_kwh": -0.21487571929524107,
+              "delta_loss_yen_mwh": -214.87571929524108
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.1460213908760775,
+              "loss_weather": 2.8208411684551953,
+              "delta_loss_yen_kwh": -0.3251802224208822,
+              "delta_loss_yen_mwh": -325.18022242088216
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.430350761836713,
+              "loss_weather": 4.884561533164546,
+              "delta_loss_yen_kwh": -0.5457892286721666,
+              "delta_loss_yen_mwh": -545.7892286721666
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.999009503757982,
+              "loss_weather": 9.012002262583248,
+              "delta_loss_yen_kwh": -0.9870072411747337,
+              "delta_loss_yen_mwh": -987.0072411747337
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.3251802224208822,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 2848578.748406928
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.8,
+          "floor_recall": 0.2601626016260163,
+          "floor_f1": 0.39263803680981596,
+          "roc_auc_floor": 0.9425803007359114,
+          "pr_auc_floor": 0.49433648485959564,
+          "mae_floor": 4.31396448247801,
+          "mae_normal": 1.7105283580048285
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.3,
+          "floor_recall": 0.024390243902439025,
+          "floor_f1": 0.045112781954887216,
+          "roc_auc_floor": 0.925729547150544,
+          "pr_auc_floor": 0.23404377812217822,
+          "mae_floor": 5.85728443857131,
+          "mae_normal": 1.919052337676921
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1472331912855225,
+              "loss_weather": 1.0393916906803033,
+              "delta_loss_yen_kwh": -0.10784150060521913,
+              "delta_loss_yen_mwh": -107.84150060521912
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4327743626556018,
+              "loss_weather": 1.2817910421665244,
+              "delta_loss_yen_kwh": -0.15098332048907737,
+              "delta_loss_yen_mwh": -150.98332048907736
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.0038567053957608,
+              "loss_weather": 1.7665897451389676,
+              "delta_loss_yen_kwh": -0.23726696025679317,
+              "delta_loss_yen_mwh": -237.26696025679317
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.1460213908760775,
+              "loss_weather": 2.736187151083853,
+              "delta_loss_yen_kwh": -0.40983423979222433,
+              "delta_loss_yen_mwh": -409.8342397922243
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.430350761836713,
+              "loss_weather": 4.675381962973624,
+              "delta_loss_yen_kwh": -0.7549687988630884,
+              "delta_loss_yen_mwh": -754.9687988630884
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.999009503757982,
+              "loss_weather": 8.553771586753166,
+              "delta_loss_yen_kwh": -1.4452379170048157,
+              "delta_loss_yen_mwh": -1445.2379170048157
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.40983423979222433,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3590147.940579885
+        }
+      }
+    },
+    "kansai": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.25,
+          "floor_recall": 0.016260162601626018,
+          "floor_f1": 0.030534351145038174,
+          "roc_auc_floor": 0.9227104053112458,
+          "pr_auc_floor": 0.3255206692899933,
+          "mae_floor": 5.30743288274703,
+          "mae_normal": 1.8633331230675276
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.5,
+          "floor_recall": 0.07317073170731707,
+          "floor_f1": 0.1276595744680851,
+          "roc_auc_floor": 0.9219277995249089,
+          "pr_auc_floor": 0.27421403046123743,
+          "mae_floor": 5.681519344514463,
+          "mae_normal": 1.8961519033426084
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1525196672525488,
+              "loss_weather": 1.0879244850420997,
+              "delta_loss_yen_kwh": -0.06459518221044913,
+              "delta_loss_yen_mwh": -64.59518221044914
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4275679590248735,
+              "loss_weather": 1.3711153353479952,
+              "delta_loss_yen_kwh": -0.05645262367687831,
+              "delta_loss_yen_mwh": -56.45262367687831
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.9776645425695234,
+              "loss_weather": 1.9374970359597858,
+              "delta_loss_yen_kwh": -0.04016750660973756,
+              "delta_loss_yen_mwh": -40.16750660973756
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.077857709658822,
+              "loss_weather": 3.070260437183367,
+              "delta_loss_yen_kwh": -0.0075972724754551635,
+              "delta_loss_yen_mwh": -7.5972724754551635
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.278244043837421,
+              "loss_weather": 5.3357872396305295,
+              "delta_loss_yen_kwh": 0.05754319579310874,
+              "delta_loss_yen_mwh": 57.54319579310874
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.679016712194619,
+              "loss_weather": 9.866840844524855,
+              "delta_loss_yen_kwh": 0.18782413233023654,
+              "delta_loss_yen_mwh": 187.82413233023652
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.0075972724754551635,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 66552.10688498724
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.9615384615384616,
+          "floor_recall": 0.2032520325203252,
+          "floor_f1": 0.33557046979865773,
+          "roc_auc_floor": 0.952412331423368,
+          "pr_auc_floor": 0.5375465880743949,
+          "mae_floor": 4.1943890111378535,
+          "mae_normal": 1.643723771808228
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.5,
+          "floor_recall": 0.07317073170731707,
+          "floor_f1": 0.1276595744680851,
+          "roc_auc_floor": 0.9219277995249089,
+          "pr_auc_floor": 0.27421403046123743,
+          "mae_floor": 5.681519344514463,
+          "mae_normal": 1.8961519033426084
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1525196672525488,
+              "loss_weather": 0.9688951024623895,
+              "delta_loss_yen_kwh": -0.18362456479015932,
+              "delta_loss_yen_mwh": -183.62456479015933
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4275679590248735,
+              "loss_weather": 1.2121463386750981,
+              "delta_loss_yen_kwh": -0.2154216203497754,
+              "delta_loss_yen_mwh": -215.42162034977542
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.9776645425695234,
+              "loss_weather": 1.698648811100515,
+              "delta_loss_yen_kwh": -0.2790157314690085,
+              "delta_loss_yen_mwh": -279.0157314690085
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.077857709658822,
+              "loss_weather": 2.671653755951349,
+              "delta_loss_yen_kwh": -0.4062039537074731,
+              "delta_loss_yen_mwh": -406.2039537074731
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.278244043837421,
+              "loss_weather": 4.6176636456530185,
+              "delta_loss_yen_kwh": -0.6605803981844023,
+              "delta_loss_yen_mwh": -660.5803981844023
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.679016712194619,
+              "loss_weather": 8.509683425056354,
+              "delta_loss_yen_kwh": -1.1693332871382651,
+              "delta_loss_yen_mwh": -1169.3332871382652
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.4062039537074731,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3558346.634477464
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.8888888888888888,
+          "floor_recall": 0.1951219512195122,
+          "floor_f1": 0.32,
+          "roc_auc_floor": 0.9512820624717251,
+          "pr_auc_floor": 0.5152781746549359,
+          "mae_floor": 4.254552946708551,
+          "mae_normal": 1.651214041012806
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.02153361344537815,
+          "floor_precision": 0.5,
+          "floor_recall": 0.07317073170731707,
+          "floor_f1": 0.1276595744680851,
+          "roc_auc_floor": 0.9219277995249089,
+          "pr_auc_floor": 0.27421403046123743,
+          "mae_floor": 5.681519344514463,
+          "mae_normal": 1.8961519033426084
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1525196672525488,
+              "loss_weather": 1.0265010368350256,
+              "delta_loss_yen_kwh": -0.12601863041752326,
+              "delta_loss_yen_mwh": -126.01863041752326
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4275679590248735,
+              "loss_weather": 1.253425136115141,
+              "delta_loss_yen_kwh": -0.1741428229097326,
+              "delta_loss_yen_mwh": -174.1428229097326
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.9776645425695234,
+              "loss_weather": 1.7072733346753717,
+              "delta_loss_yen_kwh": -0.2703912078941517,
+              "delta_loss_yen_mwh": -270.3912078941517
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.077857709658822,
+              "loss_weather": 2.614969731795834,
+              "delta_loss_yen_kwh": -0.4628879778629882,
+              "delta_loss_yen_mwh": -462.8879778629882
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.278244043837421,
+              "loss_weather": 4.430362526036758,
+              "delta_loss_yen_kwh": -0.8478815178006629,
+              "delta_loss_yen_mwh": -847.8815178006629
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.679016712194619,
+              "loss_weather": 8.061148114518605,
+              "delta_loss_yen_kwh": -1.6178685976760132,
+              "delta_loss_yen_mwh": -1617.8685976760132
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.4628879778629882,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 4054898.6860797764
+        }
+      }
+    },
+    "kyushu": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.059873949579831935,
+          "floor_precision": 0.8125,
+          "floor_recall": 0.11403508771929824,
+          "floor_f1": 0.19999999999999998,
+          "roc_auc_floor": 0.9553652520500507,
+          "pr_auc_floor": 0.5864579531508131,
+          "mae_floor": 3.9799323565970393,
+          "mae_normal": 1.7313736095785317
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.059873949579831935,
+          "floor_precision": 0.7887323943661971,
+          "floor_recall": 0.16374269005847952,
+          "floor_f1": 0.2711864406779661,
+          "roc_auc_floor": 0.9451362344408507,
+          "pr_auc_floor": 0.5532475639577733,
+          "mae_floor": 3.8687750874555604,
+          "mae_normal": 1.8263542862871118
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1752366821567206,
+              "loss_weather": 1.1129025833519743,
+              "delta_loss_yen_kwh": -0.062334098804746274,
+              "delta_loss_yen_mwh": -62.334098804746276
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4330384835568375,
+              "loss_weather": 1.3639362897762521,
+              "delta_loss_yen_kwh": -0.06910219378058535,
+              "delta_loss_yen_mwh": -69.10219378058535
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.9486420863570715,
+              "loss_weather": 1.8660037026248077,
+              "delta_loss_yen_kwh": -0.08263838373226373,
+              "delta_loss_yen_mwh": -82.63838373226373
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9798492919575392,
+              "loss_weather": 2.8701385283219185,
+              "delta_loss_yen_kwh": -0.10971076363562071,
+              "delta_loss_yen_mwh": -109.71076363562071
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.042263703158475,
+              "loss_weather": 4.878408179716142,
+              "delta_loss_yen_kwh": -0.1638555234423329,
+              "delta_loss_yen_mwh": -163.8555234423329
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.167092525560347,
+              "loss_weather": 8.894947482504586,
+              "delta_loss_yen_kwh": -0.2721450430557617,
+              "delta_loss_yen_mwh": -272.1450430557617
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.10971076363562071,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 961066.2894480374
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.059873949579831935,
+          "floor_precision": 0.8275862068965517,
+          "floor_recall": 0.2807017543859649,
+          "floor_f1": 0.41921397379912667,
+          "roc_auc_floor": 0.9754696331144436,
+          "pr_auc_floor": 0.7219259668634254,
+          "mae_floor": 2.582357396883509,
+          "mae_normal": 1.6526271225185147
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.059873949579831935,
+          "floor_precision": 0.7887323943661971,
+          "floor_recall": 0.16374269005847952,
+          "floor_f1": 0.2711864406779661,
+          "roc_auc_floor": 0.9451362344408507,
+          "pr_auc_floor": 0.5532475639577733,
+          "mae_floor": 3.8687750874555604,
+          "mae_normal": 1.8263542862871118
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1752366821567206,
+              "loss_weather": 1.0289515662945627,
+              "delta_loss_yen_kwh": -0.14628511586215787,
+              "delta_loss_yen_mwh": -146.28511586215785
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4330384835568375,
+              "loss_weather": 1.2553989595592712,
+              "delta_loss_yen_kwh": -0.17763952399756633,
+              "delta_loss_yen_mwh": -177.63952399756633
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.9486420863570715,
+              "loss_weather": 1.7082937460886878,
+              "delta_loss_yen_kwh": -0.2403483402683837,
+              "delta_loss_yen_mwh": -240.3483402683837
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9798492919575392,
+              "loss_weather": 2.6140833191475203,
+              "delta_loss_yen_kwh": -0.3657659728100189,
+              "delta_loss_yen_mwh": -365.76597281001887
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.042263703158475,
+              "loss_weather": 4.425662465265186,
+              "delta_loss_yen_kwh": -0.6166012378932884,
+              "delta_loss_yen_mwh": -616.6012378932884
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.167092525560347,
+              "loss_weather": 8.048820757500518,
+              "delta_loss_yen_kwh": -1.118271768059829,
+              "delta_loss_yen_mwh": -1118.2717680598291
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.3657659728100189,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3204109.9218157656
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.059873949579831935,
+          "floor_precision": 0.8780487804878049,
+          "floor_recall": 0.3157894736842105,
+          "floor_f1": 0.4645161290322581,
+          "roc_auc_floor": 0.9759033290862165,
+          "pr_auc_floor": 0.7670814192185411,
+          "mae_floor": 2.3407092889956043,
+          "mae_normal": 1.6093549487891863
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.059873949579831935,
+          "floor_precision": 0.7887323943661971,
+          "floor_recall": 0.16374269005847952,
+          "floor_f1": 0.2711864406779661,
+          "roc_auc_floor": 0.9451362344408507,
+          "pr_auc_floor": 0.5532475639577733,
+          "mae_floor": 3.8687750874555604,
+          "mae_normal": 1.8263542862871118
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.1752366821567206,
+              "loss_weather": 1.0235417007729124,
+              "delta_loss_yen_kwh": -0.15169498138380821,
+              "delta_loss_yen_mwh": -151.69498138380823
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4330384835568375,
+              "loss_weather": 1.233409141075174,
+              "delta_loss_yen_kwh": -0.19962934248166353,
+              "delta_loss_yen_mwh": -199.62934248166354
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.9486420863570715,
+              "loss_weather": 1.6531440216796969,
+              "delta_loss_yen_kwh": -0.2954980646773746,
+              "delta_loss_yen_mwh": -295.4980646773746
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9798492919575392,
+              "loss_weather": 2.4926137828887427,
+              "delta_loss_yen_kwh": -0.48723550906879654,
+              "delta_loss_yen_mwh": -487.23550906879655
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 5.042263703158475,
+              "loss_weather": 4.171553305306834,
+              "delta_loss_yen_kwh": -0.8707103978516404,
+              "delta_loss_yen_mwh": -870.7103978516404
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 9.167092525560347,
+              "loss_weather": 7.529432350143018,
+              "delta_loss_yen_kwh": -1.6376601754173299,
+              "delta_loss_yen_mwh": -1637.6601754173298
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.48723550906879654,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 4268183.059442658
+        }
+      }
+    },
+    "shikoku": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.06792717086834733,
+          "floor_precision": 0.4,
+          "floor_recall": 0.02577319587628866,
+          "floor_f1": 0.04842615012106537,
+          "roc_auc_floor": 0.8745599580193174,
+          "pr_auc_floor": 0.38690014785247373,
+          "mae_floor": 5.344954276985883,
+          "mae_normal": 2.022589169581701
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.06792717086834733,
+          "floor_precision": 0.4444444444444444,
+          "floor_recall": 0.041237113402061855,
+          "floor_f1": 0.07547169811320753,
+          "roc_auc_floor": 0.8276858051848466,
+          "pr_auc_floor": 0.32380718588584706,
+          "mae_floor": 5.73758153388776,
+          "mae_normal": 2.050013421923482
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.2819698485205504,
+              "loss_weather": 1.2178860618492342,
+              "delta_loss_yen_kwh": -0.0640837866713162,
+              "delta_loss_yen_mwh": -64.0837866713162
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.6214797293982164,
+              "loss_weather": 1.5613467185392829,
+              "delta_loss_yen_kwh": -0.06013301085893352,
+              "delta_loss_yen_mwh": -60.133010858933524
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.300499491153549,
+              "loss_weather": 2.24826803191938,
+              "delta_loss_yen_kwh": -0.05223145923416883,
+              "delta_loss_yen_mwh": -52.23145923416883
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.6585390146642123,
+              "loss_weather": 3.622110658679575,
+              "delta_loss_yen_kwh": -0.03642835598463723,
+              "delta_loss_yen_mwh": -36.42835598463723
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 6.374618061685541,
+              "loss_weather": 6.369795912199964,
+              "delta_loss_yen_kwh": -0.004822149485576688,
+              "delta_loss_yen_mwh": -4.822149485576688
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 11.806776155728198,
+              "loss_weather": 11.865166419240744,
+              "delta_loss_yen_kwh": 0.05839026351254617,
+              "delta_loss_yen_mwh": 58.39026351254617
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.03642835598463723,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 319112.39842542214
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.06792717086834733,
+          "floor_precision": 0.8571428571428571,
+          "floor_recall": 0.09278350515463918,
+          "floor_f1": 0.16744186046511628,
+          "roc_auc_floor": 0.9099112073706306,
+          "pr_auc_floor": 0.5253138826569206,
+          "mae_floor": 4.5318804339634395,
+          "mae_normal": 1.9146023624412198
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.06792717086834733,
+          "floor_precision": 0.4444444444444444,
+          "floor_recall": 0.041237113402061855,
+          "floor_f1": 0.07547169811320753,
+          "roc_auc_floor": 0.8276858051848466,
+          "pr_auc_floor": 0.32380718588584706,
+          "mae_floor": 5.73758153388776,
+          "mae_normal": 2.050013421923482
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.2819698485205504,
+              "loss_weather": 1.1573875541687377,
+              "delta_loss_yen_kwh": -0.12458229435181267,
+              "delta_loss_yen_mwh": -124.58229435181268
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.6214797293982164,
+              "loss_weather": 1.4690539218509877,
+              "delta_loss_yen_kwh": -0.15242580754722868,
+              "delta_loss_yen_mwh": -152.4258075472287
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.300499491153549,
+              "loss_weather": 2.0923866572154877,
+              "delta_loss_yen_kwh": -0.20811283393806113,
+              "delta_loss_yen_mwh": -208.11283393806113
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.6585390146642123,
+              "loss_weather": 3.3390521279444885,
+              "delta_loss_yen_kwh": -0.3194868867197238,
+              "delta_loss_yen_mwh": -319.4868867197238
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 6.374618061685541,
+              "loss_weather": 5.832383069402488,
+              "delta_loss_yen_kwh": -0.5422349922830527,
+              "delta_loss_yen_mwh": -542.2349922830527
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 11.806776155728198,
+              "loss_weather": 10.81904495231849,
+              "delta_loss_yen_kwh": -0.987731203409707,
+              "delta_loss_yen_mwh": -987.731203409707
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.3194868867197238,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 2798705.1276647807
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.06792717086834733,
+          "floor_precision": 0.9591836734693877,
+          "floor_recall": 0.1211340206185567,
+          "floor_f1": 0.2151029748283753,
+          "roc_auc_floor": 0.9149743526687166,
+          "pr_auc_floor": 0.5289512636728615,
+          "mae_floor": 4.367174158678343,
+          "mae_normal": 1.8617211041197035
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.06792717086834733,
+          "floor_precision": 0.4444444444444444,
+          "floor_recall": 0.041237113402061855,
+          "floor_f1": 0.07547169811320753,
+          "roc_auc_floor": 0.8276858051848466,
+          "pr_auc_floor": 0.32380718588584706,
+          "mae_floor": 5.73758153388776,
+          "mae_normal": 2.050013421923482
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.2819698485205504,
+              "loss_weather": 1.1261087821164046,
+              "delta_loss_yen_kwh": -0.15586106640414576,
+              "delta_loss_yen_mwh": -155.86106640414576
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.6214797293982164,
+              "loss_weather": 1.4280423353640468,
+              "delta_loss_yen_kwh": -0.1934373940341696,
+              "delta_loss_yen_mwh": -193.43739403416959
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 2.300499491153549,
+              "loss_weather": 2.0319094418593306,
+              "delta_loss_yen_kwh": -0.26859004929421815,
+              "delta_loss_yen_mwh": -268.59004929421815
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 3.6585390146642123,
+              "loss_weather": 3.2396436548498997,
+              "delta_loss_yen_kwh": -0.4188953598143126,
+              "delta_loss_yen_mwh": -418.8953598143126
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 6.374618061685541,
+              "loss_weather": 5.655112080831037,
+              "delta_loss_yen_kwh": -0.7195059808545041,
+              "delta_loss_yen_mwh": -719.5059808545042
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 11.806776155728198,
+              "loss_weather": 10.48604893279331,
+              "delta_loss_yen_kwh": -1.320727222934888,
+              "delta_loss_yen_mwh": -1320.727222934888
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.4188953598143126,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3669523.351973378
+        }
+      }
+    },
+    "tohoku": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.029936974789915968,
+          "floor_precision": 0.8181818181818182,
+          "floor_recall": 0.05263157894736842,
+          "floor_f1": 0.0989010989010989,
+          "roc_auc_floor": 0.9423172923586112,
+          "pr_auc_floor": 0.43618151379960085,
+          "mae_floor": 4.9236192974517925,
+          "mae_normal": 1.8326134474925189
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.029936974789915968,
+          "floor_precision": 0.75,
+          "floor_recall": 0.03508771929824561,
+          "floor_f1": 0.0670391061452514,
+          "roc_auc_floor": 0.9221259700415088,
+          "pr_auc_floor": 0.3303336998448155,
+          "mae_floor": 5.4551496291051675,
+          "mae_normal": 1.872630931543241
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.2537829768756001,
+              "loss_weather": 1.2003625619801672,
+              "delta_loss_yen_kwh": -0.05342041489543292,
+              "delta_loss_yen_mwh": -53.42041489543292
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4958155524092518,
+              "loss_weather": 1.4419579785528558,
+              "delta_loss_yen_kwh": -0.053857573856396,
+              "delta_loss_yen_mwh": -53.857573856396
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.979880703476555,
+              "loss_weather": 1.9251488116982325,
+              "delta_loss_yen_kwh": -0.054731891778322606,
+              "delta_loss_yen_mwh": -54.731891778322606
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9480110056111615,
+              "loss_weather": 2.891530477988986,
+              "delta_loss_yen_kwh": -0.05648052762217537,
+              "delta_loss_yen_mwh": -56.48052762217537
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 4.884271609880375,
+              "loss_weather": 4.824293810570494,
+              "delta_loss_yen_kwh": -0.05997779930988045,
+              "delta_loss_yen_mwh": -59.97779930988045
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 8.756792818418802,
+              "loss_weather": 8.689820475733507,
+              "delta_loss_yen_kwh": -0.06697234268529506,
+              "delta_loss_yen_mwh": -66.97234268529506
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.05648052762217537,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 494769.42197025626
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.029936974789915968,
+          "floor_precision": 0.9,
+          "floor_recall": 0.21052631578947367,
+          "floor_f1": 0.34123222748815163,
+          "roc_auc_floor": 0.9824867468557094,
+          "pr_auc_floor": 0.6929907508196819,
+          "mae_floor": 3.2328473811875487,
+          "mae_normal": 1.5590275122140034
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.029936974789915968,
+          "floor_precision": 0.75,
+          "floor_recall": 0.03508771929824561,
+          "floor_f1": 0.0670391061452514,
+          "roc_auc_floor": 0.9221259700415088,
+          "pr_auc_floor": 0.3303336998448155,
+          "mae_floor": 5.4551496291051675,
+          "mae_normal": 1.872630931543241
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.2537829768756001,
+              "loss_weather": 0.9868015121594816,
+              "delta_loss_yen_kwh": -0.2669814647161185,
+              "delta_loss_yen_mwh": -266.9814647161185
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4958155524092518,
+              "loss_weather": 1.1942465465844294,
+              "delta_loss_yen_kwh": -0.3015690058248224,
+              "delta_loss_yen_mwh": -301.5690058248224
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.979880703476555,
+              "loss_weather": 1.609136615434325,
+              "delta_loss_yen_kwh": -0.37074408804223014,
+              "delta_loss_yen_mwh": -370.74408804223015
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9480110056111615,
+              "loss_weather": 2.4389167531341163,
+              "delta_loss_yen_kwh": -0.5090942524770452,
+              "delta_loss_yen_mwh": -509.0942524770452
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 4.884271609880375,
+              "loss_weather": 4.098477028533699,
+              "delta_loss_yen_kwh": -0.7857945813466758,
+              "delta_loss_yen_mwh": -785.7945813466758
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 8.756792818418802,
+              "loss_weather": 7.417597579332863,
+              "delta_loss_yen_kwh": -1.3391952390859387,
+              "delta_loss_yen_mwh": -1339.1952390859387
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.5090942524770452,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 4459665.651698916
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.029936974789915968,
+          "floor_precision": 1.0,
+          "floor_recall": 0.08771929824561403,
+          "floor_f1": 0.16129032258064516,
+          "roc_auc_floor": 0.9701422991395351,
+          "pr_auc_floor": 0.670024796823516,
+          "mae_floor": 4.081684239217414,
+          "mae_normal": 1.5283850276222775
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.029936974789915968,
+          "floor_precision": 0.75,
+          "floor_recall": 0.03508771929824561,
+          "floor_f1": 0.0670391061452514,
+          "roc_auc_floor": 0.9221259700415088,
+          "pr_auc_floor": 0.3303336998448155,
+          "mae_floor": 5.4551496291051675,
+          "mae_normal": 1.872630931543241
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.2537829768756001,
+              "loss_weather": 0.944938737685402,
+              "delta_loss_yen_kwh": -0.3088442391901981,
+              "delta_loss_yen_mwh": -308.8442391901981
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.4958155524092518,
+              "loss_weather": 1.1649001857072392,
+              "delta_loss_yen_kwh": -0.3309153667020126,
+              "delta_loss_yen_mwh": -330.9153667020126
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.979880703476555,
+              "loss_weather": 1.6048230817509133,
+              "delta_loss_yen_kwh": -0.37505762172564183,
+              "delta_loss_yen_mwh": -375.0576217256418
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.9480110056111615,
+              "loss_weather": 2.4846688738382614,
+              "delta_loss_yen_kwh": -0.46334213177290007,
+              "delta_loss_yen_mwh": -463.3421317729001
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 4.884271609880375,
+              "loss_weather": 4.244360458012957,
+              "delta_loss_yen_kwh": -0.6399111518674179,
+              "delta_loss_yen_mwh": -639.9111518674179
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 8.756792818418802,
+              "loss_weather": 7.76374362636235,
+              "delta_loss_yen_kwh": -0.9930491920564517,
+              "delta_loss_yen_mwh": -993.0491920564517
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.46334213177290007,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 4058877.0743306046
+        }
+      }
+    },
+    "tokyo": {
+      "era5": {
+        "classification_weather": {
+          "floor_base_rate": 0.009103641456582634,
+          "floor_precision": 0.0,
+          "floor_recall": 0.0,
+          "floor_f1": 0.0,
+          "roc_auc_floor": 0.969794781190541,
+          "pr_auc_floor": 0.2873140870391791,
+          "mae_floor": 5.98480349779129,
+          "mae_normal": 1.6921281088925502
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.009103641456582634,
+          "floor_precision": 0.0,
+          "floor_recall": 0.0,
+          "floor_f1": 0.0,
+          "roc_auc_floor": 0.9625339766240826,
+          "pr_auc_floor": 0.32005008561815956,
+          "mae_floor": 5.862029539851041,
+          "mae_normal": 1.6769149409688406
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.025680015092658,
+              "loss_weather": 0.9929089921560526,
+              "delta_loss_yen_kwh": -0.03277102293660539,
+              "delta_loss_yen_mwh": -32.77102293660539
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.2554582513056967,
+              "loss_weather": 1.2390083569448953,
+              "delta_loss_yen_kwh": -0.016449894360801354,
+              "delta_loss_yen_mwh": -16.449894360801352
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.7150147237317739,
+              "loss_weather": 1.731207086522581,
+              "delta_loss_yen_kwh": 0.016192362790807158,
+              "delta_loss_yen_mwh": 16.19236279080716
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.6341276685839277,
+              "loss_weather": 2.715604545677952,
+              "delta_loss_yen_kwh": 0.0814768770940244,
+              "delta_loss_yen_mwh": 81.4768770940244
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 4.472353558288235,
+              "loss_weather": 4.684399463988695,
+              "delta_loss_yen_kwh": 0.21204590570045934,
+              "delta_loss_yen_mwh": 212.04590570045934
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 8.14880533769685,
+              "loss_weather": 8.62198930061018,
+              "delta_loss_yen_kwh": 0.4731839629133301,
+              "delta_loss_yen_mwh": 473.1839629133301
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": 0.0814768770940244,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": -713737.4433436538
+        }
+      },
+      "histfc": {
+        "classification_weather": {
+          "floor_base_rate": 0.009103641456582634,
+          "floor_precision": 1.0,
+          "floor_recall": 0.019230769230769232,
+          "floor_f1": 0.03773584905660378,
+          "roc_auc_floor": 0.9864501223158467,
+          "pr_auc_floor": 0.5942180433416016,
+          "mae_floor": 4.053643083916262,
+          "mae_normal": 1.4384473289011224
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.009103641456582634,
+          "floor_precision": 0.0,
+          "floor_recall": 0.0,
+          "floor_f1": 0.0,
+          "roc_auc_floor": 0.9625339766240826,
+          "pr_auc_floor": 0.32005008561815956,
+          "mae_floor": 5.862029539851041,
+          "mae_normal": 1.6769149409688406
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.025680015092658,
+              "loss_weather": 0.8145081723508026,
+              "delta_loss_yen_kwh": -0.2111718427418553,
+              "delta_loss_yen_mwh": -211.1718427418553
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.2554582513056967,
+              "loss_weather": 1.0304238260317207,
+              "delta_loss_yen_kwh": -0.225034425273976,
+              "delta_loss_yen_mwh": -225.03442527397598
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.7150147237317739,
+              "loss_weather": 1.4622551333935572,
+              "delta_loss_yen_kwh": -0.2527595903382167,
+              "delta_loss_yen_mwh": -252.7595903382167
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.6341276685839277,
+              "loss_weather": 2.3259177481172295,
+              "delta_loss_yen_kwh": -0.30820992046669815,
+              "delta_loss_yen_mwh": -308.2099204666981
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 4.472353558288235,
+              "loss_weather": 4.053242977564575,
+              "delta_loss_yen_kwh": -0.41911058072366014,
+              "delta_loss_yen_mwh": -419.1105807236601
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 8.14880533769685,
+              "loss_weather": 7.507893436459265,
+              "delta_loss_yen_kwh": -0.6409119012375841,
+              "delta_loss_yen_mwh": -640.9119012375842
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.30820992046669815,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 2699918.903288276
+        }
+      },
+      "oracle": {
+        "classification_weather": {
+          "floor_base_rate": 0.009103641456582634,
+          "floor_precision": 1.0,
+          "floor_recall": 0.07692307692307693,
+          "floor_f1": 0.14285714285714288,
+          "roc_auc_floor": 0.9864807012775211,
+          "pr_auc_floor": 0.5245371989111997,
+          "mae_floor": 4.38196562548383,
+          "mae_normal": 1.403079061834214
+        },
+        "classification_price_only": {
+          "floor_base_rate": 0.009103641456582634,
+          "floor_precision": 0.0,
+          "floor_recall": 0.0,
+          "floor_f1": 0.0,
+          "roc_auc_floor": 0.9625339766240826,
+          "pr_auc_floor": 0.32005008561815956,
+          "mae_floor": 5.862029539851041,
+          "mae_normal": 1.6769149409688406
+        },
+        "cost_frontier": {
+          "frontier": [
+            {
+              "cost_ratio": 0.25,
+              "loss_price_only": 1.025680015092658,
+              "loss_weather": 0.812541817917576,
+              "delta_loss_yen_kwh": -0.21313819717508198,
+              "delta_loss_yen_mwh": -213.13819717508198
+            },
+            {
+              "cost_ratio": 0.5,
+              "loss_price_only": 1.2554582513056967,
+              "loss_weather": 1.0184271376282212,
+              "delta_loss_yen_kwh": -0.23703111367747542,
+              "delta_loss_yen_mwh": -237.03111367747542
+            },
+            {
+              "cost_ratio": 1.0,
+              "loss_price_only": 1.7150147237317739,
+              "loss_weather": 1.4301977770495116,
+              "delta_loss_yen_kwh": -0.2848169466822623,
+              "delta_loss_yen_mwh": -284.8169466822623
+            },
+            {
+              "cost_ratio": 2.0,
+              "loss_price_only": 2.6341276685839277,
+              "loss_weather": 2.2537390558920922,
+              "delta_loss_yen_kwh": -0.38038861269183544,
+              "delta_loss_yen_mwh": -380.3886126918354
+            },
+            {
+              "cost_ratio": 4.0,
+              "loss_price_only": 4.472353558288235,
+              "loss_weather": 3.900821613577254,
+              "delta_loss_yen_kwh": -0.5715319447109812,
+              "delta_loss_yen_mwh": -571.5319447109812
+            },
+            {
+              "cost_ratio": 8.0,
+              "loss_price_only": 8.14880533769685,
+              "loss_weather": 7.194986728947579,
+              "delta_loss_yen_kwh": -0.9538186087492706,
+              "delta_loss_yen_mwh": -953.8186087492707
+            }
+          ],
+          "breakeven_cost_ratio": null,
+          "delta_loss_at_ref_yen_kwh": -0.38038861269183544,
+          "delta_loss_at_ref_yen_per_mw_year_illustrative": 3332204.2471804786
+        }
+      }
+    }
+  }
+}

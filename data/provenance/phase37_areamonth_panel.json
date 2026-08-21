@@ -1,0 +1,1024 @@
+{
+  "phase": "37",
+  "note": "Area-month panel (within floor-regime window) to escape the n=9 cross-section. DV = mean fold weather DeltaMAE per (area, month); treatment = within-area time-varying FLOOR rate (price<=0.5). PV/peak is area-constant -> collinear with area FE. Negative beta = more FLOOR-exposed months carry more weather value.",
+  "floor_threshold_jpy_kwh": 0.5,
+  "min_folds_per_cell": 3,
+  "n_cells": 135,
+  "n_areas": 9,
+  "n_months": 15,
+  "months": [
+    "2024-09",
+    "2024-10",
+    "2024-11",
+    "2024-12",
+    "2025-01",
+    "2025-02",
+    "2025-03",
+    "2025-04",
+    "2025-05",
+    "2025-06",
+    "2025-07",
+    "2025-08",
+    "2025-09",
+    "2025-10",
+    "2025-11"
+  ],
+  "specs": [
+    {
+      "label": "spec0_pooled",
+      "area_fe": false,
+      "month_fe": false,
+      "n_obs": 135,
+      "n_params": 2,
+      "n_clusters_area": 9,
+      "beta_floor": -1.786440190181744,
+      "se_cluster_area": 0.4509277235228192,
+      "t_cluster_area": -3.961699618345469,
+      "p_wild_cluster": 0.0,
+      "p_asymptotic_cluster_t": 0.004167097409421672,
+      "ci_wild_naive_lo": -1.3833165668529812,
+      "ci_wild_naive_hi": 1.474336939347551
+    },
+    {
+      "label": "spec1_area_fe",
+      "area_fe": true,
+      "month_fe": false,
+      "n_obs": 135,
+      "n_params": 10,
+      "n_clusters_area": 9,
+      "beta_floor": -1.9172258280330159,
+      "se_cluster_area": 0.5642789734147967,
+      "t_cluster_area": -3.3976559793300667,
+      "p_wild_cluster": 0.004,
+      "p_asymptotic_cluster_t": 0.009392970190150285,
+      "ci_wild_naive_lo": -1.5556722055044752,
+      "ci_wild_naive_hi": 1.5465760364548193,
+      "se_twoway_area_month": 0.610853655613117,
+      "t_twoway": -3.138600891417579
+    },
+    {
+      "label": "spec2_area_month_fe",
+      "area_fe": true,
+      "month_fe": true,
+      "n_obs": 135,
+      "n_params": 24,
+      "n_clusters_area": 9,
+      "beta_floor": -1.330225929557938,
+      "se_cluster_area": 0.9099409311394004,
+      "t_cluster_area": -1.4618816277362854,
+      "p_wild_cluster": 0.3085,
+      "p_asymptotic_cluster_t": 0.181913422406613,
+      "ci_wild_naive_lo": -1.578308012633317,
+      "ci_wild_naive_hi": 1.578308012633319,
+      "se_twoway_area_month": 0.8575128894356623,
+      "t_twoway": -1.5512605652299556
+    }
+  ],
+  "panel_rows": [
+    {
+      "area": "chubu",
+      "ym": "2024-09",
+      "delta_mae": -0.218803679863612,
+      "floor_rate": 0.0006944444444444445,
+      "n_folds": 5
+    },
+    {
+      "area": "chubu",
+      "ym": "2024-10",
+      "delta_mae": -0.4210318132597162,
+      "floor_rate": 0.027553763440860215,
+      "n_folds": 11
+    },
+    {
+      "area": "chubu",
+      "ym": "2024-11",
+      "delta_mae": -0.1001142306327821,
+      "floor_rate": 0.007638888888888889,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2024-12",
+      "delta_mae": -0.020387765586376172,
+      "floor_rate": 0.004032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-01",
+      "delta_mae": -0.01578054877122238,
+      "floor_rate": 0.004704301075268817,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-02",
+      "delta_mae": 0.15716069706281038,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-03",
+      "delta_mae": -0.19088090086728335,
+      "floor_rate": 0.038978494623655914,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-04",
+      "delta_mae": -0.07933049433430021,
+      "floor_rate": 0.05277777777777778,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-05",
+      "delta_mae": -0.011650576086210396,
+      "floor_rate": 0.04771505376344086,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-06",
+      "delta_mae": 0.115682417233785,
+      "floor_rate": 0.02361111111111111,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-07",
+      "delta_mae": -0.10593597392241154,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-08",
+      "delta_mae": 0.053579330205917396,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-09",
+      "delta_mae": 0.11157134342193605,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-10",
+      "delta_mae": 0.14775751084089278,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "chubu",
+      "ym": "2025-11",
+      "delta_mae": 0.15868803713056798,
+      "floor_rate": 0.002777777777777778,
+      "n_folds": 3
+    },
+    {
+      "area": "chugoku",
+      "ym": "2024-09",
+      "delta_mae": -0.07501593891779593,
+      "floor_rate": 0.0006944444444444445,
+      "n_folds": 5
+    },
+    {
+      "area": "chugoku",
+      "ym": "2024-10",
+      "delta_mae": -0.2473036064794569,
+      "floor_rate": 0.027553763440860215,
+      "n_folds": 11
+    },
+    {
+      "area": "chugoku",
+      "ym": "2024-11",
+      "delta_mae": -0.09130475314458217,
+      "floor_rate": 0.010416666666666666,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2024-12",
+      "delta_mae": -0.04835697031207381,
+      "floor_rate": 0.004032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-01",
+      "delta_mae": -0.080406786719958,
+      "floor_rate": 0.02620967741935484,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-02",
+      "delta_mae": 0.15977569218476617,
+      "floor_rate": 0.000744047619047619,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-03",
+      "delta_mae": -0.4250008520449821,
+      "floor_rate": 0.04838709677419355,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-04",
+      "delta_mae": -0.11077511949961391,
+      "floor_rate": 0.059722222222222225,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-05",
+      "delta_mae": -0.14866333088387426,
+      "floor_rate": 0.08333333333333333,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-06",
+      "delta_mae": -0.006701218525568664,
+      "floor_rate": 0.059722222222222225,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-07",
+      "delta_mae": 0.03451179729718154,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-08",
+      "delta_mae": -0.090848369161288,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-09",
+      "delta_mae": 0.10174271154403684,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-10",
+      "delta_mae": 0.14088915961980816,
+      "floor_rate": 0.006048387096774193,
+      "n_folds": 10
+    },
+    {
+      "area": "chugoku",
+      "ym": "2025-11",
+      "delta_mae": 0.06024923271603059,
+      "floor_rate": 0.035416666666666666,
+      "n_folds": 3
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2024-09",
+      "delta_mae": -0.32899820442994443,
+      "floor_rate": 0.010416666666666666,
+      "n_folds": 5
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2024-10",
+      "delta_mae": 0.09386219617092256,
+      "floor_rate": 0.012096774193548387,
+      "n_folds": 11
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2024-11",
+      "delta_mae": -0.01771165068944299,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2024-12",
+      "delta_mae": -0.13577522214253734,
+      "floor_rate": 0.0020161290322580645,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-01",
+      "delta_mae": 0.1525844739278157,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-02",
+      "delta_mae": -0.03924079072475438,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-03",
+      "delta_mae": -0.3725170153180758,
+      "floor_rate": 0.020161290322580645,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-04",
+      "delta_mae": -0.00627930366992957,
+      "floor_rate": 0.09097222222222222,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-05",
+      "delta_mae": -0.05914912604540581,
+      "floor_rate": 0.1196236559139785,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-06",
+      "delta_mae": 0.06755044801036525,
+      "floor_rate": 0.06319444444444444,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-07",
+      "delta_mae": 0.007703211704890078,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-08",
+      "delta_mae": 0.14903796414534246,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-09",
+      "delta_mae": -0.12791047419110935,
+      "floor_rate": 0.0375,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-10",
+      "delta_mae": 0.16959887654085934,
+      "floor_rate": 0.020161290322580645,
+      "n_folds": 10
+    },
+    {
+      "area": "hokkaido",
+      "ym": "2025-11",
+      "delta_mae": 0.020132335291968378,
+      "floor_rate": 0.005555555555555556,
+      "n_folds": 3
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2024-09",
+      "delta_mae": -0.13915313967069004,
+      "floor_rate": 0.0006944444444444445,
+      "n_folds": 5
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2024-10",
+      "delta_mae": -0.39779988643572184,
+      "floor_rate": 0.027553763440860215,
+      "n_folds": 11
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2024-11",
+      "delta_mae": 0.217084403793017,
+      "floor_rate": 0.010416666666666666,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2024-12",
+      "delta_mae": 0.053299215376377065,
+      "floor_rate": 0.004032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-01",
+      "delta_mae": -0.026168607868254312,
+      "floor_rate": 0.02217741935483871,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-02",
+      "delta_mae": 0.055184259613355026,
+      "floor_rate": 0.000744047619047619,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-03",
+      "delta_mae": -0.24492174988985047,
+      "floor_rate": 0.04032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-04",
+      "delta_mae": -0.13908251180499792,
+      "floor_rate": 0.059027777777777776,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-05",
+      "delta_mae": -0.1411537836622448,
+      "floor_rate": 0.07728494623655914,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-06",
+      "delta_mae": 0.031776853193839404,
+      "floor_rate": 0.024305555555555556,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-07",
+      "delta_mae": 0.14111512978871674,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-08",
+      "delta_mae": -0.06095730694135023,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-09",
+      "delta_mae": -0.09188701677322383,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-10",
+      "delta_mae": 0.022626579761505183,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "hokuriku",
+      "ym": "2025-11",
+      "delta_mae": -0.34883442944950555,
+      "floor_rate": 0.006944444444444444,
+      "n_folds": 3
+    },
+    {
+      "area": "kansai",
+      "ym": "2024-09",
+      "delta_mae": -0.21788822579383846,
+      "floor_rate": 0.0006944444444444445,
+      "n_folds": 5
+    },
+    {
+      "area": "kansai",
+      "ym": "2024-10",
+      "delta_mae": -0.29958208947611814,
+      "floor_rate": 0.027553763440860215,
+      "n_folds": 11
+    },
+    {
+      "area": "kansai",
+      "ym": "2024-11",
+      "delta_mae": 0.04643340887626015,
+      "floor_rate": 0.010416666666666666,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2024-12",
+      "delta_mae": -0.10391162150353206,
+      "floor_rate": 0.004032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-01",
+      "delta_mae": 0.06839631493533187,
+      "floor_rate": 0.0228494623655914,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-02",
+      "delta_mae": 0.12001627643903093,
+      "floor_rate": 0.000744047619047619,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-03",
+      "delta_mae": -0.021524157912780773,
+      "floor_rate": 0.04032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-04",
+      "delta_mae": -0.13699122281372555,
+      "floor_rate": 0.059722222222222225,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-05",
+      "delta_mae": -0.18998424848510584,
+      "floor_rate": 0.07728494623655914,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-06",
+      "delta_mae": -0.09046464888254808,
+      "floor_rate": 0.024305555555555556,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-07",
+      "delta_mae": 0.17156060869043552,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-08",
+      "delta_mae": -0.14605730613072723,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-09",
+      "delta_mae": 0.058870938976605766,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-10",
+      "delta_mae": -0.01804106096426652,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "kansai",
+      "ym": "2025-11",
+      "delta_mae": -0.12708460741572902,
+      "floor_rate": 0.034722222222222224,
+      "n_folds": 3
+    },
+    {
+      "area": "kyushu",
+      "ym": "2024-09",
+      "delta_mae": -0.04489782496293402,
+      "floor_rate": 0.020833333333333332,
+      "n_folds": 5
+    },
+    {
+      "area": "kyushu",
+      "ym": "2024-10",
+      "delta_mae": -0.07340328750172348,
+      "floor_rate": 0.05040322580645161,
+      "n_folds": 11
+    },
+    {
+      "area": "kyushu",
+      "ym": "2024-11",
+      "delta_mae": 0.023884003614347095,
+      "floor_rate": 0.06041666666666667,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2024-12",
+      "delta_mae": -0.3103712333490451,
+      "floor_rate": 0.04032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-01",
+      "delta_mae": -0.1228188589472943,
+      "floor_rate": 0.051075268817204304,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-02",
+      "delta_mae": 0.23184677301843964,
+      "floor_rate": 0.04241071428571429,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-03",
+      "delta_mae": -0.09624484586622559,
+      "floor_rate": 0.11895161290322581,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-04",
+      "delta_mae": -0.18165872579921663,
+      "floor_rate": 0.17916666666666667,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-05",
+      "delta_mae": -0.26652266665361835,
+      "floor_rate": 0.15591397849462366,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-06",
+      "delta_mae": -0.04764987055460601,
+      "floor_rate": 0.06319444444444444,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-07",
+      "delta_mae": -0.09743301775419355,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-08",
+      "delta_mae": -0.10079228349526725,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-09",
+      "delta_mae": -0.03866651030381518,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-10",
+      "delta_mae": -0.0029606042696782354,
+      "floor_rate": 0.0228494623655914,
+      "n_folds": 10
+    },
+    {
+      "area": "kyushu",
+      "ym": "2025-11",
+      "delta_mae": -0.3418868480788338,
+      "floor_rate": 0.06736111111111111,
+      "n_folds": 3
+    },
+    {
+      "area": "shikoku",
+      "ym": "2024-09",
+      "delta_mae": 0.06258214656511955,
+      "floor_rate": 0.0006944444444444445,
+      "n_folds": 5
+    },
+    {
+      "area": "shikoku",
+      "ym": "2024-10",
+      "delta_mae": -0.14697993497053777,
+      "floor_rate": 0.026881720430107527,
+      "n_folds": 11
+    },
+    {
+      "area": "shikoku",
+      "ym": "2024-11",
+      "delta_mae": 0.0013387753069401432,
+      "floor_rate": 0.029166666666666667,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2024-12",
+      "delta_mae": -0.23839977493882172,
+      "floor_rate": 0.036290322580645164,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-01",
+      "delta_mae": 0.05532892506072908,
+      "floor_rate": 0.04838709677419355,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-02",
+      "delta_mae": 0.14627100042502095,
+      "floor_rate": 0.020089285714285716,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-03",
+      "delta_mae": -0.6171737459248396,
+      "floor_rate": 0.22043010752688172,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-04",
+      "delta_mae": -0.49491670980397623,
+      "floor_rate": 0.11041666666666666,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-05",
+      "delta_mae": -0.174775903169997,
+      "floor_rate": 0.10887096774193548,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-06",
+      "delta_mae": -0.010103216879069765,
+      "floor_rate": 0.06041666666666667,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-07",
+      "delta_mae": 0.09467607467463517,
+      "floor_rate": 0.03494623655913978,
+      "n_folds": 11
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-08",
+      "delta_mae": -0.15820151806374408,
+      "floor_rate": 0.03293010752688172,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-09",
+      "delta_mae": 0.10584878316521648,
+      "floor_rate": 0.025694444444444443,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-10",
+      "delta_mae": 0.015898649970690504,
+      "floor_rate": 0.024193548387096774,
+      "n_folds": 10
+    },
+    {
+      "area": "shikoku",
+      "ym": "2025-11",
+      "delta_mae": -0.16217045293913954,
+      "floor_rate": 0.049305555555555554,
+      "n_folds": 3
+    },
+    {
+      "area": "tohoku",
+      "ym": "2024-09",
+      "delta_mae": -0.13043737125396732,
+      "floor_rate": 0.0,
+      "n_folds": 5
+    },
+    {
+      "area": "tohoku",
+      "ym": "2024-10",
+      "delta_mae": -0.009698566162224965,
+      "floor_rate": 0.004704301075268817,
+      "n_folds": 11
+    },
+    {
+      "area": "tohoku",
+      "ym": "2024-11",
+      "delta_mae": -0.13204981940984722,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2024-12",
+      "delta_mae": -0.18429829919338228,
+      "floor_rate": 0.004032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-01",
+      "delta_mae": -0.08389093891779582,
+      "floor_rate": 0.002688172043010753,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-02",
+      "delta_mae": 0.02019169569015501,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-03",
+      "delta_mae": -0.24858660654475306,
+      "floor_rate": 0.0456989247311828,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-04",
+      "delta_mae": -0.16267594419916478,
+      "floor_rate": 0.10555555555555556,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-05",
+      "delta_mae": -0.35890265929543724,
+      "floor_rate": 0.10215053763440861,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-06",
+      "delta_mae": -0.0024829038182896277,
+      "floor_rate": 0.06944444444444445,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-07",
+      "delta_mae": 0.12525396148363743,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-08",
+      "delta_mae": -0.042698117891947426,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-09",
+      "delta_mae": -0.15210349500676,
+      "floor_rate": 0.013194444444444444,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-10",
+      "delta_mae": -0.029195190370082846,
+      "floor_rate": 0.0006720430107526882,
+      "n_folds": 10
+    },
+    {
+      "area": "tohoku",
+      "ym": "2025-11",
+      "delta_mae": -0.39228396167357754,
+      "floor_rate": 0.005555555555555556,
+      "n_folds": 3
+    },
+    {
+      "area": "tokyo",
+      "ym": "2024-09",
+      "delta_mae": -0.1981192013422648,
+      "floor_rate": 0.0,
+      "n_folds": 5
+    },
+    {
+      "area": "tokyo",
+      "ym": "2024-10",
+      "delta_mae": -0.09382895603324437,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "tokyo",
+      "ym": "2024-11",
+      "delta_mae": -0.02421864132086431,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2024-12",
+      "delta_mae": 0.05709095625082652,
+      "floor_rate": 0.004032258064516129,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-01",
+      "delta_mae": -0.08201914993921927,
+      "floor_rate": 0.002688172043010753,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-02",
+      "delta_mae": 0.008711783647537297,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-03",
+      "delta_mae": -0.1277020729283494,
+      "floor_rate": 0.03696236559139785,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-04",
+      "delta_mae": -0.04355991486708323,
+      "floor_rate": 0.03194444444444444,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-05",
+      "delta_mae": -0.24947593676143667,
+      "floor_rate": 0.027553763440860215,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-06",
+      "delta_mae": 0.004235346953074037,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-07",
+      "delta_mae": 0.10700495517615115,
+      "floor_rate": 0.0,
+      "n_folds": 11
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-08",
+      "delta_mae": -0.014535780191421478,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-09",
+      "delta_mae": -0.0072063571612040024,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-10",
+      "delta_mae": 0.0875537125666936,
+      "floor_rate": 0.0,
+      "n_folds": 10
+    },
+    {
+      "area": "tokyo",
+      "ym": "2025-11",
+      "delta_mae": 0.08582784228854716,
+      "floor_rate": 0.0,
+      "n_folds": 3
+    }
+  ]
+}

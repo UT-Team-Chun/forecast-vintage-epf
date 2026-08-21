@@ -1,0 +1,448 @@
+{
+  "phase": "phase33_temporal_kyushu",
+  "note": "FY2022-2025 temporal robustness. (1) per-(area,FY) FLOOR exposure from spot (all 9 areas, free); (2) Kyushu per-FY weather value (cached ERA5 2022-2025). FY2022-23 = LNG-crisis regime (high prices, few PV floors); FY2024-25 = calm. Tests whether the FLOOR finding is robust across regimes, not a calm-window artifact.",
+  "per_area_fy_floor": [
+    {
+      "area": "chubu",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.04286529680365297,
+      "high_rate": 0.128824200913242,
+      "price_mean": 20.822308219178083,
+      "price_std": 10.584685449945963,
+      "pv_peak": 0.518887505188875
+    },
+    {
+      "area": "chubu",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.0533356102003643,
+      "high_rate": 0.0017645719489981786,
+      "price_mean": 11.136117941712204,
+      "price_std": 4.5257144114873595,
+      "pv_peak": 0.518887505188875
+    },
+    {
+      "area": "chubu",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.0319634703196347,
+      "high_rate": 0.011187214611872146,
+      "price_mean": 12.831897260273973,
+      "price_std": 5.171757304748284,
+      "pv_peak": 0.518887505188875
+    },
+    {
+      "area": "chubu",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.014668949771689498,
+      "high_rate": 0.005308219178082192,
+      "price_mean": 11.363265981735161,
+      "price_std": 4.212828459913522,
+      "pv_peak": 0.518887505188875
+    },
+    {
+      "area": "chugoku",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.04971461187214612,
+      "high_rate": 0.09389269406392695,
+      "price_mean": 19.205421232876713,
+      "price_std": 9.170247753182382,
+      "pv_peak": 0.5389797882579402
+    },
+    {
+      "area": "chugoku",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.08242258652094718,
+      "high_rate": 0.0014230418943533697,
+      "price_mean": 9.688995901639345,
+      "price_std": 4.745195705581187,
+      "pv_peak": 0.5389797882579402
+    },
+    {
+      "area": "chugoku",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.04474885844748858,
+      "high_rate": 0.00930365296803653,
+      "price_mean": 11.660299086757991,
+      "price_std": 5.1949209929614115,
+      "pv_peak": 0.5389797882579402
+    },
+    {
+      "area": "chugoku",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.025799086757990867,
+      "high_rate": 0.0019406392694063927,
+      "price_mean": 10.209099885844749,
+      "price_std": 4.031454832559499,
+      "pv_peak": 0.5389797882579402
+    },
+    {
+      "area": "hokkaido",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.055136986301369866,
+      "high_rate": 0.1523972602739726,
+      "price_mean": 21.65921404109589,
+      "price_std": 12.610562916251952,
+      "pv_peak": 0.49900199600798406
+    },
+    {
+      "area": "hokkaido",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.043886612021857924,
+      "high_rate": 0.0009107468123861566,
+      "price_mean": 11.444892418032786,
+      "price_std": 4.580820038114349,
+      "pv_peak": 0.49900199600798406
+    },
+    {
+      "area": "hokkaido",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.024600456621004567,
+      "high_rate": 0.002682648401826484,
+      "price_mean": 12.642131278538814,
+      "price_std": 4.278067873556102,
+      "pv_peak": 0.49900199600798406
+    },
+    {
+      "area": "hokkaido",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.031164383561643836,
+      "high_rate": 0.01523972602739726,
+      "price_mean": 11.703333333333333,
+      "price_std": 5.400850549876402,
+      "pv_peak": 0.49900199600798406
+    },
+    {
+      "area": "hokuriku",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.04942922374429224,
+      "high_rate": 0.10462328767123287,
+      "price_mean": 19.546856735159817,
+      "price_std": 9.449658443264223,
+      "pv_peak": 0.3901437371663244
+    },
+    {
+      "area": "hokuriku",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.07974726775956284,
+      "high_rate": 0.0017076502732240437,
+      "price_mean": 9.850822518214937,
+      "price_std": 4.774196857436057,
+      "pv_peak": 0.3901437371663244
+    },
+    {
+      "area": "hokuriku",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.04103881278538813,
+      "high_rate": 0.010787671232876713,
+      "price_mean": 11.846097602739727,
+      "price_std": 5.205374441065618,
+      "pv_peak": 0.3901437371663244
+    },
+    {
+      "area": "hokuriku",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.018949771689497717,
+      "high_rate": 0.005536529680365297,
+      "price_mean": 10.81157305936073,
+      "price_std": 4.330847820873495,
+      "pv_peak": 0.3901437371663244
+    },
+    {
+      "area": "kansai",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.049143835616438356,
+      "high_rate": 0.10468036529680365,
+      "price_mean": 19.540260273972603,
+      "price_std": 9.44994907439187,
+      "pv_peak": 0.34756327918398183
+    },
+    {
+      "area": "kansai",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.08054417122040072,
+      "high_rate": 0.0017076502732240437,
+      "price_mean": 9.743298611111111,
+      "price_std": 4.767180838457098,
+      "pv_peak": 0.34756327918398183
+    },
+    {
+      "area": "kansai",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.043721461187214615,
+      "high_rate": 0.009417808219178082,
+      "price_mean": 11.700063926940638,
+      "price_std": 5.172270345924685,
+      "pv_peak": 0.34756327918398183
+    },
+    {
+      "area": "kansai",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.021461187214611873,
+      "high_rate": 0.005536529680365297,
+      "price_mean": 10.648973744292237,
+      "price_std": 4.37134017021346,
+      "pv_peak": 0.34756327918398183
+    },
+    {
+      "area": "kyushu",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.11638127853881279,
+      "high_rate": 0.04897260273972603,
+      "price_mean": 14.421239155251142,
+      "price_std": 9.579500701446818,
+      "pv_peak": 0.7802340702210663
+    },
+    {
+      "area": "kyushu",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.13353825136612021,
+      "high_rate": 0.0009107468123861566,
+      "price_mean": 9.138225182149363,
+      "price_std": 5.0003603881117265,
+      "pv_peak": 0.7802340702210663
+    },
+    {
+      "area": "kyushu",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.07214611872146119,
+      "high_rate": 0.00684931506849315,
+      "price_mean": 10.86084303652968,
+      "price_std": 5.255019687020552,
+      "pv_peak": 0.7802340702210663
+    },
+    {
+      "area": "kyushu",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.059817351598173515,
+      "high_rate": 0.0018264840182648401,
+      "price_mean": 9.813920091324201,
+      "price_std": 4.331078559038948,
+      "pv_peak": 0.7802340702210663
+    },
+    {
+      "area": "shikoku",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.04971461187214612,
+      "high_rate": 0.09058219178082191,
+      "price_mean": 19.10439212328767,
+      "price_std": 9.118794195919785,
+      "pv_peak": 0.9205020920502093
+    },
+    {
+      "area": "shikoku",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.09158697632058288,
+      "high_rate": 0.0014230418943533697,
+      "price_mean": 9.536147540983608,
+      "price_std": 4.8191352227067625,
+      "pv_peak": 0.9205020920502093
+    },
+    {
+      "area": "shikoku",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.06946347031963471,
+      "high_rate": 0.008675799086757991,
+      "price_mean": 10.662897260273972,
+      "price_std": 5.245796029972388,
+      "pv_peak": 0.9205020920502093
+    },
+    {
+      "area": "shikoku",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.0579337899543379,
+      "high_rate": 0.0009132420091324201,
+      "price_mean": 8.845889840182648,
+      "price_std": 3.914443805713385,
+      "pv_peak": 0.9205020920502093
+    },
+    {
+      "area": "tohoku",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.07699771689497717,
+      "high_rate": 0.1629566210045662,
+      "price_mean": 21.579261415525114,
+      "price_std": 13.501726499741155,
+      "pv_peak": 0.5692883895131086
+    },
+    {
+      "area": "tohoku",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.04206511839708561,
+      "high_rate": 0.0009676684881602915,
+      "price_mean": 11.333042463570129,
+      "price_std": 4.388508925888919,
+      "pv_peak": 0.5692883895131086
+    },
+    {
+      "area": "tohoku",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.025513698630136986,
+      "high_rate": 0.0030251141552511416,
+      "price_mean": 12.692675799086757,
+      "price_std": 4.282132051845593,
+      "pv_peak": 0.5692883895131086
+    },
+    {
+      "area": "tohoku",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.03299086757990868,
+      "high_rate": 0.00410958904109589,
+      "price_mean": 11.389740296803653,
+      "price_std": 4.33583449449447,
+      "pv_peak": 0.5692883895131086
+    },
+    {
+      "area": "tokyo",
+      "fy": 2022,
+      "n_slots": 17520,
+      "floor_rate": 0.02060502283105023,
+      "high_rate": 0.1868150684931507,
+      "price_mean": 23.503087899543377,
+      "price_std": 13.511475522045785,
+      "pv_peak": 0.24096385542168675
+    },
+    {
+      "area": "tokyo",
+      "fy": 2023,
+      "n_slots": 17568,
+      "floor_rate": 0.02328096539162113,
+      "high_rate": 0.0015368852459016393,
+      "price_mean": 12.202521630236793,
+      "price_std": 4.084172308112266,
+      "pv_peak": 0.24096385542168675
+    },
+    {
+      "area": "tokyo",
+      "fy": 2024,
+      "n_slots": 17520,
+      "floor_rate": 0.014269406392694063,
+      "high_rate": 0.005593607305936073,
+      "price_mean": 13.657936643835615,
+      "price_std": 4.084769738411025,
+      "pv_peak": 0.24096385542168675
+    },
+    {
+      "area": "tokyo",
+      "fy": 2025,
+      "n_slots": 17520,
+      "floor_rate": 0.009189497716894977,
+      "high_rate": 0.004452054794520548,
+      "price_mean": 12.454089611872146,
+      "price_std": 3.8403629242106514,
+      "pv_peak": 0.24096385542168675
+    }
+  ],
+  "cross_area_floor_vs_pvpeak_by_fy": {
+    "fy2022": {
+      "rho": 0.711,
+      "p": 0.032,
+      "n_areas": 9
+    },
+    "fy2023": {
+      "rho": 0.583,
+      "p": 0.099,
+      "n_areas": 9
+    },
+    "fy2024": {
+      "rho": 0.633,
+      "p": 0.067,
+      "n_areas": 9
+    },
+    "fy2025": {
+      "rho": 0.833,
+      "p": 0.005,
+      "n_areas": 9
+    },
+    "summary": {
+      "all_four_years_positive": true,
+      "rho_min": 0.583,
+      "rho_max": 0.833,
+      "rho_mean": 0.69
+    }
+  },
+  "kyushu_weather_value_by_fy": [
+    {
+      "fy": 2022,
+      "n_folds": 57,
+      "mae_price": 4.33566045009335,
+      "mae_weather": 4.195712226819606,
+      "floor_share": 0.09320175438596491,
+      "weather_value": 0.1399482232737439
+    },
+    {
+      "fy": 2023,
+      "n_folds": 122,
+      "mae_price": 2.3346977137838745,
+      "mae_weather": 2.3189472812331213,
+      "floor_share": 0.12038934426229508,
+      "weather_value": 0.015750432550753146
+    },
+    {
+      "fy": 2024,
+      "n_folds": 122,
+      "mae_price": 2.0636166513102547,
+      "mae_weather": 2.0122936810131433,
+      "floor_share": 0.07137978142076504,
+      "weather_value": 0.051322970297111414
+    },
+    {
+      "fy": 2025,
+      "n_folds": 92,
+      "mae_price": 1.7008831757995424,
+      "mae_weather": 1.6814007105534574,
+      "floor_share": 0.058423913043478264,
+      "weather_value": 0.01948246524608499
+    }
+  ],
+  "kyushu_n_folds": 393,
+  "regimes": {
+    "crisis_fy2022_2023": {
+      "n_folds": 179,
+      "mae_price": 2.9719,
+      "mae_weather": 2.9166,
+      "weather_value_mean": 0.0553,
+      "floor_share": 0.1117
+    },
+    "calm_fy2024_2025": {
+      "n_folds": 214,
+      "mae_price": 1.9077,
+      "mae_weather": 1.87,
+      "weather_value_mean": 0.0376,
+      "floor_share": 0.0658
+    }
+  },
+  "fetch_decision_diagnostic": {
+    "note": "if FY2022-23 floor_rate ~0 across areas, a cross-area TEMPORAL floor panel on a 2022-23 weather fetch would be degenerate/confounded (no floor variation to correlate)"
+  }
+}

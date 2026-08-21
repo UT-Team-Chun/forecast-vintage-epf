@@ -1,0 +1,70 @@
+{
+ "phase": 86,
+ "title": "GFS second-provider tiers",
+ "precommit_doc": "docs/research/2026-08-11_phase86_gfs_provider_precommit.md",
+ "note": "single-point cells, joined to the phase85 folds; external-generality check, not a headline replacement",
+ "panel": {
+  "n_slots": 315396,
+  "n_test_days": 732
+ },
+ "tiers": {
+  "gfs_d2_12z": {
+   "improvement": 0.2027,
+   "ci95": [
+    0.1659,
+    0.2408
+   ],
+   "p_l3": 0.0
+  },
+  "gfs_d2_18z": {
+   "improvement": 0.2051,
+   "ci95": [
+    0.168,
+    0.2438
+   ],
+   "p_l3": 0.0
+  },
+  "msm_d2_12z": {
+   "improvement": 0.2249,
+   "ci95": [
+    0.1829,
+    0.2685
+   ],
+   "p_l3": 0.0
+  },
+  "msm_gate_composite": {
+   "improvement": 0.2265,
+   "ci95": [
+    0.1843,
+    0.2711
+   ],
+   "p_l3": 0.0
+  }
+ },
+ "questions": {
+  "q1_gfs_beats_price_only": true,
+  "q2_jma_minus_gfs_same_init": {
+   "delta": 0.0222,
+   "ci95": [
+    0.0087,
+    0.0362
+   ],
+   "p_l3": 0.00067193
+  },
+  "q3_within_gfs_vintage_step": {
+   "delta": 0.0024,
+   "ci95": [
+    -0.003,
+    0.0078
+   ],
+   "p_l3": 0.38343804
+  }
+ },
+ "metadata": {
+  "script": "s_20260811_phase86_gfs_tier.py",
+  "git_sha": "df636c009fdba535a12846f42a15fa88ff1fdcb8",
+  "generated_utc": "2026-08-12T13:59:09.835708+00:00",
+  "seed": 2026,
+  "n_boot": 10000
+ }
+}

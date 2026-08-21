@@ -1,0 +1,873 @@
+{
+  "phase": "54",
+  "title": "NWP-proxy-enriched baseline (reviewer major-issue 7)",
+  "precommit": {
+    "honest_framing_rule_verbatim": "Pre-committed before any phase54 sweep result exists: if the residual raw-weather value d43 = MAE(enriched_proxies) - MAE(enriched_proxies_raw) is ~ 0 (operationalised on the pooled 8-area panel as: the per-day paired circular block bootstrap (block 7 days, 10,000 draws, seed 2026) 95% CI of d43 contains 0, OR the pooled HLN-NW DM p >= 0.05 at either L=3 or L=9), the paper's claim NARROWS to 'the pre-gate NWP vintage carries the value, whether fed raw or as engineered PV/wind/load proxies' -- that outcome still supports the timing thesis. Record whichever way it falls. The total prev2 value over the admissible enriched baseline is d42, and the proxy-carried part is d32; d42 replaces the manuscript's over-enriched-baseline reading of the +0.216 headline.",
+    "recorded_utc": "2026-08-11T19:45:53+00:00",
+    "recorded_before_any_sweep_result": true
+  },
+  "design": {
+    "cells": {
+      "price_only": "price lags 48/96/336/672 + calendar (paper baseline)",
+      "enriched_adm": "+ system lag-48 + (system-own) spread lag-48 + neighbour prices lag-48 + OCCTO supply-mix lag-96 (phase32 strictly bid-close-admissible enrichment)",
+      "enriched_proxies": "+ NWP proxies derived ONLY from prev2 channels: pv_proxy = sw_pd2*pv_gw*(1-0.004*(T_pd2-25)); wind_proxy = cubic ramp(v_pd2; 3/12/25 m/s)*wind_gw; hdd = max(18-T_pd2,0); cdd = max(T_pd2-24,0)",
+      "enriched_proxies_raw": "+ the 4 raw prev2 channels themselves"
+    },
+    "fold_protocol": "phase51 densified daily protocol: expanding window, initial train end 2024-07-18, val-offset 14 d, test 1 d, STEP 1 d; XGBRegressor(300, depth 4, lr 0.05, seed 2026, hist); common same-sample rows across all 4 cells",
+    "window_constraint": "OCCTO supply panel 2024-04-01..2026-03-31 (8 areas); lag-96 supply features admit test days through 2026-04-02; prev2 caches cover the full window",
+    "quantities": {
+      "d32": "MAE(enriched_adm) - MAE(enriched_proxies) = value of NWP-derived proxies",
+      "d43": "MAE(enriched_proxies) - MAE(enriched_proxies_raw) = residual raw-weather value on top of engineered proxies",
+      "d42": "MAE(enriched_adm) - MAE(enriched_proxies_raw) = total prev2 value over the admissible enriched baseline",
+      "enrichment_gain": "MAE(price_only) - MAE(enriched_adm) (baseline strength)"
+    },
+    "deviation_from_phase32": "supply forward-fill limited to 1 slot (the interval-END alignment boundary) instead of unlimited, so genuine OCCTO gaps (kyushu ~15 d) drop from the common sample rather than being filled with stale values"
+  },
+  "metadata": {
+    "script": "s_20260812_phase54v2_current.py",
+    "git_sha": "563c3e3faff69fb56aba742081e04e510a3bea05",
+    "generated_utc": "2026-08-11T20:40:59+00:00",
+    "total_runtime_s_last_invocation": 3306.4
+  },
+  "provenance": {
+    "occto_parquet": {
+      "path": "data/runs/phase25.3_occto_generation.parquet",
+      "sha256": "9b969bacc792de335a3b3b2f9c8aaa27d0c57b8a606ea31a532877da1f62fdbf"
+    },
+    "area_capacity_csv_sha256": "9426febf19fea1fbfdd55675061e1ad0b27c0ed9ff1d2b15747d01b47cf88301",
+    "prev2_cache_sha256_per_area": {
+      "chugoku": {
+        "open_meteo_prev2_jma_msm_chugoku_34.4000_132.4600_2024.parquet": "ef95f68666ab4cae44f4d3f7ff97f703d06365551e5cb87d6442bc7fa844c4ff",
+        "open_meteo_prev2_jma_msm_chugoku_34.4000_132.4600_2025.parquet": "0ace4e63f6e73a2a2eef3e48a81c3bb4bda48329bb6000b1fdf0a53dd0257f44",
+        "open_meteo_prev2_jma_msm_chugoku_34.4000_132.4600_2026.parquet": "43482ca43cea514900464a4e87332dc9ea13af40e00496cbbf1b1b7d729f7eb9"
+      },
+      "hokkaido": {
+        "open_meteo_prev2_jma_msm_hokkaido_43.0700_141.3500_2024.parquet": "9b356bbe3fff65d000d6dcbdd4c23eaa0451466b14d48a00a3233476aa85fa8c",
+        "open_meteo_prev2_jma_msm_hokkaido_43.0700_141.3500_2025.parquet": "e7c9eb206915564b2c2876c630babef4ea594a8963bad03b7d5448777ea8afc7",
+        "open_meteo_prev2_jma_msm_hokkaido_43.0700_141.3500_2026.parquet": "15e60fa0ab6ce9eb935e4bcb168ab75c60b38af2a99399d0bd051712f3f89baa"
+      },
+      "hokuriku": {
+        "open_meteo_prev2_jma_msm_hokuriku_36.5600_136.6600_2024.parquet": "e924ce9cb1e332a3370d3db204b7ec328e1416cba20227a22d444a6fbbe4ea61",
+        "open_meteo_prev2_jma_msm_hokuriku_36.5600_136.6600_2025.parquet": "27961b0d60d096ad2ffbefbaed280df3b5735febb950725ceef96f3998c99b26",
+        "open_meteo_prev2_jma_msm_hokuriku_36.5600_136.6600_2026.parquet": "dbccc1241ea6baa19a394a4c918033880b7af55ab8f9c9b962f32041414e8dcf"
+      },
+      "kansai": {
+        "open_meteo_prev2_jma_msm_kansai_34.6900_135.5000_2024.parquet": "73d3923e41e2af32a5a19e9848123724271a4626d714be93aaff6b312c5a385e",
+        "open_meteo_prev2_jma_msm_kansai_34.6900_135.5000_2025.parquet": "16bff67dd0f487f0c94ceb69839277447ea163f351d3f65b519b37d07bfacf3d",
+        "open_meteo_prev2_jma_msm_kansai_34.6900_135.5000_2026.parquet": "2392cd62300a9220d311047995e11ac72400f2bc6344743278b2f40f3ecf89f5"
+      },
+      "kyushu": {
+        "open_meteo_prev2_jma_msm_kyushu_33.5900_130.4000_2024.parquet": "650282172abc3ee03b30c989eeb11598b4d41b19af00a782a876546882d2872e",
+        "open_meteo_prev2_jma_msm_kyushu_33.5900_130.4000_2025.parquet": "983110b1bfc33fbbe787d90f8dbffc30d3b8249dc4282c6359abf91f16adb225",
+        "open_meteo_prev2_jma_msm_kyushu_33.5900_130.4000_2026.parquet": "b557e2912b54451f5b811b485ce1f2e99adf34c1925d1b34f382de4c6c97b3e9"
+      },
+      "shikoku": {
+        "open_meteo_prev2_jma_msm_shikoku_34.3400_134.0500_2024.parquet": "31bd7ed1d0e1cfd2ed3836fd8e9057736a8c163e0b2ee0a2923c961b8a16ce22",
+        "open_meteo_prev2_jma_msm_shikoku_34.3400_134.0500_2025.parquet": "8c9c34bd9765fb3167a8726016be59124f3370dc45902694992657f7d423eaca",
+        "open_meteo_prev2_jma_msm_shikoku_34.3400_134.0500_2026.parquet": "5e1d46e7037b55d0e69f38c12f7832290fa5172d7c55ad262ef30c84af29de4c"
+      },
+      "tohoku": {
+        "open_meteo_prev2_jma_msm_tohoku_38.2700_140.8700_2024.parquet": "23a979fcd426a7a25f9bd541fb8fdd6f9c78861f08603fd1b8187da1692533fe",
+        "open_meteo_prev2_jma_msm_tohoku_38.2700_140.8700_2025.parquet": "e2a3bf8d1442e6e5b8bea4eb6bb66f320f0c52736079a927491b1ded94b7dddd",
+        "open_meteo_prev2_jma_msm_tohoku_38.2700_140.8700_2026.parquet": "af555b853743e53801a6ca509600c5d35a0df0b8c265fe17b4e6ebc9ccdd8bc4"
+      },
+      "tokyo": {
+        "open_meteo_prev2_jma_msm_tokyo_35.6800_139.7600_2024.parquet": "ef771ec3dcb0b5f504eab5a3f2931bc97ecc3bb08de88748302dad420de581f1",
+        "open_meteo_prev2_jma_msm_tokyo_35.6800_139.7600_2025.parquet": "f020a0e801c21f83eb64b39798aee805fbfef08a7b35ada9e23d80143e28cd31",
+        "open_meteo_prev2_jma_msm_tokyo_35.6800_139.7600_2026.parquet": "072b8c4f6359ac09f6d1213bdf118e4d8e1ac09e877bdabb177bc9c6115985ad"
+      }
+    },
+    "partial": false,
+    "areas_present": [
+      "chugoku",
+      "hokkaido",
+      "hokuriku",
+      "kansai",
+      "kyushu",
+      "shikoku",
+      "tohoku",
+      "tokyo"
+    ]
+  },
+  "window": {
+    "first_test_day": "2024-08-01",
+    "last_test_day": "2026-07-02",
+    "n_test_days_pooled": 698,
+    "n_folds_per_area": {
+      "chugoku": 698,
+      "hokkaido": 698,
+      "hokuriku": 698,
+      "kansai": 698,
+      "kyushu": 668,
+      "shikoku": 698,
+      "tohoku": 698,
+      "tokyo": 698
+    },
+    "n_obs": 265872,
+    "n_areas": 8
+  },
+  "results": {
+    "pooled_mae_slot_mean": {
+      "price_only": 2.1176,
+      "enriched_adm": 2.0973,
+      "enriched_proxies": 1.9073,
+      "enriched_proxies_raw": 1.8982
+    },
+    "pooled_mae_daily_mean": {
+      "price_only": 2.1246,
+      "enriched_adm": 2.1043,
+      "enriched_proxies": 1.9138,
+      "enriched_proxies_raw": 1.9047
+    },
+    "deltas_daily_mean_with_ci95": {
+      "d21_enrichment_gain": {
+        "point_daily_mean": 0.0203,
+        "lo95": 0.0041,
+        "hi95": 0.0362
+      },
+      "d32_proxies_over_enriched": {
+        "point_daily_mean": 0.1905,
+        "lo95": 0.1588,
+        "hi95": 0.2227
+      },
+      "d43_raw_over_proxies": {
+        "point_daily_mean": 0.0092,
+        "lo95": 0.0039,
+        "hi95": 0.0143
+      },
+      "d42_total_prev2_over_enriched": {
+        "point_daily_mean": 0.1996,
+        "lo95": 0.1655,
+        "hi95": 0.235
+      }
+    },
+    "dm_hln_nw": {
+      "enriched_adm_vs_price_only": {
+        "nw_l3": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": -0.01192,
+              "t_hln": -0.797,
+              "p_hln": 0.426005,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokkaido": {
+              "mean_diff": -0.02597,
+              "t_hln": -1.511,
+              "p_hln": 0.131243,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokuriku": {
+              "mean_diff": 0.00145,
+              "t_hln": 0.099,
+              "p_hln": 0.921551,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kansai": {
+              "mean_diff": -0.00851,
+              "t_hln": -0.568,
+              "p_hln": 0.57047,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kyushu": {
+              "mean_diff": -0.01284,
+              "t_hln": -1.03,
+              "p_hln": 0.303412,
+              "n": 668,
+              "nw_lag": 3
+            },
+            "shikoku": {
+              "mean_diff": -0.00047,
+              "t_hln": -0.025,
+              "p_hln": 0.979762,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tohoku": {
+              "mean_diff": -0.06019,
+              "t_hln": -3.409,
+              "p_hln": 0.000689,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tokyo": {
+              "mean_diff": -0.04404,
+              "t_hln": -2.721,
+              "p_hln": 0.006672,
+              "n": 698,
+              "nw_lag": 3
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.02034,
+            "t_hln": -2.482,
+            "p_hln": 0.013299,
+            "n": 698,
+            "nw_lag": 3
+          },
+          "n_areas_p_lt_05_a_better": 2
+        },
+        "nw_l9": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": -0.01192,
+              "t_hln": -0.789,
+              "p_hln": 0.430136,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokkaido": {
+              "mean_diff": -0.02597,
+              "t_hln": -1.521,
+              "p_hln": 0.128617,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokuriku": {
+              "mean_diff": 0.00145,
+              "t_hln": 0.096,
+              "p_hln": 0.923482,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kansai": {
+              "mean_diff": -0.00851,
+              "t_hln": -0.539,
+              "p_hln": 0.590331,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kyushu": {
+              "mean_diff": -0.01284,
+              "t_hln": -1.048,
+              "p_hln": 0.295106,
+              "n": 668,
+              "nw_lag": 9
+            },
+            "shikoku": {
+              "mean_diff": -0.00047,
+              "t_hln": -0.023,
+              "p_hln": 0.981381,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tohoku": {
+              "mean_diff": -0.06019,
+              "t_hln": -3.425,
+              "p_hln": 0.000651,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tokyo": {
+              "mean_diff": -0.04404,
+              "t_hln": -2.556,
+              "p_hln": 0.010791,
+              "n": 698,
+              "nw_lag": 9
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.02034,
+            "t_hln": -2.475,
+            "p_hln": 0.013544,
+            "n": 698,
+            "nw_lag": 9
+          },
+          "n_areas_p_lt_05_a_better": 2
+        }
+      },
+      "enriched_proxies_vs_enriched_adm": {
+        "nw_l3": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": -0.24421,
+              "t_hln": -10.972,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokkaido": {
+              "mean_diff": -0.07344,
+              "t_hln": -5.544,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokuriku": {
+              "mean_diff": -0.14218,
+              "t_hln": -8.136,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kansai": {
+              "mean_diff": -0.20235,
+              "t_hln": -9.475,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kyushu": {
+              "mean_diff": -0.28263,
+              "t_hln": -11.307,
+              "p_hln": 0.0,
+              "n": 668,
+              "nw_lag": 3
+            },
+            "shikoku": {
+              "mean_diff": -0.18222,
+              "t_hln": -8.064,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tohoku": {
+              "mean_diff": -0.23316,
+              "t_hln": -10.243,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tokyo": {
+              "mean_diff": -0.16645,
+              "t_hln": -9.591,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.19045,
+            "t_hln": -13.615,
+            "p_hln": 0.0,
+            "n": 698,
+            "nw_lag": 3
+          },
+          "n_areas_p_lt_05_a_better": 8
+        },
+        "nw_l9": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": -0.24421,
+              "t_hln": -9.143,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokkaido": {
+              "mean_diff": -0.07344,
+              "t_hln": -5.262,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokuriku": {
+              "mean_diff": -0.14218,
+              "t_hln": -7.731,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kansai": {
+              "mean_diff": -0.20235,
+              "t_hln": -8.184,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kyushu": {
+              "mean_diff": -0.28263,
+              "t_hln": -8.912,
+              "p_hln": 0.0,
+              "n": 668,
+              "nw_lag": 9
+            },
+            "shikoku": {
+              "mean_diff": -0.18222,
+              "t_hln": -6.692,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tohoku": {
+              "mean_diff": -0.23316,
+              "t_hln": -7.782,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tokyo": {
+              "mean_diff": -0.16645,
+              "t_hln": -7.79,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.19045,
+            "t_hln": -10.34,
+            "p_hln": 0.0,
+            "n": 698,
+            "nw_lag": 9
+          },
+          "n_areas_p_lt_05_a_better": 8
+        }
+      },
+      "enriched_proxies_raw_vs_enriched_proxies": {
+        "nw_l3": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": 0.00054,
+              "t_hln": 0.084,
+              "p_hln": 0.932879,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokkaido": {
+              "mean_diff": -0.01392,
+              "t_hln": -2.074,
+              "p_hln": 0.038464,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokuriku": {
+              "mean_diff": -0.00929,
+              "t_hln": -1.434,
+              "p_hln": 0.151937,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kansai": {
+              "mean_diff": -0.01307,
+              "t_hln": -2.474,
+              "p_hln": 0.013612,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kyushu": {
+              "mean_diff": -0.00637,
+              "t_hln": -1.157,
+              "p_hln": 0.247825,
+              "n": 668,
+              "nw_lag": 3
+            },
+            "shikoku": {
+              "mean_diff": -0.00823,
+              "t_hln": -1.349,
+              "p_hln": 0.177736,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tohoku": {
+              "mean_diff": -0.02083,
+              "t_hln": -3.076,
+              "p_hln": 0.002183,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tokyo": {
+              "mean_diff": -0.00201,
+              "t_hln": -0.331,
+              "p_hln": 0.741002,
+              "n": 698,
+              "nw_lag": 3
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.00915,
+            "t_hln": -3.484,
+            "p_hln": 0.000525,
+            "n": 698,
+            "nw_lag": 3
+          },
+          "n_areas_p_lt_05_a_better": 3
+        },
+        "nw_l9": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": 0.00054,
+              "t_hln": 0.078,
+              "p_hln": 0.937549,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokkaido": {
+              "mean_diff": -0.01392,
+              "t_hln": -2.071,
+              "p_hln": 0.038695,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokuriku": {
+              "mean_diff": -0.00929,
+              "t_hln": -1.422,
+              "p_hln": 0.155468,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kansai": {
+              "mean_diff": -0.01307,
+              "t_hln": -2.589,
+              "p_hln": 0.009834,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kyushu": {
+              "mean_diff": -0.00637,
+              "t_hln": -1.08,
+              "p_hln": 0.280398,
+              "n": 668,
+              "nw_lag": 9
+            },
+            "shikoku": {
+              "mean_diff": -0.00823,
+              "t_hln": -1.435,
+              "p_hln": 0.1517,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tohoku": {
+              "mean_diff": -0.02083,
+              "t_hln": -3.025,
+              "p_hln": 0.00258,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tokyo": {
+              "mean_diff": -0.00201,
+              "t_hln": -0.31,
+              "p_hln": 0.756685,
+              "n": 698,
+              "nw_lag": 9
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.00915,
+            "t_hln": -3.256,
+            "p_hln": 0.001183,
+            "n": 698,
+            "nw_lag": 9
+          },
+          "n_areas_p_lt_05_a_better": 3
+        }
+      },
+      "enriched_proxies_raw_vs_enriched_adm": {
+        "nw_l3": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": -0.24367,
+              "t_hln": -10.331,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokkaido": {
+              "mean_diff": -0.08736,
+              "t_hln": -5.974,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "hokuriku": {
+              "mean_diff": -0.15148,
+              "t_hln": -8.132,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kansai": {
+              "mean_diff": -0.21542,
+              "t_hln": -9.573,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "kyushu": {
+              "mean_diff": -0.289,
+              "t_hln": -10.841,
+              "p_hln": 0.0,
+              "n": 668,
+              "nw_lag": 3
+            },
+            "shikoku": {
+              "mean_diff": -0.19045,
+              "t_hln": -8.115,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tohoku": {
+              "mean_diff": -0.25399,
+              "t_hln": -10.083,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            },
+            "tokyo": {
+              "mean_diff": -0.16845,
+              "t_hln": -8.789,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 3
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.19961,
+            "t_hln": -13.158,
+            "p_hln": 0.0,
+            "n": 698,
+            "nw_lag": 3
+          },
+          "n_areas_p_lt_05_a_better": 8
+        },
+        "nw_l9": {
+          "per_area": {
+            "chugoku": {
+              "mean_diff": -0.24367,
+              "t_hln": -8.65,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokkaido": {
+              "mean_diff": -0.08736,
+              "t_hln": -5.648,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "hokuriku": {
+              "mean_diff": -0.15148,
+              "t_hln": -7.218,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kansai": {
+              "mean_diff": -0.21542,
+              "t_hln": -8.14,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "kyushu": {
+              "mean_diff": -0.289,
+              "t_hln": -8.625,
+              "p_hln": 0.0,
+              "n": 668,
+              "nw_lag": 9
+            },
+            "shikoku": {
+              "mean_diff": -0.19045,
+              "t_hln": -6.813,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tohoku": {
+              "mean_diff": -0.25399,
+              "t_hln": -7.629,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            },
+            "tokyo": {
+              "mean_diff": -0.16845,
+              "t_hln": -7.25,
+              "p_hln": 0.0,
+              "n": 698,
+              "nw_lag": 9
+            }
+          },
+          "pooled_across_areas": {
+            "mean_diff": -0.19961,
+            "t_hln": -9.977,
+            "p_hln": 0.0,
+            "n": 698,
+            "nw_lag": 9
+          },
+          "n_areas_p_lt_05_a_better": 8
+        }
+      }
+    },
+    "per_area": {
+      "chugoku": {
+        "mae_price_only": 1.9997,
+        "mae_enriched_adm": 1.9878,
+        "mae_enriched_proxies": 1.7436,
+        "mae_enriched_proxies_raw": 1.7441,
+        "d21": 0.0119,
+        "d32": 0.2442,
+        "d43": -0.0005,
+        "d42": 0.2437,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.932879,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.539,
+        "n_test_days": 698,
+        "n_obs": 33414
+      },
+      "hokkaido": {
+        "mae_price_only": 2.4308,
+        "mae_enriched_adm": 2.4049,
+        "mae_enriched_proxies": 2.3314,
+        "mae_enriched_proxies_raw": 2.3175,
+        "d21": 0.026,
+        "d32": 0.0734,
+        "d43": 0.0139,
+        "d42": 0.0874,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.038464,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.499,
+        "n_test_days": 698,
+        "n_obs": 33414
+      },
+      "hokuriku": {
+        "mae_price_only": 2.0494,
+        "mae_enriched_adm": 2.0508,
+        "mae_enriched_proxies": 1.9086,
+        "mae_enriched_proxies_raw": 1.8993,
+        "d21": -0.0015,
+        "d32": 0.1422,
+        "d43": 0.0093,
+        "d42": 0.1515,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.151937,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.3901,
+        "n_test_days": 698,
+        "n_obs": 33414
+      },
+      "kansai": {
+        "mae_price_only": 2.0423,
+        "mae_enriched_adm": 2.0338,
+        "mae_enriched_proxies": 1.8315,
+        "mae_enriched_proxies_raw": 1.8184,
+        "d21": 0.0085,
+        "d32": 0.2024,
+        "d43": 0.0131,
+        "d42": 0.2154,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.013612,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.3476,
+        "n_test_days": 698,
+        "n_obs": 33414
+      },
+      "kyushu": {
+        "mae_price_only": 1.9834,
+        "mae_enriched_adm": 1.9706,
+        "mae_enriched_proxies": 1.688,
+        "mae_enriched_proxies_raw": 1.6816,
+        "d21": 0.0128,
+        "d32": 0.2826,
+        "d43": 0.0064,
+        "d42": 0.289,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.247825,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.7802,
+        "n_test_days": 668,
+        "n_obs": 31974
+      },
+      "shikoku": {
+        "mae_price_only": 2.3367,
+        "mae_enriched_adm": 2.3362,
+        "mae_enriched_proxies": 2.154,
+        "mae_enriched_proxies_raw": 2.1457,
+        "d21": 0.0005,
+        "d32": 0.1822,
+        "d43": 0.0082,
+        "d42": 0.1905,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.177736,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.9205,
+        "n_test_days": 698,
+        "n_obs": 33414
+      },
+      "tohoku": {
+        "mae_price_only": 2.1348,
+        "mae_enriched_adm": 2.0746,
+        "mae_enriched_proxies": 1.8415,
+        "mae_enriched_proxies_raw": 1.8206,
+        "d21": 0.0602,
+        "d32": 0.2332,
+        "d43": 0.0208,
+        "d42": 0.254,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.002183,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.5693,
+        "n_test_days": 698,
+        "n_obs": 33414
+      },
+      "tokyo": {
+        "mae_price_only": 1.9732,
+        "mae_enriched_adm": 1.9292,
+        "mae_enriched_proxies": 1.7627,
+        "mae_enriched_proxies_raw": 1.7607,
+        "d21": 0.044,
+        "d32": 0.1664,
+        "d43": 0.002,
+        "d42": 0.1685,
+        "dm_p_l3_d32": 0.0,
+        "dm_p_l3_d43": 0.741002,
+        "dm_p_l3_d42": 0.0,
+        "pv_peak": 0.241,
+        "n_test_days": 698,
+        "n_obs": 33414
+      }
+    },
+    "runtime_s_per_area": {
+      "chugoku": 1613.7,
+      "hokkaido": 1687.7,
+      "hokuriku": 1683.6,
+      "kansai": 1615.6,
+      "kyushu": 1550.4,
+      "shikoku": 1612.3,
+      "tohoku": 1691.8,
+      "tokyo": 1692.8
+    }
+  },
+  "honest_framing_verdict": {
+    "d43_raw_weather_residual_significant": true,
+    "framing": "raw weather retains residual value ON TOP of engineered NWP proxies -- the over-enriched-baseline claim survives with raw channels specifically",
+    "d43_ci95": [
+      0.0039,
+      0.0143
+    ],
+    "d43_dm_p": {
+      "l3": 0.000525,
+      "l9": 0.001183
+    },
+    "d42_total_prev2_value_over_enriched_adm": {
+      "point": 0.1996,
+      "ci95": [
+        0.1655,
+        0.235
+      ],
+      "dm_p": {
+        "l3": 0.0,
+        "l9": 0.0
+      }
+    },
+    "d32_proxy_carried_value": {
+      "point": 0.1905,
+      "ci95": [
+        0.1588,
+        0.2227
+      ],
+      "dm_p": {
+        "l3": 0.0,
+        "l9": 0.0
+      }
+    }
+  }
+}

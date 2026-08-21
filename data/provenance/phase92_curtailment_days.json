@@ -1,0 +1,90 @@
+{
+ "phase": "92",
+ "title": "Photovoltaic curtailment days per area per fiscal year",
+ "why": "Section 2 said Kyushu curtails on roughly 30 days a year, a figure inherited from a superseded draft describing an FY2018-era level. On the records this paper scores against it is about five times that, and the gap to the next area is a factor of two rather than 'far more'",
+ "source": {
+  "files": [
+   "phase25.3_occto_generation.parquet",
+   "phase25.3_occto_generation_ext.parquet"
+  ],
+  "column": "pv_curtailment_mw",
+  "note": "a day counts when any half-hour slot in it records positive photovoltaic curtailment; this is the same column phase89 adds back to build the physical target"
+ },
+ "fiscal_years": {
+  "FY2024": [
+   "2024-04-01",
+   "2025-03-31"
+  ],
+  "FY2025": [
+   "2025-04-01",
+   "2026-03-31"
+  ]
+ },
+ "per_area_days": {
+  "chugoku": {
+   "FY2024": 67,
+   "FY2025": 59
+  },
+  "hokkaido": {
+   "FY2024": 2,
+   "FY2025": 18
+  },
+  "hokuriku": {
+   "FY2024": 22,
+   "FY2025": 5
+  },
+  "kansai": {
+   "FY2024": 80,
+   "FY2025": 82
+  },
+  "kyushu": {
+   "FY2024": 148,
+   "FY2025": 156
+  },
+  "shikoku": {
+   "FY2024": 81,
+   "FY2025": 74
+  },
+  "tohoku": {
+   "FY2024": 32,
+   "FY2025": 77
+  },
+  "tokyo": {
+   "FY2024": 0,
+   "FY2025": 5
+  }
+ },
+ "two_fiscal_year_mean_days": {
+  "chugoku": 63.0,
+  "hokkaido": 10.0,
+  "hokuriku": 13.5,
+  "kansai": 81.0,
+  "kyushu": 152.0,
+  "shikoku": 77.5,
+  "tohoku": 54.5,
+  "tokyo": 2.5
+ },
+ "most_curtailed": {
+  "area": "kyushu",
+  "days": {
+   "FY2024": 148,
+   "FY2025": 156
+  },
+  "mean_days": 152.0,
+  "rounded_for_prose": 150
+ },
+ "runner_up": {
+  "area": "kansai",
+  "days": {
+   "FY2024": 80,
+   "FY2025": 82
+  },
+  "mean_days": 81.0
+ },
+ "ratio_top_to_runner_up": 1.88,
+ "reading": "kyushu curtails on 148 days in FY2024 and 156 in FY2025, about 1.9 times the next most affected area (kansai). 'Far more than any other area' is not supportable at that ratio",
+ "metadata": {
+  "script": "s_20260814_phase92_curtailment_days.py",
+  "git_sha": "b5d85aa0a159d4e035636377bb4298f3c3b0e671"
+ }
+}

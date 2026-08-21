@@ -1,0 +1,35 @@
+{
+  "noiseless": {
+    "pearson_r": -0.7059781995611342,
+    "pearson_p": 0.03355355588860041,
+    "spearman_rho": -0.7333333333333334,
+    "spearman_p": 0.024554150071469705,
+    "permutation_p": 0.0344,
+    "linregress_slope": -0.012179055168353254,
+    "linregress_r_squared": 0.49840521825558026,
+    "n_areas": 9,
+    "n_folds": 140
+  },
+  "realistic": {
+    "pearson_r": -0.5098993457010033,
+    "pearson_p": 0.16080870086271556,
+    "spearman_rho": -0.45,
+    "spearman_p": 0.22421610749233675,
+    "permutation_p": 0.23095,
+    "linregress_slope": -0.0037611137429645384,
+    "linregress_r_squared": 0.25999734274631114,
+    "n_areas": 9,
+    "n_folds": 140
+  },
+  "stress": {
+    "pearson_r": -0.5146964957845854,
+    "pearson_p": 0.15624314665708708,
+    "spearman_rho": -0.26666666666666666,
+    "spearman_p": 0.48792227483870076,
+    "permutation_p": 0.4905,
+    "linregress_slope": -0.005020403984745931,
+    "linregress_r_squared": 0.26491248277293167,
+    "n_areas": 9,
+    "n_folds": 140
+  }
+}

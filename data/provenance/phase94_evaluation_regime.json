@@ -1,0 +1,36 @@
+{
+ "phase": "94",
+ "title": "Price regime of the evaluation window",
+ "why": "every headline number is conditioned on this window; Section 2.1 cited the FY2022 LNG crisis, which is training data only, and so implied spike coverage the evaluation era does not have",
+ "window": {
+  "first_test_day": "2024-08-01",
+  "last_test_day": "2026-08-05",
+  "n_slots": 315414,
+  "n_areas": 9
+ },
+ "percentiles_jpykwh": {
+  "p5": 3.09,
+  "p25": 9.07,
+  "p50": 11.38,
+  "p75": 14.65,
+  "p95": 20.68,
+  "p99": 30.2
+ },
+ "max_jpykwh": 100.0,
+ "near_floor": {
+  "threshold": 0.5,
+  "n_slots": 10504,
+  "share_pct": 3.33
+ },
+ "scarcity": {
+  "threshold": 50.0,
+  "n_slots": 106,
+  "share_pct": 0.0336
+ },
+ "floor_to_scarcity_ratio": 99.1,
+ "reading": "near-floor slots outnumber slots at or above 50 JPY/kWh by 99 to 1. Weather enters this window through photovoltaic surplus at the lower tail, essentially never through scarcity at the upper tail, so every result here is a floor-regime result",
+ "metadata": {
+  "script": "s_20260819_phase94_evaluation_regime.py",
+  "git_sha": "e8e19afe460da5e4b889c099f4a9d6156ae8af60"
+ }
+}

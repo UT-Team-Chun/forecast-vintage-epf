@@ -1,0 +1,91 @@
+{
+  "phase": "phase35_allhours_headtohead",
+  "n_obs": 50544,
+  "n_areas": 9,
+  "note": "ALL-HOURS (FH00-15+FH16-33+FH34-39 / 00-23 JST) same-sample; era5=proxy, histfc=reconstruction, gpv=EXACT-issuance. Daylight-only version: phase31b_exact_issuance_headtohead.json (robustness).",
+  "mean_improvement_yen_kwh": {
+    "era5_proxy": 0.0214,
+    "histfc_reconstruction": 0.2342,
+    "gpv_exact_issuance": 0.2484
+  },
+  "cross_area_spearman_vs_pvpeak": {
+    "era5_proxy": {
+      "rho": 0.717,
+      "p": 0.03
+    },
+    "histfc_reconstruction": {
+      "rho": -0.167,
+      "p": 0.668
+    },
+    "gpv_exact_issuance": {
+      "rho": -0.017,
+      "p": 0.966
+    }
+  },
+  "per_area": {
+    "shikoku": {
+      "imp_gpv": 0.23,
+      "imp_histfc": 0.209,
+      "imp_era5": 0.05,
+      "pv_peak": 0.921,
+      "n": 5616
+    },
+    "kyushu": {
+      "imp_gpv": 0.256,
+      "imp_histfc": 0.238,
+      "imp_era5": 0.076,
+      "pv_peak": 0.78,
+      "n": 5616
+    },
+    "tohoku": {
+      "imp_gpv": 0.367,
+      "imp_histfc": 0.373,
+      "imp_era5": 0.054,
+      "pv_peak": 0.569,
+      "n": 5616
+    },
+    "chugoku": {
+      "imp_gpv": 0.251,
+      "imp_histfc": 0.241,
+      "imp_era5": 0.037,
+      "pv_peak": 0.539,
+      "n": 5616
+    },
+    "chubu": {
+      "imp_gpv": 0.21,
+      "imp_histfc": 0.191,
+      "imp_era5": -0.063,
+      "pv_peak": 0.519,
+      "n": 5616
+    },
+    "hokkaido": {
+      "imp_gpv": 0.137,
+      "imp_histfc": 0.103,
+      "imp_era5": -0.004,
+      "pv_peak": 0.499,
+      "n": 5616
+    },
+    "hokuriku": {
+      "imp_gpv": 0.198,
+      "imp_histfc": 0.219,
+      "imp_era5": 0.021,
+      "pv_peak": 0.39,
+      "n": 5616
+    },
+    "kansai": {
+      "imp_gpv": 0.263,
+      "imp_histfc": 0.279,
+      "imp_era5": 0.037,
+      "pv_peak": 0.348,
+      "n": 5616
+    },
+    "tokyo": {
+      "imp_gpv": 0.323,
+      "imp_histfc": 0.255,
+      "imp_era5": -0.015,
+      "pv_peak": 0.241,
+      "n": 5616
+    }
+  },
+  "n_areas_label": "9-area incl. Chubu (point-forecast only)"
+}

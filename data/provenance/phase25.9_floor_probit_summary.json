@@ -1,0 +1,272 @@
+{
+  "n_obs_total": 279590,
+  "areas": [
+    "hokkaido",
+    "tohoku",
+    "tokyo",
+    "hokuriku",
+    "kansai",
+    "chugoku",
+    "shikoku",
+    "kyushu"
+  ],
+  "per_area_summary": [
+    {
+      "area": "kyushu",
+      "n_slots": 34310,
+      "n_floor": 2312,
+      "floor_rate": 0.06738560186534538,
+      "n_curtail_slots": 3768,
+      "curtail_rate": 0.10982220926843486,
+      "floor_rate_given_curtail": 0.5477707006369427,
+      "floor_rate_given_no_curtail": 0.008119965948529893,
+      "pv_share_actual_mean": 0.1626184528129121,
+      "pv_max_mw": 9556.0,
+      "pv_curtail_sum_mwh": 3349766.0
+    },
+    {
+      "area": "shikoku",
+      "n_slots": 35040,
+      "n_floor": 2232,
+      "floor_rate": 0.0636986301369863,
+      "n_curtail_slots": 1819,
+      "curtail_rate": 0.05191210045662101,
+      "floor_rate_given_curtail": 0.6300164925783397,
+      "floor_rate_given_no_curtail": 0.032690165858944645,
+      "pv_share_actual_mean": 0.15253885812202567,
+      "pv_max_mw": 2686.0,
+      "pv_curtail_sum_mwh": 574202.0
+    },
+    {
+      "area": "chugoku",
+      "n_slots": 35040,
+      "n_floor": 1236,
+      "floor_rate": 0.03527397260273973,
+      "n_curtail_slots": 1193,
+      "curtail_rate": 0.034046803652968034,
+      "floor_rate_given_curtail": 0.6663872590108969,
+      "floor_rate_given_no_curtail": 0.013029219724052353,
+      "pv_share_actual_mean": 0.1554779141877078,
+      "pv_max_mw": 5888.0,
+      "pv_curtail_sum_mwh": 684077.0
+    },
+    {
+      "area": "kansai",
+      "n_slots": 35040,
+      "n_floor": 1142,
+      "floor_rate": 0.03259132420091324,
+      "n_curtail_slots": 1878,
+      "curtail_rate": 0.053595890410958906,
+      "floor_rate_given_curtail": 0.44568690095846647,
+      "floor_rate_given_no_curtail": 0.009197273988299861,
+      "pv_share_actual_mean": 0.06250014222809337,
+      "pv_max_mw": 6331.0,
+      "pv_curtail_sum_mwh": 660839.0
+    },
+    {
+      "area": "hokuriku",
+      "n_slots": 35040,
+      "n_floor": 1051,
+      "floor_rate": 0.029994292237442922,
+      "n_curtail_slots": 432,
+      "curtail_rate": 0.012328767123287671,
+      "floor_rate_given_curtail": 0.7939814814814815,
+      "floor_rate_given_no_curtail": 0.020457697642163663,
+      "pv_share_actual_mean": 0.05953734461841546,
+      "pv_max_mw": 1260.0,
+      "pv_curtail_sum_mwh": 45251.0
+    },
+    {
+      "area": "tohoku",
+      "n_slots": 35040,
+      "n_floor": 1025,
+      "floor_rate": 0.02925228310502283,
+      "n_curtail_slots": 1435,
+      "curtail_rate": 0.04095319634703196,
+      "floor_rate_given_curtail": 0.5742160278745645,
+      "floor_rate_given_no_curtail": 0.005981252789763428,
+      "pv_share_actual_mean": 0.13547915077770667,
+      "pv_max_mw": 7556.0,
+      "pv_curtail_sum_mwh": 1303359.0
+    },
+    {
+      "area": "hokkaido",
+      "n_slots": 35040,
+      "n_floor": 977,
+      "floor_rate": 0.0278824200913242,
+      "n_curtail_slots": 250,
+      "curtail_rate": 0.007134703196347032,
+      "floor_rate_given_curtail": 0.7,
+      "floor_rate_given_no_curtail": 0.023052601322219028,
+      "pv_share_actual_mean": 0.10886145300150568,
+      "pv_max_mw": 2141.0,
+      "pv_curtail_sum_mwh": 29259.0
+    },
+    {
+      "area": "tokyo",
+      "n_slots": 35040,
+      "n_floor": 411,
+      "floor_rate": 0.011729452054794521,
+      "n_curtail_slots": 68,
+      "curtail_rate": 0.0019406392694063927,
+      "floor_rate_given_curtail": 0.6617647058823529,
+      "floor_rate_given_no_curtail": 0.010465515269358345,
+      "pv_share_actual_mean": 0.08583366895008142,
+      "pv_max_mw": 17040.0,
+      "pv_curtail_sum_mwh": 50061.0
+    }
+  ],
+  "floor_x_curtail_crosstab": [
+    {
+      "area": "hokkaido",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 175,
+      "n_floor_no_curtail": 802,
+      "n_no_floor_curtail": 75,
+      "n_no_floor_no_curtail": 33988,
+      "P(floor|curtail)": 0.7,
+      "P(floor|no_curtail)": 0.023052601322219028,
+      "risk_ratio_curtail_vs_no": 30.365336658354114
+    },
+    {
+      "area": "tohoku",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 824,
+      "n_floor_no_curtail": 201,
+      "n_no_floor_curtail": 611,
+      "n_no_floor_no_curtail": 33404,
+      "P(floor|curtail)": 0.5742160278745645,
+      "P(floor|no_curtail)": 0.005981252789763428,
+      "risk_ratio_curtail_vs_no": 96.00263490907831
+    },
+    {
+      "area": "tokyo",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 45,
+      "n_floor_no_curtail": 366,
+      "n_no_floor_curtail": 23,
+      "n_no_floor_no_curtail": 34606,
+      "P(floor|curtail)": 0.6617647058823529,
+      "P(floor|no_curtail)": 0.010465515269358345,
+      "risk_ratio_curtail_vs_no": 63.232883317261326
+    },
+    {
+      "area": "hokuriku",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 343,
+      "n_floor_no_curtail": 708,
+      "n_no_floor_curtail": 89,
+      "n_no_floor_no_curtail": 33900,
+      "P(floor|curtail)": 0.7939814814814815,
+      "P(floor|no_curtail)": 0.020457697642163663,
+      "risk_ratio_curtail_vs_no": 38.81089139987445
+    },
+    {
+      "area": "kansai",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 837,
+      "n_floor_no_curtail": 305,
+      "n_no_floor_curtail": 1041,
+      "n_no_floor_no_curtail": 32857,
+      "P(floor|curtail)": 0.44568690095846647,
+      "P(floor|no_curtail)": 0.009197273988299861,
+      "risk_ratio_curtail_vs_no": 48.45858691667104
+    },
+    {
+      "area": "chugoku",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 795,
+      "n_floor_no_curtail": 441,
+      "n_no_floor_curtail": 398,
+      "n_no_floor_no_curtail": 33406,
+      "P(floor|curtail)": 0.6663872590108969,
+      "P(floor|no_curtail)": 0.013029219724052353,
+      "risk_ratio_curtail_vs_no": 51.14559989964133
+    },
+    {
+      "area": "shikoku",
+      "n_slots": 35040,
+      "n_floor_and_curtail": 1146,
+      "n_floor_no_curtail": 1086,
+      "n_no_floor_curtail": 673,
+      "n_no_floor_no_curtail": 32135,
+      "P(floor|curtail)": 0.6300164925783397,
+      "P(floor|no_curtail)": 0.032690165858944645,
+      "risk_ratio_curtail_vs_no": 19.27235534064919
+    },
+    {
+      "area": "kyushu",
+      "n_slots": 34310,
+      "n_floor_and_curtail": 2064,
+      "n_floor_no_curtail": 248,
+      "n_no_floor_curtail": 1704,
+      "n_no_floor_no_curtail": 30294,
+      "P(floor|curtail)": 0.5477707006369427,
+      "P(floor|no_curtail)": 0.008119965948529893,
+      "risk_ratio_curtail_vs_no": 67.45972878569961
+    }
+  ],
+  "logit": {
+    "spec1_min": {
+      "n_obs": 279590,
+      "pseudo_r2": 0.4795206442683644,
+      "log_lik": -23104.26669069389,
+      "coef_non_FE": {
+        "Intercept": -5.530174266510949,
+        "pv_share_actual_cap": 6.231520560357154,
+        "curtail_active": 2.6501251049796135
+      },
+      "p_non_FE": {
+        "Intercept": 0.0,
+        "pv_share_actual_cap": 0.0,
+        "curtail_active": 0.0
+      }
+    },
+    "spec2_pv_peak_interaction": {
+      "n_obs": 279590,
+      "pseudo_r2": 0.4885022393703313,
+      "log_lik": -22705.57043836708,
+      "coef_non_FE": {
+        "Intercept": -5.417187363488029,
+        "pv_peak_ratio": -0.58485442345724,
+        "pv_share_actual_cap": 6.833544896687059,
+        "curtail_active": 4.246375626571121,
+        "pv_peak_ratio:curtail_active": -2.5145860053309397
+      },
+      "p_non_FE": {
+        "Intercept": 0.0,
+        "pv_peak_ratio": 4.689084784958041e-12,
+        "pv_share_actual_cap": 0.0,
+        "curtail_active": 0.0,
+        "pv_peak_ratio:curtail_active": 2.4626326689130912e-80
+      }
+    },
+    "spec3_time_FE": {
+      "n_obs": 279590,
+      "pseudo_r2": 0.5437987801574,
+      "log_lik": -20250.93700987813,
+      "coef_non_FE": {
+        "Intercept": -6.1161349174392425,
+        "pv_share_actual_cap": 6.4163026601934305,
+        "curtail_active": 2.067530206650373,
+        "is_weekend": 1.0856983129727875
+      },
+      "p_non_FE": {
+        "Intercept": 0.0,
+        "pv_share_actual_cap": 0.0,
+        "curtail_active": 0.0,
+        "is_weekend": 0.0
+      }
+    }
+  },
+  "cross_area_spearman": {
+    "curtail_hours_vs_floor_hours": {
+      "rho": 0.8333333333333335,
+      "p_two_sided": 0.010175540123456757
+    },
+    "curtail_total_mwh_vs_floor_hours": {
+      "rho": 0.5952380952380953,
+      "p_two_sided": 0.11952980613879274
+    }
+  }
+}

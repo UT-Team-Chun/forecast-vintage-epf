@@ -1,0 +1,100 @@
+{
+  "phase": "phase29_cost_ratio_grounding",
+  "round": "Round-30 Gate 4 (D-lite)",
+  "window": [
+    "2024-09-01",
+    "2025-11-01"
+  ],
+  "floor_threshold_yen_kwh": 0.5,
+  "n_slots_total": 184032,
+  "n_floor_slots": 5105,
+  "floor_rate_pct": 2.774,
+  "cost_ratio_grid": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0,
+    8.0
+  ],
+  "reference_ratio": 2.0,
+  "floor_wedge_yen_kwh": {
+    "median": 0.99,
+    "p25": 0.0,
+    "p75": 6.63,
+    "p90": 8.65,
+    "mean": 3.091
+  },
+  "nonfloor_wedge_yen_kwh_median": 0.0,
+  "floor_system_to_area_ratio_median": 55.5,
+  "per_area": [
+    {
+      "area": "shikoku",
+      "n_floor": 1146,
+      "wedge_median": 6.335,
+      "area_price_median": 0.01,
+      "system_price_median": 6.345
+    },
+    {
+      "area": "kyushu",
+      "n_floor": 1177,
+      "wedge_median": 3.1,
+      "area_price_median": 0.01,
+      "system_price_median": 3.11
+    },
+    {
+      "area": "hokkaido",
+      "n_floor": 550,
+      "wedge_median": 2.99,
+      "area_price_median": 0.01,
+      "system_price_median": 3.0
+    },
+    {
+      "area": "tohoku",
+      "n_floor": 509,
+      "wedge_median": 0.09000000000000001,
+      "area_price_median": 0.01,
+      "system_price_median": 0.1
+    },
+    {
+      "area": "tokyo",
+      "n_floor": 152,
+      "wedge_median": 0.0,
+      "area_price_median": 0.01,
+      "system_price_median": 0.01
+    },
+    {
+      "area": "chugoku",
+      "n_floor": 480,
+      "wedge_median": 0.0,
+      "area_price_median": 0.01,
+      "system_price_median": 0.01
+    },
+    {
+      "area": "chubu",
+      "n_floor": 305,
+      "wedge_median": 0.0,
+      "area_price_median": 0.01,
+      "system_price_median": 0.01
+    },
+    {
+      "area": "hokuriku",
+      "n_floor": 392,
+      "wedge_median": 0.0,
+      "area_price_median": 0.01,
+      "system_price_median": 0.01
+    },
+    {
+      "area": "kansai",
+      "n_floor": 394,
+      "wedge_median": 0.0,
+      "area_price_median": 0.01,
+      "system_price_median": 0.01
+    }
+  ],
+  "cited_macros": {
+    "FloorWedgeShikoku": 6.33,
+    "FloorWedgeKyushu": 3.1
+  },
+  "interpretation": "During FLOOR episodes the JEPX system/reference price sits a median 0.99 JPY/kWh above the collapsed area price (IQR [0.0, 6.63]); a short position settling against the near-system imbalance reference rather than the floored area spot therefore faces a materially asymmetric cost, so the institutionally relevant cost ratio exceeds one. The pre-specified grid 0.25-8.0 brackets this observed asymmetry. Yen P&L remains a normalized illustrative scaling: settled imbalance prices are outside the spot dataset."
+}
