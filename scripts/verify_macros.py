@@ -3540,15 +3540,24 @@ CHECKS: list[MacroCheck] = [
         provenance="phase72_dissemination_audit.json",
         json_path=("gate_checks", "msm_d2_12z", "worst_margin_minutes"),
         scale=1.0 / 60.0, tol=0.06, note="worst pre-gate margin, hours, 12Z"),
-    # ---- Phase 75: decision-scale equivalence (fifth review #1 landing) ----
-    MacroCheck(macro="DecShareGtTickPct", provenance="phase75_decision_equivalence.json",
-        json_path=("descriptives", "per_slot_abs_price_forecast_diff_jpykwh",
-                   "share_gt_one_tick"),
+    # ---- Phase 110: the two phase-75 descriptives Paper A actually cites ----
+    # These are forecast-dispersion quantities, not decision quantities, and the
+    # main article renders both -- they are the concession that keeps the pooled
+    # equivalence claim honest. They were tagged paper_b because they came from
+    # the phase-75 artefact, which also carries the commitment and profit gates
+    # that moved to the companion paper. That made Paper A's Data availability
+    # statement false for exactly two rendered numbers: the artefact backing them
+    # was not shipped, and could not be, without publishing settlement content.
+    # phase110 is a field subset of phase 75 carrying only these, so both bind
+    # here, ship with the package, and leave the paper-B boundary intact.
+    MacroCheck(macro="DecShareGtTickPct", provenance="phase110_slot_dispersion.json",
+        json_path=("per_slot_abs_price_forecast_diff_jpykwh", "share_gt_one_tick"),
         scale=100.0, tol=0.06,
-        note="share of slots where the two runs' forecasts differ by > 1 tick", paper_b=True),
-    MacroCheck(macro="DecMeanAbsDy", provenance="phase75_decision_equivalence.json",
-        json_path=("descriptives", "per_slot_abs_price_forecast_diff_jpykwh", "mean"),
-        tol=0.006, note="mean per-slot |yhat_pre - yhat_post|", paper_b=True),
+        note="share of slots where the two runs' forecasts differ by > 1 tick"),
+    MacroCheck(macro="DecMeanAbsDy", provenance="phase110_slot_dispersion.json",
+        json_path=("per_slot_abs_price_forecast_diff_jpykwh", "mean"),
+        tol=0.006, note="mean per-slot |yhat_pre - yhat_post|"),
+    # ---- Phase 75: decision-scale equivalence (fifth review #1 landing) ----
     MacroCheck(macro="DecShareCommitChangePct",
         provenance="phase75_decision_equivalence.json",
         json_path=("descriptives", "per_slot_abs_commitment_diff_mwh", "share_nonzero"),

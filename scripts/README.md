@@ -76,6 +76,7 @@ Each script's docstring still opens with its phase number.
 | [`54b_innovation_construction.py`](54b_innovation_construction.py) | 102 | `phase102_innovation_learner.json`, `phase102_innovation_importance.json` | §5.3 | Construct the post-gate innovation as an explicit feature and refit each cell on it. Builds the fitted cells `54` compares; separated because the construction is the expensive half. |
 | [`54_signal_vs_learner.py`](54_signal_vs_learner.py) | 102 | `phase102_signal_vs_learner.json` | §5.3 | Whether the post-gate null is a property of the signal or of the learner: the same innovation given to the model directly, on the price target and on the physical one, with a noise control and a raw-feature control. |
 | [`55_commensurable_asymmetry.py`](55_commensurable_asymmetry.py) | 106 | `phase106_commensurable_asymmetry.json` | §1, §5.3 | Express the two-target asymmetry in commensurable units — each target's own fractional error reduction — because variance shares on two different dependent variables cannot be divided. |
+| [`56_slot_dispersion.py`](56_slot_dispersion.py) | 110 | `phase110_slot_dispersion.json` | §5.1, §6 | The per-slot spread between the pre-gate and post-gate runs' price forecasts — the quantity pooled equivalence cannot bound. A field subset of a phase-75 artefact that belongs to the companion manuscript, so **this script cannot run here**: it says so and exits, and its output is what the guard checks. |
 | **Robustness** | | | | |
 | [`60_version_robustness.py`](60_version_robustness.py) | 80 | `phase80_jma_version.json` | §5.6 | Split every headline contrast at the 2025-05-20 model upgrade, with and without a transition window. |
 | [`61_weighted_metrics.py`](61_weighted_metrics.py) | 82 | `phase82_weighted_metrics.json` | §5.6 | Re-pool the daily improvements under demand and photovoltaic-capacity weights. |
@@ -150,6 +151,7 @@ those:
 | `s_20260812_phase87_ae_figures.py` | `92_figures_paper.py` |
 | `s_20260812_phase87_results_figures.py` | `93_figures_results.py` |
 | `s_20260619_phase27.4_figures.py` | `94_figures_theory.py` |
+| `s_20260821_phase110_slot_dispersion_export.py` | `56_slot_dispersion.py` |
 | `s_20260819_phase100_rish_cycle_horizon_probe.py` | `45_rish_cycle_horizon_probe.py` |
 | `s_20260819_phase105_file_level_arrival.py` | `46_file_level_arrival.py` |
 | `s_20260819_phase101_physical_normalisation.py` | `53_physical_normalisation.py` |

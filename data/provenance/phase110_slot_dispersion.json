@@ -1,0 +1,36 @@
+{
+  "phase": 110,
+  "title": "Per-slot price-forecast dispersion between the pre-gate and post-gate runs (field subset of phase 75)",
+  "derivation": "A field subset. Every value is copied verbatim from phase75_decision_equivalence.json; nothing is recomputed. The commitment, nomination and profit quantities of that artefact belong to the companion manuscript and are deliberately absent here, which is why this file exists separately.",
+  "panel": {
+    "rows_joined": 209341,
+    "rows_finite": 209341,
+    "n_days": 547,
+    "n_areas": 8,
+    "window": "prev2",
+    "pre_tier": "msm_d2_12z (disseminated D-2 23:30 JST, pre-gate)",
+    "post_tier": "msm_d1_00z (disseminated D-1 11:30 JST, post-gate)"
+  },
+  "per_slot_abs_price_forecast_diff_jpykwh": {
+    "mean": 0.48398,
+    "p50": 0.27135,
+    "p90": 1.16794,
+    "p99": 3.0483,
+    "max": 10.59639,
+    "share_gt_one_tick": 0.97665,
+    "share_gt_five_ticks": 0.88608,
+    "share_gt_half_jpykwh": 0.30296
+  },
+  "reading": "Pooled-MAE equivalence within one price tick does not imply the two runs agree slot by slot. These are the per-slot differences that equivalence cannot bound, reported unconditionally.",
+  "source_artefact": {
+    "file": "phase75_decision_equivalence.json",
+    "script": "s_20260803_phase75_decision_equivalence.py",
+    "git_sha": "f70259d482f27893679c4585706b38d408307190",
+    "generated_utc": "2026-08-03T03:29:52.925222+00:00"
+  },
+  "metadata": {
+    "script": "s_20260821_phase110_slot_dispersion_export.py",
+    "git_sha": "1a79ebe",
+    "generated_utc": "2026-08-21T09:48:39.041860+00:00"
+  }
+}

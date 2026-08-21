@@ -187,6 +187,11 @@ RENAMES: list[tuple[str, str]] = [
     # regenerate them and the guard's retired-term audit was certifying two
     # files nothing in this package could rebuild.
     ("94_figures_theory.py", "s_20260619_phase27.4_figures.py"),
+    # A field-subset export. Its OUTPUT ships (two macros bind against it); its
+    # INPUT is the companion manuscript's artefact and deliberately does not, so
+    # this script cannot run here and says so when asked. It ships anyway,
+    # because it is the only way a reader can see which fields were carried over.
+    ("56_slot_dispersion.py", "s_20260821_phase110_slot_dispersion_export.py"),
 ]
 VERBATIM_SCRIPTS = ("verify_macros.py",)
 
@@ -228,6 +233,13 @@ EXTRA_PROVENANCE = (
     # scripts/README.md and data/README.md both point a reader at it as the
     # record of what `make acquire_ics` fetched.
     "phase71_ics_basis.json",
+    # The independent codings of every multi-coded paper in the literature
+    # audit. The supplement states that the inter-coder agreement statistics
+    # are "recomputable from a shipped export of the multi-coded codings" --
+    # which was false, because the guard names only the aggregate and so
+    # discovery never reached this file. It contains codings and opaque coder
+    # ids, no transcripts and no personal data.
+    "phase88b_multicoded_runs.json",
 )
 NESTED_PROVENANCE = (
     "phase23-panel-daily/cluster_bootstrap.json",

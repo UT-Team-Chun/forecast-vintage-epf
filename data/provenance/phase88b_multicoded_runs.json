@@ -1,0 +1,1205 @@
+{
+ "note": "the independent codings of every multi-coded paper, exported so the reliability statistics do not depend on session transcripts outside the repository",
+ "papers": {
+  "v2:27e4acd98e17b559efcc8a6d7c6d55a08028bc01bc932985f678fe2154232271": [
+   {
+    "agent_id": "adf6879bff15643b4",
+    "columns": {
+     "gate_time_stated": "Partial — auctions described as 'conducted once per day (usually around noon)'; no per-market gate-closure times",
+     "model_run_id_stated": "No — no NWP inputs exist in the study",
+     "init_time_stated": "No — no NWP/weather inputs, so no initialisation times",
+     "publication_time_stated": "No — no weather inputs whose publication/dissemination timing could be stated",
+     "gate_admissibility_checked": "Partial — inputs are day d−1 and earlier prices, admissible by construction; no explicit verification",
+     "revision_handling": "Not stated (N/A) — no revisable weather inputs; only DST clock-change price adjustments described"
+    },
+    "market": "Yes — 12 day-ahead datasets: EPEX (DE+AT, FR, CH), BELPEX.BE, EXAA.DE+AT, Nord Pool (DK1/DK2/SYS), OMIE (ES/PT), OTE.CZ, GEFCom2014 (US LMP)",
+    "verified_against": "Full arXiv v1 PDF (arXiv:1805.06649, dated 17 May 2018, 'Preprint submitted to Energy Economics'), pages 1-14 read directly (title, abstract, Sections 1-4.3.4 incl. datasets Table 1 and all model input definitions); arXiv abstract page also checked. Published Energy Economics version (DOI 10.1016/j.eneco.2017.12.016) not accessed directly."
+   },
+   {
+    "agent_id": "a3f28ab305d1b0ee4",
+    "columns": {
+     "gate_time_stated": "Partial — generic \"once per day (usually around noon) auctions\"; no market-specific gate-closure times",
+     "model_run_id_stated": "Not stated — no NWP inputs exist, so no model run to identify",
+     "init_time_stated": "Not stated — no NWP inputs, initialisation time not applicable/mentioned",
+     "publication_time_stated": "No — publication/availability timing of inputs never discussed; inputs are prior days' prices",
+     "gate_admissibility_checked": "No — lagged prices are trivially pre-gate; no explicit admissibility verification performed",
+     "revision_handling": "Not stated — only DST clock-change interpolation/averaging of prices mentioned"
+    },
+    "market": "12 day-ahead datasets: BELPEX.BE, EPEX.CH, EPEX.DE+AT, EPEX.FR, EXAA.DE+AT, Nord Pool (DK1, DK2, SYS), OMIE.ES, OMIE.PT, OTE.CZ, GEFCom2014 (US)",
+    "verified_against": "Full arXiv v1 PDF (1805.06649v1, 17 May 2018, \"Preprint submitted to Energy Economics\") — main text pp. 1-28 read in full (Sections 1-6 incl. all model definitions); appendices A-C (remaining 48 price-only model variants, result tables) not read page-by-page"
+   },
+   {
+    "agent_id": "a5009ba82349a6e99",
+    "columns": {
+     "gate_time_stated": "Partial — auctions \"conducted once per day (usually around noon)\"; no exact per-market gate times",
+     "model_run_id_stated": "No — not applicable; no NWP or weather-model inputs exist",
+     "init_time_stated": "No — not applicable; no weather/NWP inputs",
+     "publication_time_stated": "No — no weather input whose publication time could be stated",
+     "gate_admissibility_checked": "No — no weather inputs; lagged-price inputs implicitly pre-gate via auction structure, never explicitly verified",
+     "revision_handling": "No — no weather data; only clock-change interpolation/averaging of price series mentioned"
+    },
+    "market": "12 day-ahead datasets: EPEX (DE+AT, FR, CH), EXAA.DE+AT, BELPEX.BE, Nord Pool (DK1, DK2, SYS), OMIE (ES, PT), OTE.CZ, GEFCom2014 (US LMP)",
+    "verified_against": "Full arXiv v1 PDF (arXiv:1805.06649, journal version Energy Economics 70:396-420): read pages 1-12 (intro, frameworks, Section 3 datasets, Section 4 models) and pages 30-38 (variable-selection tables, conclusions end, Appendix A/B model set); plus arXiv abstract page."
+   }
+  ],
+  "v2:783826aedf67f8a5c328c84fb77aff0f7bac6dc1fcee90cbcfe15698873ff0ec": [
+   {
+    "agent_id": "a02f5628c4b809d37",
+    "columns": {
+     "gate_time_stated": "Yes - DA bids until noon; each ID closes 2 h 15 min before delivery (Fig. 1)",
+     "model_run_id_stated": "Not stated - no NWP used directly; TSO forecast product version/run never identified",
+     "init_time_stated": "Not stated - no initialisation or issuance times for the underlying TSO forecasts given",
+     "publication_time_stated": "Partial - retrieval fixed at gate minus 60 min (Fig. 5); actual TSO publication times unstated",
+     "gate_admissibility_checked": "Yes - operational simulation conditions all inputs on pre-gate public availability (Sec. 4.1, Figs. 5-6)",
+     "revision_handling": "Partial - daily refit per session using 'most recent data' at t-60 min; forecast vintages undocumented"
+    },
+    "market": "MIBEL (Iberia) day-ahead plus six intraday sessions; Portuguese prices; June 2015-June 2017",
+    "verified_against": "full PDF (MDPI open-access publisher PDF, all 29 pages read)"
+   },
+   {
+    "agent_id": "ab117395674e5dcfc",
+    "columns": {
+     "gate_time_stated": "Yes — DA session receives bids until noon (Figure 1: 12:00); intraday closes 2h15min pre-delivery.",
+     "model_run_id_stated": "Not stated — no NWP model or run identified behind the TSO forecast products used.",
+     "init_time_stated": "Not stated — no forecast initialisation time; only price-model launch times (t−60/−50 min) given.",
+     "publication_time_stated": "Partial — data retrieval fixed at t−60min pre-gate; actual TSO publication schedule never stated.",
+     "gate_admissibility_checked": "Partial — operational simulation enforces pre-gate cutoff by design; input publication timestamps not independently verified.",
+     "revision_handling": "Partial — data re-retrieved and models refit 60min before every session daily; input forecast versions unspecified."
+    },
+    "market": "Yes — MIBEL (Portugal/Spain): day-ahead plus six intraday sessions, hourly prices, June 2015–June 2017.",
+    "verified_against": "full PDF (MDPI OA version, all 29 pages read as rendered page images)"
+   },
+   {
+    "agent_id": "a4a74faa78fd002f2",
+    "columns": {
+     "gate_time_stated": "Yes — DA bids until noon (Fig. 1, 12:00); each ID session closes 2h15min pre-delivery.",
+     "model_run_id_stated": "No — no NWP model used; the TSO forecast issue/version is never identified.",
+     "init_time_stated": "Not stated — no NWP initialisation time; issuance time of REN/REE forecasts not given.",
+     "publication_time_stated": "Partial — retrieval fixed at t−60 min before each gate; actual TSO publication schedule not documented.",
+     "gate_admissibility_checked": "Partial — operational pre-gate-availability scenario explicitly asserted and simulated (Sec. 4.1, Figs. 5–6); timestamp-level verification of TSO feeds not shown.",
+     "revision_handling": "Partial — data re-retrieved at t−60 min daily per session (latest available); forecast vintage/revision cycles unspecified."
+    },
+    "market": "Yes — MIBEL (Portugal/Spain): day-ahead plus six intraday sessions, June 2015–June 2017, Portuguese-side prices.",
+    "verified_against": "full PDF — MDPI open-access version of record (sustainability-09-01990.pdf), all 29 pages read"
+   }
+  ],
+  "v2:743f0434d80cdc735e5d54b10988529ea1656bdcf48f69df1f4e4607875ac9ec": [
+   {
+    "agent_id": "a55a4ff0468cb67ae",
+    "columns": {
+     "gate_time_stated": "Partial — generic European deadline '11:00 am or 12:00 am' on day d-1; no market-specific gate time",
+     "model_run_id_stated": "No — no NWP used; TSO forecast issue/version never identified",
+     "init_time_stated": "No — initialisation/issue time of the TSO day-ahead forecasts never stated",
+     "publication_time_stated": "Partial — says forecasts 'available before the bid deadline' on TSO websites; no clock time given",
+     "gate_admissibility_checked": "Partial — pre-gate availability asserted and drives data selection (Sec 2.4/4.1); never verified against publication timestamps",
+     "revision_handling": "Not stated — TSO forecast revisions/versioning ignored; web archives (accessed 15.05.2017) implicitly assumed pre-gate values"
+    },
+    "market": "EPEX-Belgium and EPEX-France day-ahead hourly markets, 01/2010-11/2016; Belgian prices are main target",
+    "verified_against": "full PDF: arXiv v3 (7 Dec 2017), all 21 pages read; front-page footnote states it is the content-identical preprint of Applied Energy 211 (2018) 890-903"
+   },
+   {
+    "agent_id": "a498d0d988aedf048",
+    "columns": {
+     "gate_time_stated": "Partial — generic 'deadline on day d−1... 11:00 am or 12:00 am' for most European markets; not market-specific",
+     "model_run_id_stated": "No — no NWP model, run ID, or weather product named; direct weather inputs excluded",
+     "init_time_stated": "No — no initialisation/issue time stated for any forecast input",
+     "publication_time_stated": "Partial — states forecasts 'available before the bid deadline' on TSO websites; no clock time given",
+     "gate_admissibility_checked": "Partial — admissibility asserted as data-selection criterion (pre-gate TSO availability); no per-record timestamp verification",
+     "revision_handling": "Not stated — no forecast vintage/revision discussion; data downloaded ex post from TSO webpages (accessed 15.05.2017)"
+    },
+    "market": "EPEX-Belgium day-ahead (case study); EPEX-France used in dual-market forecaster",
+    "verified_against": "Full arXiv v3 PDF (1708.07061v3, 7 Dec 2017), all 21 pages read; footnote states it matches the published Applied Energy 211 (2018) 890-903 text apart from publisher formatting"
+   },
+   {
+    "agent_id": "a928e528e2ff5068d",
+    "columns": {
+     "gate_time_stated": "Partial — generic 'deadline occurs at 11:00 am or 12:00 am' day d-1; no EPEX-specific gate",
+     "model_run_id_stated": "No — no NWP used; no run/version identifiers given for TSO forecasts",
+     "init_time_stated": "Not stated — no initialisation time of any forecast product mentioned",
+     "publication_time_stated": "Partial — asserts forecasts 'available before the bid deadline'; no publication clock time given",
+     "gate_admissibility_checked": "Partial — pre-gate availability asserted and forecaster framed on pre-deadline info; never verified against archives",
+     "revision_handling": "Not stated — no mention of TSO forecast revisions or which snapshot/version was downloaded"
+    },
+    "market": "Yes — EPEX-Belgium day-ahead hourly prices; French features; dual model also predicts EPEX-France",
+    "verified_against": "Full arXiv v3 PDF (7 Dec 2017, all 21 pages read), self-declared content-identical preprint of Applied Energy 211 (2018) 890-903"
+   }
+  ],
+  "v2:fbe3bc8fec575cc5a2dc9104675cc2fcf7e3ad41993f840a087ee41391628839": [
+   {
+    "agent_id": "ab911b2bcfbfe5241",
+    "columns": {
+     "gate_time_stated": "No — day-ahead bidding invoked generically; no gate-closure or session time ever given",
+     "model_run_id_stated": "Not stated — no NWP product used; Windfinder series has no version/run identifier",
+     "init_time_stated": "Not stated — no NWP initialisation; only lag window (t-1200 h to t-24 h) specified",
+     "publication_time_stated": "No — never states when Windfinder wind data is published or becomes available",
+     "gate_admissibility_checked": "No — >=24 h lags limit look-ahead but never checked against OMIE gate closure",
+     "revision_handling": "Not stated — no mention of data revisions for prices or wind speeds"
+    },
+    "market": "Spain — mainland day-ahead market (OMIE); four seasonal test weeks (Feb/May/Aug/Nov)",
+    "verified_against": "full PDF — 13/13 pages of the published MDPI version read (mdpi-res.com article_deploy PDF; mdpi.com blocked direct fetch), plus Semantic Scholar abstract record"
+   },
+   {
+    "agent_id": "a6950512ea7c1b42e",
+    "columns": {
+     "gate_time_stated": "No — OMIE bidding gate / auction closure time never mentioned anywhere",
+     "model_run_id_stated": "Not stated — no NWP model used; only lagged observed wind speeds",
+     "init_time_stated": "Not stated — no NWP run; wind-speed source timing never given",
+     "publication_time_stated": "No — Windfinder data availability/dissemination timing never discussed",
+     "gate_admissibility_checked": "No — inputs extend to t-24h per delivery hour, crossing OMIE noon D-1 gate; never verified",
+     "revision_handling": "Not stated — no mention of data revisions or forecast updates"
+    },
+    "market": "Spain mainland day-ahead market (OMIE prices), hourly; four seasonal test weeks (Feb/May/Aug/Nov, year not stated)",
+    "verified_against": "Full published PDF (13/13 pages), MDPI open-access copy fetched from mdpi-res.com (article_deploy sustainability-09-02065.pdf); MDPI HTML page returned 403"
+   },
+   {
+    "agent_id": "aae6cc4f1a7ec1780",
+    "columns": {
+     "gate_time_stated": "No — bidding gate/closure time never mentioned anywhere in the paper",
+     "model_run_id_stated": "Not stated — no NWP product used; only website access date (25 Aug 2017)",
+     "init_time_stated": "Not stated — no initialisation/issue time; inputs are realised observations",
+     "publication_time_stated": "No — when Windfinder wind data become available is never stated",
+     "gate_admissibility_checked": "No — inputs lagged 24 h before forecast hour, but gate never referenced or verified",
+     "revision_handling": "Not stated — realised observations only; forecast runs/revisions not applicable and not discussed"
+    },
+    "market": "Yes — mainland Spanish day-ahead market (OMIE prices); four seasonal test weeks",
+    "verified_against": "full PDF — MDPI open-access PDF (13/13 pages read, title through references)"
+   }
+  ],
+  "v2:30d697a7088b44284a0f040cca3c390fe0f841d5c3858caa1d7457dc40b3affb": [
+   {
+    "agent_id": "afe91c845e169426e",
+    "columns": {
+     "gate_time_stated": "Yes - bids due by 12 PM for next day's 24 hourly periods (Sect. 4.1)",
+     "model_run_id_stated": "No - no ESIOS indicator ID, forecast vintage, or underlying NWP run identified",
+     "init_time_stated": "No - issuance/initialisation time of REE forecasts never given",
+     "publication_time_stated": "Partial - REE 'publishes daily forecasts...for the next day'; no clock time stated",
+     "gate_admissibility_checked": "Partial - auction information-set constraint discussed; forecast vintage vs 12 PM gate never verified",
+     "revision_handling": "Not stated - no mention of forecast revisions/updates or which snapshot was archived"
+    },
+    "market": "Spanish/Iberian day-ahead market (OMIE/MIBEL), hourly prices, data 2014-2015",
+    "verified_against": "full PDF (all 20 pages) - Semantic Scholar mirror (pdfs.semanticscholar.org/51fe/a771b30a2d83a80ae062c572299fee1124ad.pdf) of the MDPI CC-BY published version; mdpi.com itself returned HTTP 403"
+   },
+   {
+    "agent_id": "abb6c8cd0cae3db7a",
+    "columns": {
+     "gate_time_stated": "Yes — bids due 'up to 12 PM' the previous day (Sect. 4.1); timezone unstated",
+     "model_run_id_stated": "No — no NWP model, run, or REE forecast product version/ID identified",
+     "init_time_stated": "Not stated — no forecast issuance or initialisation time given anywhere",
+     "publication_time_stated": "Partial — REE 'publishes daily forecasts...for the next day' via e·sios; no clock time given",
+     "gate_admissibility_checked": "Partial — pre-auction availability explicitly motivates using forecasts, but REE publication vs 12 PM gate never verified",
+     "revision_handling": "Not stated — no provisional-vs-final data or forecast-revision discussion"
+    },
+    "market": "Iberian/Spanish day-ahead market (OMIE/MIBEL); hourly next-day prices; data 2014-2015, tested on 2015",
+    "verified_against": "full PDF — all 20 published pages read (Semantic Scholar mirror pdfs.semanticscholar.org/51fe/a771b30a2d83a80ae062c572299fee1124ad.pdf of the MDPI CC-BY PDF; mdpi.com and doaj.org returned HTTP 403)"
+   },
+   {
+    "agent_id": "a3ac5b60b12fd741f",
+    "columns": {
+     "gate_time_stated": "Yes - bids due 'up to 12 PM' day before delivery (Section 4.1, p.7)",
+     "model_run_id_stated": "No - no forecast issuance, version, or run identifier for the ESIOS series given",
+     "init_time_stated": "Not stated - no initialisation time of any forecast run mentioned",
+     "publication_time_stated": "Partial - REE 'publishes daily forecasts...for the next day'; no publication clock time given",
+     "gate_admissibility_checked": "Partial - argues realised values unknown at auction so forecasts used; ESIOS timestamps never checked against 12:00 gate",
+     "revision_handling": "Not stated - no provisional/final data or forecast-revision discussion"
+    },
+    "market": "Spanish day-ahead market (OMIE, Iberian/MIBEL); hourly prices; data 2014-2015, four 2015 test weeks",
+    "verified_against": "full PDF (publisher version, 20 pages, read in entirety via UPV RiuNet repository bitstream; MDPI site returned 403)"
+   }
+  ],
+  "v2:3f0f435ad2f1953908e0513ff7db15da2854b176b4ebf2779ece20428400d126": [
+   {
+    "agent_id": "a0ce9eb77974acc67",
+    "columns": {
+     "gate_time_stated": "No — bidding and market clearing discussed, but no gate-closure/deadline hour ever given.",
+     "model_run_id_stated": "No — no NWP product used; no weather model or run identifier given.",
+     "init_time_stated": "Partial — no NWP init; own LSTM forecast issued daily at 00:00 (Figure 5).",
+     "publication_time_stated": "Partial — timeline fixes when measurements are used (00:00–08:00 at 08:00); KMA dissemination latency unstated.",
+     "gate_admissibility_checked": "No — compensated forecast uses delivery-day 00:00–08:00 observations; day-ahead gate admissibility never examined.",
+     "revision_handling": "Not stated — no mention of observation revisions, data vintages, or forecast updates."
+    },
+    "market": "Yes — South Korea; SMP and load from KPX, mainland-wide, 2014–2018 data (Section 4.1).",
+    "verified_against": "full PDF (all 17 pages read) — LAPSE-2023.21411-1v1.pdf open-access mirror of Energies 2020, 13(1), 148 (identical published version; MDPI site returned 403), plus Semantic Scholar abstract record for cross-check"
+   },
+   {
+    "agent_id": "a1d7e07fc04503b80",
+    "columns": {
+     "gate_time_stated": "No — bidding motivated but no KPX gate-closure time; only forecast issue times (00:00, 08:00)",
+     "model_run_id_stated": "No — no NWP product used; no model run or cycle to identify",
+     "init_time_stated": "Not stated — no NWP init; own LSTM forecast issued 00:00 (text) vs 23:00 (Fig.5)",
+     "publication_time_stated": "Partial — realised 00:00-08:00 temperature assumed available at 08:00; no dissemination lag discussed",
+     "gate_admissibility_checked": "No — compensation uses delivery-day 00:00-08:00 realised data, post day-ahead gate; never examined",
+     "revision_handling": "Partial — no NWP revisions; core method is intraday self-update at 08:00 with realised data"
+    },
+    "market": "South Korea SMP (KPX data); day-ahead single-round auction context, mainland Korea, 2014-2018",
+    "verified_against": "Full published PDF read in entirety (Energies 2020, 13(1):148, pages 1-17, MDPI OA PDF version 1577694325)"
+   },
+   {
+    "agent_id": "a5420f888e1c4e796",
+    "columns": {
+     "gate_time_stated": "No — bidding/auction described only qualitatively; no gate-closure or bid-submission time given",
+     "model_run_id_stated": "No — no NWP product used; no model run identifiable",
+     "init_time_stated": "Not stated — no NWP initialisation; own LSTM forecast issued daily at 00:00",
+     "publication_time_stated": "Partial — assumes real-time temperature measured over [00:00,08:00] available at 08:00; no latency discussed",
+     "gate_admissibility_checked": "No — compensation uses delivery-day 00:00–08:00 realised data; day-ahead gate never considered",
+     "revision_handling": "Not stated — no mention of observation revisions; only the single 08:00 intraday compensation step"
+    },
+    "market": "South Korea — KPX system marginal price (SMP) and mainland load; single-round auction market",
+    "verified_against": "full PDF — published MDPI version of record (Energies 2020, 13, 148), all 17 pages read"
+   }
+  ],
+  "v2:7c69f8e2f5427737b0374344b0960286d60704b7a085171bb9dff2d803cb5d6b": [
+   {
+    "agent_id": "a7bfbef733eb2cfdb",
+    "columns": {
+     "gate_time_stated": "Not stated — day-ahead auction mentioned; no gate-closure/deadline clock time given",
+     "model_run_id_stated": "Not stated — no NWP model, run cycle, or run identifier mentioned",
+     "init_time_stated": "Not stated — no initialisation/issue time for demand or wind predictions",
+     "publication_time_stated": "Not stated — inputs 'made available by' GME/Terna; no publication clock time",
+     "gate_admissibility_checked": "Partial — availability of predicted regressors explicitly considered; no explicit gate-time verification",
+     "revision_handling": "Not stated — no mention of forecast revisions, vintages, or updated runs"
+    },
+    "market": "Italy day-ahead (IPEX/GME); hourly PUN, 2013-2015; one-day-ahead rolling forecasts",
+    "verified_against": "Full PDF of OA pre-publication version (IEB Working Paper 2018/10, all 36 pages, read in full); published TFSC version behind ScienceDirect 403, publisher abstract not readable"
+   },
+   {
+    "agent_id": "adddc3a26d02be87b",
+    "columns": {
+     "gate_time_stated": "No — day-ahead auction described only qualitatively; no gate-closure clock time given",
+     "model_run_id_stated": "No — no run/issue identifier for the Terna or GME predictions",
+     "init_time_stated": "Not stated — initialisation/issue time of the day-ahead predictions never given",
+     "publication_time_stated": "No — only 'day-ahead predicted…, made available by' GME/Terna; no dissemination time",
+     "gate_admissibility_checked": "Partial — regressors chosen 'taking the availability of predicted exogenous regressors into account'; no timing verification",
+     "revision_handling": "Not stated — forecast updates/revisions of wind or demand predictions never discussed"
+    },
+    "market": "Italy — GME day-ahead auction, hourly PUN, 2013–2015 (out-of-sample year 2015)",
+    "verified_against": "Full PDF of the IEB Working Paper 2018/10 preprint (all 34 pages read, incl. Sect. 5 empirical application) plus the published TFSC abstract via RePEc; ScienceDirect publisher page returned 403."
+   },
+   {
+    "agent_id": "a47ce6d87d767da62",
+    "columns": {
+     "gate_time_stated": "No: day-ahead auction mechanism described, but bidding gate / offer deadline time never stated.",
+     "model_run_id_stated": "No: no NWP model, run cycle, or forecast product identifier given.",
+     "init_time_stated": "No: initialisation time of wind/demand forecasts never mentioned.",
+     "publication_time_stated": "No: inputs only described as 'made available by' GME/Terna; no publication/dissemination time given.",
+     "gate_admissibility_checked": "Partial: forecast regressors chosen 'taking the availability of predicted exogenous regressors into account'; no timing verification.",
+     "revision_handling": "Not stated: no discussion of forecast revisions, vintages, or updates."
+    },
+    "market": "Yes: Italian day-ahead market (hourly PUN, GME), 2013-2015; 365 one-day-ahead forecasts for 2015.",
+    "verified_against": "Full text of OA pre-print (IEB Working Paper 2018/10, all substantive pages 1-38 read from PDF); publisher (ScienceDirect) page returned 403, so published TFSC version checked only via abstract/metadata on RePEc/search — WP abstract matches published abstract."
+   }
+  ],
+  "v2:8ddec287b372473b3f62f7150fe3452e7c8c056121879662bc1036b0b898e1d9": [
+   {
+    "agent_id": "a5f15513253e6beb3",
+    "columns": {
+     "gate_time_stated": "Partial — states models run to submit prices 'by 11 a.m.'; per-exchange gate-closure rules not detailed",
+     "model_run_id_stated": "Partial — ECMWF operational single midnight run identified for DE/IT; TSO forecast vintage/version unspecified for DK/ES",
+     "init_time_stated": "Partial — 'EC operational model running at midnight' stated for DE/IT; no initialisation info for TSO forecasts",
+     "publication_time_stated": "Partial — ECMWF dissemination '05.40 a.m. to 06.55 a.m.' stated; TSO forecast publication times not stated",
+     "gate_admissibility_checked": "Partial — explicit pre-gate argument (dissemination before 11 a.m. bidding) for DE/IT inputs; TSO inputs assumed available, not verified",
+     "revision_handling": "Partial — deliberately fixes the midnight run over later updates; fuel prices lagged one day; archive revisions of TSO series undiscussed"
+    },
+    "market": "Yes — Germany (EEX), Denmark (Nord Pool, zones averaged), Italy (GME PUN), Spain (OMIE); hourly day-ahead auctions",
+    "verified_against": "Full arXiv v3 PDF (1801.01093v3, dated 13 Nov 2019; accepted version of IJF 36(3) 974-986), pages 1-24 read directly; ScienceDirect publisher page returned HTTP 403 and was not accessible"
+   },
+   {
+    "agent_id": "ac9431fb7858d5c78",
+    "columns": {
+     "gate_time_stated": "Partial — generic 'submit ... by 11 a.m.' deadline stated; per-market official gate-closure times not given",
+     "model_run_id_stated": "Partial — ECMWF operational midnight run identified for DE/IT inputs; TSO forecast runs (DK/ES) unspecified",
+     "init_time_stated": "Partial — 'running at midnight' stated for ECMWF run (DE/IT); no init time for TSO forecasts",
+     "publication_time_stated": "Partial — ECMWF run 'updates from 05.40 a.m. to 06.55 a.m.'; TSO publication times not stated",
+     "gate_admissibility_checked": "Partial — midnight run explicitly justified as latest info before bidding; fuels lagged one day; TSO input timing assumed, unverified",
+     "revision_handling": "Partial — single fixed operational run deliberately chosen over ensemble/later updates; archive vintage/revision integrity not discussed"
+    },
+    "market": "Germany (EEX/EPEX), Denmark (Nord Pool), Italy (GME PUN), Spain (OMIE); hourly day-ahead auctions",
+    "verified_against": "Full arXiv v3 PDF (1801.01093v3, 28 pages, Nov 2019 — accepted-version preprint of IJF 36(3) 2020); ScienceDirect publisher page returned HTTP 403"
+   },
+   {
+    "agent_id": "a3f9ecc9b0546a0fb",
+    "columns": {
+     "gate_time_stated": "Partial — generic 'submit... by 11 a.m.' deadline stated; no per-market official gate-closure times",
+     "model_run_id_stated": "Partial — 'EC operational model running at midnight' identified for DE/IT; nothing for TSO forecasts",
+     "init_time_stated": "Partial — midnight (00 UTC) initialisation stated for ECMWF (DE/IT); TSO forecast init times unstated",
+     "publication_time_stated": "Partial — ECMWF run 'updates from 05.40 a.m. to 06.55 a.m.'; TSO publication times unstated",
+     "gate_admissibility_checked": "Partial — explicit pre-gate availability argument for ECMWF inputs and lagged fuels; TSO inputs unverified",
+     "revision_handling": "Not stated — no discussion of forecast vintages, archived vs re-downloaded data, or revisions"
+    },
+    "market": "Yes — Germany (EEX), Denmark (Nord Pool), Italy (GME PUN), Spain (OMIE); hourly day-ahead auctions",
+    "verified_against": "Full arXiv v3 PDF (12 Nov 2019, near-final accepted version of IJF 36(3) 974-986); pages 1-18 read, covering abstract, data (Sec 3), and models (Sec 4); publisher version not accessible"
+   }
+  ],
+  "v2:1b82830706511d375797bad66bed670ad0f2d53c3f2e990567c5766a201da464": [
+   {
+    "agent_id": "a16d3fe3177461fb9",
+    "columns": {
+     "gate_time_stated": "Yes — day-ahead auction at 12.00 pm on previous day at EPEX SPOT (Sections 1.1, 5)",
+     "model_run_id_stated": "Not stated — no NWP product used; realised station observations only",
+     "init_time_stated": "Not stated — not applicable; no NWP forecast run involved",
+     "publication_time_stated": "No — never states when DWD observations or the load forecast become available",
+     "gate_admissibility_checked": "No — delivery-day realised weather knowingly used; not available at 12.00 gate",
+     "revision_handling": "Not stated — only missing station values replaced by neighbouring stations (footnote 3)"
+    },
+    "market": "German EPEX SPOT hourly day-ahead spot price, Oct 2017 - Sep 2018",
+    "verified_against": "full PDF — peer-reviewed accepted version from DTU Orbit (backend.orbit.dtu.dk/ws/files/274660525/Lehna_et_al_2022.pdf); read all 22 pages incl. Sections 1, 3.1 (data), 4, 5, 6"
+   },
+   {
+    "agent_id": "af145cf785cb0e07d",
+    "columns": {
+     "gate_time_stated": "Yes — auction 'on the previous day at 12.00 pm' at EPEX SPOT (Sec. 1.1, 5)",
+     "model_run_id_stated": "No — no NWP product used, only realised observations, so no run ID exists",
+     "init_time_stated": "No — no NWP initialisation applies; observational weather data only",
+     "publication_time_stated": "No — publication/dissemination timing of DWD observations or load forecast never stated",
+     "gate_admissibility_checked": "No — knowingly feeds post-gate realised weather over forecast horizon; justified as avoiding forecast uncertainty",
+     "revision_handling": "Not stated — only missing station values replaced by neighbouring stations (footnote 3)"
+    },
+    "market": "Yes — German day-ahead hourly spot market at EPEX SPOT (Sec. 1.1, 3.1)",
+    "verified_against": "full PDF — peer-reviewed accepted version from DTU Orbit (backend.orbit.dtu.dk/ws/files/274660525/Lehna_et_al_2022.pdf), all 22 pages read directly"
+   },
+   {
+    "agent_id": "a5f606b28e432b303",
+    "columns": {
+     "gate_time_stated": "Yes — auction at 12.00 pm on previous day stated (Secs. 1.1 and 5)",
+     "model_run_id_stated": "No — realised observations used, no NWP model run involved or identified",
+     "init_time_stated": "No — no initialisation time; inputs are measured observations, not NWP output",
+     "publication_time_stated": "No — publication/availability timing of weather or load inputs never stated",
+     "gate_admissibility_checked": "No — realised future weather knowingly fed over forecast interval; admissibility deliberately not enforced",
+     "revision_handling": "Not stated — only missing station values replaced by neighbouring stations (footnote 3)"
+    },
+    "market": "Germany — EPEX SPOT day-ahead hourly auction; test period Oct 2017–Sep 2018",
+    "verified_against": "full PDF — peer-reviewed accepted manuscript from DTU Orbit (backend.orbit.dtu.dk, 'Peer reviewed version'), all pages read including abstract, Secs. 1, 3.1, 4, 5, 6 and Table 1"
+   }
+  ],
+  "v2:4400f75b60846501f2ca587e9d8fe1d2a96fb4f3a558065b14a11e015f293403": [
+   {
+    "agent_id": "a228193f100067833",
+    "columns": {
+     "gate_time_stated": "Partial - gate closure 'typically around midday' on d-1 (Fig. 1); no market-specific clock time",
+     "model_run_id_stated": "Not stated - TSO forecast products; underlying NWP model or run never identified",
+     "init_time_stated": "Not stated - no initialisation time given for any forecast input",
+     "publication_time_stated": "Partial - forecasts 'for day d available on day d-1'; no publication hour or timestamp",
+     "gate_admissibility_checked": "No - d-1 availability asserted, never verified against pre-noon gate closure of archived TSO forecasts",
+     "revision_handling": "Not stated - no discussion of forecast versions/revisions in archived TSO/ENTSO-E data"
+    },
+    "market": "Five day-ahead markets: Nord Pool, PJM (COMED zone), EPEX-BE, EPEX-FR, EPEX-DE",
+    "verified_against": "Full arXiv v2 PDF (2008.08004v2, 22 Dec 2020; preprint of Applied Energy 293:116983) - pages 1-22 read directly, cross-checked with two ar5iv full-text fetches; Elsevier published version not accessed"
+   },
+   {
+    "agent_id": "aaaf34164dcae70d0",
+    "columns": {
+     "gate_time_stated": "Partial — generic 'gate closure on day d−1 ... typically around midday' (Fig. 1); no per-market exact gate times",
+     "model_run_id_stated": "Not stated — no NWP model, forecast run, or cycle identifier mentioned anywhere",
+     "init_time_stated": "Not stated — no initialisation time given for any exogenous forecast input",
+     "publication_time_stated": "Partial — forecasts 'for day d available on day d−1' (Sec. 4.1); day-level only, no clock-time publication/dissemination stated",
+     "gate_admissibility_checked": "No — day d−1 availability asserted, never verified against the ~midday gate closure it itself describes",
+     "revision_handling": "Not stated — no discussion of forecast revisions/vintages; only DST gaps handled (averaging/interpolation, Sec. 3.1)"
+    },
+    "market": "Nord Pool, PJM, EPEX-BE, EPEX-FR, EPEX-DE — five day-ahead auction markets, 6-year datasets each",
+    "verified_against": "Full text of arXiv v2 PDF (arXiv:2008.08004v2, 21 Dec 2020, \"Preprint submitted to Applied Energy\"), Sections 1-8 read in full including figures/tables; published Applied Energy 293:116983 page not accessible (ScienceDirect 403), so published-version wording not independently confirmed."
+   },
+   {
+    "agent_id": "a24458f99ea5899c9",
+    "columns": {
+     "gate_time_stated": "Partial — bids 'before gate closure on day d−1 … typically around midday'; no exact per-market times",
+     "model_run_id_stated": "Not stated — no NWP model, forecast run, or issue/version ever identified",
+     "init_time_stated": "Not stated — initialisation/issue times of the day-ahead forecasts never given",
+     "publication_time_stated": "Partial — forecasts only described as 'available on day d−1'; no publication clock time",
+     "gate_admissibility_checked": "No — pre-gate availability assumed via 'available on day d−1'; never verified against publication schedules",
+     "revision_handling": "Not stated — forecast revisions/vintages on transparency platforms not addressed"
+    },
+    "market": "Yes — Nord Pool, PJM (COMED), EPEX-BE, EPEX-FR, EPEX-DE; five day-ahead auction markets",
+    "verified_against": "Full arXiv v2 PDF (arXiv:2008.08004v2, 21 Dec 2020, 26 pp. incl. references), read in full pages 1-27; accepted-version preprint of Applied Energy 293:116983. Publisher version not accessed directly."
+   }
+  ],
+  "v2:b449e0027c060d9271a343104012c6057c7f31ca802e67a30042ecfb079933bb": [
+   {
+    "agent_id": "a26b2d2ce6cd5f11e",
+    "columns": {
+     "gate_time_stated": "Partial — last tradable day (Wednesday, before Saturday delivery start) stated; no intraday clock time",
+     "model_run_id_stated": "No — public JMA weekly forecast product; no NWP model, run ID, or cycle identified",
+     "init_time_stated": "Not stated — issuance day (Wednesday) given, but no initialisation/base time of forecast runs",
+     "publication_time_stated": "Partial — Wednesday-issued forecast vintage specified; publication clock hour never stated",
+     "gate_admissibility_checked": "Partial — Wednesday forecast deliberately matched to last trading day; same-day intraday ordering unverified",
+     "revision_handling": "Partial — daily-updated forecasts archived in full; gate-day (Wednesday) vintage selected; issuance frequency unstated"
+    },
+    "market": "JEPX (Japan) weekly-average spot price, one-week-ahead; gate is JEPX weekly forward trading",
+    "verified_against": "full PDF — Kanazawa University repository OA copy (kanazawa-u.repo.nii.ac.jp/record/60877), identical to Journal of Energy Markets 14(3):1-26, DOI 10.21314/JEM.2021.004; all 26 journal pages read"
+   },
+   {
+    "agent_id": "a3e5ff371d13adf7b",
+    "columns": {
+     "gate_time_stated": "Partial - Wednesday stated as last tradable day for weekly forwards; continuous session, no clock time",
+     "model_run_id_stated": "Not stated - public JMA weekly forecast product; no NWP model, product version, or run named",
+     "init_time_stated": "Not stated - no initialisation time/hour of any underlying weather model run given",
+     "publication_time_stated": "Partial - Wednesday issuance day of forecast stated; time of day never given",
+     "gate_admissibility_checked": "Partial - Wednesday forecast deliberately matched to last tradable day; intraday ordering and forward-price timing unverified",
+     "revision_handling": "Partial - fixes one weekly vintage (Wednesday); daily JMA forecast updates not otherwise discussed"
+    },
+    "market": "JEPX: weekly forward products (system/Tokyo/Kansai, base+daytime); target is weekly-average day-ahead spot price",
+    "verified_against": "Full published PDF (publisher-typeset Journal of Energy Markets 14(3):1-26, OA copy at kanazawa-u.repo.nii.ac.jp record 60877), all pages read; online appendices A-D not accessed."
+   },
+   {
+    "agent_id": "abc258df2007fea98",
+    "columns": {
+     "gate_time_stated": "Partial — Wednesday last tradable day (3 days pre-delivery) stated; no clock time",
+     "model_run_id_stated": "Not stated — no NWP model, run ID, or forecast cycle identified",
+     "init_time_stated": "Not stated — only forecast issue day (Wednesday) given, no initialisation time",
+     "publication_time_stated": "Partial — Wednesday's published weekly forecast specified; publication clock time not stated",
+     "gate_admissibility_checked": "Partial — Wednesday forecast deliberately aligned to last trading day; intraday ordering unverified",
+     "revision_handling": "Partial — single Wednesday vintage chosen from daily-updated forecasts; revisions not otherwise analysed"
+    },
+    "market": "JEPX day-ahead spot (system, Tokyo, Kansai areas); weekly forward products for arbitrage",
+    "verified_against": "Full published PDF (Journal of Energy Markets 14(3):1-26, DOI 10.21314/JEM.2021.004) read in entirety via Kanazawa University repository (record 60877); online-only appendices A-D not accessible."
+   }
+  ],
+  "v2:0f7cc9e987592fdb8b3286d54d6ce5d1bd82d153df6e06bbd603d05c9d68788a": [
+   {
+    "agent_id": "ac66daef654765b23",
+    "columns": {
+     "gate_time_stated": "No — Nord Pool 12:00 CET gate closure never mentioned anywhere in the paper",
+     "model_run_id_stated": "No — no NWP model, run ID mentioned; no weather forecast product used at all",
+     "init_time_stated": "No — no initialisation time; inputs are lagged historical series, not model runs",
+     "publication_time_stated": "No — publication/dissemination time of any input never stated",
+     "gate_admissibility_checked": "No — no look-ahead discussion; D-1 realised values post-12:00 unavailable at gate, unaddressed",
+     "revision_handling": "Not stated — no mention of data revisions, settlement versions, or vintages"
+    },
+    "market": "Yes — Nord Pool day-ahead, Denmark DK1 area price; 1 May–31 Aug 2019, energidataservice.dk",
+    "verified_against": "full PDF — MDPI OA file energies-16-05152.pdf, all 17 pages read (title page through references)"
+   },
+   {
+    "agent_id": "af1e071139b2bac2a",
+    "columns": {
+     "gate_time_stated": "Not stated — Nord Pool 12:00 CET gate closure never mentioned anywhere",
+     "model_run_id_stated": "Not stated — no NWP model used or identified at all",
+     "init_time_stated": "Not stated — no initialisation time; inputs are historical lags, not forecasts",
+     "publication_time_stated": "No — never states when energidataservice.dk series are published or disseminated",
+     "gate_admissibility_checked": "No — one-day-lag features' availability at day-ahead gate never verified; likely leakage",
+     "revision_handling": "Not stated — no mention of data revisions or vintage of retrieved series"
+    },
+    "market": "Yes — Denmark DK1 day-ahead (Nord Pool area), May–Aug 2019, energidataservice.dk",
+    "verified_against": "full PDF — all 17 pages of the published MDPI version (energies-16-05152.pdf) read directly"
+   },
+   {
+    "agent_id": "a6a6e6bf0019f0693",
+    "columns": {
+     "gate_time_stated": "No — bidding gate/deadline (e.g., Nord Pool 12:00) never mentioned anywhere",
+     "model_run_id_stated": "No — no NWP or forecast product used or identified",
+     "init_time_stated": "No — no forecast inputs, hence no initialisation time given",
+     "publication_time_stated": "No — publication/dissemination timing of any input series never stated",
+     "gate_admissibility_checked": "No — operational availability before gate never discussed; D-1 lags unexamined for leakage",
+     "revision_handling": "Not stated — no mention of data revisions, versions, or vintages"
+    },
+    "market": "Yes — Danish day-ahead market, DK1 zone; energidataservice.dk; 1 May–31 Aug 2019",
+    "verified_against": "full PDF (MDPI OA, energies-16-05152.pdf, all 17 pages read page-by-page)"
+   },
+   {
+    "agent_id": "ace252b126f07ee61",
+    "columns": {
+     "gate_time_stated": "No — Nord Pool 12:00 CET day-ahead gate closure never mentioned.",
+     "model_run_id_stated": "Not stated — no NWP product or model run identified.",
+     "init_time_stated": "Not stated — no NWP used; no initialisation time given.",
+     "publication_time_stated": "No — publication/dissemination times of any input never stated.",
+     "gate_admissibility_checked": "No — one-day-lag features partly post-gate for delivery-day forecasts; never discussed.",
+     "revision_handling": "Not stated — no mention of revisions, vintages, or preliminary-vs-settled data."
+    },
+    "market": "Nord Pool Danish DK1 day-ahead market; energidataservice.dk; 1 May–31 Aug 2019.",
+    "verified_against": "full PDF — MDPI article_deploy PDF (energies-16-05152.pdf, 17 pages), read in full"
+   },
+   {
+    "agent_id": "ab62a9100ba46a01a",
+    "columns": {
+     "gate_time_stated": "Not stated - no gate-closure or auction deadline mentioned; only calendar-day lags used.",
+     "model_run_id_stated": "Not stated - no NWP model, version, or run identifier appears anywhere.",
+     "init_time_stated": "Not stated - no initialisation timestamp; inputs are lagged realisations, not model runs.",
+     "publication_time_stated": "Not stated - no dissemination timestamp for price, generation, load, or exchange series.",
+     "gate_admissibility_checked": "No - lag-1 realised generation/consumption used without any availability-before-gate check.",
+     "revision_handling": "Not stated - no mention of revisions, vintages, or restated Energinet series."
+    },
+    "market": "Nord Pool day-ahead, Danish DK1 zone; hourly; May-Aug 2019, test August 2019.",
+    "verified_against": "Full PDF (MDPI open access, energies-16-05152, 17 pages) fetched from mdpi-res.com and read in full, all sections including Table 1 feature list, Figures 5-8 SHAP analysis, and the Data Availability Statement. The publisher landing page (mdpi.com/1996-1073/16/13/5152) returned HTTP 403, but the PDF is the version of record."
+   }
+  ],
+  "v2:fff63a5433c0f0f9e7a38c450cf6ff2291c87a355e8335aa8ca13e0e52af93fc": [
+   {
+    "agent_id": "ac356deb5ecb21fcc",
+    "columns": {
+     "gate_time_stated": "Yes — day-ahead market 'traded at 12 o'clock for the next day'; timezone left implicit",
+     "model_run_id_stated": "No — no forecast run, version, or issue identifier for EEX expected-production data",
+     "init_time_stated": "No — initialisation/issue time of underlying renewable forecasts never mentioned",
+     "publication_time_stated": "No — next-day infeed forecast availability asserted, but no publication/dissemination time given",
+     "gate_admissibility_checked": "Partial — qualitative argument inputs precede 12:00 auction; FTP vintage/publication timestamps never verified",
+     "revision_handling": "Not stated — EEX expected-production revisions/vintages unaddressed; only two missing days excluded"
+    },
+    "market": "German EPEX Spot day-ahead hourly auction (EPEX DE; DE/AT until Oct 2018), 2010-2019",
+    "verified_against": "Full arXiv v2 PDF (2007.13530v2, 2 Feb 2022, 30 pages, \"Preprint submitted to Journal of Commodity Markets\" — matches JCOMM 100246 publication) read in full, plus arXiv abstract page for version history; publisher (ScienceDirect) version itself not accessed."
+   },
+   {
+    "agent_id": "aaa6787bcd2101443",
+    "columns": {
+     "gate_time_stated": "Yes — day-ahead market 'traded at 12 o'clock for the next day' (Sec. 4)",
+     "model_run_id_stated": "No — no NWP/forecast model or run behind EEX 'expected production' identified",
+     "init_time_stated": "No — initialisation time of the infeed forecasts never stated",
+     "publication_time_stated": "No — when EEX Transparency publishes the expected-production data is never stated",
+     "gate_admissibility_checked": "Partial — asserts next-day infeed forecasts usable at daily recalibration; no publication-timestamp verification vs 12:00 gate",
+     "revision_handling": "Not stated — no vintage/revision discussion; two days with missing EEX data excluded (footnote 5)"
+    },
+    "market": "EPEX Spot German day-ahead hourly auction (DE/AT until Oct 2018); data 2010-2019, tests 2015-2019",
+    "verified_against": "Full arXiv v2 PDF (2007.13530v2, 2 Feb 2022; accepted manuscript 'Preprint submitted to Journal of Commodity Markets'), all 32 pages read; Elsevier published version not accessed directly"
+   },
+   {
+    "agent_id": "a6601ad5028d3d279",
+    "columns": {
+     "gate_time_stated": "Yes — \"day-ahead market, which is traded at 12 o'clock for the next day\"; timezone not given",
+     "model_run_id_stated": "No — no NWP model named; inputs are infeed forecasts, provenance behind them never identified",
+     "init_time_stated": "Not stated — no initialisation/issue time of the wind/PV infeed forecasts given",
+     "publication_time_stated": "No — publication time of EEX transparency expected-generation data never stated; only \"forecasts... for the next day\"",
+     "gate_admissibility_checked": "Partial — explicit information-set argument vs 12:00 gate, but publication timestamps/forecast vintages never verified",
+     "revision_handling": "Not stated — no forecast-version/revision discussion; only two missing-data days excluded (footnote 5)"
+    },
+    "market": "EPEX Spot German day-ahead auction (EPEX DE; DE/AT until Oct 2018), hourly prices 2010-2019",
+    "verified_against": "Full arXiv v2 PDF (2007.13530v2, 2 Feb 2022), all 32 pages read; post-referee version submitted to Journal of Commodity Markets, matching the 2022 JCOMM 28, 100246 title/authors (long-term HPFC part excluded from coding; short-term day-ahead part is the included scope)"
+   },
+   {
+    "agent_id": "a9f49306c21e83ba0",
+    "columns": {
+     "gate_time_stated": "Yes — day-ahead market \"traded at 12 o'clock for the next day\" (Sec. 4)",
+     "model_run_id_stated": "No — no NWP or forecast-run identifier mentioned anywhere",
+     "init_time_stated": "No — initialisation/issue time of the infeed forecasts never stated",
+     "publication_time_stated": "Not stated — EEX Transparency publication/dissemination time of expected infeed never given",
+     "gate_admissibility_checked": "Partial — asserts prices up to current day and next-day infeed forecasts usable at 12:00; no timestamp verification",
+     "revision_handling": "Not stated — vintage of archived expected-production data unaddressed; only two missing days excluded"
+    },
+    "market": "German EPEX Spot day-ahead hourly auction (DE; DE/AT until Oct 2018), 2010-2019",
+    "verified_against": "Full arXiv v2 PDF (2007.13530v2, Feb 2022, 'Preprint submitted to Journal of Commodity Markets'), all 31 content pages read; published JCOMM version not directly accessed"
+   },
+   {
+    "agent_id": "af805e1957625c00c",
+    "columns": {
+     "gate_time_stated": "Yes - 'day-ahead market, which is traded at 12 o'clock for the next day' (p.12)",
+     "model_run_id_stated": "No - no NWP run, cycle or forecast-vintage identifier given anywhere",
+     "init_time_stated": "Not stated - no initialisation or forecast-issue time appears in the text",
+     "publication_time_stated": "Not stated - availability only implied via gate reference; no dissemination timestamp given",
+     "gate_admissibility_checked": "Partial - availability asserted against the 12:00 gate, but no timestamp or vintage verification",
+     "revision_handling": "Not stated - revisions/restatements of EEX expected-generation series never discussed"
+    },
+    "market": "EPEX Spot German day-ahead auction (EPEX DE; DE/AT pre-Oct-2018), hourly, 2010-2019",
+    "verified_against": "Full arXiv v2 PDF (2 Feb 2022, \"Preprint submitted to Journal of Commodity Markets\", 25+ pp., identical scope to the published JCoMM 28:100246 article) read in full via WebFetch-retrieved PDF, pages 1-26. Publisher HTML (linkinghub.elsevier.com/retrieve/pii/S2405851322000046) returned only a redirect stub and was not readable."
+   }
+  ],
+  "v2:53c925a44d128a8356767fd202d16c1d98ecb327791ae3c9d6d4e08af6afce82": [
+   {
+    "agent_id": "a019c432dfc2fdaca",
+    "columns": {
+     "gate_time_stated": "Yes — auction \"once a day at noon\"; information cutoff \"around 11:30 CET on day T-1\"",
+     "model_run_id_stated": "No — no NWP model or run identifiers; weather enters only via derived DA forecasts",
+     "init_time_stated": "Not stated — initialisation time of underlying load/RES forecasts never given",
+     "publication_time_stated": "Partial — asserts inputs available by ~11:30 CET day T-1; no actual publication schedule given",
+     "gate_admissibility_checked": "Partial — asserted (\"input does not violate this assumption\"; T-2 lags for EUA/fuels), no timestamp verification",
+     "revision_handling": "Not stated — no mention of forecast revisions, vintages, or ex-post corrected values"
+    },
+    "market": "Germany, EPEX day-ahead hourly auction (noon), data 01.01.2015-31.12.2020, out-of-sample 554 days",
+    "verified_against": "Full arXiv v2 PDF (arXiv:2207.02832v2, dated 10 Dec 2022; preprint of Energy Economics 125, 106843) — all 13 pages read, including Sections 3 and 4.1; ScienceDirect publisher page inaccessible (HTTP 403)"
+   },
+   {
+    "agent_id": "ad6e6f954dc4dba9e",
+    "columns": {
+     "gate_time_stated": "Yes — day-ahead auction 'once a day at noon'; info cutoff ~11:30 CET on T−1",
+     "model_run_id_stated": "Not stated — no NWP model or run identifier mentioned anywhere",
+     "init_time_stated": "Not stated — no NWP initialisation time given; inputs are pre-made DA forecasts",
+     "publication_time_stated": "Partial — asserts inputs available 'at around 11:30 CET on day T−1'; no actual publication timestamps",
+     "gate_admissibility_checked": "Partial — admissibility asserted and EUA/fuels lagged to T−2; no timestamp evidence for load/RES forecasts",
+     "revision_handling": "Not stated — no mention of data revisions, vintages, or as-of snapshots"
+    },
+    "market": "German day-ahead power market, hourly day-ahead auction prices, 2015-2020",
+    "verified_against": "Full arXiv v2 PDF (arXiv:2207.02832v2, dated 10 Dec 2022), all 13 pages read; this is the preprint of Energy Economics 125 (2023) 106843. Publisher version not accessed."
+   },
+   {
+    "agent_id": "a742befb0724be205",
+    "columns": {
+     "gate_time_stated": "Yes — auction 'once a day at noon'; forecasts use information available ~11:30 CET on day T-1",
+     "model_run_id_stated": "No — no NWP model or run identified; inputs are generation forecasts, not weather fields",
+     "init_time_stated": "No — no initialisation time of any underlying forecast/NWP run mentioned",
+     "publication_time_stated": "Partial — availability by ~11:30 CET day T-1 asserted; no actual publication/dissemination timestamps given",
+     "gate_admissibility_checked": "Partial — admissibility asserted by design (T-2 lags for EUA/fuels); load/RES forecast availability assumed, not verified",
+     "revision_handling": "Not stated — no discussion of forecast revisions/versions or forecast-vs-realised substitution"
+    },
+    "market": "German day-ahead market (noon uniform-price auction), hourly prices 01.2015-12.2020",
+    "verified_against": "Full arXiv v2 PDF (arXiv:2207.02832v2, 13 pp., 10 Dec 2022 preprint of Energy Economics 125, 106843), read in full; ScienceDirect published version inaccessible (HTTP 403)"
+   },
+   {
+    "agent_id": "ab4adee72cb841ecb",
+    "columns": {
+     "gate_time_stated": "Yes — auction 'takes place once a day at noon'; information cutoff 'around 11:30 CET on day T−1'",
+     "model_run_id_stated": "No — no NWP model or run identifier mentioned anywhere",
+     "init_time_stated": "Not stated — initialisation times never discussed",
+     "publication_time_stated": "Partial — asserts inputs available by ~11:30 CET day T−1; no actual publication/dissemination times given",
+     "gate_admissibility_checked": "Partial — asserted ('considered input does not violate this assumption'), enforced via T−2 lags for EUA/fuels, but never verified with timestamps",
+     "revision_handling": "Not stated — no mention of forecast revisions, vintages, or archive updates"
+    },
+    "market": "Germany, EPEX day-ahead hourly auction (uniform price, noon), 01.2015-12.2020",
+    "verified_against": "Full arXiv v2 PDF (arXiv:2207.02832v2, 10 Dec 2022), all 13 pages read — accepted-version preprint of Energy Economics 125 (2023) 106843; publisher version of record not accessed"
+   },
+   {
+    "agent_id": "a185bfe9803424a3e",
+    "columns": {
+     "gate_time_stated": "Yes - auction \"once a day at noon\"; assumed information cut-off 11:30 CET, D-1",
+     "model_run_id_stated": "No - no NWP model, ensemble, or run identifier mentioned anywhere",
+     "init_time_stated": "Not stated - no initialisation or issue time given for load/RES forecasts",
+     "publication_time_stated": "No - only an assumed 11:30 CET availability; actual dissemination time never given",
+     "gate_admissibility_checked": "Partial - assumption asserted, enforced via T-2 fuel/EUA lags; weather inputs themselves unverified",
+     "revision_handling": "Not stated - no vintage control or mention of revised/restated forecast series"
+    },
+    "market": "Germany day-ahead auction, hourly S=24, 01.01.2015-31.12.2020; exchange/operator never named",
+    "verified_against": "Full arXiv v2 PDF (2207.02832v2, 10 Dec 2022, 13 pp.) read end-to-end — Secs. 1-6, Figs. 1-7, Tables 1-2, references. Publisher page (ScienceDirect S0140988323003419) returned HTTP 403; the PUBLISHED Energy Economics 125:106843 abstract was obtained only via search-result text (ADS/Elsevier snippets), which differs from arXiv v2 by adding \"a realistic trading simulation\" and \"per-transaction profits\" — that trading-simulation section itself was NOT accessible and is coded from the abstract wording alone."
+   }
+  ],
+  "v2:c6c25320617f325f20f59d70a221249f76ba036ac215088b2619efc7ad3544b5": [
+   {
+    "agent_id": "a4b9e7f4a10507d80",
+    "columns": {
+     "gate_time_stated": "No — no auction/gate-closure time given; defers to Lago et al. (2020) for market description",
+     "model_run_id_stated": "No — no NWP or forecast-run identifiers anywhere",
+     "init_time_stated": "No — initialisation times never mentioned",
+     "publication_time_stated": "No — never states when exogenous day-ahead forecasts were published/disseminated",
+     "gate_admissibility_checked": "No — no check that inputs pre-date the bidding gate; availability implicitly assumed via Lago benchmark design",
+     "revision_handling": "Not stated — no mention of data revisions, vintages, or ENTSO-E forecast versions"
+    },
+    "market": "Five day-ahead markets from Lago et al. benchmark: EPEX-DE, PJM, EPEX-BE, EPEX-FR, Nord Pool",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2204.10154v1, 21 Apr 2022, 29 pp.) read in entirety; publisher page (Energy Economics) returned HTTP 403, published version not directly checked"
+   },
+   {
+    "agent_id": "a1aa877d6a900c668",
+    "columns": {
+     "gate_time_stated": "No — no auction/gate-closure time given; defers to Lago et al. (2020) for market description",
+     "model_run_id_stated": "No — no NWP/forecast run identifiers mentioned anywhere",
+     "init_time_stated": "No — initialisation time of forecast inputs never mentioned",
+     "publication_time_stated": "No — publication/dissemination time of exogenous or load forecasts never stated",
+     "gate_admissibility_checked": "No — availability before bidding gate never discussed; relies implicitly on Lago benchmark convention",
+     "revision_handling": "Not stated — data revisions never mentioned for prices, exogenous variables, or ENTSO-E load"
+    },
+    "market": "Yes — EPEX-DE, PJM, EPEX-BE, EPEX-FR, Nord Pool (Lago benchmark); German load example",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2204.10154v1, 21 Apr 2022, all 29 pages incl. appendices) read in full; ScienceDirect publisher page returned HTTP 403, so published Energy Economics 120 (2023) text not directly verified"
+   },
+   {
+    "agent_id": "ab326d045a6b899a3",
+    "columns": {
+     "gate_time_stated": "No — auction gate-closure time never given; market description deferred to Lago et al. (2020)",
+     "model_run_id_stated": "No — no NWP model or model run identified anywhere",
+     "init_time_stated": "No — initialisation/run times never mentioned",
+     "publication_time_stated": "No — publication/dissemination timing of exogenous forecast inputs never stated",
+     "gate_admissibility_checked": "No — no pre-gate availability verification; timing assumptions inherited from Lago et al. benchmark",
+     "revision_handling": "Not stated — no mention of data revisions, vintages, or forecast updates"
+    },
+    "market": "EPEX-DE, EPEX-BE, EPEX-FR, PJM, Nord Pool (Lago et al. 2020 benchmark); plus German load side-case",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2204.10154, 21 Apr 2022, 29 pp.) read in entirety; publisher Energy Economics page returned HTTP 403 (abstract not accessed)"
+   },
+   {
+    "agent_id": "a9b3e3b9f20f9ff9d",
+    "columns": {
+     "gate_time_stated": "Not stated — no gate-closure clock time; only 'information set available at day t-1'",
+     "model_run_id_stated": "Not stated — no NWP model, ensemble, or run identifier appears anywhere in text",
+     "init_time_stated": "Not stated — no initialisation time or lead time for any input given",
+     "publication_time_stated": "Not stated — no publication or dissemination time for any exogenous input",
+     "gate_admissibility_checked": "No — only generic F_{t-1} and backward-looking rolling windows; no input-level availability check",
+     "revision_handling": "Not stated — no vintage/revision discussion; ENTSO-E actual load used without vintage note"
+    },
+    "market": "EPEX-DE, EPEX-BE, EPEX-FR, Nord Pool, PJM day-ahead; plus German ENTSO-E load side-example",
+    "verified_against": "Full PDF read: arXiv v1 (2204.10154), all 28 pages incl. appendices and references. Publisher page (ScienceDirect S0140988323001007) returned HTTP 403; published Energy Economics 120:106602 text not accessible, so codings reflect the arXiv v1 preprint (no v2 exists; Semantic Scholar lists this arXiv PDF as the OA version of the DOI). Abstract cross-checked via arXiv abs page and Semantic Scholar API."
+   }
+  ],
+  "v2:c3d56d84939a4cd7ad429e47f7687ff5913a92aefd2d62b806e551c0783cf4de": [
+   {
+    "agent_id": "a0854534704e2422e",
+    "columns": {
+     "gate_time_stated": "No — 'once-per-day uniform-price auction' mentioned; no gate-closure clock time for any market",
+     "model_run_id_stated": "No — no NWP or forecast-model run identifiers mentioned",
+     "init_time_stated": "No — no initialisation times for any forecast input given",
+     "publication_time_stated": "No — never states when day-ahead load/RES forecasts are published or disseminated",
+     "gate_admissibility_checked": "No — 'day-ahead forecast' label inherited from benchmark; no availability-before-gate verification",
+     "revision_handling": "Not stated — no discussion of forecast versions, updates, or revisions"
+    },
+    "market": "Yes — five day-ahead markets: Nord Pool (NP), PJM/COMED, EPEX-BE, EPEX-FR, EPEX-DE",
+    "verified_against": "Full arXiv v6 PDF (2104.05522v6, 4 Apr 2022 — accepted IJF version with journal footer), all 27 pages read including appendix"
+   },
+   {
+    "agent_id": "a4541c4570ed27f21",
+    "columns": {
+     "gate_time_stated": "No — 'once-per-day uniform-price auction' mentioned (Sec 2.2) but no gate-closure clock time given",
+     "model_run_id_stated": "No — no NWP/forecast model runs or IDs mentioned anywhere",
+     "init_time_stated": "No — issuance/initialisation time of the day-ahead forecasts never stated",
+     "publication_time_stated": "No — no statement of when exogenous forecasts were published or became available",
+     "gate_admissibility_checked": "No — availability before bidding gate never verified; admissibility inherited implicitly from Lago benchmark",
+     "revision_handling": "Not stated — no discussion of forecast vintages or revisions of exogenous series"
+    },
+    "market": "Yes — five day-ahead markets: Nord Pool (NP), PJM/COMED, EPEX-BE, EPEX-FR, EPEX-DE; hourly",
+    "verified_against": "Full arXiv v6 PDF (2104.05522, 4 Apr 2022, accepted IJF version incl. appendix) — all 27 pages read"
+   },
+   {
+    "agent_id": "a1783258dbd3d965a",
+    "columns": {
+     "gate_time_stated": "No — only generic 'once-per-day uniform-price auction'; no gate-closure clock time given",
+     "model_run_id_stated": "No — no NWP model, forecast run, or run ID mentioned anywhere",
+     "init_time_stated": "No — initialisation time of the underlying forecasts never mentioned",
+     "publication_time_stated": "No — publication/dissemination times of day-ahead load/wind/solar forecasts never stated",
+     "gate_admissibility_checked": "No — no availability check; admissibility implicit in 'day-ahead forecast' labels of Lago benchmark",
+     "revision_handling": "Not stated — no forecast/data revision discussion; only an erratum revising LEARx benchmark results"
+    },
+    "market": "Five day-ahead markets: Nord Pool (NP), PJM (COMED zonal), EPEX-BE, EPEX-FR, EPEX-DE; hourly, H=24",
+    "verified_against": "Full arXiv PDF v6 (2104.05522v6, 4 Apr 2022; journal-accepted IJF version) — all 27 pages read, including Table 1-3, Section 4 data/training methodology, and Appendices A.1-A.5"
+   },
+   {
+    "agent_id": "abedddead3afa90b2",
+    "columns": {
+     "gate_time_stated": "No — bidding gate/market-closure time never given; 'gate', 'noon', '12:00', 'deadline', 'bid', 'submit' absent from text.",
+     "model_run_id_stated": "No — no NWP run, cycle, model version, or forecast-vintage identifier appears anywhere in the paper.",
+     "init_time_stated": "No — no initialisation/issue time stated for any exogenous day-ahead forecast series.",
+     "publication_time_stated": "No — inputs are only labelled 'day-ahead forecasts'; publication/dissemination time is never stated for any market.",
+     "gate_admissibility_checked": "No — no check that covariates predated the bidding deadline, despite X spanning the H=24 forecast horizon.",
+     "revision_handling": "Not stated — 'revision', 'vintage', 'look-ahead', 'leakage' all absent; benchmark dataset used as-distributed without vintage discussion."
+    },
+    "market": "Five day-ahead wholesale power markets: Nord Pool (NP), PJM/COMED, EPEX-BE, EPEX-FR, EPEX-DE; hourly prices, 2,184 days each, 2-year test windows (2015-2018 depending on market).",
+    "verified_against": "arXiv v6 (2022-04-04) full text via ar5iv HTML rendering of arXiv:2104.05522 — Sections 1-5 incl. Section 3 (model/exogenous block), Section 4.1 (datasets + Table 1), Section 4.3.3 (training/recalibration), evaluation metrics. Targeted keyword sweeps run over the whole document for gate/timing/availability/revision terms. Publisher version (ScienceDirect S0169207022000413) and ResearchGate both returned HTTP 403; published IJF 39(2):884-900 text NOT directly read — arXiv v6 postdates acceptance and is treated as the accepted-manuscript proxy, so publisher-only copy-edits could not be checked."
+   }
+  ],
+  "v2:34ab7c8297bc8396a02a0694b0762173d9604bd2d15ba150cb4dd09b0f791bc5": [
+   {
+    "agent_id": "aa8e36f0d6edbb724",
+    "columns": {
+     "gate_time_stated": "Yes — predicts 'before noon'; 'European market closes at noon' (Sec. 2, 4.2)",
+     "model_run_id_stated": "No — no NWP model runs or IDs mentioned; only TSO names (Amprion, TenneT, 50Hertz)",
+     "init_time_stated": "No — no forecast initialisation times mentioned anywhere",
+     "publication_time_stated": "Partial — forecasts 'available before noon'; exact clock times only for Swiss prices (11:15am), gas index (6pm)",
+     "gate_admissibility_checked": "Partial — pre-noon availability asserted per feature; late gas index lagged 2 days; no timestamp/vintage verification",
+     "revision_handling": "Not stated — ENTSO-E revisions/vintages never discussed; archived platform values used as-is"
+    },
+    "market": "EPEX/EUPHEMIA-coupled day-ahead: France, Germany, Belgium (CH/NL/ES prices as extra features)",
+    "verified_against": "Full published PDF (version of record, Applied Energy 313:118752) via lrde.epita.fr author mirror; all 12 content pages read (HAL and ScienceDirect were access-blocked)"
+   },
+   {
+    "agent_id": "a03a1a78cac270122",
+    "columns": {
+     "gate_time_stated": "Yes — task is predicting 'before noon'; 'European market closes at noon' (Secs. 2, 4.2)",
+     "model_run_id_stated": "Not stated — no NWP model, cycle, or run identifier mentioned anywhere",
+     "init_time_stated": "Not stated — no initialisation time given for any forecast input",
+     "publication_time_stated": "Partial — forecasts 'available... before noon'; exact times only for Swiss prices (11:15am), gas index (6pm)",
+     "gate_admissibility_checked": "Partial — asserts pre-noon availability and lags gas index two days; no timestamp verification",
+     "revision_handling": "Not stated — ENTSO-E revisions/vintages ignored; only historical feature-coverage gaps (Belgian forecasts) noted"
+    },
+    "market": "EPEX day-ahead, EUPHEMIA-coupled: France, Germany, Belgium targets (Swiss/Dutch/Spanish prices as features)",
+    "verified_against": "Full published PDF (Applied Energy 313:118752 layout, all 12 pages) read via lrde.epita.fr mirror (https://www.lrde.epita.fr/dload-new/papers/tschora.22.apen.pdf); HAL and ScienceDirect were access-blocked; abstract cross-checked against Semantic Scholar/OpenAlex"
+   }
+  ],
+  "v2:9a69de02a9e6d269308dc46d9132fe3c50684d0eab7de9462994076899184297": [
+   {
+    "agent_id": "a6faa9128386a0bae",
+    "columns": {
+     "gate_time_stated": "Not stated — Korean day-ahead bidding gate/closure time never mentioned",
+     "model_run_id_stated": "Not stated — no NWP model or run identifier; observational data only",
+     "init_time_stated": "Not stated — no forecast initialisation time; no operational forecast used",
+     "publication_time_stated": "Not stated — no publication/dissemination time for KMA weather data given",
+     "gate_admissibility_checked": "No — target-day observed weather in day-ahead setup; availability never verified",
+     "revision_handling": "Not stated — data revisions/versions of weather or load never discussed"
+    },
+    "market": "Yes — Korean electricity market, system marginal price (SMP), national; day-ahead horizon",
+    "verified_against": "Publisher full-text HTML at link.springer.com (DOI redirect); full text visible to fetch tool, section-level verbatim quotes extracted from Sects. 3.1, 3.2 and Conclusion"
+   },
+   {
+    "agent_id": "a9880fdf12cb56358",
+    "columns": {
+     "gate_time_stated": "Not stated — no bid deadline/gate-closure time; only 'day-ahead forecasting' scheme described",
+     "model_run_id_stated": "Not stated — no NWP product or model run/cycle identified",
+     "init_time_stated": "Not stated — no initialisation time; no forecast weather product used",
+     "publication_time_stated": "Not stated — availability/publication times of weather, load, fuel inputs never given",
+     "gate_admissibility_checked": "No — full text has no admissibility check or market-timetable discussion",
+     "revision_handling": "Not stated — data revisions or observation updates never mentioned"
+    },
+    "market": "Korea (KPX) SMP — national system marginal price; day-ahead horizon; test year 2021",
+    "verified_against": "Publisher HTML full text at link.springer.com (abstract, Sections 1, 3.1, 3.2, and Conclusion read verbatim via multiple targeted fetches; PDF itself not downloaded)"
+   },
+   {
+    "agent_id": "af039892390f01924",
+    "columns": {
+     "gate_time_stated": "Not stated — no mention of KPX bidding deadline or SMP determination/announcement time",
+     "model_run_id_stated": "No — no NWP model, product, or run identifier mentioned",
+     "init_time_stated": "No — no initialisation/issue time for any weather input given",
+     "publication_time_stated": "No — never states when KMA weather data are published or become available",
+     "gate_admissibility_checked": "No — no check that weather/load inputs precede any bidding gate",
+     "revision_handling": "Not stated — no mention of data revisions or vintages"
+    },
+    "market": "Korea (KPX) system marginal price; hourly day-ahead SMP forecasting for 2021",
+    "verified_against": "Publisher full-text HTML at link.springer.com (Introduction, Sects. 2-3 incl. 3.1-3.3, Conclusion readable via WebFetch); PDF itself paywalled. Weather enters the price model indirectly: KMA temperature/sunshine feed the Step-1 load forecast, whose output (\"predicted load\") is a Step-2 SMP input. Two targeted extractions confirmed no sentence mentions bidding gate, publication time, or forecast-vs-observed status of the weather data."
+   }
+  ],
+  "v2:7d70707ac3849835810096a072976d55e04065cfc4650e8311ba298340b909a5": [
+   {
+    "agent_id": "a8c043d9f8923f0a7",
+    "columns": {
+     "gate_time_stated": "Yes — trading window 10:00 until 12:00 day before delivery stated (Sec 2.1)",
+     "model_run_id_stated": "Not stated — no NWP used; no run identifiers for ENTSO-E forecast series",
+     "init_time_stated": "Not stated — no initialisation times given for any forecast input",
+     "publication_time_stated": "No — never states when ENTSO-E day-ahead forecasts are published relative to gate",
+     "gate_admissibility_checked": "No — explicitly ex-post; import/export and scheduled generation are auction outcomes, unavailable pre-gate",
+     "revision_handling": "Not stated — drops missing hourly points, cites ENTSO-E data-quality issues; no vintage handling"
+    },
+    "market": "Yes — German day-ahead EPEX spot (DE-LU zone, SDAC-coupled), hourly MCP, 2017-2019",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2212.04805v1, 12 pages, Dec 2022); publisher page (ScienceDirect) inaccessible (HTTP 403); abstract matches published record"
+   },
+   {
+    "agent_id": "a2ac7f972c197d8eb",
+    "columns": {
+     "gate_time_stated": "Yes — 'Trading is possible from 10:00 until 12:00 the day before delivery' (Sec 2.1)",
+     "model_run_id_stated": "No — no NWP used; ENTSO-E forecast version/run never identified",
+     "init_time_stated": "Not stated — forecast initialisation time never mentioned",
+     "publication_time_stated": "No — publication time of ENTSO-E day-ahead forecasts never stated",
+     "gate_admissibility_checked": "No — explicitly ex-post; shuffled splits; scheduled generation/import-export are post-gate auction outcomes",
+     "revision_handling": "Not stated — missing hours dropped; ENTSO-E data-quality issues cited, no vintage/revision handling"
+    },
+    "market": "German day-ahead EPEX spot (DE-LU zone, incl. AT pre-Oct-2018); hourly MCP, 2017-2019",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2212.04805, 11 pages, read in full); publisher full text (ScienceDirect, DOI 10.1016/j.egyai.2023.100250) returned HTTP 403 and could not be checked against the preprint"
+   },
+   {
+    "agent_id": "a01c4cbce7b694a98",
+    "columns": {
+     "gate_time_stated": "Yes — trading window 10:00-12:00 the day before delivery stated (Sec. 2.1)",
+     "model_run_id_stated": "Not stated — TSO aggregate forecasts; no NWP model, provider run, or version identified",
+     "init_time_stated": "Not stated — no initialisation time of any underlying forecast given",
+     "publication_time_stated": "No — publication/dissemination times of ENTSO-E day-ahead forecasts never stated",
+     "gate_admissibility_checked": "No — never checked; paper is explicitly ex-post; scheduled generation and import/export are post-gate outcomes",
+     "revision_handling": "Not stated — drops hours with missing values; cites ENTSO-E data-quality issues; no vintage/revision handling"
+    },
+    "market": "German day-ahead spot (DE-LU bidding zone), EPEX/SDAC coupled hourly MCP, 2017-2019, ENTSO-E data",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2212.04805v1, 9 Dec 2022, 13 pp., all pages read); publisher page (ScienceDirect, DOI 10.1016/j.egyai.2023.100250) returned HTTP 403, so published version not directly compared."
+   },
+   {
+    "agent_id": "a435a56be2a40bcce",
+    "columns": {
+     "gate_time_stated": "Yes - Sec. 2.1: 'from 10:00 until 12:00 the day before delivery at t0'",
+     "model_run_id_stated": "No - no weather model, provider, product, or run identifier named anywhere",
+     "init_time_stated": "Not stated - no issue time or vintage given for the ENTSO-E day-ahead forecasts",
+     "publication_time_stated": "Not stated - publication/dissemination time of the ENTSO-E forecasts is never mentioned",
+     "gate_admissibility_checked": "No - ex-post design, shuffled splits, and post-gate scheduled generation/cross-border exchange used as features",
+     "revision_handling": "No - missing hours dropped only; ENTSO-E data-quality caveat cited, no vintage/revision handling"
+    },
+    "market": "German day-ahead market (EPEX SPOT / SDAC, DE-LU bidding zone), hourly prices, 2017-2019, ENTSO-E",
+    "verified_against": "Full arXiv v1 PDF (arXiv:2212.04805v1, 13 pp., all pages read end-to-end, incl. Sec. 2.1 market description, Sec. 3.1 Data, Sec. 3.2 Model, Sec. 5 Discussion, references). Publisher full text (ScienceDirect PII S2666546823000228, Energy and AI 13:100250) returned HTTP 403 and could not be read; published abstract cross-checked via search metadata and matches the arXiv abstract verbatim on the load-bearing phrase \"designed for the ex-post analysis of prices\". Codings above rest on arXiv v1 text; no publisher-version diff could be verified."
+   }
+  ],
+  "v2:141aab70edbcca507dc0c04bf9c2343149df59565e27cb63fc080f3ee4a5a45e": [
+   {
+    "agent_id": "af7fb561de8d63ddb",
+    "columns": {
+     "gate_time_stated": "Partial — states continuous rebidding until dispatch capture; NEM has no fixed gate; forecasts issued midnight",
+     "model_run_id_stated": "No — no NWP model run, cycle, or forecast vintage ever identified",
+     "init_time_stated": "Not stated — no initialisation/issue time given for the WWO weather data",
+     "publication_time_stated": "No — weather publication time never stated; only AEMO pre-dispatch release times (00:00, half-hourly) given",
+     "gate_admissibility_checked": "No — never verifies weather values were available at the midnight forecast issuance time",
+     "revision_handling": "Not stated — no discussion of data revisions or which weather forecast vintage is used"
+    },
+    "market": "Australian NEM, South Australia region; 5-min spot prices; 24-hour-ahead rolling forecasts (no DA auction)",
+    "verified_against": "Full arXiv v2 PDF (2311.07289v2, 12 Dec 2023, 37 pp., 'Preprint submitted to International Journal of Forecasting' — accepted-manuscript equivalent); published ScienceDirect version not accessed"
+   },
+   {
+    "agent_id": "a55fc588b35d8c7d6",
+    "columns": {
+     "gate_time_stated": "Partial — no fixed gate exists in NEM; continuous rebidding until dispatch capture described; forecast issue fixed at midnight",
+     "model_run_id_stated": "No — no NWP model, run ID, or forecast-system details given for World Weather Online data",
+     "init_time_stated": "No — initialisation/issue times of the weather forecasts never stated",
+     "publication_time_stated": "No for weather inputs; AEMO pre-dispatch benchmark timing (00:00 issues, half-hourly updates) is stated",
+     "gate_admissibility_checked": "No — 'forecast' label implies ex-ante intent, but availability before midnight issuance never verified",
+     "revision_handling": "Not stated for weather; benchmark pre-dispatch revisions handled by fixing the 00:00 daily issue"
+    },
+    "market": "Australian NEM, South Australia region; 5-minute spot prices; 24-hour-ahead probabilistic forecasts issued daily at midnight",
+    "verified_against": "Full arXiv v2 PDF (2311.07289v2, 12 Dec 2023; preprint submitted to International Journal of Forecasting, accepted as IJF 40(4) 1421-1437) — all 36 pages read, including Sections 1-8, acknowledgements, and references"
+   },
+   {
+    "agent_id": "a92d867e3532d8bea",
+    "columns": {
+     "gate_time_stated": "Partial — states NEM has no day-ahead gate, continuous rebidding until dispatch; forecast issue time (midnight) stated",
+     "model_run_id_stated": "No — no NWP model, run, or forecast issue identified anywhere",
+     "init_time_stated": "Not stated — no initialisation/issue time for the weather inputs",
+     "publication_time_stated": "Not stated — never says when World Weather Online data is published/disseminated",
+     "gate_admissibility_checked": "No — never verifies weather inputs were available at the midnight forecast time",
+     "revision_handling": "Not stated — no mention of revisions, vintages, or 'latest available' handling"
+    },
+    "market": "Australian NEM, South Australia; 5-min spot price; 24-h-ahead forecasts issued daily at midnight",
+    "verified_against": "Full arXiv v2 PDF (2311.07289v2, 37 pp., 'Preprint submitted to International Journal of Forecasting'), read in entirety; published IJF version not directly accessed"
+   }
+  ],
+  "v2:095e129a890ba53b6a28dbd2f8eb55b2c4d402cde6cca4c44d239323115f998b": [
+   {
+    "agent_id": "a48f56a3edf8a269d",
+    "columns": {
+     "gate_time_stated": "Not verifiable — full text inaccessible; abstract does not mention the 10:00 JST gate",
+     "model_run_id_stated": "Not verifiable — body text inaccessible; no run/cycle identifiers in abstract",
+     "init_time_stated": "Not verifiable — no initialisation time in accessible text",
+     "publication_time_stated": "Not verifiable — accessible text never says when solar forecasts are published/disseminated",
+     "gate_admissibility_checked": "Not verifiable — no admissibility-vs-gate check visible in accessible text",
+     "revision_handling": "Not verifiable — data revisions not mentioned in accessible text"
+    },
+    "market": "JEPX spot (day-ahead auction), Japan; area vs system price not determinable from accessible text",
+    "verified_against": "Abstract only: OpenAlex inverted-index reconstruction cross-checked against OpenAIRE metadata (verbatim overlap) plus Crossref/DOAJ bibliographic records. Full PDF and publisher HTML inaccessible (ScienceDirect 403/CAPTCHA, DOAJ 403, Elsevier API key-gated, web.archive.org blocked); no OA mirror found despite Gold OA status."
+   },
+   {
+    "agent_id": "ad48c00d8b4087019",
+    "columns": {
+     "gate_time_stated": "Yes - Introduction states bids due 'by 10 AM the day before the trading day'",
+     "model_run_id_stated": "No - only 'GPV' named; MSM/GSM variant, resolution, run cycle all absent",
+     "init_time_stated": "Not stated - no GPV initialisation/base-time cycle mentioned anywhere",
+     "publication_time_stated": "Not stated - no GPV release/dissemination time given anywhere in the paper",
+     "gate_admissibility_checked": "No - 10 AM gate stated, but input availability before gate never verified",
+     "revision_handling": "Not stated - no mention of data revisions, vintages, or archive versions"
+    },
+    "market": "JEPX day-ahead spot, Kyushu area price, 48 half-hourly products; backtest year 2022",
+    "verified_against": "Full PDF (publisher version, CC BY-NC-ND) from Kyutech institutional repository kyutech.repo.nii.ac.jp/records/2002397 (file 10468127.pdf), text-extracted via r.jina.ai in three targeted passes with verbatim quote verification; ScienceDirect itself returned 403"
+   },
+   {
+    "agent_id": "a0c91c126051fffb1",
+    "columns": {
+     "gate_time_stated": "Yes — states bids \"must be bid by 10 AM the day before the trading day\"",
+     "model_run_id_stated": "No — GPV product (MSM/GSM/LFM) never identified",
+     "init_time_stated": "No — no initialisation/base time given for the GPV run used",
+     "publication_time_stated": "No — GPV dissemination time relative to 10 AM gate never stated",
+     "gate_admissibility_checked": "No — forecast inputs used, but pre-gate availability never verified or discussed",
+     "revision_handling": "Not stated — no mention of data revisions or vintages"
+    },
+    "market": "JEPX day-ahead spot, Kyushu area price; 48 half-hourly products",
+    "verified_against": "Full PDF (Gold OA copy at Kyutech institutional repository, kyutech.repo.nii.ac.jp record 2002397, file 10468127.pdf, read via text-rendering proxy in 3 passes); ScienceDirect page/PDF returned 403; abstract cross-checked via OpenAlex and repository metadata"
+   }
+  ],
+  "v2:7f3a172b9459f4b1a162ea404e2793be67317bfdf7801405f8558397fd514082": [
+   {
+    "agent_id": "a2e2e4790c6206cde",
+    "columns": {
+     "gate_time_stated": "Yes — DAM closes 11:00 day before delivery; prices released 13:00 (Sec 1.1)",
+     "model_run_id_stated": "Not stated — no NWP model used, no run identifiers anywhere",
+     "init_time_stated": "Not stated — no NWP initialisation times mentioned",
+     "publication_time_stated": "No — hourly/daily publication frequency noted, but never dissemination time relative to gate",
+     "gate_admissibility_checked": "No — realised same-hour wind/weather features; availability before 11:00 gate never examined",
+     "revision_handling": "Not stated — only DST 23/25-hour adjustment described; data revisions never mentioned"
+    },
+    "market": "I-SEM (island of Ireland) SEMOpx day-ahead market, hourly prices, Oct 2018 - Sep 2022",
+    "verified_against": "Full PDF read (arXiv:2408.05628v1, all 14 pages) plus arXiv abstract page and HTML rendering"
+   },
+   {
+    "agent_id": "ab919ecf3a5bf12d6",
+    "columns": {
+     "gate_time_stated": "Yes — market closes 11:00 day before delivery; prices released 13:00 D-1 (Sec 1.1)",
+     "model_run_id_stated": "Not stated — no NWP product used; inputs are historical observations, no run identifier",
+     "init_time_stated": "Not stated — no initialisation time applicable; realised historical data only",
+     "publication_time_stated": "Not stated — Met Éireann cadence (hourly/daily/monthly) noted, but no dissemination timing given",
+     "gate_admissibility_checked": "No — same-hour realised wind/SNSP/demand inputs unavailable at 11:00 D-1 gate; never discussed",
+     "revision_handling": "Not stated — no mention of data versions or revisions anywhere"
+    },
+    "market": "I-SEM (island of Ireland) day-ahead market; SEMOpx hourly DAM prices, Oct 2018–Sept 2022",
+    "verified_against": "full PDF (arXiv v1, 2408.05628, all 14 pages read including data/methodology sections, tables, conclusion, references)"
+   },
+   {
+    "agent_id": "ac2a5c87a58d477a3",
+    "columns": {
+     "gate_time_stated": "Yes - gate closure 11:00 D-1, prices released 13:00 D-1 (Sec 1.1)",
+     "model_run_id_stated": "No - no NWP or forecast products used, only realised observations",
+     "init_time_stated": "Not stated - no forecast inputs used, so no initialisation time given",
+     "publication_time_stated": "No - only publication frequency (hourly/daily/monthly) noted, never availability timing",
+     "gate_admissibility_checked": "No - contemporaneous realised weather/system values matched to target hour; look-ahead never discussed",
+     "revision_handling": "Not stated - only DST 23/25-hour cleaning and gas non-trading-day fill described"
+    },
+    "market": "Irish I-SEM day-ahead auction (SEMOpx DAM), hourly prices, Oct 2018 - Sep 2022",
+    "verified_against": "full PDF (arXiv v1, 2408.05628, all 12 pages read)"
+   }
+  ],
+  "v2:ca9e3bc2932791fb4f2b1374ca8a9f398372697d8bc6e3ffddad16a39a6a3133": [
+   {
+    "agent_id": "aa3557c0fd41243c7",
+    "columns": {
+     "gate_time_stated": "Yes — bidding deadline of 10:00 JST explicitly stated; 5 h pre-gate forecasting point (Sect. 3)",
+     "model_run_id_stated": "Partial — MSM-GPV named, cycle cutoff 18:00 UTC given; per-day run/lead-time mapping unspecified",
+     "init_time_stated": "Yes — issue cycles 03/06/09/15/18/21 UTC listed; latest usable cycle 18:00 UTC (Sect. 3.2)",
+     "publication_time_stated": "Partial — JMBSC issue schedule stated; dissemination lag between base time and file availability not addressed",
+     "gate_admissibility_checked": "Partial — explicit 05:00 JST cutoff 5 h pre-gate and Fig. 3 delay architecture; actual dissemination-time availability unverified",
+     "revision_handling": "Not stated — no discussion of superseding NWP runs, forecast reissues, or OCCTO actual-generation revisions"
+    },
+    "market": "JEPX day-ahead spot market, Kyushu area, Japan; 48 half-hourly prices per day",
+    "verified_against": "Full published PDF (MDPI version of record, all 17 pages, author-hosted copy at masahiromae.github.io; MDPI site blocked direct fetch)"
+   },
+   {
+    "agent_id": "a31055ae05dd7b62f",
+    "columns": {
+     "gate_time_stated": "Yes — \"bidding deadline of 10:00 JST\" stated explicitly (Section 3)",
+     "model_run_id_stated": "Yes — MSM-GPV named; run used is latest with base time up to 18:00 UTC",
+     "init_time_stated": "Yes — six daily cycles listed (03/06/09/15/18/21 UTC); 18:00 UTC cutoff run stated",
+     "publication_time_stated": "Partial — \"JMBSC issues... six times daily\" equates issue with base time; dissemination lag unstated",
+     "gate_admissibility_checked": "Partial — 05:00 JST cutoff, 5 h pre-gate buffer, Figure 3 timeline; actual GRIB2 dissemination time unverified",
+     "revision_handling": "Partial — latest admissible run selected at forecast point; run stitching over 7-day window undiscussed"
+    },
+    "market": "JEPX day-ahead, Kyushu area price (system price as covariate); 30-min, 48 frames/day",
+    "verified_against": "full PDF — published version (17/17 pages read), Energies 17(11) 2687, fetched from mdpi-res.com (version 1717226059); MDPI landing page blocked (403), abstract cross-checked via Semantic Scholar/OpenAlex"
+   },
+   {
+    "agent_id": "a59f8aa497c8b9078",
+    "columns": {
+     "gate_time_stated": "Yes - bidding deadline stated as 10:00 JST; forecast point 05:00 JST (5 h buffer).",
+     "model_run_id_stated": "Yes - MSM-GPV product named, 39 h forecast files, 18:00 UTC cycle identified as used.",
+     "init_time_stated": "Yes - cycles 03, 06, 09, 15, 18, 21 UTC listed; 18:00 UTC used.",
+     "publication_time_stated": "Partial - JMBSC 'issues' times equated with initialisation cycles; no dissemination lag or latency given.",
+     "gate_admissibility_checked": "Partial - explicit 05:00 JST cutoff before 10:00 gate, but availability inferred from initialisation.",
+     "revision_handling": "Not stated - no mention of MSM-GPV re-issues or OCCTO generation-data restatements."
+    },
+    "market": "JEPX day-ahead spot market, Kyushu area, Japan; 48 half-hourly delivery periods forecast.",
+    "verified_against": "Full PDF of the published version (Energies 2024, 17, 2687, 17 pp.), obtained from the author-hosted copy at https://masahiromae.github.io/pdf/journal/202406_Energies_WangMaeMatsuhashi.pdf; pages 1-14 read in full (pp. 15-17 are references/back matter). MDPI's own page and PDF endpoint both returned HTTP 403."
+   }
+  ],
+  "v2:672956d40a685cc3ba0ccb4508338384acb70d3dcc7d32109f16c1e79d31e164": [
+   {
+    "agent_id": "aac40acb52643a6d5",
+    "columns": {
+     "gate_time_stated": "Not stated — no auction/bidding deadline time (e.g., 12:00 CET) mentioned anywhere",
+     "model_run_id_stated": "Not stated — no NWP model, cycle, or run identifier mentioned",
+     "init_time_stated": "Not stated — no forecast initialisation time given for any exogenous input",
+     "publication_time_stated": "Not stated — inputs only labeled 'day-ahead exogenous variables'; no publication/dissemination time",
+     "gate_admissibility_checked": "No — no verification that inputs predate the gate; relies on benchmark dataset's day-ahead convention",
+     "revision_handling": "Not stated — 'records available on the transparency platform' used; no versioning/revision discussion"
+    },
+    "market": "Yes — day-ahead markets of Germany, Spain, Belgium, Sweden-Stockholm (SE3); ENTSO-E-based open datasets",
+    "verified_against": "full PDF (arXiv v2 of 2411.13921, 20 Dec 2024, 34 pages; all pages read including references and appendix)"
+   },
+   {
+    "agent_id": "a3e2ed50f222a18f5",
+    "columns": {
+     "gate_time_stated": "No — bidding gate/auction closure time never mentioned anywhere in paper",
+     "model_run_id_stated": "No — no NWP model, run, or forecast product ID mentioned",
+     "init_time_stated": "No — no forecast initialisation time given for any exogenous input",
+     "publication_time_stated": "No — never states when ENTSO-E day-ahead forecasts are published/disseminated",
+     "gate_admissibility_checked": "No — inputs called 'day-ahead exogenous variables'; availability before gate never verified",
+     "revision_handling": "Not stated — no mention of ENTSO-E revisions, vintages, or as-of snapshots"
+    },
+    "market": "Yes — day-ahead hourly prices: Germany, Spain, Belgium, Sweden-Stockholm SE3 (European markets)",
+    "verified_against": "full PDF — arXiv v2 (20 Dec 2024) of 2411.13921, all 34 pages read (main text pp. 1-21, references pp. 22-27, appendix pp. 28-34)"
+   }
+  ],
+  "v2:080b4d1e3b978a7b6aa7de0cd7370e03627d7205ee9cd2c72a30d3494deaa6a2": [
+   {
+    "agent_id": "ae589240c35f71787",
+    "columns": {
+     "gate_time_stated": "Partial — bidding described as 'conducted in the morning'; exact gate closure (10:00 JST) never given",
+     "model_run_id_stated": "Not stated — JMA forecast issuance/cycle (5/11/17 JST) never identified",
+     "init_time_stated": "Not stated — no initialisation time given for the JMA forecasts",
+     "publication_time_stated": "Partial — reserve margin timing stated (weekly Thursday; day-ahead 'evening'); JMA weather publication time absent",
+     "gate_admissibility_checked": "Partial — explicit for reserve margin (post-gate day-ahead margin used only hypothetically); weather forecasts unverified",
+     "revision_handling": "Not stated — weather-forecast vintage/issuance unspecified; revisions never discussed"
+    },
+    "market": "JEPX day-ahead (spot) market, Tokyo area price",
+    "verified_against": "Full PDF (author-hosted Google Drive copy linked from Matsumoto Lab site and researchmap), read via text extraction in three consistent passes, plus publisher abstract via Semantic Scholar DOI record; IEEE Xplore page itself not accessible"
+   },
+   {
+    "agent_id": "a3e40ec2fb6fdb8fb",
+    "columns": {
+     "gate_time_stated": "Partial — bidding 'conducted in the morning' stated; exact 10:00 gate-closure hour never given",
+     "model_run_id_stated": "No — JMA product named generically; no NWP model, run or cycle identified",
+     "init_time_stated": "No — no initialization time or forecast issue cycle mentioned anywhere",
+     "publication_time_stated": "Partial — reserve margins: yes ('evening of the previous day'); JMA weather forecast: no",
+     "gate_admissibility_checked": "Partial — explicit for reserve margin (post-gate day-ahead vintage excluded); weather-forecast timing unverified",
+     "revision_handling": "Partial — reserve-margin vintages compared (weekly vs day-ahead, ~20% RMSE gain); JMA announcement cycle unaddressed"
+    },
+    "market": "JEPX day-ahead (spot) market, Tokyo area, Japan; out-of-sample 2022-2023",
+    "verified_against": "Full PDF text of author-hosted OA copy (Google Drive link from researchmap/Matsumoto Lab), read via text-extraction proxy in three consistent passes; plus IEEE Xplore abstract via Semantic Scholar API (IEEE page itself blocked)"
+   }
+  ],
+  "v2:35a1628e01ca231ec3eadb58fcfbcf8dc39329b0b2f5a3ef6dc171c5b430e6a7": [
+   {
+    "agent_id": "ac241490d40374ef8",
+    "columns": {
+     "gate_time_stated": "Yes — buy/sell orders accepted until 12:00 for next-day hourly auction (Section 2.1)",
+     "model_run_id_stated": "Not stated — no NWP model or run identifier; only aggregate TSO forecasts used",
+     "init_time_stated": "Not stated — initialisation time of underlying forecasts never mentioned",
+     "publication_time_stated": "Not stated — ENTSO-E forecast publication/dissemination time never given anywhere in paper",
+     "gate_admissibility_checked": "Partial — asserts no hidden availability assumption; never verifies publication before 12:00 gate",
+     "revision_handling": "Not stated — no mention of forecast versions, revisions, or ENTSO-E data updates"
+    },
+    "market": "EPEX Spot day-ahead auction, Germany–Luxembourg bidding zone (DE–AT–LU before Oct 2018), hourly",
+    "verified_against": "Full published PDF (UCL Discovery OA copy of Applied Energy 367 (2024) 123241, all 10 pages read)"
+   },
+   {
+    "agent_id": "ac67d1244388f437f",
+    "columns": {
+     "gate_time_stated": "Yes - Sec 2.1: buy/sell orders placed until 12:00 for next-day hourly auction",
+     "model_run_id_stated": "No - TSO-aggregated ENTSO-E forecasts; no forecast version, run, or dataset identifier given",
+     "init_time_stated": "No - no initialisation or issue time of the day-ahead forecasts stated",
+     "publication_time_stated": "No - asserts 'no hidden assumption about availability' but states no publication/dissemination times",
+     "gate_admissibility_checked": "Partial - availability asserted qualitatively; no timestamp check of ENTSO-E forecasts against 12:00 gate",
+     "revision_handling": "Not stated - no mention of forecast revisions, data versions, or ENTSO-E corrections"
+    },
+    "market": "EPEX Spot day-ahead auction, Germany-Luxembourg bidding zone (DE-AT-LU pre-Oct 2018), Jan 2016-Dec 2022",
+    "verified_against": "full PDF - published Applied Energy version (367 (2024) 123241) via UCL Discovery OA copy; all 10 pages read, including Methods/Data sources, Results, Conclusion, and Data availability statement"
+   },
+   {
+    "agent_id": "a65c34d91d12ff7a5",
+    "columns": {
+     "gate_time_stated": "Yes — orders placed until 12:00 (Section 2.1)",
+     "model_run_id_stated": "Not stated — no NWP model involved; ENTSO-E forecast version/vintage not identified",
+     "init_time_stated": "Not stated — no initialisation time for any underlying forecast product given",
+     "publication_time_stated": "No — ENTSO-E forecast publication/dissemination time relative to auction never stated",
+     "gate_admissibility_checked": "Partial — asserts 'no hidden assumption about availability' but no check versus 12:00 gate",
+     "revision_handling": "Not stated — no mention of ENTSO-E data revisions or vintage snapshots"
+    },
+    "market": "Yes — Germany–Luxembourg bidding zone, EPEX Spot day-ahead auction, Jan 2016–Dec 2022",
+    "verified_against": "full PDF — UCL Discovery OA copy of published Applied Energy version (1-s2.0-S030626192400624X-main.pdf), all 10 pages read"
+   }
+  ],
+  "v2:6d7cc08d894c3f4966057dcd5b467725b4665420bb62633d68b2b4ebfba378a7": [
+   {
+    "agent_id": "a7ed7ca85acd05124",
+    "columns": {
+     "gate_time_stated": "Partial — invokes 'time of bidding' and forecasting 'in the morning of day d-1'; no clock time given",
+     "model_run_id_stated": "No — no NWP model or run ID; forecast provenance beyond ENTSO-E platform not given",
+     "init_time_stated": "No — no initialisation time of any underlying forecast model mentioned",
+     "publication_time_stated": "No — when ENTSO-E day-ahead load/RES forecasts are published/disseminated is never stated",
+     "gate_admissibility_checked": "Partial — fuel prices explicitly restricted to last closes before bidding (d-2); load/RES forecast pre-gate availability asserted by 'day-ahead' label, not verified",
+     "revision_handling": "Partial — documents ENTSO-E series revised vs 2015-2017 downloads (median 3%, max 45% deviation); uses current vintage anyway"
+    },
+    "market": "Germany (BZN|DE-LU, formerly DE-AT-LU) and Spain (BZN|ES) day-ahead markets, 2015-2023",
+    "verified_against": "Full arXiv v2 PDF (2404.02270v2, 6 Oct 2024, marked \"Forthcoming in Energy Economics\"); all 10 pages read. Publisher version (EnEco 139, 107934) not separately accessed."
+   },
+   {
+    "agent_id": "ad2b563a712847216",
+    "columns": {
+     "gate_time_stated": "Partial - refers to 'time of bidding' and forecasting 'in the morning of day d-1'; no clock time",
+     "model_run_id_stated": "Not stated - no NWP model, run ID, or forecast issue/version identified",
+     "init_time_stated": "Not stated - initialisation time of underlying forecasts never mentioned",
+     "publication_time_stated": "Not stated - inputs labelled 'day-ahead' ENTSO-E forecasts; publication/dissemination time never given",
+     "gate_admissibility_checked": "Partial - fuel prices explicitly 'last known closing prices at the time of bidding'; load/RES pre-gate availability assumed, unverified",
+     "revision_handling": "Partial - documents ENTSO-E archive revisions (RES deviations up to ±45% vs 2023 download) but uses current archive uncorrected"
+    },
+    "market": "Germany (BZN|DE-LU, formerly DE-AT-LU) and Spain (BZN|ES) day-ahead markets, 01.2015-31.12.2023",
+    "verified_against": "Full arXiv v2 PDF (2404.02270v2, 6 Oct 2024, marked 'Forthcoming in Energy Economics'); all 10 pages read, including Sections 2, 3, 5.1.3 and Conclusions"
+   }
+  ],
+  "v2:7888bdffa335e1f8b887f2091c4525a97ddb8d7d3cd65bc4f3ce722722720c50": [
+   {
+    "agent_id": "a860ac384a516decc",
+    "columns": {
+     "gate_time_stated": "Yes - bids due 10 AM the day before the trading day (Secs. 1 and 4.1)",
+     "model_run_id_stated": "No - GPV runs mentioned generically; specific run/cycle used never identified",
+     "init_time_stated": "Partial - run frequency stated (4x/day to 132 h; 2x/day to 11 days); base time of run used not given",
+     "publication_time_stated": "No - calculation frequency stated, but JMA publication/dissemination time never stated",
+     "gate_admissibility_checked": "Partial - inputs cut off at 3 PM two days before delivery 'to assume the actual use' (19 h before gate); availability at that cutoff not verified against publication schedule",
+     "revision_handling": "Not stated - no mention of data revisions, vintages, or re-forecasts"
+    },
+    "market": "JEPX day-ahead spot, Kyushu area price; 48 half-hourly products; test Apr 2019-Dec 2021",
+    "verified_against": "Full PDF (CC BY published version) from Kyutech institutional repository, record 2002404 (kyutech.repo.nii.ac.jp/records/2002404, file 10468132.pdf), read via Jina reader in three cross-checking extraction passes; ScienceDirect publisher page/PDF returned 403."
+   },
+   {
+    "agent_id": "ac3250f7b9364b8f3",
+    "columns": {
+     "gate_time_stated": "Yes — \"10 AM the day before the transaction date\" (Sec. 4.1)",
+     "model_run_id_stated": "No — no specific GPV run or dataset identifier given",
+     "init_time_stated": "Partial — GPV cycle frequency stated (4x/2x daily); specific run used not identified",
+     "publication_time_stated": "No — JMA dissemination times never stated; only an assumed 3 PM D-2 snapshot",
+     "gate_admissibility_checked": "Partial — deliberately uses data \"as of 3 PM two days before\"; actual availability unverified",
+     "revision_handling": "Not stated — no mention of GPV revisions or reissued forecasts"
+    },
+    "market": "Yes — JEPX day-ahead spot, Kyushu area price, 48 half-hourly products",
+    "verified_against": "Full PDF (publisher version, CC-BY) from Kyutech institutional repository (kyutech.repo.nii.ac.jp/records/2002404), text-extracted via r.jina.ai; two extraction passes cross-checked. ScienceDirect page/PDF returned 403."
+   }
+  ]
+ }
+}

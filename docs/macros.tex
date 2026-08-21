@@ -911,6 +911,15 @@
 \newcommand{\LitAdmissiblePartial}{24}
 \newcommand{\LitPubTimePartial}{17}
 
+% ---- Phase 110: per-slot forecast dispersion (Paper A; field subset of phase 75)
+% These two are rendered in the main article and are NOT decision quantities:
+% they are what pooled-MAE equivalence cannot bound. They used to sit inside the
+% paper-B block because their source artefact also carries the commitment gates,
+% which made Paper A cite two numbers whose provenance the public package could
+% not ship. phase110_slot_dispersion.json carries only these.
+\newcommand{\DecShareGtTickPct}{97.7}   % share of slots where the two runs' price forecasts differ > 1 tick
+\newcommand{\DecMeanAbsDy}{0.48}        % mean per-slot |yhat_pre - yhat_post|, JPY/kWh
+
 % ===== BEGIN paper-B-only macros ==========================================
 % Settlement-paper macros. They stay DEFINED here so the archived Japanese
 % reading copy and the preserved settlement sections still compile, and so
@@ -988,8 +997,6 @@
 \newcommand{\CnpeFullAbsK}{169}     % magnitude, for "costs ... thousand JPY" phrasing
 \newcommand{\CnpeFullP}{0.001}      % HLN-DM p at L=3, full sample
 \newcommand{\FloorPriceRatio}{459}
-\newcommand{\DecShareGtTickPct}{97.7}   % share of slots where the two runs' price forecasts differ > 1 tick
-\newcommand{\DecMeanAbsDy}{0.48}        % mean per-slot |yhat_pre - yhat_post|, JPY/kWh
 \newcommand{\DecShareCommitChangePct}{58.4} % share of slots whose committed quantity changes
 \newcommand{\DecSumAbsDq}{117.7}        % annualised commitment shift, MWh per MW-installed-yr
 \newcommand{\DecSumAbsDqLo}{107.0}

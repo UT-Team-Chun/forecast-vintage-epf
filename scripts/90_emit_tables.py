@@ -1124,6 +1124,19 @@ def physical_by_policy(p61: dict) -> str:
     return "\n".join(L) + "\n"
 
 
+# Control words that are pure formatting: deleting them changes no meaning.
+# Everything else must either expand or appear in the symbol table inside
+# _expand_macros, because the fallback is deletion.
+_EXPAND_DROPPABLE = frozenset({
+    "small", "footnotesize", "normalsize", "centering", "noindent", "par",
+    "hfill", "quad", "qquad", "medskip", "smallskip", "bigskip", "linebreak",
+    "newline", "protect", "relax", "phantom", "hspace", "vspace", "label",
+    "ref", "cite", "citep", "citet", "footnote", "left", "right", "bigl",
+    "bigr", "mathbf", "mathit", "boldsymbol", "displaystyle", "limits",
+    "nolimits", "textsuperscript", "textsubscript", "ensuremath",
+})
+
+
 def _expand_macros(body: str, defs: dict[str, str]) -> str:
     """Expand \newcommand bodies and strip LaTeX down to plain text.
 
@@ -1139,9 +1152,31 @@ def _expand_macros(body: str, defs: dict[str, str]) -> str:
     # \unitJPY/kWh, and the greedy \\[A-Za-z]+ then eats "JPY" and prints
     # "0.229 /kWh".
     body = body.replace("{,}", ",").replace(r"\%", "%")
+    # \suppref is a one-argument \newcommand, so the zero-argument definition
+    # sweep above cannot expand it; spell out what it renders as.
+    body = re.sub(r"\\suppref\{([^{}]*)\}", r"Supplementary Material, Section \1", body)
     for _ in range(4):  # \unit{\jpykwh}-style nesting
-        body = re.sub(r"\\(?:unit|text|mathrm|emph|textbf|SI)\{([^{}]*)\}",
+        body = re.sub(r"\\(?:unit|text|mathrm|emph|textbf|texttt|url|SI)\{([^{}]*)\}",
                       r"\1", body)
+    # Symbols that carry meaning and must survive as characters. \pm was being
+    # deleted by the sweep below, so the Editorial-Manager abstract said the
+    # excluded run is "equivalent within 0.01 JPY/kWh" where the manuscript says
+    # "within +/-0.01" -- a one-sided reading of the paper's only equivalence
+    # bound, in the text an editor reads first.
+    for cw, ch in (("pm", "\u00b1"), ("approx", "\u2248"), ("times", "\u00d7"),
+                   ("leq", "\u2264"), ("geq", "\u2265"), ("sim", "~"),
+                   ("degree", "\u00b0"), ("rho", "\u03c1"), ("Delta", "\u0394"),
+                   ("alpha", "\u03b1"), ("kappa", "\u03ba"), ("mu", "\u03bc")):
+        body = re.sub(rf"\\{cw}(?![A-Za-z])\s*", ch, body)
+    # Anything still unresolved is about to be DELETED. That is how a symbol goes
+    # missing without a trace, so stop instead: either it is a macro that should
+    # have expanded, or it belongs in the table above.
+    leftover = sorted(set(re.findall(r"\\([A-Za-z]+)", body)) - _EXPAND_DROPPABLE)
+    if leftover:
+        msg = ("_expand_macros would silently delete these control words: "
+               f"{leftover}. Add each to the symbol table if it carries meaning, "
+               "or to _EXPAND_DROPPABLE if it is pure formatting.")
+        raise SystemExit(msg)
     body = re.sub(r"\\[A-Za-z]+\s*", "", body)  # remaining control words
     return (
         body.replace("~", " ")
@@ -1269,6 +1304,127 @@ def emit_em_highlights() -> tuple[Path, str]:
         raise SystemExit(msg)
     return out, doc
 
+
+def emit_em_highlights_upload() -> tuple[Path, str]:
+    r"""Write the bullets alone, as the file that is actually uploaded.
+
+    ``_highlights_for_em.md`` carries the bullets AND the rationale for what they
+    deliberately omit -- which bound was chosen over which, why a ratio with a
+    small denominator was left out. That commentary is why the bullets are
+    defensible and it belongs in the repository, but it is editorial reasoning
+    about how to phrase a highlight, and an editor opening the Highlights
+    attachment must not find it. The upload manifest pointed at that annotated
+    file, so the only Highlights artefact in the tree was one that could not be
+    sent. This writes the other half: five bullets, no counts, no notes, nothing
+    to strip by hand on submission day.
+    """
+    macros_tex = (CFG.project_root / "docs/paper/shared/macros.tex").read_text(encoding="utf-8")
+    defs = dict(
+        re.findall(r"\\newcommand\{\\([A-Za-z]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}", macros_tex)
+    )
+    lines = []
+    for raw in EM_HIGHLIGHTS:
+        text = re.sub(r"\s+", " ", _expand_macros(raw, defs)).strip()
+        if len(text) > EM_HIGHLIGHT_CHARS:
+            msg = f"highlight over {EM_HIGHLIGHT_CHARS} chars: {text}"
+            raise SystemExit(msg)
+        lines.append(f"- {text}")
+    doc = "# Highlights\n\n" + "\n".join(lines) + "\n"
+    if re.search(r"\\[A-Za-z]", doc):
+        msg = f"unexpanded macro in the upload highlights: {doc!r}"
+        raise SystemExit(msg)
+    out = CFG.project_root / "docs/paper/paper_a_main/submission/Highlights.md"
+    return out, doc
+
+
+
+DECLARATION_SECTIONS = (
+    "CRediT authorship contribution statement",
+    "Declaration of competing interest",
+    "Declaration of generative AI and AI-assisted technologies in the writing process",
+    "Data availability",
+    "Funding",
+)
+
+
+def emit_declarations() -> tuple[Path, str]:
+    r"""Regenerate the Editorial-Manager declarations from the manuscript itself.
+
+    ``submission/declarations.md`` is the file whose own header tells the submitter
+    to paste its contents into the Editorial Manager form, and it was a hand-kept
+    transcription of five end-matter sections carrying two ticked boxes that
+    certified byte-identity with ``main.tex``. Both certifications were false by
+    2026-08-21: the AI declaration had grown a third role in the manuscript (the
+    literature audit's primary coding) and this file still described two, and the
+    data list named the imbalance-settlement disclosure, which backs no quantity
+    reported in this paper -- so a submitter working from it would have filed a
+    source declaration for data the article does not use.
+
+    Transcription is the defect. Expanding the manuscript's own sections removes
+    the copy, exactly as it was removed for the abstract and the highlights.
+    """
+    main_tex = (CFG.project_root / "docs/paper/paper_a_main/main.tex").read_text(encoding="utf-8")
+    macros_tex = (CFG.project_root / "docs/paper/shared/macros.tex").read_text(encoding="utf-8")
+    defs = dict(
+        re.findall(r"\\newcommand\{\\([A-Za-z]+)\}\{((?:[^{}]|\{[^{}]*\})*)\}", macros_tex)
+    )
+    # Section numbers come from the compiled .aux. If the manuscript has not been
+    # built, a \ref falls back to its label name, which is visible and ugly
+    # rather than silently wrong -- but say so, because it means a stale build.
+    aux = CFG.project_root / "docs/paper/paper_a_main/main.aux"
+    labels: dict[str, str] = {}
+    if aux.exists():
+        labels = dict(re.findall(
+            r"\\newlabel\{([^{}]*)\}\{\{([^{}]*)\}", aux.read_text(encoding="utf-8")))
+    parts = []
+    for title in DECLARATION_SECTIONS:
+        pat = (r"\\section\*\{" + re.escape(title)
+               + r"\}(.*?)(?=\\section\*\{|\\bibliography|\\end\{document\})")
+        m = re.search(pat, main_tex, re.DOTALL)
+        if m is None:
+            msg = (f"main.tex has no \\section*{{{title}}}; the declarations file "
+                   "cannot be generated from a manuscript that does not carry it")
+            raise SystemExit(msg)
+        raw = m.group(1)
+        # A LaTeX comment is invisible in the PDF and must stay invisible here:
+        # "% ---- references ----" was reaching the file an editor reads, with
+        # its dashes helpfully converted to em dashes.
+        raw = re.sub(r"(?m)^\s*%.*$", "", raw)
+        # Resolve cross-references against the compiled .aux, so "Section~\ref
+        # {sec:market_related}" becomes "Section 2.3" rather than shipping the
+        # label name -- which is what the AI declaration was doing.
+        raw = re.sub(r"\\ref\{([^{}]*)\}",
+                     lambda mm: labels.get(mm.group(1), mm.group(1)), raw)
+        body = _expand_macros(raw, defs)
+        # itemize survives macro expansion as bare \item text; make it markdown.
+        body = re.sub(r"\\item\s*", "\n- ", body)
+        body = body.replace("\\&", "&").replace("\\,", " ")
+        body = re.sub(r"(?<!-)--(?!-)", "\u2013", body)  # en dash
+        body = re.sub(r"[ \t]+", " ", body)
+        body = re.sub(r"\n{3,}", "\n\n", body).strip()
+        parts.append(f"## {title}\n\n{body}\n")
+    doc = (
+        f"<!-- GENERATED by {Path(__file__).name} from the end-matter sections of "
+        f"main.tex. Do not edit by hand; edit main.tex and regenerate. Every section "
+        f"below is the manuscript's own text, so the two cannot diverge. -->\n\n"
+        "# Declarations (Editorial Manager)\n\n"
+        "Paste each section into the corresponding Editorial Manager field. These are\n"
+        "the manuscript's end-matter sections, expanded to plain text; the manuscript\n"
+        "is the single source, so there is nothing here to keep in step by hand.\n\n"
+        + "\n".join(parts)
+        + "\n### Confirm before upload\n\n"
+        "- [ ] Competing-interest statement: final author confirmation, and the\n"
+        "      signed .docx produced with Elsevier's declaration-of-interest tool\n"
+        "      attached at the Attach Files step.\n"
+        "- [ ] CRediT roles as intended; corresponding author as intended.\n"
+        "- [ ] Funding: none. If that changes, change main.tex, not this file.\n"
+    )
+    leftover = re.findall(r"\\[A-Za-z]+", doc)
+    if leftover:
+        msg = f"unexpanded macros in the declarations file: {sorted(set(leftover))}"
+        raise SystemExit(msg)
+    out = CFG.project_root / "docs/paper/paper_a_main/submission/declarations.md"
+    return out, doc
 
 
 def emit_em_abstract() -> tuple[Path, str]:
@@ -1632,6 +1788,8 @@ def main() -> int:
     ]
     artefacts.append(emit_em_abstract())
     artefacts.append(emit_em_highlights())
+    artefacts.append(emit_em_highlights_upload())
+    artefacts.append(emit_declarations())
     # The Japanese manuscript's three main-text tables. Same provenance, same
     # numbers, Japanese wording; emitted only when that tree is present.
     if OUT_JA.parent.exists():

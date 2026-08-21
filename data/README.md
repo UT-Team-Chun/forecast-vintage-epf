@@ -19,7 +19,7 @@ data/
 │   ├── phase74_cw_ladder.json           #   capacity-weighted re-estimation
 │   ├── phase85_exact_ladder.json        #   the primary capacity-weighted ladder
 │   ├── phase72_dissemination_audit.json #   dissemination lag, measured
-│   └── …                                #   86 files: 79 at top level, 7 in per-phase subdirectories
+│   └── …                                #   88 files: 81 at top level, 7 in per-phase subdirectories
 ├── reference/                           # IN git
 │   ├── area_capacity.csv                #   per-area PV / wind / peak capacity
 │   ├── area_points_capacity.csv         #   46 prefecture points and their within-area PV weights
@@ -126,14 +126,14 @@ reads the artefact the analysis actually wrote — it does not re-derive numbers
 from a description of the analysis. That is what makes `make verify-paper`
 meaningful. Two populations, and the distinction is worth being explicit about:
 
-- **52 files are written by the scripts in this repository** — the analysis
+- **53 files are written by the scripts in this repository** — the analysis
   chain the paper's headline numbers come from. Each carries a `metadata`
   block recording the producing script, the git SHA it ran at and the
   generation timestamp (the one acquisition record, `phase71_ics_basis.json`,
   records the script and runtime; its source hashes live in the body), and,
   where the analysis is stochastic, the seed and the bootstrap draw count.
   [`scripts/README.md`](../scripts/README.md) maps each one to its script.
-- **34 files are inherited from earlier phases of the same research
+- **35 files are inherited from earlier phases of the same research
   programme** and predate that metadata convention; the scripts that produced
   them are not shipped here. They back numbers the paper cites for context or
   robustness — earlier-window head-to-heads, cross-model identification
