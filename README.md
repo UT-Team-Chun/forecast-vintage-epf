@@ -77,6 +77,16 @@ and the increment is undetectable over a 2021–2024 backcast that spans Japan's
 scarcity-price episodes. On the same slots, fresher runs keep sharpening a
 photovoltaic generation forecast while barely moving the price forecast.
 
+## What's new in v0.2.1
+
+v0.2.1 is the version the *Energy* manuscript cites. It changes presentation only:
+the figure scripts draw each figure at the width it prints (labels 7.5-8 pt on the
+page, one typeface, colour for identity only, no text inside the plots that the
+caption does not carry), and the table scripts wrap long columns and set notes
+under their tables, so the manuscript no longer shrinks them. Every number,
+provenance file and test is as in v0.2.0, except the row labels and the commit
+stamp in `data/provenance/phase116_gate_bound.json`.
+
 ## What's new in v0.2.0
 
 v0.2.0 is the version that corresponds to the manuscript as revised for

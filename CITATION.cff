@@ -37,7 +37,7 @@ keywords:
   - JEPX
   - forecast evaluation
   - pre-registration
-version: "v0.2.0"
+version: "v0.2.1"
 date-released: "2026-10-24"
 license: MIT
 repository-code: "https://github.com/UT-Team-Chun/forecast-vintage-epf"
