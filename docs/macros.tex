@@ -17,17 +17,6 @@
 % The earlier weekly-anchor design (step = 7 d, n = 60, Sunday-only test
 % days) is retained internally as a comparator -- see Section 4 and
 % Appendix C for the weekly-vs-daily robustness table.
-\newcommand{\SOTA}{\num{1.816 \pm 0.92}}        % Kyushu M1/XGB+weather, daily n=140
-\newcommand{\SOTAweekly}{\num{1.573 \pm 0.75}}  % Kyushu M1/XGB+weather, weekly n=60 (legacy)
-\newcommand{\Spearman}{\rho = -0.733}           % cross-area FLOOR vs Δ MAE (daily)
-\newcommand{\SpearmanP}{p = 0.025}
-\newcommand{\SpearmanPre}{\rho = -0.767}        % FLOOR computed pre-evaluation 2022-01..2024-09-14
-\newcommand{\SpearmanPreP}{p = 0.016}
-\newcommand{\SpearmanTrain}{\rho = -0.683}      % FLOOR computed FY2024-only (training-window approx)
-\newcommand{\SpearmanTrainP}{p = 0.042}
-\newcommand{\CurtailFloorSpearman}{\rho = +0.833}  % cross-area curtailment-hours vs FLOOR-hours (8-area incl Shikoku+Kansai, 2026-06-17)
-\newcommand{\CurtailFloorSpearmanP}{p = 0.010}
-\newcommand{\CurtailFloorN}{n = 8}
 
 % ----- Round-27 / Phase 26: operational-forecast reframe -----
 % Within-day triple under a bid-close-admissible *operational-forecast*
@@ -35,18 +24,9 @@
 % mechanism survives admissibility; the lag-48 collapse to NS was
 % measurement-error attenuation from a noisy moderator (midday corr 0.57 vs
 % the histfc forecast's 0.89), not a look-ahead artifact.
-\newcommand{\WithinDayBeta}{-0.236}            % within-day triple, histfc-forecast moderator
-\newcommand{\WithinDayP}{p = 0.049}            % wild-cluster bootstrap, G=9 (full sample)
-\newcommand{\WithinDayBetaContemp}{-0.342}     % contemporaneous-moderator comparison (reproduces committed -0.33)
-\newcommand{\WithinDayFEbeta}{-0.012}          % within-day triple, histfc moderator, saturated area+date+hour FE (phase28.1 spec1)
-\newcommand{\WithinDayFEp}{0.96}               % two-way (area x date) clustered asymptotic p under saturated FE
 % Round-33 B3: reviewer-requested LITERAL slot-level PV-surplus intensity panel
 % (phase30.1: |eps_w|-|eps_p| ~ realised PV-to-demand x midday + FE). Reported as a
 % transparent null (FE-fragile), consistent with H1' and the moderated-triple collapse.
-\newcommand{\IntensityNoFEbeta}{-0.228}        % no-FE slope (wild-cluster p<0.001), suggestive within-area intensity
-\newcommand{\IntensityNoFEp}{<0.001}           % wild-cluster bootstrap two-sided p, no-FE
-\newcommand{\IntensityFEbeta}{-0.157}          % saturated area+date+hour FE slope (attenuated)
-\newcommand{\IntensityFEp}{0.30}               % two-way clustered p under saturated FE (n.s.)
 % Round-30 Gate 4 (D-lite): observed area-vs-system price wedge during FLOOR episodes
 % (phase29), grounding the asymmetric cost-ratio range in the high-FLOOR areas.
 \newcommand{\FloorWedgeShikoku}{6.33}          % Shikoku floor-episode median (system - area) JPY/kWh
@@ -55,12 +35,9 @@
 % same-sample head-to-head (Phase 26.1, 8 OCCTO areas): the cross-area
 % concentration is a property of the WEAK proxy and washes out under a
 % genuine operational forecast, which is ~7x more informative and broad.
-\newcommand{\OpsCrossArea}{\rho = -0.29}       % operational cross-area gradient (improvement vs PV/peak), n.s.
 \newcommand{\OpsCrossAreaP}{p = 0.49}
-\newcommand{\ProxyCrossAreaClean}{\rho = +0.76}  % ERA5 proxy, clean sample, on IMPROVEMENT (=-Delta MAE), p=0.028; equiv rho=-0.76 on signed Delta MAE (sign convention: sec:per_area)
 % Decision-loss economic value (Phase 26.2): the operational forecast has
 % real floor-event decision value, unlike the battery-arbitrage null.
-\newcommand{\OpsFloorFone}{0.28}               % operational floor-event F1 (price-only 0.13)
 \newcommand{\PriceOnlyFloorFone}{0.13}
 \newcommand{\OpsFloorAUC}{0.96}                % operational floor-event ROC-AUC (price-only 0.93)
 
@@ -70,10 +47,7 @@
 % value (not a strict per-metric upper bound); the lagged proxy captures almost
 % none. Base rate explains the high-AUC / modest-F1 gap.
 \newcommand{\FloorBaseRate}{3.3\%}                 % fraction of slots at FLOOR (explains F1 vs AUC)
-\newcommand{\OpsFloorPRAUC}{0.59}                  % operational floor-event PR-AUC (price-only 0.37)
 \newcommand{\PriceOnlyFloorPRAUC}{0.37}
-\newcommand{\OracleFloorPRAUC}{0.57}              % realised-weather oracle PR-AUC (operational ~= oracle)
-\newcommand{\OracleFloorFone}{0.29}              % realised-weather oracle floor F1 (operational 0.28)
 \newcommand{\OpsFloorBrier}{0.020}               % operational Brier (price-only 0.025), cross-fitted isotonic
 \newcommand{\PriceOnlyFloorBrier}{0.025}
 \newcommand{\OpsFloorFoneCF}{0.54}               % operational floor F1 at cross-fitted decision threshold
@@ -82,14 +56,7 @@
 \newcommand{\PriceOnlyCurtailCoincidence}{53\%}
 % 4-information-set decomposition of mean weather value (yen/kWh; Phase 27.1):
 % proxy -> operational -> realised-weather oracle. Operational ~= oracle.
-\newcommand{\ImpProxy}{0.034}                    % ERA5 lag-48 proxy mean MAE improvement
-\newcommand{\ImpOps}{0.239}                      % operational JMA-MSM mean MAE improvement
-\newcommand{\ImpOracle}{0.268}                   % realised-weather oracle mean MAE improvement
-\newcommand{\OpsCaptureOracle}{89\%}             % operational / oracle mean weather value
-\newcommand{\ProxyCaptureOracle}{13\%}           % proxy / oracle mean weather value
 % Forecast skill: SkillProxy/SkillHistfc are the midday corr(forecast, realised shortwave) = sqrt(tau); model defines tau = corr^2 (Phase 27.0).
-\newcommand{\SkillProxy}{0.57}                   % ERA5 lag-48 proxy skill: midday forecast-vs-realised corr (= sqrt(tau); model tau=corr^2)
-\newcommand{\SkillHistfc}{0.89}                  % operational JMA-MSM skill: midday forecast-vs-realised corr (= sqrt(tau))
 % Round-37 Phase 3 (review #17): CHANNEL-resolved forecast skill = corr(forecast,
 % realised ERA5), cross-area mean, MIDDAY (09-15 JST). proxy=ERA5 lag-48, gpv=exact-
 % issuance JMA-GPV. Grounds H1' channel breadth (eq:voi_decomp): the proxy is
@@ -97,26 +64,12 @@
 % wind); the operational forecast's skill GAIN is largest on the kappa-free broad
 % channels (wind+cloud), which is why it washes out the PV-floor concentration.
 % Source: phase42_channel_skill.json.
-\newcommand{\ChanProxySW}{0.50}                  % proxy shortwave skill (midday corr)
-\newcommand{\ChanGpvSW}{0.83}                    % GPV shortwave skill
-\newcommand{\ChanProxyTemp}{0.95}                % proxy temperature skill (near-saturated, diurnal persistence)
-\newcommand{\ChanGpvTemp}{0.99}                  % GPV temperature skill
-\newcommand{\ChanProxyCloud}{0.17}               % proxy cloud skill (narrowband: poor)
-\newcommand{\ChanGpvCloud}{0.60}                 % GPV cloud skill
-\newcommand{\ChanProxyWind}{0.29}                % proxy wind skill (narrowband: poor)
-\newcommand{\ChanGpvWind}{0.73}                  % GPV wind skill
-\newcommand{\ChanGainWind}{0.44}                 % GPV skill GAIN over proxy on wind (= displayed 0.73-0.29; JSON 0.446); kappa-free channel
-\newcommand{\ChanGainCloud}{0.43}                % GPV skill GAIN over proxy on cloud (= displayed 0.60-0.17; JSON 0.433); PV/floor (solar) channel
 % ----- Round-31 / Phase 31: exact-issuance GPV head-to-head + real-yen decision value -----
 % Full-period TRUE exact-issuance JMA-GPV forecast (Kyoto RISH, D-1 00UTC MSM run,
 % all 426 days) re-run head-to-head on the daylight identification window (FH16-33).
 % It reproduces the Historical-Forecast RECONSTRUCTION: large broad value, washed-out
 % PV-floor concentration -> the Table 8 washout is genuine forecast skill, not a
 % reconstruction artefact (review #1). gpv 0.314 ~= histfc 0.297 on this daytime sample.
-\newcommand{\GpvExactImp}{0.314}                 % exact-issuance GPV mean MAE improvement (daytime same-sample)
-\newcommand{\HistfcDayImp}{0.297}                % reconstruction mean improvement, identical daytime sample
-\newcommand{\GpvExactConc}{\rho = -0.26}         % exact-issuance GPV cross-area gradient vs PV/peak (washout, n.s.)
-\newcommand{\GpvExactConcP}{p = 0.53}
 % Round-33 Phase A: ALL-HOURS (00-23 JST) exact-issuance head-to-head, the headline
 % (phase35_allhours_headtohead.json, n=44,928, 8 areas). gpv/proxy ~7.9x, washout holds;
 % proxy concentration now SIGNIFICANT all-hours (+0.83, p=0.01), removing the daylight caveat.
@@ -154,12 +107,6 @@
 % time-varying FLOOR rate. Negative beta = higher-FLOOR months carry more weather value.
 % Significant under area FE (within-area temporal identification, wild-cluster G=9),
 % attenuating under fully-saturated area+month FE (honest, same pattern as the slot panel).
-\newcommand{\PanelMonthN}{135}                   % (area, month) cells (9 areas x 15 months, >=3 folds)
-\newcommand{\PanelMonthBetaPooled}{-1.786}       % spec0 pooled beta on FLOOR rate
-\newcommand{\PanelMonthBeta}{-1.917}             % spec1 area-FE beta on FLOOR (within-area temporal, headline)
-\newcommand{\PanelMonthWildP}{0.004}             % spec1 wild-cluster bootstrap p (G=9)
-\newcommand{\PanelMonthBetaSatFE}{-1.330}        % spec2 area+month-FE beta (attenuated)
-\newcommand{\PanelMonthSatP}{0.308}              % spec2 wild-cluster p (n.s. under full saturation)
 % Round-35 Phase E: external-validity exploratory on EPEX-DE/LU (phase38_epex_de_exploratory.json).
 % Public keyless data (SMARD price/PV/load + Open-Meteo). Weather value replicates in DE, but the
 % floor-concentration analogue (vs negative-price exposure) is only weakly positive and n.s. -- DE's
@@ -180,7 +127,6 @@
 % variant is an OVB-robustness baseline (supply actuals at lag-48 are NOT strictly
 % bid-close-admissible for slots>10:00); weather value is NOT a weak-baseline
 % artefact (review #7/#2).
-\newcommand{\EnrichBaselineGain}{0.057}          % mean MAE gain of lag-48-supply enriched baseline over price-only (8/8) -> strong
 \newcommand{\OpsOverEnriched}{0.19}              % operational-forecast mean MAE improvement OVER the lag-48-supply enriched baseline (DM-sig 8/8)
 \newcommand{\OpsOverEnrichedNsig}{8}             % areas where operational fc beats enriched baseline at DM p<0.05 (of 8)
 \newcommand{\OpsOverEnrichedConc}{+0.05}         % cross-area Spearman of operational improvement vs PV/peak (broad, n.s.)
@@ -190,7 +136,6 @@
 % every slot), prices stay at lag-48 (day-ahead prices for D-1 publish at the D-2
 % auction). Operational forecast survives this strictly-admissible baseline even
 % more strongly than the lag-48 variant. Source: phase40_admissible_supply_lag96.json.
-\newcommand{\EnrichBaselineGainAdm}{0.032}       % mean MAE gain of admissible (lag-96-supply) enriched baseline over price-only (8/8) -> strong
 \newcommand{\OpsOverEnrichedAdm}{0.216}          % operational-forecast mean MAE improvement OVER the admissible enriched baseline (DM-sig 8/8)
 \newcommand{\OpsOverEnrichedAdmNsig}{8}          % areas where operational fc beats admissible enriched baseline at DM p<0.05 (of 8)
 \newcommand{\OpsOverEnrichedAdmConc}{-0.19}      % cross-area Spearman of operational improvement vs PV/peak over admissible baseline (broad, n.s.)
@@ -199,68 +144,25 @@
 % (H2 first stage) holds in EVERY fiscal year incl. the LNG-crisis FY2022 -> the
 % mechanism is structurally stable across regimes, not a single-period artefact.
 % (Floor LEVELS are crisis-confounded, so no temporal-growth claim; regime-robustness only.)
-\newcommand{\TemporalFloorRhoCrisis}{+0.71}      % FY2022 (LNG-crisis) cross-area Spearman(floor, PV/peak)
-\newcommand{\TemporalFloorRhoCrisisP}{0.032}
-\newcommand{\TemporalFloorRhoCalm}{+0.83}        % FY2025 (calm) cross-area Spearman(floor, PV/peak)
-\newcommand{\TemporalFloorRhoCalmP}{0.005}
-\newcommand{\TemporalFloorRhoMin}{+0.58}         % weakest of the four annual gradients (FY2023); all four positive
-\newcommand{\KyushuWxValueCrisis}{0.055}         % Kyushu mean weather value, crisis regime FY2022-23 (JPY/kWh)
-\newcommand{\KyushuWxValueCalm}{0.038}           % Kyushu mean weather value, calm regime FY2024-25 (JPY/kWh)
 % Model-class robustness of the skill-scarcity pivot (Phase 27.5): same
 % proxy-vs-operational head-to-head re-run with LightGBM (leaf-wise GBDT).
-\newcommand{\LgbmProxyImp}{0.038}                % LightGBM ERA5 proxy mean MAE improvement
-\newcommand{\LgbmOpsImp}{0.251}                  % LightGBM operational mean MAE improvement
-\newcommand{\LgbmProxyConc}{\rho = +0.48}        % LightGBM proxy cross-area gradient vs PV/peak (n.s.)
-\newcommand{\LgbmOpsConc}{\rho = -0.17}          % LightGBM operational cross-area gradient (washout, n.s.)
-\newcommand{\CatProxyImp}{0.032}                 % CatBoost ERA5 proxy mean MAE improvement
-\newcommand{\CatOpsImp}{0.206}                   % CatBoost operational mean MAE improvement
-\newcommand{\CatProxyConc}{\rho = +0.69}         % CatBoost proxy cross-area gradient vs PV/peak (p=0.058, n.s.)
-\newcommand{\CatOpsConc}{\rho = +0.26}           % CatBoost operational cross-area gradient (washout, n.s.)
 % Threshold-crossing region (Phase 27.0): in curtailment-active (actual
 % crossing) slots the operational within-day intensity is significantly
 % negative (endogenous selection -> corroborative, not causal).
-\newcommand{\CurtailActiveBeta}{-3.47}           % operational within-day intensity, curtail-active slots
-\newcommand{\CurtailActiveP}{p = 0.00042}   % asymptotic cluster-t; the wild-cluster bootstrap gives 0.000
-\newcommand{\SpearmanPVpeak}{-0.800}             % cross-area PV/peak vs weather Delta-MAE (AIC-best antecedent)
-\newcommand{\ProxyFloorFone}{0.087}              % ERA5 proxy floor-event F1 (proxy adds ~no decision value)
 \newcommand{\ProxyFloorPRAUC}{0.41}              % ERA5 proxy floor-event PR-AUC
 \newcommand{\ProxyFloorBrier}{0.024}             % ERA5 proxy floor-event Brier (cross-fitted)
 \newcommand{\ProxyFloorFoneCF}{0.46}             % ERA5 proxy floor F1 at cross-fitted threshold
 \newcommand{\OracleFloorBrier}{0.020}            % realised-weather oracle floor-event Brier
-\newcommand{\Rsq}{R^2 = 0.537}                  % multivariate FLOOR+PV+Wind (daily)
-\newcommand{\Rsqweekly}{R^2 = 0.766}            % multivariate (weekly Phase 22, legacy)
-\newcommand{\Rsqfloor}{R^2 = 0.498}             % univariate FLOOR (daily)
-\newcommand{\Rsqpv}{R^2 = 0.515}                % univariate PV/peak (daily, AIC-best)
-\newcommand{\PanelBeta}{-0.0122}                % per FLOOR-pp, daily n=1260
-\newcommand{\PanelAsymCI}{[-0.016, -0.008]}     % asym clustered 90% CI
-\newcommand{\PanelBootCI}{[-0.030, +0.001]}     % cluster+block bootstrap 90% CI
-\newcommand{\PanelBootCIninetyFive}{[-0.036, +0.005]}  % cluster+block bootstrap 95% CI (Round-20 transparency)
 
 % ----- Phase 24.11.8 noise-degradation sensitivity -----
 % Cross-area Spearman attenuates under noise (n=9 loses power) but
 % the area-fold panel β with n=1260 clustered SE excludes zero at
 % both realistic and 2x-stress noise levels.
-\newcommand{\NoiselessSpearman}{-0.733}
-\newcommand{\NoiselessPermP}{0.034}
-\newcommand{\NoiselessBeta}{-0.0122}
-\newcommand{\NoiselessBetaCI}{[-0.016, -0.008]}
-\newcommand{\RealisticSpearman}{-0.450}
-\newcommand{\RealisticPermP}{0.231}
-\newcommand{\RealisticBeta}{-0.0038}
-\newcommand{\RealisticBetaCI}{[-0.007, -0.001]}
-\newcommand{\StressSpearman}{-0.267}
-\newcommand{\StressPermP}{0.490}
-\newcommand{\StressBeta}{-0.0050}
-\newcommand{\StressBetaCI}{[-0.008, -0.003]}
 
 % ----- Phase 24.14 lag-96 bid-close-admissibility robustness -----
 % Pre-shifted weather +48h so harness shift(48) effectively picks t-96h
 % weather. Sign preserved at both area-level rank correlation and
 % panel beta; panel 90% CI barely excludes zero.
-\newcommand{\BcadmSpearman}{-0.300}
-\newcommand{\BcadmPermP}{0.438}
-\newcommand{\BcadmBeta}{-0.0066}
-\newcommand{\BcadmBetaCI}{[-0.013, -0.000]}
 
 % ----- regime labels -----
 \newcommand{\FLOOR}{\textsc{floor}\xspace}
@@ -268,11 +170,9 @@
 \newcommand{\SPIKE}{\textsc{spike}\xspace}
 
 % ----- DM test -----
-\newcommand{\DM}{Diebold--Mariano\xspace}
 \newcommand{\dmstat}[2]{$t = #1$, $p = #2$}
 
 % ----- floor/spike thresholds -----
-\newcommand{\thrFloorDefault}{$0.5\,\jpykwh$}
 \newcommand{\thrSpikeDefault}{$50\,\jpykwh$}
 
 % ---- Phase 43: decision-value sensitivity (2026-07-24, AE restructure) ----
@@ -289,10 +189,6 @@
 \newcommand{\CacheValueMultipleRmse}{7.13} % histfc/proxy improvement multiple in RMSE (metric-robust)
 
 % ---- Phase 45: EPEX-DE two-tier external replication (2026-07-24, AE restructure) ----
-\newcommand{\DETestDays}{762}      % head-to-head test days, 2024-06-15..2026-07-16
-\newcommand{\DEOpsImp}{3.19}       % operational (ICON previous-day run) improvement over price-only, EUR/MWh, DM p<1e-12
-\newcommand{\DEProxyImp}{0.19}     % lag-24h ERA5 proxy improvement, EUR/MWh (DM n.s., p=0.29)
-\newcommand{\DEOpsOverProxy}{17}   % operational/proxy improvement ratio (17.1)
 \newcommand{\DEWindGain}{2.24}     % wind-channel operational gain, EUR/MWh (rank 1/4, ~73% of tier delta)
 \newcommand{\DENegGradRho}{+0.121} % exploratory: daily Spearman(op improvement, neg-price share), p=0.0008 -- NOT promoted (pre-committed gate)
 
@@ -302,17 +198,9 @@
 \newcommand{\DnnGpvImp}{0.109}     % DNN pooled improvement, exact-issuance GPV
 
 % ---- Phase 47: tier-resolved probabilistic evaluation (2026-07-24, AE restructure) ----
-\newcommand{\CrpsProxyImp}{0.019}      % 9-area pooled CRPS improvement over price-only, proxy
-\newcommand{\CrpsOpsImp}{0.114}        % 9-area pooled CRPS improvement, operational reconstruction
 \newcommand{\CrpsValueMultiple}{6.07}  % operational/proxy CRPS-improvement multiple (9-area)
 
 % ---- Phase 49: full-period true previous-day-run tier + extended imbalance window (2026-07-24, AE restructure) ----
-\newcommand{\PrevRunImp}{0.219}       % pooled improvement of the true previous-day JMA-MSM run, 21 months, 9 areas (JPY/kWh)
-\newcommand{\PrevRunProxyImp}{0.027}  % same-window lag-48 proxy improvement (pooled DM p=0.063, n.s.)
-\newcommand{\PrevRunTestDays}{202}    % test days per area, 2024-11-17..2026-07-16 (all 12 calendar months covered)
-\newcommand{\PrevRunReconGap}{0.015}  % mean |gap| reconstruction vs true previous-day run (JPY/kWh; DM p=0.35, indistinguishable)
-\newcommand{\PrevRunAdmImp}{0.136}    % morning-only strictly gate-admissible subset: true-run improvement (JPY/kWh)
-\newcommand{\PrevRunAdmProxyImp}{0.018} % same subset, proxy improvement (7.7x contrast, DM p<1e-6)
 \newcommand{\PrevRunDecisionExtK}{110} % extended-window (2024-11..2026-07) true-run decision value, thousand JPY/MW/yr (wedge-regime dependent)
 
 % ============================================================
@@ -341,8 +229,6 @@
 \newcommand{\PreGateImp}{0.253}         % pre-gate vintage (previous-day-2 run), disseminated before the gate
 \newcommand{\PreGateImpLo}{0.208}
 \newcommand{\PreGateImpHi}{0.300}
-\newcommand{\PostGateImp}{0.256}        % first post-gate vintage (previous-day-1 run, disseminated 11:30 JST)
-\newcommand{\ReconLadderImp}{0.218}     % operational reconstruction (post-gate class)
 \newcommand{\ExPostImp}{0.241}          % ex-post realised-weather benchmark (not a ceiling)
 \newcommand{\PreGateMultiple}{5.39}     % pre-gate / stale-observation improvement multiple
 \newcommand{\PreGateMultipleLo}{4.23}
@@ -350,32 +236,24 @@
 \newcommand{\GateTimingValue}{0.003}    % post-gate minus pre-gate = value the 10:00 gate forgoes
 \newcommand{\GateTimingValueLo}{-0.005}
 \newcommand{\GateTimingValueHi}{0.010}
-\newcommand{\PreGateVsStaleDiff}{0.206} % Gate-1 quantity
-\newcommand{\PreGateVsStaleDiffLo}{0.169}
-\newcommand{\PreGateVsStaleDiffHi}{0.246}
 \newcommand{\PreGateRetention}{99.0}      % derived: \PreGateImp / \PostGateImp (%)
 
 % ---- Phase 52: FIP commitment decision value (prev2-primary; thousand JPY per MW-installed-year) ----
 
 % ---- Phase 54: NWP-proxy-enriched baseline, 610 days, 8 areas ----
-\newcommand{\PreGateOverEnrichedAdm}{0.200} % pre-gate vintage over the fullest admissible baseline
-\newcommand{\PreGateOverEnrichedAdmLo}{0.166}
-\newcommand{\PreGateOverEnrichedAdmHi}{0.235}
-\newcommand{\ProxyCarriedValue}{0.191}      % carried by engineered PV/wind/load proxies from the same vintage
-\newcommand{\RawResidualOverProxies}{0.009} % residual value of raw channels on top of those proxies
-\newcommand{\RawResidualLo}{0.004}
-\newcommand{\RawResidualHi}{0.014}
-\newcommand{\EnrichGainAdmDaily}{0.020}     % price-only -> admissible enriched baseline
+\newcommand{\PreGateOverEnrichedAdm}{0.247} % pre-gate vintage over the fullest admissible baseline
+\newcommand{\PreGateOverEnrichedAdmLo}{0.206}
+\newcommand{\PreGateOverEnrichedAdmHi}{0.291}
+\newcommand{\ProxyCarriedValue}{0.236}      % carried by engineered PV/wind/load proxies from the same vintage
+\newcommand{\RawResidualOverProxies}{0.011} % residual value of raw channels on top of those proxies
+\newcommand{\RawResidualLo}{0.005}
+\newcommand{\RawResidualHi}{0.017}
+\newcommand{\EnrichGainAdmDaily}{0.021}     % price-only -> admissible enriched baseline
 \newcommand{\ProxyCarriedShare}{95}         % derived: \ProxyCarriedValue / \PreGateOverEnrichedAdm (%)
 
 % ---- Phase 55: tier slope-difference tests ----
-\newcommand{\TierDrhoPreGate}{-0.32}    % Spearman-rho difference, stale proxy minus pre-gate vintage
-\newcommand{\TierDrhoPreGateLo}{-0.90}
-\newcommand{\TierDrhoPreGateHi}{0.05}
 
 % ---- Phase 53: exact archived pre-gate runs (D-2 21/12 UTC), corroboration ----
-\newcommand{\ExactPreGateDays}{881}      % delivery days extracted from the GRIB2 archive, 2024-03-01..2026-07-29
-\newcommand{\ExactPreGateMargin}{90}     % minutes between the 21 UTC run's dissemination and the gate
 \newcommand{\ExactVsPreGateTempRmse}{1.03}   % exact pre-gate vs previous-day-2 vintage, 2-m temperature (degC)
 \newcommand{\ExactVsPostGateTempRmse}{0.46}  % exact pre-gate vs first post-gate run, same channel
 
@@ -391,8 +269,6 @@
 \newcommand{\ProxyDemandRHi}{0.69}
 \newcommand{\CapacityTableImpossible}{seven} % area-channels where realised output exceeds nameplate
 \newcommand{\CapacityWorstRatio}{4.8}   % Tokyo wind: realised max / nameplate
-\newcommand{\TierDrhoRealisedIdx}{-0.37}     % Delta-rho under the vintage-free saturation index
-\newcommand{\TierDrhoRealisedIdxPermArea}{0.14} % exact area-level permutation p, same index
 
 % ---- Phase 61: physical/system metrics + compliant-nomination profit effect ----
 % CNPE replaces the retired \FipVoi* family: a value of information cannot be
@@ -494,8 +370,8 @@
 % bound and printed rather than left in the artefact.
 \newcommand{\GateTimingDaylight}{0.013}
 \newcommand{\GateTimingDaylightLo}{-0.006}
-\newcommand{\GateTimingDaylightHi}{0.032}
-\newcommand{\GateTimingDaylightP}{0.19}
+\newcommand{\GateTimingDaylightHi}{0.031}
+\newcommand{\GateTimingDaylightP}{0.20}
 
 % ---- Phase 108: the cost--loss increment, against a fallback anyone would use ----
 % The article reported the weather channels' contribution as V(with) - V(without)
@@ -524,8 +400,6 @@
 % is both commensurable and about four times the contrast. The variance shares stay
 % where they belong, inside the mechanism regression on each target separately;
 % they no longer carry the headline.
-\newcommand{\PriceRelReduction}{0.14}   % gate-timing gain as a share of the price arm's own MAE (%)
-\newcommand{\AsymmetryRatio}{50}        % physical over price, in commensurable units
 
 % ---- Phase 102: signal or learner, and the window mismatch it exposed ----
 % The pre-registered question was whether the post-gate price null is a property of
@@ -652,7 +526,6 @@
 \newcommand{\CostLossPeakGain}{0.36}
 \newcommand{\CostLossPeakGainLo}{0.26}
 \newcommand{\CostLossPeakGainHi}{0.48}
-\newcommand{\CostLossBaseRate}{3.4}
 
 % ---- Phase 95: what "nine of nine areas" actually rests on ----
 % Interconnection capacity is allocated through the spot auction, so area prices
@@ -693,8 +566,8 @@
 \newcommand{\CwProxyKyushuSingle}{0.883}
 \newcommand{\CwProxyKyushuCw}{0.916}
 % Enriched-baseline lineage branches (phase78/phase54 variants)
-\newcommand{\EnrichedDays}{698}
-\newcommand{\EnrichedDaysKyushu}{668}  % the one area with a shorter enriched panel
+\newcommand{\EnrichedDays}{701}
+\newcommand{\EnrichedDaysKyushu}{671}  % the one area with a shorter enriched panel
 \newcommand{\PreGateOverEnrichedDrop}{0.205}
 \newcommand{\PreGateOverEnrichedLagX}{0.197}
 % Robustness block (phase80/82/83/78)
@@ -779,7 +652,6 @@
 % lag would have moved one and left the other. Checked by the guard's hhmm mode
 % against the same provenance field, so the two renderings cannot diverge.
 \newcommand{\DissemMedianLagHM}{2~h~16~min}
-\newcommand{\DissemMedianLagHMJa}{2 時間 16 分}
 \newcommand{\DissemMaxLagMin}{159}      % worst single day (12Z cycle), minutes
 \newcommand{\DissemAuditDays}{881}      % delivery days audited
 \newcommand{\DissemAuditFiles}{7048}    % archived files probed, none missing
@@ -828,7 +700,6 @@
 % same claim as "shown equivalent to zero".
 \newcommand{\GateTimingEquivMargin}{0.01}   % one JEPX price tick, JPY/kWh
 % The same margin as a share of the price-only baseline MAE (phase83 / phase82).
-\newcommand{\GateTimingMarginPctBaseline}{0.47}
 \newcommand{\GateTimingTostP}{0.024}        % TOST p, HLN-DM L=3, tick margin
 \newcommand{\GateTimingTostPBoot}{0.023}    % same by the paired block bootstrap
 \newcommand{\GateTimingCiNinetyLo}{-0.004}  % 90% interval (the TOST interval)
@@ -1136,13 +1007,13 @@
 % Enriched-baseline decomposition (phase54v2). The interval macros exist because
 % two of these were hand-typed from the SUPERSEDED phase54 run and stayed there
 % through two revisions; the ratchet cannot see numbers inside prose brackets.
-\newcommand{\EnrichedSlots}{265{,}872}
-\newcommand{\EnrichGainAdmLo}{0.004}
-\newcommand{\EnrichGainAdmHi}{0.036}
-\newcommand{\ProxyCarriedLo}{0.159}
-\newcommand{\ProxyCarriedHi}{0.223}
-\newcommand{\EnrichPerAreaLo}{0.087}
-\newcommand{\EnrichPerAreaHi}{0.289}
+\newcommand{\EnrichedSlots}{267{,}744}
+\newcommand{\EnrichGainAdmLo}{0.005}
+\newcommand{\EnrichGainAdmHi}{0.038}
+\newcommand{\ProxyCarriedLo}{0.197}
+\newcommand{\ProxyCarriedHi}{0.277}
+\newcommand{\EnrichPerAreaLo}{0.089}
+\newcommand{\EnrichPerAreaHi}{0.357}
 \newcommand{\AbsNaiveMae}{3.096}
 \newcommand{\AbsPreGateMae}{1.890}
 \newcommand{\AbsPreGateRmae}{0.611}
@@ -1269,3 +1140,118 @@
 \newcommand{\WeightEquivPLater}{0.077}
 \newcommand{\WeightEquivPEqual}{0.005}
 \newcommand{\WeightGateDeltaLater}{0.0049}
+% ===== Energy restructure (phases 112-116, 2026-10) ========================
+% Applied Energy review response (APEN-D-26-19971). Precommit:
+% docs/research/2026-10-23_phase112_ae_review_response_precommit.md.
+% phase114: cuts of the frozen phase85 predictions (no refit).
+\newcommand{\PreGateRelPct}{11.7}       % pre-gate improvement, % of price-only MAE
+\newcommand{\GateUcbSharePct}{3.9}      % 95% UCB of the gate contrast, % of pre-gate value
+\newcommand{\GateUcbRelPct}{0.46}       % same bound, % of price-only MAE
+\newcommand{\RegimeGateUcbMaxPct}{1.3}  % largest regime-cut UCB, % of price-only MAE
+\newcommand{\CompositeMinusHeadline}{0.001}
+\newcommand{\PreGateTicks}{25}
+\newcommand{\FloorBandExactPct}{86.1}
+\newcommand{\FloorPrAucDeltaExact}{0.303}
+\newcommand{\FloorExtraPerYear}{1{,}627}
+\newcommand{\FloorSlotsPerYear}{5{,}241}
+\newcommand{\FloorExtraPerYearKyushu}{628}
+% phase115: JMA documentation, each value located in the source PDF by script.
+\newcommand{\MsmCutoffMin}{50}
+\newcommand{\MsmJobStartUtc}{00:55}
+\newcommand{\MsmJobStartJst}{09:55}
+\newcommand{\MsmJobDurationMin}{65}
+\newcommand{\MsmJobDurationMaxMin}{70}  % 2016-2019 reports schedule the job to 02:05 UTC
+\newcommand{\MsmRangeLong}{78}
+\newcommand{\MsmRangeShort}{39}
+% Phase 112 backcast (2021-01-01..2024-07-31) and the 2020-2026 arrival audit (phase115)
+\newcommand{\BcAuditDays}{1{,}461}     % 2020-08..2024-07 delivery days, D-2 12z and D-1 00z runs
+\newcommand{\BcAuditAllDays}{2{,}189}  % 00z run, 2020-2026 with the phase72 audit, no file before the gate
+\newcommand{\GateFastestFileMinAll}{75.6}  % earliest archive write of the 00 UTC run, 2020-2026
+\newcommand{\GateSlowestFileMinAll}{83.8}  % latest, same span
+\newcommand{\BcTestDays}{1{,}308}
+\newcommand{\BcScarcityPct}{2.0}       % slots >= 50 JPY/kWh in the backcast
+\newcommand{\BcPreImp}{0.237}
+\newcommand{\BcPreImpLo}{0.170}
+\newcommand{\BcPreImpHi}{0.316}
+\newcommand{\BcPreRelPct}{6.6}
+\newcommand{\BcEpisodeGate}{-0.010}    % negative: print inside math mode
+\newcommand{\BcEpisodeGateLo}{-0.058}
+\newcommand{\BcEpisodeGateHi}{0.033}
+\newcommand{\BcEpisodeGateRelLo}{-0.70} % interval relative to the episodes' price-only MAE; G112b (i) needs Hi < 1
+\newcommand{\BcEpisodeGateRelHi}{0.39}
+\newcommand{\BcSFiftyGate}{0.374}      % slots >= 50 JPY/kWh: outcome-selected, descriptive (G112c)
+\newcommand{\BcSFiftyGateLo}{0.024}
+\newcommand{\BcSFiftyGateHi}{0.885}
+\newcommand{\BcSFiftyGateP}{0.11}
+\newcommand{\BcOverlapPointHours}{403{,}920}
+\newcommand{\BcOverlapMaxDiff}{0}
+\newcommand{\LongTrainPreImp}{0.267}   % folds with >= a year of training: pre-gate improvement
+\newcommand{\LongTrainGate}{0.002}
+\newcommand{\LongTrainGateLo}{-0.006}
+\newcommand{\LongTrainGateHi}{0.009}
+\newcommand{\CompositeOverEnriched}{0.200}   % phase54v2: composite input, kept in S2
+\newcommand{\CompositeOverEnrichedLo}{0.166}
+\newcommand{\CompositeOverEnrichedHi}{0.235}
+\newcommand{\CompositeProxyShare}{95}
+\newcommand{\TunedPreImp}{0.239}
+\newcommand{\TunedMaeDiffPct}{1.0}     % tuned pre-gate MAE above the fixed configuration's (%)
+\newcommand{\LearnerUcbShareMin}{2.8}  % post-gate UCB, % of each learner's own pre-gate gain: lowest
+\newcommand{\LearnerUcbShareMax}{6.0}  % and highest across the four learners
+\newcommand{\DnnPreImp}{0.187}
+% phase117: day-ahead gates against global-model dissemination (counts bound by WORD_CHECKS)
+\newcommand{\MarketsN}{ten}
+\newcommand{\MarketsEcmwfN}{ten}
+\newcommand{\MarketsGfsN}{seven}
+\newcommand{\HubMaxDiff}{0.006}        % phase113: worst slot change, wind rescaled to 100 m
+\newcommand{\HubSlotsChangedPct}{0.1}  % phase113: % of slots whose forecast changes at all
+\newcommand{\WindHeadlineChangePct}{2.8} % phase113: % fall in the pre-gate improvement without wind
+% phase114 additions: one panel for the absolute MAE, relative regime values.
+\newcommand{\PriceOnlyMaeFull}{2.153}    % price-only pooled MAE on the full CW panel
+\newcommand{\RegimeRelCalm}{7.4}         % pre-gate value, % of the cut's price-only MAE
+\newcommand{\RegimeRelEvening}{6.6}
+\newcommand{\RegimeRelHighPrice}{6.2}
+\newcommand{\FloorBrierGain}{0.0072}     % Brier improvement, positive = better
+% phase118 (internal referee read; post hoc, precommit 2026-10-23): daylight row,
+% same-window physical vs price, cost-loss on the isotonic floor probabilities.
+\newcommand{\DayPreGateImp}{0.589}
+\newcommand{\DayPreGateRelPct}{19.1}
+\newcommand{\DayGateUcbSharePct}{5.3}
+\newcommand{\DayInnovSharePct}{2.5}
+\newcommand{\SwDays}{695}
+\newcommand{\SwPhysBeforeMw}{50.6}
+\newcommand{\SwPhysBeforeMwLo}{41.1}
+\newcommand{\SwPhysBeforeMwHi}{60.5}
+\newcommand{\SwPhysBeforePct}{5.8}
+\newcommand{\SwPhysAcrossMw}{9.7}
+\newcommand{\SwPhysAcrossMwLo}{4.9}
+\newcommand{\SwPhysAcrossMwHi}{14.6}
+\newcommand{\SwPhysAcrossPct}{1.1}
+\newcommand{\SwPriceBeforePct}{0.4}
+\newcommand{\SwPriceAcrossPct}{0.1}
+\newcommand{\SwExPostPhysPct}{11.1}
+\newcommand{\SwExPostPhysPctLo}{8.4}
+\newcommand{\SwExPostPhysPctHi}{13.7}
+\newcommand{\SwExPostPricePct}{1.7}
+\newcommand{\SwExPostPricePctLo}{0.6}
+\newcommand{\SwExPostPricePctHi}{2.8}
+% second referee read (2026-10-24): every way of using the post-gate run, usable
+% cost-loss value, and regime bounds against each cut's own gain.
+\newcommand{\PvInnovDelta}{0.006}
+\newcommand{\PvInnovLo}{0.001}
+\newcommand{\PvInnovHi}{0.013}
+\newcommand{\PvInnovP}{0.031}
+\newcommand{\UcbShareMaxAll}{6.0}
+\newcommand{\RegimeUcbShareMax}{16.0}
+\newcommand{\RegimeRawPMin}{0.34}
+\newcommand{\ClUPrePosN}{43}
+\newcommand{\ClUPreHolmN}{35}
+\newcommand{\ClUPreMax}{0.30}
+\newcommand{\ClUPreMaxLo}{0.23}
+\newcommand{\ClUPreMaxHi}{0.35}
+\newcommand{\ClUPreMaxAlpha}{0.40}
+\newcommand{\ClUPostHolmN}{zero}
+\newcommand{\ClUPostMax}{0.050}
+\newcommand{\ClUPostMaxLo}{0.000}
+\newcommand{\ClUPostMaxHi}{0.080}
+\newcommand{\ClBaseRatePct}{3.5}   % floor-event rate on the isotonic floor panel (%)
+\newcommand{\ClAlphaN}{49}

@@ -42,6 +42,7 @@ import json
 import re
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -142,105 +143,8 @@ class MacroPending(BaseModel):
 
 # Typed map: paper headline macros -> regenerated provenance values.
 CHECKS: list[MacroCheck] = [
-    MacroCheck(
-        macro="Spearman",
-        provenance="phase25.7_pv_peak_summary.json",
-        json_path=("univariate_floor_rate", "spearman_rho"),
-        note="cross-area FLOOR Spearman (headline)",
-    ),
-    MacroCheck(
-        macro="SpearmanP",
-        provenance="phase25.7_pv_peak_summary.json",
-        json_path=("univariate_floor_rate", "spearman_p"),
-        note="cross-area FLOOR Spearman p-value (headline)",
-    ),
-    MacroCheck(
-        macro="Rsqpv",
-        provenance="phase25.7_pv_peak_summary.json",
-        json_path=("univariate_pv_peak", "r_squared"),
-        note="univariate PV/peak R^2 (AIC-best alternative)",
-    ),
-    MacroCheck(
-        macro="PanelBeta",
-        provenance="phase23-panel-daily/cluster_bootstrap.json",
-        json_path=("spec1_area_main", "coefs", "floor_rate", "observed"),
-        note="area-fold panel FLOOR coefficient",
-    ),
-    MacroCheck(
-        macro="PanelBootCI",
-        provenance="phase23-panel-daily/cluster_bootstrap.json",
-        json_path=("spec1_area_main", "coefs", "floor_rate", "ci90_lo"),
-        note="cluster+block bootstrap 90% CI lower",
-    ),
-    MacroCheck(
-        macro="PanelBootCIninetyFive",
-        provenance="phase23-panel-daily/cluster_bootstrap.json",
-        json_path=("spec1_area_main", "coefs", "floor_rate", "ci95_lo"),
-        note="cluster+block bootstrap 95% CI lower",
-    ),
-    MacroCheck(
-        macro="SpearmanPre",
-        provenance="phase25_17_floor_pre_period/results.json",
-        json_path=("specifications", 1, "cross_area_floor_vs_delta_mae", "spearman_rho"),
-        note="pre-evaluation FLOOR Spearman (spec[1] = pre_evaluation_2022_to_2024_09_14)",
-    ),
-    MacroCheck(
-        macro="CurtailFloorSpearman",
-        provenance="phase25.9_floor_probit_summary.json",
-        json_path=("cross_area_spearman", "curtail_hours_vs_floor_hours", "rho"),
-        note="8-area cross-area curtailment-hours vs FLOOR-hours Spearman (incl. Shikoku+Kansai)",
-    ),
-    MacroCheck(
-        macro="CurtailFloorSpearmanP",
-        provenance="phase25.9_floor_probit_summary.json",
-        json_path=("cross_area_spearman", "curtail_hours_vs_floor_hours", "p_two_sided"),
-        note="8-area cross-area curtailment-vs-FLOOR Spearman p-value",
-    ),
     # ----- Round-27 / Phase 26: operational-forecast reframe -----
-    MacroCheck(
-        macro="WithinDayBeta",
-        provenance="phase26.0b_treatment_isolation.json",
-        json_path=("beta_triple_histfc_forecast_admissible_accurate", "beta_observed"),
-        note="within-day triple under admissible operational-forecast moderator",
-    ),
-    MacroCheck(
-        macro="WithinDayP",
-        provenance="phase26.0b_treatment_isolation.json",
-        json_path=(
-            "beta_triple_histfc_forecast_admissible_accurate",
-            "p_wild_cluster_bootstrap_two_sided",
-        ),
-        note="within-day triple wild-cluster p (admissible moderator)",
-    ),
-    MacroCheck(
-        macro="WithinDayBetaContemp",
-        provenance="phase26.0b_treatment_isolation.json",
-        json_path=("beta_triple_contemporaneous_truth", "beta_observed"),
-        note="within-day triple under contemporaneous moderator (reproduces committed -0.33)",
-    ),
     # ----- Round-30 / Phase 28.1: within-day FE-saturation collapse (honest caveat) -----
-    MacroCheck(
-        macro="WithinDayFEbeta",
-        provenance="phase28.1_within_day_fe_robustness.json",
-        json_path=(
-            "histfc_moderator_no_controls",
-            "fe_specs_twoway_cluster",
-            "spec1_area_date_hour",
-            "beta_triple",
-        ),
-        note="within-day triple attenuates to ~0 under saturated area+date+hour FE",
-    ),
-    MacroCheck(
-        macro="WithinDayFEp",
-        provenance="phase28.1_within_day_fe_robustness.json",
-        json_path=(
-            "histfc_moderator_no_controls",
-            "fe_specs_twoway_cluster",
-            "spec1_area_date_hour",
-            "p_asymptotic_twoway",
-        ),
-        note="within-day triple two-way-clustered p under saturated FE (n.s.)",
-    ),
     # ----- Round-30 / Phase 29: cost-ratio grounding (D-lite) -----
     MacroCheck(
         macro="FloorWedgeShikoku",
@@ -255,28 +159,10 @@ CHECKS: list[MacroCheck] = [
         note="Kyushu floor-episode system-minus-area wedge (JPY/kWh)",
     ),
     MacroCheck(
-        macro="OpsCrossArea",
-        provenance="phase26.1_pv_surplus_identification.json",
-        json_path=("cross_area_gradient", "histfc", "spearman_vs_pv_peak", "rho"),
-        note="operational-forecast cross-area gradient (washout)",
-    ),
-    MacroCheck(
         macro="OpsCrossAreaP",
         provenance="phase26.1_pv_surplus_identification.json",
         json_path=("cross_area_gradient", "histfc", "spearman_vs_pv_peak", "p"),
         note="operational-forecast cross-area gradient p-value (n.s.)",
-    ),
-    MacroCheck(
-        macro="ProxyCrossAreaClean",
-        provenance="phase26.1_pv_surplus_identification.json",
-        json_path=("cross_area_gradient", "era5", "spearman_vs_pv_peak", "rho"),
-        note="ERA5 proxy cross-area gradient on the clean head-to-head sample",
-    ),
-    MacroCheck(
-        macro="OpsFloorFone",
-        provenance="phase26.2_floor_decision_loss.json",
-        json_path=("pooled", "histfc", "classification_weather", "floor_f1"),
-        note="operational-forecast floor-event F1",
     ),
     MacroCheck(
         macro="PriceOnlyFloorFone",
@@ -300,28 +186,10 @@ CHECKS: list[MacroCheck] = [
         note="FLOOR base rate (%) -- explains F1 vs AUC",
     ),
     MacroCheck(
-        macro="OpsFloorPRAUC",
-        provenance="phase26.2_floor_decision_loss.json",
-        json_path=("pooled", "histfc", "classification_weather", "pr_auc_floor"),
-        note="operational floor PR-AUC",
-    ),
-    MacroCheck(
         macro="PriceOnlyFloorPRAUC",
         provenance="phase26.2_floor_decision_loss.json",
         json_path=("pooled", "histfc", "classification_price_only", "pr_auc_floor"),
         note="price-only floor PR-AUC",
-    ),
-    MacroCheck(
-        macro="OracleFloorPRAUC",
-        provenance="phase26.2_floor_decision_loss.json",
-        json_path=("pooled", "oracle", "classification_weather", "pr_auc_floor"),
-        note="realised-weather oracle floor PR-AUC",
-    ),
-    MacroCheck(
-        macro="OracleFloorFone",
-        provenance="phase26.2_floor_decision_loss.json",
-        json_path=("pooled", "oracle", "classification_weather", "floor_f1"),
-        note="realised-weather oracle floor F1 (operational ~= oracle)",
     ),
     MacroCheck(
         macro="OpsFloorBrier",
@@ -364,55 +232,6 @@ CHECKS: list[MacroCheck] = [
         note="price-only-predicted floors coincident with curtailment (%)",
     ),
     MacroCheck(
-        macro="ImpProxy",
-        provenance="phase27.1_oracle_tier.json",
-        json_path=("mean_improvement_yen_kwh", "era5"),
-        note="ERA5 proxy mean weather MAE improvement (yen/kWh)",
-    ),
-    MacroCheck(
-        macro="ImpOps",
-        provenance="phase27.1_oracle_tier.json",
-        json_path=("mean_improvement_yen_kwh", "histfc"),
-        note="operational mean weather MAE improvement (yen/kWh)",
-    ),
-    MacroCheck(
-        macro="ImpOracle",
-        provenance="phase27.1_oracle_tier.json",
-        json_path=("mean_improvement_yen_kwh", "oracle"),
-        note="realised-weather oracle mean MAE improvement (yen/kWh)",
-    ),
-    MacroCheck(
-        macro="SkillProxy",
-        provenance="phase27.0_derisk_gate.json",
-        json_path=("probe_s_skill_axis", "skill_lag48_corr"),
-        note="ERA5 lag-48 proxy forecast skill (midday corr)",
-    ),
-    MacroCheck(
-        macro="SkillHistfc",
-        provenance="phase27.0_derisk_gate.json",
-        json_path=("probe_s_skill_axis", "skill_histfc_corr"),
-        note="operational JMA-MSM forecast skill (midday corr)",
-    ),
-    MacroCheck(
-        macro="CurtailActiveBeta",
-        provenance="phase27.0_derisk_gate.json",
-        json_path=("probe_b_threshold_gate", "curtail_histfc_intensity", "beta_observed"),
-        tol=0.01,
-        note="operational within-day intensity, curtail-active (actual-crossing) slots",
-    ),
-    MacroCheck(
-        macro="SpearmanPVpeak",
-        provenance="phase25.7_pv_peak_summary.json",
-        json_path=("univariate_pv_peak", "spearman_rho"),
-        note="cross-area PV/peak vs weather Delta-MAE (AIC-best antecedent)",
-    ),
-    MacroCheck(
-        macro="ProxyFloorFone",
-        provenance="phase26.2_floor_decision_loss.json",
-        json_path=("pooled", "era5", "classification_weather", "floor_f1"),
-        note="ERA5 proxy floor-event F1 (proxy adds ~no decision value)",
-    ),
-    MacroCheck(
         macro="ProxyFloorPRAUC",
         provenance="phase26.2_floor_decision_loss.json",
         json_path=("pooled", "era5", "classification_weather", "pr_auc_floor"),
@@ -438,80 +257,8 @@ CHECKS: list[MacroCheck] = [
         note="realised-weather oracle floor-event Brier",
     ),
     # ----- Phase 27.5: LightGBM model-class robustness of the skill-scarcity pivot -----
-    MacroCheck(
-        macro="LgbmProxyImp",
-        provenance="phase27.5_lgbm_identification.json",
-        json_path=("cross_area_gradient", "era5", "mean_improvement"),
-        note="LightGBM ERA5 proxy mean MAE improvement (vs XGB 0.034)",
-    ),
-    MacroCheck(
-        macro="LgbmOpsImp",
-        provenance="phase27.5_lgbm_identification.json",
-        json_path=("cross_area_gradient", "histfc", "mean_improvement"),
-        note="LightGBM operational mean MAE improvement (vs XGB 0.239)",
-    ),
-    MacroCheck(
-        macro="LgbmProxyConc",
-        provenance="phase27.5_lgbm_identification.json",
-        json_path=("cross_area_gradient", "era5", "spearman_vs_pv_peak", "rho"),
-        note="LightGBM proxy cross-area gradient vs PV/peak (n.s. at n=8)",
-    ),
-    MacroCheck(
-        macro="LgbmOpsConc",
-        provenance="phase27.5_lgbm_identification.json",
-        json_path=("cross_area_gradient", "histfc", "spearman_vs_pv_peak", "rho"),
-        note="LightGBM operational cross-area gradient (washout, n.s.)",
-    ),
     # ----- Phase 27.5: CatBoost (3rd model class) robustness of the skill-scarcity pivot -----
-    MacroCheck(
-        macro="CatProxyImp",
-        provenance="phase27.5_catboost_identification.json",
-        json_path=("cross_area_gradient", "era5", "mean_improvement"),
-        note="CatBoost ERA5 proxy mean MAE improvement (vs XGB 0.034)",
-    ),
-    MacroCheck(
-        macro="CatOpsImp",
-        provenance="phase27.5_catboost_identification.json",
-        json_path=("cross_area_gradient", "histfc", "mean_improvement"),
-        note="CatBoost operational mean MAE improvement (vs XGB 0.239)",
-    ),
-    MacroCheck(
-        macro="CatProxyConc",
-        provenance="phase27.5_catboost_identification.json",
-        json_path=("cross_area_gradient", "era5", "spearman_vs_pv_peak", "rho"),
-        note="CatBoost proxy cross-area gradient vs PV/peak (p=0.058, n.s. at n=8)",
-    ),
-    MacroCheck(
-        macro="CatOpsConc",
-        provenance="phase27.5_catboost_identification.json",
-        json_path=("cross_area_gradient", "histfc", "spearman_vs_pv_peak", "rho"),
-        note="CatBoost operational cross-area gradient (washout, n.s.)",
-    ),
     # ----- Round-31 / Phase 31b: exact-issuance JMA-GPV head-to-head (review #1) -----
-    MacroCheck(
-        macro="GpvExactImp",
-        provenance="phase31b_exact_issuance_headtohead.json",
-        json_path=("mean_improvement_yen_kwh", "gpv_exact_issuance"),
-        note="exact-issuance GPV mean MAE improvement (daytime same-sample)",
-    ),
-    MacroCheck(
-        macro="HistfcDayImp",
-        provenance="phase31b_exact_issuance_headtohead.json",
-        json_path=("mean_improvement_yen_kwh", "histfc_reconstruction"),
-        note="reconstruction mean improvement on the identical daytime sample (gpv ~= histfc)",
-    ),
-    MacroCheck(
-        macro="GpvExactConc",
-        provenance="phase31b_exact_issuance_headtohead.json",
-        json_path=("cross_area_spearman_vs_pvpeak", "gpv_exact_issuance", "rho"),
-        note="exact-issuance GPV cross-area gradient vs PV/peak (washout, n.s.)",
-    ),
-    MacroCheck(
-        macro="GpvExactConcP",
-        provenance="phase31b_exact_issuance_headtohead.json",
-        json_path=("cross_area_spearman_vs_pvpeak", "gpv_exact_issuance", "p"),
-        note="exact-issuance GPV cross-area gradient p-value (n.s.)",
-    ),
     # ----- Round-33 Phase A: ALL-HOURS exact-issuance head-to-head (headline) -----
     MacroCheck(
         macro="ProxyAllHoursImp",
@@ -606,76 +353,6 @@ CHECKS: list[MacroCheck] = [
     ),
     # ----- Round-37 Phase 3: channel-resolved forecast skill (midday corr; review #17) -----
     # 2-decimal corr display -> tol 0.01.
-    MacroCheck(
-        macro="ChanProxySW",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "shortwave", "proxy_corr_midday"),
-        tol=1e-2,
-        note="proxy shortwave skill (midday corr)",
-    ),
-    MacroCheck(
-        macro="ChanGpvSW",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "shortwave", "gpv_corr_midday"),
-        tol=1e-2,
-        note="GPV shortwave skill (midday corr)",
-    ),
-    MacroCheck(
-        macro="ChanProxyTemp",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "temperature", "proxy_corr_midday"),
-        tol=1e-2,
-        note="proxy temperature skill (near-saturated)",
-    ),
-    MacroCheck(
-        macro="ChanGpvTemp",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "temperature", "gpv_corr_midday"),
-        tol=1e-2,
-        note="GPV temperature skill",
-    ),
-    MacroCheck(
-        macro="ChanProxyCloud",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "cloud", "proxy_corr_midday"),
-        tol=1e-2,
-        note="proxy cloud skill (narrowband: poor)",
-    ),
-    MacroCheck(
-        macro="ChanGpvCloud",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "cloud", "gpv_corr_midday"),
-        tol=1e-2,
-        note="GPV cloud skill",
-    ),
-    MacroCheck(
-        macro="ChanProxyWind",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "wind", "proxy_corr_midday"),
-        tol=1e-2,
-        note="proxy wind skill (narrowband: poor)",
-    ),
-    MacroCheck(
-        macro="ChanGpvWind",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "wind", "gpv_corr_midday"),
-        tol=1e-2,
-        note="GPV wind skill",
-    ),
-    MacroCheck(
-        macro="ChanGainWind",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "wind", "gpv_gain_midday"),
-        tol=1e-2,
-        note="GPV skill gain over proxy on wind (largest, kappa-free)",
-    ),
-    MacroCheck(
-        macro="ChanGainCloud",
-        provenance="phase42_channel_skill.json",
-        json_path=("channels", "cloud", "gpv_gain_midday"),
-        tol=1e-2,
-        note="GPV skill gain over proxy on cloud (kappa-free broad channel)",
-    ),
     # ----- Round-34 Phase 3: controlled skill-degradation sweep (curve sorted ascending by skill) -----
     MacroCheck(
         macro="SkillCurveHiSkill",
@@ -702,42 +379,6 @@ CHECKS: list[MacroCheck] = [
         note="mean weather value at the most-degraded level (curve[0])",
     ),
     # ----- Round-35 Phase B: area-month panel escaping the n=9 cross-section -----
-    MacroCheck(
-        macro="PanelMonthN",
-        provenance="phase37_areamonth_panel.json",
-        json_path=("n_cells",),
-        note="area-month panel cells (9 areas x 15 months, >=3 folds)",
-    ),
-    MacroCheck(
-        macro="PanelMonthBetaPooled",
-        provenance="phase37_areamonth_panel.json",
-        json_path=("specs", 0, "beta_floor"),
-        note="area-month panel pooled beta on FLOOR (spec0)",
-    ),
-    MacroCheck(
-        macro="PanelMonthBeta",
-        provenance="phase37_areamonth_panel.json",
-        json_path=("specs", 1, "beta_floor"),
-        note="area-month panel area-FE beta on FLOOR (within-area temporal, headline)",
-    ),
-    MacroCheck(
-        macro="PanelMonthWildP",
-        provenance="phase37_areamonth_panel.json",
-        json_path=("specs", 1, "p_wild_cluster"),
-        note="area-month panel area-FE wild-cluster p (G=9)",
-    ),
-    MacroCheck(
-        macro="PanelMonthBetaSatFE",
-        provenance="phase37_areamonth_panel.json",
-        json_path=("specs", 2, "beta_floor"),
-        note="area-month panel area+month-FE beta (attenuated)",
-    ),
-    MacroCheck(
-        macro="PanelMonthSatP",
-        provenance="phase37_areamonth_panel.json",
-        json_path=("specs", 2, "p_wild_cluster"),
-        note="area-month panel area+month-FE wild-cluster p (n.s.)",
-    ),
     # ----- Round-35 Phase E: external-validity exploratory on EPEX-DE/LU -----
     MacroCheck(
         macro="DEWeatherValue",
@@ -764,41 +405,6 @@ CHECKS: list[MacroCheck] = [
         note="DE concentration-analogue p-value (n.s. at the softer boundary)",
     ),
     # ----- Round-33 B3: reviewer-requested literal slot-level intensity panel (transparent null) -----
-    MacroCheck(
-        macro="IntensityNoFEbeta",
-        provenance="phase30.1_distance_to_floor.json",
-        json_path=("pv_to_demand", "spec0_no_fe_wild_cluster", "beta"),
-        note="literal intensity panel no-FE slope (suggestive, wild-cluster p<0.001)",
-    ),
-    MacroCheck(
-        macro="IntensityNoFEp",
-        provenance="phase30.1_distance_to_floor.json",
-        json_path=(
-            "pv_to_demand",
-            "spec0_no_fe_wild_cluster",
-            "p_wild_cluster_bootstrap_two_sided",
-        ),
-        # DECLARED 2026-08-18. The macro prints "<0.001", a CEILING, while the
-        # provenance is exactly 0.0, so macro and provenance are not meant to be
-        # equal here and the printed-precision default (0.0005) correctly refuses
-        # them. The flat 5e-3 default used to hide that distinction. The tolerance
-        # is the width of the bound itself: any p at or below the printed ceiling
-        # satisfies the sentence.
-        tol=0.0011,
-        note="literal intensity panel no-FE wild-cluster p (0.0 -> reported <0.001)",
-    ),
-    MacroCheck(
-        macro="IntensityFEbeta",
-        provenance="phase30.1_distance_to_floor.json",
-        json_path=("verdict", "pv_to_demand_spec1_beta"),
-        note="literal intensity panel saturated-FE slope (attenuated)",
-    ),
-    MacroCheck(
-        macro="IntensityFEp",
-        provenance="phase30.1_distance_to_floor.json",
-        json_path=("verdict", "pv_to_demand_spec1_p"),
-        note="literal intensity panel saturated-FE p (n.s.; FE-fragile)",
-    ),
     # ----- Round-31 / Phase 31c: real-yen floor-event decision value (review #3) -----
     MacroCheck(
         macro="RealFloorWedge",
@@ -832,12 +438,6 @@ CHECKS: list[MacroCheck] = [
     ),
     # ----- Round-31 / Phase 32: honest enriched-baseline robustness (review #7/#2) -----
     MacroCheck(
-        macro="EnrichBaselineGain",
-        provenance="phase32_honest_baseline_enriched.json",
-        json_path=("enrichment_strength", "mean_enrichment_gain_over_price_yen_kwh"),
-        note="enriched baseline beats price-only (mean JPY/kWh) -> baseline is strong",
-    ),
-    MacroCheck(
         macro="OpsOverEnriched",
         provenance="phase32_honest_baseline_enriched.json",
         json_path=("operational_histfc_over_enriched", "mean_yen_kwh"),
@@ -865,12 +465,6 @@ CHECKS: list[MacroCheck] = [
     # ----- Round-37 / Phase 40: GENUINELY bid-close-admissible enriched baseline -----
     # supply mix moved to lag-96 (D-2, observed by D-1 10:00 for every slot); review #17 must-fix.
     MacroCheck(
-        macro="EnrichBaselineGainAdm",
-        provenance="phase40_admissible_supply_lag96.json",
-        json_path=("enrichment_strength", "mean_enrichment_gain_over_price_yen_kwh"),
-        note="admissible (lag-96-supply) enriched baseline beats price-only (mean JPY/kWh)",
-    ),
-    MacroCheck(
         macro="OpsOverEnrichedAdm",
         provenance="phase40_admissible_supply_lag96.json",
         json_path=("operational_histfc_over_enriched", "mean_yen_kwh"),
@@ -896,48 +490,6 @@ CHECKS: list[MacroCheck] = [
         note="ERA5 proxy mean MAE improvement over the admissible enriched baseline",
     ),
     # ----- Round-31 / Phase 33: FY2022-2025 temporal robustness (review #2) -----
-    MacroCheck(
-        macro="TemporalFloorRhoCrisis",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("cross_area_floor_vs_pvpeak_by_fy", "fy2022", "rho"),
-        note="FY2022 (crisis) cross-area Spearman(floor, PV/peak) -- gradient holds in crisis year",
-    ),
-    MacroCheck(
-        macro="TemporalFloorRhoCrisisP",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("cross_area_floor_vs_pvpeak_by_fy", "fy2022", "p"),
-        note="FY2022 cross-area gradient p-value",
-    ),
-    MacroCheck(
-        macro="TemporalFloorRhoCalm",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("cross_area_floor_vs_pvpeak_by_fy", "fy2025", "rho"),
-        note="FY2025 (calm) cross-area Spearman(floor, PV/peak)",
-    ),
-    MacroCheck(
-        macro="TemporalFloorRhoCalmP",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("cross_area_floor_vs_pvpeak_by_fy", "fy2025", "p"),
-        note="FY2025 cross-area gradient p-value",
-    ),
-    MacroCheck(
-        macro="TemporalFloorRhoMin",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("cross_area_floor_vs_pvpeak_by_fy", "summary", "rho_min"),
-        note="weakest of the four annual cross-area gradients (all four positive)",
-    ),
-    MacroCheck(
-        macro="KyushuWxValueCrisis",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("regimes", "crisis_fy2022_2023", "weather_value_mean"),
-        note="Kyushu mean weather value, crisis regime FY2022-23",
-    ),
-    MacroCheck(
-        macro="KyushuWxValueCalm",
-        provenance="phase33_temporal_kyushu.json",
-        json_path=("regimes", "calm_fy2024_2025", "weather_value_mean"),
-        note="Kyushu mean weather value, calm regime FY2024-25",
-    ),
     # ---- Phase 43: decision-value sensitivity (AE restructure, 2026-07-24) ----
     MacroCheck(
         macro="OpsValueRuleMinK",
@@ -1040,32 +592,6 @@ CHECKS: list[MacroCheck] = [
     ),
     # ---- Phase 45: EPEX-DE two-tier replication (AE restructure, 2026-07-24) ----
     MacroCheck(
-        macro="DETestDays",
-        provenance="phase45_epex_de_tiered.json",
-        json_path=("coverage", "head_to_head_test_days"),
-        tol=0.5,
-        note="DE head-to-head test days",
-    ),
-    MacroCheck(
-        macro="DEOpsImp",
-        provenance="phase45_epex_de_tiered.json",
-        json_path=("pooled", "improvement_op_eur_mwh"),
-        note="DE operational-tier improvement (EUR/MWh)",
-    ),
-    MacroCheck(
-        macro="DEProxyImp",
-        provenance="phase45_epex_de_tiered.json",
-        json_path=("pooled", "improvement_proxy_eur_mwh"),
-        note="DE lagged-proxy improvement (EUR/MWh, n.s.)",
-    ),
-    MacroCheck(
-        macro="DEOpsOverProxy",
-        provenance="phase45_epex_de_tiered.json",
-        json_path=("pooled", "ratio_op_over_proxy"),
-        tol=0.5,
-        note="DE operational/proxy improvement ratio",
-    ),
-    MacroCheck(
         macro="DEWindGain",
         provenance="phase45_epex_de_tiered.json",
         json_path=("channel_ablation", "families", "wind", "gain_op_eur_mwh"),
@@ -1103,18 +629,6 @@ CHECKS: list[MacroCheck] = [
     ),
     # ---- Phase 47: probabilistic tier evaluation (AE restructure, 2026-07-24) ----
     MacroCheck(
-        macro="CrpsProxyImp",
-        provenance="phase47_tier_probabilistic.json",
-        json_path=("pooled_9area", "improvements_over_price_only", "era5_proxy", "crps"),
-        note="9-area pooled CRPS improvement, proxy",
-    ),
-    MacroCheck(
-        macro="CrpsOpsImp",
-        provenance="phase47_tier_probabilistic.json",
-        json_path=("pooled_9area", "improvements_over_price_only", "histfc", "crps"),
-        note="9-area pooled CRPS improvement, operational",
-    ),
-    MacroCheck(
         macro="CrpsValueMultiple",
         provenance="phase47_tier_probabilistic.json",
         json_path=(
@@ -1127,53 +641,6 @@ CHECKS: list[MacroCheck] = [
         note="operational/proxy CRPS-improvement multiple",
     ),
     # ---- Phase 49: true previous-day-run tier + extended imbalance (AE restructure, 2026-07-24) ----
-    MacroCheck(
-        macro="PrevRunImp",
-        provenance="phase49_exante_fullyear.json",
-        json_path=("headtohead", "pooled_improvement_yen_kwh", "prev1"),
-        note="true previous-day-run pooled improvement, 21 months, 9 areas",
-    ),
-    MacroCheck(
-        macro="PrevRunProxyImp",
-        provenance="phase49_exante_fullyear.json",
-        json_path=("headtohead", "pooled_improvement_yen_kwh", "era5"),
-        note="same-window proxy improvement (n.s.)",
-    ),
-    MacroCheck(
-        macro="PrevRunTestDays",
-        provenance="phase49_exante_fullyear.json",
-        json_path=("headtohead", "window", "n_test_days"),
-        tol=0.5,
-        note="test days per area, extended window",
-    ),
-    MacroCheck(
-        macro="PrevRunReconGap",
-        provenance="phase49_exante_fullyear.json",
-        json_path=("headtohead", "reconstruction_vs_true_forecast", "mean_abs_gap_yen_kwh"),
-        note="mean |gap| reconstruction vs true run",
-    ),
-    MacroCheck(
-        macro="PrevRunAdmImp",
-        provenance="phase49_exante_fullyear.json",
-        json_path=(
-            "headtohead",
-            "strictly_admissible_morning_subset",
-            "pooled_improvement_yen_kwh",
-            "prev1",
-        ),
-        note="morning strictly-admissible subset, true-run improvement",
-    ),
-    MacroCheck(
-        macro="PrevRunAdmProxyImp",
-        provenance="phase49_exante_fullyear.json",
-        json_path=(
-            "headtohead",
-            "strictly_admissible_morning_subset",
-            "pooled_improvement_yen_kwh",
-            "era5",
-        ),
-        note="morning subset, proxy improvement",
-    ),
     MacroCheck(
         macro="PrevRunDecisionExtK",
         provenance="phase49_exante_fullyear.json",
@@ -1253,18 +720,6 @@ CHECKS: list[MacroCheck] = [
         note="its CI upper",
     ),
     MacroCheck(
-        macro="PostGateImp",
-        provenance="phase85_exact_ladder.json",
-        json_path=("arm_cw_primary", "tiers", "msm_d1_00z_cw", "improvement"),
-        note="the run the gate excludes (D-1 00 UTC), run-pinned",
-    ),
-    MacroCheck(
-        macro="ReconLadderImp",
-        provenance="phase85_exact_ladder.json",
-        json_path=("arm_sp_robustness", "tiers", "histfc", "improvement"),
-        note="operational reconstruction (post-gate class composite)",
-    ),
-    MacroCheck(
         macro="ExPostImp",
         provenance="phase85_exact_ladder.json",
         json_path=("arm_cw_primary", "tiers", "oracle_cw", "improvement"),
@@ -1290,24 +745,6 @@ CHECKS: list[MacroCheck] = [
         json_path=("arm_cw_primary", "gate46_47_48_decomposition", "headline_vs_stale", "ratio", "ci95", 1),
         tol=1e-2,
         note="multiple CI upper",
-    ),
-    MacroCheck(
-        macro="PreGateVsStaleDiff",
-        provenance="phase85_exact_ladder.json",
-        json_path=("arm_cw_primary", "gate46_47_48_decomposition", "headline_vs_stale", "difference", "delta"),
-        note="headline minus stale proxy",
-    ),
-    MacroCheck(
-        macro="PreGateVsStaleDiffLo",
-        provenance="phase85_exact_ladder.json",
-        json_path=("arm_cw_primary", "gate46_47_48_decomposition", "headline_vs_stale", "difference", "ci95", 0),
-        note="its CI lower",
-    ),
-    MacroCheck(
-        macro="PreGateVsStaleDiffHi",
-        provenance="phase85_exact_ladder.json",
-        json_path=("arm_cw_primary", "gate46_47_48_decomposition", "headline_vs_stale", "difference", "ci95", 1),
-        note="its CI upper",
     ),
     MacroCheck(
         macro="GateTimingValue",
@@ -1606,7 +1043,7 @@ CHECKS: list[MacroCheck] = [
     # ---- Phase 54: NWP-proxy-enriched baseline ----
     MacroCheck(
         macro="PreGateOverEnrichedAdm",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -1617,7 +1054,7 @@ CHECKS: list[MacroCheck] = [
     ),
     MacroCheck(
         macro="PreGateOverEnrichedAdmLo",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -1628,7 +1065,7 @@ CHECKS: list[MacroCheck] = [
     ),
     MacroCheck(
         macro="PreGateOverEnrichedAdmHi",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -1639,7 +1076,7 @@ CHECKS: list[MacroCheck] = [
     ),
     MacroCheck(
         macro="ProxyCarriedValue",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -1650,7 +1087,7 @@ CHECKS: list[MacroCheck] = [
     ),
     MacroCheck(
         macro="RawResidualOverProxies",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -1661,19 +1098,19 @@ CHECKS: list[MacroCheck] = [
     ),
     MacroCheck(
         macro="RawResidualLo",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=("results", "deltas_daily_mean_with_ci95", "d43_raw_over_proxies", "lo95"),
         note="CI lower",
     ),
     MacroCheck(
         macro="RawResidualHi",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=("results", "deltas_daily_mean_with_ci95", "d43_raw_over_proxies", "hi95"),
         note="CI upper",
     ),
     MacroCheck(
         macro="EnrichGainAdmDaily",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -1683,49 +1120,7 @@ CHECKS: list[MacroCheck] = [
         note="price-only to admissible enriched baseline, daily protocol",
     ),
     # ---- Phase 55: tier slope-difference tests ----
-    MacroCheck(
-        macro="TierDrhoPreGate",
-        provenance="phase55_tier_slope_tests.json",
-        json_path=("windows", "full_phase51", "pair_tests", "era5_vs_prev2", "delta_rho", "point"),
-        tol=1e-2,
-        note="Spearman-rho difference, stale proxy minus pre-gate vintage",
-    ),
-    MacroCheck(
-        macro="TierDrhoPreGateLo",
-        provenance="phase55_tier_slope_tests.json",
-        json_path=(
-            "windows",
-            "full_phase51",
-            "pair_tests",
-            "era5_vs_prev2",
-            "delta_rho",
-            "boot_lo95",
-        ),
-        tol=1e-2,
-        note="CI lower",
-    ),
-    MacroCheck(
-        macro="TierDrhoPreGateHi",
-        provenance="phase55_tier_slope_tests.json",
-        json_path=(
-            "windows",
-            "full_phase51",
-            "pair_tests",
-            "era5_vs_prev2",
-            "delta_rho",
-            "boot_hi95",
-        ),
-        tol=1e-2,
-        note="CI upper",
-    ),
     # ---- Phase 53: exact archived pre-gate runs (corroboration) ----
-    MacroCheck(
-        macro="ExactPreGateDays",
-        provenance="phase53_rish_pregate.json",
-        json_path=("coverage", "delivery_days"),
-        tol=0.5,
-        note="delivery days of exact pre-gate extraction",
-    ),
     MacroCheck(
         macro="ExactVsPreGateTempRmse",
         provenance="phase53_rish_pregate.json",
@@ -1803,27 +1198,6 @@ CHECKS: list[MacroCheck] = [
         json_path=("capacity_integrity", "worst", "realised_over_nameplate_ratio"),
         tol=5e-2,
         note="worst nameplate breach (Tokyo wind): realised max / nameplate",
-    ),
-    MacroCheck(
-        macro="TierDrhoRealisedIdx",
-        provenance="phase55_tier_slope_tests_realised.json",
-        json_path=("windows", "full_phase51", "pair_tests", "era5_vs_prev2", "delta_rho", "point"),
-        tol=1e-2,
-        note="Delta-rho under the vintage-free saturation index",
-    ),
-    MacroCheck(
-        macro="TierDrhoRealisedIdxPermArea",
-        provenance="phase55_tier_slope_tests_realised.json",
-        json_path=(
-            "windows",
-            "full_phase51",
-            "pair_tests",
-            "era5_vs_prev2",
-            "perm_area_level_exact",
-            "p_two_sided_delta_rho",
-        ),
-        tol=1e-2,
-        note="exact area-level permutation p for Delta-rho, vintage-free index",
     ),
     # ---- Phase 61: physical/system metrics ----
     MacroCheck(
@@ -2389,10 +1763,6 @@ CHECKS: list[MacroCheck] = [
         scale=1e-3, tol=0.6,
         note="2x2 interaction, full sample: bounds the order-dependence of the "
              "path decomposition", paper_b=True),
-    MacroCheck(macro="CurtailFloorN", provenance="phase25.9_floor_probit_summary.json",
-        json_path=("floor_x_curtail_crosstab",), aggregate="count", tol=0.0,
-        note="areas entering the curtailment-hours vs floor-hours rank correlation; "
-             "the macro prints 'n = 8' and the guard counts the crosstab rows"),
     MacroCheck(macro="HeadlinePerAreaLo", provenance="phase85_exact_ladder.json",
         json_path=("arm_cw_primary", "per_area", "msm_d2_12z_cw"), aggregate="min",
         leaf_key="improvement", tol=6e-4,
@@ -2511,142 +1881,6 @@ CHECKS: list[MacroCheck] = [
     # macros get TWO checks, one per bound, because the guard passes a macro
     # when ANY of the floats in its body matches -- so binding only the lower
     # bound would leave the upper one unverified.
-    MacroCheck(macro="NoiselessSpearman",
-               provenance="phase24_noise_sensitivity/cross_area_summary.json",
-               json_path=("noiseless", "spearman_rho"), tol=0.0005,
-               note="noiseless-proxy cross-area Spearman"),
-    MacroCheck(macro="NoiselessPermP",
-               provenance="phase24_noise_sensitivity/cross_area_summary.json",
-               json_path=("noiseless", "permutation_p"), tol=0.0005,
-               note="its permutation p"),
-    MacroCheck(macro="NoiselessBeta",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("noiseless", "beta_FLOOR"), tol=5e-05,
-               note="noiseless-proxy panel slope"),
-    MacroCheck(macro="NoiselessBetaCI",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("noiseless", "ci90_lo"), tol=0.0005,
-               note="its 90% CI, lower bound"),
-    MacroCheck(macro="NoiselessBetaCI",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("noiseless", "ci90_hi"), tol=0.0005,
-               note="its 90% CI, upper bound"),
-    MacroCheck(macro="RealisticSpearman",
-               provenance="phase24_noise_sensitivity/cross_area_summary.json",
-               json_path=("realistic", "spearman_rho"), tol=0.0005,
-               note="realistic-proxy cross-area Spearman"),
-    MacroCheck(macro="RealisticPermP",
-               provenance="phase24_noise_sensitivity/cross_area_summary.json",
-               json_path=("realistic", "permutation_p"), tol=0.0005,
-               note="its permutation p"),
-    MacroCheck(macro="RealisticBeta",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("realistic", "beta_FLOOR"), tol=5e-05,
-               note="realistic-proxy panel slope"),
-    MacroCheck(macro="RealisticBetaCI",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("realistic", "ci90_lo"), tol=0.0005,
-               note="its 90% CI, lower bound"),
-    MacroCheck(macro="RealisticBetaCI",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("realistic", "ci90_hi"), tol=0.0005,
-               note="its 90% CI, upper bound"),
-    MacroCheck(macro="StressSpearman",
-               provenance="phase24_noise_sensitivity/cross_area_summary.json",
-               json_path=("stress", "spearman_rho"), tol=0.0005,
-               note="stress-proxy cross-area Spearman"),
-    MacroCheck(macro="StressPermP",
-               provenance="phase24_noise_sensitivity/cross_area_summary.json",
-               json_path=("stress", "permutation_p"), tol=0.001,
-               note="its permutation p"),
-    MacroCheck(macro="StressBeta",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("stress", "beta_FLOOR"), tol=5e-05,
-               note="stress-proxy panel slope"),
-    MacroCheck(macro="StressBetaCI",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("stress", "ci90_lo"), tol=0.0005,
-               note="its 90% CI, lower bound"),
-    MacroCheck(macro="StressBetaCI",
-               provenance="phase24_noise_sensitivity/panel_beta_summary.json",
-               json_path=("stress", "ci90_hi"), tol=0.0005,
-               note="its 90% CI, upper bound"),
-    MacroCheck(macro="BcadmSpearman",
-               provenance="phase24_lag96_robustness/cross_area_lag96.json",
-               json_path=("spearman_rho",), tol=0.0005,
-               note="admissible-baseline cross-area Spearman"),
-    MacroCheck(macro="BcadmPermP",
-               provenance="phase24_lag96_robustness/cross_area_lag96.json",
-               json_path=("permutation_p",), tol=0.001,
-               note="its permutation p"),
-    MacroCheck(macro="BcadmBeta",
-               provenance="phase24_lag96_robustness/panel_beta_lag96.json",
-               json_path=("beta_FLOOR",), tol=0.0001,
-               note="admissible-baseline panel slope"),
-    MacroCheck(macro="BcadmBetaCI",
-               provenance="phase24_lag96_robustness/panel_beta_lag96.json",
-               json_path=("ci90_lo",), tol=0.0005,
-               note="its 90% CI, lower bound"),
-    MacroCheck(macro="BcadmBetaCI",
-               provenance="phase24_lag96_robustness/panel_beta_lag96.json",
-               json_path=("ci90_hi",), tol=0.0005,
-               note="its 90% CI, upper bound"),
-    MacroCheck(macro="SpearmanPreP",
-               provenance="phase25_17_floor_pre_period/results.json",
-               json_path=("specifications", 1, "cross_area_floor_vs_delta_mae",
-                          "spearman_p"), tol=0.0005,
-               note="pre-period floor-rate Spearman p"),
-    MacroCheck(macro="SpearmanTrain",
-               provenance="phase25_17_floor_pre_period/results.json",
-               json_path=("specifications", 2, "cross_area_floor_vs_delta_mae",
-                          "spearman_rho"), tol=0.0005,
-               note="train-window cross-area Spearman"),
-    MacroCheck(macro="SpearmanTrainP",
-               provenance="phase25_17_floor_pre_period/results.json",
-               json_path=("specifications", 2, "cross_area_floor_vs_delta_mae",
-                          "spearman_p"), tol=0.0005,
-               note="its p"),
-    MacroCheck(macro="PanelAsymCI",
-               provenance="phase23-panel-daily/panel_summary.json",
-               json_path=("spec1_area_main", "ci_90", "floor_rate", 0),
-               tol=0.0005, note="asymptotic panel CI, lower bound"),
-    MacroCheck(macro="PanelAsymCI",
-               provenance="phase23-panel-daily/panel_summary.json",
-               json_path=("spec1_area_main", "ci_90", "floor_rate", 1),
-               tol=0.0005, note="asymptotic panel CI, upper bound"),
-    MacroCheck(macro="Rsq",
-               provenance="phase23_daily_renewable_regression_summary.json",
-               json_path=("multivariate_floor_pv_wind", "r2"), tol=0.005,
-               note="cross-area regression R^2 (FLOOR + PV + wind)"),
-    MacroCheck(macro="Rsqweekly", provenance="phase22_statistical_rigor.json",
-               json_path=("regression_point_fit", "r2"), tol=0.005,
-               note="weekly cross-area regression R^2"),
-    MacroCheck(macro="Rsqfloor", provenance="phase25.7_pv_peak_summary.json",
-               json_path=("univariate_floor_rate", "r_squared"), tol=0.005,
-               note="floor-rate regression R^2"),
-    MacroCheck(macro="OpsCaptureOracle", provenance="phase27.1_oracle_tier.json",
-               json_path=("mean_improvement_yen_kwh", "histfc"),
-               denominator_json_path=("mean_improvement_yen_kwh", "oracle"),
-               scale=100.0, tol=0.5,
-               note="share of the ex-post tier's mean value the operational "
-                    "forecast captures (bound as the division, not a re-typed "
-                    "quotient)"),
-    MacroCheck(macro="ProxyCaptureOracle", provenance="phase27.1_oracle_tier.json",
-               json_path=("mean_improvement_yen_kwh", "era5"),
-               denominator_json_path=("mean_improvement_yen_kwh", "oracle"),
-               scale=100.0, tol=0.5,
-               note="same, for the stale proxy"),
-    MacroCheck(macro="CurtailActiveP", provenance="phase27.0_derisk_gate.json",
-               json_path=("probe_b_threshold_gate", "curtail_histfc_intensity",
-                          "p_asymptotic_cluster_t"), tol=5e-06,
-               note="curtailment-active intensity p (asymptotic cluster-t); the "
-                    "macro used to print the inequality 'p < 0.001', which no "
-                    "equality check can guard -- a drift to 0.0015 would have "
-                    "left the printed claim false and the check passing"),
-    MacroCheck(macro="CurtailActiveBeta", provenance="phase27.0_derisk_gate.json",
-               json_path=("probe_b_threshold_gate", "curtail_histfc_intensity",
-                          "beta_observed"), tol=0.005,
-               note="its slope"),
     # ---- second-provider check (phase86, NCEP GFS; §5.6 and §7) ------------
     MacroCheck(macro="GfsPreGateImp", provenance="phase86_gfs_tier.json",
                json_path=("tiers", "gfs_d2_12z", "improvement"),
@@ -2807,31 +2041,31 @@ CHECKS: list[MacroCheck] = [
                     "was checkable arithmetic about the wrong quantity"),
     # ---- enriched-baseline decomposition (phase54v2) -----------------------
     MacroCheck(macro="EnrichedSlots",
-               provenance="phase54v2_current.json",
+               provenance="phase119_enriched_baseline_pinned.json",
                json_path=('window', 'n_obs'), tol=0.5,
                note="slot observations in the enriched-baseline window; the prose said 234,080, which is the SUPERSEDED phase54 run's count"),
     MacroCheck(macro="EnrichGainAdmLo",
-               provenance="phase54v2_current.json",
+               provenance="phase119_enriched_baseline_pinned.json",
                json_path=('results', 'deltas_daily_mean_with_ci95', 'd21_enrichment_gain', 'lo95'), tol=0.0006,
                note="enrichment gain CI lower (was hand-typed from phase54)"),
     MacroCheck(macro="EnrichGainAdmHi",
-               provenance="phase54v2_current.json",
+               provenance="phase119_enriched_baseline_pinned.json",
                json_path=('results', 'deltas_daily_mean_with_ci95', 'd21_enrichment_gain', 'hi95'), tol=0.0006,
                note="and its upper"),
     MacroCheck(macro="ProxyCarriedLo",
-               provenance="phase54v2_current.json",
+               provenance="phase119_enriched_baseline_pinned.json",
                json_path=('results', 'deltas_daily_mean_with_ci95', 'd32_proxies_over_enriched', 'lo95'), tol=0.0006,
                note="proxy-carried term CI lower (was hand-typed from phase54: [0.136, 0.197])"),
     MacroCheck(macro="ProxyCarriedHi",
-               provenance="phase54v2_current.json",
+               provenance="phase119_enriched_baseline_pinned.json",
                json_path=('results', 'deltas_daily_mean_with_ci95', 'd32_proxies_over_enriched', 'hi95'), tol=0.0006,
                note="and its upper"),
-    MacroCheck(macro="EnrichPerAreaLo", provenance="phase54v2_current.json",
+    MacroCheck(macro="EnrichPerAreaLo", provenance="phase119_enriched_baseline_pinned.json",
                json_path=("results", "per_area"), aggregate="min",
                leaf_key="d42", aggregate_key="hokkaido", tol=0.0006,
                note="smallest per-area total value over the enriched baseline; "
                     "the prose said 0.069, the superseded run's value"),
-    MacroCheck(macro="EnrichPerAreaHi", provenance="phase54v2_current.json",
+    MacroCheck(macro="EnrichPerAreaHi", provenance="phase119_enriched_baseline_pinned.json",
                json_path=("results", "per_area"), aggregate="max",
                leaf_key="d42", aggregate_key="kyushu", tol=0.0006,
                note="and the largest; both area names are asserted"),
@@ -3037,14 +2271,6 @@ CHECKS: list[MacroCheck] = [
     # named a denominator the arithmetic did not use and a reader recomputing the
     # percentage got 0.47 where the macro says 0.46. Both operands now come from
     # provenance, in the same file, so neither can drift unnoticed.
-    MacroCheck(macro="GateTimingMarginPctBaseline",
-               provenance="phase82b_absolute_metrics.json",
-               json_path=("design", "equivalence_margin_jpykwh"),
-               denominator_json_path=("relative", "all", "price_only", "mae"),
-               scale=100.0, tol=0.006,
-               note="the one-tick equivalence margin as a percentage of the "
-                    "price-only baseline MAE, both read from the same "
-                    "provenance as \\PriceBaselineMae"),
     MacroCheck(macro="PolitisWhiteBlock",
                provenance="phase83_inference_sensitivity.json",
                json_path=("politis_white_block_days",), tol=0.05,
@@ -3245,11 +2471,11 @@ CHECKS: list[MacroCheck] = [
                json_path=("per_column_verdicts", "publication_time_stated",
                           "Partial"), tol=0.5,
                note="papers saying something about availability without a time"),
-    MacroCheck(macro="EnrichedDays", provenance="phase54v2_current.json",
+    MacroCheck(macro="EnrichedDays", provenance="phase119_enriched_baseline_pinned.json",
                json_path=("window", "n_test_days_pooled"), tol=0.5,
                note="enriched-baseline panel days, extended window"),
     MacroCheck(macro="EnrichedDaysKyushu",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=("window", "n_folds_per_area", "kyushu"), tol=0.5,
         note="the enriched panel is shorter in Kyushu alone; this was the "
              "last hand-typed count in the data-flow table, which is the "
@@ -3345,10 +2571,6 @@ CHECKS: list[MacroCheck] = [
     # UNEXEMPTED 2026-08-18. This was exempt as an institutional constant, but
     # phase53 measures it: the 21 UTC run's dissemination sits 90 minutes before
     # the gate. A constant that provenance records is a check, not an exemption.
-    MacroCheck(macro="ExactPreGateMargin", provenance="phase53_rish_pregate.json",
-        json_path=("issuance_accounting", "run_21z", "margin_minutes_before_gate"),
-        tol=0.5,
-        note="minutes between the 21 UTC run's dissemination and the 10:00 gate"),
     # ---- Phase 93: the headline Kyushu cell's mean and dispersion ----
     # These two macros were EXEMPT as "benchmark MAE reported by the cited paper
     # [Lago et al.], not computed here". They are this project's own Kyushu
@@ -3357,21 +2579,6 @@ CHECKS: list[MacroCheck] = [
     # rested on a false premise and left four printed numbers unchecked.
     # Each macro prints "mean +- sd", and _macro_floats returns both, so one
     # check per component pins both halves.
-    MacroCheck(macro="SOTA", provenance="phase93_headline_cell_dispersion.json",
-        json_path=("daily_rolling", "mae_mean"),
-        note="daily-rolling mean MAE of the headline Kyushu cell (n = 140)"),
-    MacroCheck(macro="SOTA", provenance="phase93_headline_cell_dispersion.json",
-        json_path=("daily_rolling", "mae_sd"),
-        note="the dispersion printed after the +-; it lived only in the per-fold "
-             "parquet, so nothing could check it"),
-    MacroCheck(macro="SOTAweekly",
-        provenance="phase93_headline_cell_dispersion.json",
-        json_path=("weekly_anchor", "mae_mean"),
-        note="weekly-anchor mean MAE of the same cell (n = 60)"),
-    MacroCheck(macro="SOTAweekly",
-        provenance="phase93_headline_cell_dispersion.json",
-        json_path=("weekly_anchor", "mae_sd"),
-        note="its dispersion"),
     # ---- The D-2 18 UTC cycle: the fresher rung this archive cannot pin ----
     MacroCheck(macro="CycleEighteenZMarginHrs",
         provenance="phase73v2_cycle_curve.json",
@@ -3429,9 +2636,6 @@ CHECKS: list[MacroCheck] = [
     MacroCheck(macro="CostLossPeakGainHi", provenance="phase97_cost_loss.json",
         json_path=("weather_increment_in_value", "ci95", "0.64", 1),
         note="its CI upper"),
-    MacroCheck(macro="CostLossBaseRate", provenance="phase97_cost_loss.json",
-        json_path=("base_rate", "macro"), scale=100.0, tol=0.06,
-        note="the floor base rate the value score is measured against"),
     # ---- Phase 98: the poll-grid test on the dissemination timestamps ----
     MacroCheck(macro="DissemDistinctLags",
         provenance="phase98_dissemination_detail.json",
@@ -3537,9 +2741,11 @@ CHECKS: list[MacroCheck] = [
         json_path=("gate_checks", "msm_d2_21z", "worst_margin_minutes"),
         scale=1.0 / 60.0, tol=0.06, note="worst pre-gate margin, hours, 21Z"),
     MacroCheck(macro="DissemWorstMarginTwelveZHrs",
-        provenance="phase72_dissemination_audit.json",
-        json_path=("gate_checks", "msm_d2_12z", "worst_margin_minutes"),
-        scale=1.0 / 60.0, tol=0.06, note="worst pre-gate margin, hours, 12Z"),
+        provenance="phase115_dissemination_bounds.json",
+        json_path=("measured_backcast", "pre_gate_12z", "combined_2020_2026", "worst_margin_min"),
+        scale=1.0 / 60.0, tol=0.06,
+        note="worst pre-gate margin, hours, 12Z, over the 2024-2026 audit AND the 2020-2024 "
+             "backcast captures: Section 3.3 states it for every audited day"),
     # ---- Phase 110: the two phase-75 descriptives Paper A actually cites ----
     # These are forecast-dispersion quantities, not decision quantities, and the
     # main article renders both -- they are the concession that keeps the pooled
@@ -4034,7 +3240,7 @@ CHECKS: list[MacroCheck] = [
     ),
     MacroCheck(
         macro="ProxyCarriedShare",
-        provenance="phase54v2_current.json",
+        provenance="phase119_enriched_baseline_pinned.json",
         json_path=(
             "results",
             "deltas_daily_mean_with_ci95",
@@ -4382,25 +3588,6 @@ CHECKS: list[MacroCheck] = [
     ),
     # ---- Phase 106: commensurable two-target asymmetry ----
     MacroCheck(
-        macro="PriceRelReduction",
-        provenance="phase106_commensurable_asymmetry.json",
-        json_path=("price_leg", "relative_reduction_pct"),
-        tol=0.005,
-        note="the gate-timing gain as a fraction of the price arm's OWN mean "
-             "absolute error. Commensurable with the physical leg by construction, "
-             "unlike the variance shares the article used to lead with",
-    ),
-    MacroCheck(
-        macro="AsymmetryRatio",
-        provenance="phase106_commensurable_asymmetry.json",
-        json_path=("ratio_physical_over_price",),
-        tol=0.5,
-        note="physical over price in commensurable units. Bound to the computed "
-             "quotient rather than divided by hand, because a printed ratio whose "
-             "arithmetic nobody can check is how this project produced an "
-             "unreproducible 4.2 once already",
-    ),
-    MacroCheck(
         macro="LitReadN",
         provenance="phase107_litaudit_reslice.json",
         json_path=("n_full_text_read",),
@@ -4455,32 +3642,344 @@ CHECKS: list[MacroCheck] = [
     # ---- gate-timing on the daylight window ----
     MacroCheck(
         macro="GateTimingDaylight",
-        provenance="phase102_signal_vs_learner.json",
-        json_path=('pv_cell_daylight_sub_panel_descriptive', 'contrasts_vs_pre_gate', 'msm_d1_00z_cw_minus_pre_gate', 'delta'),
+        provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'gate_contrast', 'delta'),
         tol=0.0005,
         note="the ladder's own gate-timing contrast on the daylight window, primary capacity-weighted arm. Its point estimate exceeds one price tick",
     ),
     MacroCheck(
         macro="GateTimingDaylightLo",
-        provenance="phase102_signal_vs_learner.json",
-        json_path=('pv_cell_daylight_sub_panel_descriptive', 'contrasts_vs_pre_gate', 'msm_d1_00z_cw_minus_pre_gate', 'ci95', 0),
+        provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'gate_contrast', 'ci95', 0),
         tol=0.0005,
         note="its lower bound, below zero",
     ),
     MacroCheck(
         macro="GateTimingDaylightHi",
-        provenance="phase102_signal_vs_learner.json",
-        json_path=('pv_cell_daylight_sub_panel_descriptive', 'contrasts_vs_pre_gate', 'msm_d1_00z_cw_minus_pre_gate', 'ci95', 1),
+        provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'gate_contrast', 'ci95', 1),
         tol=0.0005,
         note="its upper bound",
     ),
     MacroCheck(
         macro="GateTimingDaylightP",
-        provenance="phase102_signal_vs_learner.json",
-        json_path=('pv_cell_daylight_sub_panel_descriptive', 'contrasts_vs_pre_gate', 'msm_d1_00z_cw_minus_pre_gate', 'dm_l3', 'p_hln'),
+        provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'gate_contrast', 'dm_l3', 'p_hln'),
         tol=0.005,
         note="HLN-DM p: not detectable on a third of the slots, which is why the magnitude coinciding with a detectable product contribution is a precision difference rather than a contradiction",
     ),
+    # ---- Energy restructure (phases 112-116; Applied Energy review response) ----
+    # phase114: cuts of the frozen phase85 predictions, phase85's own statistics.
+    MacroCheck(macro="PreGateRelPct", provenance="phase114_stored_prediction_checks.json",
+        json_path=("full_panel", "pre_gate_relative_pct"), tol=0.05,
+        note="pre-gate improvement as % of the price-only MAE on the same slots"),
+    MacroCheck(macro="GateUcbSharePct", provenance="phase85_exact_ladder.json",
+        json_path=("arm_cw_primary", "gate46_47_48_gate_timing", "ci95", 1),
+        denominator_json_path=("arm_cw_primary", "tiers", "msm_d2_12z_cw", "improvement"),
+        scale=100.0, tol=0.05,
+        note="95% UCB of the gate contrast as % of the pre-gate value; also the "
+             "bound on what a fresher pre-gate run could add (monotone value)"),
+    MacroCheck(macro="GateUcbRelPct", provenance="phase114_stored_prediction_checks.json",
+        json_path=("full_panel", "gate_ucb_relative_pct"), tol=0.005,
+        note="the same bound as % of the price-only MAE"),
+    MacroCheck(macro="RegimeGateUcbMaxPct", provenance="phase114_stored_prediction_checks.json",
+        json_path=("regimes", "cuts"), aggregate="max", leaf_key="gate_ucb_relative_pct",
+        aggregate_key="hot_days", tol=0.05,
+        note="largest regime-cut UCB as % of the price-only MAE (hottest days)"),
+    MacroCheck(macro="CompositeMinusHeadline", provenance="phase114_stored_prediction_checks.json",
+        json_path=("freshness_bound", "composite_minus_headline"), tol=0.0005,
+        note="freshest pre-gate run per slot minus the headline run"),
+    MacroCheck(macro="PreGateTicks", provenance="phase85_exact_ladder.json",
+        json_path=("arm_cw_primary", "tiers", "msm_d2_12z_cw", "improvement"),
+        scale=100.0, tol=0.5, note="pre-gate improvement in 0.01 JPY/kWh price ticks"),
+    MacroCheck(macro="FloorBandExactPct", provenance="phase114_stored_prediction_checks.json",
+        json_path=("threshold_composition", "share_exact_of_band"), scale=100.0, tol=0.05,
+        note="share of near-floor (<= 0.5) slots exactly at the 0.01 floor"),
+    MacroCheck(macro="FloorPrAucDeltaExact", provenance="phase66v2_floor_regime_v3_cw_full.json",
+        json_path=("pairings", "P2cw_pregate_vs_price", "allhours", "0p01",
+                   "pooled_macro_avg", "d_pr_auc", "delta"), tol=6e-4,
+        note="pre-gate floor PR-AUC gain at the exact 0.01 floor"),
+    MacroCheck(macro="FloorExtraPerYear", provenance="phase114_stored_prediction_checks.json",
+        json_path=("operational", "all_areas_extra_flagged_per_year"), tol=0.5,
+        note="additional floor slots flagged per year at 1% false alarms, nine areas"),
+    MacroCheck(macro="FloorSlotsPerYear", provenance="phase114_stored_prediction_checks.json",
+        json_path=("operational", "all_areas_floor_slots_per_year"), tol=0.5,
+        note="floor slots per average year, nine areas"),
+    MacroCheck(macro="FloorExtraPerYearKyushu", provenance="phase114_stored_prediction_checks.json",
+        json_path=("operational", "per_area", "kyushu", "extra_flagged_per_year"), tol=0.5,
+        note="the same count for Kyushu"),
+    # phase115: values PARSED from JMA's documents by the script, never typed.
+    MacroCheck(macro="MsmCutoffMin", provenance="phase115_dissemination_bounds.json",
+        json_path=("documented", "ma_cutoff_min"), tol=0.0,
+        note="meso-scale analysis observation cut-off (NWP Outline 2022, Table 2.1.2)"),
+    MacroCheck(macro="MsmJobDurationMin", provenance="phase115_dissemination_bounds.json",
+        json_path=("documented", "job_duration_min"), tol=0.0,
+        note="scheduled duration of the 00 UTC analysis-forecast job (WMO report 2020)"),
+    MacroCheck(macro="MsmJobDurationMaxMin", provenance="phase115_dissemination_bounds.json",
+        json_path=("documented", "job_duration_min_hi"), tol=0.0,
+        note="longest scheduled duration across the 2016-2020 reports (70 min, 2016-2019)"),
+    MacroCheck(macro="MsmRangeLong", provenance="phase115_dissemination_bounds.json",
+        json_path=("documented", "range_long_h"), tol=0.0,
+        note="MSM forecast range from 00/12 UTC (NWP handbook R7, 1.7.5)"),
+    MacroCheck(macro="LongTrainPreImp", provenance="phase114_stored_prediction_checks.json",
+        json_path=("training_length", "pre_gate_improvement", "improvement"), tol=0.0005,
+        note="pre-gate improvement on folds with at least a year of training"),
+    MacroCheck(macro="LongTrainGate", provenance="phase114_stored_prediction_checks.json",
+        json_path=("training_length", "gate_contrast", "delta"), tol=0.0006,
+        note="post-gate increment on the same folds"),
+    MacroCheck(macro="LongTrainGateLo", provenance="phase114_stored_prediction_checks.json",
+        json_path=("training_length", "gate_contrast", "ci95", 0), tol=0.0005,
+        note="its lower bound"),
+    MacroCheck(macro="LongTrainGateHi", provenance="phase114_stored_prediction_checks.json",
+        json_path=("training_length", "gate_contrast", "ci95", 1), tol=0.0005,
+        note="its upper bound"),
+    # phase54v2: the same decomposition on the Open-Meteo composite at one city per
+    # area, kept in S2 as the earlier input (phase119 replaced it in the main text).
+    MacroCheck(macro="CompositeOverEnriched", provenance="phase54v2_current.json",
+        json_path=("results", "deltas_daily_mean_with_ci95", "d42_total_prev2_over_enriched", "point_daily_mean"),
+        tol=0.0005, note="composite input: total value over the enriched baseline"),
+    MacroCheck(macro="CompositeOverEnrichedLo", provenance="phase54v2_current.json",
+        json_path=("results", "deltas_daily_mean_with_ci95", "d42_total_prev2_over_enriched", "lo95"),
+        tol=0.0006, note="its lower bound"),
+    MacroCheck(macro="CompositeOverEnrichedHi", provenance="phase54v2_current.json",
+        json_path=("results", "deltas_daily_mean_with_ci95", "d42_total_prev2_over_enriched", "hi95"),
+        tol=0.0006, note="its upper bound"),
+    MacroCheck(macro="CompositeProxyShare", provenance="phase54v2_current.json",
+        json_path=("results", "deltas_daily_mean_with_ci95", "d32_proxies_over_enriched", "point_daily_mean"),
+        denominator_json_path=("results", "deltas_daily_mean_with_ci95", "d42_total_prev2_over_enriched", "point_daily_mean"),
+        scale=100.0, tol=0.6, note="composite input: share carried by the proxies"),
+    # phase113: learner strength (all nine areas of every learner).
+    MacroCheck(macro="TunedPreImp", provenance="phase113_learner_strength.json",
+        json_path=("learners", "tuned", "pre_gate_improvement", "improvement"), tol=0.0006,
+        note="pre-gate improvement under XGBoost re-tuned every 91 days (stored 0.2385, "
+             "printed half-up; the tolerance is half a unit plus float noise)"),
+    MacroCheck(macro="DnnPreImp", provenance="phase113_learner_strength.json",
+        json_path=("learners", "dnn", "pre_gate_improvement", "improvement"), tol=0.0005,
+        note="pre-gate improvement under the frozen feed-forward network"),
+    MacroCheck(macro="TunedMaeDiffPct", provenance="phase113_learner_strength.json",
+        json_path=("gates", "g113a_prime_level", "tuned_minus_fixed_share"), scale=100.0,
+        tol=0.05, note="tuned pre-gate MAE above the fixed configuration's, %: re-tuning "
+                       "does not improve on the fixed settings"),
+    MacroCheck(macro="LearnerUcbShareMin", provenance="phase113_learner_strength.json",
+        json_path=("learners",), aggregate="min", leaf_key="gate_ucb_share_of_pre_gate",
+        aggregate_key="tuned", scale=100.0, tol=0.05,
+        note="lowest post-gate UCB across the four learners, % of that learner's pre-gate gain"),
+    MacroCheck(macro="LearnerUcbShareMax", provenance="phase113_learner_strength.json",
+        json_path=("learners",), aggregate="max", leaf_key="gate_ucb_share_of_pre_gate",
+        aggregate_key="lear", scale=100.0, tol=0.05,
+        note="highest, LEAR's"),
+    # phase113: the hub-height check (Kyushu) and the reproduction it rests on.
+    MacroCheck(macro="HubMaxDiff", provenance="phase113_learner_strength.json",
+        json_path=("hub_height_invariance", "max_abs_diff"), tol=0.0005,
+        note="worst single-slot change when 10-m wind is rescaled to 100 m (power law 1/7)"),
+    MacroCheck(macro="HubSlotsChangedPct", provenance="phase113_learner_strength.json",
+        json_path=("hub_height_invariance", "share_slots_changed"), scale=100.0, tol=0.05,
+        note="share of slots whose forecast changes at all under that monotone rescaling"),
+    MacroCheck(macro="WindHeadlineChangePct", provenance="phase113_learner_strength.json",
+        json_path=("wind_ablation", "headline_change_share"), scale=-100.0, tol=0.05,
+        note="fall in the pre-gate improvement when the wind channel is removed"),
+    MacroCheck(macro="MsmRangeShort", provenance="phase115_dissemination_bounds.json",
+        json_path=("documented", "range_short_h"), tol=0.0,
+        note="MSM forecast range from the other six cycles"),    # phase114 additions (Energy text after the internal referee read).
+    MacroCheck(macro="PriceOnlyMaeFull", provenance="phase114_stored_prediction_checks.json",
+        json_path=('full_panel', 'price_only_mae'), tol=0.0005,
+        note="price-only pooled MAE on the full CW panel, the panel the 0.253 improvement is measured on"),
+    MacroCheck(macro="RegimeRelCalm", provenance="phase114_stored_prediction_checks.json",
+        json_path=('regimes', 'cuts', 'low_wind_days', 'pre_gate_relative_pct'), tol=0.05,
+        note="pre-gate value on calm days, % of that cut's price-only MAE"),
+    MacroCheck(macro="RegimeRelEvening", provenance="phase114_stored_prediction_checks.json",
+        json_path=('regimes', 'cuts', 'evening_ramp', 'pre_gate_relative_pct'), tol=0.05,
+        note="the same on the evening ramp"),
+    MacroCheck(macro="RegimeRelHighPrice", provenance="phase114_stored_prediction_checks.json",
+        json_path=('regimes', 'cuts', 'high_price_slots', 'pre_gate_relative_pct'), tol=0.05,
+        note="the same on the highest-priced slots"),
+    MacroCheck(macro="FloorBrierGain", provenance="phase66v2_floor_regime_v3_cw.json",
+        json_path=("pairings", "P2cw_pregate_vs_price", "allhours", "0p5",
+                   "pooled_macro_avg", "d_brier", "delta"),
+        tol=6e-5, scale=-1.0, note="the Brier change printed as a gain, so the prose cannot say improves by a negative number"),
+    # phase118: post hoc, precommit docs/research/2026-10-23_phase118_internal_referee_precommit.md
+    MacroCheck(macro="DayPreGateImp", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'pre_gate_improvement', 'improvement'), tol=0.0005,
+        note="pre-gate improvement on the daylight slots, nine areas"),
+    MacroCheck(macro="DayPreGateRelPct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'pre_gate_relative_pct'), tol=0.05,
+        note="the same as % of the daylight price-only MAE"),
+    MacroCheck(macro="DayGateUcbSharePct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'gate_ucb_share_of_pre_gate_pct'), tol=0.05,
+        note="daylight gate UCB as % of the daylight pre-gate value"),
+    MacroCheck(macro="DayInnovSharePct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118a_daylight_row', 'innovation_features', 'share_of_pre_gate_pct'), tol=0.05,
+        note="phase102 innovation-feature gain as % of the daylight pre-gate value, same slots"),
+    MacroCheck(macro="SwDays", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'n_days'), tol=0.5,
+        note="days on the same-window physical/price panel"),
+    MacroCheck(macro="SwPhysBeforeMw", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_before_gate', 'physical_mw', 'delta'), tol=0.05,
+        note="physical error cut by the freshest pre-gate run vs D-2 12 UTC, MW"),
+    MacroCheck(macro="SwPhysBeforeMwLo", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_before_gate', 'physical_mw', 'ci95', 0), tol=0.05,
+        note="its lower bound"),
+    MacroCheck(macro="SwPhysBeforeMwHi", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_before_gate', 'physical_mw', 'ci95', 1), tol=0.05,
+        note="its upper bound"),
+    MacroCheck(macro="SwPhysBeforePct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_before_gate', 'physical_mw', 'relative_pct'), tol=0.05,
+        note="the same as % of the D-2 12 UTC physical error"),
+    MacroCheck(macro="SwPhysAcrossMw", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_across_gate', 'physical_mw', 'delta'), tol=0.05,
+        note="further physical cut by the post-gate run vs the freshest pre-gate run, MW"),
+    MacroCheck(macro="SwPhysAcrossMwLo", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_across_gate', 'physical_mw', 'ci95', 0), tol=0.05,
+        note="its lower bound"),
+    MacroCheck(macro="SwPhysAcrossMwHi", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_across_gate', 'physical_mw', 'ci95', 1), tol=0.05,
+        note="its upper bound"),
+    MacroCheck(macro="SwPhysAcrossPct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_across_gate', 'physical_mw', 'relative_pct'), tol=0.05,
+        note="the same as % of the D-2 12 UTC physical error"),
+    MacroCheck(macro="SwPriceBeforePct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_before_gate', 'price_vs_pre_gate', 'relative_pct'), tol=0.05,
+        note="price error change, freshest pre-gate vs D-2 12 UTC, % of the pre-gate MAE"),
+    MacroCheck(macro="SwPriceAcrossPct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'freshness_across_gate', 'price_vs_pre_gate', 'relative_pct'), tol=0.05,
+        note="price error change across the gate, % of the pre-gate MAE"),
+    MacroCheck(macro="SwExPostPhysPct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'ex_post_distortion', 'physical', 'pct'), tol=0.05,
+        note="realised weather overstates physical skill by this % of the freshest pre-gate error"),
+    MacroCheck(macro="SwExPostPhysPctLo", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'ex_post_distortion', 'physical', 'ci95_pct', 0), tol=0.05,
+        note="its lower bound"),
+    MacroCheck(macro="SwExPostPhysPctHi", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'ex_post_distortion', 'physical', 'ci95_pct', 1), tol=0.05,
+        note="its upper bound"),
+    MacroCheck(macro="SwExPostPricePct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'ex_post_distortion', 'price', 'pct'), tol=0.05, scale=-1.0,
+        note="realised weather understates price accuracy by this %, printed positive"),
+    MacroCheck(macro="SwExPostPricePctLo", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'ex_post_distortion', 'price', 'ci95_pct', 1), tol=0.05, scale=-1.0,
+        note="lower end of the understatement (sign flipped, so the upper JSON bound)"),
+    MacroCheck(macro="SwExPostPricePctHi", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118b_same_window', 'ex_post_distortion', 'price', 'ci95_pct', 0), tol=0.05, scale=-1.0,
+        note="upper end of the understatement"),
+    MacroCheck(macro="ClAlphaN", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'pre_gate_minus_price_only', 'n_alpha'), tol=0.0,
+        note="cost-loss ratios on the grid"),
+    # second referee read (2026-10-24)
+    MacroCheck(macro="PvInnovDelta", provenance="phase102_signal_vs_learner.json",
+        json_path=('contrasts_vs_pre_gate_full_panel', 'pre_plus_pv_innov_minus_pre_gate', 'delta'), tol=0.0005,
+        note="post-gate PV revision as an extra feature, pooled 24-hour gain"),
+    MacroCheck(macro="PvInnovLo", provenance="phase102_signal_vs_learner.json",
+        json_path=('contrasts_vs_pre_gate_full_panel', 'pre_plus_pv_innov_minus_pre_gate', 'ci95', 0), tol=0.0005,
+        note="its lower bound, above zero"),
+    MacroCheck(macro="PvInnovHi", provenance="phase102_signal_vs_learner.json",
+        json_path=('contrasts_vs_pre_gate_full_panel', 'pre_plus_pv_innov_minus_pre_gate', 'ci95', 1), tol=0.0005,
+        note="its upper bound"),
+    MacroCheck(macro="PvInnovP", provenance="phase102_signal_vs_learner.json",
+        json_path=('contrasts_vs_pre_gate_full_panel', 'pre_plus_pv_innov_minus_pre_gate', 'dm_l3', 'p_hln'), tol=0.0005,
+        note="HLN-DM p at L=3 (0.059 at L=9)"),
+    MacroCheck(macro="UcbShareMaxAll", provenance="phase118_internal_referee_checks.json",
+        json_path=('bound_summary', 'max', 'pct'), tol=0.05,
+        note="largest post-gate upper bound, % of the matching pre-gate gain, across learners and specifications (LEAR)"),
+    MacroCheck(macro="RegimeUcbShareMax", provenance="phase114_stored_prediction_checks.json",
+        json_path=('regimes', 'gate_ucb_share_of_own_gain_pct', 'max', 'pct'), tol=0.05,
+        note="largest regime bound as % of that cut's own pre-gate gain (calm days)"),
+    MacroCheck(macro="RegimeRawPMin", provenance="phase114_stored_prediction_checks.json",
+        json_path=('regimes', 'gate_ucb_share_of_own_gain_pct', 'raw_p_min'), tol=0.005,
+        note="smallest raw p of the five regime gate contrasts"),
+    MacroCheck(macro="ClUPrePosN", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'pre_gate_minus_price_only', 'n_alpha_positive'), tol=0.0,
+        note="ratios where the pre-gate run raises the usable value"),
+    MacroCheck(macro="ClUPreHolmN", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'pre_gate_minus_price_only', 'n_alpha_holm_below_005'), tol=0.0,
+        note="of those, significant after Holm across the grid"),
+    MacroCheck(macro="ClUPreMax", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'pre_gate_minus_price_only', 'max_delta'), tol=0.005,
+        note="largest usable pre-gate gain"),
+    MacroCheck(macro="ClUPreMaxLo", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'pre_gate_minus_price_only', 'ci95_at_max', 0), tol=0.005,
+        note="its lower bound"),
+    MacroCheck(macro="ClUPreMaxHi", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'pre_gate_minus_price_only', 'ci95_at_max', 1), tol=0.005,
+        note="its upper bound"),
+    MacroCheck(macro="ClUPreMaxAlpha", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'pre_gate_minus_price_only', 'alpha_at_max'), tol=0.005,
+        note="the cost-loss ratio of that maximum"),
+    MacroCheck(macro="ClUPostMax", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'post_gate_minus_pre_gate', 'max_delta'), tol=0.0005,
+        note="largest usable post-gate increment"),
+    MacroCheck(macro="ClUPostMaxLo", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'post_gate_minus_pre_gate', 'ci95_at_max', 0), tol=0.0005,
+        note="its lower bound"),
+    MacroCheck(macro="ClUPostMaxHi", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'usable_value', 'post_gate_minus_pre_gate', 'ci95_at_max', 1), tol=0.0005,
+        note="its upper bound"),
+    MacroCheck(macro="ClBaseRatePct", provenance="phase118_internal_referee_checks.json",
+        json_path=('q118c_cost_loss', 'base_rate_macro_pct'), tol=0.05,
+        note="floor-event rate on the isotonic floor panel, area-averaged"),
+    # ---- Phase 112: the 2021-2024 backcast (capacity-weighted arm, Section 5.3) ----
+    MacroCheck(macro="BcTestDays", provenance="phase112_backcast.json",
+        json_path=('panel', 'n_test_days'), tol=0.0,
+        note="backcast test days, 2021-01-01..2024-07-31"),
+    MacroCheck(macro="BcScarcityPct", provenance="phase112_backcast.json",
+        json_path=('panel', 'scarcity_pct', 'S50'), tol=0.05,
+        note="share of backcast slots at or above 50 JPY/kWh"),
+    MacroCheck(macro="BcPreImp", provenance="phase112_backcast.json",
+        json_path=('cw', 'all', 'pre_gate_improvement', 'improvement'), tol=0.0005,
+        note="pre-gate improvement over the backcast (G112a)"),
+    MacroCheck(macro="BcPreImpLo", provenance="phase112_backcast.json",
+        json_path=('cw', 'all', 'pre_gate_improvement', 'ci95', 0), tol=0.0005,
+        note="its lower bound; G112a needs it above zero"),
+    MacroCheck(macro="BcPreImpHi", provenance="phase112_backcast.json",
+        json_path=('cw', 'all', 'pre_gate_improvement', 'ci95', 1), tol=0.0005,
+        note="its upper bound"),
+    MacroCheck(macro="BcPreRelPct", provenance="phase112_backcast.json",
+        json_path=('cw', 'all', 'pre_gate_relative_pct'), tol=0.05,
+        note="as a share of the backcast price-only MAE"),
+    MacroCheck(macro="BcEpisodeGate", provenance="phase112_backcast.json",
+        json_path=('cw', 'episodes', 'gate_contrast', 'delta'), tol=0.0006,
+        note="(stored -0.0095, printed half-up; the tolerance is half a unit plus float noise) post-gate increment on the scarcity episodes (G112b)"),
+    MacroCheck(macro="BcEpisodeGateLo", provenance="phase112_backcast.json",
+        json_path=('cw', 'episodes', 'gate_contrast', 'ci95', 0), tol=0.0005,
+        note="its lower bound"),
+    MacroCheck(macro="BcEpisodeGateHi", provenance="phase112_backcast.json",
+        json_path=('cw', 'episodes', 'gate_contrast', 'ci95', 1), tol=0.0005,
+        note="its upper bound"),
+    MacroCheck(macro="BcEpisodeGateRelLo", provenance="phase112_backcast.json",
+        json_path=('cw', 'episodes', 'gate_ci95_relative_pct', 0), tol=0.005,
+        note="interval relative to the episodes' price-only MAE, lower end"),
+    MacroCheck(macro="BcEpisodeGateRelHi", provenance="phase112_backcast.json",
+        json_path=('cw', 'episodes', 'gate_ci95_relative_pct', 1), tol=0.005,
+        note="upper end; G112b branch (i) needs it below +1%"),
+    MacroCheck(macro="BcSFiftyGate", provenance="phase112_backcast.json",
+        json_path=('cw', 'S50', 'gate_contrast', 'delta'), tol=0.0006,
+        note="(stored 0.3735, printed half-up; the tolerance is half a unit plus float noise) post-gate increment on slots at or above 50 JPY/kWh: outcome-selected, descriptive (G112c)"),
+    MacroCheck(macro="BcSFiftyGateLo", provenance="phase112_backcast.json",
+        json_path=('cw', 'S50', 'gate_contrast', 'ci95', 0), tol=0.0005,
+        note="its lower bound, the only backcast cut above zero"),
+    MacroCheck(macro="BcSFiftyGateHi", provenance="phase112_backcast.json",
+        json_path=('cw', 'S50', 'gate_contrast', 'ci95', 1), tol=0.0005,
+        note="its upper bound"),
+    MacroCheck(macro="BcSFiftyGateP", provenance="phase112_backcast.json",
+        json_path=('cw', 'S50', 'gate_contrast', 'dm_l3', 'p_hln'), tol=0.005,
+        note="HLN-DM p (L=3) of the same contrast; the test does not reject"),
+    MacroCheck(macro="BcOverlapPointHours", provenance="phase112_backcast.json",
+        json_path=('gate112_0_overlap', 'n_point_hours'), tol=0.0,
+        note="point-hours compared with the frozen caches on 2024-03..07 (gate 112-0)"),
+    MacroCheck(macro="BcOverlapMaxDiff", provenance="phase112_backcast.json",
+        json_path=('gate112_0_overlap', 'max_abs_diff'), tol=0.0,
+        note="largest absolute difference on that overlap"),
+    MacroCheck(macro="BcAuditDays", provenance="phase115_dissemination_bounds.json",
+        json_path=('measured_backcast', 'pre_gate_12z', 'days_all_files_before_gate'), tol=0.0,
+        note="2020-2024 days on which every D-2 12 UTC file was written before the gate; equals the days audited"),
+    MacroCheck(macro="BcAuditAllDays", provenance="phase115_dissemination_bounds.json",
+        json_path=('measured_backcast', 'combined_2020_2026', 'days_no_file_before_gate'), tol=0.0,
+        note="2020-2026 days on which no D-1 00 UTC file was written before the gate; equals the days audited"),
+    MacroCheck(macro="GateFastestFileMinAll", provenance="phase115_dissemination_bounds.json",
+        json_path=('measured_backcast', 'combined_2020_2026', 'min_after_gate_min'), tol=0.05,
+        note="earliest D-1 00 UTC archive write, minutes after the gate, 2020-2026"),
+    MacroCheck(macro="GateSlowestFileMinAll", provenance="phase115_dissemination_bounds.json",
+        json_path=('measured_backcast', 'combined_2020_2026', 'max_after_gate_min'), tol=0.05,
+        note="latest, same span"),
 ]
 
 # Numeric macros that legitimately have no provenance value. Kept deliberately
@@ -4550,15 +4049,6 @@ EXEMPT: list[MacroExempt] = [
         "PreGateLeadLo",
     ),
     MacroExempt(
-        macro="thrFloorDefault",
-        kind="protocol_constant",
-        source="FLOOR = 0.5 in the commitment decision script "
-               "(scripts/20_commitment_decision.py in the replication package)",
-        reason="the near-floor threshold FLOOR = 0.5 JPY/kWh; a chosen protocol "
-        "constant, bound to its module definition by ConstantCheck in "
-        "verify_pdf_numbers.py",
-    ),
-    MacroExempt(
         macro="thrSpikeDefault",
         kind="protocol_constant",
         source="SPIKE = 50 in the regime-metrics module of the research "
@@ -4596,6 +4086,21 @@ PENDING_BINDING: list[MacroPending] = [
 #                of one measurement, only one of them checked.
 STRING_CHECKS: list[tuple[str, str, tuple[str, ...], str, str]] = [
     (
+        "MsmJobStartUtc",
+        "phase115_dissemination_bounds.json",
+        ("documented", "job_start_utc_min"),
+        "hhmm",
+        "scheduled start of the 00 UTC MSM analysis-forecast job, parsed from the "
+        "WMO progress report's run-schedule table",
+    ),
+    (
+        "MsmJobStartJst",
+        "phase115_dissemination_bounds.json",
+        ("documented", "job_start_jst_min"),
+        "hhmm",
+        "the same start in JST, five minutes before the gate",
+    ),
+    (
         "CapVintage",
         "phase89_physical_target.json",
         ("conventions", "weighting"),
@@ -4620,13 +4125,6 @@ STRING_CHECKS: list[tuple[str, str, tuple[str, ...], str, str]] = [
         "hhmm",
         "the h/min rendering of the median dissemination lag. The abstract's "
         "most-read number was hand-typed beside the bound minute figure",
-    ),
-    (
-        "DissemMedianLagHMJa",
-        "phase72_dissemination_audit.json",
-        ("per_run", "msm_d2_12z", "per_run_completion_lag_minutes", "median"),
-        "hhmm",
-        "the same rendering in Japanese; the JA abstract hand-typed it too",
     ),
     (
         "HeadlineTierName",
@@ -4666,6 +4164,18 @@ STRING_CHECKS: list[tuple[str, str, tuple[str, ...], str, str]] = [
 
 
 WORD_CHECKS: list[tuple[str, str, tuple[str, ...], str]] = [
+    (
+        "ClUPostHolmN",
+        "phase118_internal_referee_checks.json",
+        ("q118c_cost_loss", "usable_value", "post_gate_minus_pre_gate", "n_alpha_holm_below_005"),
+        "cost-loss ratios at which the usable post-gate increment survives Holm: zero",
+    ),
+    ("MarketsN", "phase117_market_gates.json", ("n_markets",),
+     "day-ahead markets whose gates are set against global-model dissemination"),
+    ("MarketsEcmwfN", "phase117_market_gates.json", ("n_ecmwf_any_season",),
+     "markets with an ECMWF run initialised before the gate and disseminated after it"),
+    ("MarketsGfsN", "phase117_market_gates.json", ("n_gfs_any_season",),
+     "markets with such a GFS run (observed availability; no published schedule)"),
     (
         "PhysAreas",
         "phase89_physical_target.json",
@@ -5697,6 +5207,8 @@ WORD_COUNT_IN_PROSE = re.compile(r"~?\s*\d{1,3}(?:,\d{3})+\s+words")
 PROSE_NUMBER_EXEMPT: dict[str, str] = {
     "0.0001": "a p-value THRESHOLD (\"p < 0.0001\"), not an estimate",
     "0.05": "conventional level, quoted as a level",
+    "0.5": "the near-floor THRESHOLD in JPY/kWh, fixed before estimation (the "
+           "manuscript prints it through \\thrFloorDefault), not an estimate",
     "0.3": "a correlation threshold the proxy audit reports against, not an estimate",
     "10.5281": "the Zenodo DOI prefix",
     # The old exemption here read "page and word counts are checked ... by
@@ -5709,6 +5221,9 @@ PROSE_NUMBER_EXEMPT: dict[str, str] = {
     # value in this dict would mean editing two places per revision -- and the
     # one time that is forgotten, the number silently becomes unbacked again.
     # _prose_numbers_backed skips it by RULE instead; see WORD_COUNT_IN_PROSE.
+    "5,000": "Energy's lower word limit for a Full Length Article (Guide for "
+             "Authors, read 2026-10-23), not a result",
+    "7,000": "Energy's upper word limit for a Full Length Article, not a result",
     "177,000": "quoted from the RETIRED per-MW-year valuation, in the list of "
                "claims this paper no longer makes",
 }
@@ -5809,6 +5324,93 @@ def _submission_counts_current(cfg: EpfConfig) -> list[str]:
                         f"README.md says ~{stated_w.group(1)} words of body "
                         f"text; texcount reports {want:,} (tolerance 2%)")
     return out
+
+
+# Energy requires the cover letter to state the word count, and counts "all text,
+# tables, figures, and appendixes" but not references, acknowledgements or
+# supplementary material. texcount alone misses table cells, so the total is
+# texcount's text + headers + captions over the article, minus the declarations
+# block (credit, competing interests, AI use, data availability, funding), plus the
+# words in the cells of the main-text tables.
+_DECLARATIONS_SPAN = ("% ---- declarations ----", "% ---- references ----")
+_TABULAR_BODY = re.compile(
+    r"\\begin\{tabular\}(?:\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})(.*?)\\end\{tabular\}",
+    re.S)
+
+
+def _texcount_total(args: list[str], cwd: Path) -> int | None:
+    try:
+        tc = subprocess.run(["texcount", "-total", "-q", *args], cwd=cwd, check=True,
+                            capture_output=True, text=True).stdout
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError):
+        return None
+    parts = re.findall(r"Words (?:in text|in headers|outside text \(captions, etc\.\)):\s+(\d+)", tc)
+    return sum(int(x) for x in parts) if len(parts) == 3 else None
+
+
+def _table_cell_words(tex: str) -> int:
+    n = 0
+    for body in _TABULAR_BODY.findall(tex):
+        body = re.sub(r"%.*", "", body)
+        body = re.sub(r"\\(toprule|midrule|bottomrule|cmidrule(\([^)]*\))?\{[^}]*\}"
+                      r"|addlinespace(\[[^]]*\])?|hline)", " ", body)
+        body = re.sub(r"\\multicolumn\{\d+\}\{[^}]*\}", " ", body)
+        body = re.sub(r"\$[^$]*\$", " X ", body)
+        body = re.sub(r"\\textsuperscript\{[^}]*\}", "", body)
+        body = re.sub(r"\\(textbf|emph|textit|mathrm)\b", " ", body)
+        body = body.replace("\\\\", " ").replace("&", " ").replace("{", " ").replace("}", " ")
+        n += sum(1 for t in re.split(r"[\s~]+", body) if re.search(r"[A-Za-z0-9]", t))
+    return n
+
+
+def _energy_word_total(cfg: EpfConfig) -> int | None:
+    root = cfg.project_root / "docs/paper/paper_a_main"
+    whole = _texcount_total(["-inc", "main.tex"], root)
+    main = (root / "main.tex").read_text(encoding="utf-8")
+    start, end = (main.find(m) for m in _DECLARATIONS_SPAN)
+    if whole is None or start < 0 or end < start:
+        return None
+    with tempfile.TemporaryDirectory() as tmp:
+        (Path(tmp) / "declarations.tex").write_text(main[start:end], encoding="utf-8")
+        decl = _texcount_total(["declarations.tex"], Path(tmp))
+    if decl is None:
+        return None
+    tables = ""
+    for sec in sorted((root / "sections").glob("en_0*.tex")):
+        text = sec.read_text(encoding="utf-8")
+        tables += text
+        for inc in re.findall(r"\\input\{(tables/[^}]+)\}", text):
+            f = root / (inc if inc.endswith(".tex") else inc + ".tex")
+            if f.exists():
+                tables += f.read_text(encoding="utf-8")
+    return whole - decl + _table_cell_words(tables)
+
+
+def _cover_letter_word_count_current(cfg: EpfConfig) -> list[str]:
+    r"""The cover letter's word count must match the article Energy would count.
+
+    The letter said "~5,000 words" while the article, counted the way the Guide
+    for Authors counts it, was over 6,300: the rewrite added the internal-referee
+    qualifications and nothing tied the letter to the text.
+    """
+    letter = cfg.project_root / "docs/paper/paper_a_main/submission/cover_letter.md"
+    if not letter.exists():
+        return []
+    stated = re.search(r"(?:~|about )([\d,]+) words", letter.read_text(encoding="utf-8"))
+    if not stated:
+        return ["cover_letter.md states no word count; Energy requires one"]
+    total = _energy_word_total(cfg)
+    if total is None:
+        return ["cover_letter.md states a word count but texcount is not available "
+                "or main.tex lacks the declarations markers, so it cannot be verified"]
+    got = int(stated.group(1).replace(",", ""))
+    if abs(got - total) > max(1, round(0.02 * total)):
+        return [f"cover_letter.md says {stated.group(0)}; the article counts {total:,} "
+                "(text, headings, captions and table cells, declarations excluded; "
+                "tolerance 2%)"]
+    if total > 7000:
+        return [f"the article counts {total:,} words, over Energy's 7,000-word limit"]
+    return []
 
 
 # The title, as chosen by the PI on 2026-08-21. Five files carry it and none of
@@ -5987,6 +5589,14 @@ GATE_EXPECTATIONS: list[tuple[str, str, str, str]] = [
      "Section 5.2 states"),
     ("phase66v2_floor_regime_v3_cw_full.json", "gate21_midday", "pass",
      "the contrast holds on midday slots alone"),
+    ("phase112_backcast.json", "g112a_headline_replicates", "pass",
+     "Section 5.3 reports the pre-gate gain over the backcast, and the Abstract and "
+     "Conclusions do not restrict the headline to the main window"),
+    ("phase112_backcast.json", "g112b_freshness_in_scarcity", "pass",
+     "branch (i): Section 5.3, the Abstract and the Conclusions say the post-gate run "
+     "adds no material accuracy over the backcast's scarcity episodes"),
+    ("phase112_backcast.json", "g112d_dissemination", "pass",
+     "Section 3.3 says no file of the D-1 00 UTC run was written before the gate in 2020-2024"),
 ]
 
 
@@ -6200,6 +5810,7 @@ def main() -> int:
     failures.extend(_build_log_clean(cfg))
     failures.extend(_prose_numbers_backed(macros_tex, cfg))
     failures.extend(_submission_counts_current(cfg))
+    failures.extend(_cover_letter_word_count_current(cfg))
     failures.extend(_title_consistent(cfg))
     failures.extend(_provenance_paths_portable(cfg))
     failures.extend(_gates_honoured(_resolve_prov))

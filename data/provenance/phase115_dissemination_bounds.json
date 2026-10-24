@@ -1,0 +1,279 @@
+{
+ "phase": "115",
+ "doc": "docs/research/2026-10-23_phase115_dissemination_bounds.md",
+ "sources": {
+  "outline2022_02.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/outline2022-nwp/pdf/outline2022_02.pdf",
+   "bib": "jma2022outline",
+   "retrieved": "2026-10-23",
+   "sha256": "ff6672d7b462778d54c2c1677b4dd3b7899c778493a7662b14eb94774b2bd25c",
+   "n_pages": 43,
+   "quotes": {
+    "ma_cutoff_table": {
+     "pdf_page": 4,
+     "matched": "Data cut-off time 50 minutes for analysis at 00, 03, 06, 09, 12, 15, 18, and 21 UTC",
+     "groups": [
+      "50"
+     ]
+    },
+    "ma_cutoff_text": {
+     "pdf_page": 28,
+     "matched": "The cut-off time of input observation data for MA is 50 minutes after each analysis time",
+     "groups": []
+    }
+   }
+  },
+  "outline2022_01.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/outline2022-nwp/pdf/outline2022_01.pdf",
+   "bib": "jma2022outline",
+   "retrieved": "2026-10-23",
+   "sha256": "58d1b41db9a8aa6476d2a3076fcc67b5b9d3af11e3006bfdc9585051b1c0713a",
+   "n_pages": 9,
+   "quotes": {
+    "suite_schedule_caption": {
+     "pdf_page": 7,
+     "matched": "Figure 1.3.1: Daily schedule of the operational suite running on the main system",
+     "groups": []
+    }
+   }
+  },
+  "nwpkaisetu_R7_1_7_4.pdf": {
+   "url": "https://www.jma.go.jp/jma/kishou/books/nwpkaisetu/latest/1_7_4.pdf",
+   "bib": "jma2025nwphandbook",
+   "retrieved": "2026-10-23",
+   "sha256": "a25a174def5350e9ae9acd45c886d33619a7c2e7c613da288a43e1ab5b9ec3ec",
+   "n_pages": 7,
+   "quotes": {
+    "ma_cutoff_ja": {
+     "pdf_page": 3,
+     "matched": "観測打ち切り時刻 50分",
+     "groups": []
+    },
+    "ma_wait_ja": {
+     "pdf_page": 4,
+     "matched": "データ入電待ち時間が解析時刻後50分",
+     "groups": []
+    }
+   }
+  },
+  "nwpkaisetu_R7_1_7_5.pdf": {
+   "url": "https://www.jma.go.jp/jma/kishou/books/nwpkaisetu/latest/1_7_5.pdf",
+   "bib": "jma2025nwphandbook",
+   "retrieved": "2026-10-23",
+   "sha256": "41c851f6af012271b06be80e0aa99e6d392e29dc9f691e827e590b377b377054",
+   "n_pages": 9,
+   "quotes": {
+    "msm_range_78": {
+     "pdf_page": 3,
+     "matched": "78時間予報 (00, 12 UTC)",
+     "groups": [
+      "78"
+     ]
+    },
+    "msm_range_39": {
+     "pdf_page": 3,
+     "matched": "39時間予報 (03, 06, 09, 15, 18, 21 UTC)",
+     "groups": [
+      "39"
+     ]
+    }
+   }
+  },
+  "wmo_2016_japan.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/report/2016_Japan.pdf",
+   "bib": "jmawmo2016",
+   "retrieved": "2026-10-23",
+   "sha256": "2bb35aa9c99929e206588d71448348e53e25409f9120c1275f6c1b429ec21620",
+   "n_pages": 61,
+   "quotes": {
+    "msm00_schedule_2016": {
+     "pdf_page": 4,
+     "matched": "Meso-scale 00 0055 – 0205 39",
+     "groups": [
+      "0055",
+      "0205",
+      "39"
+     ]
+    }
+   }
+  },
+  "wmo_2017_japan.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/report/2017_Japan.pdf",
+   "bib": "jmawmo2017",
+   "retrieved": "2026-10-23",
+   "sha256": "7358b7eb5d6a3c62ed9e887d013f0f8f927d46d209666a7eb557c880967f8409",
+   "n_pages": 63,
+   "quotes": {
+    "msm00_schedule_2017": {
+     "pdf_page": 4,
+     "matched": "Meso-scale 00 0055 – 0205 39",
+     "groups": [
+      "0055",
+      "0205",
+      "39"
+     ]
+    }
+   }
+  },
+  "wmo_2018_japan.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/report/2018_Japan.pdf",
+   "bib": "jmawmo2018",
+   "retrieved": "2026-10-23",
+   "sha256": "a74362448667d34c1f95c2652af7558d442ff676be701474ce97cc495a05de44",
+   "n_pages": 59,
+   "quotes": {
+    "msm00_schedule_2018": {
+     "pdf_page": 5,
+     "matched": "Meso-scale 00 0055 – 0205 39",
+     "groups": [
+      "0055",
+      "0205",
+      "39"
+     ]
+    }
+   }
+  },
+  "wmo_2019_japan.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/report/2019_Japan.pdf",
+   "bib": "jmawmo2019",
+   "retrieved": "2026-10-23",
+   "sha256": "52ec5a05094a93685412c1351b4463bd39eedbddf71f6df9f8e9ffe3031acab8",
+   "n_pages": 67,
+   "quotes": {
+    "msm00_schedule_2019": {
+     "pdf_page": 5,
+     "matched": "Meso-scale 00 0055 – 0205 51",
+     "groups": [
+      "0055",
+      "0205",
+      "51"
+     ]
+    }
+   }
+  },
+  "wmo_2020_japan.pdf": {
+   "url": "https://www.jma.go.jp/jma/jma-eng/jma-center/nwp/report/2020_Japan.pdf",
+   "bib": "jmawmo2020",
+   "retrieved": "2026-10-23",
+   "sha256": "1adb1a66dfc3b401a434740382ad630a02a898516b88b27531cb561396e10c08",
+   "n_pages": 69,
+   "quotes": {
+    "msm00_schedule_2020": {
+     "pdf_page": 5,
+     "matched": "Meso-scale 00 0055 – 0200 51",
+     "groups": [
+      "0055",
+      "0200",
+      "51"
+     ]
+    }
+   }
+  }
+ },
+ "msm00_run_schedule_by_year": {
+  "2016": {
+   "start_utc": "0055",
+   "end_utc": "0205",
+   "forecast_range_h": 39
+  },
+  "2017": {
+   "start_utc": "0055",
+   "end_utc": "0205",
+   "forecast_range_h": 39
+  },
+  "2018": {
+   "start_utc": "0055",
+   "end_utc": "0205",
+   "forecast_range_h": 39
+  },
+  "2019": {
+   "start_utc": "0055",
+   "end_utc": "0205",
+   "forecast_range_h": 51
+  },
+  "2020": {
+   "start_utc": "0055",
+   "end_utc": "0200",
+   "forecast_range_h": 51
+  }
+ },
+ "documented": {
+  "ma_cutoff_min": 50,
+  "job_start_utc_min": 55,
+  "job_start_jst_min": 595,
+  "job_end_utc_min": 120,
+  "job_duration_min": 65,
+  "job_schedule_year": 2020,
+  "range_long_h": 78,
+  "range_short_h": 39,
+  "job_start_same_every_year": true,
+  "job_duration_min_by_year": {
+   "2016": 70,
+   "2017": 70,
+   "2018": 70,
+   "2019": 70,
+   "2020": 65
+  },
+  "job_duration_min_lo": 65,
+  "job_duration_min_hi": 70
+ },
+ "measured_backcast": {
+  "combined_2020_2026": {
+   "files": 7026,
+   "days": 2189,
+   "span": [
+    "2020-08-01",
+    "2026-07-29"
+   ],
+   "files_before_gate": 0,
+   "days_no_file_before_gate": 2189,
+   "min_after_gate_min": 75.57,
+   "max_after_gate_min": 83.82
+  },
+  "pre_gate_12z": {
+   "files": 4383,
+   "days": 1461,
+   "span": [
+    "2020-08-01",
+    "2024-07-31"
+   ],
+   "files_at_or_after_gate": 0,
+   "days_all_files_before_gate": 1461,
+   "worst_margin_min": 637.77,
+   "combined_2020_2026": {
+    "days": 2189,
+    "worst_margin_min": 620.53
+   }
+  },
+  "backcast_files": 4383,
+  "backcast_days": 1461,
+  "backcast_span": [
+   "2020-08-01",
+   "2024-07-31"
+  ],
+  "files_before_gate": 0,
+  "min_after_gate_min": 75.57,
+  "max_after_gate_min": 83.82,
+  "median_lag_min": 135.75,
+  "by_fh": {
+   "FH34-39": {
+    "min_after_gate": 75.75,
+    "median_after_gate": 75.85
+   },
+   "FH00-15": {
+    "min_after_gate": 75.57,
+    "median_after_gate": 75.63
+   },
+   "FH16-33": {
+    "min_after_gate": 75.67,
+    "median_after_gate": 75.75
+   }
+  }
+ },
+ "bracket": {
+  "gate_utc_for_delivery_D": "D-1 01:00 UTC (10:00 JST)",
+  "documented_lower_bound": "observation cut-off at initialisation + 50 min (00:50 UTC, 09:50 JST); the analysis-forecast job is scheduled to begin at 00:55 UTC (09:55 JST) and the forecast integration follows the analysis",
+  "measured_upper_bound": "mirror write time of every file of the run",
+  "kind": "the lower bound is documentary, not measured; the upper bound is measured, not documentary"
+ }
+}

@@ -14,10 +14,11 @@ SCRIPTS = scripts
 .PHONY: help setup lock fmt lint test smoke
 .PHONY: verify-paper verify-paper-strict tables figures
 .PHONY: acquire acquire_ics extract extract_pregate extract_multipoint area_points
+.PHONY: extract_backcast
 .PHONY: reproduce ladder cycle_curve reference_ladders enriched_baseline
 .PHONY: proxy_validation cross_area superseded lear epex_de floor_regime
 .PHONY: floor_models timing_audit evaluation_scope two_targets robustness
-.PHONY: lit_audit
+.PHONY: lit_audit backcast learner_strength
 
 help:
 	@echo "No raw data required:"
@@ -30,13 +31,14 @@ help:
 	@echo "  extract             - pin the MSM runs the ladder needs (long)"
 	@echo "  extract_multipoint  - the same runs at 46 prefecture points (for reference_ladders)"
 	@echo "  area_points         - build the capacity-weighted prefecture point table"
+	@echo "  extract_backcast    - the 2020-2024 runs for the scarcity backcast (long)"
 	@echo ""
 	@echo "Analysis (needs the caches above):"
 	@echo "  reproduce           - the whole headline chain in dependency order"
 	@echo "  ladder cycle_curve reference_ladders enriched_baseline"
 	@echo "  proxy_validation cross_area lear epex_de superseded"
 	@echo "  floor_regime floor_models timing_audit evaluation_scope"
-	@echo "  two_targets robustness lit_audit"
+	@echo "  two_targets robustness lit_audit backcast learner_strength"
 	@echo ""
 	@echo "Outputs:"
 	@echo "  tables figures      - regenerate provenance-derived tables and the figures"
@@ -102,6 +104,14 @@ extract_multipoint: area_points  ## the same runs at 46 prefecture points (capac
 	$(PYTHON) $(SCRIPTS)/01_extract_pinned_runs.py --plan A --multipoint
 	$(PYTHON) $(SCRIPTS)/01_extract_pinned_runs.py --plan C --multipoint
 
+# The backcast's two runs for August 2020 to July 2024, into caches of their own
+# so the frozen 2024-2026 caches are never touched. Each sweep also records every
+# archive file's write time, which 40c_dissemination_bounds.py audits.
+extract_backcast:  ## the D-2 12 UTC and D-1 00 UTC runs for the 2021-2024 backcast (long)
+	$(PYTHON) $(SCRIPTS)/08_extract_backcast_runs.py --start 2020-08-01 --end 2021-12-31 \
+	    --root-name jma_gpv_backcast_early
+	$(PYTHON) $(SCRIPTS)/08_extract_backcast_runs.py --start 2022-01-01 --end 2024-07-31
+
 # ---------------------------------------------------------------- analysis
 # Script numbers follow scripts/README.md. The settlement analysis that used to
 # live here (commitment decisions, the settlement wedge, netting, nomination
@@ -127,6 +137,7 @@ enriched_baseline: ## what the vintage adds over the strongest gate-available ba
 	$(PYTHON) $(SCRIPTS)/14_enriched_baseline.py
 	$(PYTHON) $(SCRIPTS)/14b_enriched_baseline_drop_supply.py
 	$(PYTHON) $(SCRIPTS)/14c_enriched_baseline_lag144.py
+	$(PYTHON) $(SCRIPTS)/14d_enriched_baseline_pinned.py --step all --fresh --workers 4
 
 proxy_validation:  ## single-point weather proxies against the operators' actuals
 	$(PYTHON) $(SCRIPTS)/15_proxy_validation.py
@@ -141,6 +152,21 @@ superseded:        ## the composite-tier ladder and full-year arm, kept for the 
 lear:              ## the headline increment re-measured with the canonical LEAR benchmark
 	$(PYTHON) $(SCRIPTS)/18b_lear_ladder.py --step build
 	$(PYTHON) $(SCRIPTS)/18b_lear_ladder.py --step analyse
+
+learner_strength:  ## both contrasts under re-tuned XGBoost, LEAR and a neural network; single-version training; wind
+	$(PYTHON) $(SCRIPTS)/18c_learner_strength.py --step build --variant repro_wind
+	$(PYTHON) $(SCRIPTS)/18c_learner_strength.py --step build --variant era
+	$(PYTHON) $(SCRIPTS)/18c_learner_strength.py --step build --variant dnn
+	$(PYTHON) $(SCRIPTS)/18c_learner_strength.py --step build --variant tuned
+	$(PYTHON) $(SCRIPTS)/18c_learner_strength.py --step build --variant lear_post
+	$(PYTHON) $(SCRIPTS)/18c_learner_strength.py --step analyse
+
+# The identical design on the 2021-2024 window. The analysis reads the
+# dissemination audit for gate G112d, so 40c runs between the build and it.
+backcast:          ## the primary design on 2021-01..2024-07, which holds Japan's scarcity episodes (long)
+	$(PYTHON) $(SCRIPTS)/10b_backcast_ladder.py --step build
+	$(PYTHON) $(SCRIPTS)/40c_dissemination_bounds.py
+	$(PYTHON) $(SCRIPTS)/10b_backcast_ladder.py --step analyse
 
 epex_de:           ## the vintage contrast outside Japan, in one German bidding zone
 	$(PYTHON) $(SCRIPTS)/19_epex_de_replication.py
@@ -164,15 +190,16 @@ timing_audit:      ## dissemination lag, lineage, and arrival against each day's
 	$(PYTHON) $(SCRIPTS)/41_lineage_audit.py
 	$(PYTHON) $(SCRIPTS)/45_rish_cycle_horizon_probe.py
 	$(PYTHON) $(SCRIPTS)/46_file_level_arrival.py
+	$(PYTHON) $(SCRIPTS)/40c_dissemination_bounds.py
+	$(PYTHON) $(SCRIPTS)/49_market_gates.py
 
 evaluation_scope:  ## what the evaluation window contains, and how independent the areas are
 	$(PYTHON) $(SCRIPTS)/42_head_sweep.py
 	$(PYTHON) $(SCRIPTS)/43_curtailment_days.py
-	$(PYTHON) $(SCRIPTS)/44_headline_cell_dispersion.py
 	$(PYTHON) $(SCRIPTS)/47_evaluation_regime.py
 	$(PYTHON) $(SCRIPTS)/48_area_independence.py
 
-two_targets:       ## the physical target, the mechanism test, and the commensurable contrast
+two_targets:       ## the physical target, the mechanism test, and the signal-or-learner test
 	$(PYTHON) $(SCRIPTS)/50_physical_target.py
 	$(PYTHON) $(SCRIPTS)/51_mechanism_test.py
 	$(PYTHON) $(SCRIPTS)/52_price_on_common_panel.py
@@ -185,7 +212,6 @@ two_targets:       ## the physical target, the mechanism test, and the commensur
 	$(PYTHON) $(SCRIPTS)/54_signal_vs_learner.py --step build --pass b
 	$(PYTHON) $(SCRIPTS)/54_signal_vs_learner.py --step phys
 	$(PYTHON) $(SCRIPTS)/54_signal_vs_learner.py --step analyse
-	$(PYTHON) $(SCRIPTS)/55_commensurable_asymmetry.py
 
 robustness:        ## the pre-registered sensitivity families
 	$(PYTHON) $(SCRIPTS)/60_version_robustness.py
@@ -200,6 +226,8 @@ robustness:        ## the pre-registered sensitivity families
 	$(PYTHON) $(SCRIPTS)/66_weight_sensitivity.py --step analyse
 	$(PYTHON) $(SCRIPTS)/66b_cost_loss.py
 	$(PYTHON) $(SCRIPTS)/67_costloss_dominated.py
+	$(PYTHON) $(SCRIPTS)/68_stored_prediction_checks.py
+	$(PYTHON) $(SCRIPTS)/69_internal_referee_checks.py
 
 # 70_lit_audit_assemble.py is NOT called here: it assembles the audit dataset
 # from the screening rows as they were hand-coded (`--rows <coded>.json`), which
@@ -213,17 +241,18 @@ lit_audit:         ## the day-ahead literature audit's reliability and inclusion
 # ----------------------------------------------------------------- outputs
 tables:            ## every provenance-derived table and the Editorial Manager abstract
 	$(PYTHON) $(SCRIPTS)/90_emit_tables.py
+	$(PYTHON) $(SCRIPTS)/90b_gate_bound_table.py
 
 figures:           ## every figure the article carries, from the shipped provenance
 	$(PYTHON) $(SCRIPTS)/91_figure_timeline.py
 	$(PYTHON) $(SCRIPTS)/92_figures_paper.py
-	$(PYTHON) $(SCRIPTS)/93_figures_results.py
 	$(PYTHON) $(SCRIPTS)/94_figures_theory.py
+	$(PYTHON) $(SCRIPTS)/95_figures_energy.py
 
 # The full chain, in dependency order. `ladder` must come first: it writes the
 # per-slot panel that reference_ladders bit-reproduces and that the two-target
 # and robustness families read.
 reproduce: ladder cycle_curve reference_ladders enriched_baseline \
-           proxy_validation cross_area lear epex_de floor_regime floor_models \
-           timing_audit evaluation_scope two_targets robustness lit_audit \
-           tables figures verify-paper
+           proxy_validation cross_area lear learner_strength epex_de floor_regime \
+           floor_models timing_audit evaluation_scope two_targets robustness \
+           backcast lit_audit tables figures verify-paper

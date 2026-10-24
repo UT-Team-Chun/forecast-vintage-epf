@@ -160,7 +160,6 @@ RENAMES: list[tuple[str, str]] = [
     ("53_physical_normalisation.py", "s_20260819_phase101_physical_normalisation.py"),
     ("54_signal_vs_learner.py", "s_20260819_phase102_signal_vs_learner.py"),
     ("32_floor_channel_hurdle.py", "s_20260819_phase103b_floor_channel_hurdle.py"),
-    ("55_commensurable_asymmetry.py", "s_20260820_phase106_commensurable_asymmetry.py"),
     ("72_litaudit_reslice.py", "s_20260820_phase107_litaudit_reslice.py"),
     ("67_costloss_dominated.py", "s_20260820_phase108_costloss_dominated.py"),
     # 54 and 32 load these two at run time -- the innovation construction and
@@ -176,17 +175,33 @@ RENAMES: list[tuple[str, str]] = [
     ("66b_cost_loss.py", "s_20260819_phase97_cost_loss.py"),
     ("40b_dissemination_detail.py", "s_20260819_phase98_dissemination_detail.py"),
     ("43_curtailment_days.py", "s_20260814_phase92_curtailment_days.py"),
-    ("44_headline_cell_dispersion.py", "s_20260818_phase93_headline_cell_dispersion.py"),
     # --- tables and figures ---------------------------------------------
     ("90_emit_tables.py", "s_20260729_phase64_emit_supp_tables.py"),
     ("91_figure_timeline.py", "s_20260812_phase87_timeline_split.py"),
     ("92_figures_paper.py", "s_20260812_phase87_ae_figures.py"),
-    ("93_figures_results.py", "s_20260812_phase87_results_figures.py"),
     # The two supplement figures (the schematic VoI ridge and the skill-scarcity
     # panel) shipped as PDFs with no producer here, so `make figures` could not
     # regenerate them and the guard's retired-term audit was certifying two
     # files nothing in this package could rebuild.
     ("94_figures_theory.py", "s_20260619_phase27.4_figures.py"),
+    # --- the analyses added for the Energy revision (2026-10) -------------
+    # The 2021-2024 backcast (extraction, then the identical design on the
+    # scarcity window), the learner-strength families, the checks re-cut from
+    # stored predictions, the documented lower bounds on dissemination, the
+    # timing problem in other markets, the internal referee checks, and the
+    # enriched baseline re-measured on the headline weather input. Two output
+    # scripts complete them: the gate-bound table (Table 2) and the four main
+    # figures, which supersede 93_figures_results.py one file for one.
+    ("08_extract_backcast_runs.py", "s_20261023_phase112_backcast_extract.py"),
+    ("10b_backcast_ladder.py", "s_20261023_phase112_backcast_ladder.py"),
+    ("14d_enriched_baseline_pinned.py", "s_20261023_phase119_enriched_baseline_pinned.py"),
+    ("18c_learner_strength.py", "s_20261023_phase113_learner_strength.py"),
+    ("40c_dissemination_bounds.py", "s_20261023_phase115_dissemination_bounds.py"),
+    ("49_market_gates.py", "s_20261023_phase117_market_gates.py"),
+    ("68_stored_prediction_checks.py", "s_20261023_phase114_stored_prediction_checks.py"),
+    ("69_internal_referee_checks.py", "s_20261023_phase118_internal_referee_checks.py"),
+    ("90b_gate_bound_table.py", "s_20261023_phase116_gate_bound_table.py"),
+    ("95_figures_energy.py", "s_20261023_phase116_figures.py"),
     # A field-subset export. Its OUTPUT ships (two macros bind against it); its
     # INPUT is the companion manuscript's artefact and deliberately does not, so
     # this script cannot run here and says so when asked. It ships anyway,
@@ -220,6 +235,13 @@ RETIRED_SCRIPTS = (
     "33_system_metrics_band.py",
     "34_netting_direction.py",
     "35_netting_exact.py",
+    # The Energy revision (2026-10). 93's three figures are now drawn by
+    # 95_figures_energy.py under the same filenames; 44 and 55 produced results
+    # the rewritten manuscript no longer reports, and their provenance left with
+    # the macros that cited it.
+    "93_figures_results.py",
+    "44_headline_cell_dispersion.py",
+    "55_commensurable_asymmetry.py",
 )
 
 # provenance shipped beyond what the guard itself references
@@ -240,6 +262,11 @@ EXTRA_PROVENANCE = (
     # discovery never reached this file. It contains codings and opaque coder
     # ids, no transcripts and no personal data.
     "phase88b_multicoded_runs.json",
+    # Table 2 of the Energy manuscript. Several of its rows (the measurement and
+    # sample families) are bootstrapped inside 90b_gate_bound_table.py from the
+    # per-slot predictions, so this summary is the only provenance those printed
+    # intervals have. No macro cites it, so discovery cannot reach it.
+    "phase116_gate_bound.json",
 )
 NESTED_PROVENANCE = (
     "phase23-panel-daily/cluster_bootstrap.json",

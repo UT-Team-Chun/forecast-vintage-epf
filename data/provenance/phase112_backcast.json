@@ -1,0 +1,2181 @@
+{
+ "phase": "112",
+ "precommit": "docs/research/2026-10-23_phase112_ae_review_response_precommit.md",
+ "git_sha": "fc7e07c36cd82555a9b527862ab146b4df59c0c3",
+ "panel": {
+  "areas": [
+   "chubu",
+   "chugoku",
+   "hokkaido",
+   "hokuriku",
+   "kansai",
+   "kyushu",
+   "shikoku",
+   "tohoku",
+   "tokyo"
+  ],
+  "n_test_days": 1308,
+  "n_slots": 565056,
+  "first_test_day": "2021-01-01",
+  "last_test_day": "2024-07-31",
+  "scarcity_pct": {
+   "S30": 6.507,
+   "S50": 1.982
+  },
+  "near_floor_pct": 5.002
+ },
+ "cw": {
+  "all": {
+   "label": "CW all",
+   "n_days": 1308,
+   "n_slots": 565056,
+   "price_only_mae": 3.5922,
+   "pre_gate_improvement": {
+    "improvement": 0.2371,
+    "ci95": [
+     0.1704,
+     0.3162
+    ],
+    "dm_l3": {
+     "mean_diff": 0.2371,
+     "t_hln": 7.245,
+     "p_hln": 0.0,
+     "n_days": 1308,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.2371,
+     "t_hln": 6.072,
+     "p_hln": 0.0,
+     "n_days": 1308,
+     "nw_lag": 9
+    },
+    "n_days": 1308
+   },
+   "pre_gate_relative_pct": 6.6,
+   "gate_contrast": {
+    "delta": -0.0059,
+    "ci95": [
+     -0.0171,
+     0.0046
+    ],
+    "dm_l3": {
+     "mean_diff": -0.00588,
+     "t_hln": -0.993,
+     "p_hln": 0.32106797,
+     "n_days": 1308,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.00588,
+     "t_hln": -1.107,
+     "p_hln": 0.26870176,
+     "n_days": 1308,
+     "nw_lag": 9
+    },
+    "n_days": 1308,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 1308,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.2215,
+        "p_upper": 0.0015,
+        "p_tost": 0.2215,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.005922,
+        "t_lower": 0.6957,
+        "t_upper": -2.6817,
+        "p_lower": 0.24337844,
+        "p_upper": 0.00370887,
+        "p_tost": 0.24337844,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.005312,
+        "t_lower": 0.7755,
+        "t_upper": -2.9895,
+        "p_lower": 0.2190806,
+        "p_upper": 0.0014231,
+        "p_tost": 0.2190806,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.519
+      },
+      "relevance": {
+       "delta_margin": 0.04742,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.005922,
+        "t_lower": 7.0147,
+        "t_upper": -9.0007,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.005312,
+        "t_lower": 7.82,
+        "t_upper": -10.034,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.32
+      }
+     },
+     "ci90": [
+      -0.01519,
+      0.00296
+     ],
+     "smallest_margin_supported": 0.01519,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.164,
+   "gate_ci95_relative_pct": [
+    -0.476,
+    0.128
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0194
+  },
+  "episodes": {
+   "label": "CW episodes",
+   "n_days": 243,
+   "n_slots": 104976,
+   "price_only_mae": 8.3164,
+   "pre_gate_improvement": {
+    "improvement": 0.4856,
+    "ci95": [
+     0.2159,
+     0.8205
+    ],
+    "dm_l3": {
+     "mean_diff": 0.48558,
+     "t_hln": 3.392,
+     "p_hln": 0.00081039,
+     "n_days": 243,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.48558,
+     "t_hln": 3.052,
+     "p_hln": 0.00253021,
+     "n_days": 243,
+     "nw_lag": 9
+    },
+    "n_days": 243
+   },
+   "pre_gate_relative_pct": 5.839,
+   "gate_contrast": {
+    "delta": -0.0095,
+    "ci95": [
+     -0.0579,
+     0.0328
+    ],
+    "dm_l3": {
+     "mean_diff": -0.00954,
+     "t_hln": -0.376,
+     "p_hln": 0.70761563,
+     "n_days": 243,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.00954,
+     "t_hln": -0.426,
+     "p_hln": 0.67071284,
+     "n_days": 243,
+     "nw_lag": 9
+    },
+    "n_days": 243,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 243,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.4704,
+        "p_upper": 0.1999,
+        "p_tost": 0.4704,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.02536,
+        "t_lower": 0.0183,
+        "t_upper": -0.7703,
+        "p_lower": 0.49269583,
+        "p_upper": 0.22092812,
+        "p_tost": 0.49269583,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.022383,
+        "t_lower": 0.0208,
+        "t_upper": -0.8728,
+        "p_lower": 0.49172467,
+        "p_upper": 0.19182786,
+        "p_tost": 0.49172467,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 4.972
+      },
+      "relevance": {
+       "delta_margin": 0.09712,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0005,
+        "p_upper": 0.0,
+        "p_tost": 0.0005,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.02536,
+        "t_lower": 3.4537,
+        "t_upper": -4.2057,
+        "p_lower": 0.0003263,
+        "p_upper": 1.833e-05,
+        "p_tost": 0.0003263,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.022383,
+        "t_lower": 3.913,
+        "t_upper": -4.765,
+        "p_lower": 5.926e-05,
+        "p_upper": 1.63e-06,
+        "p_tost": 5.926e-05,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.512
+      }
+     },
+     "ci90": [
+      -0.04972,
+      0.02692
+     ],
+     "smallest_margin_supported": 0.04972,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.114,
+   "gate_ci95_relative_pct": [
+    -0.696,
+    0.394
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0675
+  },
+  "E1_jan2021": {
+   "label": "CW E1_jan2021",
+   "n_days": 31,
+   "n_slots": 13392,
+   "price_only_mae": 24.3345,
+   "pre_gate_improvement": {
+    "improvement": 0.9461,
+    "ci95": [
+     -0.7486,
+     3.1513
+    ],
+    "dm_l3": {
+     "mean_diff": 0.94613,
+     "t_hln": 0.979,
+     "p_hln": 0.33534979,
+     "n_days": 31,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.94613,
+     "t_hln": 0.941,
+     "p_hln": 0.35429698,
+     "n_days": 31,
+     "nw_lag": 9
+    },
+    "n_days": 31
+   },
+   "pre_gate_relative_pct": 3.888,
+   "gate_contrast": {
+    "delta": -0.0711,
+    "ci95": [
+     -0.3463,
+     0.1762
+    ],
+    "dm_l3": {
+     "mean_diff": -0.07108,
+     "t_hln": -0.482,
+     "p_hln": 0.63300795,
+     "n_days": 31,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.07108,
+     "t_hln": -0.632,
+     "p_hln": 0.53237374,
+     "n_days": 31,
+     "nw_lag": 9
+    },
+    "n_days": 31,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 31,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.6604,
+        "p_upper": 0.2833,
+        "p_tost": 0.6604,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.147476,
+        "t_lower": -0.4142,
+        "t_upper": -0.5498,
+        "p_lower": 0.65916015,
+        "p_upper": 0.29326084,
+        "p_tost": 0.65916015,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.112474,
+        "t_lower": -0.5431,
+        "t_upper": -0.7209,
+        "p_lower": 0.70445991,
+        "p_upper": 0.23827296,
+        "p_tost": 0.70445991,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 30.13
+      },
+      "relevance": {
+       "delta_margin": 0.18922,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.195,
+        "p_upper": 0.0207,
+        "p_tost": 0.195,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.147476,
+        "t_lower": 0.8011,
+        "t_upper": -1.7651,
+        "p_lower": 0.2146998,
+        "p_upper": 0.04386696,
+        "p_tost": 0.2146998,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.112474,
+        "t_lower": 1.0503,
+        "t_upper": -2.3143,
+        "p_lower": 0.15097387,
+        "p_upper": 0.0138394,
+        "p_tost": 0.15097387,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.592
+      }
+     },
+     "ci90": [
+      -0.3013,
+      0.14097
+     ],
+     "smallest_margin_supported": 0.3013,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.292,
+   "gate_ci95_relative_pct": [
+    -1.423,
+    0.724
+   ],
+   "gate_ucb_share_of_pre_gate": 0.1862
+  },
+  "E2_winter2022": {
+   "label": "CW E2_winter2022",
+   "n_days": 90,
+   "n_slots": 38880,
+   "price_only_mae": 6.362,
+   "pre_gate_improvement": {
+    "improvement": 0.4249,
+    "ci95": [
+     0.1402,
+     0.798
+    ],
+    "dm_l3": {
+     "mean_diff": 0.42488,
+     "t_hln": 2.948,
+     "p_hln": 0.00408143,
+     "n_days": 90,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.42488,
+     "t_hln": 2.178,
+     "p_hln": 0.03202684,
+     "n_days": 90,
+     "nw_lag": 9
+    },
+    "n_days": 90
+   },
+   "pre_gate_relative_pct": 6.679,
+   "gate_contrast": {
+    "delta": -0.0233,
+    "ci95": [
+     -0.0908,
+     0.0414
+    ],
+    "dm_l3": {
+     "mean_diff": -0.02333,
+     "t_hln": -0.679,
+     "p_hln": 0.4991074,
+     "n_days": 90,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.02333,
+     "t_hln": -0.704,
+     "p_hln": 0.48300246,
+     "n_days": 90,
+     "nw_lag": 9
+    },
+    "n_days": 90,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 90,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.6531,
+        "p_upper": 0.1546,
+        "p_tost": 0.6531,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.034365,
+        "t_lower": -0.388,
+        "t_upper": -0.97,
+        "p_lower": 0.65053172,
+        "p_upper": 0.16733963,
+        "p_tost": 0.65053172,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.033145,
+        "t_lower": -0.4023,
+        "t_upper": -1.0057,
+        "p_lower": 0.65578391,
+        "p_upper": 0.15864179,
+        "p_tost": 0.65578391,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 7.918
+      },
+      "relevance": {
+       "delta_margin": 0.08498,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0356,
+        "p_upper": 0.0007,
+        "p_tost": 0.0356,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.034365,
+        "t_lower": 1.7938,
+        "t_upper": -3.1518,
+        "p_lower": 0.03811663,
+        "p_upper": 0.00110552,
+        "p_tost": 0.03811663,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.033145,
+        "t_lower": 1.8599,
+        "t_upper": -3.2679,
+        "p_lower": 0.03310167,
+        "p_upper": 0.00077025,
+        "p_tost": 0.03310167,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.932
+      }
+     },
+     "ci90": [
+      -0.07918,
+      0.03036
+     ],
+     "smallest_margin_supported": 0.07918,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.366,
+   "gate_ci95_relative_pct": [
+    -1.427,
+    0.651
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0974
+  },
+  "E3_summer2022": {
+   "label": "CW E3_summer2022",
+   "n_days": 122,
+   "n_slots": 52704,
+   "price_only_mae": 5.688,
+   "pre_gate_improvement": {
+    "improvement": 0.4133,
+    "ci95": [
+     0.2609,
+     0.5686
+    ],
+    "dm_l3": {
+     "mean_diff": 0.41333,
+     "t_hln": 5.368,
+     "p_hln": 3.9e-07,
+     "n_days": 122,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.41333,
+     "t_hln": 5.639,
+     "p_hln": 1.1e-07,
+     "n_days": 122,
+     "nw_lag": 9
+    },
+    "n_days": 122
+   },
+   "pre_gate_relative_pct": 7.266,
+   "gate_contrast": {
+    "delta": 0.0163,
+    "ci95": [
+     -0.0171,
+     0.0464
+    ],
+    "dm_l3": {
+     "mean_diff": 0.01628,
+     "t_hln": 0.875,
+     "p_hln": 0.38351281,
+     "n_days": 122,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.01628,
+     "t_hln": 0.979,
+     "p_hln": 0.32946976,
+     "n_days": 122,
+     "nw_lag": 9
+    },
+    "n_days": 122,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 122,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.0551,
+        "p_upper": 0.6576,
+        "p_tost": 0.6576,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.01861,
+        "t_lower": 1.4124,
+        "t_upper": 0.3376,
+        "p_lower": 0.08020674,
+        "p_upper": 0.63189367,
+        "p_tost": 0.63189367,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.016633,
+        "t_lower": 1.5802,
+        "t_upper": 0.3778,
+        "p_lower": 0.05833369,
+        "p_upper": 0.64687248,
+        "p_tost": 0.64687248,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 4.174
+      },
+      "relevance": {
+       "delta_margin": 0.08266,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.01861,
+        "t_lower": 5.3167,
+        "t_upper": -3.5667,
+        "p_lower": 2.5e-07,
+        "p_upper": 0.00025939,
+        "p_tost": 0.00025939,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.016633,
+        "t_lower": 5.9487,
+        "t_upper": -3.9907,
+        "p_lower": 1e-08,
+        "p_upper": 5.668e-05,
+        "p_tost": 5.668e-05,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.505
+      }
+     },
+     "ci90": [
+      -0.01094,
+      0.04174
+     ],
+     "smallest_margin_supported": 0.04174,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.287,
+   "gate_ci95_relative_pct": [
+    -0.301,
+    0.816
+   ],
+   "gate_ucb_share_of_pre_gate": 0.1123
+  },
+  "S30": {
+   "label": "CW S30",
+   "n_days": 377,
+   "n_slots": 36768,
+   "price_only_mae": 10.5361,
+   "pre_gate_improvement": {
+    "improvement": 0.4871,
+    "ci95": [
+     0.2169,
+     0.788
+    ],
+    "dm_l3": {
+     "mean_diff": 0.48715,
+     "t_hln": 3.845,
+     "p_hln": 0.00014133,
+     "n_days": 377,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.48715,
+     "t_hln": 3.121,
+     "p_hln": 0.00194327,
+     "n_days": 377,
+     "nw_lag": 9
+    },
+    "n_days": 377
+   },
+   "pre_gate_relative_pct": 4.623,
+   "gate_contrast": {
+    "delta": 0.0168,
+    "ci95": [
+     -0.052,
+     0.0963
+    ],
+    "dm_l3": {
+     "mean_diff": 0.01676,
+     "t_hln": 0.425,
+     "p_hln": 0.67138907,
+     "n_days": 377,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.01676,
+     "t_hln": 0.445,
+     "p_hln": 0.65662099,
+     "n_days": 377,
+     "nw_lag": 9
+    },
+    "n_days": 377,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 377,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.2467,
+        "p_upper": 0.5554,
+        "p_tost": 0.5554,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.039433,
+        "t_lower": 0.6786,
+        "t_upper": 0.1714,
+        "p_lower": 0.2489051,
+        "p_upper": 0.56800015,
+        "p_tost": 0.56800015,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.03766,
+        "t_lower": 0.7105,
+        "t_upper": 0.1795,
+        "p_lower": 0.23890746,
+        "p_upper": 0.57116664,
+        "p_tost": 0.57116664,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 8.145
+      },
+      "relevance": {
+       "delta_margin": 0.09742,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0003,
+        "p_upper": 0.0235,
+        "p_tost": 0.0235,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.039433,
+        "t_lower": 2.8955,
+        "t_upper": -2.0455,
+        "p_lower": 0.002003,
+        "p_upper": 0.02074809,
+        "p_tost": 0.02074809,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.03766,
+        "t_lower": 3.0318,
+        "t_upper": -2.1418,
+        "p_lower": 0.0012997,
+        "p_upper": 0.01642537,
+        "p_tost": 0.01642537,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.836
+      }
+     },
+     "ci90": [
+      -0.04211,
+      0.08145
+     ],
+     "smallest_margin_supported": 0.08145,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.159,
+   "gate_ci95_relative_pct": [
+    -0.494,
+    0.914
+   ],
+   "gate_ucb_share_of_pre_gate": 0.1977
+  },
+  "S50": {
+   "label": "CW S50",
+   "n_days": 130,
+   "n_slots": 11198,
+   "price_only_mae": 23.3102,
+   "pre_gate_improvement": {
+    "improvement": 1.0699,
+    "ci95": [
+     0.3761,
+     1.8126
+    ],
+    "dm_l3": {
+     "mean_diff": 1.06986,
+     "t_hln": 2.947,
+     "p_hln": 0.00380553,
+     "n_days": 130,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 1.06986,
+     "t_hln": 2.892,
+     "p_hln": 0.00449835,
+     "n_days": 130,
+     "nw_lag": 9
+    },
+    "n_days": 130
+   },
+   "pre_gate_relative_pct": 4.59,
+   "gate_contrast": {
+    "delta": 0.3735,
+    "ci95": [
+     0.0236,
+     0.8852
+    ],
+    "dm_l3": {
+     "mean_diff": 0.37349,
+     "t_hln": 1.632,
+     "p_hln": 0.10518646,
+     "n_days": 130,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.37349,
+     "t_hln": 1.729,
+     "p_hln": 0.08621349,
+     "n_days": 130,
+     "nw_lag": 9
+    },
+    "n_days": 130,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 130,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.0099,
+        "p_upper": 0.9822,
+        "p_tost": 0.9822,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.228854,
+        "t_lower": 1.6757,
+        "t_upper": 1.5883,
+        "p_lower": 0.04810998,
+        "p_upper": 0.94266718,
+        "p_tost": 0.94266718,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.216015,
+        "t_lower": 1.7753,
+        "t_upper": 1.6827,
+        "p_lower": 0.03910384,
+        "p_upper": 0.95257464,
+        "p_tost": 0.95257464,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 77.996
+      },
+      "relevance": {
+       "delta_margin": 0.21398,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.7341,
+        "p_tost": 0.7341,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.228854,
+        "t_lower": 2.567,
+        "t_upper": 0.697,
+        "p_lower": 0.00569964,
+        "p_upper": 0.75646928,
+        "p_tost": 0.75646928,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.216015,
+        "t_lower": 2.7196,
+        "t_upper": 0.7384,
+        "p_lower": 0.0037187,
+        "p_upper": 0.76919956,
+        "p_tost": 0.76919956,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 3.645
+      }
+     },
+     "ci90": [
+      0.05626,
+      0.77996
+     ],
+     "smallest_margin_supported": 0.77996,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 1.602,
+   "gate_ci95_relative_pct": [
+    0.101,
+    3.797
+   ],
+   "gate_ucb_share_of_pre_gate": 0.8274
+  },
+  "non_episode": {
+   "label": "CW non_episode",
+   "n_days": 1065,
+   "n_slots": 460080,
+   "price_only_mae": 2.5143,
+   "pre_gate_improvement": {
+    "improvement": 0.1804,
+    "ci95": [
+     0.1307,
+     0.2306
+    ],
+    "dm_l3": {
+     "mean_diff": 0.1804,
+     "t_hln": 8.162,
+     "p_hln": 0.0,
+     "n_days": 1065,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.1804,
+     "t_hln": 6.524,
+     "p_hln": 0.0,
+     "n_days": 1065,
+     "nw_lag": 9
+    },
+    "n_days": 1065
+   },
+   "pre_gate_relative_pct": 7.175,
+   "gate_contrast": {
+    "delta": -0.005,
+    "ci95": [
+     -0.0135,
+     0.0031
+    ],
+    "dm_l3": {
+     "mean_diff": -0.00505,
+     "t_hln": -1.126,
+     "p_hln": 0.26025604,
+     "n_days": 1065,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.00505,
+     "t_hln": -1.225,
+     "p_hln": 0.2208616,
+     "n_days": 1065,
+     "nw_lag": 9
+    },
+    "n_days": 1065,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 1065,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.1229,
+        "p_upper": 0.0003,
+        "p_tost": 0.1229,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.004482,
+        "t_lower": 1.1053,
+        "t_upper": -3.3573,
+        "p_lower": 0.1346444,
+        "p_upper": 0.0004075,
+        "p_tost": 0.1346444,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.00412,
+        "t_lower": 1.2025,
+        "t_upper": -3.6525,
+        "p_lower": 0.1147271,
+        "p_upper": 0.0001362,
+        "p_tost": 0.1147271,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.215
+      },
+      "relevance": {
+       "delta_margin": 0.03608,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.004482,
+        "t_lower": 6.9245,
+        "t_upper": -9.1765,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.00412,
+        "t_lower": 7.5333,
+        "t_upper": -9.9833,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.337
+      }
+     },
+     "ci90": [
+      -0.01215,
+      0.00182
+     ],
+     "smallest_margin_supported": 0.01215,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.199,
+   "gate_ci95_relative_pct": [
+    -0.537,
+    0.123
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0172
+  }
+ },
+ "sp": {
+  "all": {
+   "label": "SP all",
+   "n_days": 1308,
+   "n_slots": 565056,
+   "price_only_mae": 3.5922,
+   "pre_gate_improvement": {
+    "improvement": 0.2089,
+    "ci95": [
+     0.1482,
+     0.2799
+    ],
+    "dm_l3": {
+     "mean_diff": 0.20887,
+     "t_hln": 6.952,
+     "p_hln": 0.0,
+     "n_days": 1308,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.20887,
+     "t_hln": 5.925,
+     "p_hln": 0.0,
+     "n_days": 1308,
+     "nw_lag": 9
+    },
+    "n_days": 1308
+   },
+   "pre_gate_relative_pct": 5.815,
+   "gate_contrast": {
+    "delta": 0.0047,
+    "ci95": [
+     -0.0074,
+     0.0172
+    ],
+    "dm_l3": {
+     "mean_diff": 0.00466,
+     "t_hln": 0.746,
+     "p_hln": 0.45552656,
+     "n_days": 1308,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.00466,
+     "t_hln": 0.757,
+     "p_hln": 0.44916007,
+     "n_days": 1308,
+     "nw_lag": 9
+    },
+    "n_days": 1308,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 1308,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.0097,
+        "p_upper": 0.1937,
+        "p_tost": 0.1937,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.006251,
+        "t_lower": 2.3457,
+        "t_upper": -0.8537,
+        "p_lower": 0.00956938,
+        "p_upper": 0.19670597,
+        "p_tost": 0.19670597,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.00616,
+        "t_lower": 2.3803,
+        "t_upper": -0.8663,
+        "p_lower": 0.00872022,
+        "p_upper": 0.19323771,
+        "p_tost": 0.19323771,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.499
+      },
+      "relevance": {
+       "delta_margin": 0.04178,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.006251,
+        "t_lower": 7.4297,
+        "t_upper": -5.9377,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.00616,
+        "t_lower": 7.5392,
+        "t_upper": -6.0252,
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.359
+      }
+     },
+     "ci90": [
+      -0.00534,
+      0.01499
+     ],
+     "smallest_margin_supported": 0.01499,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.131,
+   "gate_ci95_relative_pct": [
+    -0.206,
+    0.479
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0823
+  },
+  "episodes": {
+   "label": "SP episodes",
+   "n_days": 243,
+   "n_slots": 104976,
+   "price_only_mae": 8.3164,
+   "pre_gate_improvement": {
+    "improvement": 0.427,
+    "ci95": [
+     0.1814,
+     0.7302
+    ],
+    "dm_l3": {
+     "mean_diff": 0.42698,
+     "t_hln": 3.238,
+     "p_hln": 0.00137449,
+     "n_days": 243,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.42698,
+     "t_hln": 3.025,
+     "p_hln": 0.00275492,
+     "n_days": 243,
+     "nw_lag": 9
+    },
+    "n_days": 243
+   },
+   "pre_gate_relative_pct": 5.134,
+   "gate_contrast": {
+    "delta": -0.0099,
+    "ci95": [
+     -0.062,
+     0.0421
+    ],
+    "dm_l3": {
+     "mean_diff": -0.00989,
+     "t_hln": -0.359,
+     "p_hln": 0.71993677,
+     "n_days": 243,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.00989,
+     "t_hln": -0.396,
+     "p_hln": 0.69277662,
+     "n_days": 243,
+     "nw_lag": 9
+    },
+    "n_days": 243,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 243,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.4991,
+        "p_upper": 0.2198,
+        "p_tost": 0.4991,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.027543,
+        "t_lower": 0.0041,
+        "t_upper": -0.7221,
+        "p_lower": 0.49838059,
+        "p_upper": 0.23547629,
+        "p_tost": 0.49838059,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.02497,
+        "t_lower": 0.0045,
+        "t_upper": -0.7965,
+        "p_lower": 0.49821369,
+        "p_upper": 0.21326622,
+        "p_tost": 0.49821369,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 5.287
+      },
+      "relevance": {
+       "delta_margin": 0.0854,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0028,
+        "p_upper": 0.0001,
+        "p_tost": 0.0028,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.027543,
+        "t_lower": 2.7416,
+        "t_upper": -3.4596,
+        "p_lower": 0.00328564,
+        "p_upper": 0.00031964,
+        "p_tost": 0.00328564,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.02497,
+        "t_lower": 3.0241,
+        "t_upper": -3.8161,
+        "p_lower": 0.00138109,
+        "p_upper": 8.61e-05,
+        "p_tost": 0.00138109,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.619
+      }
+     },
+     "ci90": [
+      -0.05287,
+      0.03288
+     ],
+     "smallest_margin_supported": 0.05287,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.119,
+   "gate_ci95_relative_pct": [
+    -0.746,
+    0.506
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0986
+  },
+  "E1_jan2021": {
+   "label": "SP E1_jan2021",
+   "n_days": 31,
+   "n_slots": 13392,
+   "price_only_mae": 24.3345,
+   "pre_gate_improvement": {
+    "improvement": 0.7933,
+    "ci95": [
+     -0.7714,
+     2.8164
+    ],
+    "dm_l3": {
+     "mean_diff": 0.79326,
+     "t_hln": 0.883,
+     "p_hln": 0.3844754,
+     "n_days": 31,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.79326,
+     "t_hln": 0.884,
+     "p_hln": 0.38392428,
+     "n_days": 31,
+     "nw_lag": 9
+    },
+    "n_days": 31
+   },
+   "pre_gate_relative_pct": 3.26,
+   "gate_contrast": {
+    "delta": 0.0726,
+    "ci95": [
+     -0.2839,
+     0.3977
+    ],
+    "dm_l3": {
+     "mean_diff": 0.07257,
+     "t_hln": 0.408,
+     "p_hln": 0.68584122,
+     "n_days": 31,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.07257,
+     "t_hln": 0.443,
+     "p_hln": 0.66117335,
+     "n_days": 31,
+     "nw_lag": 9
+    },
+    "n_days": 31,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 31,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.3123,
+        "p_upper": 0.6471,
+        "p_tost": 0.6471,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.177859,
+        "t_lower": 0.4642,
+        "t_upper": 0.3518,
+        "p_lower": 0.32291917,
+        "p_upper": 0.63626729,
+        "p_tost": 0.63626729,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.163807,
+        "t_lower": 0.504,
+        "t_upper": 0.382,
+        "p_lower": 0.30895495,
+        "p_upper": 0.64740558,
+        "p_tost": 0.64740558,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 35.168
+      },
+      "relevance": {
+       "delta_margin": 0.15866,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0972,
+        "p_upper": 0.3159,
+        "p_tost": 0.3159,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.177859,
+        "t_lower": 1.3001,
+        "t_upper": -0.4841,
+        "p_lower": 0.10174131,
+        "p_upper": 0.31593119,
+        "p_tost": 0.31593119,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.163807,
+        "t_lower": 1.4116,
+        "t_upper": -0.5256,
+        "p_lower": 0.08418114,
+        "p_upper": 0.30152233,
+        "p_tost": 0.30152233,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 2.217
+      }
+     },
+     "ci90": [
+      -0.22283,
+      0.35168
+     ],
+     "smallest_margin_supported": 0.35168,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.298,
+   "gate_ci95_relative_pct": [
+    -1.167,
+    1.634
+   ],
+   "gate_ucb_share_of_pre_gate": 0.5013
+  },
+  "E2_winter2022": {
+   "label": "SP E2_winter2022",
+   "n_days": 90,
+   "n_slots": 38880,
+   "price_only_mae": 6.362,
+   "pre_gate_improvement": {
+    "improvement": 0.3747,
+    "ci95": [
+     0.1309,
+     0.6937
+    ],
+    "dm_l3": {
+     "mean_diff": 0.37469,
+     "t_hln": 2.934,
+     "p_hln": 0.00425599,
+     "n_days": 90,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.37469,
+     "t_hln": 2.291,
+     "p_hln": 0.02430207,
+     "n_days": 90,
+     "nw_lag": 9
+    },
+    "n_days": 90
+   },
+   "pre_gate_relative_pct": 5.89,
+   "gate_contrast": {
+    "delta": -0.0553,
+    "ci95": [
+     -0.11,
+     -0.0015
+    ],
+    "dm_l3": {
+     "mean_diff": -0.05529,
+     "t_hln": -1.933,
+     "p_hln": 0.05645846,
+     "n_days": 90,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.05529,
+     "t_hln": -2.068,
+     "p_hln": 0.04152044,
+     "n_days": 90,
+     "nw_lag": 9
+    },
+    "n_days": 90,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 90,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.951,
+        "p_upper": 0.008,
+        "p_tost": 0.951,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.028603,
+        "t_lower": -1.5834,
+        "t_upper": -2.2826,
+        "p_lower": 0.94155933,
+        "p_upper": 0.01241792,
+        "p_tost": 0.94155933,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.026736,
+        "t_lower": -1.694,
+        "t_upper": -2.442,
+        "p_lower": 0.95311563,
+        "p_upper": 0.00829106,
+        "p_tost": 0.95311563,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 10.157
+      },
+      "relevance": {
+       "delta_margin": 0.07494,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.2364,
+        "p_upper": 0.0,
+        "p_tost": 0.2364,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.028603,
+        "t_lower": 0.687,
+        "t_upper": -4.553,
+        "p_lower": 0.24692574,
+        "p_upper": 8.35e-06,
+        "p_tost": 0.24692574,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.026736,
+        "t_lower": 0.735,
+        "t_upper": -4.871,
+        "p_lower": 0.23213299,
+        "p_upper": 2.4e-06,
+        "p_tost": 0.23213299,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.355
+      }
+     },
+     "ci90": [
+      -0.10157,
+      -0.01024
+     ],
+     "smallest_margin_supported": 0.10157,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.869,
+   "gate_ci95_relative_pct": [
+    -1.729,
+    -0.024
+   ],
+   "gate_ucb_share_of_pre_gate": -0.004
+  },
+  "E3_summer2022": {
+   "label": "SP E3_summer2022",
+   "n_days": 122,
+   "n_slots": 52704,
+   "price_only_mae": 5.688,
+   "pre_gate_improvement": {
+    "improvement": 0.3725,
+    "ci95": [
+     0.2319,
+     0.5201
+    ],
+    "dm_l3": {
+     "mean_diff": 0.37248,
+     "t_hln": 5.29,
+     "p_hln": 5.5e-07,
+     "n_days": 122,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.37248,
+     "t_hln": 5.157,
+     "p_hln": 9.9e-07,
+     "n_days": 122,
+     "nw_lag": 9
+    },
+    "n_days": 122
+   },
+   "pre_gate_relative_pct": 6.549,
+   "gate_contrast": {
+    "delta": 0.0027,
+    "ci95": [
+     -0.0343,
+     0.0372
+    ],
+    "dm_l3": {
+     "mean_diff": 0.00265,
+     "t_hln": 0.139,
+     "p_hln": 0.89002334,
+     "n_days": 122,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.00265,
+     "t_hln": 0.138,
+     "p_hln": 0.89017237,
+     "n_days": 122,
+     "nw_lag": 9
+    },
+    "n_days": 122,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 122,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.2441,
+        "p_upper": 0.3527,
+        "p_tost": 0.3527,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.019086,
+        "t_lower": 0.663,
+        "t_upper": -0.385,
+        "p_lower": 0.25431062,
+        "p_upper": 0.35047382,
+        "p_tost": 0.35047382,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.019224,
+        "t_lower": 0.6582,
+        "t_upper": -0.3822,
+        "p_lower": 0.25583508,
+        "p_upper": 0.35149761,
+        "p_tost": 0.35149761,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 3.209
+      },
+      "relevance": {
+       "delta_margin": 0.0745,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0001,
+        "p_upper": 0.0,
+        "p_tost": 0.0001,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.019086,
+        "t_lower": 4.0425,
+        "t_upper": -3.7645,
+        "p_lower": 4.67e-05,
+        "p_upper": 0.00012948,
+        "p_tost": 0.00012948,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.019224,
+        "t_lower": 4.0134,
+        "t_upper": -3.7374,
+        "p_lower": 5.208e-05,
+        "p_upper": 0.00014263,
+        "p_tost": 0.00014263,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.431
+      }
+     },
+     "ci90": [
+      -0.02791,
+      0.03209
+     ],
+     "smallest_margin_supported": 0.03209,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.047,
+   "gate_ci95_relative_pct": [
+    -0.603,
+    0.654
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0999
+  },
+  "S30": {
+   "label": "SP S30",
+   "n_days": 377,
+   "n_slots": 36768,
+   "price_only_mae": 10.5361,
+   "pre_gate_improvement": {
+    "improvement": 0.4955,
+    "ci95": [
+     0.2107,
+     0.8315
+    ],
+    "dm_l3": {
+     "mean_diff": 0.49555,
+     "t_hln": 3.492,
+     "p_hln": 0.00053584,
+     "n_days": 377,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.49555,
+     "t_hln": 2.922,
+     "p_hln": 0.00368606,
+     "n_days": 377,
+     "nw_lag": 9
+    },
+    "n_days": 377
+   },
+   "pre_gate_relative_pct": 4.703,
+   "gate_contrast": {
+    "delta": -0.0401,
+    "ci95": [
+     -0.1333,
+     0.0399
+    ],
+    "dm_l3": {
+     "mean_diff": -0.04005,
+     "t_hln": -0.859,
+     "p_hln": 0.39076414,
+     "n_days": 377,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": -0.04005,
+     "t_hln": -0.883,
+     "p_hln": 0.37803621,
+     "n_days": 377,
+     "nw_lag": 9
+    },
+    "n_days": 377,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 377,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.7442,
+        "p_upper": 0.1213,
+        "p_tost": 0.7442,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.046627,
+        "t_lower": -0.6445,
+        "t_upper": -1.0735,
+        "p_lower": 0.74018785,
+        "p_upper": 0.14187454,
+        "p_tost": 0.74018785,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.045359,
+        "t_lower": -0.6625,
+        "t_upper": -1.1035,
+        "p_lower": 0.74598401,
+        "p_upper": 0.13526629,
+        "p_tost": 0.74598401,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 11.809
+      },
+      "relevance": {
+       "delta_margin": 0.0991,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0957,
+        "p_upper": 0.0002,
+        "p_tost": 0.0957,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.046627,
+        "t_lower": 1.2664,
+        "t_upper": -2.9844,
+        "p_lower": 0.10307877,
+        "p_upper": 0.00151356,
+        "p_tost": 0.10307877,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.045359,
+        "t_lower": 1.3018,
+        "t_upper": -3.0678,
+        "p_lower": 0.09689565,
+        "p_upper": 0.00115642,
+        "p_tost": 0.09689565,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.192
+      }
+     },
+     "ci90": [
+      -0.11809,
+      0.02785
+     ],
+     "smallest_margin_supported": 0.11809,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": -0.381,
+   "gate_ci95_relative_pct": [
+    -1.265,
+    0.379
+   ],
+   "gate_ucb_share_of_pre_gate": 0.0805
+  },
+  "S50": {
+   "label": "SP S50",
+   "n_days": 130,
+   "n_slots": 11198,
+   "price_only_mae": 23.3102,
+   "pre_gate_improvement": {
+    "improvement": 1.0855,
+    "ci95": [
+     0.3483,
+     1.904
+    ],
+    "dm_l3": {
+     "mean_diff": 1.08545,
+     "t_hln": 2.733,
+     "p_hln": 0.00715336,
+     "n_days": 130,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 1.08545,
+     "t_hln": 2.688,
+     "p_hln": 0.00812927,
+     "n_days": 130,
+     "nw_lag": 9
+    },
+    "n_days": 130
+   },
+   "pre_gate_relative_pct": 4.657,
+   "gate_contrast": {
+    "delta": 0.0427,
+    "ci95": [
+     -0.2059,
+     0.3215
+    ],
+    "dm_l3": {
+     "mean_diff": 0.04273,
+     "t_hln": 0.308,
+     "p_hln": 0.75822066,
+     "n_days": 130,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.04273,
+     "t_hln": 0.316,
+     "p_hln": 0.75215197,
+     "n_days": 130,
+     "nw_lag": 9
+    },
+    "n_days": 130,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 130,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.358,
+        "p_upper": 0.5828,
+        "p_tost": 0.5828,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.138729,
+        "t_lower": 0.3801,
+        "t_upper": 0.2359,
+        "p_lower": 0.3522545,
+        "p_upper": 0.59306446,
+        "p_tost": 0.59306446,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.135217,
+        "t_lower": 0.39,
+        "t_upper": 0.242,
+        "p_lower": 0.34860643,
+        "p_upper": 0.59543513,
+        "p_tost": 0.59543513,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 27.6
+      },
+      "relevance": {
+       "delta_margin": 0.2171,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0195,
+        "p_upper": 0.1027,
+        "p_tost": 0.1027,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.138729,
+        "t_lower": 1.8729,
+        "t_upper": -1.2569,
+        "p_lower": 0.03167152,
+        "p_upper": 0.10552722,
+        "p_tost": 0.10552722,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.135217,
+        "t_lower": 1.9216,
+        "t_upper": -1.2896,
+        "p_lower": 0.02843306,
+        "p_upper": 0.09975449,
+        "p_tost": 0.09975449,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.271
+      }
+     },
+     "ci90": [
+      -0.1717,
+      0.276
+     ],
+     "smallest_margin_supported": 0.276,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.183,
+   "gate_ci95_relative_pct": [
+    -0.883,
+    1.379
+   ],
+   "gate_ucb_share_of_pre_gate": 0.2962
+  },
+  "non_episode": {
+   "label": "SP non_episode",
+   "n_days": 1065,
+   "n_slots": 460080,
+   "price_only_mae": 2.5143,
+   "pre_gate_improvement": {
+    "improvement": 0.1591,
+    "ci95": [
+     0.114,
+     0.2054
+    ],
+    "dm_l3": {
+     "mean_diff": 0.1591,
+     "t_hln": 7.827,
+     "p_hln": 0.0,
+     "n_days": 1065,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.1591,
+     "t_hln": 6.227,
+     "p_hln": 0.0,
+     "n_days": 1065,
+     "nw_lag": 9
+    },
+    "n_days": 1065
+   },
+   "pre_gate_relative_pct": 6.328,
+   "gate_contrast": {
+    "delta": 0.008,
+    "ci95": [
+     -0.0007,
+     0.017
+    ],
+    "dm_l3": {
+     "mean_diff": 0.00798,
+     "t_hln": 1.796,
+     "p_hln": 0.07282269,
+     "n_days": 1065,
+     "nw_lag": 3
+    },
+    "dm_l9": {
+     "mean_diff": 0.00798,
+     "t_hln": 1.73,
+     "p_hln": 0.08389854,
+     "n_days": 1065,
+     "nw_lag": 9
+    },
+    "n_days": 1065,
+    "equivalence": {
+     "alpha": 0.05,
+     "n_days": 1065,
+     "precommit_doc": "docs/research/2026-08-11_phase85_cw_primary_precommit.md",
+     "margins": {
+      "tick": {
+       "delta_margin": 0.01,
+       "rationale": "one JEPX price tick, the market's own price granularity; a smallness benchmark for the POOLED MEAN absolute error only -- mean-level equivalence does not bound individual slot forecast differences (phase75 tested the decision scale separately and found non-equivalence at the reviewer's margins)",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.3294,
+        "p_tost": 0.3294,
+        "equivalent": false
+       },
+       "dm_l3": {
+        "se": 0.004445,
+        "t_lower": 4.0457,
+        "t_upper": -0.4537,
+        "p_lower": 2.797e-05,
+        "p_upper": 0.32508656,
+        "p_tost": 0.32508656,
+        "equivalent": false
+       },
+       "dm_l9": {
+        "se": 0.004615,
+        "t_lower": 3.897,
+        "t_upper": -0.437,
+        "p_lower": 5.174e-05,
+        "p_upper": 0.33110751,
+        "p_tost": 0.33110751,
+        "equivalent": false
+       },
+       "verdict": "NOT_EQUIVALENT",
+       "ci90_within_margin": false,
+       "margin_utilisation": 1.56
+      },
+      "relevance": {
+       "delta_margin": 0.03182,
+       "rationale": "20% of the CW pre-gate headline improvement, fixed as a FORMULA in the phase85 precommit before estimation; SECONDARY because it is anchored on an estimate",
+       "boot": {
+        "p_lower": 0.0,
+        "p_upper": 0.0,
+        "p_tost": 0.0,
+        "equivalent": true
+       },
+       "dm_l3": {
+        "se": 0.004445,
+        "t_lower": 8.9544,
+        "t_upper": -5.3624,
+        "p_lower": 0.0,
+        "p_upper": 5e-08,
+        "p_tost": 5e-08,
+        "equivalent": true
+       },
+       "dm_l9": {
+        "se": 0.004615,
+        "t_lower": 8.6253,
+        "t_upper": -5.1653,
+        "p_lower": 0.0,
+        "p_upper": 1.4e-07,
+        "p_tost": 1.4e-07,
+        "equivalent": true
+       },
+       "verdict": "EQUIVALENT",
+       "ci90_within_margin": true,
+       "margin_utilisation": 0.49
+      }
+     },
+     "ci90": [
+      0.00063,
+      0.0156
+     ],
+     "smallest_margin_supported": 0.0156,
+     "smallest_margin_note": "smallest symmetric margin whose interval contains the 90% CI; a DESCRIPTIVE by-product, NOT a pre-committed margin"
+    }
+   },
+   "gate_relative_pct": 0.318,
+   "gate_ci95_relative_pct": [
+    -0.028,
+    0.676
+   ],
+   "gate_ucb_share_of_pre_gate": 0.1069
+  }
+ },
+ "gate112_0_overlap": {
+  "window": [
+   "2024-03-01",
+   "2024-07-31"
+  ],
+  "n_point_hours": 403920,
+  "max_abs_diff": 0.0,
+  "tolerance": 1e-09,
+  "verdict": "PASS"
+ },
+ "gates": {
+  "g112a_headline_replicates": {
+   "evaluated": true,
+   "passes": true,
+   "rule": "backcast pre-gate CW improvement 95% CI lower bound > 0",
+   "if_fails": "restrict the headline in the Abstract and Conclusions to the primary window"
+  },
+  "g112b_freshness_in_scarcity": {
+   "evaluated": true,
+   "branch": "i",
+   "passes": true,
+   "episode_gate_relative_ci95_pct": [
+    -0.696,
+    0.394
+   ],
+   "rule": "(i) CI of the episode gate contrast, relative to price-only MAE, below +1%; (ii) CI lower bound > 0; (iii) otherwise inconclusive",
+   "if_fails": "branch ii: state that the near-gate flatness is regime-dependent and qualify the Abstract; branch iii: report the interval as inconclusive"
+  },
+  "g112d_dissemination": {
+   "evaluated": true,
+   "passes": true,
+   "files": 4383,
+   "days": 1461,
+   "files_before_gate": 0,
+   "rule": "no file of the D-1 00 UTC run written before the gate, 2020-24",
+   "if_fails": "rewrite Section 3 with the count of pre-gate files"
+  }
+ }
+}

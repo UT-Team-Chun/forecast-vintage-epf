@@ -23,7 +23,7 @@ Outputs (all under docs/paper/paper_a_main/tables/):
   phase90_mechanism.tex             each residual regressed on the excluded
                                     run's innovation, with the placebos
   phase91_weight_sensitivity.tex    three point weightings, three cells
-  phase54v2_enriched_nwp.tex        the four-cell enriched-baseline
+  phase119_enriched_nwp.tex         the four-cell enriched-baseline
                                     decomposition, per area
   phase83_margin_curve.tex          the equivalence margin curve, every
                                     dependence scheme (MAIN TEXT)
@@ -72,7 +72,7 @@ OUT_JA = CFG.project_root / "docs/paper/paper_a_main_ja/tables"
 P60 = RUN / "phase60_wedge_continuous.json"
 P61 = RUN / "phase61_system_metrics_band.json"
 P76 = RUN / "phase76_nomination_rules.json"
-P73 = RUN / "phase73_cycle_curve.json"
+P73 = RUN / "phase73v2_cycle_curve.json"  # the extended panel the macros bind to
 P74 = RUN / "phase74_cw_ladder.json"
 P74G = RUN / "phase74_gate35_proxy.json"
 P59 = RUN / "phase59_exact_ladder.json"
@@ -85,6 +85,9 @@ P82B = RUN / "phase82b_absolute_metrics.json"
 P85 = RUN / "phase85_exact_ladder.json"
 P91 = RUN / "phase91_weight_sensitivity.json"
 P54V2 = RUN / "phase54v2_current.json"
+# phase119 re-measured the decomposition on the pinned D-2 12 UTC run (CW field),
+# the input the manuscript names; the table follows it.
+P119 = RUN / "phase119_enriched_baseline_pinned.json"
 P88 = RUN / "phase88_lit_audit.json"
 
 AREA_LABELS = {
@@ -115,10 +118,15 @@ def _g(d: dict, *path):
 
 
 def _f(x: float | None, nd: int = 2, *, signed: bool = False) -> str:
-    """LaTeX-ready number, or an em dash when the provenance has none."""
+    """LaTeX-ready number, or an em dash when the provenance has none.
+
+    Rounded half up from the stored decimal, the rule the guard and the prose use:
+    float formatting printed Kyushu's 0.3565 as 0.356 beside a text saying 0.357.
+    """
     if x is None:
         return "---"
-    s = f"{x:+.{nd}f}" if signed else f"{x:,.{nd}f}"
+    q = Decimal(str(x)).quantize(Decimal(1).scaleb(-nd), rounding=ROUND_HALF_UP)
+    s = f"{q:+.{nd}f}" if signed else f"{q:,.{nd}f}"
     return f"${s}$"
 
 
@@ -389,17 +397,13 @@ L10N = {
                           "initialisations", "References"),
         "ladder_rows": {
             "msm_d2_12z_cw": ("$D{-}2$ 12\\,UTC run (leads 27--50\\,h)",
-                              "\\textbf{Yes}, $+10$\\,h\\,30\\,m"),
+                              "\\textbf{Yes}, measured, $\\geq$\\DissemWorstMarginTwelveZHrs\\,h early"),
             "msm_gate_composite_cw": ("Freshest admissible run per slot",
-                                      "\\textbf{Yes}, $+1$\\,h\\,30\\,m"),
+                                      "\\textbf{Yes}, measured, $\\geq$\\DissemWorstMarginTwentyOneZHrs\\,h early"),
             "msm_d1_00z_cw": ("$D{-}1$ 00\\,UTC run (leads 15--38\\,h)",
-                              "\\textbf{No}, $1$\\,h\\,30\\,m late"),
+                              "\\textbf{No}, documented; earliest archive write \\GateFastestFileMin\\,min after the gate"),
             "prev2": ("Previous-day-2 series ($\\approx48$\\,h lead, SP)",
-                      "Yes by dissemination"),
-            "prev1": ("Previous-day-1 series ($\\approx24$\\,h lead, SP)",
-                      "No, post-gate class"),
-            "histfc": ("Operational reconstruction (SP)",
-                       "No, issuance ambiguous"),
+                      "Yes, by schedule"),
             "era5_cw": ("Stale observations (reanalysis, lag-48 slots)",
                         "\\textbf{No}, publishes late"),
             "oracle_cw": ("Ex-post realised weather --- \\emph{not a ceiling}",
@@ -441,16 +445,13 @@ L10N = {
                           "またがって組み立てたもの", "参照"),
         "ladder_rows": {
             "msm_d2_12z_cw": ("$D{-}2$ 12\\,UTC run (リード 27--50\\,h)",
-                              "\\textbf{Yes}、$+10$\\,h\\,30\\,m"),
+                              "\\textbf{Yes}、測定、$\\geq$\\DissemWorstMarginTwelveZHrs\\,h 前"),
             "msm_gate_composite_cw": ("スロットごとに最も新しい適格 run",
-                                      "\\textbf{Yes}、$+1$\\,h\\,30\\,m"),
+                                      "\\textbf{Yes}、測定、$\\geq$\\DissemWorstMarginTwentyOneZHrs\\,h 前"),
             "msm_d1_00z_cw": ("$D{-}1$ 00\\,UTC run (リード 15--38\\,h)",
-                              "\\textbf{No}、$1$\\,h\\,30\\,m 遅い"),
+                              "\\textbf{No}、文書; アーカイブへの最初の書き込みは締切の \\GateFastestFileMin\\,分後"),
             "prev2": ("前日-2 系列 (リード $\\approx48$\\,h、SP)",
-                      "配信の観点では Yes"),
-            "prev1": ("前日-1 系列 (リード $\\approx24$\\,h、SP)",
-                      "No、締切後クラス"),
-            "histfc": ("実運用予報の再構成 (SP)", "No、発行時刻が曖昧"),
+                      "Yes、スケジュール上"),
             "era5_cw": ("陳腐化観測 (再解析、lag-48 スロット)",
                         "\\textbf{No}、公開が遅い"),
             "oracle_cw": ("事後の実現気象 —— \\emph{天井ではない}",
@@ -495,8 +496,7 @@ LADDER_LAYOUT = [
     (0, "arm_cw_primary",
      [("msm_d2_12z_cw", True), ("msm_gate_composite_cw", False),
       ("msm_d1_00z_cw", False)]),
-    (1, "arm_sp_robustness",
-     [("prev2", False), ("prev1", False), ("histfc", False)]),
+    (1, "arm_sp_robustness", [("prev2", False)]),
     (2, "arm_cw_primary", [("era5_cw", False), ("oracle_cw", False)]),
 ]
 
@@ -529,11 +529,13 @@ def vintage_ladder(p85: dict, lang: str = "en") -> str:
         for key, bold in tiers:
             r = _g(p85, arm, "tiers", key)
             label, avail = t["ladder_rows"][key]
-            imp = f"{r['improvement']:.3f}"
+            # half up, three places: float formatting printed the ex-post 0.2405
+            # as 0.240 beside a text that says 0.241
+            imp = _hu(r['improvement'], 3)
             imp = f"$\\mathbf{{{imp}}}$" if bold else f"${imp}$"
             rows.append(
                 f"{label} & {avail} & {imp} & "
-                f"$[{r['ci95'][0]:.3f}, {r['ci95'][1]:.3f}]$ & "
+                f"$[{_hu(r['ci95'][0], 3)}, {_hu(r['ci95'][1], 3)}]$ & "
                 f"{_dm_p(r['dm_l3']['p_hln'], r['dm_l9']['p_hln'])} & "
                 f"{r['areas_sig_l3']}/9 \\\\")
     rows.append("\\bottomrule")
@@ -949,7 +951,7 @@ def version_split(p80: dict) -> str:
         f"Pre-upgrade covers {n1} test days and post-upgrade {n2}. The first rows "
         "give each tier's improvement over the price-only baseline on either side "
         "of the boundary; the italic rows give the gate-timing difference, which is "
-        "the quantity the paper's second claim rests on, with and without a "
+        "the quantity the post-gate bound rests on, with and without a "
         "fourteen-day transition window around the upgrade. Every interaction "
         "interval covers zero, so the pooled contrasts are not artefacts of "
         "averaging across two model versions. Measured dissemination lag is "
@@ -997,16 +999,16 @@ def buffer_audit(p78: dict) -> str:
         "completion is not the same instant as a bid entering a trading system, so "
         "every measured arrival is delayed by the buffer in the column head "
         "(minutes) and the gate test re-run on all delivery days. Column three is "
-        "the worst observed completion lag after initialisation and column four the "
-        "worst margin against the gate, negative where the run arrives too late. "
+        "the worst archive-write lag after initialisation and column four the worst "
+        "margin against the gate, negative where the archive copy appears after the gate. "
         "$\\checkmark$ means admissible on every day, $\\times$ on none. The "
         "pre-gate classification survives to a 90-minute buffer; at 120 minutes the "
         "freshest cycle's slots fall back to the $D{-}2$ 12\\,UTC run, which is the "
         "already-estimated headline cell, so the cost of that fallback is measured "
-        "rather than modelled. The excluded run is inadmissible at every buffer, "
-        "including none. Time admissibility is not sufficiency: the $D{-}2$ 18\\,UTC "
-        "and 21\\,UTC runs clear the gate but the mirror truncates them at "
-        "forecast hour 39, so neither spans a whole delivery day, which is why "
+        "rather than modelled. No file of the excluded run reaches the archive before "
+        "the gate at any buffer, including none. Time admissibility is not sufficiency: "
+        "the $D{-}2$ 18\\,UTC and 21\\,UTC runs clear the gate but JMA runs them only "
+        "to forecast hour 39, so neither spans a whole delivery day, which is why "
         "the headline rung is the older 12\\,UTC run.}\n"
         "\\label{tab:supp_buffer_audit}\n\\scriptsize\n"
         "\\setlength{\\tabcolsep}{4pt}\n"
@@ -1046,10 +1048,10 @@ def second_provider(p86: dict) -> str:
         "\\begin{table}[htbp]\n\\centering\n"
         "\\caption{A second, independent forecast provider. The NCEP Global "
         "Forecast System was retrieved from its public archive by byte range, with "
-        "dissemination times read from that store's own timestamps, and scored on "
-        f"the same panel ({n['n_slots']:,} slot observations over "
-        f"{n['n_test_days']} test days), the same folds, the same learner and the "
-        "same baseline as the JMA cells. The comparison sits inside the "
+        "archive-write times read from that store's own timestamps, and scored on "
+        f"the same test days ({n['n_test_days']}; {n['n_slots']:,} slot "
+        "observations, a few short of the ladder's where GFS has no value), the "
+        "same folds, the same learner and the same baseline as the JMA cells. The comparison sits inside the "
         "single-point arm, where all four cells share one measurement; the "
         "capacity-weighted field was deliberately not rebuilt for GFS, because the "
         "question here is external generality rather than a measurement claim. "
@@ -1057,10 +1059,11 @@ def second_provider(p86: dict) -> str:
         "baseline, so the result is not specific to one forecast centre. At the "
         "same initialisation the national meso-scale model is better than the "
         "global model at $0.25^\\circ$, which is a provider difference and not a "
-        "vintage difference. And the within-GFS step towards the gate is not "
-        "distinguishable from zero, so the flatness of the ladder near the gate is "
-        "reproduced by a provider whose model, resolution and dissemination "
-        "schedule all differ. Intervals are 95\\% day-block bootstrap; $p$ is "
+        "vintage difference. And the within-GFS step between its pre-gate cycles "
+        "is not distinguishable from zero, so a provider whose model, resolution "
+        "and dissemination schedule all differ also shows no step between pre-gate "
+        "cycles; no post-gate GFS run is scored. Intervals are 95\\% day-block "
+        "bootstrap; $p$ is "
         "Harvey--Leybourne--Newbold Diebold--Mariano at $L=3$.}\n"
         "\\label{tab:supp_second_provider}\n\\small\n"
         "\\begin{tabular}{lrrr}\n\\toprule\n"
@@ -1180,14 +1183,19 @@ def _expand_macros(body: str, defs: dict[str, str]) -> str:
     body = re.sub(r"\\[A-Za-z]+\s*", "", body)  # remaining control words
     return (
         body.replace("~", " ")
+        # Em dash before en dash, or "---" is consumed as "--" plus a stray "-".
+        # The en-dash pass was missing, so "precision--recall" reached the
+        # Editorial-Manager abstract with LaTeX's double hyphen intact, in the
+        # first text an editor reads.
         .replace("---", "\u2014")
+        .replace("--", "\u2013")
         .replace("$", "")
         .replace("{", "")
         .replace("}", "")
     )
 
 
-EM_ABSTRACT_LIMIT = 250  # Applied Energy guide for authors
+EM_ABSTRACT_LIMIT = 250  # Energy guide for authors (read live 2026-10-23)
 EM_HIGHLIGHT_CHARS = 85  # Elsevier: max 85 characters per highlight, incl. spaces
 EM_HIGHLIGHT_MAX = 5     # Elsevier: 3 to 5 highlights
 
@@ -1199,38 +1207,32 @@ EM_HIGHLIGHT_MAX = 5     # Elsevier: 3 to 5 highlights
 # no room for that caveat, whereas "no detectable pooled accuracy" holds on all
 # three weightings tested.
 EM_HIGHLIGHTS: tuple[str, ...] = (
-    r"Weather inputs are judged by dissemination time, not by initialisation time",
-    r"Archive timestamps show the run initialised before the gate arrives after it",
-    r"A run disseminated before the gate cuts day-ahead price MAE by \PreGateImp JPY/kWh",
-    r"The excluded run adds no detectable 24-hour pooled accuracy at that gate",
-    r"Pre-gate weather raises floor-event PR-AUC in all \FloorPrAucAreasPos price areas",
+    r"Weather forecasts are judged by when they reached bidders, not by initialisation",
+    r"A run initialised before the 10:00 gate is documented to reach bidders after it",
+    r"A pre-gate forecast cuts price error by \PreGateRelPct\% and improves floor detection",
+    r"A run arriving after the gate adds little: 95\% bound \GateUcbSharePct\% of the pre-gate gain",
+    r"Fresher runs sharpen PV generation forecasts but barely move price forecasts",
 )
 
 
 EM_HIGHLIGHT_NOTES = r"""## What these bullets deliberately do not say
 
-- Bullet 4 says 24-HOUR pooled, because that qualifier is load-bearing: the
-  same innovation handed to the learner directly is worth about one and a half
-  price ticks on the daylight window the physical claim is measured on
-  (Section 5.3). The pooled null is partly a dilution over night slots, and an
-  unqualified "pooled" would overstate it in a bullet with no room to explain.
-- Bullet 4 states the BOUNDED gate result, not the one-tick equivalence.
-  Equivalence is the single claim in this paper that a later capacity-register
-  snapshot does not support (Section 7, Supplementary S4); "no detectable
-  pooled accuracy" holds on all three weightings tested, so it is the form
-  that belongs in a sentence with no room for a caveat.
-- No bullet reports the \PreGateMultiple-fold multiple of the reanalysis
-  proxy. Its denominator (\StaleObsImp JPY/kWh) is small enough that the ratio
-  overstates the effect; the absolute improvement and the absolute difference
-  are reported instead.
-- No bullet asserts a price-formation mechanism. The innovation explains an
-  order of magnitude more of the physical residual variance than of the price
-  residual variance, which the paper reports as target divergence and not as
-  identification.
-- The floor bullet may assert "all nine areas" because the capacity-weighted
-  provenance the headline now uses shows the contrast positive in nine of
-  nine. That condition was recorded here while the re-estimation was pending;
-  it is met.
+- Bullet 2 says DOCUMENTED. The post-gate label rests on JMA's observation
+  cut-off and run schedule (a lower bound) and is consistent with every measured
+  arrival (an upper bound); three Applied Energy referees objected to calling it
+  measured, and they were right.
+- Bullet 4 states the BOUND (the 95% upper confidence bound as a share of the
+  pre-gate value), not equivalence at one price tick, which fails under the later
+  capacity register (Section 5.2). It says "is", not "under": the share is 3.91%,
+  so "under 3.9%" was false by rounding.
+- Bullet 5 compares the two targets on the SAME slots (Section 5.5): the freshest
+  pre-gate run and the post-gate run cut the physical error by 5.8% and a further
+  1.1%, while the price error moves by 0.4% and 0.1%, neither detectable.
+- No bullet converts accuracy into money: the design models no bidding,
+  settlement or balancing cost, and the Discussion says so.
+- No bullet asserts a price-formation mechanism. The later run's revision explains
+  an order of magnitude more of the physical residual variance than of the price
+  residual variance, which the paper reports as target divergence.
 """
 
 
@@ -1282,22 +1284,29 @@ def emit_em_highlights() -> tuple[Path, str]:
                f"{EM_HIGHLIGHT_CHARS}-character limit:\n  " + "\n  ".join(over))
         raise SystemExit(msg)
     out = CFG.project_root / "docs/paper/paper_a_main/submission/_highlights_for_em.md"
-    doc = (
-        f"<!-- GENERATED by {Path(__file__).name} from EM_HIGHLIGHTS and "
-        f"shared/macros.tex. Do not edit by hand; edit the template there and "
-        f"regenerate. -->\n\n"
+    # The prose block carries quantities too (the multiple, its denominator), so
+    # it goes through the same expander -- and then NOTHING in it may still look
+    # like a macro. \StaleObsImp shipped unexpanded in the first version of this
+    # emitter, in a sentence explaining why a ratio was dropped.
+    #
+    # The generated header is prepended AFTERWARDS, not expanded with the rest:
+    # the expander turns "--" into an en dash, which rewrote "<!--" to "<!-" and
+    # stopped the header being an HTML comment at all -- at which point the
+    # guard's retired-term audit could see the script's own filename in it.
+    body = _expand_macros(
         f"# Highlights (Editorial Manager)\n\n"
         f"{len(lines)} bullets, each <= {EM_HIGHLIGHT_CHARS} characters "
         f"including spaces (Elsevier limit). Counts are computed, and an "
         f"overrun fails this script rather than printing a warning.\n\n"
         + "\n".join(lines) + "\n\n"
-        + EM_HIGHLIGHT_NOTES
+        + EM_HIGHLIGHT_NOTES,
+        defs,
     )
-    # The prose block carries quantities too (the multiple, its denominator), so
-    # it goes through the same expander -- and then NOTHING in the file may still
-    # look like a macro. \StaleObsImp shipped unexpanded in the first version of
-    # this emitter, in a sentence explaining why a ratio was dropped.
-    doc = _expand_macros(doc, defs)
+    doc = (
+        f"<!-- GENERATED by {Path(__file__).name} from EM_HIGHLIGHTS and "
+        f"shared/macros.tex. Do not edit by hand; edit the template there and "
+        f"regenerate. -->\n\n" + body
+    )
     leftover = re.findall(r"\\[A-Za-z]+", doc)
     if leftover:
         msg = f"unexpanded macros in the highlights file: {sorted(set(leftover))}"
@@ -1341,7 +1350,7 @@ def emit_em_highlights_upload() -> tuple[Path, str]:
 DECLARATION_SECTIONS = (
     "CRediT authorship contribution statement",
     "Declaration of competing interest",
-    "Declaration of generative AI and AI-assisted technologies in the writing process",
+    "Declaration of generative AI and AI-assisted technologies in the manuscript preparation process",
     "Data availability",
     "Funding",
 )
@@ -1455,7 +1464,7 @@ def emit_em_abstract() -> tuple[Path, str]:
         # failure, not a line of output. Printing it and continuing is how a
         # 260-word abstract reaches the form: the number was right there and
         # nothing stopped on it.
-        msg = (f"abstract is {n_words} words; Applied Energy allows "
+        msg = (f"abstract is {n_words} words; Energy allows "
                f"{EM_ABSTRACT_LIMIT}. Trim main.tex, do not raise the limit.")
         raise SystemExit(msg)
     out = CFG.project_root / "docs/paper/paper_a_main/submission/_abstract_for_em.md"
@@ -1463,7 +1472,7 @@ def emit_em_abstract() -> tuple[Path, str]:
         f"<!-- GENERATED by {Path(__file__).name} from the abstract in "
         f"main.tex. Do not edit by hand; regenerate. -->\n\n"
         f"# Abstract (Editorial Manager)\n\n"
-        f"Word count: {n_words} of {EM_ABSTRACT_LIMIT} allowed by Applied "
+        f"Word count: {n_words} of {EM_ABSTRACT_LIMIT} allowed by "
         f"Energy (em dashes excluded: they are punctuation)\n\n{text}\n"
     )
     return out, doc
@@ -1709,7 +1718,7 @@ def main() -> int:
         )
     }
     for path in (P60, P61, P59, P259, P76, P73, P74, P74G, P89, P90, P83,
-                 P82, P82B, P85, P91, P54V2, P88, *by_tier.values()):
+                 P82, P82B, P85, P91, P54V2, P119, P88, *by_tier.values()):
         if not path.exists():
             log.error("missing %s", path)
             if path in by_tier.values():
@@ -1779,7 +1788,7 @@ def main() -> int:
             ("phase90_mechanism.tex", mechanism(p90)),
             ("phase97_cost_loss.tex", cost_loss(p97)),
             ("phase91_weight_sensitivity.tex", weight_sensitivity(p91)),
-            ("phase54v2_enriched_nwp.tex", enriched_nwp(p54v2)),
+            ("phase119_enriched_nwp.tex", enriched_nwp(json.loads(P119.read_text(encoding="utf-8")))),
             ("phase88_lit_audit_counts.tex", lit_audit_counts(p88)),
             ("phase83_margin_curve.tex", equivalence_margins(p83, p82)),
             ("phase85_vintage_ladder.tex", vintage_ladder(p85)),

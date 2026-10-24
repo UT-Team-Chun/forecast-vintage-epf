@@ -1,0 +1,603 @@
+{
+ "phase": "114",
+ "precommit": "docs/research/2026-10-23_phase112_ae_review_response_precommit.md",
+ "git_sha": "5bd2cbd730e009427a4b089712822b8e729ce200",
+ "source": "phase85_exact_ladder_per_slot.parquet",
+ "full_panel": {
+  "label": "full CW panel (reproduces phase85)",
+  "n_days": 732,
+  "n_slots": 315414,
+  "price_only_mae": 2.153,
+  "pre_gate_improvement": {
+   "improvement": 0.2529,
+   "ci95": [
+    0.208,
+    0.2998
+   ],
+   "dm_l3": {
+    "mean_diff": 0.25294,
+    "t_hln": 12.368,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.25294,
+    "t_hln": 9.433,
+    "p_hln": 0.0,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "pre_gate_relative_pct": 11.746,
+  "gate_contrast": {
+   "delta": 0.0026,
+   "ci95": [
+    -0.0047,
+    0.0099
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00257,
+    "t_hln": 0.682,
+    "p_hln": 0.49547417,
+    "n_days": 732,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00257,
+    "t_hln": 0.702,
+    "p_hln": 0.48320234,
+    "n_days": 732,
+    "nw_lag": 9
+   },
+   "n_days": 732
+  },
+  "gate_relative_pct": 0.121,
+  "gate_ucb_relative_pct": 0.46
+ },
+ "regimes": {
+  "definitions": {
+   "hot_days": "area-day mean realised CW-ERA5 2-m temperature >= the area's p95 over test days",
+   "cold_days": "<= the area's p5",
+   "low_wind_days": "area-day mean realised CW-ERA5 10-m wind <= the area's p10",
+   "evening_ramp": "slots 16:00-20:30 JST",
+   "high_price_slots": "realised price >= the area's p95 over test slots (selected on the outcome: descriptive only)"
+  },
+  "cuts": {
+   "hot_days": {
+    "label": "hot_days",
+    "n_days": 93,
+    "n_slots": 16416,
+    "price_only_mae": 2.1025,
+    "pre_gate_improvement": {
+     "improvement": -0.0304,
+     "ci95": [
+      -0.1113,
+      0.0453
+     ],
+     "dm_l3": {
+      "mean_diff": -0.03037,
+      "t_hln": -0.814,
+      "p_hln": 0.41789298,
+      "n_days": 93,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": -0.03037,
+      "t_hln": -0.758,
+      "p_hln": 0.45042106,
+      "n_days": 93,
+      "nw_lag": 9
+     },
+     "n_days": 93
+    },
+    "pre_gate_relative_pct": -1.446,
+    "gate_contrast": {
+     "delta": 0.0009,
+     "ci95": [
+      -0.0237,
+      0.028
+     ],
+     "dm_l3": {
+      "mean_diff": 0.00093,
+      "t_hln": 0.073,
+      "p_hln": 0.94188412,
+      "n_days": 93,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.00093,
+      "t_hln": 0.068,
+      "p_hln": 0.94553927,
+      "n_days": 93,
+      "nw_lag": 9
+     },
+     "n_days": 93
+    },
+    "gate_relative_pct": 0.043,
+    "gate_ucb_relative_pct": 1.332,
+    "gate_p_holm": 1.0
+   },
+   "cold_days": {
+    "label": "cold_days",
+    "n_days": 79,
+    "n_slots": 16416,
+    "price_only_mae": 1.7537,
+    "pre_gate_improvement": {
+     "improvement": 0.0509,
+     "ci95": [
+      -0.0333,
+      0.1313
+     ],
+     "dm_l3": {
+      "mean_diff": 0.05085,
+      "t_hln": 1.192,
+      "p_hln": 0.23689062,
+      "n_days": 79,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.05085,
+      "t_hln": 1.386,
+      "p_hln": 0.16982464,
+      "n_days": 79,
+      "nw_lag": 9
+     },
+     "n_days": 79
+    },
+    "pre_gate_relative_pct": 2.902,
+    "gate_contrast": {
+     "delta": -0.0131,
+     "ci95": [
+      -0.0459,
+      0.0189
+     ],
+     "dm_l3": {
+      "mean_diff": -0.01311,
+      "t_hln": -0.825,
+      "p_hln": 0.41195029,
+      "n_days": 79,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": -0.01311,
+      "t_hln": -0.831,
+      "p_hln": 0.40867442,
+      "n_days": 79,
+      "nw_lag": 9
+     },
+     "n_days": 79
+    },
+    "gate_relative_pct": -0.747,
+    "gate_ucb_relative_pct": 1.078,
+    "gate_p_holm": 1.0
+   },
+   "low_wind_days": {
+    "label": "low_wind_days",
+    "n_days": 314,
+    "n_slots": 31948,
+    "price_only_mae": 1.9711,
+    "pre_gate_improvement": {
+     "improvement": 0.1452,
+     "ci95": [
+      0.0941,
+      0.2002
+     ],
+     "dm_l3": {
+      "mean_diff": 0.1452,
+      "t_hln": 5.508,
+      "p_hln": 8e-08,
+      "n_days": 314,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.1452,
+      "t_hln": 5.17,
+      "p_hln": 4.2e-07,
+      "n_days": 314,
+      "nw_lag": 9
+     },
+     "n_days": 314
+    },
+    "pre_gate_relative_pct": 7.366,
+    "gate_contrast": {
+     "delta": -0.0013,
+     "ci95": [
+      -0.0235,
+      0.0232
+     ],
+     "dm_l3": {
+      "mean_diff": -0.00127,
+      "t_hln": -0.115,
+      "p_hln": 0.90814921,
+      "n_days": 314,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": -0.00127,
+      "t_hln": -0.103,
+      "p_hln": 0.9177921,
+      "n_days": 314,
+      "nw_lag": 9
+     },
+     "n_days": 314
+    },
+    "gate_relative_pct": -0.066,
+    "gate_ucb_relative_pct": 1.177,
+    "gate_p_holm": 1.0
+   },
+   "evening_ramp": {
+    "label": "evening_ramp",
+    "n_days": 729,
+    "n_slots": 65610,
+    "price_only_mae": 2.4997,
+    "pre_gate_improvement": {
+     "improvement": 0.164,
+     "ci95": [
+      0.1209,
+      0.2061
+     ],
+     "dm_l3": {
+      "mean_diff": 0.16395,
+      "t_hln": 7.992,
+      "p_hln": 0.0,
+      "n_days": 729,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.16395,
+      "t_hln": 7.245,
+      "p_hln": 0.0,
+      "n_days": 729,
+      "nw_lag": 9
+     },
+     "n_days": 729
+    },
+    "pre_gate_relative_pct": 6.561,
+    "gate_contrast": {
+     "delta": -0.0049,
+     "ci95": [
+      -0.0145,
+      0.0042
+     ],
+     "dm_l3": {
+      "mean_diff": -0.00493,
+      "t_hln": -0.961,
+      "p_hln": 0.33672561,
+      "n_days": 729,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": -0.00493,
+      "t_hln": -1.117,
+      "p_hln": 0.26427704,
+      "n_days": 729,
+      "nw_lag": 9
+     },
+     "n_days": 729
+    },
+    "gate_relative_pct": -0.196,
+    "gate_ucb_relative_pct": 0.168,
+    "gate_p_holm": 1.0
+   },
+   "high_price_slots": {
+    "label": "high_price_slots",
+    "n_days": 375,
+    "n_slots": 15823,
+    "price_only_mae": 5.9821,
+    "pre_gate_improvement": {
+     "improvement": 0.3724,
+     "ci95": [
+      0.2502,
+      0.4974
+     ],
+     "dm_l3": {
+      "mean_diff": 0.37244,
+      "t_hln": 6.345,
+      "p_hln": 0.0,
+      "n_days": 375,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": 0.37244,
+      "t_hln": 5.546,
+      "p_hln": 6e-08,
+      "n_days": 375,
+      "nw_lag": 9
+     },
+     "n_days": 375
+    },
+    "pre_gate_relative_pct": 6.225,
+    "gate_contrast": {
+     "delta": -0.0038,
+     "ci95": [
+      -0.0557,
+      0.0482
+     ],
+     "dm_l3": {
+      "mean_diff": -0.00378,
+      "t_hln": -0.145,
+      "p_hln": 0.88466551,
+      "n_days": 375,
+      "nw_lag": 3
+     },
+     "dm_l9": {
+      "mean_diff": -0.00378,
+      "t_hln": -0.136,
+      "p_hln": 0.89174727,
+      "n_days": 375,
+      "nw_lag": 9
+     },
+     "n_days": 375
+    },
+    "gate_relative_pct": -0.064,
+    "gate_ucb_relative_pct": 0.806,
+    "gate_p_holm": 1.0
+   }
+  },
+  "gate_ucb_share_of_own_gain_pct": {
+   "by_cut": {
+    "low_wind_days": 15.98,
+    "evening_ramp": 2.56,
+    "high_price_slots": 12.94
+   },
+   "max": {
+    "key": "low_wind_days",
+    "pct": 15.98
+   },
+   "raw_p_min": 0.3367
+  }
+ },
+ "training_length": {
+  "from": "2025-03-16",
+  "rule": "test days with at least 365 days of training history",
+  "label": "long_training",
+  "n_days": 505,
+  "n_slots": 217440,
+  "price_only_mae": 2.2411,
+  "pre_gate_improvement": {
+   "improvement": 0.2673,
+   "ci95": [
+    0.209,
+    0.3269
+   ],
+   "dm_l3": {
+    "mean_diff": 0.26727,
+    "t_hln": 10.212,
+    "p_hln": 0.0,
+    "n_days": 505,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.26727,
+    "t_hln": 7.759,
+    "p_hln": 0.0,
+    "n_days": 505,
+    "nw_lag": 9
+   },
+   "n_days": 505
+  },
+  "pre_gate_relative_pct": 11.927,
+  "gate_contrast": {
+   "delta": 0.0015,
+   "ci95": [
+    -0.0057,
+    0.0087
+   ],
+   "dm_l3": {
+    "mean_diff": 0.00146,
+    "t_hln": 0.384,
+    "p_hln": 0.70132463,
+    "n_days": 505,
+    "nw_lag": 3
+   },
+   "dm_l9": {
+    "mean_diff": 0.00146,
+    "t_hln": 0.408,
+    "p_hln": 0.68371718,
+    "n_days": 505,
+    "nw_lag": 9
+   },
+   "n_days": 505
+  },
+  "gate_relative_pct": 0.067,
+  "gate_ucb_relative_pct": 0.388
+ },
+ "threshold_composition": {
+  "panel": "the full ladder panel (all slots), not only the CW-complete cut",
+  "n_slots": 315414,
+  "n_near_floor_band": 10504,
+  "n_exact_floor": 9045,
+  "share_exact_of_band": 0.8611,
+  "n_band_above_floor": 1459,
+  "pr_auc_delta_by_threshold": {
+   "pre_gate_vs_price_only": {
+    "0p01": {
+     "delta": 0.30283,
+     "ci95": [
+      0.200627,
+      0.379996
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 9,
+     "ci95_lo": 0.200627,
+     "ci95_hi": 0.379996
+    },
+    "0p1": {
+     "delta": 0.296841,
+     "ci95": [
+      0.203149,
+      0.369662
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 9,
+     "ci95_lo": 0.203149,
+     "ci95_hi": 0.369662
+    },
+    "0p5": {
+     "delta": 0.295555,
+     "ci95": [
+      0.205302,
+      0.366605
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 9,
+     "ci95_lo": 0.205302,
+     "ci95_hi": 0.366605
+    },
+    "1": {
+     "delta": 0.28987,
+     "ci95": [
+      0.207776,
+      0.355667
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 9,
+     "ci95_lo": 0.207776,
+     "ci95_hi": 0.355667
+    }
+   },
+   "gate_timing": {
+    "0p01": {
+     "delta": 0.009693,
+     "ci95": [
+      -0.02231,
+      0.047009
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 8,
+     "ci95_lo": -0.02231,
+     "ci95_hi": 0.047009
+    },
+    "0p1": {
+     "delta": 0.010457,
+     "ci95": [
+      -0.018821,
+      0.045037
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 8,
+     "ci95_lo": -0.018821,
+     "ci95_hi": 0.045037
+    },
+    "0p5": {
+     "delta": 0.009847,
+     "ci95": [
+      -0.018904,
+      0.043275
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 8,
+     "ci95_lo": -0.018904,
+     "ci95_hi": 0.043275
+    },
+    "1": {
+     "delta": 0.008449,
+     "ci95": [
+      -0.016881,
+      0.035442
+     ],
+     "ci95_note": "mean of the per-area interval endpoints; not a bootstrap of the macro-average",
+     "n_areas": 9,
+     "areas_positive": 6,
+     "ci95_lo": -0.016881,
+     "ci95_hi": 0.035442
+    }
+   }
+  },
+  "source": "phase66v2_floor_regime_v3_cw_full.json"
+ },
+ "operational": {
+  "false_alarm_rate": 0.01,
+  "threshold": 0.5,
+  "years": 2.004,
+  "per_area": {
+   "hokkaido": {
+    "floor_slots_per_year": 552.9,
+    "recall_price_only": 0.3213,
+    "recall_pre_gate": 0.3854,
+    "extra_flagged_per_year": 35.4
+   },
+   "tohoku": {
+    "floor_slots_per_year": 593.8,
+    "recall_price_only": 0.3151,
+    "recall_pre_gate": 0.6454,
+    "extra_flagged_per_year": 196.1
+   },
+   "tokyo": {
+    "floor_slots_per_year": 174.6,
+    "recall_price_only": 0.3771,
+    "recall_pre_gate": 0.7229,
+    "extra_flagged_per_year": 60.4
+   },
+   "chubu": {
+    "floor_slots_per_year": 289.4,
+    "recall_price_only": 0.2828,
+    "recall_pre_gate": 0.6655,
+    "extra_flagged_per_year": 110.8
+   },
+   "hokuriku": {
+    "floor_slots_per_year": 353.3,
+    "recall_price_only": 0.3107,
+    "recall_pre_gate": 0.476,
+    "extra_flagged_per_year": 58.4
+   },
+   "kansai": {
+    "floor_slots_per_year": 378.2,
+    "recall_price_only": 0.2704,
+    "recall_pre_gate": 0.5488,
+    "extra_flagged_per_year": 105.3
+   },
+   "chugoku": {
+    "floor_slots_per_year": 515.4,
+    "recall_price_only": 0.2575,
+    "recall_pre_gate": 0.545,
+    "extra_flagged_per_year": 148.2
+   },
+   "shikoku": {
+    "floor_slots_per_year": 1212.5,
+    "recall_price_only": 0.1329,
+    "recall_pre_gate": 0.3679,
+    "extra_flagged_per_year": 284.9
+   },
+   "kyushu": {
+    "floor_slots_per_year": 1171.1,
+    "recall_price_only": 0.1858,
+    "recall_pre_gate": 0.7218,
+    "extra_flagged_per_year": 627.7
+   }
+  },
+  "all_areas_extra_flagged_per_year": 1627.2,
+  "all_areas_floor_slots_per_year": 5241.2,
+  "unit": "half-hour slots; not a monetary quantity"
+ },
+ "freshness_bound": {
+  "gate_contrast": 0.0026,
+  "gate_ci95": [
+   -0.0047,
+   0.0099
+  ],
+  "gate_ucb95": 0.0099,
+  "headline": 0.2529,
+  "freshest_admissible_per_slot": 0.2538,
+  "composite_minus_headline": 0.0009,
+  "reading": "any pre-gate run fresher than D-2 12 UTC lies between it and the D-1 00 UTC run in vintage; if value is monotone in freshness, the 95% upper bound on the latter's increment bounds the former's"
+ },
+ "gates": {
+  "g114a_regimes": {
+   "evaluated": true,
+   "passes": true,
+   "significant_after_holm": [],
+   "rule": "no regime's gate contrast significant after Holm across the five cuts",
+   "if_fails": "report that freshness carries price-relevant content in that regime"
+  }
+ }
+}

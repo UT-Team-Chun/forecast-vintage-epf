@@ -57,19 +57,21 @@ network: `timing_audit` is largely HTTP HEAD requests against the archive.
 | `ladder` | `10_primary_ladder_cw.py` | ~4 h | 9 areas × ~730 folds × 14 cells; per-area checkpoints, so it resumes |
 | `cycle_curve` | `11_cycle_curve.py` | ~3 h | 6 cells on the common daytime window; parallelises by area |
 | `reference_ladders` | `12_single_point_ladder.py`, `13_capacity_weighted_ladder_prior.py` | ~6.5 h | the two bit-reproduction references; **Gate 5 blocks the primary sweep** if the shared cells do not reproduce their per-slot predictions |
-| `enriched_baseline` | `14_enriched_baseline.py` and its two variants | minutes | the strongest gate-available baseline, off the extracted caches |
+| `enriched_baseline` | `14_enriched_baseline.py`, its two variants, and `14d` | ~45 min | the strongest gate-available baseline, off the extracted caches; `14d` re-measures it on the headline input (8 areas × 701 folds × 4 cells, four workers) |
 | `proxy_validation` | `15_proxy_validation.py` | minutes | representative point vs the operators' published output (Gate 35's criterion) |
 | `cross_area` | `16_tier_slope_tests.py` | ~1 min | slope-difference tests across areas |
 | `lear` | `18b_lear_ladder.py` | ~2 h | the same folds under the LEAR benchmark |
+| `learner_strength` | `18c_learner_strength.py` | several hours | five variants (the reproduction gate with the wind checks, post-upgrade training, the network, rolling re-tuning, post-upgrade LEAR); the re-tuned variant's 40-trial searches dominate |
 | `epex_de` | `19_epex_de_replication.py` | ~20 min | one German bidding zone, two tiers |
 | `floor_regime` | `30_floor_regime_evaluation.py` | ~4 h | functional bootstrap dominates |
 | `floor_models` | `31`, `32b`, `32` | ~1.5 h | direct classifiers, then the channel partition and the hurdle fit |
-| `timing_audit` | `40`, `40b`, `41`, `45`, `46` | ~2 h | ~7,000 HTTP HEAD requests at one per second, out of courtesy to the mirror |
-| `evaluation_scope` | `42`, `43`, `44`, `47`, `48` | ~10 min | window composition and area independence |
-| `two_targets` | `50`, `51`, `52`, `53`, `54b`, `54`, `55` | ~5 h | the physical target and the signal-versus-learner refits dominate |
-| `robustness` | `60` … `67` | ~6 h | `65` and `66` re-estimate; the rest post-process |
+| `timing_audit` | `40`, `40b`, `41`, `45`, `46`, `40c`, `49` | ~2 h | ~7,000 HTTP HEAD requests at one per second, out of courtesy to the mirror; `40c` and `49` read local documents and logs in seconds |
+| `evaluation_scope` | `42`, `43`, `47`, `48` | ~10 min | window composition and area independence |
+| `two_targets` | `50`, `51`, `52`, `53`, `54b`, `54` | ~5 h | the physical target and the signal-versus-learner refits dominate |
+| `robustness` | `60` … `69` | ~6 h | `65` and `66` re-estimate; the rest, `68` and `69` included, post-process stored predictions |
+| `backcast` | `10b_backcast_ladder.py`, with `40c` before its analysis | ~2.5 h | 9 areas × 1,308 folds × 5 cells, two areas at a time; gate 112-0 first checks the new extraction against the frozen caches where they overlap |
 | `lit_audit` | `71`, `72` | ~1 min | read `data/reference/lit_audit_dataset.csv` |
-| `tables`, `figures` | `90` … `94` | ~1 min | read provenance only |
+| `tables`, `figures` | `90`, `90b` … `95` | ~1 min | read provenance only; the table emitters write nothing where no manuscript tree is present |
 
 ### Determinism, and the honest caveat
 
@@ -108,6 +110,9 @@ non-determinism would be useless.
 - **`make extract` is resumable.** Each plan writes per-area caches and a
   progress file, and a re-run skips days already complete against the plan's
   declared hour coverage.
+- **`make extract_backcast` is the second long download** (~13 h for 2022–2024;
+  the 2020–2021 sweep can run alongside it into its own cache). It also records
+  every archive file's write time, which the arrival audit in `40c` reads.
 
 ## What is not in this repository
 

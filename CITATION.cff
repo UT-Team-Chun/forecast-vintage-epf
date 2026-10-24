@@ -14,14 +14,16 @@ authors:
 abstract: >-
   Reproduction companion for a study of how the DISSEMINATION time of a weather
   forecast -- not its initialisation time -- determines what that forecast is
-  worth in a day-ahead electricity market. Japan's meso-scale model reaches
-  users about 2 h 16 min after initialisation (the median, measured here from
-  881 days of
-  archive timestamps, so the previous-day 00 UTC run arrives after the 10:00 JST
-  JEPX gate that an initialisation-time reading would admit. Rebuilding the
-  evaluation as a dissemination-correct ladder of run-pinned tiers, the
-  repository carries one script per analysis phase, a frozen provenance JSON per
-  phase, and a drift guard that re-derives every headline quantity in the
+  worth in a day-ahead electricity market. On the Japan Electric Power Exchange,
+  archive write times over 2,189 delivery days from 2020 to 2026 show that no
+  file of the previous-day 00 UTC meso-scale run reached the archive before the
+  10:00 JST gate, as JMA's documented observation cut-off and job schedule also
+  imply, while the runs initialised two days before delivery arrived in time on
+  every audited day. The repository carries one script per analysis phase --
+  the dissemination-correct ladder of run-pinned tiers, the 2021-2024 backcast
+  that spans Japan's scarcity-price episodes, the learner-strength and
+  robustness families, and the dissemination audit -- a frozen provenance JSON
+  per phase, and a drift guard that re-derives every headline quantity in the
   manuscript from that provenance without needing raw data.
 keywords:
   - electricity price forecasting
@@ -29,11 +31,13 @@ keywords:
   - gate closure
   - dissemination time
   - value of information
-  - imbalance settlement
+  - numerical weather prediction
   - solar curtailment
   - price floor
   - JEPX
-  - equivalence testing
+  - forecast evaluation
   - pre-registration
+version: "v0.2.0"
+date-released: "2026-10-24"
 license: MIT
 repository-code: "https://github.com/UT-Team-Chun/forecast-vintage-epf"

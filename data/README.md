@@ -19,7 +19,7 @@ data/
 │   ├── phase74_cw_ladder.json           #   capacity-weighted re-estimation
 │   ├── phase85_exact_ladder.json        #   the primary capacity-weighted ladder
 │   ├── phase72_dissemination_audit.json #   dissemination lag, measured
-│   └── …                                #   88 files: 81 at top level, 7 in per-phase subdirectories
+│   └── …                                #   79 files: 72 at top level, 7 in per-phase subdirectories
 ├── reference/                           # IN git
 │   ├── area_capacity.csv                #   per-area PV / wind / peak capacity
 │   ├── area_points_capacity.csv         #   46 prefecture points and their within-area PV weights
@@ -29,6 +29,10 @@ data/
 │   ├── jma_gpv_exactrun/                #   pinned MSM runs, per plan
 │   ├── jma_gpv_exactrun_mp/             #   the same at 46 points (capacity-weighted tier)
 │   ├── jma_gpv_pregate/                 #   freshest-admissible per-slot composite
+│   ├── jma_gpv_backcast/                #   the backcast's two runs, 2022-01 to 2024-07, with write times
+│   ├── jma_gpv_backcast_early/          #   the same, 2020-08 to 2021-12
+│   ├── jma_docs/                        #   JMA technical documents behind the documented lower bound
+│   ├── market_gates/                    #   gate rulebooks and global-model schedules (Table 3)
 │   ├── open_meteo*/                     #   ERA5 and historical-forecast archives
 │   ├── occto/                           #   supply-demand actuals incl. solar curtailment
 │   ├── ics/                             #   imbalance-price calculation basis
@@ -75,6 +79,13 @@ completes about 2 h 30 min after initialisation by the published specification �
 **The scripts sleep between requests on purpose.** A full plan is ~880 days of
 files. Please do not remove the delay.
 
+`make extract_backcast` pins the same two runs the gate contrast compares (D−2
+12 UTC and D−1 00 UTC) for August 2020 to July 2024 into
+`data/raw/jma_gpv_backcast*/`, separate from the frozen 2024–2026 caches, and
+records every archive file's write time beside them; that log is what
+`40c_dissemination_bounds.py` audits for the 2020–2024 half of the arrival
+record.
+
 ## 3. Open-Meteo — reanalysis and historical forecast
 
 **Source**: <https://open-meteo.com/> (ERA5 archive and Historical Forecast
@@ -119,6 +130,25 @@ area. Because the weights are within-area shares, any level disagreement
 between the FIT register and `area_capacity.csv` cancels. The generated CSV
 records the SHA-256 of each source workbook in its header.
 
+## 7. JMA technical documents — the documented lower bound
+
+**Source**: JMA's published NWP outlines and handbook chapters and its annual
+WMO progress reports. Not redistributed: each file's URL, retrieval date,
+SHA-256 and page count are recorded in
+`provenance/phase115_dissemination_bounds.json`, together with the page and the
+exact text of every statement the paper relies on. Fetch them into
+`data/raw/jma_docs/`; `40c_dissemination_bounds.py` locates each statement by
+script and fails if a file's hash or a quoted line does not match.
+
+## 8. Day-ahead gates and global-model dissemination
+
+**Source**: each market's own rulebook or operating procedure, ECMWF's
+published dissemination schedule, and ten days of NOAA NOMADS directory
+listings, all retrieved on 2026-10-23. Not redistributed: the SHA-256 of every
+file read is recorded in `provenance/phase117_market_gates.json`
+(`source_files_sha256`), and the supplement's source table quotes the passage
+each gate time rests on. Place them under `data/raw/market_gates/`.
+
 ## Provenance files
 
 Each JSON under `provenance/` was written by exactly one script, and the guard
@@ -126,14 +156,17 @@ reads the artefact the analysis actually wrote — it does not re-derive numbers
 from a description of the analysis. That is what makes `make verify-paper`
 meaningful. Two populations, and the distinction is worth being explicit about:
 
-- **53 files are written by the scripts in this repository** — the analysis
-  chain the paper's headline numbers come from. Each carries a `metadata`
-  block recording the producing script, the git SHA it ran at and the
-  generation timestamp (the one acquisition record, `phase71_ics_basis.json`,
-  records the script and runtime; its source hashes live in the body), and,
-  where the analysis is stochastic, the seed and the bootstrap draw count.
+- **60 files are written by the scripts in this repository** — the analysis
+  chain the paper's numbers come from.
   [`scripts/README.md`](../scripts/README.md) maps each one to its script.
-- **35 files are inherited from earlier phases of the same research
+  Fifty-one also name that script in a `metadata` block of their own, with the
+  git SHA it ran at and the generation timestamp (the one acquisition record,
+  `phase71_ics_basis.json`, records the script and runtime; its source hashes
+  live in the body), and, where the analysis is stochastic, the seed and the
+  bootstrap draw count. The other nine — the seven analyses added in v0.2.0
+  among them, which record their phase, git SHA and pre-registration document
+  at top level — are matched to their script by that table alone.
+- **19 files are inherited from earlier phases of the same research
   programme** and predate that metadata convention; the scripts that produced
   them are not shipped here. They back numbers the paper cites for context or
   robustness — earlier-window head-to-heads, cross-model identification

@@ -24,7 +24,7 @@ make verify-paper     # no raw data, no network, about a second
 ```
 
 That single command is the strongest thing this repository offers a reader who
-does not want to re-run a multi-hour sweep. It checks **407 headline
+does not want to re-run a multi-hour sweep. It checks **581 headline
 quantities** against their provenance, refuses any numeric macro that no check
 accounts for, and scans the built PDFs for wording the manuscript has
 retracted.
@@ -57,24 +57,56 @@ changes every headline number. Because they are different papers, they get
 different repositories: the earlier companion stays frozen at its `v1.0.0` tag
 for the earlier preprint, and nothing here supersedes it.
 
-## The paper in three sentences
+## The paper in brief
 
 A weather forecast can only inform a bid if it had *reached bidders* before the
-gate closed, and initialisation time is a weaker test than dissemination time:
-Japan's meso-scale model reaches users about 2 h 16 min after initialisation
-(the median, measured here from 881 days of archive timestamps), so the previous-day
-00 UTC run misses the 10:00 JST gate that a naive reading would admit.
-Rebuilding the evaluation as a dissemination-correct ladder of run-pinned
-tiers, a single pre-gate run is worth several times a day-lagged reanalysis
-proxy, while the run the gate excludes is statistically equivalent in pooled
-accuracy at a margin of one exchange price tick. The same forecasts behave very
-differently on the two targets they could serve: on the operators' recorded
-photovoltaic output the excluded run adds what its extra hours of information
-would predict, while on price it adds nothing measurable — and giving the model
-that run's innovation as an explicit feature does not recover it, so the null is
-a property of the signal rather than of the learner. Most of what the weather
-does buy on price runs through the floor channel: whether a half-hour collapses
-to the floor at all, rather than where the price lands when it does not.
+gate closed, so the paper evaluates weather inputs by dissemination time, not
+initialisation time. On the Japan Electric Power Exchange, whose bids close at
+10:00 JST, archive write times show that the runs initialised two days before
+delivery arrived before the gate on every audited day, while the forecast
+centre's documented observation cut-off and schedule — consistent with every
+archive record across 2,189 delivery days from 2020 to 2026 — place the run
+initialised at 09:00 after it. Over 732 daily walk-forward folds in nine price
+areas, a forecast disseminated more than ten hours before the gate cuts a
+price-only model's mean absolute error by 11.7%, still adds value over an
+enriched public-data baseline, and improves the detection of floor-price
+events. The run disseminated after the gate adds at most about 3.9% of that
+value (the upper end of its 95% interval); across four learners and three ways
+of using it, the bound stays within about 6% of the matching pre-gate value,
+and the increment is undetectable over a 2021–2024 backcast that spans Japan's
+scarcity-price episodes. On the same slots, fresher runs keep sharpening a
+photovoltaic generation forecast while barely moving the price forecast.
+
+## What's new in v0.2.0
+
+v0.2.0 is the version that corresponds to the manuscript as revised for
+*Energy* (v0.1.x corresponds to the earlier version). It adds the analyses the
+revision reports, each with its frozen provenance and its pre-registered rules:
+
+- **The 2021–2024 backcast** — `08_extract_backcast_runs.py` pins the two runs
+  for August 2020 to July 2024 and `10b_backcast_ladder.py` re-runs the primary
+  design, unchanged, on a window that contains Japan's scarcity episodes
+  (`make extract_backcast`, `make backcast`).
+- **Learner strength** — `18c_learner_strength.py`: both contrasts under
+  XGBoost re-tuned every 91 days, LEAR and a feed-forward network, training on
+  post-upgrade data only, and the wind-channel checks (`make learner_strength`).
+- **The documented lower bound** — `40c_dissemination_bounds.py` locates the
+  observation cut-off and the job schedule in JMA's documents and audits the
+  archive write times of both runs over 2020–2026.
+- **Other markets** — `49_market_gates.py` sets ten day-ahead gates against the
+  ECMWF dissemination schedule and observed GFS arrivals.
+- **Checks re-cut from stored predictions and the internal referee checks** —
+  `68_stored_prediction_checks.py` (weather regimes, training length, the floor
+  threshold, operational counts) and `69_internal_referee_checks.py` (the
+  daylight row, the two targets on the same slots, the cost–loss usable value).
+- **The enriched baseline on the headline input** — `14d_enriched_baseline_pinned.py`.
+- **Outputs** — `90b_gate_bound_table.py` (Table 2) and `95_figures_energy.py`
+  (the four main figures, replacing the earlier results figures).
+
+Three scripts left with results the revised manuscript no longer reports or
+now draws elsewhere (`44_headline_cell_dispersion.py`,
+`55_commensurable_asymmetry.py`, `93_figures_results.py`); the extraction tool
+lists them as retired.
 
 ## Quickstart
 
@@ -115,19 +147,21 @@ laptop; see [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for the full table.
 | `ladder` | [`10_primary_ladder_cw.py`](scripts/10_primary_ladder_cw.py) | the primary run-pinned ladder on the capacity-weighted field, with the gate-timing equivalence tests |
 | `cycle_curve` | [`11_cycle_curve.py`](scripts/11_cycle_curve.py) | improvement by MSM cycle on a common daytime window |
 | `reference_ladders` | [`12_single_point_ladder.py`](scripts/12_single_point_ladder.py), [`13_capacity_weighted_ladder_prior.py`](scripts/13_capacity_weighted_ladder_prior.py) | the two earlier ladders the primary sweep must bit-reproduce before it runs |
-| `enriched_baseline` | [`14_enriched_baseline.py`](scripts/14_enriched_baseline.py) | what the pre-gate vintage adds over the strongest gate-available baseline |
+| `enriched_baseline` | [`14_enriched_baseline.py`](scripts/14_enriched_baseline.py), [`14d_enriched_baseline_pinned.py`](scripts/14d_enriched_baseline_pinned.py) | what the pre-gate vintage adds over the strongest gate-available baseline, on the composite input and on the headline input |
 | `proxy_validation` | [`15_proxy_validation.py`](scripts/15_proxy_validation.py) | how much of a real area one representative point captures |
 | `cross_area` | [`16_tier_slope_tests.py`](scripts/16_tier_slope_tests.py) | tier slope-difference tests for the cross-area contrast |
 | `lear` | [`18b_lear_ladder.py`](scripts/18b_lear_ladder.py) | the headline contrast re-measured with the canonical LEAR benchmark |
+| `learner_strength` | [`18c_learner_strength.py`](scripts/18c_learner_strength.py) | both contrasts under re-tuned XGBoost, LEAR and a neural network; single-version training; the wind channel |
 | `epex_de` | [`19_epex_de_replication.py`](scripts/19_epex_de_replication.py) | the vintage contrast in one German bidding zone, as directional corroboration |
 | `floor_regime` | [`30_floor_regime_evaluation.py`](scripts/30_floor_regime_evaluation.py) | floor-event probabilistic evaluation |
 | `floor_models` | [`31_direct_floor_models.py`](scripts/31_direct_floor_models.py), [`32b_floor_channel_decomposition.py`](scripts/32b_floor_channel_decomposition.py), [`32_floor_channel_hurdle.py`](scripts/32_floor_channel_hurdle.py) | direct floor classifiers, and the hurdle split of the gain into floor probability and level |
-| `timing_audit` | [`40_dissemination_audit.py`](scripts/40_dissemination_audit.py), [`41_lineage_audit.py`](scripts/41_lineage_audit.py), [`46_file_level_arrival.py`](scripts/46_file_level_arrival.py) | dissemination timing from archive timestamps, feature lineage, and every file's arrival against its own gate |
+| `timing_audit` | [`40_dissemination_audit.py`](scripts/40_dissemination_audit.py), [`41_lineage_audit.py`](scripts/41_lineage_audit.py), [`46_file_level_arrival.py`](scripts/46_file_level_arrival.py), [`40c_dissemination_bounds.py`](scripts/40c_dissemination_bounds.py), [`49_market_gates.py`](scripts/49_market_gates.py) | dissemination timing from archive timestamps, feature lineage, every file's arrival against its own gate, the documented lower bound, and the gates of nine other markets |
 | `evaluation_scope` | [`47_evaluation_regime.py`](scripts/47_evaluation_regime.py), [`48_area_independence.py`](scripts/48_area_independence.py) | what the evaluation window contains, and how independent the nine areas are |
-| `two_targets` | [`50_physical_target.py`](scripts/50_physical_target.py), [`54_signal_vs_learner.py`](scripts/54_signal_vs_learner.py), [`55_commensurable_asymmetry.py`](scripts/55_commensurable_asymmetry.py) | the price/physical asymmetry, and whether the post-gate null is the signal or the learner |
-| `robustness` | [`60_version_robustness.py`](scripts/60_version_robustness.py) … [`67_costloss_dominated.py`](scripts/67_costloss_dominated.py) | the pre-registered sensitivity families, including the cost–loss reading against an undominated fallback |
+| `two_targets` | [`50_physical_target.py`](scripts/50_physical_target.py), [`54_signal_vs_learner.py`](scripts/54_signal_vs_learner.py) | the price/physical asymmetry, and whether the post-gate null is the signal or the learner |
+| `robustness` | [`60_version_robustness.py`](scripts/60_version_robustness.py) … [`69_internal_referee_checks.py`](scripts/69_internal_referee_checks.py) | the pre-registered sensitivity families, the checks re-cut from stored predictions, and the internal referee checks, including the cost–loss usable value |
+| `backcast` | [`10b_backcast_ladder.py`](scripts/10b_backcast_ladder.py) | the primary design on 2021–2024, a window that holds Japan's scarcity episodes, with gates G112a–d |
 | `lit_audit` | [`71_audit_reliability.py`](scripts/71_audit_reliability.py), [`72_litaudit_reslice.py`](scripts/72_litaudit_reslice.py) | inter-coder agreement and the inclusion-rule re-slice |
-| `tables`, `figures` | [`90_emit_tables.py`](scripts/90_emit_tables.py) … [`94_figures_theory.py`](scripts/94_figures_theory.py) | every generated table, the EM abstract, and all of the paper's figures |
+| `tables`, `figures` | [`90_emit_tables.py`](scripts/90_emit_tables.py) … [`95_figures_energy.py`](scripts/95_figures_energy.py) | every generated table, the EM abstract, and all of the paper's figures |
 
 The settlement analyses that earlier versions of this table advertised —
 commitment decisions, the settlement wedge, the two published prices, netting,
@@ -165,9 +199,10 @@ machine should expect. `REPRODUCIBILITY.md` says which is which for each target.
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff), or cite the paper directly. A versioned
-archive of this repository is deposited at Zenodo on acceptance and its DOI
-added at proof stage.
+See [`CITATION.cff`](CITATION.cff), or cite the paper directly. Every release
+of this repository is archived at Zenodo; the concept DOI
+[10.5281/zenodo.22041072](https://doi.org/10.5281/zenodo.22041072) always
+resolves to the latest version, and each version has its own DOI.
 
 ## License
 

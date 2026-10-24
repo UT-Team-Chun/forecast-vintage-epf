@@ -270,7 +270,7 @@ def draw_curve(p73: dict, p78: dict, out_pdf: Path) -> None:
         linespacing=1.25, bbox=WBOX, zorder=6)
 
     n_days = p73["panel"]["n_days"]
-    bx.set_xlabel("measured dissemination time relative to the gate (h)",
+    bx.set_xlabel("median archive-write time relative to the gate (h)",
                   fontsize=6.4, color=SEC)
     bx.set_ylabel(f"pooled MAE improvement, {n_days} days (JPY/kWh)",
                   fontsize=6.4, color=SEC)
@@ -299,7 +299,9 @@ def main() -> int:
     p73 = json.loads(_prov("phase73v2_cycle_curve.json").read_text(encoding="utf-8"))
     p78 = json.loads(_prov("phase78_lineage_audit.json").read_text(encoding="utf-8"))
     lag, n_days = _measured_lag_hours(p78)
-    draw_clock(lag, n_days, FIGDIR / "information_timeline_a.pdf")
+    # information_timeline_a.pdf is now the main article's Fig. 1 and is drawn by
+    # 95_figures_energy.py; writing the superseded clock strip here would
+    # overwrite it. Only the supplement's cycle curve is produced by this script.
     draw_curve(p73, p78, FIGDIR / "information_timeline_b.pdf")
     return 0
 

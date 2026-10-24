@@ -181,7 +181,8 @@ def _required_flags(path: Path) -> list[str]:
         req = kw.get("required")
         if isinstance(req, ast.Constant) and req.value is True:
             flags += [
-                a.value for a in node.args
+                a.value
+                for a in node.args
                 if isinstance(a, ast.Constant) and str(a.value).startswith("--")
             ]
     return flags
@@ -233,18 +234,23 @@ def test_sibling_script_references_resolve() -> None:
         tree = ast.parse(text)
         # Path constants: HERE / "x.py", Path(__file__).parent / "x.py"
         for node in ast.walk(tree):
-            if (isinstance(node, ast.BinOp) and isinstance(node.op, ast.Div)
-                    and isinstance(node.right, ast.Constant)
-                    and isinstance(node.right.value, str)
-                    and node.right.value.endswith(".py")
-                    and node.right.value not in here):
+            if (
+                isinstance(node, ast.BinOp)
+                and isinstance(node.op, ast.Div)
+                and isinstance(node.right, ast.Constant)
+                and isinstance(node.right.value, str)
+                and node.right.value.endswith(".py")
+                and node.right.value not in here
+            ):
                 bad.append(f"{f.name}:{node.lineno} -> {node.right.value}")
         # importlib targets, whether inline or via a module-level constant
         consts = {
             t.id: n.value.value
-            for n in tree.body if isinstance(n, ast.Assign)
+            for n in tree.body
+            if isinstance(n, ast.Assign)
             for t in n.targets
-            if isinstance(t, ast.Name) and isinstance(n.value, ast.Constant)
+            if isinstance(t, ast.Name)
+            and isinstance(n.value, ast.Constant)
             and isinstance(n.value.value, str)
         }
         for node in ast.walk(tree):
@@ -253,8 +259,13 @@ def test_sibling_script_references_resolve() -> None:
             if node.func.attr != "import_module" or not node.args:
                 continue
             arg = node.args[0]
-            target = (arg.value if isinstance(arg, ast.Constant)
-                      else consts.get(arg.id) if isinstance(arg, ast.Name) else None)
+            target = (
+                arg.value
+                if isinstance(arg, ast.Constant)
+                else consts.get(arg.id)
+                if isinstance(arg, ast.Name)
+                else None
+            )
             if target and target.split(".")[0] not in stems | {"alg"}:
                 bad.append(f"{f.name}:{node.lineno} import_module({target!r})")
     assert not bad, "sibling references that do not resolve here:\n" + "\n".join(bad)
@@ -305,15 +316,17 @@ def test_rename_table_matches_the_packaging_tool() -> None:
     import importlib.util
 
     spec = importlib.util.spec_from_file_location(
-        "_extract", ROOT / "tools" / "extract_from_monorepo.py")
+        "_extract", ROOT / "tools" / "extract_from_monorepo.py"
+    )
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     tool = dict(mod.RENAMES)
     doc = {new: old for old, new in _rename_map().items()}
-    assert tool == doc, (
-        "RENAMES and scripts/README.md disagree:\n"
-        + "\n".join(f"  {k}: tool={tool.get(k)!r} readme={doc.get(k)!r}"
-                    for k in sorted(set(tool) | set(doc)) if tool.get(k) != doc.get(k)))
+    assert tool == doc, "RENAMES and scripts/README.md disagree:\n" + "\n".join(
+        f"  {k}: tool={tool.get(k)!r} readme={doc.get(k)!r}"
+        for k in sorted(set(tool) | set(doc))
+        if tool.get(k) != doc.get(k)
+    )
 
 
 def test_every_tracked_figure_has_a_producer() -> None:
@@ -342,19 +355,33 @@ def test_data_readme_counts_match_the_tree() -> None:
     """
     top = sorted(PROV.glob("*.json"))
     nested = sorted(p for p in PROV.rglob("*.json") if p.parent != PROV)
-    stamped = 0
+    # "Written by the scripts in this repository" means: the file names its
+    # script in a stamp of its own, OR scripts/README.md lists it beside a script
+    # that ships here. The stamp alone misfiled records whose producer IS shipped
+    # but which carry no metadata block -- the seven v0.2.0 analyses, the
+    # composite's validation, the multi-coded export -- as "inherited from
+    # earlier phases, scripts not shipped", which data/README.md then asserted.
+    listed: set[str] = set()
+    for line in (SCRIPTS / "README.md").read_text(encoding="utf-8").splitlines():
+        m = re.match(r"^\|\s*\[`([^`]+\.py)`\]\([^)]+\)\s*\|[^|]*\|([^|]*)\|", line)
+        if m and (SCRIPTS / m.group(1)).exists():
+            listed |= set(re.findall(r"`([^`]+\.json)`", m.group(2)))
+    written = 0
     for f in top + nested:
         j = json.loads(f.read_text(encoding="utf-8"))
         meta = j.get("metadata") if isinstance(j, dict) else None
-        if (isinstance(meta, dict) and "script" in meta) or (
-                isinstance(j, dict) and "script" in j):
-            stamped += 1
+        if (
+            (isinstance(meta, dict) and "script" in meta)
+            or (isinstance(j, dict) and "script" in j)
+            or f.name in listed
+        ):
+            written += 1
     text = (ROOT / "data" / "README.md").read_text(encoding="utf-8")
     expected = [
         f"{len(top) + len(nested)} files: {len(top)} at top level, "
         f"{len(nested)} in per-phase subdirectories",
-        f"**{stamped} files are written by the scripts in this repository**",
-        f"**{len(top) + len(nested) - stamped} files are inherited from earlier phases",
+        f"**{written} files are written by the scripts in this repository**",
+        f"**{len(top) + len(nested) - written} files are inherited from earlier phases",
     ]
     missing = [e for e in expected if e not in text]
     assert not missing, "data/README.md counts are stale; the tree says:\n" + "\n".join(missing)

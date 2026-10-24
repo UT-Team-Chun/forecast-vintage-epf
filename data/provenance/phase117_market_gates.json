@@ -1,0 +1,2654 @@
+{
+ "phase": "117",
+ "retrieved": "2026-10-23",
+ "ecmwf_source": [
+  "https://confluence.ecmwf.int/display/DAC/Dissemination+schedule",
+  "oper fc 0 to 90 by 1 | 05:45 -> 06:12 | 11:45 -> 12:12 | 17:45 -> 18:12 | 23:45 -> 00:12 ... step 0 starts transferring at 05:45 and step 90 at 06:12, with the steps in between going out in order at roughly regular intervals"
+ ],
+ "gfs_source": [
+  "https://www.nco.ncep.noaa.gov/pmb/nwprod/prodstat/ (as of 23 Oct 2026 05:02 GMT)",
+  "NOMADS listings, 10 days, data/raw/market_gates/ncep/nomads"
+ ],
+ "markets": {
+  "sdac": {
+   "label": "EU day-ahead coupling (SDAC)",
+   "gate_local": "12:00",
+   "source": "https://nemo-committee.eu/assets/files/sdac-fallback-manual-v12-and-v13.pdf",
+   "quote": "All times in this document are expressed in CET/CEST; Closure of orderbook 12:00",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 660.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1740.9,
+       "late_last_min": -1733.7
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1382.7,
+       "late_last_min": -1375.5
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1024.5,
+       "late_last_min": -1017.3
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -666.3,
+       "late_last_min": -659.1
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -308.1,
+       "late_last_min": -300.9
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 50.1,
+       "late_last_min": 57.3
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1874.0,
+       "late_last_min": -1856.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1519.0,
+       "late_last_min": -1502.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1159.0,
+       "late_last_min": -1141.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -798.0,
+       "late_last_min": -779.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -440.0,
+       "late_last_min": -422.5
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": -85.0,
+       "late_last_min": -69.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 50.1,
+      "late_max": 57.3
+     },
+     "gfs_ibda": null
+    },
+    "summer": {
+     "gate_utc_min": 600.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1681.2,
+       "late_last_min": -1674.0
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1323.0,
+       "late_last_min": -1315.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -964.8,
+       "late_last_min": -957.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -606.6,
+       "late_last_min": -599.4
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -248.4,
+       "late_last_min": -241.2
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 109.8,
+       "late_last_min": 117.0
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1815.0,
+       "late_last_min": -1796.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1459.0,
+       "late_last_min": -1442.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -1099.0,
+       "late_last_min": -1081.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -739.0,
+       "late_last_min": -719.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -380.5,
+       "late_last_min": -362.5
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": -25.0,
+       "late_last_min": -9.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 109.8,
+      "late_max": 117.0
+     },
+     "gfs_ibda": null
+    }
+   }
+  },
+  "gb": {
+   "label": "Great Britain (EPEX hourly)",
+   "gate_local": "09:20",
+   "source": "EPEX SPOT Operational Rules (Market Rules zip, 03.11.2026)",
+   "quote": "Day-Ahead GB 60min Auction ... Closure of the Order Book Daily at 09:20 (GMT/BST)",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 560.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1640.9,
+       "late_last_min": -1633.7
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1282.7,
+       "late_last_min": -1275.5
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -924.5,
+       "late_last_min": -917.3
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -566.3,
+       "late_last_min": -559.1
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -208.1,
+       "late_last_min": -200.9
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 150.1,
+       "late_last_min": 157.3
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1774.0,
+       "late_last_min": -1756.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1419.0,
+       "late_last_min": -1402.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1059.0,
+       "late_last_min": -1041.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -698.0,
+       "late_last_min": -679.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -340.0,
+       "late_last_min": -322.5
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 15.0,
+       "late_last_min": 31.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 150.1,
+      "late_max": 157.3
+     },
+     "gfs_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 15.0,
+      "late_max": 31.0
+     }
+    },
+    "summer": {
+     "gate_utc_min": 500.00000000000006,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1581.2,
+       "late_last_min": -1574.0
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1223.0,
+       "late_last_min": -1215.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -864.8,
+       "late_last_min": -857.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -506.6,
+       "late_last_min": -499.4
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -148.4,
+       "late_last_min": -141.2
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 209.8,
+       "late_last_min": 217.0
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1715.0,
+       "late_last_min": -1696.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1359.0,
+       "late_last_min": -1342.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -999.0,
+       "late_last_min": -981.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -639.0,
+       "late_last_min": -619.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -280.5,
+       "late_last_min": -262.5
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 75.0,
+       "late_last_min": 91.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 209.8,
+      "late_max": 217.0
+     },
+     "gfs_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 75.0,
+      "late_max": 91.0
+     }
+    }
+   }
+  },
+  "pjm": {
+   "label": "PJM",
+   "gate_local": "11:00",
+   "source": "https://www.pjm.com/-/media/DotCom/documents/manuals/m11.pdf",
+   "quote": "all bids must be received by 11:00 (EPT)",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 960.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        53,
+        77
+       ],
+       "late_first_min": -2039.1,
+       "late_last_min": -2031.9
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1680.9,
+       "late_last_min": -1673.7
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1322.7,
+       "late_last_min": -1315.5
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -964.5,
+       "late_last_min": -957.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -606.3,
+       "late_last_min": -599.1
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -248.1,
+       "late_last_min": -240.9
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 110.1,
+       "late_last_min": 117.3
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1817.0,
+       "late_last_min": -1802.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1457.0,
+       "late_last_min": -1441.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1097.0,
+       "late_last_min": -1079.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -739.0,
+       "late_last_min": -716.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -383.0,
+       "late_last_min": -369.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": -24.0,
+       "late_last_min": -8.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 110.1,
+      "late_max": 117.3
+     },
+     "gfs_ibda": null
+    },
+    "summer": {
+     "gate_utc_min": 900.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        52,
+        76
+       ],
+       "late_first_min": -1979.4,
+       "late_last_min": -1972.2
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1621.2,
+       "late_last_min": -1614.0
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1263.0,
+       "late_last_min": -1255.8
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -904.8,
+       "late_last_min": -897.6
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -546.6,
+       "late_last_min": -539.4
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -188.4,
+       "late_last_min": -181.2
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 169.8,
+       "late_last_min": 177.0
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1757.0,
+       "late_last_min": -1742.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1398.0,
+       "late_last_min": -1381.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -1037.0,
+       "late_last_min": -1019.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -679.0,
+       "late_last_min": -656.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -324.0,
+       "late_last_min": -309.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 36.0,
+       "late_last_min": 52.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 169.8,
+      "late_max": 177.0
+     },
+     "gfs_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 36.0,
+      "late_max": 52.0
+     }
+    }
+   }
+  },
+  "miso": {
+   "label": "MISO",
+   "gate_local": "10:30",
+   "source": "MISO BPM-002 r26",
+   "quote": "OD-1 @ 1030 EPT Close Day-Ahead Energy and Operating Reserve Market",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 930.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        53,
+        77
+       ],
+       "late_first_min": -2009.1,
+       "late_last_min": -2001.9
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1650.9,
+       "late_last_min": -1643.7
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1292.7,
+       "late_last_min": -1285.5
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -934.5,
+       "late_last_min": -927.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -576.3,
+       "late_last_min": -569.1
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -218.1,
+       "late_last_min": -210.9
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 140.1,
+       "late_last_min": 147.3
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1787.0,
+       "late_last_min": -1772.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1427.0,
+       "late_last_min": -1411.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1067.0,
+       "late_last_min": -1049.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -709.0,
+       "late_last_min": -686.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -353.0,
+       "late_last_min": -339.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 6.0,
+       "late_last_min": 22.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 140.1,
+      "late_max": 147.3
+     },
+     "gfs_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 6.0,
+      "late_max": 22.0
+     }
+    },
+    "summer": {
+     "gate_utc_min": 870.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        52,
+        76
+       ],
+       "late_first_min": -1949.4,
+       "late_last_min": -1942.2
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1591.2,
+       "late_last_min": -1584.0
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1233.0,
+       "late_last_min": -1225.8
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -874.8,
+       "late_last_min": -867.6
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -516.6,
+       "late_last_min": -509.4
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -158.4,
+       "late_last_min": -151.2
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 199.8,
+       "late_last_min": 207.0
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1727.0,
+       "late_last_min": -1712.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1368.0,
+       "late_last_min": -1351.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -1007.0,
+       "late_last_min": -989.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -649.0,
+       "late_last_min": -626.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -294.0,
+       "late_last_min": -279.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 66.0,
+       "late_last_min": 82.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 199.8,
+      "late_max": 207.0
+     },
+     "gfs_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 66.0,
+      "late_max": 82.0
+     }
+    }
+   }
+  },
+  "ercot": {
+   "label": "ERCOT",
+   "gate_local": "10:00",
+   "source": "ERCOT Nodal Protocols Section 4 (1 Aug 2026)",
+   "quote": "A QSE must submit any DAM Energy-Only Offer Curves by 1000",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 960.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        54,
+        78
+       ],
+       "late_first_min": -2038.8,
+       "late_last_min": -2031.6
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        48,
+        72
+       ],
+       "late_first_min": -1680.6,
+       "late_last_min": -1673.4
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        42,
+        66
+       ],
+       "late_first_min": -1322.4,
+       "late_last_min": -1315.2
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        36,
+        60
+       ],
+       "late_first_min": -964.2,
+       "late_last_min": -957.0
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        30,
+        54
+       ],
+       "late_first_min": -606.0,
+       "late_last_min": -598.8
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        24,
+        48
+       ],
+       "late_first_min": -247.8,
+       "late_last_min": -240.6
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        18,
+        42
+       ],
+       "late_first_min": 110.4,
+       "late_last_min": 117.6
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        48,
+        72
+       ],
+       "late_first_min": -1816.0,
+       "late_last_min": -1802.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        42,
+        66
+       ],
+       "late_first_min": -1457.0,
+       "late_last_min": -1441.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        36,
+        60
+       ],
+       "late_first_min": -1096.0,
+       "late_last_min": -1079.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        30,
+        54
+       ],
+       "late_first_min": -738.0,
+       "late_last_min": -716.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        24,
+        48
+       ],
+       "late_first_min": -383.0,
+       "late_last_min": -369.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        18,
+        42
+       ],
+       "late_first_min": -23.0,
+       "late_last_min": -8.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 110.4,
+      "late_max": 117.6
+     },
+     "gfs_ibda": null
+    },
+    "summer": {
+     "gate_utc_min": 900.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        53,
+        77
+       ],
+       "late_first_min": -1979.1,
+       "late_last_min": -1971.9
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1620.9,
+       "late_last_min": -1613.7
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1262.7,
+       "late_last_min": -1255.5
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -904.5,
+       "late_last_min": -897.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -546.3,
+       "late_last_min": -539.1
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -188.1,
+       "late_last_min": -180.9
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 170.1,
+       "late_last_min": 177.3
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1757.0,
+       "late_last_min": -1742.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1397.0,
+       "late_last_min": -1381.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1037.0,
+       "late_last_min": -1019.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -679.0,
+       "late_last_min": -656.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -323.0,
+       "late_last_min": -309.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 36.0,
+       "late_last_min": 52.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 170.1,
+      "late_max": 177.3
+     },
+     "gfs_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 36.0,
+      "late_max": 52.0
+     }
+    }
+   }
+  },
+  "caiso": {
+   "label": "CAISO",
+   "gate_local": "10:00",
+   "source": "https://www.caiso.com/documents/monthly-extended-day-ahead-market-edam-performance-report-for-jun-2026.pdf",
+   "quote": "All bids submission is due by 10:00 a.m. Pacific Time",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 1080.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        56,
+        80
+       ],
+       "late_first_min": -2158.2,
+       "late_last_min": -2151.0
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        50,
+        74
+       ],
+       "late_first_min": -1800.0,
+       "late_last_min": -1792.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        44,
+        68
+       ],
+       "late_first_min": -1441.8,
+       "late_last_min": -1434.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        38,
+        62
+       ],
+       "late_first_min": -1083.6,
+       "late_last_min": -1076.4
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        32,
+        56
+       ],
+       "late_first_min": -725.4,
+       "late_last_min": -718.2
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        26,
+        50
+       ],
+       "late_first_min": -367.2,
+       "late_last_min": -360.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        20,
+        44
+       ],
+       "late_first_min": -9.0,
+       "late_last_min": -1.8
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        44,
+        68
+       ],
+       "late_first_min": -1576.0,
+       "late_last_min": -1561.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        38,
+        62
+       ],
+       "late_first_min": -1216.0,
+       "late_last_min": -1199.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        32,
+        56
+       ],
+       "late_first_min": -858.0,
+       "late_last_min": -836.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        26,
+        50
+       ],
+       "late_first_min": -502.0,
+       "late_last_min": -482.8
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        20,
+        44
+       ],
+       "late_first_min": -143.0,
+       "late_last_min": -128.0
+      }
+     ],
+     "ecmwf_ibda": null,
+     "gfs_ibda": null
+    },
+    "summer": {
+     "gate_utc_min": 1020.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        55,
+        79
+       ],
+       "late_first_min": -2098.5,
+       "late_last_min": -2091.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        49,
+        73
+       ],
+       "late_first_min": -1740.3,
+       "late_last_min": -1733.1
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        43,
+        67
+       ],
+       "late_first_min": -1382.1,
+       "late_last_min": -1374.9
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        37,
+        61
+       ],
+       "late_first_min": -1023.9,
+       "late_last_min": -1016.7
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        31,
+        55
+       ],
+       "late_first_min": -665.7,
+       "late_last_min": -658.5
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        25,
+        49
+       ],
+       "late_first_min": -307.5,
+       "late_last_min": -300.3
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        19,
+        43
+       ],
+       "late_first_min": 50.7,
+       "late_last_min": 57.9
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        43,
+        67
+       ],
+       "late_first_min": -1517.0,
+       "late_last_min": -1501.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        37,
+        61
+       ],
+       "late_first_min": -1156.0,
+       "late_last_min": -1139.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        31,
+        55
+       ],
+       "late_first_min": -798.0,
+       "late_last_min": -776.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        25,
+        49
+       ],
+       "late_first_min": -443.0,
+       "late_last_min": -422.8
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        19,
+        43
+       ],
+       "late_first_min": -83.0,
+       "late_last_min": -68.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 50.7,
+      "late_max": 57.9
+     },
+     "gfs_ibda": null
+    }
+   }
+  },
+  "nyiso": {
+   "label": "NYISO",
+   "gate_local": "05:00",
+   "source": "NYISO Day-Ahead Scheduling Manual v10.1",
+   "quote": "Finalized Day-Ahead bids must be submitted by 05:00 a.m.",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 600.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        53,
+        77
+       ],
+       "late_first_min": -1679.1,
+       "late_last_min": -1671.9
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1320.9,
+       "late_last_min": -1313.7
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -962.7,
+       "late_last_min": -955.5
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -604.5,
+       "late_last_min": -597.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -246.3,
+       "late_last_min": -239.1
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": 111.9,
+       "late_last_min": 119.1
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1457.0,
+       "late_last_min": -1442.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1097.0,
+       "late_last_min": -1081.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -737.0,
+       "late_last_min": -719.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -379.0,
+       "late_last_min": -356.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -23.0,
+       "late_last_min": -9.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 111.9,
+      "late_max": 119.1
+     },
+     "gfs_ibda": null
+    },
+    "summer": {
+     "gate_utc_min": 540.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        52,
+        76
+       ],
+       "late_first_min": -1619.4,
+       "late_last_min": -1612.2
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1261.2,
+       "late_last_min": -1254.0
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -903.0,
+       "late_last_min": -895.8
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -544.8,
+       "late_last_min": -537.6
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -186.6,
+       "late_last_min": -179.4
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": 171.6,
+       "late_last_min": 178.8
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1397.0,
+       "late_last_min": -1382.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1038.0,
+       "late_last_min": -1021.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -677.0,
+       "late_last_min": -659.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -319.0,
+       "late_last_min": -296.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": 36.0,
+       "late_last_min": 51.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 171.6,
+      "late_max": 178.8
+     },
+     "gfs_ibda": {
+      "run": "D-1 06 UTC",
+      "late_min": 36.0,
+      "late_max": 51.0
+     }
+    }
+   }
+  },
+  "isone": {
+   "label": "ISO New England",
+   "gate_local": "10:30",
+   "source": "ISO-NE Market Rule 1 III.1.10.1A",
+   "quote": "may submit offers and bids in the Day-Ahead Market until 10:30 a.m. on the day before",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 930.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        53,
+        77
+       ],
+       "late_first_min": -2009.1,
+       "late_last_min": -2001.9
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1650.9,
+       "late_last_min": -1643.7
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1292.7,
+       "late_last_min": -1285.5
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -934.5,
+       "late_last_min": -927.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -576.3,
+       "late_last_min": -569.1
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -218.1,
+       "late_last_min": -210.9
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 140.1,
+       "late_last_min": 147.3
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        47,
+        71
+       ],
+       "late_first_min": -1787.0,
+       "late_last_min": -1772.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        41,
+        65
+       ],
+       "late_first_min": -1427.0,
+       "late_last_min": -1411.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        35,
+        59
+       ],
+       "late_first_min": -1067.0,
+       "late_last_min": -1049.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        29,
+        53
+       ],
+       "late_first_min": -709.0,
+       "late_last_min": -686.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        23,
+        47
+       ],
+       "late_first_min": -353.0,
+       "late_last_min": -339.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        17,
+        41
+       ],
+       "late_first_min": 6.0,
+       "late_last_min": 22.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 140.1,
+      "late_max": 147.3
+     },
+     "gfs_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 6.0,
+      "late_max": 22.0
+     }
+    },
+    "summer": {
+     "gate_utc_min": 870.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        52,
+        76
+       ],
+       "late_first_min": -1949.4,
+       "late_last_min": -1942.2
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1591.2,
+       "late_last_min": -1584.0
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1233.0,
+       "late_last_min": -1225.8
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -874.8,
+       "late_last_min": -867.6
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -516.6,
+       "late_last_min": -509.4
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -158.4,
+       "late_last_min": -151.2
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 199.8,
+       "late_last_min": 207.0
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        46,
+        70
+       ],
+       "late_first_min": -1727.0,
+       "late_last_min": -1712.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        40,
+        64
+       ],
+       "late_first_min": -1368.0,
+       "late_last_min": -1351.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        34,
+        58
+       ],
+       "late_first_min": -1007.0,
+       "late_last_min": -989.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        28,
+        52
+       ],
+       "late_first_min": -649.0,
+       "late_last_min": -626.3
+      },
+      {
+       "run": "D-1 06 UTC",
+       "steps": [
+        22,
+        46
+       ],
+       "late_first_min": -294.0,
+       "late_last_min": -279.0
+      },
+      {
+       "run": "D-1 12 UTC",
+       "steps": [
+        16,
+        40
+       ],
+       "late_first_min": 66.0,
+       "late_last_min": 82.0
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 199.8,
+      "late_max": 207.0
+     },
+     "gfs_ibda": {
+      "run": "D-1 12 UTC",
+      "late_min": 66.0,
+      "late_max": 82.0
+     }
+    }
+   }
+  },
+  "iex": {
+   "label": "India (IEX day-ahead)",
+   "gate_local": "11:00",
+   "source": "IEX Business Rules Ver. 24",
+   "quote": "Auction timings 10:00 AM to 11:00 AM of previous day (D-1)",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 330.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        42,
+        67
+       ],
+       "late_first_min": -1412.4,
+       "late_last_min": -1404.9
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        36,
+        61
+       ],
+       "late_first_min": -1054.2,
+       "late_last_min": -1046.7
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        30,
+        55
+       ],
+       "late_first_min": -696.0,
+       "late_last_min": -688.5
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        24,
+        49
+       ],
+       "late_first_min": -337.8,
+       "late_last_min": -330.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        18,
+        43
+       ],
+       "late_first_min": 20.4,
+       "late_last_min": 27.9
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        42,
+        67
+       ],
+       "late_first_min": -1545.0,
+       "late_last_min": -1526.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        36,
+        61
+       ],
+       "late_first_min": -1190.0,
+       "late_last_min": -1172.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        30,
+        55
+       ],
+       "late_first_min": -830.0,
+       "late_last_min": -811.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        24,
+        49
+       ],
+       "late_first_min": -469.0,
+       "late_last_min": -449.3
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        18,
+        43
+       ],
+       "late_first_min": -111.5,
+       "late_last_min": -92.5
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 00 UTC",
+      "late_min": 20.4,
+      "late_max": 27.9
+     },
+     "gfs_ibda": null
+    }
+   }
+  },
+  "jepx": {
+   "label": "Japan (JEPX)",
+   "gate_local": "10:00",
+   "source": "https://www.jepx.jp/electricpower/outline/pdf/tr_rules.pdf",
+   "quote": "受け渡しの日の１日前の日の午前10時まで",
+   "seasons": {
+    "standard": {
+     "gate_utc_min": 60.0,
+     "ecmwf_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        39,
+        63
+       ],
+       "late_first_min": -1143.3,
+       "late_last_min": -1136.1
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        33,
+        57
+       ],
+       "late_first_min": -785.1,
+       "late_last_min": -777.9
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        27,
+        51
+       ],
+       "late_first_min": -426.9,
+       "late_last_min": -419.7
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        21,
+        45
+       ],
+       "late_first_min": -68.7,
+       "late_last_min": -61.5
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        15,
+        39
+       ],
+       "late_first_min": 289.5,
+       "late_last_min": 296.7
+      }
+     ],
+     "gfs_cases": [
+      {
+       "run": "D-2 00 UTC",
+       "steps": [
+        39,
+        63
+       ],
+       "late_first_min": -1276.0,
+       "late_last_min": -1256.3
+      },
+      {
+       "run": "D-2 06 UTC",
+       "steps": [
+        33,
+        57
+       ],
+       "late_first_min": -920.0,
+       "late_last_min": -902.8
+      },
+      {
+       "run": "D-2 12 UTC",
+       "steps": [
+        27,
+        51
+       ],
+       "late_first_min": -561.0,
+       "late_last_min": -541.6
+      },
+      {
+       "run": "D-2 18 UTC",
+       "steps": [
+        21,
+        45
+       ],
+       "late_first_min": -200.0,
+       "late_last_min": -185.5
+      },
+      {
+       "run": "D-1 00 UTC",
+       "steps": [
+        15,
+        39
+       ],
+       "late_first_min": 158.0,
+       "late_last_min": 177.5
+      }
+     ],
+     "ecmwf_ibda": {
+      "run": "D-1 00 UTC",
+      "late_min": 289.5,
+      "late_max": 296.7
+     },
+     "gfs_ibda": {
+      "run": "D-1 00 UTC",
+      "late_min": 158.0,
+      "late_max": 177.5
+     }
+    }
+   }
+  }
+ },
+ "n_markets": 10,
+ "n_ecmwf_any_season": 10,
+ "n_gfs_any_season": 7,
+ "source_files_sha256": {
+  "caiso/edam.txt": "1914a1cdb371d3cb16e7ded446b74374f00eabced51ca2c39023bd8d7f2a65a4",
+  "caiso/edam_jun2026.pdf": "175e813e5b36ee3a1491689cca48a72d8530e2dd4cef1f26f4646aedf612609b",
+  "caiso/op1210.pdf": "eed0159bbc046544a1f173726af995a488d1cc82d4b1850692f13de3e4646f24",
+  "caiso/op1210.txt": "cf7b08d509574fafb0a9de2804197b8239f0ba51b8d56ffcc5b09895ab646eca",
+  "dwd/faq.html": "6ffbddd39f08ae79d7b17b3dc244e8de0d32d493c25d347fad49a22486730eff",
+  "dwd/g2017.txt": "a6e6e0bbf0de3a227a30f6ed313bc9ba8785f4de9fa994f837126c521f864b48",
+  "dwd/germany2017.pdf": "e9b94050c27dbc0284f04ffda8c1f977ceff8d52f259fc977beda50be546087d",
+  "dwd/hilfe.html": "60b7c893ee75912d8093f065945deec2e2c4d6383cea86c1a8658715f675bd3c",
+  "dwd/icon_db.pdf": "ef804f22bb4d72bf62d226a78c931afa51042a1ef0e702b2aafcc2e088dcfe41",
+  "dwd/icon_db.txt": "407c909ef660c87a19e1b45ebcc78f4eb865297c3aec294830fdea1df33a0c19",
+  "dwd/icon_tutorial2025.pdf": "e4d9c0e9ab7bbc2edf308196337473a28aff18629742f2d8fca5158340e9c9d4",
+  "dwd/list_icon_00.html": "20d2b844a2cac399755393fe9e8787fa166e4c0aea343cd549b6014331ab8f33",
+  "dwd/list_icon_06.html": "443fbe2f65bb4e6f2ef4d6c1858d6cc0fa1061cdd352e208588f535af69f5d09",
+  "dwd/list_icon_12.html": "4d54457375732c2946f18c64acbc34e995e6e7fe64ee19dd2e070018839f7a3b",
+  "dwd/list_icon_18.html": "d04a262c4a2a53caf513aa81bf405880c9de9bc45e22fcca8a18732233ae247d",
+  "dwd/list_iconeu_00.html": "450221bb7152d98198541730379f011fa30fc8e2812d6db14732eaa75b7819d5",
+  "dwd/list_iconeu_06.html": "7185e97908b6105226243690731672c1f8dfbb59ecb83f48363abe6e18492d06",
+  "dwd/list_iconeu_12.html": "71a4391d4d1922cd6dfd8fa2095047436f5c390f9b00edce1cdf5c5399f67e7a",
+  "dwd/list_iconeu_18.html": "f14900c816dfd63bd30b8491171525e8e76eef91d3ff69c2d05a7d998ffd6896",
+  "dwd/mvd.html": "88d2997968f14cbaca2f113618445ad8aa502b909e99bbd1c4d4d16f969dab39",
+  "dwd/num_weather_prediction_emergency_system.html": "3edc036825224849eef7076b290726b17da54395abcef2cb9f92b5aad9f780e6",
+  "dwd/nwp_forecast_data.html": "8b81a53ddd651c7fb404bf0996ac111b14ee19b8382a36076fc54d09dd8b6169",
+  "dwd/opendata_en.html": "2b578a50665f948b05e18a408f63c145544a1a07a560acd06f5935aa4088178d",
+  "dwd/sld.html": "309ac1fe2e4ace8841d8b40737cb3a8151aac408af2a9283556f9cfe26cc34e3",
+  "dwd/tut.txt": "aa1dc4338d758e97f9cbfc59ffc910602e9db03a87802c83742de0c656444b92",
+  "ecmwf/dissem.html": "83d172503844968fd33a95c35e8356cbf822c058b27df06de959bc06409b5796",
+  "ecmwf/dissem.txt": "e1533fed3d8752473fbc24bfd383e91390f7986c2b01f1e276622fb3a3807651",
+  "ecmwf/hist.html": "4c23ce1b47c5a89e0948347ce6b0771839f5c07f016d300d332a2d3a2d52fec4",
+  "ecmwf/news50r1.html": "158bebbdc03cfd1591ec7f0560caee0c045397e1c31b0f555092daeb8faeba4e",
+  "ecmwf/opendata.html": "1a823c545e7194811db78deac46cd2be35c5d0c68b3d50048e9a0fc439dcc5b7",
+  "ecmwf/presched.html": "d038f20d0819bddc67c2efc82429c9b6f043f9e9565f06a2ed9511b00bd280a3",
+  "ecmwf/v_333790044.html": "d4f4ff5f40edcdbc5afb858882889eaad3b30b63ce119ea8f1a8448ad40def73",
+  "ecmwf/v_400525401.html": "f3444507bd460ed38471e8756aa31c7fd785f953ea45ffe0ad54aeeb24e6630a",
+  "ecmwf/v_473827275.html": "16dd5dcff5cf965e94b8912b5e0b8bb9638e0122c8e1e808e057f74a2b49c8b7",
+  "ecmwf/v_488058500.html": "6d5298a9fafe1dd45312ff35921f3a7429194bfd8dad9f168c54c27c41b17453",
+  "ecmwf/v_600793086.html": "62b0fd70965eb9167fdd8507e67d70d0ede127be6b3dc813dd811215665d51bf",
+  "ecmwf/v_663004188.html": "f0371f1796dff1c4d14c39a982259871c5c608328f8ecfd73d4983953d037cea",
+  "epex/day-ahead.html": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4",
+  "epex/epex_brochure_2025.pdf": "b0ec84db4c2d3faeb7a52176d7fec7fb46e93628ae7b35fca10d67d3cc28404f",
+  "epex/epex_market_rules.zip": "b38044cc4e19582a65bad694fcc236a8fec25a87e19e46aafdae2fd39ea84cc4",
+  "epex/oprules.txt": "2d4a4b24695943312d4a5f30670a116a654eb7e610b444122b66f658d5c4fcca",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20231223_EPEXSPOT ANNEX 1 Election Procedure_CLEAN 1.pdf": "7caae9152d9bf4664514de89275606e1aa6e87d0a884cd5b710cf1ee41db782f",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20250910_EPEXSPOT Code of Conduct-CLEAN.pdf": "93a63b48bea216a6e8de4b43c02c383a7c95ae39b1c997c4a5caef36649a2aa4",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20260312_EPEXSPOT List of Definitions_CLEAN.pdf": "fcd8946baed87350c6079dc554f41b1cfacd6466ce2b6f8d37eb339125b08d37",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20261103_EPEXSPOT_Exchange_Rules.pdf": "306c013d7269c822b09c0277c9fcd63342a0cea476361a11f3ab46cb8d65760c",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20261103_EPEXSPOT_Exchange_Rules_MARKUP.pdf": "2164458a385d0e4f1344548357d3651f20e0e45c538509e2761d3ee80f9a398e",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20261103_EPEXSPOT_Operational_Rules.pdf": "62d0ebd77b3e51833f3d31e4b1c64b754581d3e1537d67b9c79fc0418c7ab38c",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/20261103_EPEXSPOT_Operational_Rules_MARKUP.pdf": "a027df8ba2451cadc506c4ebd8d7f9ab8c3d3f00de0058d5e7620fca6d665526",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/TAA_EPEXSPOT_Direct-Market-Segment-Amendment_280725.docx": "1cdefa4edab090c8452dc9b0d0b9744f69bced7dd4112eab17386915d5cf12b5",
+  "epex/rules/EPEX SPOT Market Rules/Market Rules/TA_EPEXSPOT_Direct-Member-Trading-Agreement_290126.docx": "35a4ee598122885f853460edebcbc297727c494189cc8eeb6f6046b87e9c6ddc",
+  "epex/rules.zip": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4",
+  "epex/sdac_fb.pdf": "5ba363ba15cb8b88cf6dc07b74e1c20ebb3c965cf56f52b3cb1c60262af89710",
+  "epex/sdac_fb.txt": "d05a24ebcf35e5deeef2e018cab62205737f587857e825d5dd42f8ef309556be",
+  "epex/tradingproducts.html": "58bf2215b395dcac74c009aa98701854e43cbe54a1cd3a95fee6a647ca9910d4",
+  "ercot/current.html": "b16ed5148f14b9926ff20f81daae3d02244681c6b3deae59851cdb11aa30ed90",
+  "ercot/np2025.pdf": "dffa7afe0dd58213f3a02a0cdda37fbce9ee3e1e7e681f46886fd9554cb8e9e4",
+  "ercot/s01.docx": "a2e169de651a8f2081d58757c5240a36e9bb192c099744341c74595377543322",
+  "ercot/s01.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "ercot/s01b.docx": "414b6ae14d1b80ff4c7b7c08b848846ad9199221d94f92b86d2859e11e9cb5d6",
+  "ercot/s01c.docx": "3989225d711f7b8e2ce6dcaf8eb46e7b930cc6da1f44dc178cc57d1a78b1e8f8",
+  "ercot/s01c.txt": "01e638167193356bc80fd69c751db5279825b21e104c65d50da80cc38d9ee20c",
+  "ercot/s01cx/[Content_Types].xml": "854f39935f26e48199cdfc021a90bc67a0e2aa05eeadbf1e2938d442ec797a48",
+  "ercot/s01cx/_rels/.rels": "c30fe099dbcfed4ecc4ae544ccf82f432c8d3bb665e2a301df283738b196d803",
+  "ercot/s01cx/customXml/_rels/item1.xml.rels": "80482f86e196171d66001e0e74d1900408a3aaf2463e54005d251b5f2db9a0b0",
+  "ercot/s01cx/customXml/item1.xml": "478bdf09574aa05ce3578cd4f894fc61e03604d50c168358819a194f03c4ae09",
+  "ercot/s01cx/customXml/itemProps1.xml": "feb43cb532c22e4bf071327defdbbe4950ea241bbfe8454c573f93b79bcbb96f",
+  "ercot/s01cx/docProps/app.xml": "75a417bf06917e2a8ec76aa17174503e2332a98bfb672de64ec831d3e4783d25",
+  "ercot/s01cx/docProps/core.xml": "85059ccd2e66418f71c4ca8836a7345a77495a49a4dea2114f997915020b801d",
+  "ercot/s01cx/docProps/custom.xml": "0079817b0d00558315348a1a9f662e57f63f641471f4df29e9b8204d559274f0",
+  "ercot/s01cx/word/_rels/document.xml.rels": "df81281b021df7508094f4df7aba2e48ee0bc4d8d1b8e247596362537ed4326d",
+  "ercot/s01cx/word/_rels/settings.xml.rels": "a686b2c5e684c1edeecf9e90b96cb98d94e24c6800c8e6c175cacce986755ecd",
+  "ercot/s01cx/word/document.xml": "c49d1c778fd08219636c94d1540c5330c425aacca3e1d3041d81152b89f2fcfb",
+  "ercot/s01cx/word/endnotes.xml": "19aeb2474306f21d6b164430abebb7156ca4a693dc133d76d202eae3344628f3",
+  "ercot/s01cx/word/fontTable.xml": "1cf7f03299202bb52749c22d4d3f4308d2947b6f0a286d9dca749d78348e7acc",
+  "ercot/s01cx/word/footer1.xml": "9e8302a5d5692a9ce29a14078a187ccb5df8fefd75de5a1df1a3f7cd26619e6d",
+  "ercot/s01cx/word/footer2.xml": "255cb29cfdc830c357134fb94c82ae4d8335a6edeb392cc8041e7143646c4296",
+  "ercot/s01cx/word/footer3.xml": "221dcd4ebeffb8842eba9a1d3683fbbe6bcdfa2c9d43f3141cdfa2c5bead3496",
+  "ercot/s01cx/word/footnotes.xml": "0ebbcab176f8fccca222006b00f94a78d077a1dad9e09ffd1e5f9bf8c69f2286",
+  "ercot/s01cx/word/header1.xml": "8462b3fd9f421ff86cd167185765421767cb94e3321196ce883d1ce4df7f8174",
+  "ercot/s01cx/word/header2.xml": "4f7eea99c71d8017d950507233747abccca80a74d2082c792a0631c524f6ef13",
+  "ercot/s01cx/word/header3.xml": "5f953ca127ab9270256bbf89fcb1d81e6ca5967964290e72a5b3304ddd2849f8",
+  "ercot/s01cx/word/header4.xml": "3cfd611e493ede9ffb37f23acd321fe6dd07d6886703bff7b03986d368b6397b",
+  "ercot/s01cx/word/header5.xml": "4de6553947427094adba1119e9c3e5cb825c0f23ac43513f39ad7eff1f466c00",
+  "ercot/s01cx/word/numbering.xml": "548787ab9e701edf5b8c433bbcaf8ffdca6bd0f47efcee607a2d77a77e256895",
+  "ercot/s01cx/word/settings.xml": "02e4cb2e23655a85f4a8d9f3ec6faeac468117e75a436c64b6f16803e4653a73",
+  "ercot/s01cx/word/styles.xml": "7af64c6b2bfb2cbef6ce5e433278e38c71bca155a7713b14242dce82a34a040c",
+  "ercot/s01cx/word/theme/theme1.xml": "95e9db2278364c40d924d624dc9865105d277c22ddee7b3f459b069338b8c56a",
+  "ercot/s01cx/word/webSettings.xml": "1db4e67ff8b1ac46bb70115eb3b24129a3075e1a5a3e1dbb06bbb20eccfc5ef1",
+  "ercot/s02.docx": "fb79613bc108a5e4f4397f48fc9198c137e4d44e2362b6caae9d5146fd5393a4",
+  "ercot/s02.txt": "12da402acfa1a6e30bb1715cec8d9af8c381a07533310eba434791e97b5b6d5b",
+  "ercot/s02x/[Content_Types].xml": "b2c4f31a5a7a44ffd74ac39f788153e5804ac5b5044767630172a4d02ba31e2e",
+  "ercot/s02x/_rels/.rels": "c30fe099dbcfed4ecc4ae544ccf82f432c8d3bb665e2a301df283738b196d803",
+  "ercot/s02x/customXml/_rels/item1.xml.rels": "80482f86e196171d66001e0e74d1900408a3aaf2463e54005d251b5f2db9a0b0",
+  "ercot/s02x/customXml/item1.xml": "b90d066d806b0a71e0a3c339540d7b5bdde7ceae6f3b10e7f8d2890351cc9342",
+  "ercot/s02x/customXml/itemProps1.xml": "96175c1906949d9846740f08e6ce87ea139f35c793ad6d7c562e30ea7d0168f8",
+  "ercot/s02x/docProps/app.xml": "25a592351a506bde241f21e19dd10e8021d86a53c606d2e9d3bd86a3e7154172",
+  "ercot/s02x/docProps/core.xml": "c79b5f116c4d91cc1e76f5d01bdf01ef5056fd8d30704dc3dbc1a6699b524ada",
+  "ercot/s02x/docProps/custom.xml": "bd6cea7b3cc5478f9d84da6125c4413dd11bf5172511b661ddb568528e3fdc3e",
+  "ercot/s02x/word/_rels/document.xml.rels": "512999f90d5fb8a2ad6688c41dc5cc6f6abd9e9142134d9016b39da438598b8d",
+  "ercot/s02x/word/document.xml": "aa1a3f47af9b8adfded7d1ed9263149488c1ee9fcc46347de6fcaa9393b76b4e",
+  "ercot/s02x/word/endnotes.xml": "c6078ce8f58775d81aa62c42699d29f882d5c6717c1e0fd816bbbd8e35dc6c43",
+  "ercot/s02x/word/fontTable.xml": "3b2c6cd265687be9b40d6ad26f63670f5ff6349282a9ac77cc0830c393cbd12b",
+  "ercot/s02x/word/footer1.xml": "c12eb0dc02a9061069c266dd66b6570fcb854ddf74166dd7a613e3100d7731c3",
+  "ercot/s02x/word/footer2.xml": "216cf12b5937c518196300af0564dbd474cf2bf7fed0a7a425ac66c4b277d40b",
+  "ercot/s02x/word/footer3.xml": "484c02fb011153aaab3bf5ffea3f1bfd80d8fd31b67b5a4547f1005f9ed471c6",
+  "ercot/s02x/word/footnotes.xml": "f25a1adec286868f160237eee59171b955b4c7071c0e8114b84b1b06547024cf",
+  "ercot/s02x/word/header1.xml": "aafa27875f01c0219427f3c8e9979d0fabe46657ede3d4bd8148c4cac56cc541",
+  "ercot/s02x/word/header2.xml": "9383c1b3f4f736801fd7a044d65023cdc890ab0532e0e4beb19e6891210c308f",
+  "ercot/s02x/word/numbering.xml": "4cdfe61cb8e2aae296ba989b96bb82786ed4ed82745df199067db1da3c576045",
+  "ercot/s02x/word/settings.xml": "2e0d08388ea4164a13d680668e404b69d89dfae5176d9f01fe2c509936435288",
+  "ercot/s02x/word/styles.xml": "2a1be38b82286562529d6267bfb75a9beb17385c90d900df63632e1255ef4e05",
+  "ercot/s02x/word/theme/theme1.xml": "95e9db2278364c40d924d624dc9865105d277c22ddee7b3f459b069338b8c56a",
+  "ercot/s02x/word/webSettings.xml": "3dc859c951ae3af5b59c41d5e7cc49baf189fd73ffe77d80f430a552542de390",
+  "ercot/s4.docx": "6c0fc0882f574f8b5732cbd0a895b0a3c4678fec9b908fe03e080ca90c603fbd",
+  "ercot/s4.txt": "a1963e7d3286e211376f6e40e029e7f275fbdc91d8a5c11738a30a347168dc74",
+  "ercot/s4x/[Content_Types].xml": "a6a5b5ad167fffea7b2e31b0f58dcea1f1aa58b4d58d2a4799cacde0b96a7d4f",
+  "ercot/s4x/_rels/.rels": "c30fe099dbcfed4ecc4ae544ccf82f432c8d3bb665e2a301df283738b196d803",
+  "ercot/s4x/customXml/_rels/item1.xml.rels": "80482f86e196171d66001e0e74d1900408a3aaf2463e54005d251b5f2db9a0b0",
+  "ercot/s4x/customXml/item1.xml": "56700c78324e630b3ffdb01fd4fce78a2ea39cc50f56d36a6c30c55b34fe7f1b",
+  "ercot/s4x/customXml/itemProps1.xml": "f17a34913a56ff97ee181bd8ec85fa6358e2f00f4c903a710c22888aeb44fafe",
+  "ercot/s4x/docProps/app.xml": "e746233d8aef29d8ea224db073fa8c1655853d7bb015789d6f1ea7d178c3e547",
+  "ercot/s4x/docProps/core.xml": "c959529754fe7017b06faff3fb8534e6a2918cfbd99e546b3f5ca4c84b27172f",
+  "ercot/s4x/docProps/custom.xml": "9f43bac7faade6e131ba73e56f092a2bff8d2e94e7e7fea6636f27df3f6f491e",
+  "ercot/s4x/word/_rels/document.xml.rels": "32c76b954e030c432cd66726d3dd6a0d6d955829398c97bb8e2e28ce3814b38f",
+  "ercot/s4x/word/_rels/footnotes.xml.rels": "58228e1f09f4eb42454a4bebe1f58ac94fef376ca119aa47e39803630f76cea1",
+  "ercot/s4x/word/document.xml": "9f5ad0c4eee1f0fbf137bc3b3586d4849504d34938c15cfbad41ef7ffd0e99b4",
+  "ercot/s4x/word/embeddings/oleObject1.bin": "712a00b1a5ef43f0b4aa00d278da806f5dfd8db5a24d09ab93580aace0731486",
+  "ercot/s4x/word/embeddings/oleObject10.bin": "0151dd9f41156102f9f5386d01c38a54d9b69f82ddc778150449e47f7b0b00f4",
+  "ercot/s4x/word/embeddings/oleObject11.bin": "797f3ac7844cb85edb4d799b82b6485163413ee5072a9a351afbcb05d7a80e41",
+  "ercot/s4x/word/embeddings/oleObject12.bin": "e5e8d821b69ac804e9b5b6ce72471a0aa8645823220f474e350cbaeca156452f",
+  "ercot/s4x/word/embeddings/oleObject13.bin": "b1fefd457f496393f221e7900a0365320f57bcf307029353ba488c867b890dc3",
+  "ercot/s4x/word/embeddings/oleObject14.bin": "b1fefd457f496393f221e7900a0365320f57bcf307029353ba488c867b890dc3",
+  "ercot/s4x/word/embeddings/oleObject15.bin": "b1fefd457f496393f221e7900a0365320f57bcf307029353ba488c867b890dc3",
+  "ercot/s4x/word/embeddings/oleObject16.bin": "b1fefd457f496393f221e7900a0365320f57bcf307029353ba488c867b890dc3",
+  "ercot/s4x/word/embeddings/oleObject17.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject18.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject19.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject2.bin": "712a00b1a5ef43f0b4aa00d278da806f5dfd8db5a24d09ab93580aace0731486",
+  "ercot/s4x/word/embeddings/oleObject20.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject21.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject22.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject23.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject24.bin": "af3869b5e42ecdb531cac8c5d882a6a344b8854d96fff590b3f56d6ffa788e56",
+  "ercot/s4x/word/embeddings/oleObject25.bin": "01214a9f80d837e9b29eb04a5f27499844dce8fd87d6d22a30de39bb2bb779d5",
+  "ercot/s4x/word/embeddings/oleObject26.bin": "410f3dfc53758a4873653dacbac1080727fc7a39e398b6545dd3dcc74fd77a37",
+  "ercot/s4x/word/embeddings/oleObject27.bin": "8813642c22ae16730a6f56efe6a4f27349b00fb378fe65e78beb4fbf48088ef7",
+  "ercot/s4x/word/embeddings/oleObject28.bin": "deb525261b2b17f40bff656193a90abecaf370c8a37313a82f3bf68186ea5196",
+  "ercot/s4x/word/embeddings/oleObject29.bin": "1e26076e1b4cb3dd8dcf12304194b57d3e11a44cfe6f30816f0c0ec859f366da",
+  "ercot/s4x/word/embeddings/oleObject3.bin": "712a00b1a5ef43f0b4aa00d278da806f5dfd8db5a24d09ab93580aace0731486",
+  "ercot/s4x/word/embeddings/oleObject30.bin": "649216f94ab60dad81a8c01c8aeaa5669b7eb0db52627f481d72b272c3060b64",
+  "ercot/s4x/word/embeddings/oleObject31.bin": "01214a9f80d837e9b29eb04a5f27499844dce8fd87d6d22a30de39bb2bb779d5",
+  "ercot/s4x/word/embeddings/oleObject32.bin": "3095b1a74d40c705fd7387b73ec42b40b4799665471813ef19e21e9b1c30c834",
+  "ercot/s4x/word/embeddings/oleObject33.bin": "e906fc959df22117770311d84b8ef98e24c8a8aa70bfd9b890c6ea69cfffa4b2",
+  "ercot/s4x/word/embeddings/oleObject34.bin": "c65e8ee7d35c0c601742232dd4acdd405f02765d88210402bc5c5b5db6ac3031",
+  "ercot/s4x/word/embeddings/oleObject35.bin": "9adffbb8a04c875804d583d44eb71614cfccf610a5ccb440ebbc3e2b2e26d763",
+  "ercot/s4x/word/embeddings/oleObject36.bin": "c65e8ee7d35c0c601742232dd4acdd405f02765d88210402bc5c5b5db6ac3031",
+  "ercot/s4x/word/embeddings/oleObject37.bin": "9c65b5a9805476289adc6ccf2c124f6e07795d5fd34531ab7599dd04f1b7253f",
+  "ercot/s4x/word/embeddings/oleObject38.bin": "c98f725d0d78df15ce090f8803a4712ded6e28707ffb116dacf5cab5180b851d",
+  "ercot/s4x/word/embeddings/oleObject39.bin": "f59f3514bc4639c1b7bfe50d57d56c62097efcf7c9d3fd1d36d47c0099b4b41d",
+  "ercot/s4x/word/embeddings/oleObject4.bin": "712a00b1a5ef43f0b4aa00d278da806f5dfd8db5a24d09ab93580aace0731486",
+  "ercot/s4x/word/embeddings/oleObject5.bin": "5e29bce252e95d2b787d9bdce19af3a4bb5c98941397f247b95c4630d98a7194",
+  "ercot/s4x/word/embeddings/oleObject6.bin": "c5137e57422cd03a286a042e9eac8da7fd2ed4e69f999468aa950cf6cfe45399",
+  "ercot/s4x/word/embeddings/oleObject7.bin": "c5137e57422cd03a286a042e9eac8da7fd2ed4e69f999468aa950cf6cfe45399",
+  "ercot/s4x/word/embeddings/oleObject8.bin": "797f3ac7844cb85edb4d799b82b6485163413ee5072a9a351afbcb05d7a80e41",
+  "ercot/s4x/word/embeddings/oleObject9.bin": "e5e8d821b69ac804e9b5b6ce72471a0aa8645823220f474e350cbaeca156452f",
+  "ercot/s4x/word/endnotes.xml": "c58b77585bf6aee005366e9dae2c0cd39e65a62614a284d7ce03c1a70e2e0d48",
+  "ercot/s4x/word/fontTable.xml": "be058cbb7108e3793ffe97f7a3ebbe1e566a3f6666a12152c43288a7cf016ebb",
+  "ercot/s4x/word/footer1.xml": "da8ad0ca3050a3bf4bcc7f2c4ca302672b4c4a6d7f03c0899449ef0cf5d56fa2",
+  "ercot/s4x/word/footer2.xml": "d9d1045d229e77b65a913b83d6de39c88ae98de8adb543241786428bafd449eb",
+  "ercot/s4x/word/footer3.xml": "6b3c858fcfac0f8f5dfbaee806875113c02f1c0c603b4e93a7836f179eb39c7a",
+  "ercot/s4x/word/footer4.xml": "d4a7cb847bc7875d75ea8cdc08ed55681a9ec1ce33c2855ee5c071088a392cf4",
+  "ercot/s4x/word/footnotes.xml": "1db95a24075aad1923bad7048dbd7b9fe2c7796fc24ad59f239d378513ead008",
+  "ercot/s4x/word/header1.xml": "fe7eb2e394bbd14cc2d6ed1ebbbc8336524de927fd82f681594df65c8778864b",
+  "ercot/s4x/word/header2.xml": "3373231196bd0f64bb0a50ba15b8b603d6bed993045cfe57019baf3e2a394068",
+  "ercot/s4x/word/header3.xml": "63980c0eb8761f0736975586ccac6826401e8526962aacb3541b49fecd2c9f5e",
+  "ercot/s4x/word/media/image1.png": "0322a5f5ae4dafd9a3a2b03a41c4be3f6bfb5c12d8717ae2f0b1c4d4d13f88ca",
+  "ercot/s4x/word/media/image10.wmf": "43b0f994486be3b2554816ed00279dac44f06be3cb1bd7a0af8c252639dcf44e",
+  "ercot/s4x/word/media/image11.wmf": "cbbca421e354451fa097372807d0b521deb46b0fa2caf0aab80947a5123ce44b",
+  "ercot/s4x/word/media/image12.wmf": "f934329513750e5bf2e1d5d1a066eb3ba78976b08cd7209ab9e0265273e72c27",
+  "ercot/s4x/word/media/image13.wmf": "37526fedb2328b99c6a529dfb3f069f024a67c3c0d3f598543fa0a57bd22f16a",
+  "ercot/s4x/word/media/image14.wmf": "ebebf8eb0756b1b0d15fa6026d7cd42f8aab717f977111441e1bef2303f60b5f",
+  "ercot/s4x/word/media/image15.wmf": "e200f13f14b6f86659106961df066b46ce83d43794e0c7f3ce58e98ffbb98f8a",
+  "ercot/s4x/word/media/image16.wmf": "e200f13f14b6f86659106961df066b46ce83d43794e0c7f3ce58e98ffbb98f8a",
+  "ercot/s4x/word/media/image17.png": "00ae81cf30161146a65bee0ce182fa5faf87c78ed94434fdf4c71aaa2e2f1c10",
+  "ercot/s4x/word/media/image18.wmf": "83d588e9609ce878058b176f7f60c064eb3f337cecd5ef25e46ed41df7ba8062",
+  "ercot/s4x/word/media/image19.wmf": "83d588e9609ce878058b176f7f60c064eb3f337cecd5ef25e46ed41df7ba8062",
+  "ercot/s4x/word/media/image2.wmf": "a1baf76d7a594f5fd4f6cb6223a1412ca33b23d18331e91e074286d2b339c574",
+  "ercot/s4x/word/media/image20.wmf": "b8669014a9fde670d586c21ef250095154cc84383e6512ddab4a5fcb4307b27b",
+  "ercot/s4x/word/media/image21.wmf": "75e9a88dfdb9ec91a6e59b934cd3d56b78bb04b5912c6e6457ddd7272ae8eccb",
+  "ercot/s4x/word/media/image22.wmf": "02f13b287fbcd0b1e606ff9de913b63eef9855602e2ac2b67cf660a274ceb5d3",
+  "ercot/s4x/word/media/image23.wmf": "85e48072c98d32b88d575e466cd5ca663c84a84b4b56f16346f48b505c15fbb6",
+  "ercot/s4x/word/media/image24.wmf": "f04173897a472979850c3b2f3a6e930b92da7ed81d1d512d4698120cc88f2b28",
+  "ercot/s4x/word/media/image25.wmf": "d25b21c631865b616fdc833dda2090386f8c0d13c26874d376e524aa1318852e",
+  "ercot/s4x/word/media/image26.wmf": "f2280d2f5d55b53f0d00f95da822fa8c170624fea8a7a5ac895994002d269e2c",
+  "ercot/s4x/word/media/image27.wmf": "5eadf0d22f36aed2aeae34dc72e26b818f1d9ed370ee94d574fdb11374dc26c5",
+  "ercot/s4x/word/media/image28.wmf": "bc6fe7ef585753e4c6b10c3361d43e63408dc1d12c446240e7046e12ecc62613",
+  "ercot/s4x/word/media/image29.wmf": "87955adb6f5cd71e59ed4c6d47ecf2e38f157f3d0d28e96b42fd7c53c9dede6a",
+  "ercot/s4x/word/media/image3.wmf": "3e3461f52d0b58c05e49dc3e0edd761c2633f360a9181027605ce7d279434fd5",
+  "ercot/s4x/word/media/image30.wmf": "0bad78c7abd25a61dd2fad630f470a4375bb4f83d51712870c0f8a05747e356c",
+  "ercot/s4x/word/media/image31.wmf": "1a1808f85521e2c3a43ecd939a4f1e980784b34741f15f8b57c6929a7eecac34",
+  "ercot/s4x/word/media/image32.wmf": "197aba58cef17d14d57addb2be719beb29587d570c54b640509334113c6f7fb1",
+  "ercot/s4x/word/media/image33.wmf": "a6211b6502e91d971e8447c0ba3b8e54e0aa469edec8e9896d85cecc5069d50d",
+  "ercot/s4x/word/media/image34.wmf": "f96b8c5000b0c8139106262de3befee18a8d5419ac5f8d63bad339112f700087",
+  "ercot/s4x/word/media/image35.wmf": "6fdda7ab0a5a6b2b859dbf747828f0d2fc3777fd9f455ce740f166ef67327dd1",
+  "ercot/s4x/word/media/image36.wmf": "c4c9a4c337062bc8d50b2709e9add5f9547143d947719f0e5ff233b0f0b9580b",
+  "ercot/s4x/word/media/image37.wmf": "66bc0be354e5b85afbed2796e1cc3f1c0dde1cc564c6c9189b797ea0319fa36b",
+  "ercot/s4x/word/media/image4.wmf": "550abc8b8ce27ea6c245bf0ea9e83a95b272288a6e221138f3ac10db47a09f47",
+  "ercot/s4x/word/media/image5.wmf": "d2958789a5e6d2e5d294782fc56367559d5febeb5715df1c91dedb968a48750c",
+  "ercot/s4x/word/media/image6.wmf": "5bf114749ae580a936c67eecd69bfe9d428d4d764a3ae85ec00cc1ff16722692",
+  "ercot/s4x/word/media/image7.wmf": "b026139ba6a1fd8849a58aab3b3a68c8b686340236e7ba5faad6a6f493caadb1",
+  "ercot/s4x/word/media/image8.wmf": "0de91eb6878eef102489839df47ed9b3ca76b0281b317f547f411627c7c7c17a",
+  "ercot/s4x/word/media/image9.wmf": "014cea6bda7549747b30e3aeadd0ce66f822bb1c0c60545e1b0ee708726878dc",
+  "ercot/s4x/word/numbering.xml": "31dc22a4bd9533b48486d1184162a86bc9ab6590129ef9c0359fa29345faaea0",
+  "ercot/s4x/word/settings.xml": "bfd2e325f4cb68c1bf4a214f9975462fa1fec6928d8bc7ab4eaaf1ff5bd3fc2d",
+  "ercot/s4x/word/styles.xml": "90f6940a432cc73bbf113c60b235d60f568f6aaf11b5eca1b3fef52823a9c6ef",
+  "ercot/s4x/word/theme/theme1.xml": "95e9db2278364c40d924d624dc9865105d277c22ddee7b3f459b069338b8c56a",
+  "ercot/s4x/word/webSettings.xml": "600e4e5bea53730ec3419ad3690c272e1796011c0e1c66c6dbdd27e9cb517af5",
+  "ercot/wb_current.html": "d29582e6d5331bc31fc33cd763c15a1ff5d9f696c91459af6ca29fbf07d016ef",
+  "iex/br.pdf": "f43ca5872e0e534a83ea39c70a21f4386a0a8d4e226d40ee712ae69715acc4ba",
+  "iex/br.txt": "21ca65ec5f403a89ce217d35f7e1b65f20963c4ae359b956554a8d49e63260d5",
+  "iex/br2.pdf": "8d0bd53199e95a5fdde8e926ca80c323150776b96d7c1ce0c7e58d135695640b",
+  "iex/c1016.pdf": "c1b8f71b8e7d6367d84d27f1880ee589b07820d51114f4d0bbb85c8f333845e4",
+  "iex/c1016.txt": "5e681c0344f5153d33ac62890d3a7eee6bfee06a8b894787c6cc799441bf6dac",
+  "iex/c998.pdf": "f98ad9c24a57cfccc2b569764aecaf51e229bb949bb1fad4398a297078017a1a",
+  "iex/c998.txt": "d45416b67be33743d2821239605dfbcca35b1dbed650b2cf1bc45591c3616fa4",
+  "iex/dam_timeline.png": "bc47a3a4f399139a0bf8c1c6ec438dd9dca23cb81644af4c786e757612aaabbf",
+  "iex/dam_timeline2.png": "8c41db4ff74e684910afaa1a956538fe50e2a09625f006cc657e8a6646de6b46",
+  "isone/m11.pdf": "378c55b744eae68e6eaea5860960e067f95a48d37357da28d3b742a467f4bfdd",
+  "isone/m11.txt": "0a0175670b7e0a92902c7f7326584ac1a107d45fb439eb5ca9c52002187c5af8",
+  "isone/manuals.html": "b12d1070e216b5e752233e0a158ebcc6ae521472f822d5e936d6f8b952e84230",
+  "isone/mr1.pdf": "d760f88dfda392ac85655cf11c41946f64e187673c02f4071df8d79e531d3dc5",
+  "isone/mr1.txt": "0b0b345ef9b3e1ad2cb2b6cae6245b7bd2f9f2f7b95c7302cdf5d3360112840d",
+  "isone/mr1b.pdf": "91a66e06df2e9de30c1d997d99fdedc186369f66a92820c0281105bfd28bd7df",
+  "isone/secti.pdf": "51ca550b7ddf5b6fa257827bc475ced09cb25067fd1d271714400412f9797efc",
+  "isone/secti.txt": "526967b21a4df2b1071014a1609ff76ebe54ac9573693007df31ec3bbeaaaef7",
+  "jepx/guide.pdf": "c9dee5fa21e263492e9241a7d5780aea306c00eeabce9da366bfdc75d23aea5b",
+  "jepx/guide.txt": "592077d55b6311d6ec3b5f17d2ebcf74267f86b1d7e784ade21110658615b71f",
+  "jepx/jepx20250627.pdf": "9231de7533f067c6bfdf628916d461216dd327df7ef07c8d8bc456ccae1b9ecb",
+  "jepx/jepx20250627.txt": "4f1a93a9d0c47227dc1e5945bb96cd319ee57418286b838c691232c33227f82b",
+  "jepx/jepx20260417.pdf": "dd80eb17fb561a1c50e4f43f0e836e7186a757fb33c4494c786e2dfe7c962c97",
+  "jepx/jepx20260417.txt": "319737bede24dc094e276f57309b165f1727a0347cd1678780c34eaa0d011689",
+  "jepx/p.html": "ab768623070128ccef048c88def86155dbe776c3d8db423cc8fa89432673d8a8",
+  "jepx/tr_rules.pdf": "496b25bd2b6700bef24c6a46e7235e9dd63cfa2276a6e30e5f0f0430b2b5de28",
+  "jepx/tr_rules.txt": "3114ed5cf4758a9545635e31e1bdf691fec4ac15c52da2b8708967137136cec4",
+  "jepx/tr_rules_dtl.pdf": "a0200978c2da74b0ccd9fd54f41be72007511a7c65178d6e59d6e8b15761fd53",
+  "jepx/tr_rules_dtl.txt": "eb00abdd21032aa69e0d014e6d6c08d967325301b18a9b8b587a74d9516f8537",
+  "miso/bpm.html": "cab9c231064dff540f345a13a9691088a6e96e56ab95cc2ea51e542f486b43ab",
+  "miso/bpm002.zip": "94154964c69ec51c91f9b611d707195f387da461262f012d79dc69662e298aa1",
+  "miso/x/BPM-002-r25_Attachment_A_CLEAN.pdf": "96cf2786c59370b0bb1719e9ca89fd198018021aec93ed1b4e8eb77e55ba2d89",
+  "miso/x/BPM-002-r25_Attachment_B_CLEAN.pdf": "5ffc2c8f423e018153be78213ff39fbc9b3ab7b3c02e077b756b2595241f8ea7",
+  "miso/x/BPM-002-r25_Attachment_C_CLEAN.pdf": "560a7008286b945a88a2339dfee8e9e18c744f2b60b5e1c12bbdfc364b73c3c0",
+  "miso/x/BPM-002-r25_Attachment_D_CLEAN.pdf": "a106e7a47834190283fbb44d9a08effe1bffdd1f5fd68bf49b2afcb4443d9435",
+  "miso/x/BPM-002-r25_Energy_and_Operating_Reserve_Markets_CLEAN.pdf": "c349b3030f7de9375de4f9194e68a2e317008e4da00a484dc957e7f9a1951cb5",
+  "miso/x/BPM-002-r26_Attachment_A_CLEAN.pdf": "cf6973e59271b792e1612be96342f281bddb7db22ae2221b5ee4917f4c276fb8",
+  "miso/x/BPM-002-r26_Attachment_A_REDLINES.pdf": "d677157528db2f2ecfe3f0a14e3228b54a55b33a8433e4c60c97441e6ef2278b",
+  "miso/x/BPM-002-r26_Attachment_B_CLEAN.pdf": "9e3259798b43779c75aeaf13adacb2aed76530a1343b2f628e8a43c922dd1e05",
+  "miso/x/BPM-002-r26_Attachment_B_REDLINES.pdf": "b4038864a2aa3597217b47b60aeab7b1df039a5a752da98991ae45ca19a000d3",
+  "miso/x/BPM-002-r26_Attachment_C_CLEAN.pdf": "c16008499a1ceffaf8868cc533e02c3134dd72727cea815bd3a7f91a89e1498f",
+  "miso/x/BPM-002-r26_Attachment_C_REDLINES.pdf": "0c245a185c0c6fae15bf42593e02e5ca08ed94b476c1f1e98c382212ccb1e999",
+  "miso/x/BPM-002-r26_Attachment_D_CLEAN.pdf": "cfa83e80b7fe253c32686a56e49ff80da06cf7d5d3b7f404f2fca57e86d03eb8",
+  "miso/x/BPM-002-r26_Attachment_D_REDLINES.pdf": "1a7883d4504b21fb1e5739b2c1e4425432c9559370ecf445a81e7f091c7a1c2a",
+  "miso/x/BPM-002-r26_Energy_and_Operating_Reserve_Markets_CLEAN.pdf": "7aedf3a3fe74d217ad8c4e325efe2dbf6953382b55714894d5295b78638c2819",
+  "miso/x/BPM-002-r26_Energy_and_Operating_Reserve_Markets_REDLINES.pdf": "8a0183e7921050b481376376bb092e735e14792b953d93b3af796127e0eab616",
+  "miso/x/r25.txt": "34bcf5c70cebfa665c3780cc32a355855070276942a31d269b727b3404a5285c",
+  "miso/x/r26.txt": "f6b37d415bb171dc4154191f98748154be7e9da55bbfa670efe9907976a910ab",
+  "miso/x/r26red.txt": "0c7e0ba21d65a4f4c80a4c869cecb6e686dc9b5cba61dbec30197d7494fd7465",
+  "ncep/nomads/20261014_00.html": "9aa3cdf2ca178193d8597c9a5cf7c9bccda6fb560a978eeee485bfd03c64c7ff",
+  "ncep/nomads/20261014_06.html": "a734c202ff47c2e2480c0831a134bd923ce18b551b55ca69bcf132a3540b109d",
+  "ncep/nomads/20261014_12.html": "e43d1ca1777182c6ed5dc1d19ceeb947f93bafe23327d50c4ea459b7f9ebd9a5",
+  "ncep/nomads/20261014_18.html": "6fd2e40c19ddd46328ec1534a8fec18a36f4843604bb6b43b5ba3ef51aefe3b2",
+  "ncep/nomads/20261015_00.html": "ad795e78c432c3c49f23175ce4937e21f7d22ccce9c87228ebd438513f21622e",
+  "ncep/nomads/20261015_06.html": "b569e616ff287dc9a80902b2fa53b9068d450d61bb14f8cacdc1c768fc53a1c3",
+  "ncep/nomads/20261015_12.html": "268634b2424da63827ae7d07e5463f607a5c693a2cf77989385e983f432757f6",
+  "ncep/nomads/20261015_18.html": "d8038b3ec193a8399b397371a583fdb9e9ead7fa875026c7cbf6a0bb817cac56",
+  "ncep/nomads/20261016_00.html": "046f1be9a6e2321d71cf9bad1593dfd8c4bd6a0362e2af3275b933ba34501893",
+  "ncep/nomads/20261016_06.html": "1d9257d0f4dbd4663a4d87af33e245e8fa8563a1a98a20e8fcde7e6556bf21d9",
+  "ncep/nomads/20261016_12.html": "378b387dfcba49330ebe23bb4779d44213d1c68a8d0340f8611445dec39b7b6a",
+  "ncep/nomads/20261016_18.html": "cded5f75ad3f98645f5479da020b4e8db3c89c4bd50110d0586493647766b658",
+  "ncep/nomads/20261017_00.html": "0ae01ea5c7b7c2eaafe432f6a1182b36f432913f3422b3e7aa52f76e7345fd09",
+  "ncep/nomads/20261017_06.html": "ffd588df66671bc8d0b6a0993374419d4c8c37d09448f4a6530b3ae520832188",
+  "ncep/nomads/20261017_12.html": "15c8cff5c7fec61dcba75444ca08cc64ecee391a80bca89d3837d95c8b3d335d",
+  "ncep/nomads/20261017_18.html": "d003cc48c8b145eea362913e20c11878d38986cfe3b0ce8bf3b8521055735e88",
+  "ncep/nomads/20261018_00.html": "5a6304b9010e2804c55e1f42dc7ae30ae9db90b213cc56dad32df9dc449ed609",
+  "ncep/nomads/20261018_06.html": "3b3845b8b58fd3c2e311cef54ec2afe033f4e893b91ef1bed50aff11d239f8d2",
+  "ncep/nomads/20261018_12.html": "0255322aafabfcb3a726b8dfce494c444d65958c7b986658a37b8110f81530d5",
+  "ncep/nomads/20261018_18.html": "8a4ce1893a6f0ae7f380a8ea90bf9995da5c6cd6b669b754000b9a70d70738b4",
+  "ncep/nomads/20261019_00.html": "14f57d2284b57444b84213cfefbf82569b11082dc3ea66d595fc966765f4f32a",
+  "ncep/nomads/20261019_06.html": "82843bdb6e2ee44c1976c7061d72e75f935d53cefe901cce25762fda3850dd3b",
+  "ncep/nomads/20261019_12.html": "0a152da1a3ba38c7e2b2ef7fefd40ed8b8870d1a8946c4b7270ca226d24eee02",
+  "ncep/nomads/20261019_18.html": "32435ea3166a4862283a35fa4140cf4db81535644987ebac64df962f386c584c",
+  "ncep/nomads/20261020_00.html": "238f416c7666b6245af52633cfd09ac6aee40fb0a869e5e608166576d41bde3c",
+  "ncep/nomads/20261020_06.html": "15fa57f9236b228605db4add13717c7b8512db68afc08777dc879eecc8f87d3a",
+  "ncep/nomads/20261020_12.html": "fb5826ed4da1b350e8b43a54b7a9df576a311e1aee5bbd74ab687d788cf71e35",
+  "ncep/nomads/20261020_18.html": "49f0679f67f097b7cb33bf5ab204af64380287ced17549e3614ef0a2aa9479b0",
+  "ncep/nomads/20261021_00.html": "98b4de03dcceed105f9e9e3b85e763fc7bc2a1aa0253f701c37b93cf79726d81",
+  "ncep/nomads/20261021_06.html": "2a163546d062ff9583295cc5b594c48853c008aabd9c64a2a34a9e222d90c994",
+  "ncep/nomads/20261021_12.html": "dcd50d7186a32ed3a86602d0ac8a238a85ca4b9478b765cd0b29fe93a56794c5",
+  "ncep/nomads/20261021_18.html": "032d0b5303ffcb34b23521bdafd2a9032c5e85aae1b3b9fa454ca57921fe3912",
+  "ncep/nomads/20261022_00.html": "bd06c604a25e9328a0a059cca6031dab2e76fa943bb549f2eedd5c4602ff25f6",
+  "ncep/nomads/20261022_06.html": "7133919390769222125cae29c610ed5c863dd1480c3ae7b08b9469b4261fd11c",
+  "ncep/nomads/20261022_12.html": "faeb8f9d5ed9f744b3a6f525419b48238aa524f2bb2595c180ff1e252a9e991c",
+  "ncep/nomads/20261022_18.html": "b0dae635e693acc9c205eff714f3641aef8d4b7d9cbee215c1a747d6e87d7da7",
+  "ncep/nomads/20261023_00.html": "d5f8dc69e20ed7b1bcee7de96231607d7e566a57c0fbedb768af1a0e6baa8c4c",
+  "ncep/nomads/20261023_06.html": "3c42195acb6bf816e0a604bbfdd12610bac8ab4d04201024fdacf1cf4f4a8c05",
+  "ncep/nomads/20261023_12.html": "c70424106b1d643e3387df84a262ef9ec9ec3df710f8a47d7c1ceaaddf990742",
+  "ncep/nomads/20261023_18.html": "4807352a95e6a2be48689fffab2e5a6e6ebae2a69626197194cd2159ed340c15",
+  "ncep/nomads_20261022_06.html": "c4b2e04e56baf896981d28680d0122198ce10a91707bd398e22e17d12ec072a9",
+  "ncep/nomads_20261022_12.html": "7237bda48f2a12f5ef4f4cdc7912ea9a06bf8d14957caa9fbddd1dcb500fd832",
+  "ncep/nomads_20261022_18.html": "97a02c601ee58193297d3ab8e945cd05d0995920251ed2c47112bc6b852201f8",
+  "ncep/nomads_20261023_00.html": "e692fc0338cfed0d0e09a0f5cddffbf7838b052e052df795dfb0d8db57ee85f3",
+  "ncep/prodidx.html": "275322bc95954de6adc8de4cceeff3893e1ee31a048d05074a5b69cd56393e4a",
+  "ncep/prodstat.html": "64bb83caa5f89374799a80dbcc306be7dfdad43f7c16ebaaa02081d177d35164",
+  "np/gbspec2023.pdf": "0058025fb31dc2ccc27e7746a800a61ae899b7911900f880daf95c9c6aa6f0af",
+  "np/gbspec2023.txt": "32407340c29b56722388eec78f6ec3075acc020a94786f4e4c9cda9f1d1d7453",
+  "np/gbspec_cur.pdf": "ad2a82f6bb9d0a342e35deec18f2bd683d83bbcfd897fec02d4947bb01cbaf4e",
+  "np/gbspec_cur.txt": "e3e3830f2c4e0f908fa72cabff248e6125956369ad07b6e3fffb362ea4a38846",
+  "nyiso/m11.pdf": "eb6255bfdf8463c86952947bbfef3d4ef264acafc5c78c7115cb4b37a3fcd175",
+  "nyiso/m11.txt": "71036d413f007c8866796d3a0108439989883ee463446a613ec7102ac015e573",
+  "nyiso/manuals.html": "775db4c04e8037cff2ffea33ffb0bc166b565ea6a35b82c3f74a5828e857c153",
+  "nyiso/mst.pdf": "7298b55dc2177e11da5280a96e233738933eb413ab0a84cc9d76031f1e4088c2",
+  "nyiso/mst.txt": "476b4432f38e871931a39a524f747872c8de39ccc3107ab4289ecacef2177a3e",
+  "pjm/m11.pdf": "2e3a4d3c6c92c828667fd0dde700f4e96768d2ffb7ecc13e60a7cf074af1fb04",
+  "pjm/m11.txt": "4683bafaec0ef36f0ab0dc6045214189548e356e67cc77d7e526384901848590"
+ }
+}

@@ -1,0 +1,493 @@
+{
+ "phase": "116",
+ "git_sha": "2ccd69144fdcfab2f475b24cfa4c87d57bc7d129",
+ "rows": {
+  "primary": {
+   "group": "Main window, 2024-08 to 2026-08",
+   "key": "primary",
+   "label": "Primary specification",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.153,
+   "pre": 0.2529,
+   "pre_ci95": [
+    0.208,
+    0.2998
+   ],
+   "gate": 0.0026,
+   "gate_ci95": [
+    -0.0047,
+    0.0099
+   ],
+   "gate_p_l3": 0.49547417,
+   "ucb_rel_pct": 0.46,
+   "ucb_share_pre_pct": 3.91
+  },
+  "daylight": {
+   "group": "Main window, 2024-08 to 2026-08",
+   "key": "daylight",
+   "label": "Daylight slots, 09:00--15:30\\textsuperscript{\\dag}",
+   "note": "",
+   "pending": false,
+   "n_days": 731,
+   "n_slots": 91998,
+   "price_only_mae": 3.0767,
+   "pre": 0.5885,
+   "pre_ci95": [
+    0.472,
+    0.7112
+   ],
+   "gate": 0.0125,
+   "gate_ci95": [
+    -0.0062,
+    0.0314
+   ],
+   "gate_p_l3": 0.19818676,
+   "ucb_rel_pct": 1.021,
+   "ucb_share_pre_pct": 5.34
+  },
+  "tuned": {
+   "group": "Learner",
+   "key": "tuned",
+   "label": "XGBoost, re-tuned every 91 days",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.1577,
+   "pre": 0.2385,
+   "pre_ci95": [
+    0.1971,
+    0.2805
+   ],
+   "gate": -0.0018,
+   "gate_ci95": [
+    -0.0101,
+    0.0067
+   ],
+   "gate_p_l3": 0.65393172,
+   "ucb_rel_pct": 0.311,
+   "ucb_share_pre_pct": 2.81
+  },
+  "lear": {
+   "group": "Learner",
+   "key": "lear",
+   "label": "LEAR (linear benchmark)",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.2161,
+   "pre": 0.128,
+   "pre_ci95": [
+    0.0896,
+    0.1683
+   ],
+   "gate": 0.0014,
+   "gate_ci95": [
+    -0.0049,
+    0.0077
+   ],
+   "gate_p_l3": 0.65195315,
+   "ucb_rel_pct": 0.347,
+   "ucb_share_pre_pct": 6.02
+  },
+  "dnn": {
+   "group": "Learner",
+   "key": "dnn",
+   "label": "Feed-forward neural network",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.1977,
+   "pre": 0.187,
+   "pre_ci95": [
+    0.149,
+    0.2273
+   ],
+   "gate": 0.0001,
+   "gate_ci95": [
+    -0.0098,
+    0.0099
+   ],
+   "gate_p_l3": 0.98109723,
+   "ucb_rel_pct": 0.45,
+   "ucb_share_pre_pct": 5.29
+  },
+  "single_point": {
+   "group": "Measurement",
+   "key": "single_point",
+   "label": "Single representative point",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.153,
+   "pre": 0.2249,
+   "pre_ci95": [
+    0.1829,
+    0.2685
+   ],
+   "gate": 0.0035,
+   "gate_ci95": [
+    -0.0032,
+    0.0102
+   ],
+   "gate_p_l3": 0.32979363,
+   "ucb_rel_pct": 0.474,
+   "ucb_share_pre_pct": 4.54
+  },
+  "weights_2025-12": {
+   "group": "Measurement",
+   "key": "weights_2025-12",
+   "label": "Capacity weights, 2025-12 register",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.153,
+   "pre": 0.2508,
+   "pre_ci95": [
+    0.206,
+    0.2978
+   ],
+   "gate": 0.0049,
+   "gate_ci95": [
+    -0.0021,
+    0.0121
+   ],
+   "gate_p_l3": 0.18453455,
+   "ucb_rel_pct": 0.562,
+   "ucb_share_pre_pct": 4.82
+  },
+  "weights_equal": {
+   "group": "Measurement",
+   "key": "weights_equal",
+   "label": "Equal weights across prefectures",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.153,
+   "pre": 0.2539,
+   "pre_ci95": [
+    0.2088,
+    0.3011
+   ],
+   "gate": 0.0004,
+   "gate_ci95": [
+    -0.0071,
+    0.0078
+   ],
+   "gate_p_l3": 0.91643958,
+   "ucb_rel_pct": 0.362,
+   "ucb_share_pre_pct": 3.07
+  },
+  "no_wind": {
+   "group": "Measurement",
+   "key": "no_wind",
+   "label": "Without the wind channel",
+   "note": "",
+   "pending": false,
+   "n_days": 732,
+   "n_slots": 315414,
+   "price_only_mae": 2.153,
+   "pre": 0.2458,
+   "pre_ci95": [
+    0.2019,
+    0.2923
+   ],
+   "gate": 0.004,
+   "gate_ci95": [
+    -0.0034,
+    0.0111
+   ],
+   "gate_p_l3": 0.28183925,
+   "ucb_rel_pct": 0.516,
+   "ucb_share_pre_pct": 4.52
+  },
+  "pre_upgrade": {
+   "group": "Sample",
+   "key": "pre_upgrade",
+   "label": "Test days before the 2025-05-20 model upgrade",
+   "note": "",
+   "pending": false,
+   "n_days": 292,
+   "n_slots": 126054,
+   "price_only_mae": 2.0243,
+   "pre": 0.3024,
+   "pre_ci95": [
+    0.2279,
+    0.3806
+   ],
+   "gate": 0.0059,
+   "gate_ci95": [
+    -0.009,
+    0.0201
+   ],
+   "gate_p_l3": 0.42576626,
+   "ucb_rel_pct": 0.993,
+   "ucb_share_pre_pct": 6.65
+  },
+  "post_upgrade": {
+   "group": "Sample",
+   "key": "post_upgrade",
+   "label": "Test days after the upgrade",
+   "note": "",
+   "pending": false,
+   "n_days": 440,
+   "n_slots": 189360,
+   "price_only_mae": 2.2384,
+   "pre": 0.2201,
+   "pre_ci95": [
+    0.1646,
+    0.2798
+   ],
+   "gate": 0.0004,
+   "gate_ci95": [
+    -0.0067,
+    0.0079
+   ],
+   "gate_p_l3": 0.92203704,
+   "ucb_rel_pct": 0.353,
+   "ucb_share_pre_pct": 3.59
+  },
+  "post_upgrade_trained": {
+   "group": "Sample",
+   "key": "post_upgrade_trained",
+   "label": "Trained on post-upgrade data only",
+   "note": "",
+   "pending": false,
+   "n_days": 379,
+   "n_slots": 163008,
+   "price_only_mae": 2.3558,
+   "pre": 0.2515,
+   "pre_ci95": [
+    0.1882,
+    0.3217
+   ],
+   "gate": 0.0035,
+   "gate_ci95": [
+    -0.0065,
+    0.0135
+   ],
+   "gate_p_l3": 0.46334259,
+   "ucb_rel_pct": 0.573,
+   "ucb_share_pre_pct": 5.37
+  },
+  "long_training": {
+   "group": "Sample",
+   "key": "long_training",
+   "label": "Folds with at least a year of training",
+   "note": "",
+   "pending": false,
+   "n_days": 505,
+   "n_slots": 217440,
+   "price_only_mae": 2.2411,
+   "pre": 0.2673,
+   "pre_ci95": [
+    0.209,
+    0.3269
+   ],
+   "gate": 0.0015,
+   "gate_ci95": [
+    -0.0057,
+    0.0087
+   ],
+   "gate_p_l3": 0.70132463,
+   "ucb_rel_pct": 0.388,
+   "ucb_share_pre_pct": 3.25
+  },
+  "regime_hot_days": {
+   "group": "Weather regime, main window",
+   "key": "regime_hot_days",
+   "label": "Hottest days (area top 5\\%)",
+   "note": "",
+   "pending": false,
+   "n_days": 93,
+   "n_slots": 16416,
+   "price_only_mae": 2.1025,
+   "pre": -0.0304,
+   "pre_ci95": [
+    -0.1113,
+    0.0453
+   ],
+   "gate": 0.0009,
+   "gate_ci95": [
+    -0.0237,
+    0.028
+   ],
+   "gate_p_l3": 0.94188412,
+   "ucb_rel_pct": 1.332,
+   "ucb_share_pre_pct": null
+  },
+  "regime_cold_days": {
+   "group": "Weather regime, main window",
+   "key": "regime_cold_days",
+   "label": "Coldest days (area bottom 5\\%)",
+   "note": "",
+   "pending": false,
+   "n_days": 79,
+   "n_slots": 16416,
+   "price_only_mae": 1.7537,
+   "pre": 0.0509,
+   "pre_ci95": [
+    -0.0333,
+    0.1313
+   ],
+   "gate": -0.0131,
+   "gate_ci95": [
+    -0.0459,
+    0.0189
+   ],
+   "gate_p_l3": 0.41195029,
+   "ucb_rel_pct": 1.078,
+   "ucb_share_pre_pct": null
+  },
+  "regime_low_wind_days": {
+   "group": "Weather regime, main window",
+   "key": "regime_low_wind_days",
+   "label": "Calmest days (area bottom 10\\%)",
+   "note": "",
+   "pending": false,
+   "n_days": 314,
+   "n_slots": 31948,
+   "price_only_mae": 1.9711,
+   "pre": 0.1452,
+   "pre_ci95": [
+    0.0941,
+    0.2002
+   ],
+   "gate": -0.0013,
+   "gate_ci95": [
+    -0.0235,
+    0.0232
+   ],
+   "gate_p_l3": 0.90814921,
+   "ucb_rel_pct": 1.177,
+   "ucb_share_pre_pct": 15.98
+  },
+  "regime_evening_ramp": {
+   "group": "Weather regime, main window",
+   "key": "regime_evening_ramp",
+   "label": "Evening ramp, 16:00--20:30",
+   "note": "",
+   "pending": false,
+   "n_days": 729,
+   "n_slots": 65610,
+   "price_only_mae": 2.4997,
+   "pre": 0.164,
+   "pre_ci95": [
+    0.1209,
+    0.2061
+   ],
+   "gate": -0.0049,
+   "gate_ci95": [
+    -0.0145,
+    0.0042
+   ],
+   "gate_p_l3": 0.33672561,
+   "ucb_rel_pct": 0.168,
+   "ucb_share_pre_pct": 2.56
+  },
+  "regime_high_price_slots": {
+   "group": "Weather regime, main window",
+   "key": "regime_high_price_slots",
+   "label": "Highest-priced slots (top 5\\%, outcome-selected)",
+   "note": "",
+   "pending": false,
+   "n_days": 375,
+   "n_slots": 15823,
+   "price_only_mae": 5.9821,
+   "pre": 0.3724,
+   "pre_ci95": [
+    0.2502,
+    0.4974
+   ],
+   "gate": -0.0038,
+   "gate_ci95": [
+    -0.0557,
+    0.0482
+   ],
+   "gate_p_l3": 0.88466551,
+   "ucb_rel_pct": 0.806,
+   "ucb_share_pre_pct": 12.94
+  },
+  "backcast_all": {
+   "group": "Backcast, 2021-01 to 2024-07",
+   "key": "backcast_all",
+   "label": "All test days",
+   "note": "",
+   "pending": false,
+   "n_days": 1308,
+   "n_slots": 565056,
+   "price_only_mae": 3.5922,
+   "pre": 0.2371,
+   "pre_ci95": [
+    0.1704,
+    0.3162
+   ],
+   "gate": -0.0059,
+   "gate_ci95": [
+    -0.0171,
+    0.0046
+   ],
+   "gate_p_l3": 0.32106797,
+   "ucb_rel_pct": 0.128,
+   "ucb_share_pre_pct": 1.94
+  },
+  "backcast_episodes": {
+   "group": "Backcast, 2021-01 to 2024-07",
+   "key": "backcast_episodes",
+   "label": "Scarcity episodes",
+   "note": "",
+   "pending": false,
+   "n_days": 243,
+   "n_slots": 104976,
+   "price_only_mae": 8.3164,
+   "pre": 0.4856,
+   "pre_ci95": [
+    0.2159,
+    0.8205
+   ],
+   "gate": -0.0095,
+   "gate_ci95": [
+    -0.0579,
+    0.0328
+   ],
+   "gate_p_l3": 0.70761563,
+   "ucb_rel_pct": 0.394,
+   "ucb_share_pre_pct": 6.75
+  },
+  "backcast_S50": {
+   "group": "Backcast, 2021-01 to 2024-07",
+   "key": "backcast_S50",
+   "label": "Slots at or above 50 JPY/kWh (outcome-selected)",
+   "note": "",
+   "pending": false,
+   "n_days": 130,
+   "n_slots": 11198,
+   "price_only_mae": 23.3102,
+   "pre": 1.0699,
+   "pre_ci95": [
+    0.3761,
+    1.8126
+   ],
+   "gate": 0.3735,
+   "gate_ci95": [
+    0.0236,
+    0.8852
+   ],
+   "gate_p_l3": 0.10518646,
+   "ucb_rel_pct": 3.797,
+   "ucb_share_pre_pct": 82.74
+  }
+ },
+ "n_rows": 21,
+ "n_pending": 0,
+ "max_ucb_rel_pct": 3.797,
+ "max_ucb_rel_pct_main_window": 1.021
+}
