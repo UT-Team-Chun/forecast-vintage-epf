@@ -1,6 +1,6 @@
 {
  "phase": "116",
- "git_sha": "2ccd69144fdcfab2f475b24cfa4c87d57bc7d129",
+ "git_sha": "017e93c3e53eed5038a1671255ccb4de57cf6cd0",
  "rows": {
   "primary": {
    "group": "Main window, 2024-08 to 2026-08",
@@ -28,7 +28,7 @@
   "daylight": {
    "group": "Main window, 2024-08 to 2026-08",
    "key": "daylight",
-   "label": "Daylight slots, 09:00--15:30\\textsuperscript{\\dag}",
+   "label": "Daylight, 09:00--15:30\\textsuperscript{\\dag}",
    "note": "",
    "pending": false,
    "n_days": 731,
@@ -51,7 +51,7 @@
   "tuned": {
    "group": "Learner",
    "key": "tuned",
-   "label": "XGBoost, re-tuned every 91 days",
+   "label": "Re-tuned XGBoost",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -74,7 +74,7 @@
   "lear": {
    "group": "Learner",
    "key": "lear",
-   "label": "LEAR (linear benchmark)",
+   "label": "LEAR",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -97,7 +97,7 @@
   "dnn": {
    "group": "Learner",
    "key": "dnn",
-   "label": "Feed-forward neural network",
+   "label": "Neural network",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -120,7 +120,7 @@
   "single_point": {
    "group": "Measurement",
    "key": "single_point",
-   "label": "Single representative point",
+   "label": "Single point",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -143,7 +143,7 @@
   "weights_2025-12": {
    "group": "Measurement",
    "key": "weights_2025-12",
-   "label": "Capacity weights, 2025-12 register",
+   "label": "2025-12 register",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -166,7 +166,7 @@
   "weights_equal": {
    "group": "Measurement",
    "key": "weights_equal",
-   "label": "Equal weights across prefectures",
+   "label": "Equal weights",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -189,7 +189,7 @@
   "no_wind": {
    "group": "Measurement",
    "key": "no_wind",
-   "label": "Without the wind channel",
+   "label": "No wind channel",
    "note": "",
    "pending": false,
    "n_days": 732,
@@ -210,9 +210,9 @@
    "ucb_share_pre_pct": 4.52
   },
   "pre_upgrade": {
-   "group": "Sample",
+   "group": "Sample (model upgrade on 2025-05-20)",
    "key": "pre_upgrade",
-   "label": "Test days before the 2025-05-20 model upgrade",
+   "label": "Pre-upgrade test days",
    "note": "",
    "pending": false,
    "n_days": 292,
@@ -233,9 +233,9 @@
    "ucb_share_pre_pct": 6.65
   },
   "post_upgrade": {
-   "group": "Sample",
+   "group": "Sample (model upgrade on 2025-05-20)",
    "key": "post_upgrade",
-   "label": "Test days after the upgrade",
+   "label": "Post-upgrade test days",
    "note": "",
    "pending": false,
    "n_days": 440,
@@ -256,9 +256,9 @@
    "ucb_share_pre_pct": 3.59
   },
   "post_upgrade_trained": {
-   "group": "Sample",
+   "group": "Sample (model upgrade on 2025-05-20)",
    "key": "post_upgrade_trained",
-   "label": "Trained on post-upgrade data only",
+   "label": "Post-upgrade training",
    "note": "",
    "pending": false,
    "n_days": 379,
@@ -279,9 +279,9 @@
    "ucb_share_pre_pct": 5.37
   },
   "long_training": {
-   "group": "Sample",
+   "group": "Sample (model upgrade on 2025-05-20)",
    "key": "long_training",
-   "label": "Folds with at least a year of training",
+   "label": "Training $\\geq$ 1 year",
    "note": "",
    "pending": false,
    "n_days": 505,
@@ -304,7 +304,7 @@
   "regime_hot_days": {
    "group": "Weather regime, main window",
    "key": "regime_hot_days",
-   "label": "Hottest days (area top 5\\%)",
+   "label": "Hottest 5\\% of days",
    "note": "",
    "pending": false,
    "n_days": 93,
@@ -327,7 +327,7 @@
   "regime_cold_days": {
    "group": "Weather regime, main window",
    "key": "regime_cold_days",
-   "label": "Coldest days (area bottom 5\\%)",
+   "label": "Coldest 5\\% of days",
    "note": "",
    "pending": false,
    "n_days": 79,
@@ -350,7 +350,7 @@
   "regime_low_wind_days": {
    "group": "Weather regime, main window",
    "key": "regime_low_wind_days",
-   "label": "Calmest days (area bottom 10\\%)",
+   "label": "Calmest 10\\% of days",
    "note": "",
    "pending": false,
    "n_days": 314,
@@ -373,7 +373,7 @@
   "regime_evening_ramp": {
    "group": "Weather regime, main window",
    "key": "regime_evening_ramp",
-   "label": "Evening ramp, 16:00--20:30",
+   "label": "Evening, 16:00--20:30",
    "note": "",
    "pending": false,
    "n_days": 729,
@@ -396,7 +396,7 @@
   "regime_high_price_slots": {
    "group": "Weather regime, main window",
    "key": "regime_high_price_slots",
-   "label": "Highest-priced slots (top 5\\%, outcome-selected)",
+   "label": "Top 5\\% of prices\\textsuperscript{*}",
    "note": "",
    "pending": false,
    "n_days": 375,
@@ -465,7 +465,7 @@
   "backcast_S50": {
    "group": "Backcast, 2021-01 to 2024-07",
    "key": "backcast_S50",
-   "label": "Slots at or above 50 JPY/kWh (outcome-selected)",
+   "label": "Prices $\\geq$ 50 JPY/kWh\\textsuperscript{*}",
    "note": "",
    "pending": false,
    "n_days": 130,

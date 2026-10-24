@@ -390,7 +390,8 @@ def nomination_rules(p76: dict) -> str:
 L10N = {
     "en": {
         "ladder_head": ("Weather information set", "Available at the gate?",
-                        "Improv.\\ (\\jpykwh)", "95\\% CI", "Pooled DM $p$",
+                        "\\shortstack[r]{Improv.\\\\(\\jpykwh)}", "95\\% CI",
+                        "\\shortstack[l]{Pooled\\\\DM $p$}",
                         "Areas"),
         "ladder_blocks": ("Run-pinned: one identified initialisation per value",
                           "Lead-indexed composites: assembled across "
@@ -438,7 +439,8 @@ L10N = {
     },
     "ja": {
         "ladder_head": ("気象情報集合", "ゲートクローズ時点で利用可能か",
-                        "改善 (\\jpykwh)", "95\\% CI", "プール DM $p$",
+                        "\\shortstack[r]{改善\\\\(\\jpykwh)}", "95\\% CI",
+                        "\\shortstack[l]{プール\\\\DM $p$}",
                         "エリア数"),
         "ladder_blocks": ("run 固定: 値ごとに 1 つの同定された初期時刻",
                           "リードタイム索引付きコンポジット: 複数の初期時刻に"
@@ -511,6 +513,21 @@ def _dm_p(p3: float, p9: float) -> str:
     return f"${worst:.3f}$"
 
 
+def _noted_tabular(colspec: str, rows: list[str], note: str) -> str:
+    """A tabular with its footnote set underneath, exactly as wide as the table.
+
+    The note used to be a one-line multicolumn row inside the tabular, which set the
+    table's width and had the document's max-width cap shrink the whole table to
+    about three quarters. Set under the table at the table's own width (measured in
+    the supplement's \\notedtablebox), it wraps instead.
+    """
+    return ("\\savebox{\\notedtablebox}{%\n"
+            f"\\begin{{tabular}}{{{colspec}}}\n" + "\n".join(rows) + "\n\\end{tabular}}%\n"
+            "\\usebox{\\notedtablebox}\\par\\smallskip\n"
+            "\\begin{minipage}{\\wd\\notedtablebox}\\raggedright\\footnotesize"
+            f"\\emph{{{note}}}\\end{{minipage}}\n")
+
+
 def vintage_ladder(p85: dict, lang: str = "en") -> str:
     """The main-article ladder table.
 
@@ -539,7 +556,10 @@ def vintage_ladder(p85: dict, lang: str = "en") -> str:
                 f"{_dm_p(r['dm_l3']['p_hln'], r['dm_l9']['p_hln'])} & "
                 f"{r['areas_sig_l3']}/9 \\\\")
     rows.append("\\bottomrule")
-    return ("\\begin{tabular}{llrllc}\n" + "\n".join(rows)
+    # the two text columns wrap, so the table sets at full size inside the text
+    # block instead of being shrunk to about 60% by the max-width cap
+    return ("\\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{0.26\\linewidth}"
+            ">{\\raggedright\\arraybackslash}p{0.27\\linewidth}rllc@{}}\n" + "\n".join(rows)
             + "\n\\end{tabular}\n")
 
 
@@ -628,11 +648,10 @@ def equivalence_margins(p83: dict, p82: dict, lang: str = "en") -> str:
     foot = t["margin_foot"].format(
         pt=f"{_g(p83, 'point'):+.5f}", n=_g(p83, "n_days"), base=f"{base:.3f}",
         perm=f"{_g(p83, 'permutation_signflip', 'p'):.3f}")
-    rows += ["\\midrule",
-             f"\\multicolumn{{7}}{{@{{}}l@{{}}}}{{\\emph{{{foot}}}}} \\\\",
-             "\\bottomrule"]
-    return ("\\begin{tabular}{@{}lrrrrrr@{}}\n" + "\n".join(rows)
-            + "\n\\end{tabular}\n")
+    rows += ["\\bottomrule"]
+    # the footnote sits under the table, not in a one-line row that set its width
+    return _noted_tabular(
+        "@{}>{\\raggedright\\arraybackslash}p{0.27\\linewidth}rrrrrr@{}", rows, foot)
 
 
 def enriched_nwp(p54v2: dict) -> str:
@@ -757,16 +776,13 @@ def weight_sensitivity(p91: dict) -> str:
             f"$[{h['ci95'][0]:.4f}, {h['ci95'][1]:.4f}]$ & "
             f"{_f(pg['improvement'], 4)} & {_f(gt['delta'], 4, signed=True)} & "
             f"$[{gt['ci95'][0]:.4f}, {gt['ci95'][1]:.4f}]$ & {ptxt} \\\\")
-    rows += [
-        "\\midrule",
-        f"\\multicolumn{{7}}{{@{{}}l@{{}}}}{{\\emph{{Reproduction check: the "
-        f"{WEIGHT_ARMS[0][0]} arm matches the published ladder to "
-        f"{max(g60['abs_differences'].values()):.4f} on the headline, the "
-        f"excluded run and the gate difference}}}} \\\\",
-        "\\bottomrule",
-    ]
-    return ("\\begin{tabular}{@{}lrlrrlr@{}}\n" + "\n".join(rows)
-            + "\n\\end{tabular}\n")
+    rows += ["\\bottomrule"]
+    note = (f"Reproduction check: the {WEIGHT_ARMS[0][0]} arm matches the published ladder "
+            f"to {max(g60['abs_differences'].values()):.4f} on the headline, the excluded "
+            "run and the gate difference.")
+    # the note sits under the table, not in a one-line row that set its width
+    return _noted_tabular(
+        "@{}>{\\raggedright\\arraybackslash}p{0.24\\linewidth}rlrrlr@{}", rows, note)
 
 
 PHYS_TIER_LABELS = [

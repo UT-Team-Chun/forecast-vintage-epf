@@ -144,13 +144,13 @@ def build_rows(p85) -> list[dict]:  # noqa: C901, PLR0912, PLR0915 - one branch 
     add(g, "primary", "Primary specification", _block(p85, ref, BASE, PRE, POST))
     # Added after the internal referee read (phase118): the pooled bound includes
     # night slots, on which a PV-driven increment cannot appear.
-    add(g, "daylight", "Daylight slots, 09:00--15:30\\textsuperscript{\\dag}",
+    add(g, "daylight", "Daylight, 09:00--15:30\\textsuperscript{\\dag}",
         _block(p85, ref.filter(pl.col("datetime_jst").dt.hour().is_between(9, 15)),
                BASE, PRE, POST))
 
     g = "Learner"
     t = _ckpt("phase113_tuned_checkpoints")
-    add(g, "tuned", "XGBoost, re-tuned every 91 days",
+    add(g, "tuned", "Re-tuned XGBoost",
         None if t is None else _block(p85, keys.join(t, on=KEY), BASE, PRE, POST))
     lp, l96 = _ckpt("phase113_lear_post_checkpoints"), _ckpt("phase96_lear_checkpoints")
     lear = None
@@ -158,16 +158,16 @@ def build_rows(p85) -> list[dict]:  # noqa: C901, PLR0912, PLR0915 - one branch 
         lj = keys.join(lp.select(*KEY, "test_day", "y_actual", f"y_pred_{POST}"), on=KEY).join(
             l96.select(*KEY, f"y_pred_{BASE}", f"y_pred_{PRE}"), on=KEY)
         lear = _block(p85, lj, BASE, PRE, POST)
-    add(g, "lear", "LEAR (linear benchmark)", lear)
+    add(g, "lear", "LEAR", lear)
     dn = _ckpt("phase113_dnn_checkpoints")
-    add(g, "dnn", "Feed-forward neural network",
+    add(g, "dnn", "Neural network",
         None if dn is None else _block(p85, keys.join(dn, on=KEY), BASE, PRE, POST))
 
     g = "Measurement"
-    add(g, "single_point", "Single representative point",
+    add(g, "single_point", "Single point",
         _block(p85, ref, BASE, "msm_d2_12z", "msm_d1_00z"))
-    for arm, label in (("2025-12", "Capacity weights, 2025-12 register"),
-                       ("equal", "Equal weights across prefectures")):
+    for arm, label in (("2025-12", "2025-12 register"),
+                       ("equal", "Equal weights")):
         files = sorted((RUN / "phase91_checkpoints").glob(f"{arm}__*.parquet"))
         blk = None
         if len(files) == 9:
@@ -182,31 +182,31 @@ def build_rows(p85) -> list[dict]:  # noqa: C901, PLR0912, PLR0915 - one branch 
                                   f"y_pred_{POST}_nowind"), on=KEY).join(
             ref.select(*KEY, f"y_pred_{BASE}"), on=KEY)
         nw = _block(p85, nwj, BASE, f"{PRE}_nowind", f"{POST}_nowind")
-    add(g, "no_wind", "Without the wind channel", nw)
+    add(g, "no_wind", "No wind channel", nw)
 
-    g = "Sample"
-    add(g, "pre_upgrade", "Test days before the 2025-05-20 model upgrade",
+    g = "Sample (model upgrade on 2025-05-20)"
+    add(g, "pre_upgrade", "Pre-upgrade test days",
         _block(p85, ref.filter(pl.col("test_day") < UPGRADE.isoformat()), BASE, PRE, POST))
-    add(g, "post_upgrade", "Test days after the upgrade",
+    add(g, "post_upgrade", "Post-upgrade test days",
         _block(p85, ref.filter(pl.col("test_day") >= UPGRADE.isoformat()), BASE, PRE, POST))
     era = _ckpt("phase113_era_checkpoints")
     eb = None
     if era is not None and era["area"].n_unique() == 9:
         eb = _block(p85, keys.join(era.filter(pl.col("test_day") >= "2025-07-20"), on=KEY),
                     BASE, PRE, POST)
-    add(g, "post_upgrade_trained", "Trained on post-upgrade data only", eb)
-    add(g, "long_training", "Folds with at least a year of training",
+    add(g, "post_upgrade_trained", "Post-upgrade training", eb)
+    add(g, "long_training", "Training $\\geq$ 1 year",
         _block(p85, ref.filter(pl.col("test_day") >= LONG_TRAIN_FROM.isoformat()),
                BASE, PRE, POST))
 
     g = "Weather regime, main window"
     p114 = RUN / "phase114_stored_prediction_checks.json"
     cuts = json.loads(p114.read_text())["regimes"]["cuts"] if p114.exists() else {}
-    for k, label in (("hot_days", "Hottest days (area top 5\\%)"),
-                     ("cold_days", "Coldest days (area bottom 5\\%)"),
-                     ("low_wind_days", "Calmest days (area bottom 10\\%)"),
-                     ("evening_ramp", "Evening ramp, 16:00--20:30"),
-                     ("high_price_slots", "Highest-priced slots (top 5\\%, outcome-selected)")):
+    for k, label in (("hot_days", "Hottest 5\\% of days"),
+                     ("cold_days", "Coldest 5\\% of days"),
+                     ("low_wind_days", "Calmest 10\\% of days"),
+                     ("evening_ramp", "Evening, 16:00--20:30"),
+                     ("high_price_slots", "Top 5\\% of prices\\textsuperscript{*}")):
         add(g, f"regime_{k}", label, _from_json_block(cuts[k]) if k in cuts else None)
 
     g = "Backcast, 2021-01 to 2024-07"
@@ -214,7 +214,7 @@ def build_rows(p85) -> list[dict]:  # noqa: C901, PLR0912, PLR0915 - one branch 
     bc = json.loads(p112.read_text())["cw"] if p112.exists() else {}
     for k, label in (("all", "All test days"),
                      ("episodes", "Scarcity episodes"),
-                     ("S50", "Slots at or above 50 JPY/kWh (outcome-selected)")):
+                     ("S50", "Prices $\\geq$ 50 JPY/kWh\\textsuperscript{*}")):
         add(g, f"backcast_{k}", label, _from_json_block(bc[k]) if k in bc else None)
     return rows
 
@@ -243,11 +243,13 @@ def write_table(rows: list[dict]) -> None:
         "from zero). Learner and measurement rows use the primary slots; daylight, sample "
         "and regime rows are subsets of them (one test day has no daylight slot), and the "
         "backcast is a separate window. Regime cuts rank area-days by mean "
-        "capacity-weighted temperature or wind. \\textsuperscript{\\dag}Specified after "
+        "capacity-weighted temperature or wind; \\textsuperscript{*}selected on the realised "
+        "price, so descriptive only. \\textsuperscript{\\dag}Specified after "
         "related estimates had been seen (Section~\\ref{sec:inference}). Units: JPY/kWh.}",
         "\\label{tab:bound}",
-        "\\small",
-        "\\begin{tabular}{lrccrr}",
+        "\\footnotesize",
+        "\\setlength{\\tabcolsep}{3pt}",
+        "\\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{0.27\\linewidth}rccrr@{}}",
         "\\toprule",
         "Specification & Days & Pre-gate improvement & Post-gate increment & \\multicolumn{2}{c}{UCB (\\%)} \\\\",
         " & & & & MAE & gain \\\\",
@@ -260,14 +262,14 @@ def write_table(rows: list[dict]) -> None:
             lines.append(f"\\multicolumn{{6}}{{l}}{{\\emph{{{r['group']}}}}} \\\\")
             group = r["group"]
         if r["pending"]:
-            lines.append(f"\\quad {r['label']} & \\multicolumn{{5}}{{c}}{{[pending]}} \\\\")
+            lines.append(f"{r['label']} & \\multicolumn{{5}}{{c}}{{[pending]}} \\\\")
             continue
         pre = f"{_fmt(r['pre'])} [{_fmt(r['pre_ci95'][0])}, {_fmt(r['pre_ci95'][1])}]"
         gate = f"{_fmt(r['gate'])} [{_fmt(r['gate_ci95'][0])}, {_fmt(r['gate_ci95'][1])}]"
         days = f"{r['n_days']:,}".replace(",", "{,}")
         share = ("--" if r.get("ucb_share_pre_pct") is None
                  else _fmt(r["ucb_share_pre_pct"], 1))
-        lines.append(f"\\quad {r['label']} & {days} & {pre} & {gate} & "
+        lines.append(f"{r['label']} & {days} & {pre} & {gate} & "
                      f"{_fmt(r['ucb_rel_pct'], 2)} & {share} \\\\")
     lines += ["\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
     TABLE.write_text("\n".join(lines), encoding="utf-8")
@@ -296,11 +298,12 @@ DOC_GLOSS = {
 }
 
 
-def _tex_table(label: str, caption: str, colspec: str, header: str, body: list[str]) -> str:
+def _tex_table(label: str, caption: str, colspec: str, header: str, body: list[str],
+               size: str = "\\small") -> str:
     return "\n".join([
         "% GENERATED by 90b_gate_bound_table.py -- do not edit by hand.",
         "\\begin{table}[htbp]", "\\centering", f"\\caption{{{caption}}}",
-        f"\\label{{{label}}}", "\\small", f"\\begin{{tabular}}{{{colspec}}}", "\\toprule",
+        f"\\label{{{label}}}", size, f"\\begin{{tabular}}{{{colspec}}}", "\\toprule",
         header, "\\midrule", *body, "\\bottomrule", "\\end{tabular}", "\\end{table}", ""])
 
 
@@ -327,8 +330,9 @@ def write_supp_tables(rows: list[dict]) -> None:
             "Where each documented statement used in Section~3.3 of the main article sits. "
             "Every statement was located in the downloaded file by script (page = PDF page "
             "of the downloaded file); the hash identifies the file read.",
-            "llrlr", "Document & Location & Page & Statement & SHA-256 (first 12) \\\\",
-            body), encoding="utf-8")
+            "llr>{\\raggedright\\arraybackslash}p{0.33\\linewidth}r",
+            "Document & Location & Page & Statement & SHA-256 (first 12) \\\\",
+            body, size="\\footnotesize"), encoding="utf-8")
     learners = [r for r in rows if r["key"] in ("primary", "tuned", "lear", "dnn")]
     body = []
     for r in learners:
@@ -355,8 +359,8 @@ def write_supp_tables(rows: list[dict]) -> None:
                 ("E2_winter2022", "\\quad January--March 2022"),
                 ("E3_summer2022", "\\quad June--September 2022"),
                 ("non_episode", "Outside the episodes"),
-                ("S30", "Slots at or above 30 JPY/kWh\\textsuperscript{*}"),
-                ("S50", "Slots at or above 50 JPY/kWh\\textsuperscript{*}"))
+                ("S30", "Prices $\\geq$ 30 JPY/kWh\\textsuperscript{*}"),
+                ("S50", "Prices $\\geq$ 50 JPY/kWh\\textsuperscript{*}"))
         body = []
         for arm, title in (("cw", "Capacity-weighted field (primary)"),
                            ("sp", "Single representative point")):

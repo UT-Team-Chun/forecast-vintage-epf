@@ -264,8 +264,12 @@ def write_table(rows: dict) -> None:
         "published schedule, so its times are observed archive arrivals, and margins of a "
         "few minutes (MISO, ISO New England) can change from day to day. Sources: "
         "Supplementary Section~S4.}",
-        "\\label{tab:markets}", "\\small",
-        "\\begin{tabular}{llllll}".replace("llllll", "lllll"), "\\toprule",
+        "\\label{tab:markets}", "\\footnotesize", "\\setlength{\\tabcolsep}{3.5pt}",
+        # wrapping cells keep the table at the text width at full size instead of
+        # being shrunk to about two thirds by the document's max-width cap
+        "\\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{0.25\\linewidth}lc"
+        ">{\\raggedright\\arraybackslash}p{0.22\\linewidth}"
+        ">{\\raggedright\\arraybackslash}p{0.22\\linewidth}@{}}", "\\toprule",
         "Market & Gate & Gate (UTC) & ECMWF (IFS) & NOAA GFS \\\\", "\\midrule", *body,
         "\\bottomrule", "\\end{tabular}", "\\end{table}", ""]
     TABLE.write_text("\n".join(lines), encoding="utf-8")

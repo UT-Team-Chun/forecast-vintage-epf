@@ -13,7 +13,7 @@ three-cycle phase72 sample.
 
 Outputs (manuscript tree when present, else ./figures):
   information_timeline_a.pdf  -- the clock + 48-slot composite strip
-  information_timeline_b.pdf  -- the measured cycle curve + buffer band
+  information_timeline_b.pdf  -- the measured cycle curve (Supplementary Section S5)
 
 Every number is read from committed provenance and the script fails loudly if
 a value is missing, so the figures cannot drift away from the analyses they
@@ -204,94 +204,71 @@ def draw_clock(measured_lag: float, n_days: int, out_pdf: Path) -> None:
     log.info("wrote %s", out_pdf)
 
 
-def draw_curve(p73: dict, p78: dict, out_pdf: Path) -> None:
+# The supplement's text block (article, a4paper, 1-inch margins) is 452.97 pt. The
+# curve is included at 0.72\textwidth and drawn at exactly that width, so the point
+# sizes below are the sizes on the page (Elsevier asks for at least 7 pt). It uses the
+# main figures' style, scoped to this figure so the retired clock keeps its own.
+CURVE_W = 0.72 * 452.97 / 72
+CURVE_STYLE = {
+    "font.family": "sans-serif",
+    "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans", "DejaVu Sans"],
+    "mathtext.fontset": "custom", "mathtext.rm": "sans", "mathtext.it": "sans:italic",
+    "font.size": 8, "axes.labelsize": 8, "xtick.labelsize": 7.5, "ytick.labelsize": 7.5,
+    "text.color": "#1A1A1A", "axes.labelcolor": "#1A1A1A", "axes.edgecolor": "#333333",
+    "xtick.color": "#333333", "ytick.color": "#333333", "axes.linewidth": 0.6,
+    "xtick.major.width": 0.6, "ytick.major.width": 0.6,
+    "axes.spines.top": False, "axes.spines.right": False,
+    "pdf.fonttype": 42, "savefig.facecolor": "white"}
+C_PRE, C_POST, C_INK, C_RULE, C_GRID = "#0072B2", "#D55E00", "#1A1A1A", "#BDBDBD", "#E6E6E6"
+
+
+def draw_curve(p73: dict, p78: dict, out_pdf: Path) -> None:  # noqa: ARG001 - p78 kept for the CLI's shape
+    """The five archived cycles on the common window, placed at their measured arrival.
+
+    One hue per entity, as in the main figures (pre-gate cycles blue, the post-gate
+    run vermillion); every label in ink; no prose inside the plot. The reading --
+    one significant step, no detectable step after it -- is stated in the caption
+    and in Section S5, so the figure cannot drift away from the text.
+    """
     rungs = p73["rungs"]
     order = ["msm_d3_12z", "msm_d2_12z", "msm_d2_18z", "msm_d2_21z", "msm_d1_00z"]
     xs = [-rungs[k]["gate_margin_hours_measured"] for k in order]
     ys = [rungs[k]["improvement"] for k in order]
     los = [rungs[k]["ci95"][0] for k in order]
     his = [rungs[k]["ci95"][1] for k in order]
-
-    fig, bx = plt.subplots(figsize=(4.6, 3.3))
-    fig.subplots_adjust(left=0.135, right=0.97, top=0.90, bottom=0.14)
-    bx.set_xlim(min(xs) - 4.0, max(xs) + 6.5)
-    pady = 0.16 * (max(his) - min(los))
-    bx.set_ylim(min(los) - pady * 2.8, max(his) + pady * 2.4)
-
-    # worst-case processing margin of the latest pre-gate run (21 UTC composite
-    # leg): the shaded band is the region a submission pipeline must clear.
-    worst_margin_h = p78["run_dissemination"]["msm_d2_21z"]["worst_margin_min"] / 60.0
-    bx.axvspan(-worst_margin_h, 0.0, color=GATE, alpha=0.06, zorder=1)
-    bx.axvline(0.0, color=GATE, lw=1.1, zorder=4)
-    bx.text(0.0, bx.get_ylim()[1], "gate", ha="center", va="top", fontsize=6.0,
-            color=GATE, bbox=WBOX, zorder=6)
-
-    bx.plot(xs, ys, "-", color=AXIS, lw=0.7, zorder=2)
-    curve_offsets = {
-        "msm_d3_12z": (0, 9, "center", "bottom"),
-        "msm_d2_12z": (0, -14, "center", "top"),
-        "msm_d2_18z": (0, 9, "center", "bottom"),
-        "msm_d2_21z": (2, -14, "center", "top"),
-        "msm_d1_00z": (7, -1, "left", "center"),
-    }
-    for k, x, y, lo, hi in zip(order, xs, ys, los, his, strict=True):
-        col = POST if k == "msm_d1_00z" else PRE
-        bx.plot([x, x], [lo, hi], "-", color=SEC, lw=0.7, zorder=3)
-        for cap in (lo, hi):
-            bx.plot([x - 0.55, x + 0.55], [cap, cap], "-", color=SEC, lw=0.7,
-                    zorder=3)
-        bx.plot([x], [y], "o", ms=4.6, mfc=col, mec="white", mew=0.6, zorder=5)
-        dx, dy, ha, va = curve_offsets[k]
-        # spell the rung the way the caption and the text do: "D-3 12Z", not
-        # the provenance key "msm_d3_12z", which appears nowhere in the paper
-        day, cyc = k.replace("msm_", "").split("_")
-        label = f"$D{{-}}{day[1]}$ {cyc[:2]}Z"
-        bx.annotate(label, (x, y),
-                    textcoords="offset points", xytext=(dx, dy), ha=ha, va=va,
-                    fontsize=5.6, color=col, zorder=6, bbox=WBOX)
-
-    step = p73["pairwise_adjacent"]["msm_d2_12z_minus_msm_d3_12z"]
-    widest = p73["pairwise_summary"]["widest_ci_ticks_after_first"]
-    bx.annotate(
-        f"one significant step (+{step['diff']:.3f} "
-        f"[{step['ci95'][0]:.3f}, {step['ci95'][1]:.3f}]);\n"
-        "after it no adjacent step is detectable.\n"
-        "The gate step passes a one-tick equivalence test;\n"
-        f"the two intermediate steps reach {widest:.1f} ticks.",
-        xy=(0.03, 0.97), xycoords="axes fraction", ha="left", va="top",
-        fontsize=5.6, color=SEC, linespacing=1.25, bbox=WBOX, zorder=6)
-    worst_min = p78["run_dissemination"]["msm_d2_21z"]["worst_margin_min"]
-    n78 = p78["run_dissemination"]["msm_d2_21z"]["n_days"]
-    bx.annotate(
-        f"worst measured margin of the\nlatest pre-gate run: "
-        f"{worst_min:.0f} min ({n78} days)",
-        xy=(-worst_margin_h - 0.4, bx.get_ylim()[0] + pady * 0.4),
-        ha="right", va="bottom", fontsize=5.6, color=GATE, alpha=0.85,
-        linespacing=1.25, bbox=WBOX, zorder=6)
-
-    n_days = p73["panel"]["n_days"]
-    bx.set_xlabel("median archive-write time relative to the gate (h)",
-                  fontsize=6.4, color=SEC)
-    bx.set_ylabel(f"pooled MAE improvement, {n_days} days (JPY/kWh)",
-                  fontsize=6.4, color=SEC)
-    bx.tick_params(labelsize=6.0, colors=SEC)
-    bx.grid(True, color=GRID, lw=0.5)
-    bx.set_axisbelow(True)
-    for side in ("top", "right"):
-        bx.spines[side].set_visible(False)
-    for side in ("left", "bottom"):
-        bx.spines[side].set_color(AXIS)
-    # 16:30, not 16:00: the provenance records an inclusive hour filter [8, 16]
-    # and the slots are half-hourly labelled by start, so the panel holds 18
-    # slots per area-day and the last one starts at 16:30
-    # (phase73v2_cycle_curve.json panel.n_slots = 735 x 9 x 18 = 119,070).
-    # Section 5, Section 2 and Table S29 all print 16:30; this title did not,
-    # so one window printed two ways inside a single float.
-    bx.set_title("The measured cycle curve (common 08:00-16:30 window)",
-                 fontsize=7.4, color=INK, loc="left", pad=6)
-    out_pdf.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_pdf, format="pdf")
-    plt.close(fig)
+    # Two-line labels above each interval; the two nearest the gate are set below /
+    # beside theirs, so no label crosses an interval, another label or the gate line.
+    place = {"msm_d3_12z": (0.0, "hi", "center"), "msm_d2_12z": (0.0, "hi", "center"),
+             "msm_d2_18z": (0.0, "hi", "center"), "msm_d2_21z": (1.3, "lo", "right"),
+             "msm_d1_00z": (-0.6, "hi", "left")}
+    with plt.rc_context(CURVE_STYLE):
+        fig, bx = plt.subplots(figsize=(CURVE_W, 2.85))
+        fig.subplots_adjust(left=0.15, right=0.97, top=0.95, bottom=0.16)
+        pad = 0.12 * (max(his) - min(los))
+        bx.set_xlim(min(xs) - 4.0, max(xs) + 7.5)
+        bx.set_ylim(min(los) - 3.0 * pad, max(his) + 3.6 * pad)
+        bx.yaxis.grid(True, color=C_GRID, lw=0.5)
+        bx.set_axisbelow(True)
+        bx.axvline(0.0, color=C_INK, lw=0.9, zorder=4)
+        bx.text(-0.5, bx.get_ylim()[1], "Gate", ha="right", va="top", fontsize=7.5)
+        bx.plot(xs, ys, "-", color=C_RULE, lw=0.8, zorder=2)
+        for k, x, y, lo, hi in zip(order, xs, ys, los, his, strict=True):
+            col = C_POST if k == "msm_d1_00z" else C_PRE
+            bx.plot([x, x], [lo, hi], "-", color=col, lw=1.2, zorder=3,
+                    solid_capstyle="butt")
+            bx.plot([x], [y], "o", ms=5, mfc=col, mec="white", mew=0.6, zorder=5)
+            dxh, end, ha = place[k]
+            day, cyc = k.replace("msm_", "").split("_")
+            label = f"$D{{-}}{day[1]}$\n{cyc[:2]} UTC"
+            yy, va, off = (hi, "bottom", 3) if end == "hi" else (lo, "top", -3)
+            bx.annotate(label, (x + dxh, yy), textcoords="offset points", xytext=(0, off),
+                        ha=ha, va=va, fontsize=7.5, zorder=6, linespacing=1.0,
+                        multialignment=ha)
+        bx.set_xlabel("Median archive arrival relative to the gate (h)")
+        bx.set_ylabel("Improvement in pooled MAE (JPY/kWh)")
+        out_pdf.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(out_pdf, format="pdf")
+        plt.close(fig)
     log.info("wrote %s", out_pdf)
 
 
